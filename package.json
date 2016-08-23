@@ -1,0 +1,25 @@
+{
+  "name": "langri-sha.github.io",
+  "version": "1.0.0-alpha",
+  "description": "GitHub Pages site for Langri-Sha",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langri-sha/langri-sha.github.io.git"
+  },
+  "keywords": [
+    "gh-pages",
+    "webpack",
+    "react"
+  ],
+  "author": "Filip Dupanović",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.github.io/issues"
+  },
+  "homepage": "https://github.com/langri-sha/langri-sha.github.io#readme"
+}
