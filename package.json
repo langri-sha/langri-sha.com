@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/langri-sha/langri-sha.github.io/issues"
   },
-  "homepage": "https://github.com/langri-sha/langri-sha.github.io#readme"
+  "homepage": "https://github.com/langri-sha/langri-sha.github.io#readme",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }
