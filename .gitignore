@@ -1,7 +1,8 @@
-*.
+.*
 !.gitignore
 !.editorconfig
 !.openssl
+!.eslintrc
 npm-debug.log*
 
 node_modules/
