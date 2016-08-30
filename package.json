@@ -5,8 +5,10 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "start": "PATH=$PATH:$(pwd)/node_modules/.bin; [ ! -e local/langri-sha.key ] && npm run -s certs; webpack-dev-server -d --config webpack --hot --watch --https --port 443 --host 0.0.0.0 --key local/langri-sha.key --cert local/langri-sha.crt",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "PATH=$PATH:$(pwd)/node_modules/.bin; standard | snazzy",
+    "analyze": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --config webpack --optimize-minimize --optimize-dedupe --json | webpack-bundle-size-analyzer",
     "container": "export NAME=langri-sha WORKDIR=/$NAME; if docker ps -a | grep -q $NAME; then npm run -s container:start; else npm run -s container:run; fi",
     "container:start": "docker start -ai langri-sha",
     "container:run": "docker run --name=$NAME -w /$NAME -p 443:443 -v $(pwd):/$NAME -v $(pwd)/package.json:/package.json -v /root/.npm -v /node_modules -e \"NODE_PATH=/node_modules\" -e \"CHOKIDAR_USEPOLLING=1\" -e \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/node_modules/.bin\" --dns 8.8.8.8 --dns 8.8.4.4 --entrypoint=/bin/bash -it node:6",
@@ -55,7 +57,10 @@
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
     "snazzy": "^4.0.1",
+    "source-map-support": "^0.4.2",
     "standard": "^8.0.0-beta.5",
+    "standard-loader": "^5.0.0",
+    "webpack-bundle-size-analyzer": "^2.0.2",
     "webpack-dev-server": "^2.1.0-beta.0"
   }
 }
