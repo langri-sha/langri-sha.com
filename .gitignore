@@ -1,6 +1,8 @@
 *.
 !.gitignore
 !.editorconfig
+!.openssl
 npm-debug.log*
 
 node_modules/
+local/
