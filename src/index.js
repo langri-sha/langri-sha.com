@@ -3,8 +3,14 @@ import ReactDOM from 'react-dom'
 import 'normalize.css'
 
 import {Main} from './components'
+import webfont from './lib/webfont'
 
 (() => {
+  webfont({
+    families: ['Cinzel:400'],
+    text: 'Langri-Sha'
+  })
+
   const container = document.createElement('div')
   document.body.appendChild(container)
 
