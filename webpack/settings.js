@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import minimist from 'minimist'
 
-import {resolve, ours} from './helpers'
+import {resolve, ours, theirs} from './helpers'
 
 const {d: debug} = minimist(process.argv)
 
@@ -35,8 +35,8 @@ export default ({
     })
   ],
   resolve: {
-    extensions: ['', '.js'],
-    packageMains: ['web', 'main']
+    extensions: ['', '.js', '.css'],
+    packageMains: ['main']
   },
   module: {
     preLoaders: [],
@@ -44,6 +44,10 @@ export default ({
       test: /\.js$/,
       loader: 'babel',
       include: ours
+    }, {
+      test: /\.css$/,
+      loaders: 'style!css',
+      include: theirs
     }]
   }
 })
