@@ -1,19 +1,43 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import minimist from 'minimist'
+import cssnext from 'postcss-cssnext'
+import importer from 'postcss-import'
+import reporter from 'postcss-reporter'
 
 import {resolve, ours, theirs, debug} from './helpers'
+
+const postcss = (compiler) => {
+  const dev = debug(compiler)
+
+  const stylelint = () => (
+    require('stylelint')({
+      extends: 'stylelint-config-standard',
+      rules: []
+    })
+  )
+
+  return [
+    dev && stylelint(),
+    importer({
+      addToDependency: compiler,
+      plugins: [
+        dev && stylelint()
+      ]
+    }),
+    cssnext(),
+    reporter()
+  ]
+}
 
 class DevelopmentPlugin {
   apply (compiler) {
     if (!debug(compiler)) return
 
-    compiler.options.module.preLoaders.unshift(
-      {
-        test: /\.js?$/,
-        loader: 'standard',
-        include: ours
-      }
-    )
+    compiler.options.module.preLoaders.unshift({
+      test: /\.js?$/,
+      loader: 'standard',
+      include: ours
+    })
   }
 }
 
@@ -25,16 +49,11 @@ export default ({
     filename: 'index.js',
     publicPath: '/'
   },
-  plugins: [
-    new DevelopmentPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Langri-Sha'
-    })
-  ],
   resolve: {
     extensions: ['', '.js', '.css'],
     packageMains: ['main']
   },
+  postcss,
   module: {
     preLoaders: [],
     loaders: [{
@@ -43,8 +62,18 @@ export default ({
       include: ours
     }, {
       test: /\.css$/,
+      loaders: 'style!css?modules!postcss',
+      include: ours
+    }, {
+      test: /\.css$/,
       loaders: 'style!css',
       include: theirs
     }]
-  }
+  },
+  plugins: [
+    new DevelopmentPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Langri-Sha'
+    })
+  ],
 })

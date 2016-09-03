@@ -52,6 +52,10 @@
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.22.0",
     "normalize.css": "^4.2.0",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-import": "8.0.2",
+    "postcss-loader": "^0.9.1",
+    "postcss-reporter": "^1.4.1",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "style-loader": "^0.13.1",
@@ -66,6 +70,8 @@
     "source-map-support": "^0.4.2",
     "standard": "^8.0.0-beta.5",
     "standard-loader": "^5.0.0",
+    "stylelint": "^7.0.3",
+    "stylelint-config-standard": "^12.0.0",
     "webpack-bundle-size-analyzer": "^2.0.2",
     "webpack-dev-server": "^2.1.0-beta.0"
   }
