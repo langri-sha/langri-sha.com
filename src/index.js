@@ -4,6 +4,7 @@ import 'normalize.css'
 
 import {Main} from './components'
 import webfont from './lib/webfont'
+import './styles';
 
 (() => {
   webfont({
