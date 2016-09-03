@@ -1,15 +1,12 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import minimist from 'minimist'
 
-import {resolve, ours, theirs} from './helpers'
-
-const {d: debug} = minimist(process.argv)
+import {resolve, ours, theirs, debug} from './helpers'
 
 class DevelopmentPlugin {
   apply (compiler) {
-    if (!debug) return
+    if (!debug(compiler)) return
 
-    // TODO: Resolve options from compilation
     compiler.options.module.preLoaders.unshift(
       {
         test: /\.js?$/,
