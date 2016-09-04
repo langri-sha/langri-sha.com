@@ -4,7 +4,7 @@ import 'normalize.css'
 
 import {Main} from './components'
 import webfont from './lib/webfont'
-import './styles';
+import styles from './styles';
 
 (() => {
   webfont({
@@ -13,6 +13,7 @@ import './styles';
   })
 
   const container = document.createElement('div')
+  container.className = styles.container
   document.body.appendChild(container)
 
   ReactDOM.render(<Main />, container)
