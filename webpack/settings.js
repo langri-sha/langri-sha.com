@@ -19,7 +19,7 @@ const postcss = (compiler) => {
   return [
     dev && stylelint(),
     importer({
-      addToDependency: compiler,
+      addDependencyTo: compiler,
       plugins: [
         dev && stylelint()
       ]
