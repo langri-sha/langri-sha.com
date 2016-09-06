@@ -77,6 +77,8 @@ export default ({
       from: 'opt/CNAME'
     }, {
       from: 'opt/keybase.txt'
+    }, {
+      from: 'opt/robots.txt'
     }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
