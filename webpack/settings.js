@@ -1,3 +1,4 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import minimist from 'minimist'
 import cssnext from 'postcss-cssnext'
@@ -72,6 +73,11 @@ export default ({
   },
   plugins: [
     new DevelopmentPlugin(),
+    new CopyWebpackPlugin([{
+      from: 'opt/CNAME'
+    }, {
+      from: 'opt/keybase.txt'
+    }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
     })
