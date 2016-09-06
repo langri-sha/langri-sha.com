@@ -33,5 +33,5 @@ body {
   font-family: var(--font-heading);
   color: var(--color-white);
   animation-duration: 3s;
-  animation-name: boomIn;
+  animation-name: boom;
 }
