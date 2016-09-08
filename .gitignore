@@ -4,6 +4,7 @@
 !.eslintrc
 !.gitignore
 !.openssl
+!.travis.yml
 npm-debug.log*
 
 local/
