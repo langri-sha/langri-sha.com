@@ -77,7 +77,7 @@ export default ({
     }]
   },
   plugins: [
-    new DevelopmentPlugin(),
+    new DevelopmentPlugin,
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
     }, {
