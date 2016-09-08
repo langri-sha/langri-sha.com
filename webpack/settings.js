@@ -3,12 +3,19 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import minimist from 'minimist'
 import cssnext from 'postcss-cssnext'
 import importer from 'postcss-import'
-import reporter from 'postcss-reporter'
 
 import {resolve, ours, theirs, debug} from './helpers'
 
 const postcss = (compiler) => {
-  const dev = debug(compiler)
+  if (!debug(compiler)) {
+    return [
+      importer({
+        addDependencyTo: compiler,
+        plugins: []
+      }),
+      cssnext()
+    ]
+  }
 
   const stylelint = () => (
     require('stylelint')({
@@ -17,10 +24,15 @@ const postcss = (compiler) => {
     })
   )
 
-  conf[0].plugins.push(stylelint())
-  conf.unshift(stylelint())
-
-  return conf
+  return [
+    stylelint(),
+    importer({
+      addDependencyTo: compiler,
+      plugins: [stylelint()]
+    }),
+    cssnext(),
+    require('postcss-reporter')
+  ]
 }
 
 class DevelopmentPlugin {
