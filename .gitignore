@@ -4,7 +4,9 @@
 !.editorconfig
 !.openssl
 !.eslintrc
-npm-debug.log*
 
 node_modules/
+npm-debug.log*
+
 local/
+srv/

@@ -17,17 +17,10 @@ const postcss = (compiler) => {
     })
   )
 
-  return [
-    dev && stylelint(),
-    importer({
-      addDependencyTo: compiler,
-      plugins: [
-        dev && stylelint()
-      ]
-    }),
-    cssnext(),
-    reporter()
-  ]
+  conf[0].plugins.push(stylelint())
+  conf.unshift(stylelint())
+
+  return conf
 }
 
 class DevelopmentPlugin {
@@ -46,7 +39,7 @@ export default ({
   target: 'web',
   entry: './src/index',
   output: {
-    path: resolve('local'),
+    path: resolve('srv'),
     filename: 'index.js',
     publicPath: '/'
   },
@@ -74,11 +67,11 @@ export default ({
   plugins: [
     new DevelopmentPlugin(),
     new CopyWebpackPlugin([{
-      from: 'opt/CNAME'
+      from: 'share/CNAME'
     }, {
-      from: 'opt/keybase.txt'
+      from: 'share/keybase.txt'
     }, {
-      from: 'opt/robots.txt'
+      from: 'share/robots.txt'
     }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
