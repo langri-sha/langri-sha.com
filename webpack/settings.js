@@ -47,6 +47,18 @@ class DevelopmentPlugin {
   }
 }
 
+class BailOnWarningsPlugin {
+  apply (compiler) {
+    if (!compiler.options.bail) return
+
+    compiler.plugin('done', (stats) => {
+      if (stats.compilation.warnings && stats.compilation.warnings.length) {
+        setTimeout(process.exit.bind(process, 1), 0)
+      }
+    })
+  }
+}
+
 export default ({
   target: 'web',
   entry: './src/index',
@@ -87,6 +99,7 @@ export default ({
     }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
-    })
+    }),
+    new BailOnWarningsPlugin
   ],
 })
