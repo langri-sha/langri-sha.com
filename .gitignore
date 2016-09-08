@@ -1,12 +1,11 @@
 .*
 !.babelrc
-!.gitignore
 !.editorconfig
-!.openssl
 !.eslintrc
-
-node_modules/
+!.gitignore
+!.openssl
 npm-debug.log*
 
 local/
+node_modules/
 srv/
