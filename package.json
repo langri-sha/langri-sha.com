@@ -7,7 +7,7 @@
   "scripts": {
     "start": "PATH=$PATH:$(pwd)/node_modules/.bin; [ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server -d --config webpack --hot --watch --https --port 443 --host 0.0.0.0 --key local/langri-sha.key --cert local/langri-sha.crt",
     "build": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --config webpack --optimize-minimize --optimize-dedupe --progress",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "PATH=$PATH:$(pwd)/node_modules/.bin webpack --config webpack --debug --bail",
     "lint": "PATH=$PATH:$(pwd)/node_modules/.bin; standard | snazzy",
     "analyze": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --config webpack --optimize-minimize --optimize-dedupe --json | webpack-bundle-size-analyzer",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
