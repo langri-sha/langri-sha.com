@@ -95,6 +95,10 @@ export default ({
       from: 'share/keybase.txt'
     }, {
       from: 'share/robots.txt'
+    }, {
+      from: 'README'
+    }, {
+      from: 'LICENSE.md'
     }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
