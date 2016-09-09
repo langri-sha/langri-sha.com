@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - stable
+cache:
+  directories:
+    - node_modules
 env:
   global:
     - GIT_DEPLOY_USERNAME="Travis CI"
