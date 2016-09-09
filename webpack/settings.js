@@ -1,6 +1,5 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import minimist from 'minimist'
 import cssnext from 'postcss-cssnext'
 import importer from 'postcss-import'
 
@@ -89,7 +88,7 @@ export default ({
     }]
   },
   plugins: [
-    new DevelopmentPlugin,
+    new DevelopmentPlugin(),
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
     }, {
@@ -100,6 +99,6 @@ export default ({
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
     }),
-    new BailOnWarningsPlugin
-  ],
+    new BailOnWarningsPlugin()
+  ]
 })
