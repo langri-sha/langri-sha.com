@@ -23,7 +23,7 @@ before_deploy:
 
     curl \
       -L https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh \
-      -o local/deploy.sh
+      --create-dirs -o local/deploy.sh
     chmod +x local/deploy.sh
 deploy:
   provider: script
