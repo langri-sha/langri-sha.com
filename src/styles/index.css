@@ -1,6 +1,7 @@
 @import "./animations.css";
-@import "./fonts.css";
 @import "./colors.css";
+@import "./fonts.css";
+@import "./media.css";
 
 html {
   font-size: 62.5%;
