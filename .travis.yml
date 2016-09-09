@@ -11,6 +11,11 @@ env:
 
 before_deploy:
 - |
+    curl \
+    -L https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh \
+    --create-dirs -o local/deploy.sh
+    chmod +x local/deploy.sh
+
     openssl aes-256-cbc \
       -K $encrypted_e90277111077_key \
       -iv $encrypted_e90277111077_iv \
@@ -21,10 +26,6 @@ before_deploy:
 
     npm run build
 
-    curl \
-      -L https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh \
-      --create-dirs -o local/deploy.sh
-    chmod +x local/deploy.sh
 deploy:
   provider: script
   script: local/deploy.sh
