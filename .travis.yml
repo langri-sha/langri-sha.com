@@ -14,18 +14,20 @@ before_deploy:
     openssl aes-256-cbc \
       -K $encrypted_e90277111077_key \
       -iv $encrypted_e90277111077_iv \
-      -in share/deploy_key.enc -out deploy_key -d
-    chmod 600 deploy_key
+      -in share/deploy_key.enc -out local/deploy_key -d
+    chmod 600 local/deploy_key
     eval `ssh-agent -s`
-    ssh-add deploy_key
+    ssh-add local/deploy_key
 
     npm run build
 
-    wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh
-    chmod +x deploy.sh
+    curl \
+      -L https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh \
+      -o local/deploy.sh
+    chmod +x local/deploy.sh
 deploy:
   provider: script
-  script: deploy.sh
+  script: local/deploy.sh
   skip_cleanup: true
   on:
     branch: master
