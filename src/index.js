@@ -8,7 +8,7 @@ import styles from './styles';
 
 (() => {
   webfont({
-    families: ['Cinzel:400'],
+    families: ['Cinzel Decorative:400'],
     text: 'Langri-Sha'
   })
 

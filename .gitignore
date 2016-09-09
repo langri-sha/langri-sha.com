@@ -1,10 +1,12 @@
 .*
 !.babelrc
-!.gitignore
 !.editorconfig
-!.openssl
 !.eslintrc
+!.gitignore
+!.openssl
+!.travis.yml
 npm-debug.log*
 
-node_modules/
 local/
+node_modules/
+srv/

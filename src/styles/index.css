@@ -1,3 +1,4 @@
+@import "./animations.css";
 @import "./fonts.css";
 @import "./colors.css";
 
@@ -28,6 +29,9 @@ body {
 }
 
 .title {
+  font-size: 10rem;
   font-family: var(--font-heading);
   color: var(--color-white);
+  animation-duration: 3s;
+  animation-name: boom;
 }

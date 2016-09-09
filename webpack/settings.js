@@ -1,13 +1,20 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import minimist from 'minimist'
 import cssnext from 'postcss-cssnext'
 import importer from 'postcss-import'
-import reporter from 'postcss-reporter'
 
 import {resolve, ours, theirs, debug} from './helpers'
 
 const postcss = (compiler) => {
-  const dev = debug(compiler)
+  if (!debug(compiler)) {
+    return [
+      importer({
+        addDependencyTo: compiler,
+        plugins: []
+      }),
+      cssnext()
+    ]
+  }
 
   const stylelint = () => (
     require('stylelint')({
@@ -17,15 +24,13 @@ const postcss = (compiler) => {
   )
 
   return [
-    dev && stylelint(),
+    stylelint(),
     importer({
-      addToDependency: compiler,
-      plugins: [
-        dev && stylelint()
-      ]
+      addDependencyTo: compiler,
+      plugins: [stylelint()]
     }),
     cssnext(),
-    reporter()
+    require('postcss-reporter')
   ]
 }
 
@@ -41,11 +46,23 @@ class DevelopmentPlugin {
   }
 }
 
+class BailOnWarningsPlugin {
+  apply (compiler) {
+    if (!compiler.options.bail) return
+
+    compiler.plugin('done', (stats) => {
+      if (stats.compilation.warnings && stats.compilation.warnings.length) {
+        setTimeout(process.exit.bind(process, 1), 0)
+      }
+    })
+  }
+}
+
 export default ({
   target: 'web',
   entry: './src/index',
   output: {
-    path: resolve('local'),
+    path: resolve('srv'),
     filename: 'index.js',
     publicPath: '/'
   },
@@ -72,8 +89,16 @@ export default ({
   },
   plugins: [
     new DevelopmentPlugin(),
+    new CopyWebpackPlugin([{
+      from: 'share/CNAME'
+    }, {
+      from: 'share/keybase.txt'
+    }, {
+      from: 'share/robots.txt'
+    }]),
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
-    })
-  ],
+    }),
+    new BailOnWarningsPlugin()
+  ]
 })
