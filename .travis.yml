@@ -4,6 +4,9 @@ node_js:
 cache:
   directories:
     - node_modules
+branches:
+  except:
+    - master
 env:
   global:
     - GIT_DEPLOY_USERNAME="Travis CI"
