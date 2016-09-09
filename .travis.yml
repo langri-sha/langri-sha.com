@@ -5,8 +5,8 @@ cache:
   directories:
     - node_modules
 branches:
-  except:
-    - master
+  only:
+    - gh-pages
 env:
   global:
     - GIT_DEPLOY_USERNAME="Travis CI"
