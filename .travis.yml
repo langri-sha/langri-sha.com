@@ -2,11 +2,12 @@ language: node_js
 node_js:
   - stable
 env:
-  - GIT_DEPLOY_USERNAME="Travis CI"
-  - GIT_DEPLOY_EMAIL=filip.dupanovic@gmail.com
-  - GIT_DEPLOY_DIR=srv
-  - GIT_DEPLOY_BRANCH=gh-pages
-  - GIT_DEPLOY_REPO=git@github.com:langri-sha/langri-sha.github.io.git
+  global:
+    - GIT_DEPLOY_USERNAME="Travis CI"
+    - GIT_DEPLOY_EMAIL=filip.dupanovic@gmail.com
+    - GIT_DEPLOY_DIR=srv
+    - GIT_DEPLOY_BRANCH=gh-pages
+    - GIT_DEPLOY_REPO=git@github.com:langri-sha/langri-sha.github.io.git
 
 before_deploy:
 - |
