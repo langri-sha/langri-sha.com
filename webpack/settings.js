@@ -96,7 +96,7 @@ export default ({
     }, {
       from: 'share/robots.txt'
     }, {
-      from: 'README'
+      from: 'README.md'
     }, {
       from: 'LICENSE.md'
     }]),
