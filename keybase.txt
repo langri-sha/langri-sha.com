@@ -4,7 +4,7 @@ https://keybase.io/langrisha
 
 I hereby claim:
 
-  * I am an admin of http://langri-sha.com
+  * I am an admin of https://langri-sha.com
   * I am langrisha (https://keybase.io/langrisha) on keybase.
   * I have a public key with fingerprint 6E69 8B1D 695A D804 9BDD  2A04 BF65 B517 C7E5 00E4
 
@@ -21,17 +21,22 @@ To do so, I am signing this object:
             "uid": "2c5e6b4aeb7f87f63e70e58e7d16bc19",
             "username": "langrisha"
         },
+        "revoke": {
+            "sig_ids": [
+                "ef14aacc151db3e4765fef43a3f18ea814acc7902b6fcab076d7335c04aa7e890f"
+            ]
+        },
         "service": {
             "hostname": "langri-sha.com",
-            "protocol": "http:"
+            "protocol": "https:"
         },
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1471876191,
+    "ctime": 1473499686,
     "expire_in": 157680000,
-    "prev": "009d7fde9d2d5c73775c80c15b0fb90d2f0f1f6bd258928ca3ff7dc75c58d36f",
-    "seqno": 17,
+    "prev": "aa0df10d0c885061495521970e07c9d9a54db1a0cbbc4f2718525cbd7fc4a791",
+    "seqno": 25,
     "tag": "signature"
 }
 
@@ -41,23 +46,24 @@ which yields the signature:
 Version: Keybase OpenPGP v2.0.56
 Comment: https://keybase.io/crypto
 
-yMIlAnicrZJtbAxBGMevimrjmvKFBgkbhPTU7t7NzuyJkAoSjZeEFFW5zOzM3K1r
-d8/utVflRBDx/kEjRIjwQSv1khwq0lQRRFNV4qW+UKEJ8RKaSFOJtGYbPkh8NF8m
-88zv/5//82Tu+rN9eVnxZ9evoPhnKavj9olq39qWsZGtErHpFim8VYqz4Y1VUuYm
-I3GTSmFJVmSFYlXXCcM60w2iIhUgzJnGDKAyrmAMVUyVEJBVDrCKuM5DWAUq5JQx
-qnNIoIylgMRNK8qchGNaSWGrMU1HRKGaDjBFckgnlKpYDhGuAQIUaEAGZJmFhDBm
-u55ChCPYZcWmLWriEBmO9w/+P+euHrZTDcA0EsKMQI4g14IMygwgBqmiEUPRPdBl
-joWrmKArsRV1TDeGpXRAEuUa02DeZL1W/kLmCKbYsKuEPOHYSduwK8VdLJlMhD1p
-ckvCY1OMRH67RIhpUTFJIahhjmvalhRWBGkkTc9WCUEFQU3RlYDEahOmwyKmRwCo
-IVks7xlW441H1qnXqU5VCgwYhBAYSDYUQGROdJmqXOYK1wgVQ9NVZOAg55AaggKI
-BjUueX1ttmzhDUVOHBWerhm1cLLaYVL6zq2Kkb6sPN/oUSO8L+bLyy348/FW543x
-7b/Eru+qPb2pd0V+36dJVnNJR7x9fkVL9pofF66+J1XR75W9j6o/7NhTcq2zf2bX
-4reFA+HpQz3+yam54+p6BzLg8mBFH3s3vatp588nRcsy9+yCvsKBWQ+sszfO3ZuC
-YqVZ7pL00OvZr9Ax/8dve1HV44Kb4Ya2qHx4YGP6QNHgqdrCVG5//8EF23tylrYF
-p3W9n3DyYUJqthrRuvxIpnxp99PdDaPzc8wjDWXpzL5MHQm2Hj2EZnVNbKz/oran
-xpeWN/hHlrUdnhMsOX4z0Pxz4aqe5TO+Tqlvyp+6zzRfWmcOxX+0rk8FJ9fVbNj2
-hrkXC+6Xrzy6aF7gfOdzv9P94hf8ZkZp
-=CLIW
+yMJoAnicrVJdaFxFGN3EatOAmlJqib60U9yntczcvXNnZk3Vggg+NC/1B6y6nZ9v
+sreb3LvZe3eTGKL0IWIaqtSQF0UJGokRKa0iW6EPjUpTEC01VSwidsUXaSgGkaCo
+cW7QB8FH52WY+c53zpkz3ye33pTr7qheab3Pq6uo49Ol9Ubu8ZUv8uNIxWYMlcZR
+FTY3GDSQpOVqaFAJYYKJkZ4QCqQAoZXHPcqlhQA09cASKZknDfEp9iyVHrfC+tKj
+HrMGwAjLFMMSFZANowGo1+phlDraAALBFTGBoNJw7AtljCexr2xAFSVMM6AYg+8a
+K3GSdThzSiawL4zdnTuUN+39B/5/9t3YpPM0hUD5EhSznNmgCAwD5cAMCZQmIgMm
+UI/kEDj0oIwG6mFSkWiigOrQjKuQBZuEA851gkqHkTPgS6k1ocSoIvgsoBasX5RF
+SzhI7qpaM4E9FVgtFWaBYcUi1dh1MeACW/SU43aSzVBvkmcx/Uv+Hqe/T8dDzlqt
+HqexjgddrZKmtaSU+UrHahl4BFT5b5qyCiPjvsl1NKGehHGESsQhdRpmvMRnRV+I
+gAcFBKO1sA7lMENQFnDsVqYDTUcpJTaWYIM15xQHxBeUekS4xDDTwghJfaOIxFop
+7VuPEU49qpVhVvuSCYKyhw1HMSp51PmUA47TZRfJtFEHNPHR+Se35Dq6c7fc3JnN
+b657W88/U937alfu9TOnnrsx9+PlZ6fmnj792vyJ3+23i0feTC+c/XC2cfs733NS
+Wz+2dXt8/cHpV+4bXr64zHtf7Nidn3rmz4Pzd8N4umU6f9cD7Rsza8fPDl9KLk1d
+3JOOfdfZu7Qj/dUc6iu9V+irXC6uXFi5Kq/1jHaNLpw5Bg/37HpXPZp/4fDW4TuS
+zvMnjk7vWHp5aAR2P9S1Z3Hml+XJjSNDjflD1x+JJ9Fpf/3kx9cm79/+9t7+Vntm
+4YfyNwfG+36eXWxdPVBpza3u3K/uFAdzn01vnPyq9lO61n7s699wf3v23qltV55Y
+Lbyx8RL07zy6cK6Z3/XHB/vfwsc/j85NUtP+soVOjUysPX/b3r8AmllkgA==
+=sGxv
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
