@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import 'normalize.css'
 
 import {Main} from './components'
+import Drone from './lib/drone'
 import webfont from './lib/webfont'
-import styles from './styles';
+import styles from './styles'
 
 (() => {
   webfont({
@@ -17,4 +18,5 @@ import styles from './styles';
   document.body.appendChild(container)
 
   ReactDOM.render(<Main />, container)
+  new Drone().generate()
 })()
