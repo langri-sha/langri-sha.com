@@ -64,7 +64,7 @@ export default class Drone {
 }
 
 function mtof (m) {
-  return Math.pow(2, (m - 69) / 12) * 440
+  return (2 ** ((m - 69) / 12)) * 440
 }
 
 function rand (min, max) {
