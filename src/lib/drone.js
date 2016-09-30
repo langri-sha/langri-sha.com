@@ -5,7 +5,7 @@ export default class Drone {
   scale = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
   noiseNodes = []
 
-  constructor (oscilatorsSize = 2, baseNote = 60) {
+  constructor (oscilatorsSize = 5, baseNote = 60) {
     const context = this.context = new AudioContext()
 
     this.oscilatorsSize = oscilatorsSize
