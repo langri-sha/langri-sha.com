@@ -42,7 +42,7 @@ export default class Drone {
     pannerNode.connect(this.gainNode)
 
     const filter = this.context.createBiquadFilter()
-    filter.type = 'bandpass'
+    filter.type = filter.BANDPASS
     filter.frequency.value = frequency
     filter.Q.value = 50
     filter.connect(pannerNode)
