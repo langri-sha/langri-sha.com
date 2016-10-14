@@ -10,15 +10,15 @@ export default class Drone {
   scale = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
   noiseNodes = []
 
-  constructor (oscilatorsSize = 5, baseNote = 60) {
+  constructor (oscilatorsSize = 40, baseNote = 60) {
     const context = this.context = new AudioContext()
-
-    this.oscilatorsSize = oscilatorsSize
-    this.baseNote = baseNote
 
     const gainNode = this.gainNode = context.createGain()
     gainNode.gain.value = 0.25
     gainNode.connect(context.destination)
+
+    this.oscilatorsSize = oscilatorsSize
+    this.baseNote = baseNote
   }
 
   generate () {
