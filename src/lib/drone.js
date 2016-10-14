@@ -1,5 +1,10 @@
 /* global AudioContext */
 
+/**
+ * Adopted from @mattdiamond's JS drone project.
+ * @see http://matt-diamond.com/drone.html
+ */
+
 export default class Drone {
   bufferSize = 4096
   scale = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
