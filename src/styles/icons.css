@@ -6,15 +6,15 @@
 .icon-github::before {
   font-family: var(--font-icons);
   font-size: 2rem;
-  content: '\e900';
+  content: '\1f431';
 }
 
 .icon-twitter {
   composes: icon;
-  content: '\ea96';
+  content: '\1f426';
 }
 
 .icon-stack-overflow {
   composes: icon;
-  content: '\e901';
+  content: '\1f3eb';
 }
