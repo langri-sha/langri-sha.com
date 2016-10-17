@@ -1,0 +1,20 @@
+.icon::before {
+  font-family: var(--font-icons);
+  font-size: 2rem;
+}
+
+.icon-github::before {
+  font-family: var(--font-icons);
+  font-size: 2rem;
+  content: '\e900';
+}
+
+.icon-twitter {
+  composes: icon;
+  content: '\ea96';
+}
+
+.icon-stack-overflow {
+  composes: icon;
+  content: '\e901';
+}

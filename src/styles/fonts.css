@@ -1,4 +1,15 @@
 :root {
   --font-default: serif;
   --font-heading: 'Cinzel Decorative', serif;
+  --font-icons: 'icomoon-langri-sha', serif;
+}
+
+@font-face {
+  font-family: 'icomoon-langri-sha';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../static/fonts/icomoon.eot");
+  src:
+    url("../static/fonts/icomoon.woff") format('woff2'),
+    url("../static/fonts/icomoon.ttf") format('truetype');
 }
