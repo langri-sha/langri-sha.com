@@ -85,6 +85,10 @@ export default ({
       test: /\.css$/,
       loaders: 'style!css',
       include: theirs
+    }, {
+      test: /\.(eot|woff|ttf)$/,
+      loaders: 'url',
+      include: ours
     }]
   },
   plugins: [
