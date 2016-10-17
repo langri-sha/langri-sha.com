@@ -57,6 +57,7 @@
     "html-webpack-plugin": "^2.22.0",
     "normalize.css": "^4.2.0",
     "postcss-cssnext": "^2.7.0",
+    "postcss-font-smoothing": "^0.1.0",
     "postcss-import": "8.0.2",
     "postcss-loader": "^0.13.0",
     "react": "^15.3.0",

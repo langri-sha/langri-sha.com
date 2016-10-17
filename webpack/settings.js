@@ -2,6 +2,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import cssnext from 'postcss-cssnext'
 import importer from 'postcss-import'
+import fontSmoothing from 'postcss-font-smoothing'
 
 import {resolve, ours, theirs, debug} from './helpers'
 
@@ -29,6 +30,7 @@ const postcss = (compiler) => {
       addDependencyTo: compiler,
       plugins: [stylelint()]
     }),
+    fontSmoothing(),
     cssnext(),
     require('postcss-reporter')
   ]
