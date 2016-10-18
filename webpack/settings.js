@@ -35,8 +35,8 @@ const postcss = (compiler) => {
     }),
     cssnext(),
     fontSmoothing(),
-    cssnano(),
-    require('postcss-reporter')
+    require('postcss-reporter')(),
+    require('postcss-browser-reporter')()
   ]
 }
 
