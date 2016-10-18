@@ -1,8 +1,8 @@
-@import "./animations.css";
-@import "./colors.css";
-@import "./fonts.css";
-@import "./icons.css";
-@import "./media.css";
+@import './animations.css';
+@import './colors.css';
+@import './fonts.css';
+@import './icons.css';
+@import './media.css';
 
 html {
   font-size: 62.5%;
