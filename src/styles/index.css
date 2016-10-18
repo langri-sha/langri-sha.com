@@ -21,8 +21,7 @@ body {
 
 .container {
   display: flex;
-  background: #89253e;
-  background: linear-gradient(to left, #3a6186, #89253e);
+  background: var(--color-background);
   height: 100vh;
   width: 100vw;
   flex-flow: column nowrap;
@@ -33,7 +32,7 @@ body {
 .title {
   font-family: var(--font-heading);
   letter-spacing: -0.03em;
-  color: var(--color-white);
+  color: var(--color-text);
   animation-duration: 3s;
   animation-name: boom;
 
