@@ -1,8 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 
+import {iconify} from '../lib/str'
 import styles from './styles'
-import {iconify} from './lib/str'
 
 export const Link = ({name, href}) => (
   <a href={href}>
@@ -10,8 +10,8 @@ export const Link = ({name, href}) => (
   </a>
 )
 
-export const Main = () => (
-  <div>
+export const Header = () => (
+  <header>
     <h1 className={styles.title}>Langri-Sha</h1>
     {[
       ['GitHub', 'https://github.com/langri-sha'],
@@ -21,5 +21,5 @@ export const Main = () => (
     ].map(([name, href]) => (
       <Link key={name} name={name} href={href} />
     ))}
-  </div>
+  </header>
 )

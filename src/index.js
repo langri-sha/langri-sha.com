@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
 
-import {Main} from './components'
+import {Header} from './header'
 import Drone from './lib/drone'
 import webfont from './lib/webfont'
 import styles from './styles'
@@ -17,6 +17,6 @@ import styles from './styles'
   container.className = styles.container
   document.body.appendChild(container)
 
-  ReactDOM.render(<Main />, container)
+  ReactDOM.render(<Header />, container)
   new Drone().generate()
 })()

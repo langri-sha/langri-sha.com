@@ -28,23 +28,3 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-.title {
-  font-family: var(--font-heading);
-  letter-spacing: -0.03em;
-  color: var(--color-text);
-  animation-duration: 3s;
-  animation-name: boom;
-
-  @media (--small-viewport) {
-    font-size: 6rem;
-  }
-
-  @media (--medium-viewport) {
-    font-size: 8rem;
-  }
-
-  @media (--large-viewport) {
-    font-size: 10rem;
-  }
-}
