@@ -1,20 +1,39 @@
 .icon::before {
-  font-family: var(--font-icons);
+  font-family: var(--font-icons) !important;
   font-size: 2rem;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-smoothing: antialiased;
+}
+
+.icon-github,
+.icon-key,
+.icon-keybase,
+.icon-stack-overflow,
+.icon-twitter {
+  composes: icon;
 }
 
 .icon-github::before {
-  font-family: var(--font-icons);
-  font-size: 2rem;
   content: '\1f431';
 }
 
-.icon-twitter {
-  composes: icon;
-  content: '\1f426';
+.icon-key::before {
+  content: '\1f511';
 }
 
-.icon-stack-overflow {
-  composes: icon;
+.icon-keybase::before {
+  content: '\1f575';
+}
+
+.icon-stack-overflow::before {
   content: '\1f3eb';
+}
+
+.icon-twitter::before {
+  content: '\1f426';
 }
