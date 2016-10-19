@@ -8,8 +8,8 @@
   font-family: 'icomoon-langri-sha';
   font-style: normal;
   font-weight: 400;
-  src: url('../static/fonts/icomoon-langri-sha.eot');
+  src: url('../fonts/icomoon-langri-sha.eot');
   src:
-    url('../static/fonts/icomoon-langri-sha.woff') format('woff2'),
-    url('../static/fonts/icomoon-langri-sha.ttf') format('truetype');
+    url('../fonts/icomoon-langri-sha.woff') format('woff2'),
+    url('../fonts/icomoon-langri-sha.ttf') format('truetype');
 }
