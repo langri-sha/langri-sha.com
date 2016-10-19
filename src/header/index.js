@@ -4,7 +4,7 @@ import {iconify} from '../lib/str'
 import styles from './styles'
 
 export const Link = ({name, href}) => (
-  <a className={styles.link} onClick={() => window.open(href)}>
+  <a title={name} className={styles.link} onClick={() => window.open(href)}>
     <span className={styles[iconify(name)]} />
   </a>
 )
