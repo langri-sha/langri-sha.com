@@ -13,6 +13,8 @@
   font-family: var(--font-heading);
   letter-spacing: -0.03em;
   color: var(--color-text);
+  cursor: default;
+  user-select: none;
 
   @media (--small-viewport) {
     font-size: 6rem;
