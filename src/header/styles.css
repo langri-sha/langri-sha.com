@@ -30,7 +30,10 @@
 }
 
 .nav {
+  position: absolute;
   display: flex;
+  width: 100%;
+  left: 0;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
