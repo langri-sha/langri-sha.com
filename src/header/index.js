@@ -10,7 +10,7 @@ export const Link = ({name, href}) => (
 )
 
 export const Header = () => (
-  <header>
+  <header className={styles.header}>
     <h1 className={styles.title}>Langri-Sha</h1>
     <nav className={styles.nav}>
       {[
