@@ -1,5 +1,4 @@
 import React from 'react'
-import classNames from 'classnames'
 
 import {iconify} from '../lib/str'
 import styles from './styles'
@@ -17,7 +16,7 @@ export const Header = () => (
       {[
         ['Stack Overflow', 'https://stackoverflow.com/users/story/44041'],
         ['Keybase', 'https://github.com/langri-sha'],
-        ['GitHub', 'https://github.com/langri-sha'],
+        ['GitHub', 'https://github.com/langri-sha']
       ].map(([name, href]) => (
         <Link key={name} name={name} href={href} />
       ))}
