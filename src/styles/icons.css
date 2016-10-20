@@ -10,12 +10,18 @@
   font-smoothing: antialiased;
 }
 
+.icon-docker,
 .icon-github,
 .icon-key,
 .icon-keybase,
+.icon-npm,
 .icon-stack-overflow,
 .icon-twitter {
   composes: icon;
+}
+
+.icon-docker::before {
+  content: '\1f680';
 }
 
 .icon-github::before {
@@ -28,6 +34,10 @@
 
 .icon-keybase::before {
   content: '\1f575';
+}
+
+.icon-npm::before {
+  content: '\1f3e2';
 }
 
 .icon-stack-overflow::before {
