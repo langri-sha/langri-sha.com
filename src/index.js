@@ -18,11 +18,18 @@ import styles from './styles'
   container.className = styles.container
   document.body.appendChild(container)
 
-  ReactDOM.render((
-    <div>
-      <Header />
-      <Analytics id={'UA-86127521-1'} />
-      <Drone />
-    </div>
-  ), container)
+  try {
+    ReactDOM.render((
+      <div>
+        <Header />
+        <Analytics id={'UA-86127521-1'} />
+        <Drone />
+      </div>
+    ), container)
+  } catch (err) {
+    ga('send', 'exception', {
+      exDescription: err.message,
+      exFatal: false
+    })
+  }
 })()
