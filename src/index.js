@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
 
-import {Analytics} from './lib/analytics'
+import {ga, Analytics} from './lib/analytics'
 import {Header} from './header'
 import {Drone} from './lib/drone'
 import webfont from './lib/webfont'
