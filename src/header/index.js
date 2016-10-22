@@ -3,13 +3,7 @@ import React from 'react'
 import {iconify} from '../lib/str'
 import styles from './styles'
 
-export const Link = ({name, href, title}) => (
-  <a className={styles.link} href={href} title={title} target={'_blank'}>
-    <span className={styles[iconify(name)]} />
-  </a>
-)
-
-export const Header = () => (
+export default () => (
   <header className={styles.header}>
     <h1 className={styles.title}>Langri-Sha</h1>
     <nav className={styles.nav}>
@@ -35,4 +29,10 @@ export const Header = () => (
       ))}
     </nav>
   </header>
+)
+
+const Link = ({name, href, title}) => (
+  <a className={styles.link} href={href} title={title} target={'_blank'}>
+    <span className={styles[iconify(name)]} />
+  </a>
 )

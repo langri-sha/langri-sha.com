@@ -2,7 +2,7 @@
 
 import {Component} from 'react'
 
-export class Drone extends Component {
+export default class Drone extends Component {
   componentDidMount () {
     new Processor().generate()
   }

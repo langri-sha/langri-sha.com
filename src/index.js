@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import 'normalize.css'
 
 import {ga, Analytics} from './lib/analytics'
-import {Header} from './header'
-import {Drone} from './lib/drone'
+import Header from './header'
+import Drone from './lib/drone'
 import webfont from './lib/webfont'
 import styles from './styles'
 
