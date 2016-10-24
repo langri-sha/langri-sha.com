@@ -44,7 +44,8 @@ class DevelopmentPlugin {
   apply (compiler) {
     if (!debug(compiler)) return
 
-    compiler.options.module.preLoaders.unshift({
+    compiler.options.module.rules.unshift({
+      enforce: 'pre',
       test: /\.js?$/,
       loader: 'standard',
       include: ours
@@ -73,28 +74,38 @@ export default ({
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js', '.css'],
-    packageMains: ['main']
+    extensions: ['.js', '.css']
   },
-  postcss,
   module: {
-    preLoaders: [],
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loader: 'babel',
-      include: ours
+      include: ours,
+      use: 'babel'
     }, {
       test: /\.css$/,
-      loaders: 'style!css?modules!postcss',
-      include: ours
+      include: ours,
+      use: [
+        'style',
+        {
+          loader: 'css',
+          options: {
+            modules: 1
+          }
+        }, {
+          loader: 'postcss',
+          options: {
+            postcss
+          }
+        }
+      ]
     }, {
       test: /\.css$/,
-      loaders: 'style!css',
-      include: theirs
+      include: theirs,
+      loaders: 'style!css'
     }, {
       test: /\.(eot|woff|ttf)$/,
-      loaders: 'url',
-      include: ours
+      include: ours,
+      loader: 'url'
     }]
   },
   plugins: [
