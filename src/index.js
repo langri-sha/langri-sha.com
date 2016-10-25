@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'normalize.css'
 
 import {ga, Analytics} from './lib/analytics'
 import Header from './header'
