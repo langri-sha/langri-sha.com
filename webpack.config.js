@@ -1,49 +1,9 @@
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import cssnano from 'cssnano'
-import cssnext from 'postcss-cssnext'
-import fontSmoothing from 'postcss-font-smoothing'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import importer from 'postcss-import'
-
-import {resolve, ours, theirs, debug} from './helpers'
-
-const postcss = (compiler) => {
-  if (!debug(compiler)) {
-    return [
-      importer({
-        addDependencyTo: compiler,
-        plugins: []
-      }),
-      cssnext(),
-      fontSmoothing(),
-      cssnano()
-    ]
-  }
-
-  const stylelint = () => (
-    require('stylelint')({
-      extends: 'stylelint-config-standard',
-      rules: []
-    })
-  )
-
-  return [
-    stylelint(),
-    importer({
-      addDependencyTo: compiler,
-      plugins: [stylelint()]
-    }),
-    cssnext(),
-    fontSmoothing(),
-    require('postcss-reporter')(),
-    require('postcss-browser-reporter')()
-  ]
-}
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 class DevelopmentPlugin {
   apply (compiler) {
-    if (!debug(compiler)) return
-
     compiler.options.module.rules.unshift({
       enforce: 'pre',
       test: /\.js?$/,
@@ -65,7 +25,7 @@ class BailOnWarningsPlugin {
   }
 }
 
-export default ({
+module.exports = () => ({
   target: 'web',
   entry: './src/index',
   output: {
@@ -92,10 +52,7 @@ export default ({
             modules: 1
           }
         }, {
-          loader: 'postcss',
-          options: {
-            postcss
-          }
+          loader: 'postcss'
         }
       ]
     }, {
@@ -127,3 +84,15 @@ export default ({
     new BailOnWarningsPlugin()
   ]
 })
+
+const resolve = (...args) => (
+  path.resolve(process.cwd(), ...args)
+)
+
+const ours = (absolute) => (
+  absolute.startsWith(resolve('src'))
+)
+
+const theirs = (absolute) => (
+  !ours(absolute)
+)
