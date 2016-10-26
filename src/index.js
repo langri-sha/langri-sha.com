@@ -30,5 +30,7 @@ import styles from './styles'
       exDescription: err.message,
       exFatal: false
     })
+
+    console.error(err)
   }
 })()
