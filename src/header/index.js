@@ -1,5 +1,6 @@
 import React from 'react'
 
+import {OutboundLink} from '../lib/analytics'
 import {iconify} from '../lib/str'
 import styles from './styles'
 
@@ -25,14 +26,16 @@ export default () => (
           'Docker Hub profile'
         ]
       ].map(([name, href, title]) => (
-        <Link key={name} name={name} href={href} title={title} />
+        <SocialLink key={name} name={name} href={href} title={title} />
       ))}
     </nav>
   </header>
 )
 
-const Link = ({name, href, title}) => (
-  <a className={styles.link} href={href} title={title} target={'_blank'}>
+const SocialLink = ({name, href, title}) => (
+  <OutboundLink
+    href={href} category={'Social Links'} label={name}
+    className={styles.link} title={title} target={'_blank'}>
     <span className={styles[iconify(name)]} />
-  </a>
+  </OutboundLink>
 )
