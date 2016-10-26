@@ -1,16 +1,16 @@
-@import '../styles';
-
-.boom {
-  animation-duration: 3s;
-  animation-name: boom;
-}
+@import '../styles/colors';
+@import '../styles/media';
+@import '../styles/fonts';
+@import '../styles/icons';
 
 .header {
-  composes: boom;
+  composes: boom from '../styles/animations';
+  composes: foreground from '../styles/layers';
+  position: relative;
 }
 
 .title {
-  font-family: var(--font-heading);
+  composes: heading from '../styles/fonts';
   letter-spacing: -0.03em;
   color: var(--color-text);
   cursor: default;

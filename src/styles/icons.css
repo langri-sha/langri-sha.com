@@ -1,5 +1,8 @@
+.icon {
+  composes: icons from '../styles/fonts';
+}
+
 .icon::before {
-  font-family: var(--font-icons) !important;
   font-size: inherit;
   speak: none;
   font-style: normal;

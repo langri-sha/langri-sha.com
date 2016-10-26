@@ -13,3 +13,15 @@
     url('../fonts/icomoon-langri-sha.woff') format('woff2'),
     url('../fonts/icomoon-langri-sha.ttf') format('truetype');
 }
+
+.default {
+  font-family: var(--font-default);
+}
+
+.heading {
+  font-family: var(--font-heading);
+}
+
+.icons {
+  font-family: var(--font-icons);
+}
