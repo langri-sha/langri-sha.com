@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import {ga, Analytics} from './lib/analytics'
 import Header from './header'
+import Scene from './scene'
 import Drone from './lib/drone'
 import webfont from './lib/webfont'
 import styles from './styles'
@@ -21,6 +22,7 @@ import styles from './styles'
     ReactDOM.render((
       <div>
         <Header />
+        <Scene />
         <Analytics id={'UA-86127521-1'} />
         <Drone />
       </div>

@@ -13,7 +13,6 @@
   composes: heading from '../styles/fonts';
   letter-spacing: -0.03em;
   color: var(--color-text);
-  cursor: default;
   user-select: none;
 
   @media (--small-viewport) {
@@ -43,7 +42,6 @@
   color: var(--color-text);
   text-decoration: none;
   margin: 1rem;
-  cursor: pointer;
 }
 
 @media (--small-viewport) {
