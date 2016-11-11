@@ -24,6 +24,10 @@ export default () => (
         [
           'Docker', 'https://hub.docker.com/u/langrisha/',
           'Docker Hub profile'
+        ],
+        [
+          'NPM', 'https://www.npmjs.com/~langri-sha',
+          'NPM profile'
         ]
       ].map(([name, href, title]) => (
         <SocialLink key={name} name={name} href={href} title={title} />
