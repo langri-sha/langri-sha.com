@@ -60,7 +60,7 @@
     "normalize.css": "^5.0.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-font-smoothing": "^0.1.0",
-    "postcss-import": "8.2.0",
+    "postcss-import": "9.0.0",
     "postcss-loader": "git+https://git@github.com/postcss/postcss-loader.git#b1cbc4ab089309a7cb8c736dc3a59ceeef5e6263",
     "postcss-smart-import": "^0.5.1",
     "react": "^15.3.0",
