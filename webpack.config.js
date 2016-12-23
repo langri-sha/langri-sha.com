@@ -70,6 +70,8 @@ module.exports = () => ({
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
     }, {
+      from: 'share/google17a76c1d58d67a30.html'
+    }, {
       from: 'share/keybase.txt'
     }, {
       from: 'share/robots.txt'
