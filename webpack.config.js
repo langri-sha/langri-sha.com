@@ -7,7 +7,7 @@ class DevelopmentPlugin {
     compiler.options.module.rules.unshift({
       enforce: 'pre',
       test: /\.js?$/,
-      loader: 'standard',
+      loader: 'standard-loader',
       include: ours
     })
   }
@@ -40,29 +40,29 @@ module.exports = () => ({
     rules: [{
       test: /\.js$/,
       include: ours,
-      use: 'babel'
+      use: 'babel-loader'
     }, {
       test: /\.css$/,
       include: ours,
       use: [
-        'style',
+        'style-loader',
         {
-          loader: 'css',
+          loader: 'css-loader',
           options: {
             modules: 1
           }
         }, {
-          loader: 'postcss'
+          loader: 'postcss-loader'
         }
       ]
     }, {
       test: /\.css$/,
       include: theirs,
-      loaders: 'style!css'
+      loaders: 'style-loader!css-loader'
     }, {
       test: /\.(eot|woff|ttf)$/,
       include: ours,
-      loader: 'url'
+      loader: 'url-loader'
     }]
   },
   plugins: [
