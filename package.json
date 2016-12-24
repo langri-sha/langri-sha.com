@@ -64,7 +64,6 @@
     "postcss-loader": "git+https://git@github.com/postcss/postcss-loader.git#b1cbc4ab089309a7cb8c736dc3a59ceeef5e6263",
     "postcss-smart-import": "^0.6.1",
     "react": "^15.3.0",
-    "react-dimensions": "2.0.0-alpha1",
     "react-dom": "^15.3.0",
     "style-loader": "^0.13.1",
     "stylelint": "^7.5.0",
