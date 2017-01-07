@@ -12,14 +12,14 @@
     "analyze": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --optimize-minimize --optimize-dedupe --json | webpack-bundle-size-analyzer",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
     "container:app-start": "docker start -ai $NAME",
-    "container:app-run": "docker run --name $NAME --link $CACHE -w /$NAME -p 443:443 -v $(pwd):/$NAME -v $(pwd)/package.json:/package.json -v /root/.npm -v /node_modules -e \"NODE_PATH=/node_modules\" -e \"CHOKIDAR_USEPOLLING=1\" -e \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/node_modules/.bin\" -e \"npm_config_registry=${CACHE_URL}\" --dns 8.8.8.8 --dns 8.8.4.4 --entrypoint=/bin/bash -it node:6",
+    "container:app-run": "docker run --name $NAME --link $CACHE -w /$NAME -p 443:443 -v $(pwd):/$NAME -v $(pwd)/package.json:/package.json -v /root/.npm -v /node_modules -e \"NODE_PATH=/node_modules\" -e \"CHOKIDAR_USEPOLLING=1\" -e \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/node_modules/.bin\" -e \"npm_config_registry=${CACHE_URL}\" --dns 8.8.8.8 --dns 8.8.4.4 --entrypoint=/bin/bash -it node:7",
     "container:cache-start": "docker start $CACHE",
     "container:cache-run": "docker run --name $CACHE -d langrisha/npm-lazy --port=80 --external-url=$CACHE_URL",
     "cert": "[ ! -d local ] && mkdir local; openssl req -batch -config .openssl -new -x509 -sha256 -newkey rsa -keyout local/langri-sha.key -out local/langri-sha.crt",
     "cert:analyze": "openssl x509 -in local/langri-sha.crt -text -noout"
   },
   "engines": {
-    "node": "6.x"
+    "node": "7.x"
   },
   "repository": {
     "type": "git",
