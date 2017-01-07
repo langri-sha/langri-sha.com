@@ -5,8 +5,8 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "start": "PATH=$PATH:$(pwd)/node_modules/.bin; [ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server -d --hot --watch --https --port 443 --host 0.0.0.0 --key local/langri-sha.key --cert local/langri-sha.crt",
-    "build": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --optimize-minimize --optimize-dedupe --progress",
+    "start": "PATH=$PATH:$(pwd)/node_modules/.bin; [ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server --env.dev=true -d --hot --watch --https --port 443 --host 0.0.0.0 --key local/langri-sha.key --cert local/langri-sha.crt",
+    "build": "PATH=$PATH:$(pwd)/node_modules/.bin webpack --env.prod=true -p --optimize-minimize --optimize-dedupe --progress",
     "test": "PATH=$PATH:$(pwd)/node_modules/.bin webpack --debug --bail",
     "lint": "PATH=$PATH:$(pwd)/node_modules/.bin; standard | snazzy",
     "analyze": "PATH=$PATH:$(pwd)/node_modules/.bin webpack -p --optimize-minimize --optimize-dedupe --json | webpack-bundle-size-analyzer",

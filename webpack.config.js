@@ -3,7 +3,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 class DevelopmentPlugin {
+  constructor (skip=false) {
+    this.skip=skip
+  }
+
   apply (compiler) {
+    if (this.skip) return
+
     compiler.options.module.rules.unshift({
       enforce: 'pre',
       test: /\.js?$/,
@@ -25,7 +31,7 @@ class BailOnWarningsPlugin {
   }
 }
 
-module.exports = () => ({
+module.exports = ({dev=false, prod=false}) => ({
   target: 'web',
   entry: './src/index',
   output: {
@@ -66,7 +72,7 @@ module.exports = () => ({
     }]
   },
   plugins: [
-    new DevelopmentPlugin(),
+    new DevelopmentPlugin(dev),
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
     }, {
