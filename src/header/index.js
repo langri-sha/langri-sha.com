@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {OutboundLink} from '../lib/analytics'
 import {iconify} from '../lib/str'
 import styles from './styles'

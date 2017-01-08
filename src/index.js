@@ -1,5 +1,4 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import Inferno from 'inferno'
 
 import {ga, Analytics} from './lib/analytics'
 import Header from './header'
@@ -19,7 +18,7 @@ import styles from './styles'
   document.body.appendChild(container)
 
   try {
-    ReactDOM.render((
+    Inferno.render((
       <div>
         <Header />
         <Scene />

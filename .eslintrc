@@ -1,3 +1,6 @@
 {
-  extends: "standard"
+  "plugins": [
+    "inferno"
+  ],
+  "extends": ["standard", "plugin:inferno/recommended"]
 }

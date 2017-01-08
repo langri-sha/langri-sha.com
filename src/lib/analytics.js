@@ -1,14 +1,10 @@
-import React, {Component, PropTypes} from 'react'
+import Component from 'inferno-component'
 
 export const ga = window.ga = window.ga || function () {
   (ga.q = ga.q || []).push(arguments)
 }
 
 export class Analytics extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired
-  };
-
   componentDidMount () {
     const script = document.createElement('script')
     script.src = 'https://www.google-analytics.com/analytics.js'
@@ -28,18 +24,6 @@ export class Analytics extends Component {
 }
 
 export class OutboundLink extends Component {
-  static propTypes = {
-    href: PropTypes.string.isRequired,
-    category: PropTypes.string,
-    action: PropTypes.string,
-    label: PropTypes.string
-  }
-
-  static defaultProps = {
-    category: 'Outbound Link',
-    action: 'click'
-  }
-
   track (href, category, action, label) {
     ga('send', 'event', {
       eventCategory: category,

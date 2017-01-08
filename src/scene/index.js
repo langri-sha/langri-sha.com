@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import React, {Component} from 'react'
+import Component from 'inferno-component'
 
 import styles from './styles'
 
