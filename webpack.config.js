@@ -53,7 +53,7 @@ class BailOnWarningsPlugin {
   }
 }
 
-module.exports = ({dev=false, prod=false}) => ({
+module.exports = ({dev = false, prod = false}) => ({
   target: 'web',
   entry: './src/index',
   output: {
