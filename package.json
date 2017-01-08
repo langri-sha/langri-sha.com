@@ -65,6 +65,7 @@
     "postcss-smart-import": "^0.6.1",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "ramda": "^0.23.0",
     "style-loader": "^0.13.1",
     "stylelint": "^7.5.0",
     "three": "^0.83.0",

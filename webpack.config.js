@@ -1,14 +1,36 @@
+const os = require('os')
 const path = require('path')
+const R = require('ramda')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 class DevelopmentPlugin {
-  constructor (skip=false) {
-    this.skip=skip
+  constructor ({skip}) {
+    this.skip = skip
+  }
+
+  get containerAddress () {
+    const addresses = networkInterfaces => R.pipe(
+      R.props(R.keys(networkInterfaces)),
+      R.flatten
+    )(networkInterfaces)
+
+    const isInternal = address => address.internal
+    const isIpv4 = address => address.family === 'IPv4'
+    const isExternalIpv4 = R.both(R.complement(isInternal), isIpv4)
+
+    return R.pipe(
+      addresses,
+      R.filter(isExternalIpv4),
+      R.head,
+      R.prop('address')
+    )(os.networkInterfaces())
   }
 
   apply (compiler) {
     if (this.skip) return
+
+    console.log(`Container available at https://${this.containerAddress}`)
 
     compiler.options.module.rules.unshift({
       enforce: 'pre',
@@ -72,7 +94,7 @@ module.exports = ({dev=false, prod=false}) => ({
     }]
   },
   plugins: [
-    new DevelopmentPlugin(dev),
+    new DevelopmentPlugin({skip: prod}),
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
     }, {
