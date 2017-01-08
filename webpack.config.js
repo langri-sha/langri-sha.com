@@ -61,6 +61,9 @@ module.exports = ({dev=false, prod=false}) => ({
     filename: 'index.js',
     publicPath: '/'
   },
+  performance: {
+    hints: prod && 'warning'
+  },
   resolve: {
     extensions: ['.js', '.css']
   },
