@@ -50,7 +50,7 @@ class BailOnWarningsPlugin {
   }
 }
 
-module.exports = ({dev = false, prod = false}) => ({
+module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, prod}) && {
   target: 'web',
   entry: './src/index',
   output: {
@@ -113,7 +113,7 @@ module.exports = ({dev = false, prod = false}) => ({
     }),
     new BailOnWarningsPlugin()
   ]
-})
+}
 
 const resolve = (...args) => (
   path.resolve(process.cwd(), ...args)
