@@ -9,28 +9,25 @@ class DevelopmentPlugin {
     this.skip = skip
   }
 
-  get containerAddress () {
-    const addresses = networkInterfaces => R.pipe(
-      R.props(R.keys(networkInterfaces)),
-      R.flatten
-    )(networkInterfaces)
-
+  urls (networkInterfaces) {
     const isInternal = address => address.internal
     const isIpv4 = address => address.family === 'IPv4'
     const isExternalIpv4 = R.both(R.complement(isInternal), isIpv4)
 
     return R.pipe(
-      addresses,
+      R.props(R.keys(networkInterfaces)),
+      R.flatten(),
       R.filter(isExternalIpv4),
-      R.head,
-      R.prop('address')
-    )(os.networkInterfaces())
+      R.map(R.prop('address')),
+      R.map(address => `https://${address}`)
+    )(networkInterfaces)
   }
 
   apply (compiler) {
     if (this.skip) return
 
-    console.log(`Container available at https://${this.containerAddress}`)
+    const urls = this.urls(os.networkInterfaces())
+    console.log(`Server available at: ${urls.join(', ')}.`)
 
     compiler.options.module.rules.unshift({
       enforce: 'pre',
