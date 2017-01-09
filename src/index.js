@@ -35,3 +35,7 @@ import styles from './styles'
     console.error(err)
   }
 })()
+
+if (module.hot) {
+    module.hot.accept()
+}
