@@ -79,7 +79,7 @@
     "cz-conventional-changelog": "^1.2.0",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-reporter": "^3.0.0",
-    "snazzy": "^5.0.0",
+    "snazzy": "^6.0.0",
     "source-map-support": "^0.4.5",
     "standard": "^8.0.0-beta.5",
     "standard-loader": "^5.0.0",
