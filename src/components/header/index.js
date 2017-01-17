@@ -1,5 +1,5 @@
-import {OutboundLink} from '../lib/analytics'
-import {iconify} from '../lib/str'
+import {OutboundLink} from '../../lib/analytics'
+import {iconify} from '../../lib/str'
 import styles from './styles'
 
 export default () => (

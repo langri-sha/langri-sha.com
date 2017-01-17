@@ -1,9 +1,8 @@
 import Inferno from 'inferno'
 
 import {ga, Analytics} from './lib/analytics'
-import Header from './header'
-import Scene from './scene'
-import Drone from './lib/drone'
+import Main from './components/main'
+
 import webfont from './lib/webfont'
 import styles from './styles'
 
@@ -18,14 +17,7 @@ import styles from './styles'
   document.body.appendChild(container)
 
   try {
-    Inferno.render((
-      <div>
-        <Header />
-        <Scene />
-        <Analytics id={'UA-86127521-1'} />
-        <Drone />
-      </div>
-    ), container)
+    Inferno.render(<Main />, container)
   } catch (err) {
     ga('send', 'exception', {
       exDescription: err.message,
