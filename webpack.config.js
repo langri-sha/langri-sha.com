@@ -91,6 +91,9 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
       test: /\.(eot|woff|ttf)$/,
       include: ours,
       loader: 'url-loader'
+    }, {
+      test: /defs\.svg$/,
+      loader: 'raw-loader'
     }]
   },
   plugins: [

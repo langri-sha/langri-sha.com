@@ -1,6 +1,5 @@
 @import '../../styles/colors';
 @import '../../styles/media';
-@import '../../styles/icons';
 
 .header {
   composes: boom from '../../styles/animations';

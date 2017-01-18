@@ -1,0 +1,20 @@
+:global .icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+:global .icon-docker {
+  width: 1.099609375em;
+}
+
+:global .icon-keybase {
+  width: 0.7861328125em;
+}
+
+:global .icon-stackoverflow {
+  width: 0.857421875em;
+}

@@ -1,6 +1,6 @@
 import Inferno from 'inferno'
 
-import {ga, Analytics} from './lib/analytics'
+import {ga} from './lib/analytics'
 import Main from './components/main'
 
 import webfont from './lib/webfont'
@@ -29,5 +29,5 @@ import styles from './styles'
 })()
 
 if (module.hot) {
-    module.hot.accept()
+  module.hot.accept()
 }

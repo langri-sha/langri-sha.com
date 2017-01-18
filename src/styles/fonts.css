@@ -1,17 +1,6 @@
 :root {
   --font-default: serif;
   --font-heading: 'Cinzel Decorative', serif;
-  --font-icons: 'icomoon-langri-sha', serif;
-}
-
-@font-face {
-  font-family: 'icomoon-langri-sha';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/icomoon-langri-sha.eot');
-  src:
-    url('../fonts/icomoon-langri-sha.woff') format('woff2'),
-    url('../fonts/icomoon-langri-sha.ttf') format('truetype');
 }
 
 .default {
@@ -20,8 +9,4 @@
 
 .heading {
   font-family: var(--font-heading);
-}
-
-.icons {
-  font-family: var(--font-icons);
 }
