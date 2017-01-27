@@ -4,6 +4,6 @@
     "stage-0"
   ],
   "plugins": [
-    "inferno"
+    ["inferno", {"imports": true}]
   ]
 }
