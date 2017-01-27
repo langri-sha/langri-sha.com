@@ -77,7 +77,8 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
         {
           loader: 'css-loader',
           options: {
-            modules: 1
+            modules: 1,
+            localIdentName: dev && '[local]__[hash:base64:3]'
           }
         }, {
           loader: 'postcss-loader'
