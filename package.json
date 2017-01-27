@@ -7,7 +7,7 @@
   "scripts": {
     "start": "[ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server --env.dev=true -d --hot --watch --https --port 443 --host 0.0.0.0 --key local/langri-sha.key --cert local/langri-sha.crt",
     "build": "webpack --env.prod=true -p --optimize-minimize --progress",
-    "test": "webpack --debug --bail",
+    "test": "webpack --env.prod=true --debug --bail",
     "lint": "standard | snazzy",
     "analyze": "webpack --env.prod=true -p --optimize-minimize --json | webpack-bundle-size-analyzer",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
