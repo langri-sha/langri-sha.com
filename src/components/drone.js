@@ -1,6 +1,5 @@
 /* global AudioContext */
-
-import {Component} from 'react'
+import Component from 'inferno-component'
 
 export default class Drone extends Component {
   componentDidMount () {

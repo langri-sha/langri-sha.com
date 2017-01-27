@@ -1,13 +1,38 @@
+const os = require('os')
 const path = require('path')
+const R = require('ramda')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 class DevelopmentPlugin {
+  constructor ({skip}) {
+    this.skip = skip
+  }
+
+  urls (networkInterfaces) {
+    const isInternal = address => address.internal
+    const isIpv4 = address => address.family === 'IPv4'
+    const isExternalIpv4 = R.both(R.complement(isInternal), isIpv4)
+
+    return R.pipe(
+      R.props(R.keys(networkInterfaces)),
+      R.flatten(),
+      R.filter(isExternalIpv4),
+      R.map(R.prop('address')),
+      R.map(address => `https://${address}`)
+    )(networkInterfaces)
+  }
+
   apply (compiler) {
+    if (this.skip) return
+
+    const urls = this.urls(os.networkInterfaces())
+    console.log(`Server available at: ${urls.join(', ')}.`)
+
     compiler.options.module.rules.unshift({
       enforce: 'pre',
       test: /\.js?$/,
-      loader: 'standard',
+      loader: 'standard-loader',
       include: ours
     })
   }
@@ -25,13 +50,16 @@ class BailOnWarningsPlugin {
   }
 }
 
-module.exports = () => ({
+module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, prod}) && {
   target: 'web',
   entry: './src/index',
   output: {
     path: resolve('srv'),
     filename: 'index.js',
     publicPath: '/'
+  },
+  performance: {
+    hints: prod && 'warning'
   },
   resolve: {
     extensions: ['.js', '.css']
@@ -40,35 +68,40 @@ module.exports = () => ({
     rules: [{
       test: /\.js$/,
       include: ours,
-      use: 'babel'
+      use: 'babel-loader'
     }, {
       test: /\.css$/,
       include: ours,
       use: [
-        'style',
+        'style-loader',
         {
-          loader: 'css',
+          loader: 'css-loader',
           options: {
             modules: 1
           }
         }, {
-          loader: 'postcss'
+          loader: 'postcss-loader'
         }
       ]
     }, {
       test: /\.css$/,
       include: theirs,
-      loaders: 'style!css'
+      loaders: 'style-loader!css-loader'
     }, {
       test: /\.(eot|woff|ttf)$/,
       include: ours,
-      loader: 'url'
+      loader: 'url-loader'
+    }, {
+      test: /defs\.svg$/,
+      loader: 'raw-loader'
     }]
   },
   plugins: [
-    new DevelopmentPlugin(),
+    new DevelopmentPlugin({skip: prod}),
     new CopyWebpackPlugin([{
       from: 'share/CNAME'
+    }, {
+      from: 'share/google17a76c1d58d67a30.html'
     }, {
       from: 'share/keybase.txt'
     }, {
@@ -83,7 +116,7 @@ module.exports = () => ({
     }),
     new BailOnWarningsPlugin()
   ]
-})
+}
 
 const resolve = (...args) => (
   path.resolve(process.cwd(), ...args)

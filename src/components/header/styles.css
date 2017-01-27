@@ -1,16 +1,14 @@
-@import '../styles/colors';
-@import '../styles/media';
-@import '../styles/fonts';
-@import '../styles/icons';
+@import '../../styles/colors';
+@import '../../styles/media';
 
 .header {
-  composes: boom from '../styles/animations';
-  composes: foreground from '../styles/layers';
+  composes: boom from '../../styles/animations';
+  composes: foreground from '../../styles/layers';
   position: relative;
 }
 
 .title {
-  composes: heading from '../styles/fonts';
+  composes: heading from '../../styles/fonts';
   letter-spacing: -0.03em;
   color: var(--color-text);
   user-select: none;

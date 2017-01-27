@@ -1,7 +1,5 @@
-import React from 'react'
-
-import {OutboundLink} from '../lib/analytics'
-import {iconify} from '../lib/str'
+import {OutboundLink} from '../../lib/analytics'
+import {Icon} from '../../lib/icon'
 import styles from './styles'
 
 export default () => (
@@ -10,36 +8,41 @@ export default () => (
     <nav className={styles.nav}>
       {[
         [
+          'stackoverflow',
           'Stack Overflow', 'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
           'StackOverflow profile #SOreadytohelp 💓'
         ],
         [
+          'keybase',
           'Keybase', 'https://keybase.io/langrisha',
           'Identity details on Keybase.io'
         ],
         [
+          'github',
           'GitHub', 'https://github.com/langri-sha',
           'GitHub profile'
         ],
         [
+          'docker',
           'Docker', 'https://hub.docker.com/u/langrisha/',
           'Docker Hub profile'
         ],
         [
+          'npm',
           'NPM', 'https://www.npmjs.com/~langri-sha',
           'NPM profile'
         ]
-      ].map(([name, href, title]) => (
-        <SocialLink key={name} name={name} href={href} title={title} />
+      ].map(([symbol, name, href, title]) => (
+        <SocialLink key={symbol} symbol={symbol} name={name} href={href} title={title} />
       ))}
     </nav>
   </header>
 )
 
-const SocialLink = ({name, href, title}) => (
+const SocialLink = ({symbol, name, href, title}) => (
   <OutboundLink
     href={href} category={'Social Links'} label={name}
     className={styles.link} title={title} target={'_blank'}>
-    <span className={styles[iconify(name)]} />
+    <Icon symbol={symbol} />
   </OutboundLink>
 )

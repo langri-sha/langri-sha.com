@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "../lib/icon/index.css";
 @import './colors.css';
 @import './fonts.css';
 

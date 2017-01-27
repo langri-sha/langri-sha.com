@@ -1,10 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import Inferno from 'inferno'
 
-import {ga, Analytics} from './lib/analytics'
-import Header from './header'
-import Scene from './scene'
-import Drone from './lib/drone'
+import {ga} from './lib/analytics'
+import Main from './components/main'
+
 import webfont from './lib/webfont'
 import styles from './styles'
 
@@ -19,14 +17,7 @@ import styles from './styles'
   document.body.appendChild(container)
 
   try {
-    ReactDOM.render((
-      <div>
-        <Header />
-        <Scene />
-        <Analytics id={'UA-86127521-1'} />
-        <Drone />
-      </div>
-    ), container)
+    Inferno.render(<Main />, container)
   } catch (err) {
     ga('send', 'exception', {
       exDescription: err.message,
@@ -36,3 +27,7 @@ import styles from './styles'
     console.error(err)
   }
 })()
+
+if (module.hot) {
+  module.hot.accept()
+}

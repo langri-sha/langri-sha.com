@@ -1,7 +1,7 @@
-@import '../styles/colors';
+@import '../../styles/colors';
 
 .scene {
-  composes: background from '../styles/layers';
+  composes: background from '../../styles/layers';
   position: absolute;
   top: 0;
   left: 0;
