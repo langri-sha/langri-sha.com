@@ -40,6 +40,10 @@
   color: var(--color-text);
   text-decoration: none;
   margin: 1rem;
+
+  & > :global(.icon) {
+    display: block;
+  }
 }
 
 @media (--small-viewport) {

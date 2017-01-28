@@ -26,8 +26,10 @@ class DevelopmentPlugin {
   apply (compiler) {
     if (this.skip) return
 
-    const urls = this.urls(os.networkInterfaces())
-    console.log(`Server available at: ${urls.join(', ')}.`)
+    if (compiler.options.watch) {
+      const urls = this.urls(os.networkInterfaces())
+      console.log(`Server available at: ${urls.join(', ')}.`)
+    }
 
     compiler.options.module.rules.unshift({
       enforce: 'pre',
@@ -71,22 +73,19 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
       use: 'babel-loader'
     }, {
       test: /\.css$/,
-      include: ours,
       use: [
         'style-loader',
         {
           loader: 'css-loader',
           options: {
-            modules: 1
+            modules: 1,
+            localIdentName: dev && '[local]__[hash:base64:3]',
+            sourceMap: dev && true
           }
         }, {
           loader: 'postcss-loader'
         }
       ]
-    }, {
-      test: /\.css$/,
-      include: theirs,
-      loaders: 'style-loader!css-loader'
     }, {
       test: /\.(eot|woff|ttf)$/,
       include: ours,
