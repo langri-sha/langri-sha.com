@@ -5,12 +5,22 @@ export const ga = window.ga = window.ga || function () {
 }
 
 export class Analytics extends Component {
-  componentDidMount () {
+  insertScript () {
     const script = document.createElement('script')
     script.src = 'https://www.google-analytics.com/analytics.js'
     script.async = true
 
     document.body.appendChild(script)
+  }
+
+  componentDidMount () {
+    const scriptExists = document.querySelector('script[src$="analytics.js"]')
+
+    if (scriptExists) {
+      return
+    }
+
+    this.insertScript()
   }
 
   render () {

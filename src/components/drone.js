@@ -3,7 +3,11 @@ import Component from 'inferno-component'
 
 export default class Drone extends Component {
   componentDidMount () {
-    new Processor().generate()
+    this.processor = new Processor().generate()
+  }
+
+  componentWillUnmount () {
+    this.processor && this.processor.destroy()
   }
 
   render () {
@@ -19,6 +23,7 @@ class Processor {
   bufferSize = 4096
   scale = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
   noiseNodes = []
+  panIntervals = []
 
   constructor (oscilatorsSize = 40, baseNote = 60) {
     const context = this.context = new AudioContext()
@@ -68,12 +73,16 @@ class Processor {
     noiseSource.connect(filter)
     this.noiseNodes.push(noiseSource)
 
-    setInterval(() => {
+    this.panIntervals.push(setInterval(() => {
       x += rand(-0.1, 0.1)
       y += rand(-0.1, 0.1)
       z += rand(-0.1, 0.1)
       pannerNode.setPosition(x, y, z)
-    }, 500)
+    }, 500))
+  }
+
+  destroy () {
+    this.panIntervals.map(window.clearInterval)
   }
 }
 
