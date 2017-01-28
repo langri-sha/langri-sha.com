@@ -71,7 +71,6 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
       use: 'babel-loader'
     }, {
       test: /\.css$/,
-      include: ours,
       use: [
         'style-loader',
         {
@@ -88,10 +87,6 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
           }
         }
       ]
-    }, {
-      test: /\.css$/,
-      include: theirs,
-      loaders: 'style-loader!css-loader'
     }, {
       test: /\.(eot|woff|ttf)$/,
       include: ours,
