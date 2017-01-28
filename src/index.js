@@ -1,7 +1,7 @@
 import Inferno from 'inferno'
 
 import {ga} from './lib/analytics'
-import Main from './components/main'
+import Main from './components'
 
 import webfont from './lib/webfont'
 import styles from './styles'
