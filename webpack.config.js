@@ -83,10 +83,7 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
             sourceMap: dev && true
           }
         }, {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: dev && 'inline'
-          }
+          loader: 'postcss-loader'
         }
       ]
     }, {

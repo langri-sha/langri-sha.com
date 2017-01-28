@@ -14,6 +14,7 @@ const stylelint = {
 }
 
 module.exports = (ctx) => ({
+  map: dev && true,
   plugins: {
     'postcss-import': {
       plugins: [
