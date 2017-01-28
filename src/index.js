@@ -30,8 +30,10 @@ function render (node) {
 
     console.error(err)
   }
-})()
+}
 
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept('./components/index', () => {
+    render(<Main />)
+  })
 }
