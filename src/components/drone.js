@@ -7,7 +7,7 @@ export default class Drone extends Component {
   }
 
   componentWillUnmount() {
-    this.processor.destroy()
+    this.processor && this.processor.destroy()
   }
 
   render () {
