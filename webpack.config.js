@@ -26,8 +26,10 @@ class DevelopmentPlugin {
   apply (compiler) {
     if (this.skip) return
 
-    const urls = this.urls(os.networkInterfaces())
-    console.log(`Server available at: ${urls.join(', ')}.`)
+    if (compiler.options.watch) {
+      const urls = this.urls(os.networkInterfaces())
+      console.log(`Server available at: ${urls.join(', ')}.`)
+    }
 
     compiler.options.module.rules.unshift({
       enforce: 'pre',
