@@ -3,6 +3,7 @@ const path = require('path')
 const R = require('ramda')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {NamedModulesPlugin} = require('webpack')
 
 class DevelopmentPlugin {
   constructor ({skip}) {
@@ -25,6 +26,8 @@ class DevelopmentPlugin {
 
   apply (compiler) {
     if (this.skip) return
+
+    compiler.apply(new NamedModulesPlugin())
 
     if (compiler.options.watch) {
       const urls = this.urls(os.networkInterfaces())
