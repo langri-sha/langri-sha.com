@@ -96,6 +96,9 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     }, {
       test: /defs\.svg$/,
       loader: 'raw-loader'
+    }, {
+      test: /\.(vert|frag|glsl)$/,
+      loader: 'raw-loader'
     }]
   },
   plugins: [
