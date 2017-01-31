@@ -1,51 +1,118 @@
-import * as THREE from 'three'
 import Component from 'inferno-component'
 
 import styles from './styles'
 
+const vertexShaderSource = `
+  // an attribute will receive data from a buffer
+  attribute vec4 a_position;
+
+  // all shaders have a main function
+  void main() {
+
+    // gl_Position is a special variable a vertex shader
+    // is responsible for setting
+    gl_Position = a_position;
+  }
+`
+
+const fragmentShaderSource = `
+  // fragment shaders don't have a default precision so we need
+  // to pick one. mediump is a good default
+  precision mediump float;
+
+  void main() {
+    // gl_FragColor is a special variable a fragment shader
+    // is responsible for setting
+    gl_FragColor = vec4(1, 0, 0.5, 1); // return redish-purple
+  }
+`
+
 export default class Scene extends Component {
   componentDidMount () {
-    const {innerWidth, innerHeight, devicePixelRatio} = window
+    const gl = this.gl = this.canvas.getContext('webgl')
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
+    const program = createProgram(gl, vertexShader, fragmentShader)
 
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 1000)
-    camera.position.y = -100
-    camera.position.z = 150
+    const positions = [
+      0, 0,
+      0, 0.5,
+      0.7, 0
+    ]
+    const positionAttributeLocation = gl.getAttribLocation(program, 'a_position')
+    const positionBuffer = gl.createBuffer()
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
 
-    const grid = new THREE.GridHelper(750, 2 ** 5, 0xAABBCC, 0xAA01AA)
-    grid.position.y = -125
-    scene.add(grid)
+    resize(gl.canvas)
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
 
-    const renderer = this.renderer = new THREE.WebGLRenderer({alpha: true})
-    renderer.setPixelRatio(devicePixelRatio)
-    renderer.setSize(innerWidth, innerHeight)
-    this.container.appendChild(renderer.domElement)
+    gl.clearColor(0, 0, 0, 0)
+    gl.clear(gl.COLOR_BUFFER_BIT)
 
-    Object.assign(this, {scene, camera, renderer})
-    window.addEventListener('resize', ::this.windowDidResize, false)
+    gl.useProgram(program)
 
-    this.draw(scene, camera, renderer)
-  }
+    gl.enableVertexAttribArray(positionAttributeLocation)
+    // Bind the position buffer.
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    const size = 2          // 2 components per iteration
+    const type = gl.FLOAT   // the data is 32bit floats
+    const normalize = false // don't normalize the data
+    const stride = 0        // 0 = move forward size * sizeof(type) each iteration to get the next position
+    gl.vertexAttribPointer(
+      positionAttributeLocation, size, type, normalize,
+      stride, 0
+    )
 
-  windowDidResize () {
-    const {innerWidth, innerHeight} = window
-    const {camera, renderer} = this
-
-    camera.aspect = innerWidth / innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(innerWidth, innerHeight)
-  }
-
-  componetWillUnmount () {
-    window.removeEventListener('resize', ::this.windowDidResize)
-  }
-
-  draw (scene, camera, renderer) {
-    window.requestAnimationFrame(() => { this.draw(scene, camera, renderer) })
-    this.renderer.render(scene, camera)
+    const primitiveType = gl.TRIANGLES
+    const offset = 0
+    const count = 3
+    gl.drawArrays(primitiveType, offset, count)
   }
 
   render () {
-    return <div className={styles.scene} ref={(container) => { this.container = container }} />
+    return <canvas className={styles.scene} ref={(canvas) => { this.canvas = canvas }} />
+  }
+}
+
+function createShader (gl, type, source) {
+  const shader = gl.createShader(type)
+  gl.shaderSource(shader, source)
+  gl.compileShader(shader)
+
+  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS)
+  if (success) {
+    return shader
+  }
+
+  console.log(gl.getShaderInfoLog(shader))
+  gl.deleteShader(shader)
+}
+
+function createProgram (gl, vertexShader, fragmentShader) {
+  const program = gl.createProgram()
+  gl.attachShader(program, vertexShader)
+  gl.attachShader(program, fragmentShader)
+  gl.linkProgram(program)
+
+  const success = gl.getProgramParameter(program, gl.LINK_STATUS)
+
+  if (success) {
+    return program
+  }
+
+  console.log(gl.getProgramInfoLog(program))
+  gl.deleteProgram(program)
+}
+
+function resize (canvas) {
+  const {width, height, clientWidth, clientHeight} = canvas
+
+  const displayWidth = Math.floor(clientWidth * window.devicePixelRatio)
+  const displayHeight = Math.floor(clientHeight * window.devicePixelRatio)
+
+  if (width !== displayWidth || height !== displayHeight) {
+    canvas.width = displayWidth
+    canvas.height = displayHeight
   }
 }
