@@ -32,9 +32,11 @@ function render (node) {
   }
 }
 
-if (module.hot) {
-  module.hot.accept('./components/index', () => {
-    const Main = require('./components').default
-    render(<Main />)
-  })
+if (DEVELOPMENT) {
+  if (module.hot) {
+    module.hot.accept('./components/index', () => {
+      const Main = require('./components').default
+      render(<Main />)
+    })
+  }
 }
