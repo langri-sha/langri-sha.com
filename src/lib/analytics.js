@@ -1,3 +1,4 @@
+/* global DEVELOPMENT */
 import Component from 'inferno-component'
 
 export const ga = window.ga = window.ga || function () {
@@ -9,6 +10,10 @@ export class Analytics extends Component {
     const script = document.createElement('script')
     script.src = 'https://www.google-analytics.com/analytics.js'
     script.async = true
+
+    if (DEVELOPMENT) {
+      script.src = script.src.replace(/\/analytics/, '$&_debug')
+    }
 
     document.body.appendChild(script)
   }
