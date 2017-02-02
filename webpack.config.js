@@ -10,6 +10,21 @@ class DevelopmentPlugin {
     this.skip = skip
   }
 
+  apply (compiler) {
+    if (this.skip) return
+
+    compiler.apply(new NamedModulesPlugin())
+
+    compiler.options.module.rules.unshift({
+      enforce: 'pre',
+      test: /\.js?$/,
+      loader: 'standard-loader',
+      include: ours
+    })
+  }
+}
+
+class ServerUrlPlugin {
   urls (networkInterfaces) {
     const isInternal = address => address.internal
     const isIpv4 = address => address.family === 'IPv4'
@@ -25,21 +40,13 @@ class DevelopmentPlugin {
   }
 
   apply (compiler) {
-    if (this.skip) return
+    const watch = compiler.options.watch
+    const devServer = compiler.options.entry.includes('webpack/hot/dev-server')
 
-    compiler.apply(new NamedModulesPlugin())
-
-    if (compiler.options.watch) {
+    if (watch && devServer) {
       const urls = this.urls(os.networkInterfaces())
-      console.log(`Server available at: ${urls.join(', ')}.`)
+      console.log(`Server available at ${urls.join(', ')}.`)
     }
-
-    compiler.options.module.rules.unshift({
-      enforce: 'pre',
-      test: /\.js?$/,
-      loader: 'standard-loader',
-      include: ours
-    })
   }
 }
 
@@ -119,7 +126,8 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
     }),
-    new BailOnWarningsPlugin()
+    new BailOnWarningsPlugin(),
+    new ServerUrlPlugin()
   ]
 }
 
