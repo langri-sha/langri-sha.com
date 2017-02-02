@@ -1,7 +1,7 @@
-/* global DEVELOPMENT */
+/* global ga, DEVELOPMENT */
 import Component from 'inferno-component'
 
-export const ga = window.ga = window.ga || function () {
+window.ga = window.ga || function () {
   (ga.q = ga.q || []).push(arguments)
 }
 
@@ -39,17 +39,18 @@ export class Analytics extends Component {
 }
 
 export class OutboundLink extends Component {
-  track (href, category, action, label) {
-    ga('send', 'event', {
-      eventCategory: category,
-      eventAction: action,
-      eventLabel: label || href
+  track (eventCategory, eventAction, eventLabel) {
+    ga('send', {
+      hitType: 'event',
+      eventCategory,
+      eventAction,
+      eventLabel
     })
   }
 
   render () {
     const {href, category, action, label, children, ...props} = this.props
-    const track = this.track.bind(this, href, category, action, label)
+    const track = this.track.bind(this, category, action, label)
 
     return (
       <a href={href} onClick={track} {...props}>
