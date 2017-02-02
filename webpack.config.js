@@ -3,7 +3,7 @@ const path = require('path')
 const R = require('ramda')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {NamedModulesPlugin} = require('webpack')
+const {DefinePlugin, NamedModulesPlugin} = require('webpack')
 
 class DevelopmentPlugin {
   constructor ({skip}) {
@@ -127,7 +127,11 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
       title: 'Langri-Sha'
     }),
     new BailOnWarningsPlugin(),
-    new ServerUrlPlugin()
+    new ServerUrlPlugin(),
+    new DefinePlugin({
+      DEVELOPMENT: JSON.stringify(dev),
+      PRODUCTION: JSON.stringify(prod)
+    })
   ]
 }
 
