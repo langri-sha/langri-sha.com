@@ -33,7 +33,7 @@ export default () => (
           'NPM profile'
         ]
       ].map(([symbol, name, href, title]) => (
-        <SocialLink key={symbol} symbol={symbol} name={name} href={href} title={title} />
+        <SocialLink symbol={symbol} name={name} href={href} title={title} />
       ))}
     </nav>
   </header>
@@ -41,8 +41,8 @@ export default () => (
 
 const SocialLink = ({symbol, name, href, title}) => (
   <OutboundLink
-    href={href} category={'Social Links'} label={name}
-    className={styles.link} title={title} target={'_blank'}>
+    href={href} className={styles.link} title={title} target={'_blank'}
+    category={'Social Links'} action={'click'} label={name}>
     <Icon symbol={symbol} />
   </OutboundLink>
 )

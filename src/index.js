@@ -1,6 +1,6 @@
+/* global DEVELOPMENT */
 import Inferno from 'inferno'
 
-import {ga} from './lib/analytics'
 import Main from './components'
 
 import webfont from './lib/webfont'
@@ -20,21 +20,14 @@ container.className = styles.container
 })()
 
 function render (node) {
-  try {
-    Inferno.render(node, container)
-  } catch (err) {
-    ga('send', 'exception', {
-      exDescription: err.message,
-      exFatal: false
-    })
-
-    console.error(err)
-  }
+  Inferno.render(node, container)
 }
 
-if (module.hot) {
-  module.hot.accept('./components/index', () => {
-    const Main = require('./components').default
-    render(<Main />)
-  })
+if (DEVELOPMENT) {
+  if (module.hot) {
+    module.hot.accept('./components/index', () => {
+      const Main = require('./components').default
+      render(<Main />)
+    })
+  }
 }

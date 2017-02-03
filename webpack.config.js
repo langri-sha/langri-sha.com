@@ -3,13 +3,28 @@ const path = require('path')
 const R = require('ramda')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {NamedModulesPlugin} = require('webpack')
+const {DefinePlugin, NamedModulesPlugin} = require('webpack')
 
 class DevelopmentPlugin {
   constructor ({skip}) {
     this.skip = skip
   }
 
+  apply (compiler) {
+    if (this.skip) return
+
+    compiler.apply(new NamedModulesPlugin())
+
+    compiler.options.module.rules.unshift({
+      enforce: 'pre',
+      test: /\.js?$/,
+      loader: 'standard-loader',
+      include: ours
+    })
+  }
+}
+
+class ServerUrlPlugin {
   urls (networkInterfaces) {
     const isInternal = address => address.internal
     const isIpv4 = address => address.family === 'IPv4'
@@ -25,21 +40,13 @@ class DevelopmentPlugin {
   }
 
   apply (compiler) {
-    if (this.skip) return
+    const watch = compiler.options.watch
+    const devServer = compiler.options.entry.includes('webpack/hot/dev-server')
 
-    compiler.apply(new NamedModulesPlugin())
-
-    if (compiler.options.watch) {
+    if (watch && devServer) {
       const urls = this.urls(os.networkInterfaces())
-      console.log(`Server available at: ${urls.join(', ')}.`)
+      console.log(`Server available at ${urls.join(', ')}.`)
     }
-
-    compiler.options.module.rules.unshift({
-      enforce: 'pre',
-      test: /\.js?$/,
-      loader: 'standard-loader',
-      include: ours
-    })
   }
 }
 
@@ -59,7 +66,7 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
   target: 'web',
   entry: './src/index',
   output: {
-    path: resolve('srv'),
+    path: resolve('dist'),
     filename: prod && '[name].[hash].bundle.js' || '[name].bundle.js',
     publicPath: '/'
   },
@@ -96,6 +103,9 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     }, {
       test: /defs\.svg$/,
       loader: 'raw-loader'
+    }, {
+      test: /\.(vert|frag|glsl)$/,
+      loader: 'raw-loader'
     }]
   },
   plugins: [
@@ -116,7 +126,12 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     new HtmlWebpackPlugin({
       title: 'Langri-Sha'
     }),
-    new BailOnWarningsPlugin()
+    new BailOnWarningsPlugin(),
+    new ServerUrlPlugin(),
+    new DefinePlugin({
+      DEVELOPMENT: JSON.stringify(dev),
+      PRODUCTION: JSON.stringify(prod)
+    })
   ]
 }
 

@@ -12,7 +12,7 @@ env:
   global:
     - GIT_DEPLOY_USERNAME="Travis CI"
     - GIT_DEPLOY_EMAIL=filip.dupanovic@gmail.com
-    - GIT_DEPLOY_DIR=srv
+    - GIT_DEPLOY_DIR=dist
     - GIT_DEPLOY_BRANCH=master
     - GIT_DEPLOY_REPO=git@github.com:langri-sha/langri-sha.github.io.git
 
