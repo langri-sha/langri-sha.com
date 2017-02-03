@@ -66,7 +66,7 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
   target: 'web',
   entry: './src/index',
   output: {
-    path: resolve('srv'),
+    path: resolve('dist'),
     filename: prod && '[name].[hash].bundle.js' || '[name].bundle.js',
     publicPath: '/'
   },
