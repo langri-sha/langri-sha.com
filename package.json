@@ -53,7 +53,7 @@
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.26.1",
-    "cssnano": "^3.8.0",
+    "cssnano": "^3.10.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.0",
     "inferno": "^1.1.1",
