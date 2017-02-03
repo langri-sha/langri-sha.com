@@ -5,7 +5,7 @@ import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
 
 export default class Scene extends Component {
-  componentDidMount () {
+  skipComponentDidMount () {
     const gl = this.gl = this.canvas.getContext('webgl')
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
     const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
