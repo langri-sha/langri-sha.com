@@ -1,3 +1,4 @@
+/* global DEVELOPMENT */
 import Inferno from 'inferno'
 
 import Main from './components'
