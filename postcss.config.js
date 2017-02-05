@@ -22,7 +22,9 @@ module.exports = (ctx) => ({
         require('stylelint')(stylelint)
       ]
     },
-    'postcss-cssnext': null,
+    'postcss-cssnext': dev ? null : {
+      warnForDuplicates: false
+    },
     'postcss-font-smoothing': null,
     'cssnano': prod ? null : false,
     'postcss-reporter': dev ? null : false,
