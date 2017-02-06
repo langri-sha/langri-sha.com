@@ -1,0 +1,11 @@
+declare var DEVELOPMENT: bool
+declare var PRODUCTION: bool
+
+declare var module: {
+  hot: {
+    accept(path: string, callback: function): void
+  }
+}
+
+declare class ElementExtended extends Element {
+}

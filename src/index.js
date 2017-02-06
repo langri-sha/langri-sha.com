@@ -1,3 +1,4 @@
+// @flow
 /* global DEVELOPMENT */
 import Inferno from 'inferno'
 
@@ -15,8 +16,10 @@ container.className = styles.container
     text: 'Langri-Sha'
   })
 
-  document.body.appendChild(container)
-  render(<Main />)
+  if (document.body != null) {
+    document.body.appendChild(container)
+    render(<Main />)
+  }
 })()
 
 function render (node) {

@@ -1,3 +1,4 @@
+// @flow
 import Header from './header'
 import Scene from './scene'
 import Drone from './drone'
