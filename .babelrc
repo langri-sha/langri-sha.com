@@ -4,6 +4,7 @@
     "stage-0"
   ],
   "plugins": [
-    ["inferno", {"imports": true}]
+    ["inferno", {"imports": true}],
+    "transform-flow-strip-types"
   ]
 }

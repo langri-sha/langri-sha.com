@@ -1,3 +1,4 @@
+// @flow
 import {OutboundLink} from '../../lib/analytics'
 import {Icon} from '../../lib/icon'
 import styles from './styles'

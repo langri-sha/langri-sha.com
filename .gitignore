@@ -2,6 +2,7 @@
 !.babelrc
 !.editorconfig
 !.eslintrc
+!.flowconfig
 !.gitignore
 !.openssl
 !.travis.yml

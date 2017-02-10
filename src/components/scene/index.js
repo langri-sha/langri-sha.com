@@ -1,3 +1,4 @@
+// @flow
 import Component from 'inferno-component'
 
 import styles from './styles'

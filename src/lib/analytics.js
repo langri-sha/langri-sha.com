@@ -1,5 +1,8 @@
-/* global ga, DEVELOPMENT */
+// @flow
+/* global DEVELOPMENT */
 import Component from 'inferno-component'
+
+declare function ga(): any
 
 window.ga = window.ga || function () {
   (ga.q = ga.q || []).push(arguments)
@@ -15,7 +18,9 @@ export class Analytics extends Component {
       script.src = script.src.replace(/\/analytics/, '$&_debug')
     }
 
-    document.body.appendChild(script)
+    if (document.body != null) {
+      document.body.appendChild(script)
+    }
   }
 
   componentDidMount () {
@@ -39,7 +44,7 @@ export class Analytics extends Component {
 }
 
 export class OutboundLink extends Component {
-  track (eventCategory, eventAction, eventLabel) {
+  track (eventCategory: string, eventAction: string, eventLabel: string) {
     ga('send', {
       hitType: 'event',
       eventCategory,
