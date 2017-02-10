@@ -3711,7 +3711,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* global AudioContext */
+/* global AudioContext, GainNode */
 
 
 var Drone = function (_Component) {
@@ -4150,6 +4150,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_webfont__ = __webpack_require__("./src/lib/webfont.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles__ = __webpack_require__("./src/styles/index.css");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles__);
+
 /* global DEVELOPMENT */
 
 
@@ -4166,8 +4167,10 @@ container.className = __WEBPACK_IMPORTED_MODULE_3__styles___default.a.container;
     text: 'Langri-Sha'
   });
 
-  document.body.appendChild(container);
-  render(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components__["a" /* default */]));
+  if (document.body != null) {
+    document.body.appendChild(container);
+    render(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components__["a" /* default */]));
+  }
 })();
 
 function render(node) {
@@ -4207,7 +4210,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* global ga, DEVELOPMENT */
+/* global DEVELOPMENT */
 
 
 window.ga = window.ga || function () {
@@ -4234,7 +4237,9 @@ var Analytics = function (_Component) {
         script.src = script.src.replace(/\/analytics/, '$&_debug');
       }
 
-      document.body.appendChild(script);
+      if (document.body != null) {
+        document.body.appendChild(script);
+      }
     }
   }, {
     key: 'componentDidMount',
@@ -4339,6 +4344,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* global requestAnimationFrame */
 
 
 
@@ -4359,8 +4365,10 @@ var IconDefinitions = function (_Component) {
       var el = document.createElement('div');
       el.innerHTML = __WEBPACK_IMPORTED_MODULE_2__icon_defs_svg___default.a;
 
-      window.requestAnimationFrame(function () {
-        document.body.firstElementChild.before(el.children[0]);
+      requestAnimationFrame(function () {
+        if (document.body != null && document.body.firstElementChild != null) {
+          document.body.firstElementChild.before(el.children[0]);
+        }
       });
     }
   }, {
