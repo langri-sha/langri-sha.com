@@ -82,7 +82,7 @@
     "snazzy": "^6.0.0",
     "source-map-support": "^0.4.11",
     "standard": "^8.6.0",
-    "standard-loader": "^5.0.0",
+    "standard-loader": "^6.0.0",
     "stylelint": "^7.8.0",
     "stylelint-config-css-modules": "^0.1.0",
     "stylelint-config-standard": "^16.0.0",
