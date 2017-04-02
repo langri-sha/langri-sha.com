@@ -2,9 +2,9 @@
 /* global DEVELOPMENT */
 import Inferno from 'inferno'
 
-import Main from './components'
+import Main from 'components'
 
-import webfont from './lib/webfont'
+import webfont from 'lib/webfont'
 import styles from './styles'
 
 const container = document.createElement('div')

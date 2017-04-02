@@ -1,6 +1,6 @@
 // @flow
-import {OutboundLink} from '../../lib/analytics'
-import {Icon} from '../../lib/icon'
+import {OutboundLink} from 'lib/analytics'
+import {Icon} from 'lib/icon'
 import styles from './styles'
 
 export default () => (

@@ -1,9 +1,9 @@
 // @flow
-import Header from './header'
-import Scene from './scene'
-import Drone from './drone'
-import {Analytics} from '../lib/analytics'
-import {IconDefinitions} from '../lib/icon'
+import Header from 'components/header'
+import Scene from 'components/scene'
+import Drone from 'components/drone'
+import {Analytics} from 'lib/analytics'
+import {IconDefinitions} from 'lib/icon'
 
 export default () => (
   <div>

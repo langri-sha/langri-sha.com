@@ -74,7 +74,8 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     hints: prod && 'warning'
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.css'],
+    modules: ['node_modules', resolve('src')]
   },
   module: {
     rules: [{
