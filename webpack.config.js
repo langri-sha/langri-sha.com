@@ -120,8 +120,6 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     }, {
       from: 'share/robots.txt'
     }, {
-      from: 'README.md'
-    }, {
       from: 'LICENSE.md'
     }]),
     new HtmlWebpackPlugin({
