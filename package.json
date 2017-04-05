@@ -81,7 +81,7 @@
     "postcss-reporter": "^3.0.0",
     "snazzy": "^6.0.0",
     "source-map-support": "^0.4.11",
-    "standard": "^9.0.2",
+    "standard": "^10.0.0",
     "standard-loader": "^6.0.1",
     "stylelint": "^7.8.0",
     "stylelint-config-css-modules": "^0.1.0",
