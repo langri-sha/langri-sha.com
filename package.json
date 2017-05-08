@@ -63,7 +63,7 @@
     "postcss-cssnext": "^2.9.0",
     "postcss-font-smoothing": "^0.1.0",
     "postcss-import": "^9.1.0",
-    "postcss-loader": "^1.2.2",
+    "postcss-loader": "^2.0.0",
     "ramda": "^0.23.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.16.1",
