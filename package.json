@@ -76,7 +76,7 @@
     "babel-eslint": "^7.0.0",
     "commitizen": "^2.9.5",
     "cz-conventional-changelog": "^2.0.0",
-    "eslint-plugin-inferno": "^6.9.2",
+    "eslint-plugin-inferno": "^7.0.1",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-reporter": "^3.0.0",
     "snazzy": "^6.0.0",
