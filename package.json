@@ -60,7 +60,7 @@
     "inferno": "^1.2.2",
     "inferno-component": "^1.2.2",
     "normalize.css": "^6.0.0",
-    "postcss-cssnext": "^2.9.0",
+    "postcss-cssnext": "^3.0.0",
     "postcss-font-smoothing": "^0.1.0",
     "postcss-import": "^9.1.0",
     "postcss-loader": "^1.2.2",
