@@ -73,7 +73,7 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.0.0",
+    "babel-eslint": "^8.0.0",
     "commitizen": "^2.9.5",
     "cz-conventional-changelog": "^2.0.0",
     "eslint-plugin-inferno": "^6.9.2",
