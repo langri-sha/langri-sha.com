@@ -1,3 +1,0 @@
-@custom-media --small-viewport (width >= 0);
-@custom-media --medium-viewport (width >= 34em);
-@custom-media --large-viewport (width >= 75em);
