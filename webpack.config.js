@@ -1,9 +1,9 @@
+const {DefinePlugin, NamedModulesPlugin} = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
 const os = require('os')
 const path = require('path')
 const R = require('ramda')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {DefinePlugin, NamedModulesPlugin} = require('webpack')
 
 class DevelopmentPlugin {
   constructor ({skip}) {
@@ -111,7 +111,7 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
   },
   plugins: [
     new DevelopmentPlugin({skip: prod}),
-    new CopyWebpackPlugin([{
+    new CopyPlugin([{
       from: 'share/CNAME'
     }, {
       from: 'share/google17a76c1d58d67a30.html'
@@ -122,7 +122,7 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
     }, {
       from: 'LICENSE.md'
     }]),
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       title: 'Langri-Sha',
       template: 'src/index.ejs'
     }),
