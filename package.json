@@ -19,7 +19,7 @@
     "cert:analyze": "openssl x509 -in local/langri-sha.crt -text -noout"
   },
   "engines": {
-    "node": "7.x"
+    "node": ">=10.14.2"
   },
   "repository": {
     "type": "git",
