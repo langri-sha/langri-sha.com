@@ -6,8 +6,9 @@
 !.gitignore
 !.openssl
 !.travis.yml
-npm-debug.log*
+!.yarnrc
 
 local/
 node_modules/
 dist/
+*.log
