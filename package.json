@@ -5,7 +5,7 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "start": "[ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server --env.dev=true -d --hot --watch --https --port 8080 --key local/langri-sha.key --cert local/langri-sha.crt",
+    "start": "[ ! -e local/langri-sha.key ] && npm run -s cert; webpack-dev-server --env.dev=true -d --open --hot --watch --https --port 8080 --key local/langri-sha.key --cert local/langri-sha.crt",
     "build": "webpack --env.prod=true -p --optimize-minimize --progress",
     "test": "webpack --env.dev=true --debug --bail",
     "lint": "standard | snazzy",
