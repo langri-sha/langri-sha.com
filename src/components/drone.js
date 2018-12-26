@@ -1,8 +1,8 @@
 // @flow
+import * as React from 'react'
 /* global AudioContext, GainNode */
-import Component from 'inferno-component'
 
-export default class Drone extends Component {
+export default class Drone extends React.PureComponent<{}> {
   componentDidMount () {
     this.processor = new Processor().generate()
   }

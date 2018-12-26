@@ -1,6 +1,7 @@
 // @flow
-import {OutboundLink} from 'lib/analytics'
 import {Icon} from 'lib/icon'
+import {OutboundLink} from 'lib/analytics'
+import * as React from 'react'
 import styles from './styles'
 
 export default () => (

@@ -123,7 +123,8 @@ module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, pr
       from: 'LICENSE.md'
     }]),
     new HtmlWebpackPlugin({
-      title: 'Langri-Sha'
+      title: 'Langri-Sha',
+      template: 'src/index.ejs'
     }),
     new BailOnWarningsPlugin(),
     new ServerUrlPlugin(),

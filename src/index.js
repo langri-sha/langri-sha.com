@@ -1,14 +1,11 @@
 // @flow
-/* global DEVELOPMENT */
-import Inferno from 'inferno'
+import * as React from 'react'
+import ReactDOM from 'react-dom'
 
 import Main from 'components'
 
-import webfont from 'lib/webfont'
 import styles from './styles'
-
-const container = document.createElement('div')
-container.className = styles.container
+import webfont from './lib/webfont'
 
 ;(() => {
   webfont({
@@ -16,21 +13,9 @@ container.className = styles.container
     text: 'Langri-Sha'
   })
 
-  if (document.body != null) {
-    document.body.appendChild(container)
-    render(<Main />)
+  const container = document.getElementById('app')
+
+  if (container) {
+    ReactDOM.render(<Main />, container)
   }
 })()
-
-function render (node) {
-  Inferno.render(node, container)
-}
-
-if (DEVELOPMENT) {
-  if (module.hot) {
-    module.hot.accept('./components/index', () => {
-      const Main = require('./components').default
-      render(<Main />)
-    })
-  }
-}
