@@ -1,3 +1,8 @@
-[ignore]
-.*/dist
-.*/node_modules/stylelint
+[include]
+packages/**/*.js
+
+[options]
+esproposal.export_star_as=enable
+esproposal.optional_chaining=enable
+module.name_mapper.extension='frag' -> '<PROJECT_ROOT>/rawString.js.flow'
+module.name_mapper.extension='vert' -> '<PROJECT_ROOT>/rawString.js.flow'

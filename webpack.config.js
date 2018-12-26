@@ -1,148 +1,96 @@
-const {DefinePlugin, NamedModulesPlugin} = require('webpack')
+// @flow
+const path = require('path')
+const { EnvironmentPlugin } = require('webpack')
+const CleanPlugin = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
-const os = require('os')
-const path = require('path')
-const R = require('ramda')
+const TerserPlugin = require('terser-webpack-plugin')
 
-class DevelopmentPlugin {
-  constructor ({skip}) {
-    this.skip = skip
-  }
-
-  apply (compiler) {
-    if (this.skip) return
-
-    compiler.apply(new NamedModulesPlugin())
-
-    compiler.options.module.rules.unshift({
-      enforce: 'pre',
-      test: /\.js?$/,
-      loader: 'standard-loader',
-      include: ours
-    })
-  }
+/* ::
+type Config = {
+	development: boolean,
+	production: boolean
 }
+*/
 
-class ServerUrlPlugin {
-  urls (networkInterfaces) {
-    const isInternal = address => address.internal
-    const isIpv4 = address => address.family === 'IPv4'
-    const isExternalIpv4 = R.both(R.complement(isInternal), isIpv4)
+const env = (options /* :: : (Config) => Object */) => ({
+  development = true,
+  production = false
+} /* :: : Config */ = {}) => options({ development, production })
 
-    return R.pipe(
-      R.props(R.keys(networkInterfaces)),
-      R.flatten(),
-      R.filter(isExternalIpv4),
-      R.map(R.prop('address')),
-      R.map(address => `https://${address}`)
-    )(networkInterfaces)
-  }
-
-  apply (compiler) {
-    const watch = compiler.options.watch
-    const devServer = compiler.options.entry.includes('webpack/hot/dev-server')
-
-    if (watch && devServer) {
-      const urls = this.urls(os.networkInterfaces())
-      console.log(`Server available at ${urls.join(', ')}.`)
-    }
-  }
-}
-
-class BailOnWarningsPlugin {
-  apply (compiler) {
-    if (!compiler.options.bail) return
-
-    compiler.plugin('done', (stats) => {
-      if (stats.compilation.warnings && stats.compilation.warnings.length) {
-        setTimeout(process.exit.bind(process, 1), 0)
-      }
-    })
-  }
-}
-
-module.exports = ({dev = false, prod = false}) => Object.assign(global, {dev, prod}) && {
+module.exports = env(({ development, production }) => ({
   target: 'web',
-  entry: './src/index',
+  mode: production ? 'production' : 'development',
+  devtool: production ? 'source-map' : 'cheap-eval-source-map',
+  entry: require.resolve('@langri-sha/web'),
   output: {
-    path: resolve('dist'),
-    filename: prod && '[name].[hash].bundle.js' || '[name].bundle.js',
+    path: path.resolve('dist'),
+    filename: (production && '[name].[hash].bundle.js') || '[name].bundle.js',
     publicPath: '/'
   },
-  performance: {
-    hints: prod && 'warning'
-  },
-  resolve: {
-    extensions: ['.js', '.css'],
-    modules: ['node_modules', resolve('src')]
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        extractComments: {
+          condition: 'some',
+          filename: filename => `${filename}.LICENSE.txt`
+        },
+        sourceMap: true
+      })
+    ]
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      include: ours,
-      use: 'babel-loader'
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            modules: 1,
-            localIdentName: dev && '[local]__[hash:base64:3]',
-            sourceMap: dev && true
-          }
-        }, {
-          loader: 'postcss-loader'
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'packages'),
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
         }
-      ]
-    }, {
-      test: /\.(eot|woff|ttf)$/,
-      include: ours,
-      loader: 'url-loader'
-    }, {
-      test: /defs\.svg$/,
-      loader: 'raw-loader'
-    }, {
-      test: /\.(vert|frag|glsl)$/,
-      loader: 'raw-loader'
-    }]
+      },
+      {
+        test: /\.css$/,
+        use: 'raw-loader'
+      },
+      {
+        test: /\.(eot|woff|ttf)$/,
+        include: path.resolve(__dirname, 'packages'),
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(vert|frag|glsl)$/,
+        loader: 'raw-loader'
+      }
+    ]
   },
   plugins: [
-    new DevelopmentPlugin({skip: prod}),
-    new CopyPlugin([{
-      from: 'share/CNAME'
-    }, {
-      from: 'share/google17a76c1d58d67a30.html'
-    }, {
-      from: 'share/keybase.txt'
-    }, {
-      from: 'share/robots.txt'
-    }, {
-      from: 'LICENSE.md'
-    }]),
+    new CleanPlugin(['dist']),
+    new CopyPlugin([
+      {
+        from: 'share/CNAME'
+      },
+      {
+        from: 'share/google17a76c1d58d67a30.html'
+      },
+      {
+        from: 'share/keybase.txt'
+      },
+      {
+        from: 'share/robots.txt'
+      },
+      {
+        from: 'LICENSE.md'
+      }
+    ]),
     new HtmlPlugin({
       title: 'Langri-Sha',
-      template: 'src/index.ejs'
+      template: require.resolve('@langri-sha/web/src/index.ejs')
     }),
-    new BailOnWarningsPlugin(),
-    new ServerUrlPlugin(),
-    new DefinePlugin({
-      DEVELOPMENT: JSON.stringify(dev),
-      PRODUCTION: JSON.stringify(prod)
+    new EnvironmentPlugin({
+      NODE_ENV: development ? 'development' : 'production'
     })
   ]
-}
-
-const resolve = (...args) => (
-  path.resolve(process.cwd(), ...args)
-)
-
-const ours = (absolute) => (
-  absolute.startsWith(resolve('src'))
-)
-
-const theirs = (absolute) => (
-  !ours(absolute)
-)
+}))

@@ -1,0 +1,6 @@
+{
+  "name": "@langri-sha/web",
+  "version": "1.0.0-next",
+  "private": true,
+  "main": "src/index.js"
+}
