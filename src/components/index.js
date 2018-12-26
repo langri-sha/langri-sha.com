@@ -1,12 +1,15 @@
 // @flow
-import Header from 'components/header'
-import Scene from 'components/scene'
-import Drone from 'components/drone'
 import {Analytics} from 'lib/analytics'
 import {IconDefinitions} from 'lib/icon'
+import * as React from 'react'
+import Drone from 'components/drone'
+import Header from 'components/header'
+import Scene from 'components/scene'
+
+import styles from '../styles'
 
 export default () => (
-  <div>
+  <div className={styles.container}>
     <IconDefinitions />
     <Header />
     <Scene />

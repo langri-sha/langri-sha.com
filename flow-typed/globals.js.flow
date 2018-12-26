@@ -9,3 +9,5 @@ declare var module: {
 
 declare class ElementExtended extends Element {
 }
+
+declare function ga(...any[]): void

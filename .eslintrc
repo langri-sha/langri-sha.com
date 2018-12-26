@@ -1,6 +1,3 @@
 {
-  "plugins": [
-    "inferno"
-  ],
-  "extends": ["standard", "plugin:inferno/recommended"]
+  "extends": ["standard"]
 }

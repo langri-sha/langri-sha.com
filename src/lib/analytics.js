@@ -1,14 +1,17 @@
 // @flow
-/* global DEVELOPMENT */
-import Component from 'inferno-component'
+import * as React from 'react'
 
-declare function ga(): any
+declare function ga(...any[]): void
 
 window.ga = window.ga || function () {
   (ga.q = ga.q || []).push(arguments)
 }
 
-export class Analytics extends Component {
+type Props = {|
+  id: string
+|}
+
+export class Analytics extends React.PureComponent<Props> {
   insertScript () {
     const script = document.createElement('script')
     script.src = 'https://www.google-analytics.com/analytics.js'
@@ -43,7 +46,15 @@ export class Analytics extends Component {
   }
 }
 
-export class OutboundLink extends Component {
+type OutboundLinkProps = {
+  action: string,
+  category: string,
+  children?: React.Node,
+  href: string,
+  label: string
+}
+
+export class OutboundLink extends React.PureComponent<OutboundLinkProps> {
   track (eventCategory: string, eventAction: string, eventLabel: string) {
     ga('send', {
       hitType: 'event',

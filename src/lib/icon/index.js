@@ -1,10 +1,11 @@
+// @flow
 /* global requestAnimationFrame */
+import * as React from 'react'
 import classNames from 'classnames'
-import Component from 'inferno-component'
 
 import iconDefs from './icon-defs.svg'
 
-export class IconDefinitions extends Component {
+export class IconDefinitions extends React.PureComponent {
   componentDidMount () {
     const el = document.createElement('div')
     el.innerHTML = iconDefs
@@ -23,6 +24,6 @@ export class IconDefinitions extends Component {
 
 export const Icon = ({symbol, inline}: {symbol: string, inline:string}) => (
   <svg className={classNames('icon', {[`icon-${symbol}`]: inline})}>
-    <use xlink:href={`#icon-${symbol}`} />
+    <use xlinkHref={`#icon-${symbol}`} />
   </svg>
 )

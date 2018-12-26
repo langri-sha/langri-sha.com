@@ -1,11 +1,11 @@
 // @flow
-import Component from 'inferno-component'
+import * as React from 'react'
 
 import styles from './styles'
 import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
 
-export default class Scene extends Component {
+export default class Scene extends React.PureComponent<{}> {
   skipComponentDidMount () {
     const gl = this.gl = this.canvas.getContext('webgl')
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
