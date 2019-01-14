@@ -2953,10 +2953,10 @@ eslint-config-xo-flow@0.1.0:
   resolved "https://registry.yarnpkg.com/eslint-config-xo-flow/-/eslint-config-xo-flow-0.1.0.tgz#92ca26da0395639d490392e60e570141bb778fd6"
   integrity sha512-jm+U2QJJfaC6Sqnak8Rw7m3QfZyrwMj7ym7tEsRKMdZHGZ9bohqyi+MtTaGYl2uVmaqATC5wmz/3+sbTzdV9Og==
 
-eslint-config-xo-react@0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.17.0.tgz#c6ab39b1212f9cfb2d3f97f486290997d90080cb"
-  integrity sha512-ML/RiB4xih5fch0m4o9JnIZS6++pksyAde/zNkM1p8FTw71RpKbx9lpLzYUFbg+0QgepHN/rUeUxRAnNIOwblA==
+eslint-config-xo-react@0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.18.0.tgz#10aa2dc4df3a6aa725950af6471be32141ad91ae"
+  integrity sha512-RI/9SvoFNCVGTqMeYq+/LoiNLIRYfSt7zVpFJAKg8Stl4DrHpf/Bkf2929tq7Bu5rFDYC38xSsOqOY80Jn0xGQ==
 
 eslint-config-xo@0.25.1, eslint-config-xo@^0.25.0:
   version "0.25.1"
