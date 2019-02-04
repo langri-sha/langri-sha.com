@@ -72,7 +72,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@emotion/core": "10.0.5",
+    "@emotion/core": "10.0.7",
     "@emotion/styled": "10.0.5",
     "classnames": "2.2.6",
     "react": "16.7.0",
