@@ -76,7 +76,7 @@
     "@emotion/styled": "10.0.5",
     "classnames": "2.2.6",
     "react": "16.8.0",
-    "react-dom": "16.7.0",
+    "react-dom": "16.8.0",
     "webfontloader": "1.6.28"
   },
   "devDependencies": {
