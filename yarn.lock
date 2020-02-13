@@ -2948,10 +2948,10 @@ eslint-config-prettier@^3.0.1:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-xo-flow@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-flow/-/eslint-config-xo-flow-0.1.0.tgz#92ca26da0395639d490392e60e570141bb778fd6"
-  integrity sha512-jm+U2QJJfaC6Sqnak8Rw7m3QfZyrwMj7ym7tEsRKMdZHGZ9bohqyi+MtTaGYl2uVmaqATC5wmz/3+sbTzdV9Og==
+eslint-config-xo-flow@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-flow/-/eslint-config-xo-flow-0.2.0.tgz#12012b32db9911f0010efde658016d43142202dc"
+  integrity sha512-AOQ3vfrlkHXRAwg3ApCBohDXsSNmE1EVZ2UF4/4Pgo6xM6xZmOu/RGiN3+LuXwvPEvI/DRotJ/+2KuqW30s8RA==
 
 eslint-config-xo-react@0.17.0:
   version "0.17.0"
