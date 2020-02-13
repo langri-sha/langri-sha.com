@@ -98,7 +98,7 @@
     "cz-conventional-changelog": "2.1.0",
     "eslint": "5.11.1",
     "eslint-config-xo": "0.25.1",
-    "eslint-config-xo-flow": "0.1.0",
+    "eslint-config-xo-flow": "0.2.0",
     "eslint-config-xo-react": "0.17.0",
     "eslint-plugin-flowtype": "3.2.0",
     "eslint-plugin-react": "7.12.0",
