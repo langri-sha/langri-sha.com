@@ -5,7 +5,6 @@
 !.flowconfig
 !.gitignore
 !.openssl
-!.travis.yml
 !.yarnrc
 
 local/
