@@ -3,6 +3,7 @@
 !.editorconfig
 !.eslintrc
 !.flowconfig
+!.github
 !.gitignore
 !.openssl
 !.yarnrc
