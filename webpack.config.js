@@ -1,10 +1,15 @@
 // @flow
+require('@babel/register')
+
 const path = require('path')
-const { EnvironmentPlugin } = require('webpack')
-const CleanPlugin = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const HtmlPlugin = require('html-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
+
+const {
+  CleanPlugin,
+  CopyPlugin,
+  EnvironmentPlugin,
+  HtmlPlugin,
+  TerserPlugin
+} = require('@langri-sha/webpack')
 
 /* ::
 type Config = {
