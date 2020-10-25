@@ -26,13 +26,7 @@ const env = (options /* :: : (Config) => Object */) => ({
 module.exports = env(({ development, production }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
-  devtool: production ? 'source-map' : 'cheap-eval-source-map',
   entry: require.resolve('@langri-sha/web'),
-  output: {
-    path: path.resolve('dist'),
-    filename: (production && '[name].[hash].bundle.js') || '[name].bundle.js',
-    publicPath: '/'
-  },
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -72,24 +66,26 @@ module.exports = env(({ development, production }) => ({
     ]
   },
   plugins: [
-    new CleanPlugin(['dist']),
-    new CopyPlugin([
-      {
-        from: 'share/CNAME'
-      },
-      {
-        from: 'share/google17a76c1d58d67a30.html'
-      },
-      {
-        from: 'share/keybase.txt'
-      },
-      {
-        from: 'share/robots.txt'
-      },
-      {
-        from: 'LICENSE.md'
-      }
-    ]),
+    new CleanPlugin(),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'share/CNAME'
+        },
+        {
+          from: 'share/google17a76c1d58d67a30.html'
+        },
+        {
+          from: 'share/keybase.txt'
+        },
+        {
+          from: 'share/robots.txt'
+        },
+        {
+          from: 'LICENSE.md'
+        }
+      ]
+    }),
     new HtmlPlugin({
       title: 'Langri-Sha',
       template: require.resolve('@langri-sha/web/src/index.ejs')
