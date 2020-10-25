@@ -13,7 +13,7 @@ jobs:
       - name: Use latest stable Node.js LTS
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
       - name: Install Yarn dependencies
         run: yarn install
       - name: Fail on lockfile changes
@@ -34,7 +34,7 @@ jobs:
       - name: Use latest stable Node.js LTS
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
       - name: Install Yarn dependencies
         run: yarn install
       - name: Build

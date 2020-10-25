@@ -11,7 +11,7 @@
     "lint": "xo"
   },
   "engines": {
-    "node": ">=12.13.0"
+    "node": ">=14.13.1"
   },
   "repository": {
     "type": "git",
