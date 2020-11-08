@@ -1,0 +1,33 @@
+version: '3.7'
+
+x-alpine-args: &alpine-args
+  alpine_version: '3.12'
+
+x-terraform-args: &terraform-args
+  google_cloud_sdk_version: 324.0.0
+  terraform_version: 0.14.5
+
+x-user-args: &user-args
+  uid: ${UID:-1000}
+
+x-workspace-volume: &workspace-volume
+  source: .
+  target: /workspace
+  type: bind
+  consistency: delegated
+
+services:
+  terraform:
+    image: gcr.io/${PROJECT_ID:-local}/terraform
+    build:
+      context: ./terraform
+      cache_from:
+        - gcr.io/${PROJECT_ID:-local}/terraform
+      args:
+        <<: [*alpine-args, *terraform-args, *user-args]
+    entrypoint: ['terraform']
+    command: init
+    init: true
+    volumes:
+      - *workspace-volume
+    working_dir: /workspace/terraform
