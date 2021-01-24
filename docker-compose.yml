@@ -10,6 +10,9 @@ x-terraform-args: &terraform-args
 x-user-args: &user-args
   uid: ${UID:-1000}
 
+x-terraform-env: &terraform-env
+  TF_CLI_CONFIG_FILE: "${TF_CLI_CONFIG_FILE:-/workspace/.terraformrc}"
+
 x-workspace-volume: &workspace-volume
   source: .
   target: /workspace
@@ -31,3 +34,5 @@ services:
     volumes:
       - *workspace-volume
     working_dir: /workspace/terraform
+    environment:
+      <<: *terraform-env
