@@ -1,6 +1,6 @@
 variable "org_admin_members" {
   type        = string
-  description = "Comma-separated list of users who are assigned the org-admin role."
+  description = "Comma-separated list of users who are assigned to administer the organization."
 }
 
 variable "org_domain" {
