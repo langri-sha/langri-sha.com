@@ -16,6 +16,7 @@ COPY --from=google_cloud_sdk /google-cloud-sdk /google-cloud-sdk
 
 RUN apk add --update \
 		ca-certificates \
+		git \
 		jq \
 		openssh \
 		openssl \
