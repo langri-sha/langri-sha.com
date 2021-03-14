@@ -19,6 +19,12 @@ resource "google_organization_iam_binding" "org_admin_folder_editor" {
   members = local.org_admin_members
 }
 
+resource "google_organization_iam_binding" "org_admin_project_creator" {
+  org_id  = data.google_organization.org.org_id
+  role    = "roles/resourcemanager.projectCreator"
+  members = local.org_admin_members
+}
+
 resource "google_organization_iam_binding" "org_billing_admin_billing_creator" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/billing.creator"
