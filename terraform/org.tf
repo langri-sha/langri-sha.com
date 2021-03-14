@@ -3,6 +3,10 @@ locals {
     for user in split(",", var.org_admin_members)
     : "user:${user}@${data.google_organization.org.domain}"
   ]
+  org_billing_admin_members = [
+    for user in split(",", var.org_billing_admin_members)
+    : "user:${user}@${data.google_organization.org.domain}"
+  ]
 }
 
 data "google_organization" "org" {
