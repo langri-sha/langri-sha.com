@@ -20,4 +20,8 @@ module "org" {
 resource "google_folder" "web" {
   display_name = "web"
   parent       = "organizations/${module.org.org_id}"
+
+  depends_on = [
+    module.org
+  ]
 }
