@@ -13,9 +13,9 @@ data "google_organization" "org" {
   domain = var.org_domain
 }
 
-resource "google_organization_iam_binding" "org_admin_folder_editor" {
+resource "google_organization_iam_binding" "org_admin_folder_creator" {
   org_id  = data.google_organization.org.org_id
-  role    = "roles/resourcemanager.folderEditor"
+  role    = "roles/resourcemanager.folderCreator"
   members = local.org_admin_members
 }
 
