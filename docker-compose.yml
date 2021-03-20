@@ -12,6 +12,7 @@ x-user-args: &user-args
 
 x-terraform-env: &terraform-env
   TF_CLI_CONFIG_FILE: "${TF_CLI_CONFIG_FILE:-/workspace/.terraformrc}"
+  TF_VAR_billing_account: "${billing_account:-}"
   TF_VAR_org_admin_members: "${org_admin_members:-}"
   TF_VAR_org_billing_admin_members: "${org_billing_admin_members:-}"
   TF_VAR_org_domain: "${org_domain:-}"

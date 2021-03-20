@@ -17,6 +17,16 @@ module "org" {
   org_domain                = var.org_domain
 }
 
+module "billing" {
+  source = "./modules/billing"
+
+  billing_account = var.billing_account
+
+  depends_on = [
+    module.org
+  ]
+}
+
 resource "google_folder" "web" {
   display_name = "web"
   parent       = "organizations/${module.org.org_id}"
