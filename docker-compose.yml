@@ -32,11 +32,22 @@ services:
         - gcr.io/${PROJECT_ID:-local}/terraform
       args:
         <<: [*alpine-args, *terraform-args, *user-args]
+    entrypoint: ash
+    init: true
+    volumes:
+      - *workspace-volume
+    environment:
+      <<: *terraform-env
+
+  terraform-org:
+    image: gcr.io/${PROJECT_ID:-local}/terraform
     entrypoint: ['terraform']
     command: init
     init: true
     volumes:
       - *workspace-volume
-    working_dir: /workspace/terraform
+    working_dir: /workspace/terraform/org
     environment:
       <<: *terraform-env
+    depends_on:
+      - terraform

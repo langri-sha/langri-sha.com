@@ -4,13 +4,13 @@ terraform {
     organization = "langri-sha"
 
     workspaces {
-      name = "web"
+      name = "org"
     }
   }
 }
 
 module "org" {
-  source = "./modules/org"
+  source = "../modules/org"
 
   org_admin_members         = var.org_admin_members
   org_billing_admin_members = var.org_billing_admin_members
@@ -18,7 +18,7 @@ module "org" {
 }
 
 module "billing" {
-  source = "./modules/billing"
+  source = "../modules/billing"
 
   billing_account = var.billing_account
 
