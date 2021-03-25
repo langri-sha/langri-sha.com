@@ -27,11 +27,11 @@ module "billing" {
   ]
 }
 
-resource "google_folder" "web" {
-  display_name = "web"
-  parent       = "organizations/${module.org.org_id}"
+module "web" {
+  source = "../modules/workspace"
 
-  depends_on = [
-    module.org
-  ]
+  name = "web"
+
+  billing_account = module.billing.billing_account
+  org             = module.org.org_id
 }
