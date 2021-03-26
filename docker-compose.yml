@@ -23,9 +23,19 @@ x-workspace-volume: &workspace-volume
   type: bind
   consistency: delegated
 
+x-terraform-svc: &terraform-svc
+  image: gcr.io/${PROJECT_ID:-local}/terraform
+  entrypoint: ['terraform']
+  command: ['init']
+  init: true
+  volumes:
+    - *workspace-volume
+  environment:
+    <<: *terraform-env
+
 services:
   terraform:
-    image: gcr.io/${PROJECT_ID:-local}/terraform
+    <<: *terraform-svc
     build:
       context: ./terraform
       cache_from:
@@ -33,21 +43,9 @@ services:
       args:
         <<: [*alpine-args, *terraform-args, *user-args]
     entrypoint: ash
-    init: true
-    volumes:
-      - *workspace-volume
-    environment:
-      <<: *terraform-env
+    command: []
 
   terraform-org:
-    image: gcr.io/${PROJECT_ID:-local}/terraform
-    entrypoint: ['terraform']
-    command: init
-    init: true
-    volumes:
-      - *workspace-volume
-    working_dir: /workspace/terraform/org
-    environment:
-      <<: *terraform-env
+    <<: *terraform-svc
     depends_on:
       - terraform
