@@ -33,5 +33,5 @@ module "web" {
   name = "web"
 
   billing_account = module.billing.billing_account
-  org             = module.org.org_id
+  org_id          = module.org.org_id
 }
