@@ -3,7 +3,7 @@ resource "google_folder" "workspace" {
   parent       = "organizations/${var.org_id}"
 }
 
-module "project" {
+module "tf_admin" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 10.2.2"
 
@@ -15,4 +15,10 @@ module "project" {
   folder_id               = google_folder.workspace.id
   org_id                  = var.org_id
   random_project_id       = "true"
+}
+
+resource "google_service_account" "terraform" {
+  account_id   = "terraform"
+  display_name = "${var.name} Workspace Terraform Service Account"
+  project      = module.tf_admin.project_id
 }
