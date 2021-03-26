@@ -47,5 +47,6 @@ services:
 
   terraform-org:
     <<: *terraform-svc
+    working_dir: /workspace/terraform/org
     depends_on:
       - terraform
