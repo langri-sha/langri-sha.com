@@ -8,7 +8,7 @@ variable "name" {
   description = "Workspace name. Should be unique in the organization."
 }
 
-variable "org" {
+variable "org_id" {
   type        = string
   description = "Organization ID, where resources are created."
 }
