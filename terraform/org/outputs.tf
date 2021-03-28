@@ -3,6 +3,11 @@ output "billing_account" {
   value       = module.billing.billing_account
 }
 
+output "org_admins" {
+  description = "List of users who are assigned to administer the organization."
+  value       = module.org.org_admins
+}
+
 output "web_folder" {
   description = "Folder where workspace resources are created."
   value       = module.web.folder
