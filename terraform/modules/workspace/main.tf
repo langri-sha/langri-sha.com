@@ -22,3 +22,9 @@ resource "google_service_account" "terraform" {
   display_name = "${var.name} Workspace Terraform Service Account"
   project      = module.tf_admin.project_id
 }
+
+resource "google_folder_iam_member" "terraform_service_account_workspace_editor" {
+  folder      = google_folder.workspace.name
+  role        = "roles/editor"
+  member      = "serviceAccount:${google_service_account.terraform.email}"
+}
