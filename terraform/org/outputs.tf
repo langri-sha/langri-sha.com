@@ -8,6 +8,11 @@ output "org_admins" {
   value       = module.org.org_admins
 }
 
+output "org_billing_admins" {
+  description = "List of users who are assigned to administer the billing accounts in the organization."
+  value       = module.org.org_billing_admins
+}
+
 output "web_folder" {
   description = "Folder where workspace resources are created."
   value       = module.web.folder
