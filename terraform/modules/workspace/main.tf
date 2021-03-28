@@ -28,3 +28,15 @@ resource "google_folder_iam_member" "terraform_service_account_workspace_editor"
   role        = "roles/editor"
   member      = "serviceAccount:${google_service_account.terraform.email}"
 }
+
+resource "google_service_account_iam_binding" "admins_terraform_user" {
+  service_account_id = google_service_account.terraform.name
+  role               = "roles/iam.serviceAccountUser"
+  members            = var.org_admins
+}
+
+resource "google_service_account_iam_binding" "admins_terraform_token_creator" {
+  service_account_id = google_service_account.terraform.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  members            = var.org_admins
+}
