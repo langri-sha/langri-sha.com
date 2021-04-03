@@ -19,6 +19,7 @@ module "tf_admin" {
   activate_apis = [
     "cloudbilling.googleapis.com",
     "compute.googleapis.com",
+    "serviceusage.googleapis.com",
   ]
 }
 
