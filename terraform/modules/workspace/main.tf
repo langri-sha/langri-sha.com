@@ -15,6 +15,11 @@ module "tf_admin" {
   folder_id               = google_folder.workspace.id
   org_id                  = var.org_id
   random_project_id       = "true"
+
+  activate_apis = [
+    "cloudbilling.googleapis.com",
+    "compute.googleapis.com",
+  ]
 }
 
 resource "google_service_account" "terraform" {
