@@ -50,3 +50,9 @@ services:
     working_dir: /workspace/terraform/org
     depends_on:
       - terraform
+
+  terraform-web:
+    <<: *terraform-svc
+    working_dir: /workspace/terraform/web
+    depends_on:
+      - terraform
