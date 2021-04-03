@@ -41,6 +41,12 @@ resource "google_folder_iam_member" "terraform_service_account_workspace_project
   member      = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_folder_iam_member" "terraform_service_account_workspace_project_deleter" {
+  folder      = google_folder.workspace.name
+  role        = "roles/resourcemanager.projectDeleter"
+  member      = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_folder_iam_member" "terraform_service_account_workspace_editor" {
   folder      = google_folder.workspace.name
   role        = "roles/editor"
