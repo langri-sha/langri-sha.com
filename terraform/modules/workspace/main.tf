@@ -23,6 +23,12 @@ resource "google_service_account" "terraform" {
   project      = module.tf_admin.project_id
 }
 
+resource "google_billing_account_iam_member" "terraform_service_account_billing_user" {
+  billing_account_id = var.billing_account
+  role               = "roles/billing.user"
+  member             = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_folder_iam_member" "terraform_service_account_workspace_editor" {
   folder      = google_folder.workspace.name
   role        = "roles/editor"
