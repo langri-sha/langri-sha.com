@@ -13,6 +13,11 @@ output "org_billing_admins" {
   value       = module.org.org_billing_admins
 }
 
+output "org_id" {
+  description = "The Organization ID."
+  value       = module.org.org_id
+}
+
 output "web_folder" {
   description = "Folder where workspace resources are created."
   value       = module.web.folder
