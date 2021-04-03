@@ -29,6 +29,12 @@ resource "google_billing_account_iam_member" "terraform_service_account_billing_
   member             = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_folder_iam_member" "terraform_service_account_workspace_folder_admin" {
+  folder      = google_folder.workspace.name
+  role        = "roles/resourcemanager.folderAdmin"
+  member      = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_folder_iam_member" "terraform_service_account_workspace_editor" {
   folder      = google_folder.workspace.name
   role        = "roles/editor"
