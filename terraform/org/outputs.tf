@@ -19,6 +19,6 @@ output "web_folder" {
 }
 
 output "web_service_account_email" {
-  description = "Folder where workspace resources are created."
+  description = "Email of the Terrraform service account managing the workspace."
   value       = module.web.service_account_email
 }
