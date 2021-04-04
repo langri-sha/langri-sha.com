@@ -10,4 +10,9 @@ module "project_build" {
   folder_id               = data.terraform_remote_state.org.outputs.web_folder
   org_id                  = data.terraform_remote_state.org.outputs.org_id
   random_project_id       = "true"
+
+  activate_apis = [
+    "cloudbuild.googleapis.com",
+    "compute.googleapis.com",
+  ]
 }
