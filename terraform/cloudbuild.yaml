@@ -12,6 +12,7 @@ steps:
     waitFor: ['-']
 
   - name: 'gcr.io/kaniko-project/executor:debug'
+    id: 'Build Terraform image'
     entrypoint: /busybox/sh
     args:
       - -c
@@ -24,6 +25,19 @@ steps:
           --destination=gcr.io/$PROJECT_ID/terraform \
           --context=/workspace/terraform/ \
           --cache=true
+    waitFor: ['-']
+
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    id: 'Initialize org configuration'
+    dir: /workspace/terraform/org
+    args: ['init', '-backend=false']
+    waitFor: ['Configure permissions', 'Build Terraform image']
+
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    id: 'Validate org configuration'
+    dir: /workspace/terraform/org
+    args: ['validate']
+    waitFor: ['Initialize org configuration']
 
 options:
   env:
