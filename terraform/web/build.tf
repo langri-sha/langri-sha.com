@@ -17,3 +17,23 @@ module "project_build" {
     "containerregistry.googleapis.com",
   ]
 }
+
+resource "google_cloudbuild_trigger" "terraform_pr" {
+  provider = google-beta
+
+  description = "Terraform Pull Request"
+  filename    = "terraform/cloudbuild.yaml"
+  name        = "terraform-pull-request"
+  project     = module.project_build.project_id
+
+  github {
+    name  = var.repo_name
+    owner = var.repo_owner
+
+    pull_request {
+      branch = ".*"
+    }
+  }
+
+  included_files = ["docker-compose.yml", "terraform/**"]
+}
