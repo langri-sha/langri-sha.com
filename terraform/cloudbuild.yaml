@@ -12,7 +12,7 @@ steps:
           --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
           --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
           --destination=gcr.io/$PROJECT_ID/terraform \
-          --context=/workspace/terraform/
+          --context=/workspace/terraform/ \
           --cache=true
 
 options:
