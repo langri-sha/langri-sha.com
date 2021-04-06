@@ -2,7 +2,7 @@
 # Cloud builders: https://cloud.google.com/cloud-build/docs/cloud-builders
 
 steps:
-  - name: 'gcr.io/kaniko-project/executor:latest'
+  - name: 'gcr.io/kaniko-project/executor:debug'
     entrypoint: /busybox/sh
     args:
       - -c
