@@ -14,5 +14,6 @@ module "project_build" {
   activate_apis = [
     "cloudbuild.googleapis.com",
     "compute.googleapis.com",
+    "containerregistry.googleapis.com",
   ]
 }
