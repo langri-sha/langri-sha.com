@@ -11,6 +11,7 @@ steps:
           --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
           --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
           --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
+          --build-arg="uid=1000" \
           --destination=gcr.io/$PROJECT_ID/terraform \
           --context=/workspace/terraform/ \
           --cache=true
