@@ -1,0 +1,22 @@
+# Build configuration overview: https://cloud.google.com/cloud-build/docs/build-config
+# Cloud builders: https://cloud.google.com/cloud-build/docs/cloud-builders
+
+steps:
+  - name: 'gcr.io/kaniko-project/executor:latest'
+    entrypoint: /busybox/sh
+    args:
+      - -c
+      - |
+        executor \
+          --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
+          --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
+          --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
+          --destination=gcr.io/$PROJECT_ID/terraform \
+          --context=/workspace/terraform/
+          --cache=true
+
+options:
+  env:
+    - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
+    - GOOGLE_CLOUD_SDK_VERSION=cat docker-compose.yml | grep google_cloud_sdk_version | cut -d ':' -f 2 | xargs
+    - TERRAFORM_VERSION=cat docker-compose.yml | grep terraform_version | cut -d ':' -f 2 | xargs
