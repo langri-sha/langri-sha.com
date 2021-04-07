@@ -45,6 +45,18 @@ steps:
     args: ['fmt', '-recursive', '-diff', '-check']
     waitFor: ['Validate org configuration']
 
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    id: 'Initialize web configuration'
+    dir: /workspace/terraform/web
+    args: ['init', '-backend=false']
+    waitFor: ['Configure permissions', 'Build Terraform image']
+
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    id: 'Validate web configuration'
+    dir: /workspace/terraform/web
+    args: ['validate']
+    waitFor: ['Initialize web configuration']
+
 options:
   env:
     - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
