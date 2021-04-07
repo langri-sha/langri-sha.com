@@ -2,6 +2,15 @@
 # Cloud builders: https://cloud.google.com/cloud-build/docs/cloud-builders
 
 steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Configure permissions'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        chown -R 1000 /workspace/terraform/
+    waitFor: ['-']
+
   - name: 'gcr.io/kaniko-project/executor:debug'
     entrypoint: /busybox/sh
     args:
