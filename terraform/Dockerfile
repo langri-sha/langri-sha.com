@@ -34,4 +34,4 @@ RUN gcloud config set core/disable_usage_reporting true \
 	&& gcloud --version \
 	&& terraform --version
 
-ENTRYPOINT ['terraform']
+ENTRYPOINT ["terraform"]
