@@ -10,7 +10,7 @@ module "access_token_resolver" {
 
 
 provider "google" {
-  alias  = "access_token_resolver"
+  alias = "access_token_resolver"
 }
 
 provider "google" {
