@@ -18,6 +18,12 @@ module "project_build" {
   ]
 }
 
+module "cloudbuild" {
+  source = "../modules/cloudbuild"
+
+  project_id = module.project_build.project_id
+}
+
 resource "google_cloudbuild_trigger" "terraform_pr" {
   provider = google-beta
 
