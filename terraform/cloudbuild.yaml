@@ -68,3 +68,6 @@ options:
     - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
     - GOOGLE_CLOUD_SDK_VERSION=cat docker-compose.yml | grep google_cloud_sdk_version | cut -d ':' -f 2 | xargs
     - TERRAFORM_VERSION=cat docker-compose.yml | grep terraform_version | cut -d ':' -f 2 | xargs
+  volumes:
+    - name: share
+      path: /var/share
