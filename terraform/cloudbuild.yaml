@@ -35,21 +35,36 @@ steps:
     args:
       - -c
       - |
-        executor \
-          --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
-          --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
-          --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
-          --build-arg="uid=1000" \
-          --destination=gcr.io/$PROJECT_ID/terraform \
-          --context=/workspace/terraform/ \
-          --cache=true
-    waitFor: ['-']
+        if [ -f /var/share/pull ]; then
+          echo "Image already exists, skipping build"
+        else
+          executor \
+            --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
+            --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
+            --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
+            --build-arg="uid=1000" \
+            --destination=gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag) \
+            --context=/workspace/terraform/ \
+            --cache=true
+        fi
+    waitFor: ['Pull image']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Tag image'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        docker tag gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag) gcr.io/$PROJECT_ID/terraform:latest
+    waitFor: ['Build Terraform image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Initialize org configuration'
     dir: /workspace/terraform/org
     args: ['init', '-backend=false']
-    waitFor: ['Configure permissions', 'Build Terraform image']
+    waitFor: ['Configure permissions', 'Tag image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Validate org configuration'
@@ -67,7 +82,7 @@ steps:
     id: 'Initialize web configuration'
     dir: /workspace/terraform/web
     args: ['init', '-backend=false']
-    waitFor: ['Configure permissions', 'Build Terraform image']
+    waitFor: ['Configure permissions', 'Tag image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Validate web configuration'
