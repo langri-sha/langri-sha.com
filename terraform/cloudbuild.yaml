@@ -11,6 +11,24 @@ steps:
         chown -R 1000 /workspace/terraform/
     waitFor: ['-']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Pull image'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        TAG=$({ (md5sum docker-compose.yml) ; (md5sum terraform/Dockerfile) } | md5sum | awk '{print $$1}')
+
+        echo -e "$$TAG\c" > /var/share/tag
+
+        if docker pull gcr.io/$PROJECT_ID/terraform:$$TAG; then
+          echo "Successfully pulled image"
+          touch /var/share/pull
+        fi
+    waitFor: ['-']
+
   - name: 'gcr.io/kaniko-project/executor:debug'
     id: 'Build Terraform image'
     entrypoint: /busybox/sh
