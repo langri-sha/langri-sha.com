@@ -22,24 +22,18 @@ module "cloudbuild" {
   source = "../modules/cloudbuild"
 
   project_id = module.project_build.project_id
-}
+  repo_name  = var.repo_name
+  repo_owner = var.repo_owner
 
-resource "google_cloudbuild_trigger" "terraform_pr" {
-  provider = google-beta
+  triggers = [{
+    description = "Terraform Pull Request"
+    filename    = "terraform/cloudbuild.yaml"
+    name        = "terraform-pull-request"
 
-  description = "Terraform Pull Request"
-  filename    = "terraform/cloudbuild.yaml"
-  name        = "terraform-pull-request"
-  project     = module.project_build.project_id
+    included_files = ["docker-compose.yml", "terraform/**"]
 
-  github {
-    name  = var.repo_name
-    owner = var.repo_owner
-
-    pull_request {
+    pull_request = {
       branch = ".*"
     }
-  }
-
-  included_files = ["docker-compose.yml", "terraform/**"]
+  }]
 }
