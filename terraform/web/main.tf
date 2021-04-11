@@ -9,6 +9,28 @@ terraform {
   }
 }
 
+locals {
+  hosts = [
+    "www",
+    "production",
+    "production-assets",
+    "preview",
+    "preview-assets",
+  ]
+
+  host_redirects = {
+    "www" = "production"
+  }
+
+  host_subdomains = {
+    "www"               = "www.",
+    "production"        = "",
+    "production-assets" = "assets.",
+    "preview"           = "preview.",
+    "preview-assets"    = "assets.preview.",
+  }
+}
+
 provider "google" {
   alias = "access_token_resolver"
 }
