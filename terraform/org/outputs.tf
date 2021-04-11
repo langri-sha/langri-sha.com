@@ -5,12 +5,12 @@ output "billing_account" {
 
 output "org_admins" {
   description = "List of users who are assigned to administer the organization."
-  value       = module.org.org_admins
+  value       = module.org.admins
 }
 
 output "org_billing_admins" {
   description = "List of users who are assigned to administer the billing accounts in the organization."
-  value       = module.org.org_billing_admins
+  value       = module.org.billing_admins
 }
 
 output "org_id" {
