@@ -14,6 +14,7 @@ module "org" {
 
   admin_members         = var.org_admin_members
   billing_admin_members = var.org_billing_admin_members
+  domain                = var.org_domain
 }
 
 module "billing" {
