@@ -8,6 +8,11 @@ output "billing_admins" {
   value       = local.billing_admins
 }
 
+output "domain" {
+  description = "Organization domain, for which resources are created."
+  value       = data.google_organization.org.domain
+}
+
 output "org_id" {
   description = "The Organization ID."
   value       = data.google_organization.org.org_id

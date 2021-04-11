@@ -10,7 +10,7 @@ locals {
 }
 
 data "google_organization" "org" {
-  domain = var.org_domain
+  domain = var.domain
 }
 
 resource "google_organization_iam_binding" "org_admin_folder_creator" {
