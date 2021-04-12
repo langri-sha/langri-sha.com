@@ -22,12 +22,12 @@ locals {
     "www" = "production"
   }
 
-  host_subdomains = {
-    "www"               = "www.",
-    "production"        = "",
-    "production-assets" = "assets.",
-    "preview"           = "preview.",
-    "preview-assets"    = "assets.preview.",
+  host_names = {
+    "www"               = "www.${data.terraform_remote_state.org.outputs.org_domain}",
+    "production"        = "${data.terraform_remote_state.org.outputs.org_domain}",
+    "production-assets" = "assets.${data.terraform_remote_state.org.outputs.org_domain}",
+    "preview"           = "preview.${data.terraform_remote_state.org.outputs.org_domain}",
+    "preview-assets"    = "assets.preview.${data.terraform_remote_state.org.outputs.org_domain}",
   }
 }
 

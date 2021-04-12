@@ -1,5 +1,5 @@
 locals {
-  certificate_hash = substr(md5(join(",", values(local.host_subdomains))), 0, 4)
+  certificate_hash = substr(md5(join(",", values(local.host_names))), 0, 4)
 }
 
 resource "google_compute_global_address" "default" {
@@ -14,9 +14,9 @@ resource "google_dns_managed_zone" "default" {
 }
 
 resource "google_dns_record_set" "default" {
-  for_each = local.host_subdomains
+  for_each = local.host_names
 
-  name    = "${each.value}${google_dns_managed_zone.default.dns_name}"
+  name    = "${each.value}."
   project = module.project_edge.project_id
 
   managed_zone = google_dns_managed_zone.default.name
@@ -36,8 +36,6 @@ resource "google_compute_managed_ssl_certificate" "default" {
   }
 
   managed {
-    domains = [
-      for name in values(local.host_subdomains) : "${name}${google_dns_managed_zone.default.dns_name}"
-    ]
+    domains = values(local.host_names)
   }
 }
