@@ -25,16 +25,16 @@ locals {
     "preview-assets",
   ]
 
-  host_redirects = {
-    "www" = "production"
-  }
-
   host_names = {
     "www"               = "www.${local.org_domain}",
     "production"        = local.org_domain,
     "production-assets" = "assets.${local.org_domain}",
     "preview"           = "preview.${local.org_domain}",
     "preview-assets"    = "assets.preview.${local.org_domain}",
+  }
+
+  host_redirects = {
+    "www" = "production"
   }
 }
 
