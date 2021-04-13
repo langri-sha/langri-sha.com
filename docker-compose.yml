@@ -16,6 +16,7 @@ x-terraform-env: &terraform-env
   TF_VAR_org_admin_members: "${org_admin_members:-}"
   TF_VAR_org_billing_admin_members: "${org_billing_admin_members:-}"
   TF_VAR_org_domain: "${org_domain:-}"
+  TF_VAR_site_verifications: "${site_verifications:-}"
 
 x-workspace-volume: &workspace-volume
   source: .
