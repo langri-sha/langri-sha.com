@@ -25,6 +25,18 @@ resource "google_dns_record_set" "default" {
   type         = "A"
 }
 
+resource "google_dns_record_set" "site_verifications" {
+  count = length(data.terraform_remote_state.org.outputs.site_verifications) > 0 ? 1 : 0
+
+  name    = google_dns_managed_zone.default.dns_name
+  project = module.project_edge.project_id
+
+  managed_zone = google_dns_managed_zone.default.name
+  rrdatas      = data.terraform_remote_state.org.outputs.site_verifications
+  ttl          = 300
+  type         = "TXT"
+}
+
 resource "google_compute_managed_ssl_certificate" "default" {
   provider = google-beta
 
