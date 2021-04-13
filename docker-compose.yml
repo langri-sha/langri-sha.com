@@ -4,7 +4,7 @@ x-alpine-args: &alpine-args
   alpine_version: '3.12'
 
 x-terraform-args: &terraform-args
-  google_cloud_sdk_version: 324.0.0
+  google_cloud_sdk_version: 336.0.0
   terraform_version: 0.14.10
 
 x-user-args: &user-args
