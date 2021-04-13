@@ -23,6 +23,11 @@ output "org_id" {
   value       = module.org.org_id
 }
 
+output "site_verifications" {
+  description = "List of DNS-based domain ownership verifications."
+  value       = compact(split(",", var.site_verifications))
+}
+
 output "web_folder" {
   description = "Folder where workspace resources are created."
   value       = module.web.folder
