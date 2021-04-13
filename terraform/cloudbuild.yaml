@@ -57,7 +57,7 @@ steps:
       - |
         set -e
 
-        if [ -f /var/share/pull ]; then
+        if [ ! -f /var/share/pull ]; then
           docker pull gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag)
         fi
 
