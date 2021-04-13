@@ -8,6 +8,12 @@ resource "google_storage_bucket" "public" {
 
   requester_pays = true
 
+  cors {
+    max_age_seconds = 60
+    method          = ["*"]
+    origin          = local.host_cors_origins[each.value]
+  }
+
   website {
     main_page_suffix = "index.html"
     not_found_page   = "404.html"

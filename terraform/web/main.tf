@@ -36,6 +36,14 @@ locals {
   host_redirects = {
     "www" = "production"
   }
+
+  host_cors_origins = {
+    "www"               = ["https://${local.host_names["www"]}"],
+    "production"        = ["https://${local.host_names["production"]}"],
+    "production-assets" = ["https://${local.host_names["production"]}"],
+    "preview"           = ["https://${local.host_names["preview"]}"],
+    "preview-assets"    = ["https://${local.host_names["preview"]}"],
+  }
 }
 
 provider "google" {
