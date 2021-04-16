@@ -10,6 +10,13 @@ terraform {
 }
 
 locals {
+  billing_account           = data.terraform_remote_state.org.outputs.billing_account
+  org_domain                = data.terraform_remote_state.org.outputs.org_domain
+  org_id                    = data.terraform_remote_state.org.outputs.org_id
+  site_verifications        = data.terraform_remote_state.org.outputs.site_verifications
+  web_folder                = data.terraform_remote_state.org.outputs.web_folder
+  web_service_account_email = data.terraform_remote_state.org.outputs.web_service_account_email
+
   hosts = [
     "www",
     "production",
@@ -23,11 +30,11 @@ locals {
   }
 
   host_names = {
-    "www"               = "www.${data.terraform_remote_state.org.outputs.org_domain}",
-    "production"        = data.terraform_remote_state.org.outputs.org_domain,
-    "production-assets" = "assets.${data.terraform_remote_state.org.outputs.org_domain}",
-    "preview"           = "preview.${data.terraform_remote_state.org.outputs.org_domain}",
-    "preview-assets"    = "assets.preview.${data.terraform_remote_state.org.outputs.org_domain}",
+    "www"               = "www.${local.org_domain}",
+    "production"        = local.org_domain,
+    "production-assets" = "assets.${local.org_domain}",
+    "preview"           = "preview.${local.org_domain}",
+    "preview-assets"    = "assets.preview.${local.org_domain}",
   }
 }
 
@@ -38,7 +45,7 @@ provider "google" {
 module "access_token_resolver" {
   source = "../modules/access-token-resolver"
 
-  target_service_account = data.terraform_remote_state.org.outputs.web_service_account_email
+  target_service_account = local.web_service_account_email
 
   providers = {
     google = google.access_token_resolver
@@ -72,10 +79,10 @@ module "project_build" {
   name = "build"
 
   auto_create_network     = false
-  billing_account         = data.terraform_remote_state.org.outputs.billing_account
+  billing_account         = local.billing_account
   default_service_account = "deprivilege"
-  folder_id               = data.terraform_remote_state.org.outputs.web_folder
-  org_id                  = data.terraform_remote_state.org.outputs.org_id
+  folder_id               = local.web_folder
+  org_id                  = local.org_id
   random_project_id       = "true"
 
   activate_apis = [
@@ -91,10 +98,10 @@ module "project_edge" {
 
   name = "edge"
 
-  billing_account         = data.terraform_remote_state.org.outputs.billing_account
+  billing_account         = local.billing_account
   default_service_account = "deprivilege"
-  folder_id               = data.terraform_remote_state.org.outputs.web_folder
-  org_id                  = data.terraform_remote_state.org.outputs.org_id
+  folder_id               = local.web_folder
+  org_id                  = local.org_id
   random_project_id       = "true"
 
   activate_apis = [
