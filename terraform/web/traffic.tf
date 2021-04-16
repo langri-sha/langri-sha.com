@@ -9,7 +9,7 @@ resource "google_compute_global_address" "default" {
 
 resource "google_dns_managed_zone" "default" {
   name     = "langri-sha"
-  dns_name = "${data.terraform_remote_state.org.outputs.org_domain}."
+  dns_name = "${local.org_domain}."
   project  = module.project_edge.project_id
 }
 
@@ -26,13 +26,13 @@ resource "google_dns_record_set" "default" {
 }
 
 resource "google_dns_record_set" "site_verifications" {
-  count = length(data.terraform_remote_state.org.outputs.site_verifications) > 0 ? 1 : 0
+  count = length(local.site_verifications) > 0 ? 1 : 0
 
   name    = google_dns_managed_zone.default.dns_name
   project = module.project_edge.project_id
 
   managed_zone = google_dns_managed_zone.default.name
-  rrdatas      = data.terraform_remote_state.org.outputs.site_verifications
+  rrdatas      = local.site_verifications
   ttl          = 300
   type         = "TXT"
 }
