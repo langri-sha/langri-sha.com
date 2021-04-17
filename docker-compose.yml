@@ -1,7 +1,7 @@
 version: '3.7'
 
 x-alpine-args: &alpine-args
-  alpine_version: '3.12'
+  alpine_version: '3.13'
 
 x-terraform-args: &terraform-args
   google_cloud_sdk_version: 336.0.0
