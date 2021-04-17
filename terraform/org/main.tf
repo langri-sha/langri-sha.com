@@ -35,4 +35,13 @@ module "web" {
   billing_account = module.billing.billing_account
   org_admins      = module.org.admins
   org_id          = module.org.org_id
+
+  service_account_roles = [
+    "roles/billing.projectManager",
+    "roles/editor",
+    "roles/resourcemanager.folderAdmin",
+    "roles/resourcemanager.projectCreator",
+    "roles/resourcemanager.projectDeleter",
+    "roles/storage.admin",
+  ]
 }

@@ -17,3 +17,8 @@ variable "org_id" {
   type        = string
   description = "Organization ID, where resources are created."
 }
+
+variable "service_account_roles" {
+  type        = list(string)
+  description = "Roles to grant the Terraform service account on the workspace folder."
+}
