@@ -62,6 +62,12 @@ resource "google_folder_iam_member" "terraform_service_account_workspace_billing
   member      = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_folder_iam_member" "terraform_service_account_workspace_storage_admin" {
+  folder      = google_folder.workspace.name
+  role        = "roles/storage.admin"
+  member      = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_folder_iam_member" "terraform_service_account_workspace_editor" {
   folder      = google_folder.workspace.name
   role        = "roles/editor"
