@@ -16,14 +16,7 @@ module "tf_admin" {
   org_id                  = var.org_id
   random_project_id       = "true"
 
-  activate_apis = [
-    "cloudbilling.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-    "serviceusage.googleapis.com",
-  ]
+  activate_apis = var.activate_apis
 }
 
 resource "google_service_account" "terraform" {

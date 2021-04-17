@@ -1,3 +1,8 @@
+variable "activate_apis" {
+  type        = list(string)
+  description = "The list of APIs to activate within the project."
+}
+
 variable "billing_account" {
   type        = string
   description = "Billing account ID, for the default billing account."

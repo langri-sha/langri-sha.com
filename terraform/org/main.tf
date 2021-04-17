@@ -36,6 +36,15 @@ module "web" {
   org_admins      = module.org.admins
   org_id          = module.org.org_id
 
+  activate_apis = [
+    "cloudbilling.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+    "serviceusage.googleapis.com",
+  ]
+
   service_account_roles = [
     "roles/billing.projectManager",
     "roles/editor",
