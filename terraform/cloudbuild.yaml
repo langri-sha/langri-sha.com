@@ -45,6 +45,7 @@ steps:
             --build-arg="uid=1000" \
             --destination=gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag) \
             --context=/workspace/terraform/ \
+            --dockerfile=/workspace/terraform/Dockerfile \
             --cache=true
         fi
     waitFor: ['Pull image']
