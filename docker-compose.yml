@@ -78,3 +78,9 @@ services:
         - gcr.io/${PROJECT_ID:-local}/yarn
       args:
         <<: [*alpine-args, *node-args, *user-args]
+
+  server:
+    <<: *yarn-svc
+    command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
+    ports:
+      - "8080:8080"
