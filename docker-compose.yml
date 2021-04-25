@@ -3,6 +3,10 @@ version: '3.7'
 x-alpine-args: &alpine-args
   alpine_version: '3.13'
 
+x-node-args: &node-args
+  node_version: '14.16.1'
+  glibc_version: '2.33-r0'
+
 x-terraform-args: &terraform-args
   google_cloud_sdk_version: 336.0.0
   terraform_version: 0.14.10
@@ -34,6 +38,14 @@ x-terraform-svc: &terraform-svc
   environment:
     <<: *terraform-env
 
+x-yarn-svc: &yarn-svc
+  image: gcr.io/${PROJECT_ID:-local}/yarn
+  init: true
+  entrypoint: ['yarn']
+  working_dir: /workspace
+  volumes:
+    - *workspace-volume
+
 services:
   terraform:
     <<: *terraform-svc
@@ -57,3 +69,12 @@ services:
     working_dir: /workspace/terraform/web
     depends_on:
       - terraform
+
+  yarn:
+    <<: *yarn-svc
+    build:
+      context: .
+      cache_from:
+        - gcr.io/${PROJECT_ID:-local}/yarn
+      args:
+        <<: [*alpine-args, *node-args, *user-args]
