@@ -1,0 +1,64 @@
+# Build configuration overview: https://cloud.google.com/cloud-build/docs/build-config
+# Cloud builders: https://cloud.google.com/cloud-build/docs/cloud-builders
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Pull image'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        TAG=$({ (md5sum cloudbuild.yaml); (md5sum docker-compose.yml) ; (md5sum Dockerfile) } | md5sum | awk '{print $$1}')
+
+        echo -e "$$TAG\c" > /var/share/tag
+
+        if docker pull gcr.io/$PROJECT_ID/yarn:$$TAG; then
+          echo "Successfully pulled image"
+          touch /var/share/pull
+        fi
+    waitFor: ['-']
+
+  - name: 'gcr.io/kaniko-project/executor:debug'
+    id: 'Build image'
+    entrypoint: /busybox/sh
+    args:
+      - -c
+      - |
+        if [ -f /var/share/pull ]; then
+          echo "Image already exists, skipping build"
+        else
+          executor \
+            --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
+            --build-arg="glibc_version=$$(eval $$GLIBC_VERSION)" \
+            --build-arg="node_version=$$(eval $$NODE_VERSION)" \
+            --build-arg="uid=0" \
+            --destination=gcr.io/$PROJECT_ID/yarn:$(cat /var/share/tag) \
+            --cache=true
+        fi
+    waitFor: ['Pull image']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Tag image'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        if [ ! -f /var/share/pull ]; then
+          docker pull gcr.io/$PROJECT_ID/yarn:$(cat /var/share/tag)
+        fi
+
+        docker commit --change "USER root" $(docker create gcr.io/$PROJECT_ID/yarn:$(cat /var/share/tag)) gcr.io/$PROJECT_ID/yarn:latest
+    waitFor: ['Build image']
+
+options:
+  env:
+    - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
+    - GLIBC_VERSION=cat docker-compose.yml | grep glibc_version | cut -d ':' -f 2 | xargs
+    - NODE_VERSION=cat docker-compose.yml | grep node_version | cut -d ':' -f 2 | xargs
+  volumes:
+    - name: share
+      path: /var/share
