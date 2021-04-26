@@ -54,6 +54,11 @@ steps:
         docker commit --change "USER root" $(docker create gcr.io/$PROJECT_ID/yarn:$(cat /var/share/tag)) gcr.io/$PROJECT_ID/yarn:latest
     waitFor: ['Build image']
 
+  - name: 'gcr.io/$PROJECT_ID/yarn'
+    id: 'Yarn install'
+    args: ['install']
+    waitFor: ['Tag image']
+
 options:
   env:
     - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
