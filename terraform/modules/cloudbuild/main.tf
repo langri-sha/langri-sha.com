@@ -14,10 +14,11 @@ resource "google_cloudbuild_trigger" "triggers" {
 
   for_each = { for trigger in var.triggers : trigger.name => trigger }
 
-  description = each.value.description
-  filename    = each.value.filename
-  name        = each.value.name
-  project     = var.project_id
+  description   = each.value.description
+  filename      = each.value.filename
+  name          = each.value.name
+  project       = var.project_id
+  substitutions = each.value.substitutions
 
   included_files = each.value.included_files
 

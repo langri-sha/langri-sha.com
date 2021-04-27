@@ -18,9 +18,10 @@ variable "repo_owner" {
 variable "triggers" {
   description = "Build triggers."
   type = list(object({
-    description = string
-    filename = string
-    name = string
+    description   = string
+    filename      = string
+    name          = string
+    substitutions = optional(map(string))
 
     included_files = optional(list(string))
 
