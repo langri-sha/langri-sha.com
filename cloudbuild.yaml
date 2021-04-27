@@ -59,6 +59,11 @@ steps:
     args: ['install']
     waitFor: ['Tag image']
 
+  - name: 'gcr.io/$PROJECT_ID/yarn'
+    id: 'Build'
+    args: ['build']
+    waitFor: ['Yarn install']
+
 options:
   env:
     - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
