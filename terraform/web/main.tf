@@ -37,12 +37,20 @@ locals {
     "www" = "production"
   }
 
+  host_urls = {
+    "www"               = "https://${local.host_names["www"]}",
+    "production"        = "https://${local.host_names["production"]}",
+    "production-assets" = "https://${local.host_names["production-assets"]}",
+    "preview"           = "https://${local.host_names["preview"]}",
+    "preview-assets"    = "https://${local.host_names["preview-assets"]}",
+  }
+
   host_cors_origins = {
-    "www"               = ["https://${local.host_names["www"]}"],
-    "production"        = ["https://${local.host_names["production"]}"],
-    "production-assets" = ["https://${local.host_names["production"]}"],
-    "preview"           = ["https://${local.host_names["preview"]}"],
-    "preview-assets"    = ["https://${local.host_names["preview"]}"],
+    "www"               = [local.host_urls["www"]],
+    "production"        = [local.host_urls["production"]],
+    "production-assets" = [local.host_urls["production"]],
+    "preview"           = [local.host_urls["preview"]],
+    "preview-assets"    = [local.host_urls["preview"]],
   }
 }
 
