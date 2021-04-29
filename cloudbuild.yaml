@@ -101,6 +101,18 @@ steps:
     args: ['build']
     waitFor: ['Yarn install']
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Publish'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        gsutil -u $PROJECT_ID -qm rsync -r -j $$GZIP_TYPES -x gz dist/ $(cat /var/share/bucket)
+
+    waitFor: ['Build']
+
 options:
   env:
     - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
