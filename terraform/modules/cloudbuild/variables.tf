@@ -28,5 +28,10 @@ variable "triggers" {
     pull_request = optional(object({
       branch = optional(string)
     }))
+
+    push = optional(object({
+      branch = optional(string)
+      tag    = optional(string)
+    }))
   }))
 }

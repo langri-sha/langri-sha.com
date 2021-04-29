@@ -33,5 +33,14 @@ resource "google_cloudbuild_trigger" "triggers" {
         branch = pull_request.value.branch
       }
     }
+
+    dynamic "push" {
+      for_each = [each.value.push]
+
+      content {
+        branch = pull_request.value.branch
+        tag    = pull_request.value.tag
+      }
+    }
   }
 }
