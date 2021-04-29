@@ -62,6 +62,29 @@ module "cloudbuild" {
       push = {
         branch = ".*"
       }
+    },
+
+    {
+      description = "Workspace Release"
+      filename    = "cloudbuild.yaml"
+      name        = "workspace-release"
+
+      substitutions = {
+        "_PREVIEW_ASSETS_BUCKET"    = google_storage_bucket.public["preview-assets"].name
+        "_PREVIEW_ASSETS_URL"       = local.host_urls["preview-assets"]
+        "_PREVIEW_BUCKET"           = google_storage_bucket.public["preview"].name
+        "_PREVIEW_URL"              = local.host_urls["preview"]
+        "_PRODUCTION_ASSETS_BUCKET" = google_storage_bucket.public["production-assets"].name
+        "_PRODUCTION_ASSETS_URL"    = local.host_urls["production-assets"]
+        "_PRODUCTION_BUCKET"        = google_storage_bucket.public["production"].name
+        "_PRODUCTION_URL"           = local.host_urls["production"]
+      }
+
+      ignored_files = ["terraform/**"]
+
+      push = {
+        tag = ".*"
+      }
     }
   ]
 }
