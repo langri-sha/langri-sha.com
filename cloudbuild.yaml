@@ -2,6 +2,43 @@
 # Cloud builders: https://cloud.google.com/cloud-build/docs/cloud-builders
 
 steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Configure environment'
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        set -e
+
+        case $TRIGGER_NAME in
+          workspace-pull-request)
+            echo "gs://$_PREVIEW_BUCKET/$_PR_NUMBER" > /var/share/bucket
+            echo "gs://$_PREVIEW_ASSETS_BUCKET/$_PR_NUMBER" > /var/share/assets-bucket
+            echo "$_PREVIEW/$_PR_NUMBER" > /var/share/url
+            echo "$_PREVIEW_ASSETS_URL/$_PR_NUMBER" > /var/share/assets-url
+            ;;
+
+          workspace-push)
+            echo "gs://$_PREVIEW_BUCKET" > /var/share/bucket
+            echo "gs://$_PREVIEW_ASSETS_BUCKET" > /var/share/assets-bucket
+            echo "$_PREVIEW" > /var/share/url
+            echo "$_PREVIEW_ASSETS_URL" > /var/share/assets-url
+            ;;
+
+          workspace-release)
+            echo "gs://$_PRODUCTION_BUCKET" > /var/share/bucket
+            echo "gs://$_PRODUCTION_ASSETS_BUCKET" > /var/share/assets-bucket
+            echo "$_PRODUCTION_URL" > /var/share/url
+            echo "$_PRODUCTION_ASSETS_URL" > /var/share/assets-url
+            ;;
+
+          *)
+            echo -n "Unsupported trigger name"
+            exit 1
+            ;;
+        esac
+    waitFor: ['-']
+
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Pull image'
     entrypoint: /bin/bash
@@ -57,7 +94,7 @@ steps:
   - name: 'gcr.io/$PROJECT_ID/yarn'
     id: 'Yarn install'
     args: ['install']
-    waitFor: ['Tag image']
+    waitFor: ['Configure environment', 'Tag image']
 
   - name: 'gcr.io/$PROJECT_ID/yarn'
     id: 'Build'
