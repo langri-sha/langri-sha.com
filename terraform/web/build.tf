@@ -60,7 +60,7 @@ module "cloudbuild" {
       ignored_files = ["terraform/**"]
 
       push = {
-        branch = ".*"
+        branch = "main"
       }
     },
 
