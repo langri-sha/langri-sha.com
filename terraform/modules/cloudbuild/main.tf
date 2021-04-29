@@ -44,3 +44,9 @@ resource "google_cloudbuild_trigger" "triggers" {
     }
   }
 }
+
+resource "google_project_iam_member" "cloudbuild_service_usage_consumer" {
+  project = var.project_id
+  role    = "roles/serviceusage.serviceUsageConsumer"
+  member  = "serviceAccount:${google_project_service_identity.cloudbuild.email}"
+}
