@@ -27,7 +27,7 @@ resource "google_cloudbuild_trigger" "triggers" {
     owner = var.repo_owner
 
     dynamic "pull_request" {
-      for_each = [each.value.pull_request]
+      for_each = each.value.pull_request != null ? [each.value.pull_request] : []
 
       content {
         branch = pull_request.value.branch
