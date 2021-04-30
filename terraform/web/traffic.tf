@@ -64,6 +64,15 @@ resource "google_compute_backend_bucket" "public" {
   enable_cdn  = true
 }
 
+resource "google_compute_global_forwarding_rule" "http" {
+  name    = "http-forwarding-rule"
+  project = module.project_edge.project_id
+
+  ip_address = google_compute_global_address.default.address
+  port_range = "80"
+  target     = google_compute_target_http_proxy.default.self_link
+}
+
 resource "google_compute_target_http_proxy" "default" {
   name    = "http-proxy"
   project = module.project_edge.project_id
