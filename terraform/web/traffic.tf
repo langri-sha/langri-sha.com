@@ -71,6 +71,14 @@ resource "google_compute_target_http_proxy" "default" {
   url_map = google_compute_url_map.default.id
 }
 
+resource "google_compute_target_https_proxy" "default" {
+  name    = "https-proxy"
+  project = module.project_edge.project_id
+
+  ssl_certificates = [google_compute_managed_ssl_certificate.default.self_link]
+  url_map          = google_compute_url_map.default.id
+}
+
 resource "google_compute_url_map" "default" {
   name    = "url-map"
   project = module.project_edge.project_id
