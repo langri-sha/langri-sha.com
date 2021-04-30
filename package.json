@@ -1,6 +1,5 @@
 {
   "name": "langri-sha.github.io",
-  "version": "1.0.0-alpha",
   "description": "GitHub Pages site for Langri-Sha",
   "private": true,
   "main": "src/index.js",
