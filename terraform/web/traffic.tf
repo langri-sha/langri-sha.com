@@ -73,6 +73,16 @@ resource "google_compute_global_forwarding_rule" "http" {
   target     = google_compute_target_http_proxy.default.self_link
 }
 
+
+resource "google_compute_global_forwarding_rule" "https" {
+  name    = "https-forwarding-rule"
+  project = module.project_edge.project_id
+
+  ip_address = google_compute_global_address.default.address
+  port_range = "443"
+  target     = google_compute_target_https_proxy.default.self_link
+}
+
 resource "google_compute_target_http_proxy" "default" {
   name    = "http-proxy"
   project = module.project_edge.project_id
