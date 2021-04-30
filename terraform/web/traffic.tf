@@ -63,3 +63,35 @@ resource "google_compute_backend_bucket" "public" {
   bucket_name = google_storage_bucket.public[each.value].name
   enable_cdn  = true
 }
+
+resource "google_compute_url_map" "default" {
+  name    = "url-map"
+  project = module.project_edge.project_id
+
+  default_url_redirect {
+    https_redirect = true
+    strip_query    = false
+  }
+
+  dynamic "host_rule" {
+    for_each = toset(compact([
+      for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
+    ]))
+
+    content {
+      hosts        = [local.host_names[host_rule.value]]
+      path_matcher = host_rule.key
+    }
+  }
+
+  dynamic "path_matcher" {
+    for_each = toset(compact([
+      for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
+    ]))
+
+    content {
+      name            = path_matcher.value
+      default_service = google_compute_backend_bucket.public[path_matcher.value].self_link
+    }
+  }
+}
