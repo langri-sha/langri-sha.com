@@ -51,3 +51,15 @@ resource "google_compute_managed_ssl_certificate" "default" {
     domains = values(local.host_names)
   }
 }
+
+resource "google_compute_backend_bucket" "public" {
+  for_each = toset(compact([
+    for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
+  ]))
+
+  name    = "${each.value}-backend-bucket"
+  project = module.project_edge.project_id
+
+  bucket_name = google_storage_bucket.public[each.value].name
+  enable_cdn  = true
+}
