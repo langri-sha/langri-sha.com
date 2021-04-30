@@ -64,6 +64,13 @@ resource "google_compute_backend_bucket" "public" {
   enable_cdn  = true
 }
 
+resource "google_compute_target_http_proxy" "default" {
+  name    = "http-proxy"
+  project = module.project_edge.project_id
+
+  url_map = google_compute_url_map.default.id
+}
+
 resource "google_compute_url_map" "default" {
   name    = "url-map"
   project = module.project_edge.project_id
