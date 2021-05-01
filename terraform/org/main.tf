@@ -16,6 +16,15 @@ module "org" {
   billing_account       = var.billing_account
   billing_admin_members = var.org_billing_admin_members
   domain                = var.org_domain
+
+  activate_apis = [
+    "cloudbilling.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+    "serviceusage.googleapis.com",
+  ]
 }
 
 module "web" {
