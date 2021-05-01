@@ -1,5 +1,9 @@
 locals {
   certificate_hash = substr(md5(join(",", values(local.host_names))), 0, 4)
+  limited_hosts = toset(compact([
+    for host in local.hosts :
+    contains(keys(local.host_redirects), host) ? "" : host == "production-assets" ? "" : host
+  ]))
 }
 
 resource "google_compute_global_address" "default" {
@@ -53,9 +57,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
 }
 
 resource "google_compute_backend_bucket" "public" {
-  for_each = toset(compact([
-    for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
-  ]))
+  for_each = local.limited_hosts
 
   name    = "${each.value}-backend-bucket"
   project = module.project_edge.project_id
@@ -108,9 +110,7 @@ resource "google_compute_url_map" "default" {
   }
 
   dynamic "host_rule" {
-    for_each = toset(compact([
-      for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
-    ]))
+    for_each = local.limited_hosts
 
     content {
       hosts        = [local.host_names[host_rule.value]]
@@ -119,9 +119,7 @@ resource "google_compute_url_map" "default" {
   }
 
   dynamic "path_matcher" {
-    for_each = toset(compact([
-      for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
-    ]))
+    for_each = local.limited_hosts
 
     content {
       name            = path_matcher.value
