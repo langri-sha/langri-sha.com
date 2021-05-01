@@ -22,3 +22,8 @@ output "org_id" {
   description = "The Organization ID."
   value       = data.google_organization.org.org_id
 }
+
+output "project_id" {
+  description = "Main organization project ID."
+  value       = module.project_org.project_id
+}

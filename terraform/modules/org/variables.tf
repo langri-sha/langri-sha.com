@@ -1,3 +1,8 @@
+variable "activate_apis" {
+  type        = list(string)
+  description = "The list of APIs to activate within the project."
+}
+
 variable "admin_members" {
   type        = string
   description = "Comma-separated list of users who are assigned to administer the organization."
