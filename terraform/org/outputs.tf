@@ -1,6 +1,6 @@
 output "billing_account" {
   description = "Billing account, default. Used for most projects."
-  value       = module.billing.billing_account
+  value       = module.org.billing_account
 }
 
 output "org_admins" {

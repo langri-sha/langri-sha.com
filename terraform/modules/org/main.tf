@@ -36,3 +36,12 @@ resource "google_organization_iam_binding" "org_admin_billing_admin_service_usag
   role    = "roles/serviceusage.serviceUsageViewer"
   members = local.billing_admins
 }
+
+data "google_billing_account" "default" {
+  billing_account = var.billing_account
+  open = true
+
+  depends_on = [
+    google_organization_iam_binding.org_billing_admin_billing_creator
+  ]
+}
