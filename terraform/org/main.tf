@@ -13,18 +13,9 @@ module "org" {
   source = "../modules/org"
 
   admin_members         = var.org_admin_members
+  billing_account       = var.billing_account
   billing_admin_members = var.org_billing_admin_members
   domain                = var.org_domain
-}
-
-module "billing" {
-  source = "../modules/billing"
-
-  billing_account = var.billing_account
-
-  depends_on = [
-    module.org
-  ]
 }
 
 module "web" {
@@ -32,7 +23,7 @@ module "web" {
 
   name = "web"
 
-  billing_account = module.billing.billing_account
+  billing_account = module.org.billing_account
   org_admins      = module.org.admins
   org_id          = module.org.org_id
 
@@ -52,5 +43,9 @@ module "web" {
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.projectDeleter",
     "roles/storage.admin",
+  ]
+
+  depends_on = [
+    module.org
   ]
 }
