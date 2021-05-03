@@ -9,6 +9,24 @@ terraform {
   }
 }
 
+provider "google" {
+  alias = "application_default_credentials"
+}
+
+provider "google" {
+  access_token = module.access_token_resolver.access_token
+}
+
+module "access_token_resolver" {
+  source = "../modules/access-token-resolver"
+
+  target_service_account = module.org.service_account_email
+
+  providers = {
+    google = google.application_default_credentials
+  }
+}
+
 module "org" {
   source = "../modules/org"
 
@@ -25,6 +43,10 @@ module "org" {
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
   ]
+
+  providers = {
+    google = google.application_default_credentials
+  }
 }
 
 module "web" {
