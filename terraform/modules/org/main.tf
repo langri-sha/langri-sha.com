@@ -34,16 +34,16 @@ resource "google_service_account" "terraform" {
   project      = module.project_org.project_id
 }
 
-resource "google_organization_iam_binding" "org_admin_folder_creator" {
+resource "google_organization_iam_binding" "terraform_folder_admin" {
   org_id  = data.google_organization.org.org_id
-  role    = "roles/resourcemanager.folderCreator"
-  members = local.admins
+  role    = "roles/resourcemanager.folderAdmin"
+  members = ["serviceAccount:${google_service_account.terraform.email}"]
 }
 
-resource "google_organization_iam_binding" "org_admin_project_creator" {
+resource "google_organization_iam_binding" "terraform_project_creator" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/resourcemanager.projectCreator"
-  members = local.admins
+  members = ["serviceAccount:${google_service_account.terraform.email}"]
 }
 
 resource "google_organization_iam_binding" "org_billing_admin_billing_creator" {
