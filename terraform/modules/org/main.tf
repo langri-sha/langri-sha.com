@@ -40,6 +40,12 @@ resource "google_project_iam_member" "terraform_service_account_admin" {
   member  = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_project_iam_member" "terraform_browser" {
+  project = module.project_org.project_id
+  role    = "roles/browser"
+  member  = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_service_account_iam_binding" "admins_terraform_user" {
   service_account_id = google_service_account.terraform.name
   role               = "roles/iam.serviceAccountUser"
