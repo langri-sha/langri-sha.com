@@ -34,6 +34,12 @@ resource "google_service_account" "terraform" {
   project      = module.project_org.project_id
 }
 
+resource "google_billing_account_iam_member" "terraform_service_account_billing_user" {
+  billing_account_id = data.google_billing_account.default.billing_account
+  role               = "roles/billing.user"
+  member             = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_project_iam_member" "terraform_service_account_admin" {
   project = module.project_org.project_id
   role    = "roles/iam.serviceAccountAdmin"
