@@ -34,6 +34,18 @@ resource "google_service_account" "terraform" {
   project      = module.project_org.project_id
 }
 
+resource "google_service_account_iam_binding" "admins_terraform_user" {
+  service_account_id = google_service_account.terraform.name
+  role               = "roles/iam.serviceAccountUser"
+  members            = local.admins
+}
+
+resource "google_service_account_iam_binding" "admins_terraform_token_creator" {
+  service_account_id = google_service_account.terraform.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  members            = local.admins
+}
+
 resource "google_organization_iam_binding" "terraform_folder_admin" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/resourcemanager.folderAdmin"
