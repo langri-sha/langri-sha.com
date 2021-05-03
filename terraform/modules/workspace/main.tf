@@ -3,26 +3,10 @@ resource "google_folder" "workspace" {
   parent       = "organizations/${var.org_id}"
 }
 
-module "tf_admin" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.2.2"
-
-  name = "tf-admin"
-
-  auto_create_network     = false
-  billing_account         = var.billing_account
-  default_service_account = "deprivilege"
-  folder_id               = google_folder.workspace.id
-  org_id                  = var.org_id
-  random_project_id       = "true"
-
-  activate_apis = var.activate_apis
-}
-
 resource "google_service_account" "terraform" {
-  account_id   = "terraform"
+  account_id   = "terraform-${var.name}"
   display_name = "${var.name} Workspace Terraform Service Account"
-  project      = module.tf_admin.project_id
+  project      = var.org_project_id
 }
 
 resource "google_billing_account_iam_member" "terraform_service_account_billing_user" {
