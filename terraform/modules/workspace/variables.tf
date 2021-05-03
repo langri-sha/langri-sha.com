@@ -1,8 +1,3 @@
-variable "activate_apis" {
-  type        = list(string)
-  description = "The list of APIs to activate within the project."
-}
-
 variable "billing_account" {
   type        = string
   description = "Billing account ID, for the default billing account."
@@ -21,6 +16,11 @@ variable "org_admins" {
 variable "org_id" {
   type        = string
   description = "Organization ID, where resources are created."
+}
+
+variable "org_project_id" {
+  description = "Main organization project ID."
+  type        = string
 }
 
 variable "service_account_roles" {
