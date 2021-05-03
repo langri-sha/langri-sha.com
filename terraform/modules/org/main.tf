@@ -28,6 +28,12 @@ module "project_org" {
   activate_apis = var.activate_apis
 }
 
+resource "google_service_account" "terraform" {
+  account_id   = "terraform-org"
+  display_name = "Organization Terraform Service Account"
+  project      = module.project_org.project_id
+}
+
 resource "google_organization_iam_binding" "org_admin_folder_creator" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/resourcemanager.folderCreator"
