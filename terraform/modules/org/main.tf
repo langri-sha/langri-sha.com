@@ -76,15 +76,15 @@ resource "google_organization_iam_binding" "terraform_project_creator" {
   members = ["serviceAccount:${google_service_account.terraform.email}"]
 }
 
+resource "google_organization_iam_binding" "org_admin_service_usage_viewer" {
+  org_id  = data.google_organization.org.org_id
+  role    = "roles/serviceusage.serviceUsageViewer"
+  members = local.admins
+}
+
 resource "google_organization_iam_binding" "org_billing_admin_billing_creator" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/billing.creator"
-  members = local.billing_admins
-}
-
-resource "google_organization_iam_binding" "org_admin_billing_admin_service_usage_viewer" {
-  org_id  = data.google_organization.org.org_id
-  role    = "roles/serviceusage.serviceUsageViewer"
   members = local.billing_admins
 }
 
