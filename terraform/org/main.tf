@@ -20,7 +20,7 @@ provider "google" {
 module "access_token_resolver" {
   source = "../modules/access-token-resolver"
 
-  target_service_account = module.org.service_account_email
+  target_service_account = module.terraform_admin.service_account_email
 
   providers = {
     google = google.application_default_credentials
@@ -49,6 +49,23 @@ module "org" {
   }
 }
 
+module "terraform_admin" {
+  source = "../modules/terraform-admin"
+
+  billing_account       = module.org.billing_account
+  org_id                = module.org.org_id
+  project_id            = module.org.project_id
+  service_account_users = module.org.admins
+
+  depends_on = [
+    module.org
+  ]
+
+  providers = {
+    google = google.application_default_credentials
+  }
+}
+
 module "web" {
   source = "../modules/workspace"
 
@@ -69,6 +86,7 @@ module "web" {
   ]
 
   depends_on = [
-    module.org
+    module.org,
+    module.terraform_admin,
   ]
 }
