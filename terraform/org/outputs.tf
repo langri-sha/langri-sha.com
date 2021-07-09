@@ -23,6 +23,11 @@ output "org_id" {
   value       = module.org.org_id
 }
 
+output "org_project_id" {
+  description = "Main organization project ID."
+  value       = module.org.project_id
+}
+
 output "site_verifications" {
   description = "List of DNS-based domain ownership verifications."
   value       = compact(split(",", var.site_verifications))
