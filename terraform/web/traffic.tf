@@ -11,34 +11,21 @@ resource "google_compute_global_address" "default" {
   project = module.project_edge.project_id
 }
 
-resource "google_dns_managed_zone" "default" {
-  name     = "langri-sha"
-  dns_name = "${local.org_domain}."
-  project  = module.project_edge.project_id
+data "google_dns_managed_zone" "public" {
+  name    = local.dns_managed_zone
+  project = local.org_project_id
 }
 
 resource "google_dns_record_set" "default" {
   for_each = local.host_names
 
   name    = "${each.value}."
-  project = module.project_edge.project_id
+  project = local.org_project_id
 
-  managed_zone = google_dns_managed_zone.default.name
+  managed_zone = data.google_dns_managed_zone.public.name
   rrdatas      = [google_compute_global_address.default.address]
   ttl          = 300
   type         = "A"
-}
-
-resource "google_dns_record_set" "site_verifications" {
-  count = length(local.site_verifications) > 0 ? 1 : 0
-
-  name    = google_dns_managed_zone.default.dns_name
-  project = module.project_edge.project_id
-
-  managed_zone = google_dns_managed_zone.default.name
-  rrdatas      = local.site_verifications
-  ttl          = 300
-  type         = "TXT"
 }
 
 resource "google_compute_managed_ssl_certificate" "default" {
