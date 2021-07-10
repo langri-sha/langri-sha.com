@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+locals {
+  site_verifications = compact(split(",", var.site_verifications))
+}
+
 provider "google" {
   alias = "application_default_credentials"
 }
@@ -65,6 +69,24 @@ module "terraform_admin" {
   providers = {
     google = google.application_default_credentials
   }
+}
+
+module "public_dns" {
+  source = "../modules/public-dns"
+
+  domain             = var.org_domain
+  project_id         = module.org.project_id
+  site_verifications = local.site_verifications
+
+  dns_admins = [
+    module.terraform_admin.service_account_email,
+    module.web.service_account_email
+  ]
+
+  depends_on = [
+    module.org,
+    module.terraform_admin,
+  ]
 }
 
 module "web" {
