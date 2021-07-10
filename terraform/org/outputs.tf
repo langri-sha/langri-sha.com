@@ -3,6 +3,11 @@ output "billing_account" {
   value       = module.org.billing_account
 }
 
+output "dns_managed_zone" {
+  description = "Public DNS managed zone name."
+  value       = module.public_dns.dns_managed_zone
+}
+
 output "dns_zone_name_servers" {
   description = "Name servers for the public managed DNS zone."
   value       = module.public_dns.name_servers

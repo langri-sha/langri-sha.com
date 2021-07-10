@@ -11,6 +11,7 @@ terraform {
 
 locals {
   billing_account           = data.terraform_remote_state.org.outputs.billing_account
+  dns_managed_zone          = data.terraform_remote_state.org.outputs.dns_managed_zone
   org_domain                = data.terraform_remote_state.org.outputs.org_domain
   org_id                    = data.terraform_remote_state.org.outputs.org_id
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
