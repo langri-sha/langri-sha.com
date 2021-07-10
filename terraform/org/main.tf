@@ -40,6 +40,7 @@ module "org" {
     "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
+    "dns.googleapis.com",
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
   ]
