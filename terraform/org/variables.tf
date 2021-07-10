@@ -19,7 +19,6 @@ variable "org_domain" {
 }
 
 variable "site_verifications" {
-  default     = ""
   description = "Comma-separated list of DNS-based domain ownership verifications."
   type        = string
 }

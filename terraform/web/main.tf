@@ -15,7 +15,6 @@ locals {
   org_domain                = data.terraform_remote_state.org.outputs.org_domain
   org_id                    = data.terraform_remote_state.org.outputs.org_id
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
-  site_verifications        = data.terraform_remote_state.org.outputs.site_verifications
   web_folder                = data.terraform_remote_state.org.outputs.web_folder
   web_service_account_email = data.terraform_remote_state.org.outputs.web_service_account_email
 
