@@ -96,6 +96,10 @@ steps:
     args: ['install']
     waitFor: ['Configure environment', 'Tag image']
 
+  - name: 'node:current'
+    id: 'Flow'
+    args: ['npx', 'flow', 'check', '--max-warnings', '0']
+
   - name: 'gcr.io/$PROJECT_ID/yarn'
     id: 'ESLint'
     args: ['eslint', '--ext', 'js,jsx', '.']
