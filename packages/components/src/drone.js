@@ -81,7 +81,7 @@ class Processor {
       1,
       2
     )
-    noiseSource.onaudioprocess = e => {
+    noiseSource.onaudioprocess = (e) => {
       const bufferL = e.outputBuffer.getChannelData(0)
       const bufferR = e.outputBuffer.getChannelData(1)
       for (let i = 0; i < this.bufferSize; i++) {

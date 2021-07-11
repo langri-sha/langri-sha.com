@@ -15,14 +15,13 @@ x-user-args: &user-args
   uid: ${UID:-1000}
 
 x-terraform-env: &terraform-env
-  TF_CLI_CONFIG_FILE: "${TF_CLI_CONFIG_FILE:-/workspace/.terraformrc}"
-  TF_VAR_billing_account: "${billing_account:-}"
-  TF_VAR_mx_records: "${mx_records:-}"
-  TF_VAR_org_admin_members: "${org_admin_members:-}"
-  TF_VAR_org_billing_admin_members: "${org_billing_admin_members:-}"
-  TF_VAR_org_domain: "${org_domain:-}"
-  TF_VAR_site_verifications: "${site_verifications:-}"
-
+  TF_CLI_CONFIG_FILE: '${TF_CLI_CONFIG_FILE:-/workspace/.terraformrc}'
+  TF_VAR_billing_account: '${billing_account:-}'
+  TF_VAR_mx_records: '${mx_records:-}'
+  TF_VAR_org_admin_members: '${org_admin_members:-}'
+  TF_VAR_org_billing_admin_members: '${org_billing_admin_members:-}'
+  TF_VAR_org_domain: '${org_domain:-}'
+  TF_VAR_site_verifications: '${site_verifications:-}'
 
 x-workspace-volume: &workspace-volume
   source: .
@@ -85,4 +84,4 @@ services:
     <<: *yarn-svc
     command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
     ports:
-      - "8080:8080"
+      - '8080:8080'

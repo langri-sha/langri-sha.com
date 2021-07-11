@@ -15,27 +15,27 @@ export default (): React.Element<typeof Header> => (
           'Stack Overflow',
           'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
           'StackOverflow profile #SOreadytohelp 💓',
-          <Stackoverflow />
+          <Stackoverflow />,
         ],
         [
           'Keybase',
           'https://keybase.io/langrisha',
           'Identity details on Keybase.io',
-          <Keybase />
+          <Keybase />,
         ],
         [
           'GitHub',
           'https://github.com/langri-sha',
           'GitHub profile',
-          <Github />
+          <Github />,
         ],
         [
           'Docker',
           'https://hub.docker.com/u/langrisha/',
           'Docker Hub profile',
-          <Docker />
+          <Docker />,
         ],
-        ['NPM', 'https://www.npmjs.com/~langri-sha', 'NPM profile', <Npm />]
+        ['NPM', 'https://www.npmjs.com/~langri-sha', 'NPM profile', <Npm />],
       ].map(([name, href, title, icon]) => (
         <EnhancedLink
           key={name}

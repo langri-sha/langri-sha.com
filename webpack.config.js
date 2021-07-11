@@ -8,7 +8,7 @@ const {
   CopyPlugin,
   EnvironmentPlugin,
   HtmlPlugin,
-  TerserPlugin
+  TerserPlugin,
 } = require('@langri-sha/webpack')
 
 /* ::
@@ -18,10 +18,10 @@ type Config = {
 }
 */
 
-const env = (options /* :: : (Config) => Object */) => ({
-  development = true,
-  production = false
-} /* :: : Config */ = {}) => options({ development, production })
+const env =
+  (options /* :: : (Config) => Object */) =>
+  ({ development = true, production = false } /* :: : Config */ = {}) =>
+    options({ development, production })
 
 module.exports = (env(({ development, production }) => ({
   target: 'web',
@@ -34,11 +34,11 @@ module.exports = (env(({ development, production }) => ({
         parallel: true,
         extractComments: {
           condition: 'some',
-          filename: filename => `${filename}.LICENSE.txt`
+          filename: (filename) => `${filename}.LICENSE.txt`,
         },
-        sourceMap: true
-      })
-    ]
+        sourceMap: true,
+      }),
+    ],
   },
   module: {
     rules: [
@@ -47,51 +47,51 @@ module.exports = (env(({ development, production }) => ({
         include: path.resolve(__dirname, 'packages'),
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true
-        }
+          cacheDirectory: true,
+        },
       },
       {
         test: /\.css$/,
-        use: 'raw-loader'
+        use: 'raw-loader',
       },
       {
         test: /\.(eot|woff|ttf)$/,
         include: path.resolve(__dirname, 'packages'),
-        loader: 'url-loader'
+        loader: 'url-loader',
       },
       {
         test: /\.(vert|frag|glsl)$/,
-        loader: 'raw-loader'
-      }
-    ]
+        loader: 'raw-loader',
+      },
+    ],
   },
   plugins: [
     new CleanPlugin(),
     new CopyPlugin({
       patterns: [
         {
-          from: 'share/CNAME'
+          from: 'share/CNAME',
         },
         {
-          from: 'share/google17a76c1d58d67a30.html'
+          from: 'share/google17a76c1d58d67a30.html',
         },
         {
-          from: 'share/keybase.txt'
+          from: 'share/keybase.txt',
         },
         {
-          from: 'share/robots.txt'
+          from: 'share/robots.txt',
         },
         {
-          from: 'LICENSE.md'
-        }
-      ]
+          from: 'LICENSE.md',
+        },
+      ],
     }),
     new HtmlPlugin({
       title: 'Langri-Sha',
-      template: require.resolve('@langri-sha/web/src/index.ejs')
+      template: require.resolve('@langri-sha/web/src/index.ejs'),
     }),
     new EnvironmentPlugin({
-      NODE_ENV: development ? 'development' : 'production'
-    })
-  ]
+      NODE_ENV: development ? 'development' : 'production',
+    }),
+  ],
 })) /*: $FlowFixMe */)

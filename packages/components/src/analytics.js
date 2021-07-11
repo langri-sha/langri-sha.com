@@ -3,13 +3,13 @@ import * as React from 'react'
 
 window.ga =
   window.ga ||
-  function(...args) {
+  function (...args) {
     ga.q = ga.q || []
     ga.q.push(args)
   }
 
 type Props = {|
-  id: string
+  id: string,
 |}
 
 export default class Analytics extends React.PureComponent<Props> {
