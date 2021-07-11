@@ -1,5 +1,6 @@
 // @flow
 import { css, keyframes } from '@emotion/core'
+import type { SerializedStyles } from '@emotion/utils'
 
 const boom = keyframes`
   from {
@@ -13,7 +14,7 @@ const boom = keyframes`
   }
 `
 
-export const booming = css`
+export const booming: SerializedStyles = css`
   animation-duration: 3s;
   animation-name: ${boom};
 `

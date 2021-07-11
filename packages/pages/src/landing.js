@@ -6,7 +6,7 @@ import { Global } from '@emotion/core'
 import { global, colors } from '@langri-sha/styles'
 import { Analytics, Drone, Header, Scene } from '@langri-sha/components'
 
-export default () => (
+export default (): React.Element<typeof React.Fragment> => (
   <React.Fragment>
     <Global styles={global} />
     <Root>

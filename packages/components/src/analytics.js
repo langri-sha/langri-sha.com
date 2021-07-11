@@ -1,8 +1,6 @@
 // @flow
 import * as React from 'react'
 
-declare function ga(...any[]): void
-
 window.ga =
   window.ga ||
   function(...args) {
@@ -39,7 +37,7 @@ export default class Analytics extends React.PureComponent<Props> {
     this.insertScript()
   }
 
-  render() {
+  render(): null {
     ga.l = Number(new Date())
 
     ga('create', this.props.id, 'auto')

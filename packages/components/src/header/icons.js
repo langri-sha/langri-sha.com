@@ -12,7 +12,10 @@ const icon = css`
   fill: currentColor;
 `
 
-export const Docker = styled(({ className }) => (
+export const Docker: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +48,10 @@ export const Docker = styled(({ className }) => (
   width: 1.099609375em;
 `
 
-export const Github = styled(({ className }) => (
+export const Github: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +64,10 @@ export const Github = styled(({ className }) => (
   ${icon};
 `
 
-export const Twitter = styled(({ className }) => (
+export const Twitter: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +80,10 @@ export const Twitter = styled(({ className }) => (
   ${icon};
 `
 
-export const Npm = styled(({ className }) => (
+export const Npm: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +96,10 @@ export const Npm = styled(({ className }) => (
   ${icon};
 `
 
-export const Keybase = styled(({ className }) => (
+export const Keybase: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +113,10 @@ export const Keybase = styled(({ className }) => (
   width: 0.7861328125em;
 `
 
-export const Stackoverflow = styled(({ className }) => (
+export const Stackoverflow: React.AbstractComponent<
+  React.ElementConfig<'svg'>,
+  HTMLElement
+> = styled(({ className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"

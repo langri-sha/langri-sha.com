@@ -22,6 +22,10 @@ export default class Scene extends React.PureComponent<{}> {
     )
     const program = createProgram(gl, vertexShader, fragmentShader)
 
+    if (!program) {
+      return
+    }
+
     const positions = [0, 0, 0, 0.5, 0.7, 0]
     const positionAttributeLocation = gl.getAttribLocation(
       program,
@@ -61,7 +65,7 @@ export default class Scene extends React.PureComponent<{}> {
     gl.drawArrays(primitiveType, offset, count)
   }
 
-  render() {
+  render(): React.Element<'canvas'> {
     return (
       <canvas
         ref={this.canvas}
@@ -79,6 +83,11 @@ export default class Scene extends React.PureComponent<{}> {
 
 function createShader(gl, type, source) {
   const shader = gl.createShader(type)
+
+  if (!shader) {
+    return
+  }
+
   gl.shaderSource(shader, source)
   gl.compileShader(shader)
 
@@ -93,6 +102,11 @@ function createShader(gl, type, source) {
 
 function createProgram(gl, vertexShader, fragmentShader) {
   const program = gl.createProgram()
+
+  if (!program || !vertexShader || !fragmentShader) {
+    return
+  }
+
   gl.attachShader(program, vertexShader)
   gl.attachShader(program, fragmentShader)
   gl.linkProgram(program)

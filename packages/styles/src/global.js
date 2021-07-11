@@ -1,8 +1,9 @@
 // @flow
 import { css } from '@emotion/core'
 import normalize from 'normalize.css'
+import type { SerializedStyles } from '@emotion/utils'
 
-export default css`
+export default (css`
   ${normalize};
 
   html {
@@ -23,4 +24,4 @@ export default css`
   canvas {
     display: block;
   }
-`
+`: SerializedStyles)

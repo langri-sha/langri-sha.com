@@ -6,7 +6,7 @@ import { animations, colors, fonts, layers, media } from '@langri-sha/styles'
 import Link from '../link'
 import { Docker, Npm, Keybase, Github, Stackoverflow } from './icons'
 
-export default () => (
+export default (): React.Element<typeof Header> => (
   <Header>
     <Title>Langri-Sha</Title>
     <Nav>
@@ -53,7 +53,10 @@ export default () => (
   </Header>
 )
 
-const Header = styled.header`
+const Header: React.AbstractComponent<
+  React.ElementConfig<'header'>,
+  HTMLElement
+> = styled.header`
   ${animations.booming};
   ${layers.foreground};
   position: relative;
