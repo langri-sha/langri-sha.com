@@ -3,10 +3,10 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { Global } from '@emotion/core'
 
-import { global, colors } from '@langri-sha/styles'
+import { colors, global } from '@langri-sha/styles'
 import { Analytics, Drone, Header, Scene } from '@langri-sha/components'
 
-export default (): React.Element<typeof React.Fragment> => (
+export const Landing = (): React.Element<typeof React.Fragment> => (
   <React.Fragment>
     <Global styles={global} />
     <Root>

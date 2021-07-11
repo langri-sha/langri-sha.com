@@ -1,11 +1,11 @@
 // @flow @jsx jsx
-import { jsx, css } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import * as React from 'react'
 
 import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
 
-export default class Scene extends React.PureComponent<{}> {
+export class Scene extends React.PureComponent<{}> {
   canvas: { current: null | HTMLCanvasElement } = React.createRef()
 
   skipComponentDidMount() {

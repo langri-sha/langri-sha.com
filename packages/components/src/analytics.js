@@ -12,7 +12,7 @@ type Props = {|
   id: string,
 |}
 
-export default class Analytics extends React.PureComponent<Props> {
+export class Analytics extends React.PureComponent<Props> {
   insertScript() {
     const script = document.createElement('script')
     script.src = 'https://www.google-analytics.com/analytics.js'
@@ -23,7 +23,7 @@ export default class Analytics extends React.PureComponent<Props> {
     }
 
     if (document.body !== null) {
-      document.body.appendChild(script)
+      document.body.append(script)
     }
   }
 
@@ -38,7 +38,7 @@ export default class Analytics extends React.PureComponent<Props> {
   }
 
   render(): null {
-    ga.l = Number(new Date())
+    ga.l = Date.now()
 
     ga('create', this.props.id, 'auto')
     ga('send', 'pageview')
