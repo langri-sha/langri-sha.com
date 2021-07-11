@@ -6,6 +6,7 @@
 !.flowconfig
 !.github
 !.gitignore
+!.husky
 !.openssl
 !.prettierignore
 !.yarnrc
