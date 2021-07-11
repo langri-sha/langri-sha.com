@@ -3,11 +3,11 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 
 import { animations, colors, fonts, layers, media } from '@langri-sha/styles'
-import Link from '../link'
-import { Docker, Npm, Keybase, Github, Stackoverflow } from './icons'
+import { Link } from '../link'
+import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 
-export default (): React.Element<typeof Header> => (
-  <Header>
+export const Header = (): React.Element<typeof Root> => (
+  <Root>
     <Title>Langri-Sha</Title>
     <Nav>
       {[
@@ -15,27 +15,32 @@ export default (): React.Element<typeof Header> => (
           'Stack Overflow',
           'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
           'StackOverflow profile #SOreadytohelp 💓',
-          <Stackoverflow />,
+          <Stackoverflow key={'stackoverflow'} />,
         ],
         [
           'Keybase',
           'https://keybase.io/langrisha',
           'Identity details on Keybase.io',
-          <Keybase />,
+          <Keybase key={'keybase'} />,
         ],
         [
           'GitHub',
           'https://github.com/langri-sha',
           'GitHub profile',
-          <Github />,
+          <Github key={'github'} />,
         ],
         [
           'Docker',
           'https://hub.docker.com/u/langrisha/',
           'Docker Hub profile',
-          <Docker />,
+          <Docker key={'docker'} />,
         ],
-        ['NPM', 'https://www.npmjs.com/~langri-sha', 'NPM profile', <Npm />],
+        [
+          'NPM',
+          'https://www.npmjs.com/~langri-sha',
+          'NPM profile',
+          <Npm key={'npm'} />,
+        ],
       ].map(([name, href, title, icon]) => (
         <EnhancedLink
           key={name}
@@ -50,10 +55,10 @@ export default (): React.Element<typeof Header> => (
         </EnhancedLink>
       ))}
     </Nav>
-  </Header>
+  </Root>
 )
 
-const Header: React.AbstractComponent<
+const Root: React.AbstractComponent<
   React.ElementConfig<'header'>,
   HTMLElement
 > = styled.header`

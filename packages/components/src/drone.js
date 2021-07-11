@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 
-export default class Drone extends React.PureComponent<{}> {
+export class Drone extends React.PureComponent<{}> {
   processor: Processor = new Processor()
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class Processor {
 
   bufferSize: number = 4096
 
-  scale: number[] = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
+  scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
 
   noiseNodes: ScriptProcessorNode[] = []
 

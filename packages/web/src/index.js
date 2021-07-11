@@ -11,7 +11,7 @@ import webfont from './lib/webfont'
   })
 
   if (document) {
-    const container = document.getElementById('app')
+    const container = document.querySelector('#app')
 
     if (container) {
       ReactDOM.render(<Landing />, container)

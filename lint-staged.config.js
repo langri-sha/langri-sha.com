@@ -16,7 +16,7 @@ module.exports = ({
     const promises = files.map((file) => prettier.getFileInfo(file, options))
     const results = await Promise.all(promises)
     const filteredFiles = files.filter((_, index) => !results[index].ignored)
-    return filteredFiles.length
+    return filteredFiles.length > 0
       ? `prettier --write ${filteredFiles.join(' ')}`
       : []
   },
