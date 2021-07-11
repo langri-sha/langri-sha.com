@@ -120,10 +120,13 @@ steps:
 
 options:
   env:
-    - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':' -f 2 | xargs
-    - GLIBC_VERSION=cat docker-compose.yml | grep glibc_version | cut -d ':' -f 2 | xargs
+    - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':'
+      -f 2 | xargs
+    - GLIBC_VERSION=cat docker-compose.yml | grep glibc_version | cut -d ':' -f
+      2 | xargs
     - GZIP_TYPES=css,eot,html,js,json,otf,svg,ttf,txt
-    - NODE_VERSION=cat docker-compose.yml | grep node_version | cut -d ':' -f 2 | xargs
+    - NODE_VERSION=cat docker-compose.yml | grep node_version | cut -d ':' -f 2
+      | xargs
   volumes:
     - name: share
       path: /var/share
