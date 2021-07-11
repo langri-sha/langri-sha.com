@@ -22,7 +22,7 @@ export default class Link extends React.PureComponent<Props> {
       hitType: 'event',
       eventCategory,
       eventAction,
-      eventLabel
+      eventLabel,
     })
   }
 
@@ -30,7 +30,13 @@ export default class Link extends React.PureComponent<Props> {
     const { href, category, action, label, children, ...props } = this.props
 
     return (
-      <a {...props} href={href} onClick={() => { this.track(category, action, label) }}>
+      <a
+        {...props}
+        href={href}
+        onClick={() => {
+          this.track(category, action, label)
+        }}
+      >
         {children}
       </a>
     )

@@ -572,7 +572,7 @@ declare var ga: {
       eventAction: string,
       eventLabel?: string | void,
       eventValue?: number | void,
-      nonInteraction?: boolean | void
+      nonInteraction?: boolean | void,
     }
   ): void,
   (
@@ -583,7 +583,7 @@ declare var ga: {
       eventAction: string,
       eventLabel?: string | void,
       eventValue?: number | void,
-      nonInteraction?: boolean | void
+      nonInteraction?: boolean | void,
     }
   ): void,
   (command: 'send', hitType: 'pageview', page: string): void,
@@ -600,7 +600,7 @@ declare var ga: {
     fieldsObject: {
       socialNetwork: string,
       socialAction: string,
-      socialTarget: string
+      socialTarget: string,
     }
   ): void,
   (
@@ -616,7 +616,7 @@ declare var ga: {
     fieldsObject: {
       timingCategory: string,
       timingVar: string,
-      timingValue: number
+      timingValue: number,
     }
   ): void,
   (command: 'send', fieldsObject: FieldsObject): void,
@@ -656,7 +656,7 @@ declare var ga: {
 
   getAll(): Tracker[],
   getByName(name: string): Tracker,
-  remove(name: string): void
+  remove(name: string): void,
 }
 
 declare var gaClassic: GoogleAnalytics
