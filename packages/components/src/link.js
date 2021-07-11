@@ -28,10 +28,9 @@ export default class Link extends React.PureComponent<Props> {
 
   render(): React.Element<'a'> {
     const { href, category, action, label, children, ...props } = this.props
-    const track = this.track.bind(this, category, action, label)
 
     return (
-      <a {...props} href={href} onClick={track}>
+      <a {...props} href={href} onClick={() => { this.track(category, action, label) }}>
         {children}
       </a>
     )
