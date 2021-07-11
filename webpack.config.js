@@ -23,7 +23,7 @@ const env = (options /* :: : (Config) => Object */) => ({
   production = false
 } /* :: : Config */ = {}) => options({ development, production })
 
-module.exports = env(({ development, production }) => ({
+module.exports = (env(({ development, production }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
   entry: require.resolve('@langri-sha/web'),
@@ -94,4 +94,4 @@ module.exports = env(({ development, production }) => ({
       NODE_ENV: development ? 'development' : 'production'
     })
   ]
-}))
+})) /*: $FlowFixMe */)

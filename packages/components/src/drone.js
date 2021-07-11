@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 export default class Drone extends React.PureComponent<{}> {
-  processor = new Processor()
+  processor: Processor = new Processor()
 
   componentDidMount() {
     this.processor.generate()
@@ -12,7 +12,7 @@ export default class Drone extends React.PureComponent<{}> {
     this.processor.destroy()
   }
 
-  render() {
+  render(): null {
     return null
   }
 }
@@ -30,13 +30,13 @@ class Processor {
 
   gainNode: GainNode
 
-  bufferSize = 4096
+  bufferSize: number = 4096
 
-  scale = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
+  scale: number[] = [0.0, 2.0, 4.0, 6.0, 7.0, 9.0, 11.0, 12.0, 14.0]
 
-  noiseNodes = []
+  noiseNodes: ScriptProcessorNode[] = []
 
-  panIntervals = []
+  panIntervals: IntervalID[] = []
 
   constructor(oscilatorsSize: number = 40, baseNote: number = 60) {
     const context = new AudioContext()

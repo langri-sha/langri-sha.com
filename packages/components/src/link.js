@@ -11,6 +11,12 @@ type Props = {
 }
 
 export default class Link extends React.PureComponent<Props> {
+  track: (
+    eventCategory: string,
+    eventAction: string,
+    eventLabel: string
+  ) => void
+
   track(eventCategory: string, eventAction: string, eventLabel: string) {
     ga('send', {
       hitType: 'event',
@@ -20,12 +26,12 @@ export default class Link extends React.PureComponent<Props> {
     })
   }
 
-  render() {
+  render(): React.Element<'a'> {
     const { href, category, action, label, children, ...props } = this.props
     const track = this.track.bind(this, category, action, label)
 
     return (
-      <a href={href} onClick={track} {...props}>
+      <a {...props} href={href} onClick={track}>
         {children}
       </a>
     )
