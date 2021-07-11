@@ -22,7 +22,6 @@ resource "google_storage_bucket" "public" {
   name    = local.host_names[each.value]
   project = module.project_edge.project_id
 
-  requester_pays              = true
   uniform_bucket_level_access = true
 
   cors {
