@@ -10,7 +10,7 @@
     "lint": "xo"
   },
   "engines": {
-    "node": ">=14.13.1"
+    "node": ">=16.4.2"
   },
   "repository": {
     "type": "git",

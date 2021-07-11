@@ -4,7 +4,7 @@ x-alpine-args: &alpine-args
   alpine_version: '3.13'
 
 x-node-args: &node-args
-  node_version: '14.16.1'
+  node_version: '16.4.2'
   glibc_version: '2.33-r0'
 
 x-terraform-args: &terraform-args
