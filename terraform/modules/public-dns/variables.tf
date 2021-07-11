@@ -13,6 +13,11 @@ variable "project_id" {
   type        = string
 }
 
+variable "mx_records" {
+  description = "MX record destinations and their priorities."
+  type = map(number)
+}
+
 variable "site_verifications" {
   description = "Comma-separated list of DNS-based domain ownership verifications."
   type        = list(string)

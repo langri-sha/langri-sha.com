@@ -10,6 +10,10 @@ terraform {
 }
 
 locals {
+  mx_records = {
+    for record in compact(split(",", var.mx_records)) :
+    split("=", record)[0] => tonumber(split("=", record)[1])
+  }
   site_verifications = compact(split(",", var.site_verifications))
 }
 
@@ -76,6 +80,7 @@ module "public_dns" {
 
   domain             = var.org_domain
   project_id         = module.org.project_id
+  mx_records         = local.mx_records
   site_verifications = local.site_verifications
 
   dns_admins = [
