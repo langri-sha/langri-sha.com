@@ -1,5 +1,10 @@
 // @flow
+const { ESLint } = require('eslint')
 const prettier = require('prettier')
+
+const eslintCli = new ESLint({
+  extensions: ['.js', '.jsx'],
+})
 
 /* ::
 type Config = {
@@ -11,6 +16,17 @@ type Config = {
 */
 
 module.exports = ({
+  '*.{js,jsx}': async (files) => {
+    const filteredFiles = (
+      await Promise.all(
+        files.map(async (file) => [file, await eslintCli.isPathIgnored(file)])
+      )
+    )
+      .filter(([, isIgnored]) => !isIgnored)
+      .map(([file]) => file)
+
+    return `eslint --ext js,jsx --fix ${filteredFiles.join(' ')}`
+  },
   '*.{css,html,json,md,yaml,yml}': async (files) => {
     const options = { ignorePath: './.prettierignore' }
     const promises = files.map((file) => prettier.getFileInfo(file, options))
