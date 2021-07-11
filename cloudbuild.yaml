@@ -97,6 +97,11 @@ steps:
     waitFor: ['Configure environment', 'Tag image']
 
   - name: 'gcr.io/$PROJECT_ID/yarn'
+    id: 'Prettier check'
+    args: ['prettier', '--check', '.']
+    waitFor: ['Yarn install']
+
+  - name: 'gcr.io/$PROJECT_ID/yarn'
     id: 'Build'
     args: ['build']
     waitFor: ['Yarn install']
