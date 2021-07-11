@@ -120,8 +120,7 @@ steps:
         set -e
 
         gsutil -u $PROJECT_ID -qm rsync -r -j $$GZIP_TYPES -x gz dist/ $(cat /var/share/bucket)
-
-    waitFor: ['Build']
+    waitFor: []
 
 options:
   env:
