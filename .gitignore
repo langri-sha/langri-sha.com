@@ -10,7 +10,7 @@
 !.prettierignore
 !.yarnrc
 
+dist/
 local/
 node_modules/
-dist/
 *.log
