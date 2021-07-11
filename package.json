@@ -32,11 +32,6 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "prettier": {
-    "semi": false,
-    "bracketSpacing": true,
-    "singleQuote": true
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
