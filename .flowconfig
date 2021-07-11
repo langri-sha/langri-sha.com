@@ -1,6 +1,9 @@
 [include]
 packages/**/*.js
 
+[version]
+0.155.0
+
 [options]
 esproposal.export_star_as=enable
 esproposal.optional_chaining=enable
