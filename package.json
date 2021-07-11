@@ -37,15 +37,6 @@
     "bracketSpacing": true,
     "singleQuote": true
   },
-  "lint-staged": {
-    "*.{js,json}": [
-      "git add"
-    ],
-    "*.{js}": [
-      "stylelint --syntax scss",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
