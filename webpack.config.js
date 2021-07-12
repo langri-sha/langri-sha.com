@@ -12,6 +12,8 @@ const {
 } = require('@langri-sha/webpack')
 
 /* ::
+import type { WebpackOptions } from '@langri-sha/webpack'
+
 type Config = {
 	development: boolean,
 	production: boolean
@@ -92,4 +94,4 @@ module.exports = (env(({ development, production }) => ({
       NODE_ENV: development ? 'development' : 'production',
     }),
   ],
-})) /*: $FlowFixMe */)
+})) /*: WebpackOptions */)
