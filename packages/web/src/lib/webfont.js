@@ -6,7 +6,5 @@ const defaults = {
   events: false,
 }
 
-export default (options: {
-  families: string[],
-  text: ?string,
-}): Promise<$FlowFixMe> => WebFont.load({ ...defaults, google: options })
+export default (options: { families: string[], text?: string }): void =>
+  WebFont.load({ ...defaults, google: options })
