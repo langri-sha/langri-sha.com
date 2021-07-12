@@ -4,7 +4,7 @@ import webpack from 'webpack'
 
 // Stock.
 export default webpack
-export { EnvironmentPlugin } from 'webpack'
+export const { EnvironmentPlugin } = webpack
 
 // Theirs.
 export { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
