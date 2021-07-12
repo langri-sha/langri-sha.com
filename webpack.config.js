@@ -30,13 +30,11 @@ module.exports = (env(({ development, production }) => ({
   optimization: {
     minimizer: [
       new TerserPlugin({
-        cache: true,
         parallel: true,
         extractComments: {
           condition: 'some',
           filename: (filename) => `${filename}.LICENSE.txt`,
         },
-        sourceMap: true,
       }),
     ],
   },
