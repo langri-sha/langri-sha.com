@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import normalize from 'normalize.css'
 import type { SerializedStyles } from '@emotion/utils'
 

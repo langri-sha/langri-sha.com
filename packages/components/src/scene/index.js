@@ -1,5 +1,5 @@
 // @flow @jsx jsx
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 import * as React from 'react'
 
 import vertexShaderSource from './default.vert'
