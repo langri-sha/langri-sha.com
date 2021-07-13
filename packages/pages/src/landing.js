@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 
 import { colors, global } from '@langri-sha/styles'
 import { Analytics, Drone, Header, Scene } from '@langri-sha/components'

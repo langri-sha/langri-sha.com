@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import * as React from 'react'
 import styled from '@emotion/styled'
 

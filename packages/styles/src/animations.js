@@ -1,5 +1,5 @@
 // @flow
-import { css, keyframes } from '@emotion/core'
+import { css, keyframes } from '@emotion/react'
 import type { SerializedStyles } from '@emotion/utils'
 
 const boom = keyframes`
