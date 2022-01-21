@@ -42,11 +42,11 @@
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
     "cssnano": "^4.1.8",
+    "normalize.css": "8.0.1",
     "preact": "8.4.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "source-map-support": "0.5.9",
-    "normalize.css": "8.0.1",
     "webfontloader": "1.6.28",
     "webpack": "5.44.0",
     "webpack-cli": "4.7.2"
