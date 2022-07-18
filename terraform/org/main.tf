@@ -12,7 +12,7 @@ terraform {
 locals {
   mx_records = {
     for record in compact(split(",", var.mx_records)) :
-    split("=", record)[0] => tonumber(split("=", record)[1])
+    split(" ", record)[1] => tonumber(split(" ", record)[0])
   }
   site_verifications = compact(split(",", var.site_verifications))
 }
