@@ -12,7 +12,7 @@ terraform {
 locals {
   billing_account           = data.terraform_remote_state.org.outputs.billing_account
   dns_managed_zone          = data.terraform_remote_state.org.outputs.dns_managed_zone
-  org_domain                = data.terraform_remote_state.org.outputs.org_domain
+  domain                    = data.terraform_remote_state.org.outputs.domain
   org_id                    = data.terraform_remote_state.org.outputs.org_id
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
   web_folder                = data.terraform_remote_state.org.outputs.web_folder
@@ -27,11 +27,11 @@ locals {
   ]
 
   host_names = {
-    "www"               = "www.${local.org_domain}",
-    "production"        = local.org_domain,
-    "production-assets" = "assets.${local.org_domain}",
-    "preview"           = "preview.${local.org_domain}",
-    "preview-assets"    = "assets.preview.${local.org_domain}",
+    "www"               = "www.${local.domain}",
+    "production"        = local.domain,
+    "production-assets" = "assets.${local.domain}",
+    "preview"           = "preview.${local.domain}",
+    "preview-assets"    = "assets.preview.${local.domain}",
   }
 
   host_redirects = {

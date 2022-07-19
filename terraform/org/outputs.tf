@@ -23,7 +23,7 @@ output "dns_zone_name_servers" {
   value       = module.public_dns.name_servers
 }
 
-output "org_domain" {
+output "domain" {
   description = "Organization domain, for which resources are created."
   value       = module.org.domain
 }

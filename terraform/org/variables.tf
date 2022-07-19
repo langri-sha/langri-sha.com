@@ -18,7 +18,7 @@ variable "mx_records" {
   type        = string
 }
 
-variable "org_domain" {
+variable "domain" {
   type        = string
   description = "Organization domain, for which resources are created."
 }
