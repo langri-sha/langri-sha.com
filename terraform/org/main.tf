@@ -38,10 +38,10 @@ module "access_token_resolver" {
 module "org" {
   source = "../modules/org"
 
-  admin_members         = var.admin_members
-  billing_account       = var.billing_account
-  billing_members       = var.billing_members
-  domain                = var.org_domain
+  admin_members   = var.admin_members
+  billing_account = var.billing_account
+  billing_members = var.billing_members
+  domain          = var.domain
 
   activate_apis = [
     "cloudbilling.googleapis.com",
@@ -78,7 +78,7 @@ module "terraform_admin" {
 module "public_dns" {
   source = "../modules/public-dns"
 
-  domain             = var.org_domain
+  domain             = var.domain
   project_id         = module.org.project_id
   mx_records         = local.mx_records
   site_verifications = local.site_verifications
