@@ -5,7 +5,7 @@ variable "activate_apis" {
 
 variable "admin_members" {
   type        = string
-  description = "Comma-separated list of users who are assigned to administer the organization."
+  description = "Comma-separated list of members who are assigned to administer the organization."
 }
 
 variable "billing_account" {

@@ -38,7 +38,7 @@ module "access_token_resolver" {
 module "org" {
   source = "../modules/org"
 
-  admin_members         = var.org_admin_members
+  admin_members         = var.admin_members
   billing_account       = var.billing_account
   billing_admin_members = var.org_billing_admin_members
   domain                = var.org_domain
@@ -64,7 +64,7 @@ module "terraform_admin" {
   billing_account       = module.org.billing_account
   org_id                = module.org.org_id
   project_id            = module.org.project_id
-  service_account_users = module.org.admins
+  service_account_users = module.org.admin_members
 
   depends_on = [
     module.org
@@ -99,8 +99,8 @@ module "web" {
 
   name = "web"
 
+  admin_members   = module.org.admin_members
   billing_account = module.org.billing_account
-  org_admins      = module.org.admins
   org_id          = module.org.org_id
   org_project_id  = module.org.project_id
 
