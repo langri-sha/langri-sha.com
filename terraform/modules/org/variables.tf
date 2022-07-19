@@ -13,9 +13,9 @@ variable "billing_account" {
   description = "Billing account ID, for the default billing account."
 }
 
-variable "billing_admin_members" {
+variable "billing_members" {
   type        = string
-  description = "Comma-separated list of users who are assigned to administer billing accounts in the organization."
+  description = "Comma-separated list of members who are assigned to administer billing accounts in the organization."
 }
 
 variable "domain" {
