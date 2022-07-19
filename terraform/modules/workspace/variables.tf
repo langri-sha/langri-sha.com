@@ -1,3 +1,8 @@
+variable "admin_members" {
+  type        = list(string)
+  description = "Members are assigned to administer the organization."
+}
+
 variable "billing_account" {
   type        = string
   description = "Billing account ID, for the default billing account."
@@ -6,11 +11,6 @@ variable "billing_account" {
 variable "name" {
   type        = string
   description = "Workspace name. Should be unique in the organization."
-}
-
-variable "org_admins" {
-  type        = set(string)
-  description = "List of users who are assigned to administer the organization."
 }
 
 variable "org_id" {

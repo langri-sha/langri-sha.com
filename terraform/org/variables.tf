@@ -1,3 +1,8 @@
+variable "admin_members" {
+  type        = string
+  description = "Comma-separated list of members who are assigned to administer the organization."
+}
+
 variable "billing_account" {
   type        = string
   description = "Billing account ID, for the default billing account."
@@ -6,11 +11,6 @@ variable "billing_account" {
 variable "mx_records" {
   description = "Comma-separated list of MX record destinations and their priorities."
   type        = string
-}
-
-variable "org_admin_members" {
-  type        = string
-  description = "Comma-separated list of users who are assigned to administer the organization."
 }
 
 variable "org_billing_admin_members" {

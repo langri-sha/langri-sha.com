@@ -1,6 +1,6 @@
-output "admins" {
-  description = "List of users who are assigned to administer the organization."
-  value       = local.admins
+output "admin_members" {
+  description = "List of memberss who are assigned to administer the organization."
+  value       = local.admin_members
 }
 
 output "billing_account" {

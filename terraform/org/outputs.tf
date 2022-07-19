@@ -1,3 +1,8 @@
+output "admin_members" {
+  description = "List of members who are assigned to administer the organization."
+  value       = module.org.admin_members
+}
+
 output "billing_account" {
   description = "Billing account, default. Used for most projects."
   value       = module.org.billing_account
@@ -11,11 +16,6 @@ output "dns_managed_zone" {
 output "dns_zone_name_servers" {
   description = "Name servers for the public managed DNS zone."
   value       = module.public_dns.name_servers
-}
-
-output "org_admins" {
-  description = "List of users who are assigned to administer the organization."
-  value       = module.org.admins
 }
 
 output "org_billing_admins" {
