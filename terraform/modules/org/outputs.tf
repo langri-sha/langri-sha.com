@@ -3,14 +3,14 @@ output "admin_members" {
   value       = local.admin_members
 }
 
+output "billing_members" {
+  description = "List of members who are assigned to administer the billing accounts in the organization."
+  value       = local.billing_members
+}
+
 output "billing_account" {
   description = "Billing account, default. Used for most projects."
   value       = data.google_billing_account.default.id
-}
-
-output "billing_admins" {
-  description = "List of users who are assigned to administer the billing accounts in the organization."
-  value       = local.billing_admins
 }
 
 output "domain" {

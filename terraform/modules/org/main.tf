@@ -1,9 +1,6 @@
 locals {
-  admin_members = split(",", var.admin_members)
-  billing_admins = [
-    for user in split(",", var.billing_admin_members)
-    : "user:${user}@${data.google_organization.org.domain}"
-  ]
+  admin_members   = split(",", var.admin_members)
+  billing_members = split(",", var.billing_members)
 }
 
 data "google_organization" "org" {
@@ -30,7 +27,7 @@ data "google_billing_account" "default" {
   open = true
 
   depends_on = [
-    google_organization_iam_binding.org_billing_admin_billing_creator
+    google_organization_iam_binding.billing_creator
   ]
 }
 
@@ -40,8 +37,8 @@ resource "google_organization_iam_binding" "service_usage_viewer" {
   members = local.admin_members
 }
 
-resource "google_organization_iam_binding" "org_billing_admin_billing_creator" {
+resource "google_organization_iam_binding" "billing_creator" {
   org_id  = data.google_organization.org.org_id
   role    = "roles/billing.creator"
-  members = local.billing_admins
+  members = local.billing_members
 }

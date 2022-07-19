@@ -40,7 +40,7 @@ module "org" {
 
   admin_members         = var.admin_members
   billing_account       = var.billing_account
-  billing_admin_members = var.org_billing_admin_members
+  billing_members       = var.billing_members
   domain                = var.org_domain
 
   activate_apis = [
