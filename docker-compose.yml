@@ -1,5 +1,3 @@
-version: '3.7'
-
 x-alpine-args: &alpine-args
   alpine_version: '3.15'
 
