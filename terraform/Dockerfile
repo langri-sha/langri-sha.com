@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG alpine_version
 ARG google_cloud_sdk_version
 ARG terraform_version
@@ -14,24 +16,28 @@ ENV PATH "/google-cloud-sdk/bin:$PATH"
 COPY --from=terraform /bin/terraform /bin/terraform
 COPY --from=google_cloud_sdk /google-cloud-sdk /google-cloud-sdk
 
-RUN apk add --update \
+RUN <<EOF
+apk add --update \
 		ca-certificates \
 		git \
 		jq \
 		openssh \
 		openssl \
 		python3 \
-		python3-dev \
-	&& addgroup -g $uid -S terraform \
-	&& adduser -S -u $uid -G terraform terraform  \
-	&& rm -rf /var/cache/apk/*
+		python3-dev
+addgroup -g $uid -S terraform
+adduser -S -u $uid -G terraform terraform
+rm -rf /var/cache/apk/*
+EOF
 
 USER terraform
 
-RUN gcloud config set core/disable_usage_reporting true \
-	&& gcloud config set component_manager/disable_update_check true \
-	&& gcloud config set metrics/environment github_docker_image \
-	&& gcloud --version \
-	&& terraform --version
+RUN <<EOF
+gcloud config set core/disable_usage_reporting true
+gcloud config set component_manager/disable_update_check true
+gcloud config set metrics/environment github_docker_image
+gcloud --version
+terraform --version
+EOF
 
 ENTRYPOINT ["terraform"]
