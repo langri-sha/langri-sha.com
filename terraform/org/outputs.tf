@@ -28,6 +28,11 @@ output "domain" {
   value       = module.org.domain
 }
 
+output "location" {
+  description = "Default location to use for Google Cloud services."
+  value       = module.org.location
+}
+
 output "org_id" {
   description = "The Organization ID."
   value       = module.org.org_id

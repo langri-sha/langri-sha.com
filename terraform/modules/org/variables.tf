@@ -22,3 +22,8 @@ variable "domain" {
   description = "Organization domain, for which resources are created."
   type        = string
 }
+
+variable "location" {
+  description = "Default location to use for Google Cloud services."
+  type        = string
+}

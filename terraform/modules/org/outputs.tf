@@ -18,6 +18,11 @@ output "domain" {
   value       = data.google_organization.org.domain
 }
 
+output "location"{
+  description = "Default location to use for Google Cloud services."
+  value       = var.location
+}
+
 output "org_id" {
   description = "The Organization ID."
   value       = data.google_organization.org.org_id
