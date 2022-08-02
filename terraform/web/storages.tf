@@ -19,8 +19,9 @@ resource "google_storage_bucket" "public" {
     for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
   ]))
 
-  name    = local.host_names[each.value]
-  project = module.project_edge.project_id
+  name     = local.host_names[each.value]
+  location = local.location
+  project  = module.project_edge.project_id
 
   uniform_bucket_level_access = true
 

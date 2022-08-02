@@ -141,7 +141,7 @@ locals {
 
 module "project_build" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.2.2"
+  version = "~> 13.0.0"
 
   name = "build"
 
@@ -161,7 +161,7 @@ module "project_build" {
 
 module "project_edge" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.2.2"
+  version = "~> 13.0.0"
 
   name = "edge"
 
