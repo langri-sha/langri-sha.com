@@ -90,6 +90,8 @@ steps:
 
 options:
   env:
+    - COMPOSE_DOCKER_CLI_BUILD=1
+    - DOCKER_BUILDKIT=1
     - GZIP_TYPES=css,eot,html,js,json,otf,svg,ttf,txt
     - PROJECT_ID=$PROJECT_ID
   volumes:
