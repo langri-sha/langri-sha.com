@@ -12,64 +12,15 @@ steps:
     waitFor: ['-']
 
   - name: 'gcr.io/cloud-builders/docker'
-    id: 'Pull image'
-    entrypoint: /bin/bash
-    args:
-      - -c
-      - |
-        set -e
-
-        TAG=$({ (md5sum docker-compose.yml) ; (md5sum terraform/Dockerfile) } | md5sum | awk '{print $$1}')
-
-        echo -e "$$TAG\c" > /var/share/tag
-
-        if docker pull gcr.io/$PROJECT_ID/terraform:$$TAG; then
-          echo "Successfully pulled image"
-          touch /var/share/pull
-        fi
+    id: 'Build image'
+    args: ['compose', 'build', 'terraform']
     waitFor: ['-']
-
-  - name: 'gcr.io/kaniko-project/executor:debug'
-    id: 'Build Terraform image'
-    entrypoint: /busybox/sh
-    args:
-      - -c
-      - |
-        if [ -f /var/share/pull ]; then
-          echo "Image already exists, skipping build"
-        else
-          executor \
-            --build-arg="alpine_version=$$(eval $$ALPINE_VERSION)" \
-            --build-arg="google_cloud_sdk_version=$$(eval $$GOOGLE_CLOUD_SDK_VERSION)" \
-            --build-arg="terraform_version=$$(eval $$TERRAFORM_VERSION)" \
-            --build-arg="uid=1000" \
-            --destination=gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag) \
-            --context=/workspace/terraform/ \
-            --dockerfile=/workspace/terraform/Dockerfile \
-            --cache=true
-        fi
-    waitFor: ['Pull image']
-
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Tag image'
-    entrypoint: /bin/bash
-    args:
-      - -c
-      - |
-        set -e
-
-        if [ ! -f /var/share/pull ]; then
-          docker pull gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag)
-        fi
-
-        docker tag gcr.io/$PROJECT_ID/terraform:$(cat /var/share/tag) gcr.io/$PROJECT_ID/terraform:latest
-    waitFor: ['Build Terraform image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Initialize org configuration'
     dir: /workspace/terraform/org
     args: ['init', '-backend=false']
-    waitFor: ['Configure permissions', 'Tag image']
+    waitFor: ['Configure permissions', 'Build image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Validate org configuration'
@@ -87,7 +38,7 @@ steps:
     id: 'Initialize web configuration'
     dir: /workspace/terraform/web
     args: ['init', '-backend=false']
-    waitFor: ['Configure permissions', 'Tag image']
+    waitFor: ['Configure permissions', 'Build image']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Validate web configuration'
@@ -103,12 +54,8 @@ steps:
 
 options:
   env:
-    - ALPINE_VERSION=cat docker-compose.yml | grep alpine_version | cut -d ':'
-      -f 2 | xargs
-    - GOOGLE_CLOUD_SDK_VERSION=cat docker-compose.yml | grep
-      google_cloud_sdk_version | cut -d ':' -f 2 | xargs
-    - TERRAFORM_VERSION=cat docker-compose.yml | grep terraform_version | cut -d
-      ':' -f 2 | xargs
+    - PROJECT_ID=$PROJECT_ID
+
   volumes:
     - name: share
       path: /var/share
