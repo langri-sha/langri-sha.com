@@ -76,7 +76,7 @@ resource "google_compute_target_http_proxy" "default" {
   name    = "http-proxy"
   project = module.project_edge.project_id
 
-  url_map = google_compute_url_map.default.id
+  url_map = google_compute_url_map.https_redirect.id
 }
 
 resource "google_compute_target_https_proxy" "default" {
@@ -87,13 +87,25 @@ resource "google_compute_target_https_proxy" "default" {
   url_map          = google_compute_url_map.default.id
 }
 
+resource "google_compute_url_map" "https_redirect" {
+  name    = "https-redirect"
+  project = module.project_edge.project_id
+
+  default_url_redirect {
+    https_redirect         = true
+    redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"
+    strip_query            = false
+  }
+}
+
 resource "google_compute_url_map" "default" {
   name    = "url-map"
   project = module.project_edge.project_id
 
   default_url_redirect {
-    https_redirect = true
-    strip_query    = false
+    https_redirect         = true
+    redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"
+    strip_query            = false
   }
 
   dynamic "host_rule" {
