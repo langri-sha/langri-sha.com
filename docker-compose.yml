@@ -1,6 +1,9 @@
 x-alpine-args: &alpine-args
   alpine_version: '3.16'
 
+x-kubernetes-args: &kubernetes-args
+  kubectl_version: '1.24.3'
+
 x-node-args: &node-args
   node_version: '18.7.0'
   glibc_version: '2.33-r0'
