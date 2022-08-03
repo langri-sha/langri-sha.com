@@ -16,7 +16,7 @@ apk add --no-cache \
 	curl
 
 curl -LO https://dl.k8s.io/release/v${kubernetes_version}/bin/linux/amd64/kubectl
-echo "8a45348bdaf81d46caf1706c8bf95b3f431150554f47d444ffde89e8cdd712c1  kubectl" | sha256sum --check
+echo "8a45348bdaf81d46caf1706c8bf95b3f431150554f47d444ffde89e8cdd712c1  kubectl" | sha256sum -c
 chmod +x kubectl
 EOF
 
