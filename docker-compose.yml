@@ -57,7 +57,7 @@ services:
       cache_from:
         - gcr.io/${PROJECT_ID:-local}/terraform
       args:
-        <<: [*alpine-args, *terraform-args, *user-args]
+        <<: [*alpine-args, *kubernetes-args, *terraform-args, *user-args]
     entrypoint: ash
     command: []
 
