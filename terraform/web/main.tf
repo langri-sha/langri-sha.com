@@ -55,7 +55,12 @@ locals {
     "preview-assets"    = [local.host_urls["preview"]],
   }
 
-  artifact_registry_repositories = {}
+  artifact_registry_repositories = {
+    "docker" = {
+      description = "Main Docker repository"
+      format      = "DOCKER"
+    },
+  }
 
   triggers = [
     {
