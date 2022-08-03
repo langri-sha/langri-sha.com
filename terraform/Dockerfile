@@ -2,13 +2,14 @@
 
 ARG alpine_version
 ARG google_cloud_sdk_version
-ARG kubernetes_version
 ARG terraform_version
 
 FROM google/cloud-sdk:${google_cloud_sdk_version}-alpine as google_cloud_sdk
 FROM hashicorp/terraform:${terraform_version} as terraform
 
 FROM alpine:${alpine_version} as kubernetes
+
+ARG kubernetes_version
 
 RUN <<EOF
 apk add --no-cache \
