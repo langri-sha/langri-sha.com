@@ -55,6 +55,8 @@ locals {
     "preview-assets"    = [local.host_urls["preview"]],
   }
 
+  artifact_registry_repositories = {}
+
   triggers = [
     {
       description = "Terraform Pull Request"
