@@ -51,6 +51,14 @@ resource "google_compute_backend_bucket" "public" {
 
   bucket_name = google_storage_bucket.public[each.value].name
   enable_cdn  = true
+
+  custom_response_headers = [
+    "Referrer-Policy: no-referrer",
+    "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+    "X-Content-Type-Options: nosniff",
+    "X-Frame-Options: deny",
+    "X-XSS-Protection: 1; mode=block"
+  ]
 }
 
 resource "google_compute_global_forwarding_rule" "http" {
