@@ -2,7 +2,7 @@ x-alpine-args: &alpine-args
   alpine_version: '3.16'
 
 x-node-args: &node-args
-  node_version: '16.13.2'
+  node_version: '18.7.0'
   glibc_version: '2.33-r0'
 
 x-terraform-args: &terraform-args
