@@ -153,6 +153,7 @@ module "project_build" {
   random_project_id       = "true"
 
   activate_apis = [
+    "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "compute.googleapis.com",
     "containerregistry.googleapis.com",
