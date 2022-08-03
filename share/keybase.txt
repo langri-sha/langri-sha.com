@@ -6,65 +6,47 @@ I hereby claim:
 
   * I am an admin of https://langri-sha.com
   * I am langrisha (https://keybase.io/langrisha) on keybase.
-  * I have a public key with fingerprint 6E69 8B1D 695A D804 9BDD  2A04 BF65 B517 C7E5 00E4
+  * I have a public key ASDXPMonsdJgMWBcOI3tdaax-fb9vnwxg3jMx2Rk-8eohAo
 
 To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "eldest_kid": "0101da299bea9e9cb28258afe6ec52ef1aa72ad14502f5a28f9f4a2527fdeed9f7b70a",
-            "fingerprint": "6e698b1d695ad8049bdd2a04bf65b517c7e500e4",
-            "host": "keybase.io",
-            "key_id": "bf65b517c7e500e4",
-            "kid": "0101da299bea9e9cb28258afe6ec52ef1aa72ad14502f5a28f9f4a2527fdeed9f7b70a",
-            "uid": "2c5e6b4aeb7f87f63e70e58e7d16bc19",
-            "username": "langrisha"
-        },
-        "revoke": {
-            "sig_ids": [
-                "ef14aacc151db3e4765fef43a3f18ea814acc7902b6fcab076d7335c04aa7e890f"
-            ]
-        },
-        "service": {
-            "hostname": "langri-sha.com",
-            "protocol": "https:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "0101da299bea9e9cb28258afe6ec52ef1aa72ad14502f5a28f9f4a2527fdeed9f7b70a",
+      "host": "keybase.io",
+      "kid": "0120d73cca27b1d26031605c388ded75a6b1f9f6fdbe7c318378ccc76464fbc7a8840a",
+      "uid": "2c5e6b4aeb7f87f63e70e58e7d16bc19",
+      "username": "langrisha"
     },
-    "ctime": 1473499686,
-    "expire_in": 157680000,
-    "prev": "aa0df10d0c885061495521970e07c9d9a54db1a0cbbc4f2718525cbd7fc4a791",
-    "seqno": 25,
-    "tag": "signature"
+    "merkle_root": {
+      "ctime": 1659529901,
+      "hash": "6f09135634091e901e8aa64c4b4b594db4cabd72cc16422159be014df229467d4d7defcfdab3a03cd5541e95748473e6a71c4ab45cef7dbcee3207adcc048711",
+      "hash_meta": "df7fde7bb49dba2a3704da9250d6d12b1dc9a1cd9c3be3409bf3f36bde95d636",
+      "seqno": 22959798
+    },
+    "service": {
+      "entropy": "P1kQ/oHKTLvSwcpsgQewuKge",
+      "hostname": "langri-sha.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.2"
+  },
+  "ctime": 1659529918,
+  "expire_in": 504576000,
+  "prev": "90c17a006694cf502108c99a7259d83521ee16c5b50c85f2339cf830c857d309",
+  "seqno": 164,
+  "tag": "signature"
 }
 
 which yields the signature:
 
------BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.56
-Comment: https://keybase.io/crypto
-
-yMJoAnicrVJdaFxFGN3EatOAmlJqib60U9yntczcvXNnZk3Vggg+NC/1B6y6nZ9v
-sreb3LvZe3eTGKL0IWIaqtSQF0UJGokRKa0iW6EPjUpTEC01VSwidsUXaSgGkaCo
-cW7QB8FH52WY+c53zpkz3ye33pTr7qheab3Pq6uo49Ol9Ubu8ZUv8uNIxWYMlcZR
-FTY3GDSQpOVqaFAJYYKJkZ4QCqQAoZXHPcqlhQA09cASKZknDfEp9iyVHrfC+tKj
-HrMGwAjLFMMSFZANowGo1+phlDraAALBFTGBoNJw7AtljCexr2xAFSVMM6AYg+8a
-K3GSdThzSiawL4zdnTuUN+39B/5/9t3YpPM0hUD5EhSznNmgCAwD5cAMCZQmIgMm
-UI/kEDj0oIwG6mFSkWiigOrQjKuQBZuEA851gkqHkTPgS6k1ocSoIvgsoBasX5RF
-SzhI7qpaM4E9FVgtFWaBYcUi1dh1MeACW/SU43aSzVBvkmcx/Uv+Hqe/T8dDzlqt
-HqexjgddrZKmtaSU+UrHahl4BFT5b5qyCiPjvsl1NKGehHGESsQhdRpmvMRnRV+I
-gAcFBKO1sA7lMENQFnDsVqYDTUcpJTaWYIM15xQHxBeUekS4xDDTwghJfaOIxFop
-7VuPEU49qpVhVvuSCYKyhw1HMSp51PmUA47TZRfJtFEHNPHR+Se35Dq6c7fc3JnN
-b657W88/U937alfu9TOnnrsx9+PlZ6fmnj792vyJ3+23i0feTC+c/XC2cfs733NS
-Wz+2dXt8/cHpV+4bXr64zHtf7Nidn3rmz4Pzd8N4umU6f9cD7Rsza8fPDl9KLk1d
-3JOOfdfZu7Qj/dUc6iu9V+irXC6uXFi5Kq/1jHaNLpw5Bg/37HpXPZp/4fDW4TuS
-zvMnjk7vWHp5aAR2P9S1Z3Hml+XJjSNDjflD1x+JJ9Fpf/3kx9cm79/+9t7+Vntm
-4YfyNwfG+36eXWxdPVBpza3u3K/uFAdzn01vnPyq9lO61n7s699wf3v23qltV55Y
-Lbyx8RL07zy6cK6Z3/XHB/vfwsc/j85NUtP+soVOjUysPX/b3r8AmllkgA==
-=sGxv
------END PGP MESSAGE-----
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg1zzKJ7HSYDFgXDiN7XWmsfn2/b58MYN4zMdkZPvHqIQKp3BheWxvYWTES5cCzKTEIJDBegBmlM9QIQjJmnJZ2DUh7hbFtQyF8jOc+DDIV9MJxCDIpfPVgFFURMgdSJgU6OubToO4svneiBvz1t0x8hNAqgIBwqNzaWfEQLVuYs4JtxelQKnfsa2UQQWY4MXaae5agRnEVhgHOJeuUMk6nXfOTP9L2/IRqgbvH4HYDKgGNVQj434PYECmcgCoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCBKijgKZmB/64TdkU6dM02XwMvIJ0pRo1QbY2mSuUPVdaN0YWfNAgKndmVyc2lvbgE=
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
