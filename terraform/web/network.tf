@@ -16,3 +16,12 @@ resource "google_compute_subnetwork" "subnet" {
   private_ip_google_access = true
   region                   = local.region
 }
+
+resource "google_compute_route" "egress_internet" {
+  name    = "egress-internet"
+  project = module.project_edge.project_id
+
+  dest_range       = "0.0.0.0/0"
+  network          = google_compute_network.vpc.name
+  next_hop_gateway = "default-internet-gateway"
+}
