@@ -27,3 +27,8 @@ variable "location" {
   description = "Default location to use for Google Cloud services."
   type        = string
 }
+
+variable "region" {
+  description = "Default region to use for Google Cloud services."
+  type        = string
+}

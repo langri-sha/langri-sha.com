@@ -28,6 +28,11 @@ variable "location" {
   type        = string
 }
 
+variable "region" {
+  description = "Default region to use for Google Cloud services."
+  type        = string
+}
+
 variable "site_verifications" {
   description = "Comma-separated list of DNS-based domain ownership verifications."
   type        = string
