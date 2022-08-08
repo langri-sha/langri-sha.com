@@ -43,6 +43,7 @@ module "org" {
   billing_members = var.billing_members
   domain          = var.domain
   location        = var.location
+  region          = var.region
 
   activate_apis = [
     "cloudbilling.googleapis.com",

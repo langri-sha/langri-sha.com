@@ -14,6 +14,7 @@ locals {
   dns_managed_zone          = data.terraform_remote_state.org.outputs.dns_managed_zone
   domain                    = data.terraform_remote_state.org.outputs.domain
   location                  = data.terraform_remote_state.org.outputs.location
+  region                    = data.terraform_remote_state.org.outputs.region
   org_id                    = data.terraform_remote_state.org.outputs.org_id
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
   web_folder                = data.terraform_remote_state.org.outputs.web_folder

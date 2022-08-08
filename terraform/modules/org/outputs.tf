@@ -23,6 +23,11 @@ output "location"{
   value       = var.location
 }
 
+output "region" {
+  description = "Default region to use for Google Cloud services."
+  value       = var.region
+}
+
 output "org_id" {
   description = "The Organization ID."
   value       = data.google_organization.org.org_id

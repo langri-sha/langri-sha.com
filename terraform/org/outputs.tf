@@ -33,6 +33,11 @@ output "location" {
   value       = module.org.location
 }
 
+output "region" {
+  description = "Default region to use for Google Cloud services."
+  value       = module.org.region
+}
+
 output "org_id" {
   description = "The Organization ID."
   value       = module.org.org_id
