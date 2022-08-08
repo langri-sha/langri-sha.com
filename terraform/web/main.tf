@@ -19,6 +19,7 @@ locals {
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
   web_folder                = data.terraform_remote_state.org.outputs.web_folder
   web_service_account_email = data.terraform_remote_state.org.outputs.web_service_account_email
+  zone                      = data.terraform_remote_state.org.outputs.zone
 }
 
 locals {
