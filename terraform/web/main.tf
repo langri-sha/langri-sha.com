@@ -18,6 +18,15 @@ locals {
   org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
   web_folder                = data.terraform_remote_state.org.outputs.web_folder
   web_service_account_email = data.terraform_remote_state.org.outputs.web_service_account_email
+}
+
+locals {
+  artifact_registry_repositories = {
+    "docker" = {
+      description = "Main Docker repository"
+      format      = "DOCKER"
+    },
+  }
 
   hosts = [
     "www",
@@ -53,13 +62,6 @@ locals {
     "production-assets" = [local.host_urls["production"]],
     "preview"           = [local.host_urls["preview"]],
     "preview-assets"    = [local.host_urls["preview"]],
-  }
-
-  artifact_registry_repositories = {
-    "docker" = {
-      description = "Main Docker repository"
-      format      = "DOCKER"
-    },
   }
 
   triggers = [
