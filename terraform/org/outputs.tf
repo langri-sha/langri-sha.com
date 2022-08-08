@@ -57,3 +57,8 @@ output "web_service_account_email" {
   description = "Email of the Terrraform service account managing the workspace."
   value       = module.web.service_account_email
 }
+
+output "zone" {
+  description = "Default zone to use for Google Cloud services."
+  value       = module.org.zone
+}

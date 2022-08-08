@@ -37,3 +37,8 @@ variable "site_verifications" {
   description = "Comma-separated list of DNS-based domain ownership verifications."
   type        = string
 }
+
+variable "zone" {
+  description = "Default zone to use for Google Cloud services."
+  type        = string
+}

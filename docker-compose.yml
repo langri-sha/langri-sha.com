@@ -25,6 +25,7 @@ x-terraform-env: &terraform-env
   TF_VAR_mx_records: '${mx_records:-}'
   TF_VAR_region: '${region:-}'
   TF_VAR_site_verifications: '${site_verifications:-}'
+  TF_VAR_zone: '${zone:-}'
 
 x-workspace-volume: &workspace-volume
   source: .
