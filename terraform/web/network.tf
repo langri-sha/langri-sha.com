@@ -25,3 +25,31 @@ resource "google_compute_route" "egress_internet" {
   network          = google_compute_network.vpc.name
   next_hop_gateway = "default-internet-gateway"
 }
+
+resource "google_compute_router" "router" {
+  name    = "${google_compute_network.vpc.name}-router"
+  project = module.project_edge.project_id
+
+  network = google_compute_network.vpc.name
+  region  = google_compute_subnetwork.subnet.region
+}
+
+resource "google_compute_router_nat" "nat" {
+  name    = "${google_compute_subnetwork.subnet.name}-nat"
+  project = module.project_edge.project_id
+
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  region                             = google_compute_router.router.region
+  router                             = google_compute_router.router.name
+  source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
+
+  subnetwork {
+    name                    = google_compute_subnetwork.subnet.name
+    source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
+  }
+
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
+}
