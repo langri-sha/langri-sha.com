@@ -32,3 +32,8 @@ variable "region" {
   description = "Default region to use for Google Cloud services."
   type        = string
 }
+
+variable "zone" {
+  description = "Default zone to use for Google Cloud services."
+  type        = string
+}

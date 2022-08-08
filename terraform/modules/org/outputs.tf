@@ -37,3 +37,8 @@ output "project_id" {
   description = "Main organization project ID."
   value       = module.project_org.project_id
 }
+
+output "zone" {
+  description = "Default zone to use for Google Cloud services."
+  value       = var.zone
+}

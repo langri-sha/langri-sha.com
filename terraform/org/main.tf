@@ -44,6 +44,7 @@ module "org" {
   domain          = var.domain
   location        = var.location
   region          = var.region
+  zone            = var.zone
 
   activate_apis = [
     "cloudbilling.googleapis.com",
