@@ -10,6 +10,7 @@ terraform {
 }
 
 locals {
+  admin_members             = data.terraform_remote_state.org.outputs.admin_members
   billing_account           = data.terraform_remote_state.org.outputs.billing_account
   dns_managed_zone          = data.terraform_remote_state.org.outputs.dns_managed_zone
   domain                    = data.terraform_remote_state.org.outputs.domain
