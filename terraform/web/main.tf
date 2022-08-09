@@ -187,6 +187,7 @@ module "project_edge" {
   activate_apis = [
     "compute.googleapis.com",
     "dns.googleapis.com",
+    "iap.googleapis.com",
   ]
 }
 
