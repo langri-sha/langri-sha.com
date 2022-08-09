@@ -191,6 +191,12 @@ module "project_edge" {
   ]
 }
 
+resource "google_project_iam_member" "project" {
+  project = module.project_edge.project_id
+  role    = "roles/iam.roleAdmin"
+  member  = "serviceAccount:${local.web_service_account_email}"
+}
+
 provider "google" {
   alias = "access_token_resolver"
 }
