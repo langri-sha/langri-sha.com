@@ -110,6 +110,7 @@ module "web" {
   service_account_roles = [
     "roles/billing.projectManager",
     "roles/editor",
+    "roles/iam.serviceAccountAdmin",
     "roles/resourcemanager.folderAdmin",
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.projectDeleter",
