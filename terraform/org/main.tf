@@ -111,6 +111,7 @@ module "web" {
     "roles/billing.projectManager",
     "roles/editor",
     "roles/iam.serviceAccountAdmin",
+    "roles/iap.admin",
     "roles/resourcemanager.folderAdmin",
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.projectDeleter",
