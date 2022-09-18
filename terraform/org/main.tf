@@ -26,7 +26,7 @@ provider "google" {
 }
 
 module "access_token_resolver" {
-  source = "../modules/access-token-resolver"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/access-token-resolver"
 
   target_service_account = module.terraform_admin.service_account_email
 
@@ -36,7 +36,7 @@ module "access_token_resolver" {
 }
 
 module "org" {
-  source = "../modules/org"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/org"
 
   admin_members   = var.admin_members
   billing_account = var.billing_account
@@ -62,7 +62,7 @@ module "org" {
 }
 
 module "terraform_admin" {
-  source = "../modules/terraform-admin"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/terraform-admin"
 
   billing_account       = module.org.billing_account
   org_id                = module.org.org_id
@@ -79,7 +79,7 @@ module "terraform_admin" {
 }
 
 module "public_dns" {
-  source = "../modules/public-dns"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/public-dns"
 
   domain             = var.domain
   project_id         = module.org.project_id
@@ -98,7 +98,7 @@ module "public_dns" {
 }
 
 module "web" {
-  source = "../modules/workspace"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/workspace"
 
   name = "web"
 

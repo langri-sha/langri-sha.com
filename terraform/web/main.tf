@@ -210,7 +210,7 @@ provider "google-beta" {
 }
 
 module "access_token_resolver" {
-  source = "../modules/access-token-resolver"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/access-token-resolver"
 
   target_service_account = local.web_service_account_email
 
