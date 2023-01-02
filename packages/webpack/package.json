@@ -11,7 +11,7 @@
     "raw-loader": "4.0.2",
     "terser-webpack-plugin": "5.3.6",
     "url-loader": "4.1.1",
-    "webpack-bundle-analyzer": "4.5.0",
+    "webpack-bundle-analyzer": "4.7.0",
     "webpack-dev-server": "4.9.3"
   },
   "peerDependencies": {
