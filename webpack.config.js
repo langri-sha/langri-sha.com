@@ -61,7 +61,7 @@ module.exports = (env(({ development, production }) => ({
       },
       {
         test: /\.(vert|frag|glsl)$/,
-        loader: 'raw-loader',
+        loader: 'asset/source',
       },
     ],
   },
