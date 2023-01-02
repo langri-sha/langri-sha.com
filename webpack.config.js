@@ -52,7 +52,7 @@ module.exports = (env(({ development, production }) => ({
       },
       {
         test: /\.css$/,
-        use: 'raw-loader',
+        type: 'asset/source',
       },
       {
         test: /\.(eot|woff|ttf)$/,
