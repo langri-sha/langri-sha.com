@@ -57,7 +57,7 @@ module.exports = (env(({ development, production }) => ({
       {
         test: /\.(eot|woff|ttf)$/,
         include: path.resolve(__dirname, 'packages'),
-        loader: 'url-loader',
+        type: 'asset',
       },
       {
         test: /\.(vert|frag|glsl)$/,
