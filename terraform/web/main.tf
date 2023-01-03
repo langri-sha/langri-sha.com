@@ -83,6 +83,12 @@ locals {
         "dns.googleapis.com",
         "iap.googleapis.com",
       ]
+
+      iam_members = {
+        "roles/iam.roleAdmin" = [
+          "serviceAccount:${local.web_service_account_email}",
+        ]
+      }
     }
   }
 
@@ -168,12 +174,6 @@ locals {
       }
     }
   ]
-}
-
-resource "google_project_iam_member" "project" {
-  project = module.project["edge"].project_id
-  role    = "roles/iam.roleAdmin"
-  member  = "serviceAccount:${local.web_service_account_email}"
 }
 
 provider "google" {
