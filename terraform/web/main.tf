@@ -198,25 +198,11 @@ resource "google_project_iam_member" "project" {
 }
 
 provider "google" {
-  alias = "access_token_resolver"
-}
-
-provider "google" {
-  access_token = module.access_token_resolver.access_token
+  impersonate_service_account = local.web_service_account_email
 }
 
 provider "google-beta" {
-  access_token = module.access_token_resolver.access_token
-}
-
-module "access_token_resolver" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/access-token-resolver"
-
-  target_service_account = local.web_service_account_email
-
-  providers = {
-    google = google.access_token_resolver
-  }
+  impersonate_service_account = local.web_service_account_email
 }
 
 data "terraform_remote_state" "org" {
