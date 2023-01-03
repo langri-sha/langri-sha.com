@@ -12,3 +12,19 @@ module "project" {
   org_id                  = local.org_id
   random_project_id       = "true"
 }
+
+resource "google_project_iam_binding" "project_iam_binding" {
+  for_each = merge(flatten([
+    for name, project in local.projects : {
+      for role, members in try(project.iam_members, {}) : "${name}-${role}" => {
+        members = members
+        project = name
+        role    = role
+      }
+    }
+  ])...)
+
+  members = each.value.members
+  project = module.project[each.value.project].project_id
+  role    = each.value.role
+}
