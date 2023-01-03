@@ -21,7 +21,7 @@ resource "google_storage_bucket" "public" {
 
   name     = local.host_names[each.value]
   location = local.location
-  project  = module.project_edge.project_id
+  project  = module.project["edge"].project_id
 
   uniform_bucket_level_access = true
 
