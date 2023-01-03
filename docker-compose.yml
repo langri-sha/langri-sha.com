@@ -10,7 +10,7 @@ x-node-args: &node-args
 
 x-terraform-args: &terraform-args
   google_cloud_sdk_version: '395.0.0'
-  terraform_version: '1.2.6'
+  terraform_version: '1.3.6'
 
 x-user-args: &user-args
   uid: ${UID:-1000}
