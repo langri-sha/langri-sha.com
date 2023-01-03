@@ -67,6 +67,25 @@ locals {
     "preview-assets"    = [local.host_urls["preview"]],
   }
 
+  projects = {
+    build = {
+      activate_apis = [
+        "artifactregistry.googleapis.com",
+        "cloudbuild.googleapis.com",
+        "compute.googleapis.com",
+        "containerregistry.googleapis.com",
+      ]
+    }
+
+    edge = {
+      activate_apis = [
+        "compute.googleapis.com",
+        "dns.googleapis.com",
+        "iap.googleapis.com",
+      ]
+    }
+  }
+
   triggers = [
     {
       description = "Terraform Pull Request"
@@ -151,48 +170,8 @@ locals {
   ]
 }
 
-module "project_build" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 13.0.0"
-
-  name = "build"
-
-  auto_create_network     = false
-  billing_account         = local.billing_account
-  default_service_account = "deprivilege"
-  folder_id               = local.web_folder
-  org_id                  = local.org_id
-  random_project_id       = "true"
-
-  activate_apis = [
-    "artifactregistry.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "compute.googleapis.com",
-    "containerregistry.googleapis.com",
-  ]
-}
-
-module "project_edge" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 13.0.0"
-
-  name = "edge"
-
-  billing_account         = local.billing_account
-  default_service_account = "deprivilege"
-  folder_id               = local.web_folder
-  org_id                  = local.org_id
-  random_project_id       = "true"
-
-  activate_apis = [
-    "compute.googleapis.com",
-    "dns.googleapis.com",
-    "iap.googleapis.com",
-  ]
-}
-
 resource "google_project_iam_member" "project" {
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
   role    = "roles/iam.roleAdmin"
   member  = "serviceAccount:${local.web_service_account_email}"
 }

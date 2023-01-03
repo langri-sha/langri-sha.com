@@ -8,7 +8,7 @@ locals {
 
 resource "google_compute_global_address" "default" {
   name    = "global-address"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 }
 
 data "google_dns_managed_zone" "public" {
@@ -32,7 +32,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
   provider = google-beta
 
   name    = "v1-${local.certificate_hash}-ssl-certificate"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   lifecycle {
     create_before_destroy = true
@@ -47,7 +47,7 @@ resource "google_compute_backend_bucket" "public" {
   for_each = local.limited_hosts
 
   name    = "${each.value}-backend-bucket"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   bucket_name = google_storage_bucket.public[each.value].name
   enable_cdn  = true
@@ -63,7 +63,7 @@ resource "google_compute_backend_bucket" "public" {
 
 resource "google_compute_global_forwarding_rule" "http" {
   name    = "http-forwarding-rule"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   ip_address = google_compute_global_address.default.address
   port_range = "80"
@@ -73,7 +73,7 @@ resource "google_compute_global_forwarding_rule" "http" {
 
 resource "google_compute_global_forwarding_rule" "https" {
   name    = "https-forwarding-rule"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   ip_address = google_compute_global_address.default.address
   port_range = "443"
@@ -82,14 +82,14 @@ resource "google_compute_global_forwarding_rule" "https" {
 
 resource "google_compute_target_http_proxy" "default" {
   name    = "http-proxy"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   url_map = google_compute_url_map.https_redirect.id
 }
 
 resource "google_compute_target_https_proxy" "default" {
   name    = "https-proxy"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   ssl_certificates = [google_compute_managed_ssl_certificate.default.self_link]
   url_map          = google_compute_url_map.default.id
@@ -97,7 +97,7 @@ resource "google_compute_target_https_proxy" "default" {
 
 resource "google_compute_url_map" "https_redirect" {
   name    = "https-redirect"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   default_url_redirect {
     https_redirect         = true
@@ -108,7 +108,7 @@ resource "google_compute_url_map" "https_redirect" {
 
 resource "google_compute_url_map" "default" {
   name    = "url-map"
-  project = module.project_edge.project_id
+  project = module.project["edge"].project_id
 
   default_url_redirect {
     https_redirect         = true
