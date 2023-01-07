@@ -5343,11 +5343,6 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier-cli@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/prettier-cli/-/prettier-cli-0.1.0.tgz#76d5bbc9093fd11a51266e435f21fcfcd2721b4c"
-  integrity sha512-FzI6Hs9/YsrVCuxpcO0VG7sBQT7LWpeETEV0SzAFyNgb7oFjnnVf0CCYHieGI9B1RsgyaiH9HCUXYPluHRV0gw==
-
 prettier-linter-helpers@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/prettier-linter-helpers/-/prettier-linter-helpers-1.0.0.tgz#d23d41fe1375646de2d0104d3454a3008802cf7b"
