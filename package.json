@@ -36,7 +36,6 @@
     "@emotion/core": "11.0.0",
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
-    "cssnano": "^4.1.8",
     "preact": "8.4.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
