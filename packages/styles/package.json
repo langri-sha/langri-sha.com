@@ -2,5 +2,8 @@
   "name": "@langri-sha/styles",
   "version": "1.0.0-next",
   "private": true,
-  "main": "src/index.js"
+  "main": "src/index.js",
+  "dependencies": {
+    "normalize.css": "8.0.1"
+  }
 }
