@@ -174,6 +174,8 @@ locals {
       }
     }
   ]
+
+  vpc = {}
 }
 
 provider "google" {
