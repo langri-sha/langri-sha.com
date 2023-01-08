@@ -175,8 +175,36 @@ locals {
     }
   ]
 
-  vpc = {}
+  vpc = {
+    web = {
+      project      = module.project["edge"].project_id
+      routing_mode = "GLOBAL"
+
+      subnets = [
+        {
+          description   = "Subnet for GKE"
+          subnet_ip     = "172.16.0.0/22"
+          subnet_name   = "gke"
+          subnet_region = local.region
+        },
+      ]
+
+      secondary_ranges = {
+        gke = [
+          {
+            range_name    = "services"
+            ip_cidr_range = "192.168.0.0/20"
+          },
+          {
+            range_name    = "pods"
+            ip_cidr_range = "192.168.64.0/18"
+          },
+        ]
+      }
+    }
+  }
 }
+
 
 provider "google" {
   impersonate_service_account = local.web_service_account_email
