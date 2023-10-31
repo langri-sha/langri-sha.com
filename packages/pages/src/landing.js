@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Global } from '@emotion/react'
 
 import { colors, global } from '@langri-sha/styles'
-import { Analytics, Drone, Header, Scene } from '@langri-sha/components'
+import { Drone, Header, Scene } from '@langri-sha/components'
 
 export const Landing = (): React.Element<typeof React.Fragment> => (
   <React.Fragment>
@@ -13,7 +13,6 @@ export const Landing = (): React.Element<typeof React.Fragment> => (
       <Header />
       <Scene />
       <Drone />
-      <Analytics id="UA-86127521-1" />
     </Root>
   </React.Fragment>
 )
