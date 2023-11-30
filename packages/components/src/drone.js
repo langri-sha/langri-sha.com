@@ -109,10 +109,6 @@ class Processor {
   }
 }
 
-function mtof(m) {
-  return 2 ** ((m - 69) / 12) * 440
-}
+const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
 
-function rand(min, max) {
-  return Math.random() * (max - min) + min
-}
+const rand = (min: number, max: number) => Math.random() * (max - min) + min

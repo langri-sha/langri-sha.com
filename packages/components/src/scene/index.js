@@ -81,7 +81,7 @@ export class Scene extends React.PureComponent<{}> {
   }
 }
 
-function createShader(gl, type, source) {
+function createShader(gl: WebGLRenderingContext, type: number, source: string) {
   const shader = gl.createShader(type)
 
   if (!shader) {
@@ -100,7 +100,11 @@ function createShader(gl, type, source) {
   gl.deleteShader(shader)
 }
 
-function createProgram(gl, vertexShader, fragmentShader) {
+function createProgram(
+  gl: WebGLRenderingContext,
+  vertexShader?: WebGLShader,
+  fragmentShader?: WebGLShader
+) {
   const program = gl.createProgram()
 
   if (!program || !vertexShader || !fragmentShader) {
@@ -121,7 +125,7 @@ function createProgram(gl, vertexShader, fragmentShader) {
   gl.deleteProgram(program)
 }
 
-function resize(canvas) {
+function resize(canvas: HTMLCanvasElement) {
   const { width, height, clientWidth, clientHeight } = canvas
 
   const displayWidth = Math.floor(clientWidth * window.devicePixelRatio)
