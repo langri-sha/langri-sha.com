@@ -15,8 +15,8 @@ const {
 import type { WebpackOptions } from '@langri-sha/webpack'
 
 type Config = {
-	development: boolean,
-	production: boolean
+	development?: boolean,
+	production?: boolean
 }
 */
 
