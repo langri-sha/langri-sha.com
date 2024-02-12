@@ -27,6 +27,12 @@ x-terraform-env: &terraform-env
   TF_VAR_site_verifications: '${site_verifications:-}'
   TF_VAR_zone: '${zone:-}'
 
+x-gcloud-volume: &gcloud-volume
+  read_only: true
+  source: ~/.config/gcloud
+  target: /home/terraform/.config/gcloud
+  type: bind
+
 x-workspace-volume: &workspace-volume
   source: .
   target: /workspace
