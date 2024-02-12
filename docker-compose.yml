@@ -45,6 +45,7 @@ x-terraform-svc: &terraform-svc
   command: ['init']
   init: true
   volumes:
+    - *gcloud-volume
     - *workspace-volume
   environment:
     <<: *terraform-env
