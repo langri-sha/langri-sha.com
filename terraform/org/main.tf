@@ -22,17 +22,9 @@ provider "google" {
 }
 
 provider "google" {
-  access_token = module.access_token_resolver.access_token
-}
-
-module "access_token_resolver" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/access-token-resolver?ref=v0.2.0"
-
-  target_service_account = module.terraform_admin.service_account_email
-
-  providers = {
-    google = google.application_default_credentials
-  }
+  impersonate_service_account = module.terraform_admin.service_account_email
+  region                      = var.region
+  zone                        = var.zone
 }
 
 module "org" {
