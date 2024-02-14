@@ -39,6 +39,11 @@ x-workspace-volume: &workspace-volume
   type: bind
   consistency: delegated
 
+x-google-dns: &google-dns
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+
 x-terraform-svc: &terraform-svc
   image: gcr.io/${PROJECT_ID:-local}/terraform
   entrypoint: ['terraform']
@@ -60,7 +65,7 @@ x-yarn-svc: &yarn-svc
 
 services:
   terraform:
-    <<: *terraform-svc
+    <<: [*terraform-svc, *google-dns]
     build:
       context: ./terraform
       cache_from:
@@ -71,19 +76,19 @@ services:
     command: []
 
   terraform-org:
-    <<: *terraform-svc
+    <<: [*terraform-svc, *google-dns]
     working_dir: /workspace/terraform/org
     depends_on:
       - terraform
 
   terraform-web:
-    <<: *terraform-svc
+    <<: [*terraform-svc, *google-dns]
     working_dir: /workspace/terraform/web
     depends_on:
       - terraform
 
   yarn:
-    <<: *yarn-svc
+    <<: [*yarn-svc, *google-dns]
     build:
       context: .
       cache_from:
@@ -92,7 +97,7 @@ services:
         <<: [*alpine-args, *node-args, *user-args]
 
   server:
-    <<: *yarn-svc
+    <<: [*yarn-svc, *google-dns]
     command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
     ports:
       - '8080:8080'
