@@ -75,6 +75,12 @@ locals {
         "containerregistry.googleapis.com",
         "iam.googleapis.com",
       ]
+
+      iam_members = {
+        "roles/iam.workloadIdentityPoolAdmin" = [
+          "serviceAccount:${local.web_service_account_email}",
+        ]
+      }
     }
 
     edge = {
