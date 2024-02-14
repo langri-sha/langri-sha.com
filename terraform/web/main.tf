@@ -74,6 +74,7 @@ locals {
         "cloudbuild.googleapis.com",
         "compute.googleapis.com",
         "containerregistry.googleapis.com",
+        "iam.googleapis.com",
       ]
     }
 
