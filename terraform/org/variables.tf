@@ -13,11 +13,6 @@ variable "billing_account" {
   description = "Billing account ID, for the default billing account."
 }
 
-variable "mx_records" {
-  description = "Comma-separated list of MX record destinations and their priorities."
-  type        = string
-}
-
 variable "domain" {
   type        = string
   description = "Organization domain, for which resources are created."
@@ -25,6 +20,11 @@ variable "domain" {
 
 variable "location" {
   description = "Default location to use for Google Cloud services."
+  type        = string
+}
+
+variable "mx_records" {
+  description = "Comma-separated list of MX record destinations and their priorities."
   type        = string
 }
 
