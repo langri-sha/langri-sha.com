@@ -31,7 +31,11 @@ locals {
     },
   }
 
-  github_repositories = {}
+  github_repositories = {
+    "langri-sha/langri-sha.com" = {
+      project = module.project["build"].project_id
+    }
+  }
 
   hosts = [
     "www",
