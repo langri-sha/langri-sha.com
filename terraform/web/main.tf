@@ -31,6 +31,8 @@ locals {
     },
   }
 
+  github_repositories = {}
+
   hosts = [
     "www",
     "production",
