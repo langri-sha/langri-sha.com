@@ -30,7 +30,11 @@ locals {
     },
   }
 
-  github_repositories = {}
+  github_repositories = {
+    "langri-sha.com" = {
+      project = module.project["build"].project_id
+    }
+  }
 
   hosts = [
     "www",
@@ -233,3 +237,5 @@ data "terraform_remote_state" "org" {
     }
   }
 }
+
+provider "github" {}
