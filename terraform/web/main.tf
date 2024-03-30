@@ -33,6 +33,8 @@ locals {
   github_repositories = {
     "langri-sha.com" = {
       project = module.project["build"].project_id
+
+      actions_variables = {}
     }
   }
 
