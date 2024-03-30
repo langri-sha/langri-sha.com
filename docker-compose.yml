@@ -16,6 +16,7 @@ x-user-args: &user-args
   uid: ${UID:-1000}
 
 x-terraform-env: &terraform-env
+  GITHUB_TOKEN: '${GITHUB_PAT:-${X_GITHUB_PAT:-${GITHUB_TOKEN:-}}}'
   TF_CLI_CONFIG_FILE: '${TF_CLI_CONFIG_FILE:-/workspace/.terraformrc}'
   TF_VAR_admin_members: '${admin_members:-}'
   TF_VAR_billing_account: '${billing_account:-}'
