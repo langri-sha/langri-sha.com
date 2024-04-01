@@ -1,5 +1,5 @@
 x-alpine-args: &alpine-args
-  alpine_version: '3.16'
+  alpine_version: '3.19'
 
 x-kubernetes-args: &kubernetes-args
   kubernetes_version: '1.24.3'
