@@ -6,7 +6,7 @@ x-kubernetes-args: &kubernetes-args
 
 x-node-args: &node-args
   node_version: '20.12'
-  glibc_version: '2.33-r0'
+  glibc_version: '2.35-r1'
 
 x-terraform-args: &terraform-args
   google_cloud_sdk_version: '470.0.0'
