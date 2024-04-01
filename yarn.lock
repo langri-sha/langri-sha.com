@@ -3343,10 +3343,10 @@ flow-bin@0.169.0:
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.169.0.tgz#3c25ecefc165929159f30b8eb5b8b74cc7ead9a7"
   integrity sha512-CflYPrd4KiMh5RyvoJbkM5Az1PKDzFBCu3tHqNcZkHeCbYgtLAcYVTs1w8aKDXfTiBSPZ7B9u5KT5RdmsY2mzQ==
 
-flow-typed@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/flow-typed/-/flow-typed-3.8.0.tgz#2ed83e4723ede48a6c71135de90289c4031a19c6"
-  integrity sha512-Lgmj8K69kbTz7UjKjiuaG/UNaZpyoyCGKU9wL9wrcqw0a9GNvuRe7llueHSJThKyuOsymEmZf3TOpMUD2Fw1HQ==
+flow-typed@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/flow-typed/-/flow-typed-3.9.0.tgz#fdf2df3fc8fa7bb60ff84722e886ef0a53316a82"
+  integrity sha512-VrvyaXh9UA6SIYQrzQvR+3AbMFsrNitUnWOxJqDCm/oPoTtUZXUaW9TpWAAU7Rz2icJ1yId43kTo4Z4lwWDlSg==
   dependencies:
     "@octokit/rest" "^18.12.0"
     colors "1.4.0"
@@ -3359,7 +3359,7 @@ flow-typed@3.8.0:
     node-stream-zip "^1.15.0"
     prettier "^1.19.1"
     rimraf "^3.0.2"
-    semver "7.3.2"
+    semver "^7.5.4"
     table "^6.7.3"
     which "^2.0.2"
     yargs "^15.1.0"
@@ -5338,11 +5338,6 @@ semver@7.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
-semver@7.3.2:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
-  integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
-
 semver@^6.1.1, semver@^6.1.2, semver@^6.3.0:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
@@ -5352,6 +5347,13 @@ semver@^7.2.1, semver@^7.3.5:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.5.4:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.0.tgz#1a46a4db4bffcccd97b743b5005c8325f23d4e2d"
+  integrity sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==
   dependencies:
     lru-cache "^6.0.0"
 
