@@ -5,7 +5,7 @@ x-kubernetes-args: &kubernetes-args
   kubernetes_version: '1.24.3'
 
 x-node-args: &node-args
-  node_version: '18.7.0'
+  node_version: '20.12'
   glibc_version: '2.33-r0'
 
 x-terraform-args: &terraform-args
