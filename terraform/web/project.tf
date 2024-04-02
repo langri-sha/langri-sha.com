@@ -1,7 +1,7 @@
 module "project" {
   for_each = local.projects
   source   = "terraform-google-modules/project-factory/google"
-  version  = "~> 13.0.0"
+  version  = "~> 13.1.0"
 
   activate_apis           = each.value.activate_apis
   auto_create_network     = false
