@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "flow-bin": "0.169.0",
+    "flow-bin": "0.233.0",
     "flow-typed": "3.9.0",
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
