@@ -1,6 +1,5 @@
 .*
 !.babelrc
-!.devcontainer
 !.dockerignore
 !.editorconfig
 !.eslintignore
