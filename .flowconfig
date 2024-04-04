@@ -5,8 +5,8 @@
 packages/**/*.js
 
 [options]
-module.name_mapper.extension='frag' -> '<PROJECT_ROOT>/rawString.js.flow'
-module.name_mapper.extension='vert' -> '<PROJECT_ROOT>/rawString.js.flow'
+module.name_mapper.extension='frag' -> '<PROJECT_ROOT>/packages/flow-stubs/src/raw-string.js.flow'
+module.name_mapper.extension='vert' -> '<PROJECT_ROOT>/packages/flow-stubs/src/raw-string.js.flow'
 
 [ignore]
 .*/node_modules/resolve/test/.*
