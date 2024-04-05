@@ -30,9 +30,14 @@ module.exports = ({
     const options = { ignorePath: './.prettierignore' }
 
     const ignored = await Promise.all(
-      files.map((file) => prettier.getFileInfo(file, options))
+      files.map(async (file) => [
+        file,
+        await prettier.getFileInfo(file, options),
+      ])
     )
-    const filtered = ignored.filter((_, index) => !ignored[index].ignored)
+    const filtered = ignored
+      .filter(([, { ignored }]) => !ignored)
+      .map(([file]) => file)
 
     return filtered.length > 0 ? `prettier --write ${filtered.join(' ')}` : []
   },
