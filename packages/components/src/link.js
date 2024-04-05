@@ -11,13 +11,7 @@ type Props = {
 }
 
 export class Link extends React.PureComponent<Props> {
-  track: (
-    eventCategory: string,
-    eventAction: string,
-    eventLabel: string
-  ) => void
-
-  track(eventCategory: string, eventAction: string, eventLabel: string) {
+  track(eventCategory: string, eventAction: string, eventLabel: string): void {
     ga('send', {
       hitType: 'event',
       eventCategory,

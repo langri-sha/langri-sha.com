@@ -1,10 +1,8 @@
 // @flow
 
-import webpack from 'webpack'
-
 // Stock.
-export default webpack
-export const { EnvironmentPlugin } = webpack
+export { default } from 'webpack'
+export const { EnvironmentPlugin } = require('webpack')
 export type { WebpackOptions } from 'webpack'
 
 // Theirs.
