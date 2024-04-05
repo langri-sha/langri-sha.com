@@ -22,7 +22,7 @@ module.exports = ({
     )
     const filtered = ignored
       .filter(([, isIgnored]) => !isIgnored)
-      .map(([file]) => file)
+      .map(([file]) => `"${file}"`)
 
     return `eslint --ext js,jsx --fix ${filtered.join(' ')}`
   },
@@ -37,7 +37,7 @@ module.exports = ({
     )
     const filtered = ignored
       .filter(([, { ignored }]) => !ignored)
-      .map(([file]) => file)
+      .map(([file]) => `"${file}"`)
 
     return filtered.length > 0 ? `prettier --write ${filtered.join(' ')}` : []
   },
