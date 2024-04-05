@@ -19,7 +19,7 @@ module.exports = {
     // NB: Prettier rules must come last.
     'plugin:prettier/recommended',
   ],
-  plugins: ['@emotion', 'flowtype', 'prettier', 'promise', 'react', 'unicorn'],
+  plugins: ['@emotion', 'flowtype', 'promise', 'react', 'unicorn'],
   globals: {
     ga: 'writable',
   },
@@ -40,6 +40,7 @@ module.exports = {
 
     // Contributing.
     '@emotion/pkg-renaming': 'error',
+    'unicorn/no-anonymous-default-export': 'off',
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-null': 'off',
     'unicorn/prefer-module': 'off',
