@@ -1,0 +1,6 @@
+{
+  "name": "@langri-sha/web",
+  "description": "langri-sha.com web",
+  "private": true,
+  "main": "src/index.js"
+}
