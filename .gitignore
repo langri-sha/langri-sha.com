@@ -6,6 +6,7 @@
 !.eslintrc.js
 !.flowconfig
 !.gitignore
+!.gitkeep
 !.husky
 !.openssl
 !.prettierignore
