@@ -5,7 +5,6 @@
 !.eslintignore
 !.eslintrc.js
 !.flowconfig
-!.github
 !.gitignore
 !.husky
 !.openssl
@@ -13,6 +12,7 @@
 !.terraform.lock.hcl
 !.yarnrc
 
+!.github/
 dist/
 local/
 node_modules/
