@@ -11,9 +11,9 @@
 !.prettierignore
 !.terraform.lock.hcl
 !.yarnrc
+*.log
 
 !.github/
 dist/
 local/
 node_modules/
-*.log
