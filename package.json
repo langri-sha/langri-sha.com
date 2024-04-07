@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/langri-sha/langri-sha.github.com#readme",
   "workspaces": [
+    "apps/*",
     "packages/*"
   ],
   "dependencies": {
