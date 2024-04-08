@@ -90,6 +90,7 @@ services:
   yarn:
     <<: [*yarn-svc, *google-dns]
     build:
+      dockerfile: ./docker/yarn/Dockerfile
       context: .
       cache_from:
         - gcr.io/${PROJECT_ID:-local}/yarn
