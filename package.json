@@ -4,9 +4,9 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack serve --progress --open --hot --port 8080",
-    "build": "webpack --env production --progress",
-    "test": "webpack --debug --bail",
+    "start": "yarn workspace @langri-sha/web webpack serve --progress --open --hot --port 8080",
+    "build": "yarn workspace @langri-sha/web webpack --env production --progress",
+    "test": "yarn yarn workspace @langri-sha/web webpack --debug --bail",
     "flow-typed-mono": "yarn workspaces run flow-typed --flowVersion $(cat .flowconfig | head -n2 | tail -n1) install --rootDir $(pwd) --skip",
     "prepare": "husky"
   },
