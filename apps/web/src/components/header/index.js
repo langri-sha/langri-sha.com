@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 
-import { animations, colors, fonts, layers, media } from '@langri-sha/styles'
+import { animations, colors, fonts, layers, media } from '../../styles'
 import { Link } from '../link'
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 

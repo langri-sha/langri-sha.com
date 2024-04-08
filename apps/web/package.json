@@ -2,5 +2,15 @@
   "name": "@langri-sha/web",
   "description": "langri-sha.com web",
   "private": true,
-  "main": "src/index.js"
+  "main": "src/index.js",
+  "version": "1.0.0-next",
+  "scripts": {
+    "start": "webpack serve --progress --open --hot --port 8080",
+    "build": "webpack --env production --progress",
+    "test": "webpack --debug --bail"
+  },
+  "dependencies": {
+    "normalize.css": "8.0.1",
+    "webfontloader": "1.6.28"
+  }
 }

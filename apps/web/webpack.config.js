@@ -1,5 +1,8 @@
 // @flow
-require('@babel/register')
+require('@babel/register')({
+  // $FlowExpectedError[incompatible-call]: Regular expressions are allowed.
+  only: [/(packages|web)\/[\w-]+\/src/],
+})
 
 const path = require('path')
 
@@ -28,7 +31,7 @@ const env =
 module.exports = (env(({ development, production }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
-  entry: require.resolve('@langri-sha/web'),
+  entry: './src/index.js',
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -44,7 +47,7 @@ module.exports = (env(({ development, production }) => ({
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'packages'),
+        include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -56,7 +59,7 @@ module.exports = (env(({ development, production }) => ({
       },
       {
         test: /\.(eot|woff|ttf)$/,
-        include: path.resolve(__dirname, 'packages'),
+        include: path.resolve(__dirname, 'src'),
         type: 'asset',
       },
       {

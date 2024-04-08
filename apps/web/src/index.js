@@ -2,7 +2,7 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Landing } from '@langri-sha/pages'
+import { Landing } from './pages'
 import webfont from './lib/webfont'
 ;(() => {
   webfont({

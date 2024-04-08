@@ -85,7 +85,7 @@ steps:
       - |
         set -e
 
-        gsutil -u $PROJECT_ID -qm rsync -r -j $$GZIP_TYPES -x gz dist/ $(cat /var/share/bucket)
+        gsutil -u $PROJECT_ID -qm rsync -r -j $$GZIP_TYPES -x gz apps/web/dist/ $(cat /var/share/bucket)
     waitFor: []
 
 options:
