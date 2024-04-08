@@ -1,5 +1,7 @@
 .*
 !.eslintrc.js
 *.frag
+pnpm-lock.yaml
+
 dist/
 flow-typed/npm
