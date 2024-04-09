@@ -24,6 +24,8 @@ apk add --no-cache --update --upgrade \
 	glibc-${glibc_version}.apk
 rm glibc-${glibc_version}.apk
 
+npm install -g pnpm
+
 if [[ -z "$uid" ]] && [[ "$uid" != "0" ]]; then
 	rm -rf /home/node
 	addgroup -g $uid node
