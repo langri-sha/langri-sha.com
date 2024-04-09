@@ -12,6 +12,7 @@ const {
   EnvironmentPlugin,
   HtmlPlugin,
   TerserPlugin,
+  resolveLoader,
 } = require('@langri-sha/webpack')
 
 /* ::
@@ -43,6 +44,7 @@ module.exports = (env(({ development, production }) => ({
       }),
     ],
   },
+  resolveLoader,
   module: {
     rules: [
       {
