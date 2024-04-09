@@ -55,10 +55,10 @@ x-terraform-svc: &terraform-svc
   environment:
     <<: *terraform-env
 
-x-yarn-svc: &yarn-svc
-  image: gcr.io/${PROJECT_ID:-local}/yarn
+x-pnpm-svc: &pnpm-svc
+  image: gcr.io/${PROJECT_ID:-local}/pnpm
   init: true
-  entrypoint: ['yarn']
+  entrypoint: ['pnpm']
   working_dir: /workspace
   volumes:
     - *workspace-volume
@@ -87,18 +87,18 @@ services:
     depends_on:
       - terraform
 
-  yarn:
-    <<: [*yarn-svc, *google-dns]
+  pnpm:
+    <<: [*pnpm-svc, *google-dns]
     build:
-      dockerfile: ./docker/yarn/Dockerfile
+      dockerfile: ./docker/pnpm/Dockerfile
       context: .
       cache_from:
-        - gcr.io/${PROJECT_ID:-local}/yarn
+        - gcr.io/${PROJECT_ID:-local}/pnpm
       args:
         <<: [*alpine-args, *node-args, *user-args]
 
   server:
-    <<: [*yarn-svc, *google-dns]
+    <<: [*pnpm-svc, *google-dns]
     command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
     ports:
       - '8080:8080'
