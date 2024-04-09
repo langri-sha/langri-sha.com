@@ -4,10 +4,10 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "start": "yarn workspace @langri-sha/web webpack serve --progress --open --hot --port 8080",
-    "build": "yarn workspace @langri-sha/web webpack --env production --progress",
-    "test": "yarn yarn workspace @langri-sha/web webpack --debug --bail",
-    "flow-typed-mono": "yarn workspaces run flow-typed --flowVersion $(cat .flowconfig | head -n2 | tail -n1) install --rootDir $(pwd) --skip",
+    "start": "pnpm run --filter @langri-sha/web start",
+    "build": "pnpm run --filter @langri-sha/web build",
+    "test": "pnpm run --filter @langri-sha/web test",
+    "flow-typed-mono": "pnpm run -r flow-typed --flowVersion $(cat .flowconfig | head -n2 | tail -n1) install --rootDir $(pwd) --skip",
     "prepare": "husky"
   },
   "engines": {
