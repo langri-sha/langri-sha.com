@@ -93,7 +93,7 @@ module.exports = (env(({ development, production }) => ({
     }),
     new HtmlPlugin({
       title: 'Langri-Sha',
-      template: require.resolve('@langri-sha/web/src/index.ejs'),
+      template: require.resolve('./src/index.ejs'),
     }),
     new EnvironmentPlugin({
       NODE_ENV: development ? 'development' : 'production',
