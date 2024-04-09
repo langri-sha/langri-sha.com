@@ -12,11 +12,11 @@ importers:
         specifier: 7.24.4
         version: 7.24.4
       react:
-        specifier: 17.0.2
-        version: 17.0.2
+        specifier: 18.2.0
+        version: 18.2.0
       react-dom:
-        specifier: 17.0.2
-        version: 17.0.2(react@17.0.2)
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
       webpack:
         specifier: 5.91.0
         version: 5.91.0(webpack-cli@5.1.4)
@@ -56,10 +56,10 @@ importers:
         version: 11.0.0
       '@emotion/react':
         specifier: 11.4.0
-        version: 11.4.0(@babel/core@7.24.4)(react@17.0.2)
+        version: 11.4.0(@babel/core@7.24.4)(react@18.2.0)
       '@emotion/styled':
         specifier: 11.3.0
-        version: 11.3.0(@babel/core@7.24.4)(@emotion/react@11.4.0)(react@17.0.2)
+        version: 11.3.0(@babel/core@7.24.4)(@emotion/react@11.4.0)(react@18.2.0)
       '@emotion/utils':
         specifier: 1.2.1
         version: 1.2.1
@@ -1607,7 +1607,7 @@ packages:
     resolution: {integrity: sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==}
     dev: false
 
-  /@emotion/react@11.4.0(@babel/core@7.24.4)(react@17.0.2):
+  /@emotion/react@11.4.0(@babel/core@7.24.4)(react@18.2.0):
     resolution: {integrity: sha512-4XklWsl9BdtatLoJpSjusXhpKv9YVteYKh9hPKP1Sxl+mswEFoUe0WtmtWjxEjkA51DQ2QRMCNOvKcSlCQ7ivg==}
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -1627,7 +1627,7 @@ packages:
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.2.5
       hoist-non-react-statics: 3.3.2
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /@emotion/serialize@1.0.2:
@@ -1644,7 +1644,7 @@ packages:
     resolution: {integrity: sha512-u0AX4aSo25sMAygCuQTzS+HsImZFuS8llY8O7b9MDRzbJM0kVJlAz6KNDqcG7pOuQZJmj/8X/rAW+66kMnMW+g==}
     dev: false
 
-  /@emotion/styled@11.3.0(@babel/core@7.24.4)(@emotion/react@11.4.0)(react@17.0.2):
+  /@emotion/styled@11.3.0(@babel/core@7.24.4)(@emotion/react@11.4.0)(react@18.2.0):
     resolution: {integrity: sha512-fUoLcN3BfMiLlRhJ8CuPUMEyKkLEoM+n+UyAbnqGEsCd5IzKQ7VQFLtzpJOaCD2/VR2+1hXQTnSZXVJeiTNltA==}
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -1661,10 +1661,10 @@ packages:
       '@babel/runtime': 7.16.7
       '@emotion/babel-plugin': 11.3.0(@babel/core@7.24.4)
       '@emotion/is-prop-valid': 1.1.1
-      '@emotion/react': 11.4.0(@babel/core@7.24.4)(react@17.0.2)
+      '@emotion/react': 11.4.0(@babel/core@7.24.4)(react@18.2.0)
       '@emotion/serialize': 1.0.2
       '@emotion/utils': 1.2.1
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /@emotion/unitless@0.7.5:
@@ -5261,26 +5261,24 @@ packages:
       unpipe: 1.0.0
     dev: false
 
-  /react-dom@17.0.2(react@17.0.2):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
-      react: 17.0.2
+      react: ^18.2.0
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
+      react: 18.2.0
+      scheduler: 0.23.0
     dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  /react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  /react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: false
 
   /read-pkg-up@7.0.1:
@@ -5541,11 +5539,10 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
-  /scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: false
 
   /schema-utils@3.3.0:
