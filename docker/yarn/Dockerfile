@@ -37,4 +37,4 @@ EOF
 
 USER node
 
-ENTRYPOINT ["yarn"]
+ENTRYPOINT ["pnpm"]
