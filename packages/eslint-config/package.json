@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "devDependencies": {
     "@babel/eslint-parser": "7.24.1",
-    "@emotion/eslint-plugin": "11.2.0",
+    "@emotion/eslint-plugin": "11.11.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-prettier": "4.2.1",
