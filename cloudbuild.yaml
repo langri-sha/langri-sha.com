@@ -41,7 +41,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Build image'
-    args: ['compose', 'build', 'yarn']
+    args: ['compose', 'build', 'pnpm']
     waitFor: ['-']
 
   - name: 'gcr.io/cloud-builders/docker'
@@ -50,11 +50,11 @@ steps:
     args:
       - -c
       - |
-        docker commit --change "USER root" $(docker create gcr.io/$PROJECT_ID/yarn:latest) gcr.io/$PROJECT_ID/yarn:latest
+        docker commit --change "USER root" $(docker create gcr.io/$PROJECT_ID/pnpm:latest) gcr.io/$PROJECT_ID/pnpm:latest
     waitFor: ['Build image']
 
-  - name: 'gcr.io/$PROJECT_ID/yarn'
-    id: 'Yarn install'
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
+    id: 'PNPM install'
     args: ['install']
     waitFor: ['Configure environment', 'Prepare image']
 
@@ -62,20 +62,20 @@ steps:
     id: 'Flow'
     args: ['npx', 'flow', 'check', '--max-warnings', '0']
 
-  - name: 'gcr.io/$PROJECT_ID/yarn'
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'ESLint'
     args: ['eslint', '--ext', 'js,jsx', '.']
-    waitFor: ['Yarn install']
+    waitFor: ['PNPM install']
 
-  - name: 'gcr.io/$PROJECT_ID/yarn'
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Prettier check'
     args: ['prettier', '--check', '.']
-    waitFor: ['Yarn install']
+    waitFor: ['PNPM install']
 
-  - name: 'gcr.io/$PROJECT_ID/yarn'
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Build'
     args: ['build']
-    waitFor: ['Yarn install']
+    waitFor: ['PNPM install']
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'Publish'
