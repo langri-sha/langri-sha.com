@@ -43,6 +43,7 @@
     "webpack-cli": "5.1.4"
   },
   "devDependencies": {
+    "@langri-sha/babel-preset": "1.0.0-next",
     "eslint": "8.57.0",
     "flow-bin": "0.169.0",
     "flow-typed": "3.9.0",
