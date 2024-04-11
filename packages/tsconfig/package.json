@@ -1,7 +1,7 @@
 {
   "name": "@langri-sha/tsconfig",
   "private": true,
-  "main": "src/index.js",
+  "main": "base.json",
   "version": "1.0.0-next",
   "peerDependencies": {
     "typescript": "^5.0.0"
