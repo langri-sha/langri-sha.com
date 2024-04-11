@@ -149,6 +149,8 @@ importers:
 
   packages/flow-stubs: {}
 
+  packages/tsconfig: {}
+
   packages/webpack:
     dependencies:
       babel-loader:

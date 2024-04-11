@@ -1,0 +1,6 @@
+{
+  "name": "@langri-sha/tsconfig",
+  "private": true,
+  "main": "src/index.js",
+  "version": "1.0.0-next"
+}
