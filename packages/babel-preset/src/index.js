@@ -1,12 +1,24 @@
 // @flow
 module.exports = () /*: mixed */ => ({
-  presets: ['@babel/preset-env', '@babel/preset-flow', '@babel/preset-react'],
+  presets: [
+    ours`@babel/preset-env`,
+    ours`@babel/preset-flow`,
+    ours`@babel/preset-react`,
+  ],
   plugins: [
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-export-namespace-from',
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-proposal-optional-chaining',
-    '@emotion/babel-plugin',
+    [ours`@babel/plugin-proposal-class-properties`, { loose: true }],
+    ours`@babel/plugin-proposal-export-default-from`,
+    ours`@babel/plugin-proposal-export-namespace-from`,
+    ours`@babel/plugin-proposal-object-rest-spread`,
+    ours`@babel/plugin-proposal-optional-chaining`,
+    ours`@emotion/babel-plugin`,
   ],
 })
+
+/**
+ * Forces Babel to resolve packages relative to this module, instead of where `@babel/core` is invoked.
+ *
+ * @param {TemplateStringsArray} strings
+ * @returns String
+ */
+const ours = ([pkg]) => require.resolve(pkg)
