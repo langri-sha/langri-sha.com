@@ -13,6 +13,7 @@
 !.prettierignore
 !.terraform.lock.hcl
 *.log
+*.tsbuildinfo
 
 !.github/
 dist/
