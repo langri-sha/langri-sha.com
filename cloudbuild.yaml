@@ -68,6 +68,11 @@ steps:
     waitFor: ['PNPM install']
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
+    id: 'Jest'
+    args: ['jest', '--passWithNoTests']
+    waitFor: ['PNPM install']
+
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Prettier check'
     args: ['prettier', '--check', '.']
     waitFor: ['PNPM install']
