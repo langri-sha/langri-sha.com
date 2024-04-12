@@ -155,6 +155,8 @@ importers:
 
   packages/flow-stubs: {}
 
+  packages/jest: {}
+
   packages/tsconfig:
     dependencies:
       typescript:
