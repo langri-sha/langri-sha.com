@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": false,
     "forceConsistentCasingInFileNames": true,
+    "incremental": false,
     "isolatedModules": true,
     "lib": ["ESNext"],
     "module": "ESNext",
