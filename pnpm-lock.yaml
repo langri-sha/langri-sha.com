@@ -158,7 +158,11 @@ importers:
 
   packages/flow-stubs: {}
 
-  packages/jest: {}
+  packages/jest:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
   packages/tsconfig:
     dependencies:
