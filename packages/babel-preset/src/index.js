@@ -4,6 +4,7 @@ module.exports = () /*: mixed */ => ({
     ours`@babel/preset-env`,
     ours`@babel/preset-flow`,
     ours`@babel/preset-react`,
+    ours`@babel/preset-typescript`,
   ],
   plugins: [
     [ours`@babel/plugin-proposal-class-properties`, { loose: true }],
