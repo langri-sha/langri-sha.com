@@ -30,6 +30,9 @@ importers:
       '@langri-sha/eslint-config':
         specifier: 1.0.0-next
         version: link:packages/eslint-config
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:packages/tsconfig
       eslint:
         specifier: 8.57.0
         version: 8.57.0
