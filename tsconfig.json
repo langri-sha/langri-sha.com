@@ -4,6 +4,7 @@
   "files": [],
   "references": [
     { "path": "./packages/jest-config" },
+    { "path": "./packages/jest-test" },
     { "path": "./packages/tsconfig" }
   ]
 }
