@@ -3,6 +3,9 @@
   "private": true,
   "main": "src/index.ts",
   "version": "1.0.0-next",
+  "dependencies": {
+    "@jest/globals": "29.7.0"
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   }
