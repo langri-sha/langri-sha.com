@@ -170,6 +170,12 @@ importers:
         specifier: 1.0.0-next
         version: link:../tsconfig
 
+  packages/jest-test:
+    dependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.4.5
+
   packages/tsconfig:
     dependencies:
       typescript:
