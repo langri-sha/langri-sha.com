@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/jest",
+  "name": "@langri-sha/jest-config",
   "private": true,
   "main": "src/index.ts",
   "version": "1.0.0-next",

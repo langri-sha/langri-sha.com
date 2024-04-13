@@ -1,1 +1,1 @@
-export { default } from '@langri-sha/jest'
+export { default } from '@langri-sha/jest-config'

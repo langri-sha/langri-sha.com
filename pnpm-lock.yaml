@@ -30,9 +30,9 @@ importers:
       '@langri-sha/eslint-config':
         specifier: 1.0.0-next
         version: link:packages/eslint-config
-      '@langri-sha/jest':
+      '@langri-sha/jest-config':
         specifier: 1.0.0-next
-        version: link:packages/jest
+        version: link:packages/jest-config
       '@langri-sha/tsconfig':
         specifier: 1.0.0-next
         version: link:packages/tsconfig
@@ -164,7 +164,7 @@ importers:
 
   packages/flow-stubs: {}
 
-  packages/jest:
+  packages/jest-config:
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.0.0-next
