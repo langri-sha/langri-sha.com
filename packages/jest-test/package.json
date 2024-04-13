@@ -2,5 +2,8 @@
   "name": "@langri-sha/jest-test",
   "private": true,
   "main": "src/index.js",
-  "version": "1.0.0-next"
+  "version": "1.0.0-next",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
