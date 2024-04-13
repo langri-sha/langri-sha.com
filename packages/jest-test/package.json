@@ -11,6 +11,7 @@
     "@langri-sha/tsconfig": "1.0.0-next"
   },
   "peerDependencies": {
+    "jest": "^29.0.0",
     "typescript": "^5.0.0"
   }
 }
