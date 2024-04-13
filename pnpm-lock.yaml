@@ -173,11 +173,15 @@ importers:
   packages/jest-test:
     dependencies:
       '@jest/globals':
-        specifier: ^29.7.0
+        specifier: 29.7.0
         version: 29.7.0
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
   packages/tsconfig:
     dependencies:
