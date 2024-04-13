@@ -6,6 +6,9 @@
   "dependencies": {
     "@jest/globals": "29.7.0"
   },
+  "devDependencies": {
+    "@langri-sha/tsconfig": "1.0.0-next"
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   }
