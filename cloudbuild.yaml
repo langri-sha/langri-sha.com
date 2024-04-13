@@ -78,6 +78,11 @@ steps:
     waitFor: ['PNPM install']
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
+    id: 'TypeScript'
+    args: ['tsc', '--build', '.']
+    waitFor: ['PNPM install']
+
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Build'
     args: ['build']
     waitFor: ['PNPM install']
