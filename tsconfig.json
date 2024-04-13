@@ -3,7 +3,7 @@
   "extends": "@langri-sha/tsconfig",
   "files": [],
   "references": [
-    { "path": "./packages/jest" },
+    { "path": "./packages/jest-config" },
     { "path": "./packages/tsconfig" }
   ]
 }
