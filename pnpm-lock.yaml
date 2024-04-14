@@ -189,6 +189,8 @@ importers:
         specifier: 1.0.0-next
         version: link:../tsconfig
 
+  packages/monorepo: {}
+
   packages/tsconfig:
     dependencies:
       typescript:
