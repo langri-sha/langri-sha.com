@@ -92,6 +92,8 @@ importers:
         specifier: 1.0.0-next
         version: link:../../packages/webpack
 
+  packages/babel-helpers: {}
+
   packages/babel-preset:
     dependencies:
       '@babel/core':
