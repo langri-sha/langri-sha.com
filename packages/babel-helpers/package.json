@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "version": "1.0.0-next",
   "devDependencies": {
+    "@langri-sha/jest-test": "1.0.0-next",
     "@langri-sha/tsconfig": "1.0.0-next"
   }
 }

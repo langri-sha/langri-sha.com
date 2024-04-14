@@ -92,7 +92,14 @@ importers:
         specifier: 1.0.0-next
         version: link:../../packages/webpack
 
-  packages/babel-helpers: {}
+  packages/babel-helpers:
+    devDependencies:
+      '@langri-sha/jest-test':
+        specifier: 1.0.0-next
+        version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
   packages/babel-preset:
     dependencies:
