@@ -93,6 +93,10 @@ importers:
         version: link:../../packages/webpack
 
   packages/babel-helpers:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.0.0
+        version: 7.24.4
     devDependencies:
       '@langri-sha/jest-test':
         specifier: 1.0.0-next
