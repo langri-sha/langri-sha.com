@@ -190,6 +190,10 @@ importers:
         version: link:../tsconfig
 
   packages/monorepo:
+    dependencies:
+      find-up:
+        specifier: 7.0.0
+        version: 7.0.0
     devDependencies:
       '@langri-sha/jest-test':
         specifier: 1.0.0-next
@@ -4230,6 +4234,15 @@ packages:
     dependencies:
       locate-path: 7.2.0
       path-exists: 5.0.0
+    dev: false
+
+  /find-up@7.0.0:
+    resolution: {integrity: sha512-YyZM99iHrqLKjmt4LJDj58KI+fYyufRLBSYcqycxf//KpBk9FoewoGX0450m9nB44qrZnovzC2oeP5hUibxc/g==}
+    engines: {node: '>=18'}
+    dependencies:
+      locate-path: 7.2.0
+      path-exists: 5.0.0
+      unicorn-magic: 0.1.0
     dev: false
 
   /flat-cache@3.0.4:
