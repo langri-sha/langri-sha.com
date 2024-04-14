@@ -189,7 +189,14 @@ importers:
         specifier: 1.0.0-next
         version: link:../tsconfig
 
-  packages/monorepo: {}
+  packages/monorepo:
+    devDependencies:
+      '@langri-sha/jest-test':
+        specifier: 1.0.0-next
+        version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
   packages/tsconfig:
     dependencies:
