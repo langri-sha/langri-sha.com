@@ -1,6 +1,8 @@
 import { findUpSync } from 'find-up'
 import path from 'node:path'
 
+let root: string | undefined
+
 export default {
   /**
    * Resolves paths relative to the monorepo root directory, which is resolved by
@@ -12,6 +14,18 @@ export default {
    */
   resolve: (...pathSegments: string[]): string =>
     path.resolve(findRoot(), ...pathSegments),
+
+  get root(): string {
+    if (!root) {
+      return findRoot()
+    }
+
+    return root
+  },
+
+  set root(newRoot: string | undefined) {
+    root = newRoot
+  },
 }
 
 const findRoot = (): string => {
