@@ -5,7 +5,7 @@
   "version": "1.0.0-next",
   "dependencies": {
     "@jest/globals": "29.7.0",
-    "tempy": "1.0.1"
+    "tempy": "3.1.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "1.0.0-next"
