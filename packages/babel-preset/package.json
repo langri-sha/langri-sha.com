@@ -16,6 +16,9 @@
     "@babel/register": "7.23.7",
     "@emotion/babel-plugin": "11.11.0"
   },
+  "devDependencies": {
+    "@langri-sha/tsconfig": "1.0.0-next"
+  },
   "peerDependencies": {
     "@babel/core": "*"
   }
