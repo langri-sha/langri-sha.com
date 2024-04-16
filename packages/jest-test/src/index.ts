@@ -1,2 +1,2 @@
 export * from '@jest/globals'
-export * as tempy from 'tempy'
+export { default as tempy } from 'tempy'
