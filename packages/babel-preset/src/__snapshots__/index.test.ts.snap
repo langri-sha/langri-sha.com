@@ -3,25 +3,7 @@
 exports[`default preset plugins: development environment 1`] = `
 [
   [
-    "proposal-class-properties",
-    {
-      "loose": true,
-    },
-  ],
-  [
     "proposal-export-default-from",
-    {},
-  ],
-  [
-    "proposal-export-namespace-from",
-    {},
-  ],
-  [
-    "proposal-object-rest-spread",
-    {},
-  ],
-  [
-    "proposal-optional-chaining",
     {},
   ],
   [
@@ -445,25 +427,7 @@ exports[`default preset plugins: development environment 1`] = `
 exports[`default preset plugins: production environment 1`] = `
 [
   [
-    "proposal-class-properties",
-    {
-      "loose": true,
-    },
-  ],
-  [
     "proposal-export-default-from",
-    {},
-  ],
-  [
-    "proposal-export-namespace-from",
-    {},
-  ],
-  [
-    "proposal-object-rest-spread",
-    {},
-  ],
-  [
-    "proposal-optional-chaining",
     {},
   ],
   [
