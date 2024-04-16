@@ -1,1 +1,45 @@
-export {}
+import type { ConfigAPI, PluginItem, TransformOptions } from '@babel/core'
+import * as babel from '@babel/core'
+import * as R from 'ramda'
+
+import monorepo from '@langri-sha/monorepo'
+
+export type { ConfigAPI }
+
+export type Preset = {
+  plugins: PluginItem[]
+  presets: PluginItem[]
+}
+
+/*
+ * For a given preset, returns the list of loaded plugins, transformed in a way
+ * that they can be serialized across different environments.
+ */
+export const loadPresetPlugins = async (
+  envName: string,
+  preset: PluginItem
+): Promise<Array<[name: string, options: Record<string, unknown>]>> => {
+  // @ts-expect-error: Missing `babel.loadOptionsAsync`.
+  const { plugins } = await babel.loadOptionsAsync(options(envName, preset))
+
+  return R.pipe(R.map(transformPaths))(plugins)
+}
+
+const options = (envName: string, preset: PluginItem): TransformOptions => ({
+  babelrc: false,
+  configFile: false,
+  filename: module?.parent?.filename,
+  envName,
+  presets: [preset],
+})
+
+const transformPaths = ({
+  key,
+  options,
+}: {
+  key: string
+  options: Record<string, unknown>
+}): [string, Record<string, unknown>] => [
+  key.replace(monorepo.root, '<WORKSPACE>'),
+  options,
+]
