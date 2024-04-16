@@ -6,7 +6,12 @@ module.exports = (api) => ({
     ours`@babel/preset-env`,
     ours`@babel/preset-flow`,
     ours`@babel/preset-react`,
-    ours`@babel/preset-typescript`,
+    [
+      ours`@babel/preset-typescript`,
+      {
+        onlyRemoveTypeImports: true,
+      },
+    ],
   ],
   plugins: [
     ours`@babel/plugin-proposal-export-default-from`,
