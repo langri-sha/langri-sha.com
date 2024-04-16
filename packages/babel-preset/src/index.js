@@ -8,6 +8,7 @@ module.exports = (api) => ({
     [
       ours`@babel/preset-react`,
       {
+        development: !api.env('production'),
         runtime: 'automatic',
       },
     ],

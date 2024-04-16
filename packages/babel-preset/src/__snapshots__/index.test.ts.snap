@@ -24,7 +24,7 @@ exports[`default preset plugins: development environment 1`] = `
     },
   ],
   [
-    "transform-react-jsx",
+    "transform-react-jsx/development",
     {
       "importSource": undefined,
       "pragma": undefined,
