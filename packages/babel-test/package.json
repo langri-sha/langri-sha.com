@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/babel-helpers",
+  "name": "@langri-sha/babel-test",
   "private": true,
   "main": "src/index.ts",
   "version": "1.0.0-next",
