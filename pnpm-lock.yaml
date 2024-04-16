@@ -107,6 +107,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: 1.0.0-next
         version: link:../tsconfig
+      '@types/babel__core':
+        specifier: 7.20.5
+        version: 7.20.5
 
   packages/babel-preset:
     dependencies:
