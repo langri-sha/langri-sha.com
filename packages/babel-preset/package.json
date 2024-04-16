@@ -17,6 +17,7 @@
     "@emotion/babel-plugin": "11.11.0"
   },
   "devDependencies": {
+    "@langri-sha/babel-test": "1.0.0-next",
     "@langri-sha/jest-test": "1.0.0-next",
     "@langri-sha/tsconfig": "1.0.0-next"
   },
