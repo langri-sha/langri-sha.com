@@ -3,7 +3,7 @@
   "extends": "@langri-sha/tsconfig",
   "files": [],
   "references": [
-    { "path": "./packages/babel-helpers" },
+    { "path": "./packages/babel-test" },
     { "path": "./packages/jest-config" },
     { "path": "./packages/jest-test" },
     { "path": "./packages/monorepo" },

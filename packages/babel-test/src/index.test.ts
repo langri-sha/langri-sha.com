@@ -11,7 +11,7 @@ test('resolves configured Babel preset plugins', async () => {
   expect(plugins).toMatchInlineSnapshot(`
     [
       [
-        "<WORKSPACE>/packages/babel-helpers/src/fixtures/babel-plugin-test.ts",
+        "<WORKSPACE>/packages/babel-test/src/fixtures/babel-plugin-test.ts",
         {
           "foobar": "quuxnorf",
         },
@@ -29,7 +29,7 @@ test('resolves configured Babel preset with options', async () => {
   expect(plugins).toMatchInlineSnapshot(`
     [
       [
-        "<WORKSPACE>/packages/babel-helpers/src/fixtures/babel-plugin-test.ts",
+        "<WORKSPACE>/packages/babel-test/src/fixtures/babel-plugin-test.ts",
         {
           "foobar": "quuxnorf",
           "test": "TEST_OPTIONS",
@@ -48,7 +48,7 @@ test('replaces Node.js versions in preset options with the current Node.js versi
   expect(plugins).toMatchInlineSnapshot(`
     [
       [
-        "<WORKSPACE>/packages/babel-helpers/src/fixtures/babel-plugin-test.ts",
+        "<WORKSPACE>/packages/babel-test/src/fixtures/babel-plugin-test.ts",
         {
           "foobar": "quuxnorf",
           "targets": {

@@ -92,7 +92,7 @@ importers:
         specifier: 1.0.0-next
         version: link:../../packages/webpack
 
-  packages/babel-helpers:
+  packages/babel-test:
     dependencies:
       '@babel/core':
         specifier: ^7.0.0
