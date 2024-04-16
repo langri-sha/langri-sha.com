@@ -9,11 +9,7 @@ module.exports = (api) => ({
     ours`@babel/preset-typescript`,
   ],
   plugins: [
-    [ours`@babel/plugin-proposal-class-properties`, { loose: true }],
     ours`@babel/plugin-proposal-export-default-from`,
-    ours`@babel/plugin-proposal-export-namespace-from`,
-    ours`@babel/plugin-proposal-object-rest-spread`,
-    ours`@babel/plugin-proposal-optional-chaining`,
     ours`@emotion/babel-plugin`,
   ],
 })
