@@ -4,6 +4,7 @@
   "files": [],
   "references": [
     { "path": "./apps/web" },
+    { "path": "./packages/babel-preset" },
     { "path": "./packages/babel-test" },
     { "path": "./packages/jest-config" },
     { "path": "./packages/jest-test" },
