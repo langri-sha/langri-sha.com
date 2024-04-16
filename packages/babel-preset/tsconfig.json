@@ -5,5 +5,5 @@
     "baseUrl": ".",
     "outDir": ".tsbuild"
   },
-  "references": [{ "path": "../tsconfig" }]
+  "references": [{ "path": "../jest-test" }, { "path": "../tsconfig" }]
 }
