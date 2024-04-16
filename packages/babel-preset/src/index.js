@@ -5,7 +5,12 @@ module.exports = (api) => ({
   presets: [
     ours`@babel/preset-env`,
     ours`@babel/preset-flow`,
-    ours`@babel/preset-react`,
+    [
+      ours`@babel/preset-react`,
+      {
+        runtime: 'automatic',
+      },
+    ],
     [
       ours`@babel/preset-typescript`,
       {
