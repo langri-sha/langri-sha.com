@@ -22,7 +22,11 @@ export const loadPresetPlugins = async (
   // @ts-expect-error: Missing `babel.loadOptionsAsync`.
   const { plugins } = await babel.loadOptionsAsync(options(envName, preset))
 
-  return R.pipe(R.map(transformPaths))(plugins)
+  // @ts-expect-error: `any[][]` is not assignable to returned tuple.
+  return R.pipe(
+    R.map(transformPaths),
+    R.map(R.map(R.when(R.is(Object), transformNodeVersion)))
+  )(plugins)
 }
 
 const options = (envName: string, preset: PluginItem): TransformOptions => ({
@@ -43,3 +47,12 @@ const transformPaths = ({
   key.replace(monorepo.root, '<WORKSPACE>'),
   options,
 ]
+
+const transformNodeVersion = R.evolve({
+  targets: R.evolve({
+    node: R.when(
+      R.equals(process.version.slice(1)),
+      R.always('%NODE_CURRENT%')
+    ),
+  }),
+})

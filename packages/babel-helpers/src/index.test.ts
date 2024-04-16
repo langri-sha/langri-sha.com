@@ -20,7 +20,7 @@ test('resolves configured Babel preset plugins', async () => {
   `)
 })
 
-test('resolves configured Babel preset plugins with options', async () => {
+test('resolves configured Babel preset with options', async () => {
   const plugins = await loadPresetPlugins('development', [
     require.resolve('./fixtures/babel-preset-test'),
     { test: 'TEST_OPTIONS' },
@@ -33,6 +33,27 @@ test('resolves configured Babel preset plugins with options', async () => {
         {
           "foobar": "quuxnorf",
           "test": "TEST_OPTIONS",
+        },
+      ],
+    ]
+  `)
+})
+
+test('replaces Node.js versions in preset options with the current Node.js version', async () => {
+  const plugins = await loadPresetPlugins('development', [
+    require.resolve('./fixtures/babel-preset-test'),
+    { targets: { node: process.version.slice(1) } },
+  ])
+
+  expect(plugins).toMatchInlineSnapshot(`
+    [
+      [
+        "<WORKSPACE>/packages/babel-helpers/src/fixtures/babel-plugin-test.ts",
+        {
+          "foobar": "quuxnorf",
+          "targets": {
+            "node": "%NODE_CURRENT%",
+          },
         },
       ],
     ]
