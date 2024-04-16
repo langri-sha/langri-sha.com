@@ -5,5 +5,9 @@
     "baseUrl": ".",
     "outDir": ".tsbuild"
   },
-  "references": [{ "path": "../jest-test" }, { "path": "../tsconfig" }]
+  "references": [
+    { "path": "../jest-test" },
+    { "path": "../monorepo" },
+    { "path": "../tsconfig" }
+  ]
 }
