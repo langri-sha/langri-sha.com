@@ -1,0 +1,885 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default preset plugins: development environment 1`] = `
+[
+  [
+    "proposal-class-properties",
+    {
+      "loose": true,
+    },
+  ],
+  [
+    "proposal-export-default-from",
+    {},
+  ],
+  [
+    "proposal-export-namespace-from",
+    {},
+  ],
+  [
+    "proposal-object-rest-spread",
+    {},
+  ],
+  [
+    "proposal-optional-chaining",
+    {},
+  ],
+  [
+    "@emotion",
+    {},
+  ],
+  [
+    "transform-typescript",
+    {
+      "allowDeclareFields": undefined,
+      "allowNamespaces": true,
+      "disallowAmbiguousJSXLike": false,
+      "isTSX": false,
+      "jsxPragma": undefined,
+      "jsxPragmaFrag": "React.Fragment",
+      "onlyRemoveTypeImports": undefined,
+      "optimizeConstEnums": false,
+    },
+  ],
+  [
+    "transform-react-jsx",
+    {
+      "importSource": undefined,
+      "pragma": "React.createElement",
+      "pragmaFrag": "React.Fragment",
+      "pure": undefined,
+      "runtime": "classic",
+      "throwIfNamespace": true,
+      "useBuiltIns": false,
+      "useSpread": undefined,
+    },
+  ],
+  [
+    "transform-react-display-name",
+    {},
+  ],
+  [
+    "transform-react-pure-annotations",
+    {},
+  ],
+  [
+    "transform-flow-strip-types",
+    {
+      "all": undefined,
+      "allowDeclareFields": undefined,
+    },
+  ],
+  [
+    "transform-unicode-sets-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-class-static-block",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-private-property-in-object",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-class-properties",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-private-methods",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-numeric-separator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-logical-assignment-operators",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-nullish-coalescing-operator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-optional-chaining",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-json-strings",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-optional-catch-binding",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-parameters",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-async-generator-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-object-rest-spread",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-dotall-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-property-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-named-capturing-groups-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-async-to-generator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-exponentiation-operator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-template-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-function-name",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-arrow-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-block-scoped-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-classes",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-object-super",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-shorthand-properties",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-duplicate-keys",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-computed-properties",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-for-of",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-sticky-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-escapes",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-spread",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-destructuring",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-block-scoping",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-typeof-symbol",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-new-target",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-regenerator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-member-expression-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-property-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-reserved-words",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-export-namespace-from",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-modules-commonjs",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-dynamic-import",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "syntax-top-level-await",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "syntax-import-meta",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+]
+`;
+
+exports[`default preset plugins: production environment 1`] = `
+[
+  [
+    "proposal-class-properties",
+    {
+      "loose": true,
+    },
+  ],
+  [
+    "proposal-export-default-from",
+    {},
+  ],
+  [
+    "proposal-export-namespace-from",
+    {},
+  ],
+  [
+    "proposal-object-rest-spread",
+    {},
+  ],
+  [
+    "proposal-optional-chaining",
+    {},
+  ],
+  [
+    "@emotion",
+    {},
+  ],
+  [
+    "transform-typescript",
+    {
+      "allowDeclareFields": undefined,
+      "allowNamespaces": true,
+      "disallowAmbiguousJSXLike": false,
+      "isTSX": false,
+      "jsxPragma": undefined,
+      "jsxPragmaFrag": "React.Fragment",
+      "onlyRemoveTypeImports": undefined,
+      "optimizeConstEnums": false,
+    },
+  ],
+  [
+    "transform-react-jsx",
+    {
+      "importSource": undefined,
+      "pragma": "React.createElement",
+      "pragmaFrag": "React.Fragment",
+      "pure": undefined,
+      "runtime": "classic",
+      "throwIfNamespace": true,
+      "useBuiltIns": false,
+      "useSpread": undefined,
+    },
+  ],
+  [
+    "transform-react-display-name",
+    {},
+  ],
+  [
+    "transform-react-pure-annotations",
+    {},
+  ],
+  [
+    "transform-flow-strip-types",
+    {
+      "all": undefined,
+      "allowDeclareFields": undefined,
+    },
+  ],
+  [
+    "transform-unicode-sets-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-class-static-block",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-private-property-in-object",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-class-properties",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-private-methods",
+    {
+      "loose": "#__internal__@babel/preset-env__prefer-false-but-true-is-ok-if-it-prevents-an-error",
+    },
+  ],
+  [
+    "transform-numeric-separator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-logical-assignment-operators",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-nullish-coalescing-operator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-optional-chaining",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-json-strings",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-optional-catch-binding",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-parameters",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-async-generator-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-object-rest-spread",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-dotall-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-property-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-named-capturing-groups-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-async-to-generator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-exponentiation-operator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-template-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-function-name",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-arrow-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-block-scoped-functions",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-classes",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-object-super",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-shorthand-properties",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-duplicate-keys",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-computed-properties",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-for-of",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-sticky-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-escapes",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-unicode-regex",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-spread",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-destructuring",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-block-scoping",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-typeof-symbol",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-new-target",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-regenerator",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-member-expression-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-property-literals",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-reserved-words",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-export-namespace-from",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-modules-commonjs",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "transform-dynamic-import",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "syntax-top-level-await",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+  [
+    "syntax-import-meta",
+    {
+      "loose": undefined,
+      "spec": false,
+      "useBuiltIns": false,
+    },
+  ],
+]
+`;
