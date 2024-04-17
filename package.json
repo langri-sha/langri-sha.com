@@ -36,6 +36,7 @@
     "@langri-sha/babel-preset": "1.0.0-next",
     "@langri-sha/eslint-config": "1.0.0-next",
     "@langri-sha/jest-config": "1.0.0-next",
+    "@langri-sha/lint-staged": "1.0.0-next",
     "@langri-sha/tsconfig": "1.0.0-next",
     "eslint": "8.57.0",
     "flow-bin": "0.169.0",

@@ -33,6 +33,9 @@ importers:
       '@langri-sha/jest-config':
         specifier: 1.0.0-next
         version: link:packages/jest-config
+      '@langri-sha/lint-staged':
+        specifier: 1.0.0-next
+        version: link:packages/lint-staged
       '@langri-sha/tsconfig':
         specifier: 1.0.0-next
         version: link:packages/tsconfig
@@ -224,7 +227,11 @@ importers:
         specifier: 1.0.0-next
         version: link:../tsconfig
 
-  packages/lint-staged: {}
+  packages/lint-staged:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
   packages/monorepo:
     dependencies:
