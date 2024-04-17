@@ -1,5 +1,4 @@
 const { ESLint } = require('eslint')
-// @ts-expect-error Missing Prettier type definitions.
 const prettier = require('prettier')
 
 const eslintCli = new ESLint({
@@ -11,6 +10,7 @@ const eslintCli = new ESLint({
  */
 module.exports = {
   '*.{js,jsx}': async (files) => {
+    /** @type {[string, boolean][]} */
     const ignored = await Promise.all(
       files.map(async (file) => [file, await eslintCli.isPathIgnored(file)]),
     )
@@ -23,6 +23,7 @@ module.exports = {
   '*.{css,html,json,md,yaml,yml}': async (files) => {
     const options = { ignorePath: './.prettierignore' }
 
+    /** @type {[string, import('prettier').FileInfoResult][]} */
     const ignored = await Promise.all(
       files.map(async (file) => [
         file,
