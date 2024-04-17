@@ -1,35 +1,26 @@
-// @flow
-require('@babel/register')({
-  // $FlowExpectedError[incompatible-call]: Regular expressions are allowed.
-  only: [/(packages|web)\/[\w-]+\/src/],
-})
+import path from 'node:path'
 
-const path = require('path')
-
-const {
+import {
   CleanPlugin,
   CopyPlugin,
   EnvironmentPlugin,
   HtmlPlugin,
   TerserPlugin,
+  type Configuration,
   resolveLoader,
-} = require('@langri-sha/webpack')
+} from '@langri-sha/webpack'
 
-/* ::
-import type { WebpackOptions } from '@langri-sha/webpack'
-
-type Config = {
-	development: boolean,
-	production: boolean
+type Options = {
+  development?: boolean
+  production?: boolean
 }
-*/
 
 const env =
-  (options /* :: : (Config) => Object */) =>
-  ({ development = true, production = false } /* :: : Config */ = {}) =>
+  (options: (config: Options) => Configuration) =>
+  ({ development = true, production = false }: Options = {}) =>
     options({ development, production })
 
-module.exports = (env(({ development, production }) => ({
+export default env(({ development, production }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
   entry: './src/index.js',
@@ -99,4 +90,4 @@ module.exports = (env(({ development, production }) => ({
       NODE_ENV: development ? 'development' : 'production',
     }),
   ],
-})) /*: WebpackOptions */)
+}))

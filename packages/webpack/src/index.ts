@@ -4,9 +4,7 @@ import path from 'path'
 import type { ResolveOptions } from 'webpack'
 
 // Stock.
-export { default } from 'webpack'
-export const { EnvironmentPlugin } = require('webpack')
-export type { WebpackOptions } from 'webpack'
+export { default, EnvironmentPlugin, type Configuration } from 'webpack'
 
 // Theirs.
 export { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
