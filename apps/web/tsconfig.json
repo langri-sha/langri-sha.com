@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@langri-sha/tsconfig/project.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": ".tsbuild"
+  },
+  "files": [],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

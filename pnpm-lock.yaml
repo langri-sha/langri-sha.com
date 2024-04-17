@@ -88,6 +88,9 @@ importers:
       '@langri-sha/babel-preset':
         specifier: 1.0.0-next
         version: link:../../packages/babel-preset
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../../packages/tsconfig
       '@langri-sha/webpack':
         specifier: 1.0.0-next
         version: link:../../packages/webpack

@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "1.0.0-next",
+    "@langri-sha/tsconfig": "1.0.0-next",
     "@langri-sha/webpack": "1.0.0-next"
   }
 }
