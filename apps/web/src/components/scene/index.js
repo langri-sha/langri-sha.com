@@ -18,7 +18,7 @@ export class Scene extends React.PureComponent<{}> {
     const fragmentShader = createShader(
       gl,
       gl.FRAGMENT_SHADER,
-      fragmentShaderSource
+      fragmentShaderSource,
     )
     const program = createProgram(gl, vertexShader, fragmentShader)
 
@@ -29,7 +29,7 @@ export class Scene extends React.PureComponent<{}> {
     const positions = [0, 0, 0, 0.5, 0.7, 0]
     const positionAttributeLocation = gl.getAttribLocation(
       program,
-      'a_position'
+      'a_position',
     )
     const positionBuffer = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
@@ -56,7 +56,7 @@ export class Scene extends React.PureComponent<{}> {
       type,
       normalize,
       stride,
-      0
+      0,
     )
 
     const primitiveType = gl.TRIANGLES

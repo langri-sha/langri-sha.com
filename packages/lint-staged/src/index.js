@@ -12,7 +12,7 @@ const eslintCli = new ESLint({
 module.exports = {
   '*.{js,jsx}': async (files) => {
     const ignored = await Promise.all(
-      files.map(async (file) => [file, await eslintCli.isPathIgnored(file)])
+      files.map(async (file) => [file, await eslintCli.isPathIgnored(file)]),
     )
     const filtered = ignored
       .filter(([, isIgnored]) => !isIgnored)
@@ -27,7 +27,7 @@ module.exports = {
       files.map(async (file) => [
         file,
         await prettier.getFileInfo(file, options),
-      ])
+      ]),
     )
     const filtered = ignored
       .filter(([, { ignored }]) => !ignored)
