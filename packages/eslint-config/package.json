@@ -1,7 +1,7 @@
 {
   "name": "@langri-sha/eslint-config",
-  "private": true,
   "version": "1.0.0-next",
+  "private": true,
   "main": "src/index.js",
   "devDependencies": {
     "@babel/eslint-parser": "7.24.1",

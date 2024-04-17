@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/flow-stubs",
+  "version": "1.0.0-next",
   "private": true,
-  "main": "src/index.js",
-  "version": "1.0.0-next"
+  "main": "src/index.js"
 }

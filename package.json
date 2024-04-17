@@ -1,33 +1,30 @@
 {
   "name": "langri-sha.com",
-  "description": "Langri-Sha org",
   "private": true,
-  "main": "src/index.js",
-  "scripts": {
-    "start": "pnpm run --filter @langri-sha/web start",
-    "build": "pnpm run --filter @langri-sha/web build",
-    "test": "pnpm run --filter @langri-sha/web test",
-    "flow-typed-mono": "pnpm run -r flow-typed --flowVersion $(cat .flowconfig | head -n2 | tail -n1) install --rootDir $(pwd) --skip",
-    "prepare": "husky"
-  },
-  "engines": {
-    "node": ">=20.12.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com"
-  },
+  "description": "Langri-Sha org",
   "keywords": [
     "gh-pages",
     "webpack",
     "react"
   ],
-  "author": "Filip Dupanović",
-  "license": "MIT",
+  "homepage": "https://github.com/langri-sha/langri-sha.github.com#readme",
   "bugs": {
     "url": "https://github.com/langri-sha/langri-sha.github.com/issues"
   },
-  "homepage": "https://github.com/langri-sha/langri-sha.github.com#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langri-sha/langri-sha.com"
+  },
+  "license": "MIT",
+  "author": "Filip Dupanović",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "pnpm run --filter @langri-sha/web build",
+    "flow-typed-mono": "pnpm run -r flow-typed --flowVersion $(cat .flowconfig | head -n2 | tail -n1) install --rootDir $(pwd) --skip",
+    "prepare": "husky",
+    "start": "pnpm run --filter @langri-sha/web start",
+    "test": "pnpm run --filter @langri-sha/web test"
+  },
   "dependencies": {
     "@babel/core": "7.24.4",
     "react": "18.2.0",
@@ -49,5 +46,8 @@
     "prettier": "2.8.8",
     "ts-node": "10.9.2",
     "typescript": "5.4.5"
+  },
+  "engines": {
+    "node": ">=20.12.0"
   }
 }

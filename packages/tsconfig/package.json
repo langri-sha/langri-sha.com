@@ -1,8 +1,8 @@
 {
   "name": "@langri-sha/tsconfig",
+  "version": "1.0.0-next",
   "private": true,
   "main": "base.json",
-  "version": "1.0.0-next",
   "peerDependencies": {
     "typescript": "^5.0.0"
   }
