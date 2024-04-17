@@ -17,6 +17,6 @@
     "@langri-sha/tsconfig": "1.0.0-next"
   },
   "peerDependencies": {
-    "webpack": "*"
+    "webpack": "^5.0.0"
   }
 }
