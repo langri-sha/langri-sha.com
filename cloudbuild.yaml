@@ -82,6 +82,19 @@ steps:
     args: ['tsc', '--build', '.']
     waitFor: ['PNPM install']
 
+  - name: 'node:current'
+    id: 'Sort packages'
+    args:
+      [
+        'npx',
+        'sort-package-json',
+        '--check',
+        '**/apps/*/package.json',
+        '**/packages/*/package.json',
+        'package.json',
+      ]
+    waitFor: ['PNPM install']
+
   - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Build'
     args: ['build']
