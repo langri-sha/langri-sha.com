@@ -1,10 +1,8 @@
-import type { ConfigAPI, PluginItem, TransformOptions } from '@babel/core'
+import type { PluginItem, TransformOptions } from '@babel/core'
 import * as babel from '@babel/core'
 import * as R from 'ramda'
 
 import monorepo from '@langri-sha/monorepo'
-
-export type { ConfigAPI }
 
 export type Preset = {
   plugins: PluginItem[]
