@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.0.0-next"
+    "@langri-sha/tsconfig": "1.0.0-next",
+    "@types/lint-staged": "13.3.0"
   },
   "peerDependencies": {
     "lint-staged": "^15.0.0"
