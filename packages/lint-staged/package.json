@@ -6,5 +6,8 @@
   "main": "src/index.js",
   "devDependencies": {
     "@langri-sha/tsconfig": "1.0.0-next"
+  },
+  "peerDependencies": {
+    "lint-staged": "^15.0.0"
   }
 }
