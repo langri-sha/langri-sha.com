@@ -1,5 +1,7 @@
-// @flow
-module.exports = () /*: mixed */ => ({
+/**
+ * @type {import('@babel/core').ConfigFunction}
+ */
+module.exports = (api) => ({
   presets: [
     ours`@babel/preset-env`,
     ours`@babel/preset-flow`,

@@ -3,7 +3,8 @@
   "extends": "@langri-sha/tsconfig/project.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": ".tsbuild"
+    "outDir": ".tsbuild",
+    "checkJs": true
   },
   "references": [{ "path": "../jest-test" }, { "path": "../tsconfig" }]
 }
