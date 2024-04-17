@@ -98,7 +98,7 @@ importers:
   packages/babel-preset:
     dependencies:
       '@babel/core':
-        specifier: '*'
+        specifier: ^7.0.0
         version: 7.24.4
       '@babel/plugin-proposal-class-properties':
         specifier: 7.18.6
