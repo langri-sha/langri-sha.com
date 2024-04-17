@@ -19,7 +19,8 @@
   "devDependencies": {
     "@langri-sha/babel-test": "1.0.0-next",
     "@langri-sha/jest-test": "1.0.0-next",
-    "@langri-sha/tsconfig": "1.0.0-next"
+    "@langri-sha/tsconfig": "1.0.0-next",
+    "@types/node": "20.12.7"
   },
   "peerDependencies": {
     "@babel/core": "*"
