@@ -1,12 +1,12 @@
 {
   "name": "@langri-sha/web",
-  "description": "langri-sha.com web",
-  "private": true,
-  "main": "src/index.js",
   "version": "1.0.0-next",
+  "private": true,
+  "description": "langri-sha.com web",
+  "main": "src/index.js",
   "scripts": {
-    "start": "webpack serve --progress --open --hot --port 8080",
     "build": "webpack --env production --progress",
+    "start": "webpack serve --progress --open --hot --port 8080",
     "test": "webpack --debug --bail"
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "webfontloader": "1.6.28"
   },
   "devDependencies": {
-    "@langri-sha/webpack": "1.0.0-next",
-    "@langri-sha/babel-preset": "1.0.0-next"
+    "@langri-sha/babel-preset": "1.0.0-next",
+    "@langri-sha/webpack": "1.0.0-next"
   }
 }
