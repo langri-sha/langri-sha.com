@@ -92,34 +92,6 @@ importers:
         specifier: 1.0.0-next
         version: link:../../packages/webpack
 
-  packages/babel-test:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.0.0
-        version: 7.24.4
-      ramda:
-        specifier: 0.29.1
-        version: 0.29.1
-    devDependencies:
-      '@langri-sha/jest-test':
-        specifier: 1.0.0-next
-        version: link:../jest-test
-      '@langri-sha/monorepo':
-        specifier: 1.0.0-next
-        version: link:../monorepo
-      '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
-        version: link:../tsconfig
-      '@types/babel__core':
-        specifier: 7.20.5
-        version: 7.20.5
-      '@types/node':
-        specifier: 20.12.7
-        version: 20.12.7
-      '@types/ramda':
-        specifier: 0.29.12
-        version: 0.29.12
-
   packages/babel-preset:
     dependencies:
       '@babel/core':
@@ -158,6 +130,34 @@ importers:
       '@emotion/babel-plugin':
         specifier: 11.11.0
         version: 11.11.0
+
+  packages/babel-test:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.0.0
+        version: 7.24.4
+      ramda:
+        specifier: 0.29.1
+        version: 0.29.1
+    devDependencies:
+      '@langri-sha/jest-test':
+        specifier: 1.0.0-next
+        version: link:../jest-test
+      '@langri-sha/monorepo':
+        specifier: 1.0.0-next
+        version: link:../monorepo
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
+      '@types/babel__core':
+        specifier: 7.20.5
+        version: 7.20.5
+      '@types/node':
+        specifier: 20.12.7
+        version: 20.12.7
+      '@types/ramda':
+        specifier: 0.29.12
+        version: 0.29.12
 
   packages/eslint-config:
     dependencies:
@@ -266,6 +266,9 @@ importers:
       '@langri-sha/babel-preset':
         specifier: 1.0.0-next
         version: link:../babel-preset
+      '@langri-sha/tsconfig':
+        specifier: 1.0.0-next
+        version: link:../tsconfig
 
 packages:
 

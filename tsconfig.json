@@ -7,6 +7,7 @@
     { "path": "./packages/jest-config" },
     { "path": "./packages/jest-test" },
     { "path": "./packages/monorepo" },
-    { "path": "./packages/tsconfig" }
+    { "path": "./packages/tsconfig" },
+    { "path": "./packages/webpack" }
   ]
 }
