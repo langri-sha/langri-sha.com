@@ -224,6 +224,8 @@ importers:
         specifier: 1.0.0-next
         version: link:../tsconfig
 
+  packages/lint-staged: {}
+
   packages/monorepo:
     dependencies:
       find-up:
