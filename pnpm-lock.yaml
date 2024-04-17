@@ -143,6 +143,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: 1.0.0-next
         version: link:../tsconfig
+      '@types/babel__core':
+        specifier: 7.20.5
+        version: 7.20.5
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
