@@ -79,7 +79,7 @@ class Processor {
     const noiseSource = this.context.createScriptProcessor(
       this.bufferSize,
       1,
-      2
+      2,
     )
     noiseSource.onaudioprocess = (e) => {
       const bufferL = e.outputBuffer.getChannelData(0)
@@ -100,7 +100,7 @@ class Processor {
         y += rand(-0.1, 0.1)
         z += rand(-0.1, 0.1)
         pannerNode.setPosition(x, y, z)
-      }, 500)
+      }, 500),
     )
   }
 

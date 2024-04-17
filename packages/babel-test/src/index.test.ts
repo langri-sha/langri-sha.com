@@ -5,7 +5,7 @@ import { loadPresetPlugins } from './'
 test('resolves configured Babel preset plugins', async () => {
   const plugins = await loadPresetPlugins(
     'development',
-    require.resolve('./fixtures/babel-preset-test')
+    require.resolve('./fixtures/babel-preset-test'),
   )
 
   expect(plugins).toMatchInlineSnapshot(`

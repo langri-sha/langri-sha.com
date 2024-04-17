@@ -38,7 +38,7 @@ const findRoot = (): string => {
 
   if (!result) {
     throw new Error(
-      'Could not resolve the root directory of the monorepo. Make sure you have a lockfile generated first.'
+      'Could not resolve the root directory of the monorepo. Make sure you have a lockfile generated first.',
     )
   }
 

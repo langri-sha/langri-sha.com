@@ -60,7 +60,7 @@ export const Header = (): React.Element<typeof Root> => (
 
 const Root: React.AbstractComponent<
   React.ElementConfig<'header'>,
-  HTMLElement
+  HTMLElement,
 > = styled.header`
   ${animations.booming};
   ${layers.foreground};

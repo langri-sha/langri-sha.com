@@ -14,7 +14,7 @@ const icon = css`
 
 export const Docker: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}
@@ -50,7 +50,7 @@ export const Docker: React.AbstractComponent<
 
 export const Github: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}
@@ -66,7 +66,7 @@ export const Github: React.AbstractComponent<
 
 export const Twitter: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}
@@ -82,7 +82,7 @@ export const Twitter: React.AbstractComponent<
 
 export const Npm: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}
@@ -98,7 +98,7 @@ export const Npm: React.AbstractComponent<
 
 export const Keybase: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}
@@ -115,7 +115,7 @@ export const Keybase: React.AbstractComponent<
 
 export const Stackoverflow: React.AbstractComponent<
   React.ElementConfig<'svg'>,
-  HTMLElement
+  HTMLElement,
 > = styled(({ className }) => (
   <svg
     className={className}

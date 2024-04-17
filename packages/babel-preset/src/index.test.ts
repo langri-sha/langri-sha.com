@@ -6,7 +6,7 @@ test('default preset plugins', async () => {
   for (const environment of ['development', 'production']) {
     const plugins = await loadPresetPlugins(
       environment,
-      '@langri-sha/babel-preset'
+      '@langri-sha/babel-preset',
     )
 
     expect(plugins).toMatchSnapshot(`${environment} environment`)

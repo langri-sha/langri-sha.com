@@ -15,7 +15,7 @@ export type Preset = {
  */
 export const loadPresetPlugins = async (
   envName: string,
-  preset: PluginItem
+  preset: PluginItem,
 ): Promise<Array<[name: string, options: Record<string, unknown>]>> => {
   // @ts-expect-error: Missing `babel.loadOptionsAsync`.
   const { plugins } = await babel.loadOptionsAsync(options(envName, preset))
@@ -23,7 +23,7 @@ export const loadPresetPlugins = async (
   // @ts-expect-error: `any[][]` is not assignable to returned tuple.
   return R.pipe(
     R.map(transformPaths),
-    R.map(R.map(R.when(R.is(Object), transformNodeVersion)))
+    R.map(R.map(R.when(R.is(Object), transformNodeVersion))),
   )(plugins)
 }
 
@@ -50,7 +50,7 @@ const transformNodeVersion = R.evolve({
   targets: R.evolve({
     node: R.when(
       R.equals(process.version.slice(1)),
-      R.always('%NODE_CURRENT%')
+      R.always('%NODE_CURRENT%'),
     ),
   }),
 })

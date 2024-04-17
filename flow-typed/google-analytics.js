@@ -15,7 +15,7 @@ declare class Tracker {
     index: number,
     name: string,
     value: string,
-    opt_scope?: number
+    opt_scope?: number,
   ): boolean;
   _setSampleRate(newRate: string): void;
   _setSessionCookieTimeout(cookieTimeoutMillis: number): void;
@@ -563,7 +563,7 @@ declare var ga: {
     eventAction: string,
     eventLabel?: string,
     eventValue?: number,
-    fieldsObject?: FieldsObject
+    fieldsObject?: FieldsObject,
   ): void,
   (
     command: 'send',
@@ -574,7 +574,7 @@ declare var ga: {
       eventLabel?: string | void,
       eventValue?: number | void,
       nonInteraction?: boolean | void,
-    }
+    },
   ): void,
   (
     command: 'send',
@@ -585,7 +585,7 @@ declare var ga: {
       eventLabel?: string | void,
       eventValue?: number | void,
       nonInteraction?: boolean | void,
-    }
+    },
   ): void,
   (command: 'send', hitType: 'pageview', page: string): void,
   (
@@ -593,7 +593,7 @@ declare var ga: {
     hitType: 'social',
     socialNetwork: string,
     socialAction: string,
-    socialTarget: string
+    socialTarget: string,
   ): void,
   (
     command: 'send',
@@ -602,14 +602,14 @@ declare var ga: {
       socialNetwork: string,
       socialAction: string,
       socialTarget: string,
-    }
+    },
   ): void,
   (
     command: 'send',
     hitType: 'timing',
     timingCategory: string,
     timingVar: string,
-    timingValue: number
+    timingValue: number,
   ): void,
   (
     command: 'send',
@@ -618,7 +618,7 @@ declare var ga: {
       timingCategory: string,
       timingVar: string,
       timingValue: number,
-    }
+    },
   ): void,
   (command: 'send', fieldsObject: FieldsObject): void,
   (command: string, hitType: HitType, ...fields: any[]): void,
@@ -626,7 +626,7 @@ declare var ga: {
   (
     command: 'provide',
     pluginName: string,
-    pluginConstructor: (tracker: Tracker, pluginOptions?: Object) => void
+    pluginConstructor: (tracker: Tracker, pluginOptions?: Object) => void,
   ): void,
 
   (
@@ -634,7 +634,7 @@ declare var ga: {
     trackingId: string,
     cookieDomain?: string,
     name?: string,
-    fieldsObject?: FieldsObject
+    fieldsObject?: FieldsObject,
   ): void,
   (command: 'remove'): void,
 
@@ -646,12 +646,12 @@ declare var ga: {
     trackingId: string,
     cookieDomain: string,
     name: string,
-    fieldsObject?: FieldsObject
+    fieldsObject?: FieldsObject,
   ): Tracker,
   create(
     trackingId: string,
     cookieDomain: string,
-    fieldsObject?: FieldsObject
+    fieldsObject?: FieldsObject,
   ): Tracker,
   create(trackingId: string, fieldsObject?: FieldsObject): Tracker,
 
