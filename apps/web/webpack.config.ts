@@ -7,8 +7,8 @@ import {
   EnvironmentPlugin,
   HtmlPlugin,
   TerserPlugin,
+  resolve,
   resolveLoader,
-  resolve
 } from '@langri-sha/webpack'
 
 type Options = {

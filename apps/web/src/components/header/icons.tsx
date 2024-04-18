@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import * as React from 'react'
 import styled from '@emotion/styled'
 
 const icon = css`
@@ -11,7 +10,7 @@ const icon = css`
   fill: currentColor;
 `
 
-export const Docker = styled(({ className }: { className?: string}) => (
+export const Docker = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +56,7 @@ export const Github = styled(({ className }: { className?: string }) => (
   ${icon};
 `
 
-export const Twitter = styled(({ className }: { className?: string}) => (
+export const Twitter = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +69,7 @@ export const Twitter = styled(({ className }: { className?: string}) => (
   ${icon};
 `
 
-export const Npm = styled(({ className }: { className?: string}) => (
+export const Npm = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +82,7 @@ export const Npm = styled(({ className }: { className?: string}) => (
   ${icon};
 `
 
-export const Keybase = styled(({ className }: { className?: string}) => (
+export const Keybase = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +96,7 @@ export const Keybase = styled(({ className }: { className?: string}) => (
   width: 0.7861328125em;
 `
 
-export const Stackoverflow = styled(({ className }: { className?: string}) => (
+export const Stackoverflow = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
