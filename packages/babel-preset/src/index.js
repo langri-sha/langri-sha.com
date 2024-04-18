@@ -4,7 +4,6 @@
 module.exports = (api) => ({
   presets: [
     ours`@babel/preset-env`,
-    ours`@babel/preset-flow`,
     [
       ours`@babel/preset-react`,
       {

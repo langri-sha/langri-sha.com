@@ -45,13 +45,6 @@ exports[`default preset plugins: development environment 1`] = `
     {},
   ],
   [
-    "transform-flow-strip-types",
-    {
-      "all": undefined,
-      "allowDeclareFields": undefined,
-    },
-  ],
-  [
     "transform-unicode-sets-regex",
     {
       "loose": undefined,
@@ -467,13 +460,6 @@ exports[`default preset plugins: production environment 1`] = `
   [
     "transform-react-pure-annotations",
     {},
-  ],
-  [
-    "transform-flow-strip-types",
-    {
-      "all": undefined,
-      "allowDeclareFields": undefined,
-    },
   ],
   [
     "transform-unicode-sets-regex",

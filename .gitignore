@@ -4,7 +4,6 @@
 !.editorconfig
 !.eslintignore
 !.eslintrc.js
-!.flowconfig
 !.gitignore
 !.gitkeep
 !.husky
