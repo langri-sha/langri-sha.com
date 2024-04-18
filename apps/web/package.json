@@ -20,6 +20,8 @@
   "devDependencies": {
     "@langri-sha/babel-preset": "1.0.0-next",
     "@langri-sha/tsconfig": "1.0.0-next",
-    "@langri-sha/webpack": "1.0.0-next"
+    "@langri-sha/webpack": "1.0.0-next",
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25"
   }
 }
