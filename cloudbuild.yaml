@@ -58,10 +58,6 @@ steps:
     args: ['install']
     waitFor: ['Configure environment', 'Prepare image']
 
-  - name: 'node:current'
-    id: 'Flow'
-    args: ['npx', 'flow', 'check', '--max-warnings', '0']
-
   - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'ESLint'
     args: ['eslint', '--ext', 'js,jsx', '.']

@@ -2,4 +2,3 @@
 !.eslintrc.js
 
 dist/
-flow-typed/npm/

@@ -1,5 +1,3 @@
-// @flow
-
 import path from 'path'
 import type { ResolveOptions } from 'webpack'
 
