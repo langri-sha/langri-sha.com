@@ -11,7 +11,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:promise/recommended',
-    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:unicorn/recommended',
 
     // NB: Prettier rules must come last.
