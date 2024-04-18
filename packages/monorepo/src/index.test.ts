@@ -1,4 +1,4 @@
-import { beforeEach, expect, test, tempy } from '@langri-sha/jest-test'
+import { beforeEach, expect, tempy, test } from '@langri-sha/jest-test'
 import path from 'node:path'
 import monorepo from './index'
 

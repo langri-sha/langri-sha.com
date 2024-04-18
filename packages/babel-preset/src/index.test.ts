@@ -1,4 +1,4 @@
-import { test, expect } from '@langri-sha/jest-test'
+import { expect, test } from '@langri-sha/jest-test'
 
 import { loadPresetPlugins } from '@langri-sha/babel-test'
 

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 interface Props {
-  action: string,
-  category: string,
-  children: React.ReactNode,
-  href: string,
-  label: string,
+  action: string
+  category: string
+  children: React.ReactNode
+  href: string
+  label: string
 }
 
 export class Link extends React.PureComponent<Props> {
