@@ -11,7 +11,6 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:flowtype/recommended',
     'plugin:promise/recommended',
     'plugin:react/recommended',
     'plugin:unicorn/recommended',
@@ -19,7 +18,7 @@ module.exports = {
     // NB: Prettier rules must come last.
     'plugin:prettier/recommended',
   ],
-  plugins: ['@emotion', 'flowtype', 'promise', 'react', 'unicorn'],
+  plugins: ['@emotion', 'promise', 'react', 'unicorn'],
   globals: {
     ga: 'writable',
   },
