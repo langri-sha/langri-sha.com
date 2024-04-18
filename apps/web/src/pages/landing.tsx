@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { Global } from '@emotion/react'
@@ -6,7 +5,7 @@ import { Global } from '@emotion/react'
 import { colors, global } from '../styles'
 import { Drone, Header, Scene } from '../components'
 
-export const Landing = (): React.Element<typeof React.Fragment> => (
+export const Landing = () => (
   <React.Fragment>
     <Global styles={global} />
     <Root>

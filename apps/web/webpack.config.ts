@@ -2,12 +2,13 @@ import path from 'node:path'
 
 import {
   CleanPlugin,
+  type Configuration,
   CopyPlugin,
   EnvironmentPlugin,
   HtmlPlugin,
   TerserPlugin,
-  type Configuration,
   resolveLoader,
+  resolve
 } from '@langri-sha/webpack'
 
 type Options = {
@@ -23,7 +24,7 @@ const env =
 export default env(({ development, production }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -35,11 +36,12 @@ export default env(({ development, production }) => ({
       }),
     ],
   },
+  resolve,
   resolveLoader,
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         options: {
