@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 
 export class Drone extends React.PureComponent<{}> {
@@ -36,7 +35,7 @@ class Processor {
 
   noiseNodes: ScriptProcessorNode[] = []
 
-  panIntervals: IntervalID[] = []
+  panIntervals: number[] = []
 
   constructor(oscilatorsSize: number = 40, baseNote: number = 60) {
     const context = new AudioContext()

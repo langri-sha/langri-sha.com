@@ -1,12 +1,10 @@
-// @flow
-import * as React from 'react'
 import styled from '@emotion/styled'
 
 import { animations, colors, fonts, layers, media } from '../../styles'
 import { Link } from '../link'
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 
-export const Header = (): React.Element<typeof Root> => (
+export const Header = () => (
   <Root>
     <Title>Langri-Sha</Title>
     <Nav>
@@ -58,10 +56,7 @@ export const Header = (): React.Element<typeof Root> => (
   </Root>
 )
 
-const Root: React.AbstractComponent<
-  React.ElementConfig<'header'>,
-  HTMLElement,
-> = styled.header`
+const Root = styled.header`
   ${animations.booming};
   ${layers.foreground};
   position: relative;

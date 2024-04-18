@@ -1,4 +1,3 @@
-// @flow
 import { css } from '@emotion/react'
 import * as React from 'react'
 import styled from '@emotion/styled'
@@ -12,10 +11,7 @@ const icon = css`
   fill: currentColor;
 `
 
-export const Docker: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Docker = styled(({ className }: { className?: string}) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -48,10 +44,7 @@ export const Docker: React.AbstractComponent<
   width: 1.099609375em;
 `
 
-export const Github: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Github = styled(({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -64,10 +57,7 @@ export const Github: React.AbstractComponent<
   ${icon};
 `
 
-export const Twitter: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Twitter = styled(({ className }: { className?: string}) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -80,10 +70,7 @@ export const Twitter: React.AbstractComponent<
   ${icon};
 `
 
-export const Npm: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Npm = styled(({ className }: { className?: string}) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -96,10 +83,7 @@ export const Npm: React.AbstractComponent<
   ${icon};
 `
 
-export const Keybase: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Keybase = styled(({ className }: { className?: string}) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -113,10 +97,7 @@ export const Keybase: React.AbstractComponent<
   width: 0.7861328125em;
 `
 
-export const Stackoverflow: React.AbstractComponent<
-  React.ElementConfig<'svg'>,
-  HTMLElement,
-> = styled(({ className }) => (
+export const Stackoverflow = styled(({ className }: { className?: string}) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"

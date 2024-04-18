@@ -1,13 +1,11 @@
-// @flow
 import * as React from 'react'
 
-type Props = {
+interface Props {
   action: string,
   category: string,
-  children: React.Node,
+  children: React.ReactNode,
   href: string,
   label: string,
-  ...
 }
 
 export class Link extends React.PureComponent<Props> {
@@ -20,7 +18,7 @@ export class Link extends React.PureComponent<Props> {
     })
   }
 
-  render(): React.Element<'a'> {
+  render() {
     const { href, category, action, label, children, ...props } = this.props
 
     return (

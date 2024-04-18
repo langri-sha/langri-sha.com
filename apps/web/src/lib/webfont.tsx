@@ -1,4 +1,3 @@
-// @flow
 import WebFont from 'webfontloader'
 
 const defaults = {
@@ -6,5 +5,5 @@ const defaults = {
   events: false,
 }
 
-export default (options: { families: string[], text?: string }): void =>
+export default (options: { families: string[], text?: string }) =>
   WebFont.load({ ...defaults, google: options })

@@ -1,5 +1,4 @@
-// @flow @jsx jsx
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 import * as React from 'react'
 
 import vertexShaderSource from './default.vert'
@@ -65,7 +64,7 @@ export class Scene extends React.PureComponent<{}> {
     gl.drawArrays(primitiveType, offset, count)
   }
 
-  render(): React.Element<'canvas'> {
+  render() {
     return (
       <canvas
         ref={this.canvas}
