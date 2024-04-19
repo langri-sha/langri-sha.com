@@ -17,6 +17,7 @@
     "@langri-sha/tsconfig": "1.0.0-next"
   },
   "peerDependencies": {
+    "@babel/register": "^7.0.0",
     "webpack": "^5.0.0"
   }
 }
