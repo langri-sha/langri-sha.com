@@ -8,46 +8,48 @@ export const Header = () => (
   <Root>
     <Title>Langri-Sha</Title>
     <Nav>
-      {[
+      {(
         [
-          'Stack Overflow',
-          'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
-          'StackOverflow profile #SOreadytohelp 💓',
-          <Stackoverflow key={'stackoverflow'} />,
-        ],
-        [
-          'Keybase',
-          'https://keybase.io/langrisha',
-          'Identity details on Keybase.io',
-          <Keybase key={'keybase'} />,
-        ],
-        [
-          'GitHub',
-          'https://github.com/langri-sha',
-          'GitHub profile',
-          <Github key={'github'} />,
-        ],
-        [
-          'Docker',
-          'https://hub.docker.com/u/langrisha/',
-          'Docker Hub profile',
-          <Docker key={'docker'} />,
-        ],
-        [
-          'NPM',
-          'https://www.npmjs.com/~langri-sha',
-          'NPM profile',
-          <Npm key={'npm'} />,
-        ],
-      ].map(([name, href, title, icon]) => (
+          [
+            'Stack Overflow',
+            'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
+            'StackOverflow profile #SOreadytohelp 💓',
+            <Stackoverflow key={'stackoverflow'} />,
+          ],
+          [
+            'Keybase',
+            'https://keybase.io/langrisha',
+            'Identity details on Keybase.io',
+            <Keybase key={'keybase'} />,
+          ],
+          [
+            'GitHub',
+            'https://github.com/langri-sha',
+            'GitHub profile',
+            <Github key={'github'} />,
+          ],
+          [
+            'Docker',
+            'https://hub.docker.com/u/langrisha/',
+            'Docker Hub profile',
+            <Docker key={'docker'} />,
+          ],
+          [
+            'NPM',
+            'https://www.npmjs.com/~langri-sha',
+            'NPM profile',
+            <Npm key={'npm'} />,
+          ],
+        ] as const
+      ).map(([name, href, title, icon]) => (
         <EnhancedLink
           key={name}
           href={href}
           title={title}
           target="_blank"
-          category="Social Links"
-          action="click"
-          label={name}
+          eventCategory="Social Links"
+          eventAction="click"
+          eventLabel={name}
         >
           {icon}
         </EnhancedLink>
@@ -88,7 +90,7 @@ const Nav = styled.nav`
   justify-content: center;
 `
 
-const EnhancedLink = styled(Link)`
+const EnhancedLink: typeof Link = styled(Link)`
   color: ${colors.text};
   font-size: 3.2rem;
   text-decoration: none;

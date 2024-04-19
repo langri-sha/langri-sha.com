@@ -1,36 +1,36 @@
 import * as React from 'react'
 
-interface Props {
-  action: string
-  category: string
-  children: React.ReactNode
+export interface LinkProps {
+  children: React.ReactElement
+  eventAction: string
+  eventCategory: string
+  eventLabel: string
   href: string
-  label: string
+  target: string
+  title: string
 }
 
-export class Link extends React.PureComponent<Props> {
-  track(eventCategory: string, eventAction: string, eventLabel: string): void {
-    ga('send', {
-      hitType: 'event',
-      eventCategory,
-      eventAction,
-      eventLabel,
-    })
-  }
+export const Link: React.FC<LinkProps> = ({
+  eventAction,
+  eventCategory,
+  eventLabel,
+  children,
+  ...props
+}) => {
+  // Use the 'useCallback' hook for optimized event handler
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> =
+    React.useCallback(() => {
+      ga('send', {
+        hitType: 'event',
+        eventCategory,
+        eventAction,
+        eventLabel,
+      })
+    }, [eventCategory, eventAction, eventLabel])
 
-  render() {
-    const { href, category, action, label, children, ...props } = this.props
-
-    return (
-      <a
-        {...props}
-        href={href}
-        onClick={() => {
-          this.track(category, action, label)
-        }}
-      >
-        {children}
-      </a>
-    )
-  }
+  return (
+    <a {...props} onClick={handleClick}>
+      {children}
+    </a>
+  )
 }
