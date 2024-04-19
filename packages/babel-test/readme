@@ -1,49 +1,44 @@
-# @langri-sha/babel-preset
+# @langri-sha/babel-test
 
-This is Babel preset that suitable for targetting modern browsers and runtimes,
-with support for [TypeScript], [Emotion] and [React].
+Provides convenience helpers for inspecting and testing your [Babel] preset.
+
+## Features
+
+- load Babel presets with options, and produce a serializable, cross-platform
+  output of all the loaded plugins and their settings
 
 ## Usage
 
-Install the preset and it's realted dependencies:
+Install related dependencies:
 
 ```sh
-npm install -D @babel/core @langri-sha/babel-preset
+npm install -D @babel/core @langri-sha/babel-test
 ```
 
-Add a root Babel configuration:
+Then load the preset plugins:
 
 ```js
-// babel.config.js
-module.exports = {
-  presets: ['@langri-sha/babel-preset'],
-}
+// Load preset plugins.
+await loadPresetPlugins(
+  // Set Babel API environment.
+  'development',
+  [
+    // Preset to load.
+    '@babel/preset-env',
+    // Configure related preset options.
+    { test: 'TEST_OPTIONS' },
+  ]
+)
+
+/*
+[
+  [
+    "<WORKSPACE>/node_modules/@babel/preset-env/index.js",
+    {
+      "foobar": "quuxnorf",
+    },
+  ],
+]
 ```
 
-For usage with [Webpack] and [`babel-loader`]:
-
-```js
-// webpack.config.js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.(c|m)?(t|j)sx?$/,
-        loader: 'babel-loader',
-      },
-    ],
-  },
-}
-```
-
-## See
-
-- [Using Babel]
-
-[`babel-loader`]: https://www.npmjs.com/package/babel-loader
-[emotion]: https://emotion.sh/docs/babel
-[react]: https://react.dev/learn
-[typescript]:
-  https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html
-[using babel]: https://babeljs.io/setup
-[webpack]: https://webpack.js.org/loaders/babel-loader/
+[babel]: https://babeljs.io/docs/config-files
