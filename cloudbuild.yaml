@@ -74,6 +74,18 @@ steps:
     waitFor: ['PNPM install']
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
+    id: 'Beachball check'
+    entrypoint: ash
+    args:
+      - -c
+      - |
+        if [ -n "$_PR_NUMBER" ]; then
+          pnpm beachball check || \
+          echo "Beachball changes detected. Run 'pnpm beachball change' and commit the changes."
+        fi
+    waitFor: ['PNPM install']
+
+  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'TypeScript'
     args: ['tsc', '--build', '.']
     waitFor: ['PNPM install']
