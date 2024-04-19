@@ -2,6 +2,7 @@
   "name": "@langri-sha/babel-preset",
   "version": "1.0.0-next",
   "private": true,
+  "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "7.24.1",

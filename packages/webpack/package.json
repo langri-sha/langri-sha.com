@@ -2,6 +2,7 @@
   "name": "@langri-sha/webpack",
   "version": "1.0.0-next",
   "private": true,
+  "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
     "babel-loader": "9.1.3",

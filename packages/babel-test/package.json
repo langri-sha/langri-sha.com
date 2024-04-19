@@ -2,6 +2,7 @@
   "name": "@langri-sha/babel-test",
   "version": "1.0.0-next",
   "private": true,
+  "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
     "ramda": "0.29.1"

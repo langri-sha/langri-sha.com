@@ -80,7 +80,7 @@ export default env(({ development, production }) => ({
           from: 'share/robots.txt',
         },
         {
-          from: 'LICENSE.md',
+          from: 'license',
         },
       ],
     }),
