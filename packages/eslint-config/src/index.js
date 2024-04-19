@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es2020: true,
@@ -10,6 +10,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:promise/recommended',
     'plugin:react/jsx-runtime',
     'plugin:unicorn/recommended',
@@ -17,7 +18,7 @@ module.exports = {
     // NB: Prettier rules must come last.
     'plugin:prettier/recommended',
   ],
-  plugins: ['@emotion', 'promise', 'react', 'unicorn'],
+  plugins: ['@typescript-eslint', '@emotion', 'promise', 'react', 'unicorn'],
   globals: {
     ga: 'writable',
   },
@@ -45,4 +46,12 @@ module.exports = {
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/prevent-abbreviations': 'off',
   },
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 }
