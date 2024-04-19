@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export const Drone: React.FC<{}> = () => {
+export const Drone: React.FC<Record<string, never>> = () => {
   const processor = new Processor()
 
   React.useEffect(() => {
