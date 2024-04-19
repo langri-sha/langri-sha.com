@@ -1,14 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": [
-    "@langri-sha/tsconfig/react.json",
+    "@langri-sha/tsconfig/emotion.json",
     "@langri-sha/tsconfig/project.json"
   ],
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": ".tsbuild"
   },
-  "files": ["./webpack.config.ts"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
