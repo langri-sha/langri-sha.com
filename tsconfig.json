@@ -1,7 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig",
-  "files": [],
+  "files": [
+    ".eslintrc.js",
+    "babel.config.js",
+    "jest.config.ts",
+    "lint-staged.config.js",
+    "prettier.config.js"
+  ],
   "references": [
     { "path": "./apps/web" },
     { "path": "./packages/babel-preset" },
