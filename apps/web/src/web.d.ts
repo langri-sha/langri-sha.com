@@ -4,6 +4,12 @@ declare type WebEnv = {
   NODE_ENV?: 'development' | 'production'
 }
 
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv extends WebEnv {}
+  }
+}
+
 declare module 'webfontloader'
 
 declare module '*.css' {
