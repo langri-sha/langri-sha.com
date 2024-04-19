@@ -2,6 +2,7 @@
   "name": "@langri-sha/eslint-config",
   "version": "1.0.0-next",
   "private": true,
+  "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
     "@emotion/eslint-plugin": "11.11.0",

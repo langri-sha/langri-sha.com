@@ -2,6 +2,7 @@
   "name": "@langri-sha/tsconfig",
   "version": "1.0.0-next",
   "private": true,
+  "license": "MIT",
   "main": "base.json",
   "peerDependencies": {
     "typescript": "^5.0.0"

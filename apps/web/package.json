@@ -3,6 +3,7 @@
   "version": "1.0.0-next",
   "private": true,
   "description": "langri-sha.com web",
+  "license": "MIT",
   "main": "src/index.tsx",
   "scripts": {
     "build": "webpack --env production --progress",
