@@ -1,3 +1,5 @@
+/// <reference types="@types/gtag.js" />
+
 declare module 'webfontloader'
 
 declare module '*.css' {
