@@ -60,7 +60,7 @@ steps:
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'ESLint'
-    args: ['eslint', '--ext', 'js,jsx,ts,tsx', '.']
+    args: ['eslint', '.']
     waitFor: ['PNPM install']
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
