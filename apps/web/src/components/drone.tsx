@@ -1,19 +1,17 @@
 import * as React from 'react'
 
-export class Drone extends React.PureComponent<{}> {
-  processor: Processor = new Processor()
+export const Drone: React.FC<{}> = () => {
+  const processor = new Processor()
 
-  componentDidMount() {
-    this.processor.generate()
-  }
+  React.useEffect(() => {
+    processor.generate()
 
-  componentWillUnmount() {
-    this.processor.destroy()
-  }
+    return () => {
+      processor.destroy()
+    }
+  }, [])
 
-  render(): null {
-    return null
-  }
+  return null
 }
 
 /**
@@ -22,20 +20,13 @@ export class Drone extends React.PureComponent<{}> {
  */
 class Processor {
   oscilatorsSize: number
-
   baseNote: number
-
   context: AudioContext
-
   gainNode: GainNode
-
   bufferSize: number = 4096
-
   scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
-
   noiseNodes: ScriptProcessorNode[] = []
-
-  panIntervals: number[] = []
+  panIntervals: Array<number | NodeJS.Timeout> = []
 
   constructor(oscilatorsSize: number = 40, baseNote: number = 60) {
     const context = new AudioContext()
@@ -108,10 +99,5 @@ class Processor {
   }
 }
 
-function mtof(m) {
-  return 2 ** ((m - 69) / 12) * 440
-}
-
-function rand(min, max) {
-  return Math.random() * (max - min) + min
-}
+const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
+const rand = (min: number, max: number) => Math.random() * (max - min) + min

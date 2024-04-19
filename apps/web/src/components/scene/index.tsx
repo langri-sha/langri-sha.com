@@ -4,13 +4,13 @@ import * as React from 'react'
 import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
 
-export class Scene extends React.PureComponent<{}> {
-  canvas: { current: null | HTMLCanvasElement } = React.createRef()
+export const Scene = () => {
+  const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
-  skipComponentDidMount() {
-    if (this.canvas.current === null) return
+  React.useEffect(() => {
+    if (!canvasRef.current) return;
 
-    const gl = this.canvas.current.getContext('webgl')
+    const gl = canvasRef.current.getContext('webgl')
     if (!gl) return
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
@@ -19,6 +19,11 @@ export class Scene extends React.PureComponent<{}> {
       gl.FRAGMENT_SHADER,
       fragmentShaderSource,
     )
+
+    if (!vertexShader || !fragmentShader) {
+      return
+    }
+
     const program = createProgram(gl, vertexShader, fragmentShader)
 
     if (!program) {
@@ -34,7 +39,7 @@ export class Scene extends React.PureComponent<{}> {
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
 
-    resize(gl.canvas)
+    resize(canvasRef.current)
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
 
     gl.clearColor(0, 0, 0, 0)
@@ -62,25 +67,23 @@ export class Scene extends React.PureComponent<{}> {
     const offset = 0
     const count = 3
     gl.drawArrays(primitiveType, offset, count)
-  }
+  }, []);
 
-  render() {
-    return (
-      <canvas
-        ref={this.canvas}
-        css={css`
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100vh;
-          width: 100vw;
-        `}
-      />
-    )
-  }
+  return (
+    <canvas
+      ref={canvasRef}
+      css={css`
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+      `}
+    />
+  )
 }
 
-function createShader(gl, type, source) {
+const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
   const shader = gl.createShader(type)
 
   if (!shader) {
@@ -99,7 +102,7 @@ function createShader(gl, type, source) {
   gl.deleteShader(shader)
 }
 
-function createProgram(gl, vertexShader, fragmentShader) {
+const createProgram = (gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader) => {
   const program = gl.createProgram()
 
   if (!program || !vertexShader || !fragmentShader) {
@@ -120,7 +123,7 @@ function createProgram(gl, vertexShader, fragmentShader) {
   gl.deleteProgram(program)
 }
 
-function resize(canvas) {
+const resize = (canvas: HTMLCanvasElement) => {
   const { width, height, clientWidth, clientHeight } = canvas
 
   const displayWidth = Math.floor(clientWidth * window.devicePixelRatio)

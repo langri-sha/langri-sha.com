@@ -1,5 +1,4 @@
 import { css, keyframes } from '@emotion/react'
-import type { SerializedStyles } from '@emotion/utils'
 
 const boom = keyframes`
   from {
@@ -13,7 +12,7 @@ const boom = keyframes`
   }
 `
 
-export const booming: SerializedStyles = css`
+export const booming = css`
   animation-duration: 3s;
   animation-name: ${boom};
 `
