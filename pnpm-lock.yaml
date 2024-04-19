@@ -171,6 +171,9 @@ importers:
       eslint:
         specifier: ^8.0.0
         version: 8.57.0
+      typescript:
+        specifier: ^5.0.0
+        version: 5.4.5
     devDependencies:
       '@babel/eslint-parser':
         specifier: 7.24.1
