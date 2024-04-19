@@ -1,5 +1,9 @@
 /// <reference types="@types/gtag.js" />
 
+declare type WebEnv = {
+  NODE_ENV?: 'development' | 'production'
+}
+
 declare module 'webfontloader'
 
 declare module '*.css' {
