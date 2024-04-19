@@ -20,11 +20,9 @@ export const Link: React.FC<LinkProps> = ({
   // Use the 'useCallback' hook for optimized event handler
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> =
     React.useCallback(() => {
-      ga('send', {
-        hitType: 'event',
-        eventCategory,
-        eventAction,
-        eventLabel,
+      gtag('event', eventAction, {
+        event_category: eventCategory,
+        event_label: eventLabel,
       })
     }, [eventCategory, eventAction, eventLabel])
 
