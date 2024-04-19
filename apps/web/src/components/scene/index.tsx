@@ -8,7 +8,7 @@ export const Scene = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current) return
 
     const gl = canvasRef.current.getContext('webgl')
     if (!gl) return
@@ -67,7 +67,7 @@ export const Scene = () => {
     const offset = 0
     const count = 3
     gl.drawArrays(primitiveType, offset, count)
-  }, []);
+  }, [])
 
   return (
     <canvas
@@ -83,7 +83,11 @@ export const Scene = () => {
   )
 }
 
-const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+const createShader = (
+  gl: WebGLRenderingContext,
+  type: number,
+  source: string,
+) => {
   const shader = gl.createShader(type)
 
   if (!shader) {
@@ -102,7 +106,11 @@ const createShader = (gl: WebGLRenderingContext, type: number, source: string) =
   gl.deleteShader(shader)
 }
 
-const createProgram = (gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader) => {
+const createProgram = (
+  gl: WebGLRenderingContext,
+  vertexShader: WebGLShader,
+  fragmentShader: WebGLShader,
+) => {
   const program = gl.createProgram()
 
   if (!program || !vertexShader || !fragmentShader) {
