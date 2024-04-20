@@ -11,5 +11,10 @@ terraform {
       source  = "hashicorp/google-beta"
       version = "5.25.0"
     }
+
+    github = {
+      source  = "integrations/github"
+      version = "6.2.1"
+    }
   }
 }
