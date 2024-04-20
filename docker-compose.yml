@@ -2,7 +2,6 @@ x-alpine-args: &alpine-args
   alpine_version: '3.19'
 
 x-node-args: &node-args
-  node_version: '20.12'
   glibc_version: '2.35-r1'
 
 x-user-args: &user-args
