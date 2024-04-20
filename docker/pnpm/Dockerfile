@@ -1,9 +1,8 @@
 # syntax=docker/dockerfile:1
 
 ARG alpine_version
-ARG node_version
 
-FROM node:${node_version}-alpine${alpine_version}
+FROM node:20.12-alpine${alpine_version}
 
 ARG uid
 ARG glibc_version
