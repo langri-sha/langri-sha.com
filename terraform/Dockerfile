@@ -1,9 +1,8 @@
 # syntax=docker/dockerfile:1
 
 ARG alpine_version
-ARG google_cloud_sdk_version
 
-FROM google/cloud-sdk:${google_cloud_sdk_version}-alpine as google_cloud_sdk
+FROM google/cloud-sdk:470.0.0-alpine as google_cloud_sdk
 FROM hashicorp/terraform:1.7.5 as terraform
 
 FROM alpine:${alpine_version} as kubernetes

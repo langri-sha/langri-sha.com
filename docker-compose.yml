@@ -8,9 +8,6 @@ x-node-args: &node-args
   node_version: '20.12'
   glibc_version: '2.35-r1'
 
-x-terraform-args: &terraform-args
-  google_cloud_sdk_version: '470.0.0'
-
 x-user-args: &user-args
   uid: ${UID:-1000}
 
@@ -71,7 +68,7 @@ services:
       cache_from:
         - gcr.io/${PROJECT_ID:-local}/terraform
       args:
-        <<: [*alpine-args, *kubernetes-args, *terraform-args, *user-args]
+        <<: [*alpine-args, *kubernetes-args, *user-args]
     entrypoint: ash
     command: []
 
