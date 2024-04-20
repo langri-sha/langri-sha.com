@@ -1,6 +1,3 @@
-x-alpine-args: &alpine-args
-  alpine_version: '3.19'
-
 x-node-args: &node-args
   glibc_version: '2.35-r1'
 
@@ -88,7 +85,7 @@ services:
       cache_from:
         - gcr.io/${PROJECT_ID:-local}/pnpm
       args:
-        <<: [*alpine-args, *node-args, *user-args]
+        <<: [*node-args, *user-args]
 
   server:
     <<: [*pnpm-svc, *google-dns]
