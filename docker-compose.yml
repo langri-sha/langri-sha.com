@@ -1,6 +1,3 @@
-x-node-args: &node-args
-  glibc_version: '2.35-r1'
-
 x-user-args: &user-args
   uid: ${UID:-1000}
 
@@ -85,7 +82,7 @@ services:
       cache_from:
         - gcr.io/${PROJECT_ID:-local}/pnpm
       args:
-        <<: [*node-args, *user-args]
+        <<: *user-args
 
   server:
     <<: [*pnpm-svc, *google-dns]
