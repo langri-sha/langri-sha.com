@@ -1,0 +1,4 @@
+*.test.*
+.*
+__snapshots__/
+tsconfig.json
