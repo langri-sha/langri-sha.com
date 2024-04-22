@@ -50,3 +50,7 @@ jobs:
             **/apps/*/package.json \
             **/packages/*/package.json \
             package.json
+
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
