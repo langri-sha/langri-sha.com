@@ -1,7 +1,6 @@
 {
   "name": "@langri-sha/babel-preset",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {

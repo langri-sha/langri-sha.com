@@ -1,7 +1,6 @@
 {
   "name": "@langri-sha/babel-test",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
@@ -17,5 +16,8 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

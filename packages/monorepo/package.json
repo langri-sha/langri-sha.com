@@ -1,7 +1,7 @@
 {
   "name": "@langri-sha/monorepo",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
     "find-up": "7.0.0"
@@ -9,5 +9,8 @@
   "devDependencies": {
     "@langri-sha/jest-test": "0.1.0",
     "@langri-sha/tsconfig": "0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

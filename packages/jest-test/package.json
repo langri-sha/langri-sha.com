@@ -1,7 +1,7 @@
 {
   "name": "@langri-sha/jest-test",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
     "@jest/globals": "29.7.0",
@@ -13,5 +13,8 @@
   "peerDependencies": {
     "jest": "^29.0.0",
     "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

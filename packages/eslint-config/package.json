@@ -1,7 +1,6 @@
 {
   "name": "@langri-sha/eslint-config",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
@@ -17,5 +16,8 @@
   "peerDependencies": {
     "eslint": "^8.0.0",
     "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
