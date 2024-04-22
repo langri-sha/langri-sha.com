@@ -29,5 +29,8 @@ jobs:
       - name: PNPM Install
         run: pnpm install
 
+      - name: ESLint
+        run: pnpm eslint .
+
       - name: Prettier
         run: pnpm prettier --check .

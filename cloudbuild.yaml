@@ -59,11 +59,6 @@ steps:
     waitFor: ['Configure environment', 'Prepare image']
 
   - name: 'gcr.io/$PROJECT_ID/pnpm'
-    id: 'ESLint'
-    args: ['eslint', '.']
-    waitFor: ['PNPM install']
-
-  - name: 'gcr.io/$PROJECT_ID/pnpm'
     id: 'Jest'
     args: ['jest', '--passWithNoTests']
     waitFor: ['PNPM install']
