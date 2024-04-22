@@ -34,3 +34,10 @@ jobs:
 
       - name: Prettier
         run: pnpm prettier --check .
+
+      - name: Sort packages
+        run: |
+          pnpx sort-package-json --check \
+            **/apps/*/package.json \
+            **/packages/*/package.json \
+            package.json
