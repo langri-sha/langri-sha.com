@@ -72,3 +72,6 @@ jobs:
 
       - name: PNPM Install
         run: pnpm install
+
+      - name: Jest
+        run: pnpm jest --passWithNoTests
