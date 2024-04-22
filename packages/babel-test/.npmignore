@@ -1,0 +1,4 @@
+*.test.*
+.*
+fixtures/
+tsconfig.json
