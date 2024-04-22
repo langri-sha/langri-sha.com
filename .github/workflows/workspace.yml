@@ -26,5 +26,8 @@ jobs:
           node-version-file: 'package.json'
           cache: 'pnpm'
 
+      - name: PNPM Install
+        run: pnpm install
+
       - name: Prettier
         run: pnpm prettier --check .
