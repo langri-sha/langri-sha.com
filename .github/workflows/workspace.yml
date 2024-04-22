@@ -54,3 +54,7 @@ jobs:
   jest:
     name: Jest
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
