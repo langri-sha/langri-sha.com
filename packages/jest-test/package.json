@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/jest-test",
-  "version": "1.0.0-next",
+  "version": "0.1.0",
   "private": true,
   "main": "src/index.ts",
   "dependencies": {
@@ -8,7 +8,7 @@
     "tempy": "1.0.1"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.0.0-next"
+    "@langri-sha/tsconfig": "0.1.0"
   },
   "peerDependencies": {
     "jest": "^29.0.0",

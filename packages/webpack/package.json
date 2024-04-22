@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/webpack",
-  "version": "1.0.0-next",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "main": "src/index.ts",
@@ -14,8 +14,8 @@
     "webpack-dev-server": "5.0.4"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "1.0.0-next",
-    "@langri-sha/tsconfig": "1.0.0-next"
+    "@langri-sha/babel-preset": "0.1.0",
+    "@langri-sha/tsconfig": "0.1.0"
   },
   "peerDependencies": {
     "@babel/register": "^7.0.0",

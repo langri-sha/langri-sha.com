@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/tsconfig",
-  "version": "1.0.0-next",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "main": "base.json",

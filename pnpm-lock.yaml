@@ -28,19 +28,19 @@ importers:
         version: 5.1.4(webpack@5.91.0)
     devDependencies:
       '@langri-sha/babel-preset':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:packages/babel-preset
       '@langri-sha/eslint-config':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:packages/eslint-config
       '@langri-sha/jest-config':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:packages/jest-config
       '@langri-sha/lint-staged':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:packages/lint-staged
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:packages/tsconfig
       beachball:
         specifier: 2.43.0
@@ -83,13 +83,13 @@ importers:
         version: 1.6.28
     devDependencies:
       '@langri-sha/babel-preset':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../../packages/babel-preset
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../../packages/tsconfig
       '@langri-sha/webpack':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../../packages/webpack
       '@types/gtag.js':
         specifier: 0.0.19
@@ -126,13 +126,13 @@ importers:
         version: 11.11.0
     devDependencies:
       '@langri-sha/babel-test':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../babel-test
       '@langri-sha/jest-test':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../jest-test
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
       '@types/babel__core':
         specifier: 7.20.5
@@ -151,13 +151,13 @@ importers:
         version: 0.29.1
     devDependencies:
       '@langri-sha/jest-test':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../jest-test
       '@langri-sha/monorepo':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../monorepo
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
       '@types/babel__core':
         specifier: 7.20.5
@@ -210,7 +210,7 @@ importers:
         version: 28.1.3(@types/node@20.12.7)(ts-node@10.9.2)
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
 
   packages/jest-test:
@@ -229,7 +229,7 @@ importers:
         version: 5.4.5
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
 
   packages/lint-staged:
@@ -245,7 +245,7 @@ importers:
         version: 3.2.5
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
       '@types/lint-staged':
         specifier: 13.3.0
@@ -258,10 +258,10 @@ importers:
         version: 7.0.0
     devDependencies:
       '@langri-sha/jest-test':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../jest-test
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
 
   packages/tsconfig:
@@ -301,10 +301,10 @@ importers:
         version: 5.0.4(webpack-cli@5.1.4)(webpack@5.91.0)
     devDependencies:
       '@langri-sha/babel-preset':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../babel-preset
       '@langri-sha/tsconfig':
-        specifier: 1.0.0-next
+        specifier: 0.1.0
         version: link:../tsconfig
 
 packages:

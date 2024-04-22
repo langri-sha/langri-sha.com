@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/babel-test",
-  "version": "1.0.0-next",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "main": "src/index.ts",
@@ -8,9 +8,9 @@
     "ramda": "0.29.1"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "1.0.0-next",
-    "@langri-sha/monorepo": "1.0.0-next",
-    "@langri-sha/tsconfig": "1.0.0-next",
+    "@langri-sha/jest-test": "0.1.0",
+    "@langri-sha/monorepo": "0.1.0",
+    "@langri-sha/tsconfig": "0.1.0",
     "@types/babel__core": "7.20.5",
     "@types/node": "20.12.7",
     "@types/ramda": "0.29.12"

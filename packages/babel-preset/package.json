@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/babel-preset",
-  "version": "1.0.0-next",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "main": "src/index.js",
@@ -13,9 +13,9 @@
     "@emotion/babel-plugin": "11.11.0"
   },
   "devDependencies": {
-    "@langri-sha/babel-test": "1.0.0-next",
-    "@langri-sha/jest-test": "1.0.0-next",
-    "@langri-sha/tsconfig": "1.0.0-next",
+    "@langri-sha/babel-test": "0.1.0",
+    "@langri-sha/jest-test": "0.1.0",
+    "@langri-sha/tsconfig": "0.1.0",
     "@types/babel__core": "7.20.5",
     "@types/node": "20.12.7"
   },
