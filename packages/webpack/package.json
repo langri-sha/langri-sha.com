@@ -1,7 +1,6 @@
 {
   "name": "@langri-sha/webpack",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
@@ -20,5 +19,8 @@
   "peerDependencies": {
     "@babel/register": "^7.0.0",
     "webpack": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
