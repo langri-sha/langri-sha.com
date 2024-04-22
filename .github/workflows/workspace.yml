@@ -35,6 +35,9 @@ jobs:
       - name: Prettier
         run: pnpm prettier --check .
 
+      - name: TypeScript
+        run: tsc --build .
+
       - name: Sort packages
         run: |
           pnpx sort-package-json --check \
