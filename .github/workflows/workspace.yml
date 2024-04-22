@@ -1,1 +1,6 @@
 name: Workspace
+
+on:
+  push:
+    branches:
+      - main
