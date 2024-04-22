@@ -38,6 +38,12 @@ jobs:
       - name: TypeScript
         run: tsc --build .
 
+      - name: Beachball
+        if: github.event_name == 'pull_request'
+        run: |
+          pnpm bechball check || \
+          echo "::error::Beachball changes detected. Run 'pnpm beachball change' and commit the changes."
+
       - name: Sort packages
         run: |
           pnpx sort-package-json --check \
