@@ -48,3 +48,7 @@ runs:
     - name: Format
       shell: bash
       run: terraform fmt -recursive -check
+
+    - name: Validate
+      shell: bash
+      run: terraform validate

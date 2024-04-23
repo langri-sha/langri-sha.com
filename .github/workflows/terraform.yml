@@ -34,6 +34,3 @@ jobs:
 
       - name: Run checks
         uses: ./.github/actions/terraform
-
-      - name: Validate
-        run: terraform validate
