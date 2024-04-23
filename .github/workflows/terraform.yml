@@ -43,3 +43,8 @@ jobs:
         if: steps.version.outputs.terraform-version == ''
         run: |
           echo "::warning::Missing Terraform version"
+
+      - name: Setup
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ steps.version.outputs.terraform-version || 'latest' }}
