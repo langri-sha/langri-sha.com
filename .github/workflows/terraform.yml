@@ -51,3 +51,12 @@ jobs:
 
       - name: Initialize
         run: terraform init -backend=false
+
+      - name: Fail on lockfile changes
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo 'Terraform lockfile changed.'
+            echo 'Did you remember to run `terraform init` and commit changes to `.terraform.lock.hcl`?'
+            git diff
+            exit 1
+          fi
