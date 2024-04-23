@@ -21,5 +21,9 @@ jobs:
           - terraform/web
           - terraform/org
 
+    defaults:
+      run:
+        working-directory: ${matrix.working-directory}
+
     steps:
       - run: echo "OK"
