@@ -35,38 +35,5 @@ jobs:
       - name: Run checks
         uses: ./.github/actions/terraform
 
-      - name: Install ripgrep
-        run: sudo apt-get update && sudo apt-get install -y ripgrep
-
-      - name: Get version
-        id: version
-        run: |
-          echo "terraform-version=$(rg "required_version = \"(\d+\.\d+\.\d+)\"" -t tf -or '$1' --no-filename | tail -1)" >> $GITHUB_OUTPUT
-
-      - name: Warn missing version
-        if: steps.version.outputs.terraform-version == ''
-        run: |
-          echo "::warning::Missing Terraform version"
-
-      - name: Setup
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: ${{ steps.version.outputs.terraform-version || 'latest' }}
-
-      - name: Initialize
-        run: terraform init -backend=false
-
-      - name: Fail on lockfile changes
-        run: |
-          if [[ $(git status --porcelain) ]]; then
-            echo 'Terraform lockfile changed.'
-            echo 'Did you remember to run `terraform init` and commit changes to `.terraform.lock.hcl`?'
-            git diff
-            exit 1
-          fi
-
-      - name: Format
-        run: terraform fmt -recursive -check
-
       - name: Validate
         run: terraform validate
