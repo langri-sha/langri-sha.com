@@ -1,0 +1,11 @@
+name: PNPM
+description: |-
+  Configures PNPM and Node.js, and installs dependencies.
+
+runs:
+  using: composite
+
+  steps:
+    - name: Stub
+      shell: bash
+      run: echo Stub
