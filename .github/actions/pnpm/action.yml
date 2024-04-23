@@ -6,6 +6,7 @@ runs:
   using: composite
 
   steps:
-    - name: Stub
-      shell: bash
-      run: echo Stub
+    - name: Setup PNPM
+      uses: pnpm/action-setup@v3
+      with:
+        run_install: false
