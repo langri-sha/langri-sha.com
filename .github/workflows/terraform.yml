@@ -63,3 +63,6 @@ jobs:
 
       - name: Format
         run: terraform fmt -recursive -check
+
+      - name: Validate
+        run: terraform validate
