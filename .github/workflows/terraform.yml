@@ -4,7 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/terraform.yml'
+      - '*.tf'
+      - '*.lock.hcl'
   pull_request:
+    paths:
+      - '.github/workflows/terraform.yml'
+      - '*.tf'
+      - '*.lock.hcl'
 
 jobs:
   validate:
