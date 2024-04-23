@@ -16,6 +16,7 @@
 *.tsbuildinfo
 
 !.github/
+!.husky/
 dist/
 local/
 node_modules/
