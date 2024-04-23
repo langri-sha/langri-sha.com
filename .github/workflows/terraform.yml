@@ -17,6 +17,11 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        working-directory:
+          - terraform/web
+          - terraform/org
 
     steps:
       - run: echo "OK"
