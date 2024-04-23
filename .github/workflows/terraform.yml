@@ -48,3 +48,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ steps.version.outputs.terraform-version || 'latest' }}
+
+      - name: Initialize
+        run: terraform init -backend=false
