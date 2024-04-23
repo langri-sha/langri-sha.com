@@ -44,3 +44,7 @@ runs:
           git diff
           exit 1
         fi
+
+    - name: Format
+      shell: bash
+      run: terraform fmt -recursive -check
