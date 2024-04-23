@@ -60,3 +60,6 @@ jobs:
             git diff
             exit 1
           fi
+
+      - name: Format
+        run: terraform fmt -recursive -check
