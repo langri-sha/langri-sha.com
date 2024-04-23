@@ -17,3 +17,6 @@ jobs:
 
       - name: Setup PNPM
         uses: ./.github/actions/pnpm
+
+      - name: Build
+        run: pnpm build
