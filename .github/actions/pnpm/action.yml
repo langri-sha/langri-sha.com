@@ -16,3 +16,7 @@ runs:
       with:
         node-version-file: 'package.json'
         cache: 'pnpm'
+
+    - name: PNPM Install
+      shell: bash
+      run: pnpm install
