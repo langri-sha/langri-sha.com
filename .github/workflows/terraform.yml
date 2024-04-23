@@ -28,4 +28,5 @@ jobs:
         working-directory: ${{ matrix.working-directory }}
 
     steps:
-      - run: echo "OK"
+      - name: Checkout
+        uses: actions/checkout@v4
