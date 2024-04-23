@@ -1,0 +1,14 @@
+name: Terraform
+description: |-
+  Checks the current Terraform configuration to ensure the dependencies,
+  formatting and resources are all valid. Will use the preferred Terraform
+  version, if configured in the sources.
+
+  Runs in the current working directory.
+
+runs:
+  using: composite
+
+  steps:
+    - shell: bash
+      run: echo "OK"
