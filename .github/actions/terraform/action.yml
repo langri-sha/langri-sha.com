@@ -30,3 +30,17 @@ runs:
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ steps.version.outputs.terraform-version || 'latest' }}
+
+    - name: Initialize
+      shell: bash
+      run: terraform init -backend=false
+
+    - name: Fail on lockfile changes
+      shell: bash
+      run: |
+        if [[ $(git status --porcelain) ]]; then
+          echo 'Terraform lockfile changed.'
+          echo 'Did you remember to run `terraform init` and commit changes to `.terraform.lock.hcl`?'
+          git diff
+          exit 1
+        fi
