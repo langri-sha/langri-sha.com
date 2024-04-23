@@ -13,3 +13,20 @@ runs:
     - name: Install ripgrep
       shell: bash
       run: sudo apt-get update && sudo apt-get install -y ripgrep
+
+    - name: Get version
+      id: version
+      shell: bash
+      run: |
+        echo "terraform-version=$(rg "required_version = \"(\d+\.\d+\.\d+)\"" -t tf -or '$1' --no-filename | tail -1)" >> $GITHUB_OUTPUT
+
+    - name: Warn missing version
+      if: steps.version.outputs.terraform-version == ''
+      shell: bash
+      run: |
+        echo "::warning::Missing Terraform version"
+
+    - name: Setup
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ steps.version.outputs.terraform-version || 'latest' }}
