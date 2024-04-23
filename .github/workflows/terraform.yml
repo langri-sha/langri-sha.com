@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - *.tf
+      - *.lock.hcl
   pull_request:
+    paths:
+      - *.tf
+      - *.lock.hcl
 
 jobs:
   validate:
