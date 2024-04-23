@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - *.tf
-      - *.lock.hcl
+      - "*.tf"
+      - "*.lock.hcl"
   pull_request:
     paths:
-      - *.tf
-      - *.lock.hcl
+      - "*.tf"
+      - "*.lock.hcl"
 
 jobs:
   validate:
