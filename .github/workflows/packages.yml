@@ -13,8 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup PNPM
-        uses: ./.github/actions/pnpm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version-file: package.json
+          registry-url: https://registry.npmjs.org
+          scope: '@langri-sha'
 
       - name: Configure Git user
         run: |
@@ -23,9 +28,8 @@ jobs:
 
       - name: Publish
         run: |
-          pnpm beachball publish \
-            --message "chore(beachball): Publish packages" \
+          npx beachball publish \
+            --message "feat(beachball): Publish packages" \
             --new \
-            --registry=https://registry.npmjs.org \
             --token=${{ secrets.NPM_TOKEN }} \
             --yes
