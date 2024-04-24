@@ -31,6 +31,7 @@ jobs:
       - name: Publish
         run: |
           npx beachball publish \
+            --access public
             --message "feat(beachball): Publish packages" \
             --new \
             --token=${{ secrets.NPM_TOKEN }} \
