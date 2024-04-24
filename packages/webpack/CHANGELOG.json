@@ -1,0 +1,28 @@
+{
+  "name": "@langri-sha/webpack",
+  "entries": [
+    {
+      "date": "Wed, 24 Apr 2024 22:14:56 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/webpack_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "f9dcfcb1ce5b663131c076f5364425c03f757710",
+            "comment": "feat(workspace): Update package metadata"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "8d67a370e43a304d96b4e84a0eb773a9f7d4fecd",
+            "comment": "feat(workspace): Use PNPM local references"
+          }
+        ]
+      }
+    }
+  ]
+}

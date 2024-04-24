@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(babel-preset): Add missing publish configuration",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
