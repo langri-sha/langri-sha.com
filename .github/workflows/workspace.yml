@@ -30,8 +30,11 @@ jobs:
       - name: Beachball
         if: github.event_name == 'pull_request'
         run: |
-          pnpm bechball check || \
-          echo "::error::Beachball changes detected. Run 'pnpm beachball change' and commit the changes."
+          pnpm beachball check ||
+          (
+            echo "::error::Beachballchanges detected. Run 'pnpm beachball change' and commit the changes.";
+            exit 1
+          )
 
       - name: Sort packages
         run: |
