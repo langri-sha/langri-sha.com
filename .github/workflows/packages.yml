@@ -15,3 +15,8 @@ jobs:
 
       - name: Setup PNPM
         uses: ./.github/actions/pnpm
+
+      - name: Configure Git user
+        run: |
+          git config user.name "Filip Dupanović"
+          git config user.email "filip.dupanovic@gmail.com"
