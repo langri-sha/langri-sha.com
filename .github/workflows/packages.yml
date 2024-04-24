@@ -34,5 +34,5 @@ jobs:
             --access public
             --message "feat(beachball): Publish packages" \
             --new \
-            --token=${{ secrets.NPM_TOKEN }} \
+            --token ${{ secrets.NPM_TOKEN }} \
             --yes
