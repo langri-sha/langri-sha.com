@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "feat(workspace): Use PNPM local references",
-  "packageName": "@langri-sha/monorepo",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

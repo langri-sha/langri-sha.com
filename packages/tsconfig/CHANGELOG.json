@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/tsconfig",
+  "entries": [
+    {
+      "date": "Wed, 24 Apr 2024 22:03:36 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/tsconfig_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "f9dcfcb1ce5b663131c076f5364425c03f757710",
+            "comment": "feat(workspace): Update package metadata"
+          }
+        ]
+      }
+    }
+  ]
+}
