@@ -43,8 +43,8 @@ importers:
         specifier: workspace:*
         version: link:packages/tsconfig
       beachball:
-        specifier: 2.43.0
-        version: 2.43.0(typescript@5.4.5)
+        specifier: 2.43.1
+        version: 2.43.1(typescript@5.4.5)
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -1805,8 +1805,8 @@ packages:
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
 
-  beachball@2.43.0:
-    resolution: {integrity: sha512-1JurA824/tDJ5VrQrqEZqS2rODrELY9HzyOOAWgun4g7D7JBGbwY312imxhwHquFBnCtpL+ReX/Gv0KOMzQCdA==}
+  beachball@2.43.1:
+    resolution: {integrity: sha512-qMNOIwrH8SYwybkHI4k8rOe1/YaYAlFYD5kSsyrUHWKFTlWRCcq01VncuIwSD2M7X1IgOKH/R+smXbIC9xohKg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -6768,7 +6768,7 @@ snapshots:
 
   batch@0.6.1: {}
 
-  beachball@2.43.0(typescript@5.4.5):
+  beachball@2.43.1(typescript@5.4.5):
     dependencies:
       cosmiconfig: 8.3.6(typescript@5.4.5)
       execa: 5.1.1
