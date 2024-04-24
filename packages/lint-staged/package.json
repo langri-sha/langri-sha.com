@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
-    "@langri-sha/tsconfig": "0.1.0",
+    "@langri-sha/tsconfig": "workspace:*",
     "@types/lint-staged": "13.3.0"
   },
   "peerDependencies": {

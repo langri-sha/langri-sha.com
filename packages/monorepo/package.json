@@ -7,8 +7,8 @@
     "find-up": "7.0.0"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "0.1.0",
-    "@langri-sha/tsconfig": "0.1.0"
+    "@langri-sha/jest-test": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

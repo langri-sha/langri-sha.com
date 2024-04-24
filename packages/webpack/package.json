@@ -13,8 +13,8 @@
     "webpack-dev-server": "5.0.4"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "0.1.0",
-    "@langri-sha/tsconfig": "0.1.0"
+    "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "@babel/register": "^7.0.0",

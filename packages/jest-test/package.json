@@ -8,7 +8,7 @@
     "tempy": "1.0.1"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "0.1.0"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "jest": "^29.0.0",
