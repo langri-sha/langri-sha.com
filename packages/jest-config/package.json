@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "devDependencies": {
-    "@langri-sha/tsconfig": "0.1.0"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "jest": "^28.0.0"

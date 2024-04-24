@@ -7,9 +7,9 @@
     "ramda": "0.29.1"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "0.1.0",
-    "@langri-sha/monorepo": "0.1.0",
-    "@langri-sha/tsconfig": "0.1.0",
+    "@langri-sha/jest-test": "workspace:*",
+    "@langri-sha/monorepo": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
     "@types/babel__core": "7.20.5",
     "@types/node": "20.12.7",
     "@types/ramda": "0.29.12"

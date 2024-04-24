@@ -34,11 +34,11 @@
     "webpack-cli": "5.1.4"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "0.1.0",
-    "@langri-sha/eslint-config": "0.1.0",
-    "@langri-sha/jest-config": "0.1.0",
-    "@langri-sha/lint-staged": "0.1.0",
-    "@langri-sha/tsconfig": "0.1.0",
+    "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/eslint-config": "workspace:*",
+    "@langri-sha/jest-config": "workspace:*",
+    "@langri-sha/lint-staged": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
     "beachball": "2.43.0",
     "eslint": "8.57.0",
     "husky": "9.0.11",
