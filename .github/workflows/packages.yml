@@ -20,3 +20,12 @@ jobs:
         run: |
           git config user.name "Filip Dupanović"
           git config user.email "filip.dupanovic@gmail.com"
+
+      - name: Publish
+        run: |
+          pnpm beachball publish \
+            --message "chore(beachball): Publish packages" \
+            --new \
+            --registry=https://registry.npmjs.org \
+            --token=${{ secrets.NPM_TOKEN }} \
+            --yes
