@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com"
+    "url": "git+https://github.com/langri-sha/langri-sha.com.git"
   },
   "license": "MIT",
   "author": "Filip Dupanović",
