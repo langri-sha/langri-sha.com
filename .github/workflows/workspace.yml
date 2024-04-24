@@ -40,6 +40,16 @@ jobs:
             **/packages/*/package.json \
             package.json
 
+      - name: Check packages
+        run: |
+          pnpm -r exec npm pkg fix
+
+          if [[ $(git status --porcelain) ]]; then
+            echo '::error::Some packages need fixing.'
+            git diff
+            exit 1
+          fi
+
   jest:
     name: Jest
     runs-on: ubuntu-latest
