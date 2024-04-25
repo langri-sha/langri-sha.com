@@ -3,4 +3,10 @@
 Collection of [projen] templates for bootstraping monorepos and workspace
 projects.
 
+## Usage
+
+### Defaults
+
+- configures extensive list of Git ignore patterns
+
 [projen]: https://projen.dev/
