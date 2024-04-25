@@ -276,6 +276,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      projen:
+        specifier: 0.81.1
+        version: 0.81.1(constructs@10.3.0)
 
   packages/tsconfig:
     dependencies:
@@ -2030,6 +2033,10 @@ packages:
   connect-history-api-fallback@2.0.0:
     resolution: {integrity: sha512-U73+6lQFmfiNPrYbXqr6kZ1i1wiRqXnp2nhMsINseWXO8lDau0LGEffJ8kQi4EjLZympVgRdvqjAgiZ1tgzDDA==}
     engines: {node: '>=0.8'}
+
+  constructs@10.3.0:
+    resolution: {integrity: sha512-vbK8i3rIb/xwZxSpTjz3SagHn1qq9BChLEfy5Hf6fB3/2eFbrwt2n9kHwQcS0CPTRBesreeAcsJfMq2229FnbQ==}
+    engines: {node: '>= 16.14.0'}
 
   content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
@@ -3897,6 +3904,27 @@ packages:
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
+
+  projen@0.81.1:
+    resolution: {integrity: sha512-GEkMP7o+BWUg6e7VcltToi2aydy6fE27QOM1WQCAd3pJXTbOQ02qqc6OP3VlXfsTzKZLA/TmWbb3fnZ1/Ks2xQ==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    peerDependencies:
+      constructs: ^10.0.0
+    bundledDependencies:
+      - '@iarna/toml'
+      - case
+      - chalk
+      - comment-json
+      - conventional-changelog-config-spec
+      - fast-json-patch
+      - glob
+      - ini
+      - semver
+      - shx
+      - xmlbuilder2
+      - yaml
+      - yargs
 
   prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
@@ -7009,6 +7037,8 @@ snapshots:
 
   connect-history-api-fallback@2.0.0: {}
 
+  constructs@10.3.0: {}
+
   content-disposition@0.5.4:
     dependencies:
       safe-buffer: 5.2.1
@@ -9351,6 +9381,10 @@ snapshots:
       react-is: 18.2.0
 
   process-nextick-args@2.0.1: {}
+
+  projen@0.81.1(constructs@10.3.0):
+    dependencies:
+      constructs: 10.3.0
 
   prompts@2.4.2:
     dependencies:

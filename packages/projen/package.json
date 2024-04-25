@@ -4,9 +4,11 @@
   "license": "MIT",
   "main": "src/index.ts",
   "devDependencies": {
-    "@langri-sha/tsconfig": "workspace:*"
+    "@langri-sha/tsconfig": "workspace:*",
+    "projen": "0.81.1"
   },
   "peerDependencies": {
+    "projen": "^0.81.1",
     "typescript": "^5.0.0"
   },
   "publishConfig": {

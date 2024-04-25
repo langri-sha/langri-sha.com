@@ -1,5 +1,6 @@
 # @langri-sha/projen
 
-Collection of [projen] templates for bootstraping monorepos and workspace projects.
+Collection of [projen] templates for bootstraping monorepos and workspace
+projects.
 
 [projen]: https://projen.dev/
