@@ -10,3 +10,12 @@ test('defaults', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test('with TypeScript', () => {
+  const project = new Project({
+    name: 'test-project',
+    withTypeScript: true,
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})

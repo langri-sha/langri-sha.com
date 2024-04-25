@@ -1,4 +1,4 @@
-# @langri-sha/projen
+# @langri-sha/projen-project
 
 Collection of [projen] templates for bootstraping monorepos and workspace
 projects.
