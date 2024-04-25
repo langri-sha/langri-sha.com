@@ -273,6 +273,9 @@ importers:
         specifier: ^5.0.0
         version: 5.4.5
     devDependencies:
+      '@langri-sha/jest-test':
+        specifier: workspace:*
+        version: link:../jest-test
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
