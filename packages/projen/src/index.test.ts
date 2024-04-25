@@ -11,7 +11,16 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
-test('with TypeScript', () => {
+test('with Terraform enabled', () => {
+  const project = new Project({
+    name: 'test-project',
+    withTerraform: true,
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
+test('with TypeScript enabled', () => {
   const project = new Project({
     name: 'test-project',
     withTypeScript: true,

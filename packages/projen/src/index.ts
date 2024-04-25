@@ -5,6 +5,11 @@ import {
 
 export interface ProjectOptions extends BaseProjectOptions {
   /*
+   * Whether to use Terrafom.
+   */
+  withTerraform?: boolean
+
+  /*
    * Whether to use TypeScript.
    */
   withTypeScript?: boolean
@@ -20,6 +25,7 @@ export class Project extends BaseProject {
 }
 
 const getGitIgnoreOptions = ({
+  withTerraform,
   withTypeScript,
   ...options
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] => ({
@@ -39,7 +45,8 @@ const getGitIgnoreOptions = ({
     !.npmignore
     !.openssl
     !.prettierignore
-    !.terraform.lock.hcl
+    ${withTerraform ? '!.terraform.lock.hcl' : ''}
+    *.db
     *.log
     ${withTypeScript ? '*.tsbuildinfo' : ''}
 
