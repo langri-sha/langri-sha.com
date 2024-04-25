@@ -3,7 +3,12 @@ import {
   type ProjectOptions as BaseProjectOptions,
 } from 'projen'
 
-export interface ProjectOptions extends BaseProjectOptions {}
+export interface ProjectOptions extends BaseProjectOptions {
+  /*
+   * Whether to use TypeScript.
+   */
+  withTypeScript?: boolean
+}
 
 export class Project extends BaseProject {
   constructor(options: ProjectOptions) {
@@ -14,9 +19,10 @@ export class Project extends BaseProject {
   }
 }
 
-const getGitIgnoreOptions = (
-  options: ProjectOptions,
-): ProjectOptions['gitIgnoreOptions'] => ({
+const getGitIgnoreOptions = ({
+  withTypeScript,
+  ...options
+}: ProjectOptions): ProjectOptions['gitIgnoreOptions'] => ({
   ...options.gitIgnoreOptions,
   ignorePatterns: [
     ...`
@@ -35,7 +41,7 @@ const getGitIgnoreOptions = (
     !.prettierignore
     !.terraform.lock.hcl
     *.log
-    *.tsbuildinfo
+    ${withTypeScript ? '*.tsbuildinfo' : ''}
 
     !.github/
     !.husky/
