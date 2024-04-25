@@ -38,6 +38,7 @@
     "@langri-sha/eslint-config": "workspace:*",
     "@langri-sha/jest-config": "workspace:*",
     "@langri-sha/lint-staged": "workspace:*",
+    "@langri-sha/projen": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "beachball": "2.43.1",
     "eslint": "8.57.0",

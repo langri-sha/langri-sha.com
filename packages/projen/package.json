@@ -1,0 +1,15 @@
+{
+  "name": "@langri-sha/projen",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@langri-sha/tsconfig": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
