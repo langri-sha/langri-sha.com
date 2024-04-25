@@ -39,6 +39,9 @@ importers:
       '@langri-sha/lint-staged':
         specifier: workspace:*
         version: link:packages/lint-staged
+      '@langri-sha/projen':
+        specifier: workspace:*
+        version: link:packages/projen
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
@@ -260,6 +263,16 @@ importers:
       '@langri-sha/jest-test':
         specifier: workspace:*
         version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+
+  packages/projen:
+    dependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.4.5
+    devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
