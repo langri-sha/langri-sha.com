@@ -16,7 +16,7 @@
     { "path": "./packages/jest-test" },
     { "path": "./packages/lint-staged" },
     { "path": "./packages/monorepo" },
-    { "path": "./packages/projen" },
+    { "path": "./packages/projen-project" },
     { "path": "./packages/tsconfig" },
     { "path": "./packages/webpack" }
   ]
