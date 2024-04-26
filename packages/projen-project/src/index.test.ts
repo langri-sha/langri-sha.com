@@ -28,3 +28,12 @@ test('with TypeScript enabled', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test('with workspaces', () => {
+  const project = new Project({
+    name: 'test-project',
+    workspaces: ['packages/*'],
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})

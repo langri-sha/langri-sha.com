@@ -16,6 +16,9 @@ projects.
 ### TypeScript monorepo
 
 - configures [`@langri-sha/tsconfig`]
+- configures [PNPM] [workspaces]
 
-[projen]: https://projen.dev/
 [`@langri-sha/tsconfig`]: https://github.com/langri-sha/tsconfig
+[pnpm]: https://pnpm.io
+[projen]: https://projen.dev/
+[workspaces]: https://pnpm.io/workspaces
