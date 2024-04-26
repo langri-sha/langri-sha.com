@@ -1,6 +1,7 @@
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
+  YamlFile,
 } from 'projen'
 
 export interface ProjectOptions extends BaseProjectOptions {
@@ -13,6 +14,11 @@ export interface ProjectOptions extends BaseProjectOptions {
    * Whether to use TypeScript.
    */
   withTypeScript?: boolean
+
+  /*
+   * PNPM workspaces to generate.
+   */
+  workspaces?: string[]
 }
 
 export class Project extends BaseProject {
@@ -30,6 +36,22 @@ export class Project extends BaseProject {
     this.tasks.removeTask('post-compile')
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
+
+    this.#createPnpmWorkspaces(options)
+  }
+
+  #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
+    if (!workspaces) {
+      return
+    }
+
+    new YamlFile(this, 'pnpm-workspace.yaml', {
+      readonly: true,
+      marker: true,
+      obj: {
+        packages: workspaces,
+      },
+    })
   }
 }
 
