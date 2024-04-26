@@ -26,3 +26,4 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/pnpm-workspace.yaml
