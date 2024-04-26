@@ -9,6 +9,10 @@ projects.
 
 - configures extensive list of Git ignore patterns
 
+### Terraform
+
+- adds lockfile
+
 ### TypeScript monorepo
 
 - configures [`@langri-sha/tsconfig`]

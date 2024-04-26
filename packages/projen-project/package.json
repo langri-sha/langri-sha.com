@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen",
+  "name": "@langri-sha/projen-project",
   "version": "0.1.0",
   "license": "MIT",
   "main": "src/index.ts",
