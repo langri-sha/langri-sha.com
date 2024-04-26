@@ -21,6 +21,15 @@ export class Project extends BaseProject {
       ...options,
       gitIgnoreOptions: getGitIgnoreOptions(options),
     })
+
+    // Clean up tasks not required at top-level.
+    this.tasks.removeTask('build')
+    this.tasks.removeTask('compile')
+    this.tasks.removeTask('eject')
+    this.tasks.removeTask('package')
+    this.tasks.removeTask('post-compile')
+    this.tasks.removeTask('pre-compile')
+    this.tasks.removeTask('watch')
   }
 }
 
