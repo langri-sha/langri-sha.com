@@ -11,6 +11,15 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with Beachball configuration', () => {
+  const project = new Project({
+    name: 'test-project',
+    beachballConfig: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('with Terraform enabled', () => {
   const project = new Project({
     name: 'test-project',
