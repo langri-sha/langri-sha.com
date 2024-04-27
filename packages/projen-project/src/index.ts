@@ -1,8 +1,12 @@
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
+  TextFile,
   YamlFile,
 } from 'projen'
+
+import { deepMerge } from 'projen/lib/util'
+import { type BeachballConfig } from 'beachball'
 
 import {
   LintSynthesized,
@@ -10,6 +14,11 @@ import {
 } from '@langri-sha/projen-lint-synthesized'
 
 export interface ProjectOptions extends BaseProjectOptions {
+  /*
+   * Pass in to set up Beachball.
+   */
+  beachballConfig?: BeachballConfig
+
   /*
    * Options for the linting synthesized files.
    */
@@ -46,9 +55,43 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
+    this.#configureBeachball(options)
     this.#configureDefaultTask()
     this.#configureLintSynthesized(options)
     this.#createPnpmWorkspaces(options)
+  }
+
+  #configureBeachball({ beachballConfig }: ProjectOptions) {
+    if (!beachballConfig) {
+      return
+    }
+
+    const options = deepMerge([
+      beachballConfig,
+      {
+        branch: 'origin/main',
+        gitTags: false,
+        ignorePatterns: [
+          '*.test.*',
+          '.*/**',
+          '__snapshots__/',
+          'dist/',
+          'node_modules/',
+        ],
+      },
+    ])
+
+    const file = new TextFile(this, 'beachball.config.js', {
+      readonly: true,
+      marker: true,
+    })
+
+    for (const line of [
+      `/** @type {import('beachball').BeachballConfig} */`,
+      `module.exports = ${JSON.stringify(options, null, 2)}`,
+    ]) {
+      file.addLine(line)
+    }
   }
 
   #configureDefaultTask() {
