@@ -303,6 +303,9 @@ importers:
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized
+      beachball:
+        specifier: 2.43.1
+        version: 2.43.1(typescript@5.4.5)
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
