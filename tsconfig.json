@@ -3,7 +3,6 @@
   "extends": "@langri-sha/tsconfig",
   "files": [
     ".eslintrc.js",
-    ".projenrc.ts",
     "babel.config.js",
     "jest.config.ts",
     "lint-staged.config.js",
@@ -17,6 +16,7 @@
     { "path": "./packages/jest-test" },
     { "path": "./packages/lint-staged" },
     { "path": "./packages/monorepo" },
+    { "path": "./packages/projen-lint-synthesized" },
     { "path": "./packages/projen-project" },
     { "path": "./packages/tsconfig" },
     { "path": "./packages/webpack" }

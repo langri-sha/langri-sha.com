@@ -1,0 +1,18 @@
+{
+  "name": "@langri-sha/projen-lint-synthesized",
+  "version": "0.1.0-pre",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@langri-sha/jest-test": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
+    "projen": "0.81.1"
+  },
+  "peerDependencies": {
+    "projen": "^0.81.1",
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
