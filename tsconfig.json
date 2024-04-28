@@ -3,6 +3,7 @@
   "extends": "@langri-sha/tsconfig",
   "files": [
     ".eslintrc.js",
+    ".projenrc.ts",
     "babel.config.js",
     "jest.config.ts",
     "lint-staged.config.js",
