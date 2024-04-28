@@ -1,12 +1,9 @@
-/**
- * @type {import('beachball').BeachballConfig}
- */
+/** @type {import('beachball').BeachballConfig} */
 module.exports = {
   branch: 'origin/main',
   gitTags: false,
   ignorePatterns: [
-    '*.test.ts',
-    '*.test.tsx',
+    '*.test.*',
     '.*/**',
     '__snapshots__/',
     'dist/',
