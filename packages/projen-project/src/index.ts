@@ -76,6 +76,7 @@ const getGitIgnoreOptions = ({
     !.npmignore
     !.openssl
     !.prettierignore
+    !.projenrc*
     ${withTerraform ? '!.terraform.lock.hcl' : ''}
     *.db
     *.log
