@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(projen-project): Unignore projen config files",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
