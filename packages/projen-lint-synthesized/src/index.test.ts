@@ -1,13 +1,17 @@
-import { synthSnapshot } from 'projen/lib/util/synth'
-import { expect, test } from '@langri-sha/jest-test'
+import { directorySnapshot } from 'projen/lib/util/synth'
+import { expect, tempy, test } from '@langri-sha/jest-test'
 
 import { Project } from 'projen'
 import { LintSynthesized } from './index'
 
 const setup = () => {
+  const outdir = tempy.directory()
+
   const project = new Project({
     name: 'test-project',
+    outdir,
   })
+
   project.removeTask('build')
   project.removeTask('compile')
   project.removeTask('eject')
@@ -19,11 +23,12 @@ const setup = () => {
 
   new LintSynthesized(project)
 
-  return { project }
+  return { outdir, project }
 }
 
 test('defaults', () => {
   const { project } = setup()
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  project.synth()
+  expect(directorySnapshot(project.outdir)).toMatchSnapshot()
 })
