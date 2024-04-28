@@ -4,7 +4,8 @@
   "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
-    "debug": "4.3.4"
+    "debug": "4.3.4",
+    "minimatch": "9.0.4"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
