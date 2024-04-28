@@ -27,4 +27,5 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/beachball.config.js
 !/pnpm-workspace.yaml
