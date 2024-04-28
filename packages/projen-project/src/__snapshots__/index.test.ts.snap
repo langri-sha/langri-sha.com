@@ -16,6 +16,7 @@ exports[`defaults 1`] = `
 !.npmignore
 !.openssl
 !.prettierignore
+!.projenrc*
 *.db
 *.log
 !.github/
@@ -71,6 +72,7 @@ exports[`with Terraform enabled 1`] = `
 !.npmignore
 !.openssl
 !.prettierignore
+!.projenrc*
 !.terraform.lock.hcl
 *.db
 *.log
@@ -127,6 +129,7 @@ exports[`with TypeScript enabled 1`] = `
 !.npmignore
 !.openssl
 !.prettierignore
+!.projenrc*
 *.db
 *.log
 *.tsbuildinfo
@@ -183,6 +186,7 @@ exports[`with workspaces 1`] = `
 !.npmignore
 !.openssl
 !.prettierignore
+!.projenrc*
 *.db
 *.log
 !.github/
