@@ -12,6 +12,7 @@
 !.npmignore
 !.openssl
 !.prettierignore
+!.projenrc*
 !.terraform.lock.hcl
 *.db
 *.log
