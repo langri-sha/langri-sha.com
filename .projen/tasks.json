@@ -2,7 +2,12 @@
   "tasks": {
     "default": {
       "name": "default",
-      "description": "Synthesize project files"
+      "description": "Synthesize project files",
+      "steps": [
+        {
+          "exec": "node --loader ts-node/esm .projenrc.mts"
+        }
+      ]
     },
     "test": {
       "name": "test",
