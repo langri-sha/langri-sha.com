@@ -1,11 +1,11 @@
-import { Component, type Project } from 'projen'
+import { Component } from 'projen'
 import { debug as createDebug } from 'debug'
 
 const debug = createDebug('projen-lint-synthesized')
 
 export class LintSynthesized extends Component {
-  constructor(parent: Project) {
-    super(parent, 'lint-synthesized')
+  constructor(scope: ConstructorParameters<typeof Component>[0]) {
+    super(scope, 'lint-synthesized')
 
     debug('Initialized')
   }
