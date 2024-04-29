@@ -2,6 +2,7 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "version": "0.1.0-pre",
   "license": "MIT",
+  "type": "module",
   "main": "src/index.ts",
   "dependencies": {
     "debug": "4.3.4",
