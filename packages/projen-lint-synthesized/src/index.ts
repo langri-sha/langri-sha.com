@@ -1,5 +1,5 @@
 import { Component } from 'projen'
-import { debug as createDebug } from 'debug'
+import createDebug from 'debug'
 
 import * as fs from 'node:fs'
 
