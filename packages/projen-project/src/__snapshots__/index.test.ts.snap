@@ -46,6 +46,11 @@ node_modules/
       "default": {
         "description": "Synthesize project files",
         "name": "default",
+        "steps": [
+          {
+            "exec": "node --loader ts-node/esm .projenrc.mts",
+          },
+        ],
       },
       "test": {
         "description": "Run tests",
@@ -103,6 +108,11 @@ node_modules/
       "default": {
         "description": "Synthesize project files",
         "name": "default",
+        "steps": [
+          {
+            "exec": "node --loader ts-node/esm .projenrc.mts",
+          },
+        ],
       },
       "test": {
         "description": "Run tests",
@@ -160,6 +170,11 @@ node_modules/
       "default": {
         "description": "Synthesize project files",
         "name": "default",
+        "steps": [
+          {
+            "exec": "node --loader ts-node/esm .projenrc.mts",
+          },
+        ],
       },
       "test": {
         "description": "Run tests",
@@ -218,6 +233,11 @@ node_modules/
       "default": {
         "description": "Synthesize project files",
         "name": "default",
+        "steps": [
+          {
+            "exec": "node --loader ts-node/esm .projenrc.mts",
+          },
+        ],
       },
       "test": {
         "description": "Run tests",
