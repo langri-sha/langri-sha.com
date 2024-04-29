@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add initial support for linting synthesized files",
+  "packageName": "@langri-sha/projen-lint-synthesized",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
