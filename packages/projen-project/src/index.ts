@@ -4,7 +4,16 @@ import {
   YamlFile,
 } from 'projen'
 
+import {
+  LintSynthesized,
+  type LintSynthesizedOptions,
+} from '@langri-sha/projen-lint-synthesized'
+
 export interface ProjectOptions extends BaseProjectOptions {
+  /*
+   * Options for the linting synthesized files.
+   */
+  lintSynthesizedOptions?: LintSynthesizedOptions
   /*
    * Whether to use Terrafom.
    */
@@ -38,6 +47,7 @@ export class Project extends BaseProject {
     this.tasks.removeTask('watch')
 
     this.#configureDefaultTask()
+    this.#configureLintSynthesized(options)
     this.#createPnpmWorkspaces(options)
   }
 
@@ -45,6 +55,16 @@ export class Project extends BaseProject {
     this.tasks
       .tryFind('default')
       ?.exec(`node --loader ts-node/esm .projenrc.mts`)
+  }
+
+  #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
+    new LintSynthesized(
+      this,
+      lintSynthesizedOptions ?? {
+        '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
+        '*': 'pnpm prettier --write --ignore-unknown',
+      },
+    )
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
