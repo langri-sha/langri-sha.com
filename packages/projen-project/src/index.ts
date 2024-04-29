@@ -37,7 +37,14 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
+    this.#configureDefaultTask()
     this.#createPnpmWorkspaces(options)
+  }
+
+  #configureDefaultTask() {
+    this.tasks
+      .tryFind('default')
+      ?.exec(`node --loader ts-node/esm .projenrc.mts`)
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
