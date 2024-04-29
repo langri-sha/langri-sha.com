@@ -9,7 +9,7 @@ const eslintCli = new ESLint({
  * @type {import('lint-staged').Config}
  */
 module.exports = {
-  '*.{js,jsx,ts,tsx}': async (files) => {
+  '*.{js,cjs,mjs,jsx,ts,mts,tsx}': async (files) => {
     /** @type {[string, boolean][]} */
     const ignored = await Promise.all(
       files.map(async (file) => [file, await eslintCli.isPathIgnored(file)]),
