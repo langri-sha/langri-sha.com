@@ -300,6 +300,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@langri-sha/projen-lint-synthesized':
+        specifier: workspace:*
+        version: link:../projen-lint-synthesized
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
