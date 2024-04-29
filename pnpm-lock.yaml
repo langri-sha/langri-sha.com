@@ -288,6 +288,9 @@ importers:
       '@types/debug':
         specifier: 4.1.12
         version: 4.1.12
+      prettier:
+        specifier: 3.2.5
+        version: 3.2.5
       projen:
         specifier: 0.81.1
         version: 0.81.1(constructs@10.3.0)
