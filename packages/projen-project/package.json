@@ -6,11 +6,13 @@
   "main": "src/index.ts",
   "dependencies": {
     "@langri-sha/projen-lint-synthesized": "workspace:*",
-    "beachball": "2.43.1"
+    "beachball": "2.43.1",
+    "ramda": "0.29.1"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
+    "@types/ramda": "0.29.12",
     "projen": "0.81.1"
   },
   "peerDependencies": {
