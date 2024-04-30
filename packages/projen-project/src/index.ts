@@ -5,7 +5,7 @@ import {
   YamlFile,
 } from 'projen'
 
-import { deepMerge } from 'projen/lib/util'
+import * as R from 'ramda'
 import { type BeachballConfig } from 'beachball'
 
 import {
@@ -66,20 +66,17 @@ export class Project extends BaseProject {
       return
     }
 
-    const options = deepMerge([
-      beachballConfig,
-      {
-        branch: 'origin/main',
-        gitTags: false,
-        ignorePatterns: [
-          '*.test.*',
-          '.*/**',
-          '__snapshots__/',
-          'dist/',
-          'node_modules/',
-        ],
-      },
-    ])
+    const options = deepMerge(beachballConfig, {
+      branch: 'origin/main',
+      gitTags: false,
+      ignorePatterns: [
+        '*.test.*',
+        '.*/**',
+        '__snapshots__/',
+        'dist/',
+        'node_modules/',
+      ],
+    })
 
     const file = new TextFile(this, 'beachball.config.js', {
       readonly: true,
@@ -165,3 +162,5 @@ const getGitIgnoreOptions = ({
     ...(options.gitIgnoreOptions?.ignorePatterns ?? []),
   ],
 })
+
+const deepMerge = R.mergeDeepWith(R.concat)
