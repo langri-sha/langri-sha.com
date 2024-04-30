@@ -1,0 +1,70 @@
+{
+  "name": "@langri-sha/projen-project",
+  "entries": [
+    {
+      "date": "Tue, 30 Apr 2024 23:02:33 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/projen-project_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen): Add support for configuring Beachball"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen): Remove top-level tasks"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen): Configure PNPM workspaces"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen-project): Configure ESM support"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen-projent): Configure linters for synthesized files"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen-project): Replace `deepMerge`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen-project): Stub package"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(projen-project): Configure default task"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "fix(projen-project): Unignore projen config files"
+          }
+        ]
+      }
+    }
+  ]
+}

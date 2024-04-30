@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Tue, 30 Apr 2024 23:02:33 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/lint-staged_v0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "5b2b47f068f116b65549bd1b0c0a68c455ee319b",
+            "comment": "feat(lint-staged): Extend JS modules list"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 24 Apr 2024 22:14:56 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/lint-staged_v0.2.0",
