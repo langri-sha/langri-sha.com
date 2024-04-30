@@ -88,7 +88,7 @@ export class LintSynthesized extends Component {
   #run(files: string[], command: string | ((files: string[]) => string)) {
     const task =
       typeof command === 'string'
-        ? `${command} ${files.join('')}`
+        ? `${command} ${files.join(' ')}`
         : command(files)
 
     debug(`Running command ${task}`)
