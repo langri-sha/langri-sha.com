@@ -22,6 +22,7 @@ jobs:
           node-version-file: package.json
           registry-url: https://registry.npmjs.org
           scope: '@langri-sha'
+          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Configure Git user
         run: |
