@@ -1,6 +1,7 @@
 .*
 !.eslintrc.js
 *.frag
+CHANGELOG.md
 pnpm-lock.yaml
 
 dist/
