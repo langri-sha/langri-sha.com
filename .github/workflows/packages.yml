@@ -22,7 +22,6 @@ jobs:
           node-version-file: package.json
           registry-url: https://registry.npmjs.org
           scope: '@langri-sha'
-          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Configure Git user
         run: |
@@ -30,10 +29,11 @@ jobs:
           git config user.email "filip.dupanovic@gmail.com"
 
       - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npx beachball publish \
+          npx beachball@2.43.1 publish \
             --access public
             --message "feat(beachball): Publish packages" \
             --new \
-            --token ${{ secrets.NPM_TOKEN }} \
             --yes
