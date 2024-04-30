@@ -306,6 +306,9 @@ importers:
       beachball:
         specifier: 2.43.1
         version: 2.43.1(typescript@5.4.5)
+      ramda:
+        specifier: 0.29.1
+        version: 0.29.1
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
@@ -316,6 +319,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@types/ramda':
+        specifier: 0.29.12
+        version: 0.29.12
       projen:
         specifier: 0.81.1
         version: 0.81.1(constructs@10.3.0)
