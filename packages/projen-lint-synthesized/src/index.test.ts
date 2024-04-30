@@ -41,15 +41,23 @@ test('lints synthesized files', async () => {
     '*': 'prettier --ignore-unknown --write',
   })
 
-  let file
+  let file, contents
 
-  file = new TextFile(project, 'test.js')
+  file = new TextFile(project, 'test1.js')
+  file.addLine(`module.exports = ${JSON.stringify({ foo: 'bar' })}`)
+
+  file = new TextFile(project, 'test2.js')
   file.addLine(`module.exports = ${JSON.stringify({ foo: 'bar' })}`)
 
   project.synth()
 
-  file = await fs.readFile(path.join(project.outdir, 'test.js'))
-  const contents = file.toString('utf8')
+  file = await fs.readFile(path.join(project.outdir, 'test1.js'))
+  contents = file.toString('utf8')
+
+  expect(contents).toEqual(`module.exports = { foo: "bar" };\n`)
+
+  file = await fs.readFile(path.join(project.outdir, 'test2.js'))
+  contents = file.toString('utf8')
 
   expect(contents).toEqual(`module.exports = { foo: "bar" };\n`)
 })
