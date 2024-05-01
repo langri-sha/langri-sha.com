@@ -33,7 +33,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx beachball@2.43.1 publish \
-            --access public
+            --access public \
             --message "feat(beachball): Publish packages" \
             --new \
             --yes
