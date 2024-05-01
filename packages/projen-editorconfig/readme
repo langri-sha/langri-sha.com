@@ -1,0 +1,7 @@
+# @langri-sha/editorconfig
+
+A [projen] component that you can add to your project to author [EditorConfig]
+configurations.
+
+[editorconfig]: https://editorconfig.org/
+[projen]: https://projen.io/
