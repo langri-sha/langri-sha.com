@@ -12,12 +12,21 @@ import {
   LintSynthesized,
   type LintSynthesizedOptions,
 } from '@langri-sha/projen-lint-synthesized'
+import {
+  EditorConfig,
+  type EditorConfigOptions,
+} from '@langri-sha/projen-editorconfig'
 
 export interface ProjectOptions extends BaseProjectOptions {
   /*
    * Pass in to set up Beachball.
    */
   beachballConfig?: BeachballConfig
+
+  /**
+   * EditorConfig options.
+   */
+  editorConfigOptions?: EditorConfigOptions
 
   /*
    * Options for the linting synthesized files.
@@ -57,6 +66,7 @@ export class Project extends BaseProject {
 
     this.#configureBeachball(options)
     this.#configureDefaultTask()
+    this.#configureEditorConfig(options)
     this.#configureLintSynthesized(options)
     this.#createPnpmWorkspaces(options)
   }
@@ -105,6 +115,29 @@ export class Project extends BaseProject {
         '*': 'pnpm prettier --write --ignore-unknown',
       },
     )
+  }
+
+  #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {
+    if (!editorConfigOptions) {
+      return
+    }
+
+    const defaults: EditorConfigOptions = {
+      '*': {
+        // eslint-disable-next-line unicorn/text-encoding-identifier-case
+        charset: 'utf-8',
+        end_of_line: 'lf',
+        indent_style: 'space',
+        indent_size: 2,
+        insert_final_newline: true,
+        trim_trailing_whitespace: true,
+      },
+      Dockerfile: {
+        indent_style: 'tab',
+      },
+    }
+
+    new EditorConfig(this, deepMerge(editorConfigOptions ?? {}, defaults))
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
