@@ -5,6 +5,14 @@ const config = {
   proseWrap: 'always',
   semi: false,
   singleQuote: true,
+  overrides: [
+    {
+      files: ['.editorconfig'],
+      options: {
+        parser: 'ini',
+      },
+    },
+  ],
 }
 
 export default config
