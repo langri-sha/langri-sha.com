@@ -62,6 +62,24 @@ test('lints synthesized files', async () => {
   expect(contents).toEqual(`module.exports = { foo: "bar" };\n`)
 })
 
+test('lints hidden synthesized files', async () => {
+  const { project } = setup({
+    '*': 'prettier --ignore-unknown --write',
+  })
+
+  let file
+
+  file = new TextFile(project, '.test.js')
+  file.addLine(`module.exports = ${JSON.stringify({ foo: 'bar' })}`)
+
+  project.synth()
+
+  file = await fs.readFile(path.join(project.outdir, '.test.js'))
+  const contents = file.toString('utf8')
+
+  expect(contents).toEqual(`module.exports = { foo: "bar" };\n`)
+})
+
 test('preserves file modes', async () => {
   const { project } = setup({
     '*': 'prettier --ignore-unknown',
