@@ -53,6 +53,16 @@ jobs:
             exit 1
           fi
 
+      - name: Check projen configuration
+        run: |
+          pnpx projen
+
+          if [[ $(git status --porcelain) ]]; then
+            echo '::error::Some projen changes haven not been appplied. Run `pnpx projen`.'
+            git diff
+            exit 1
+          fi
+
   jest:
     name: Jest
     runs-on: ubuntu-latest
