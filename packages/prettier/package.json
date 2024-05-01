@@ -7,6 +7,9 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*"
   },
+  "peerDependencies": {
+    "prettier": "^3.0.0"
+  },
   "publishConfig": {
     "access": "public"
   }
