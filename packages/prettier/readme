@@ -1,0 +1,9 @@
+# @langri-sha/prettier
+
+An opinionated [Prettier] configuration that focuses on easy to read and
+maintainable code, intended to be used on laptops and single monitors.
+
+Works great in conjunction with [EditorConfig] in your workspace.
+
+[editorconfig]: https://editorconfig.org/
+[prettier]: https://prettier.io/docs/en/
