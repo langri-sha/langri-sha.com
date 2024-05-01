@@ -54,7 +54,7 @@ export class LintSynthesized extends Component {
       .map(([pattern, command]) => ({
         pattern,
         command,
-        files: minimatch.match(paths, pattern),
+        files: minimatch.match(paths, pattern, { dot: true }),
       }))
       .filter(({ files }) => files.length)
 
