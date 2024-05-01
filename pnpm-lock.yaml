@@ -332,6 +332,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@langri-sha/projen-editorconfig':
+        specifier: workspace:*
+        version: link:../projen-editorconfig
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized

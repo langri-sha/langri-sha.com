@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/index.ts",
   "dependencies": {
+    "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "beachball": "2.43.1",
     "ramda": "0.29.1"
