@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(prettier): Configure support for EditorConfig files",
-  "packageName": "@langri-sha/prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Wed, 01 May 2024 23:11:18 GMT",
+      "version": "0.1.1",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "71b1eccec703fc7903cea5182a198e66f5c765ce",
+            "comment": "fix(lint-synthesized): Lint hidden files"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Apr 2024 23:02:33 GMT",
       "version": "0.1.0",
       "tag": "@langri-sha/projen-lint-synthesized_v0.1.0",

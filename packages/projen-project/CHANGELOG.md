@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Tue, 30 Apr 2024 23:02:33 GMT and should not be manually modified.
+This log was last generated on Wed, 01 May 2024 23:11:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Wed, 01 May 2024 23:11:18 GMT
+
+### Minor changes
+
+- feat(project): Add EditorConfig support (filip.dupanovic@gmail.com)
 
 ## 0.2.0
 

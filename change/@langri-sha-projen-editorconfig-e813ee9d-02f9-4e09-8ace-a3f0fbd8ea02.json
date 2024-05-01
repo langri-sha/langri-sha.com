@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(projen-editorconfig): Add package for EditorConfig files",
-  "packageName": "@langri-sha/projen-editorconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

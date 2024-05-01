@@ -1,0 +1,32 @@
+{
+  "name": "@langri-sha/prettier",
+  "entries": [
+    {
+      "date": "Wed, 01 May 2024 23:11:18 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/prettier_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "71b1eccec703fc7903cea5182a198e66f5c765ce",
+            "comment": "feat(prettier): Add support for INI files"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "71b1eccec703fc7903cea5182a198e66f5c765ce",
+            "comment": "feat(prettier): Publish initial configuration"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "71b1eccec703fc7903cea5182a198e66f5c765ce",
+            "comment": "feat(prettier): Configure support for EditorConfig files"
+          }
+        ]
+      }
+    }
+  ]
+}
