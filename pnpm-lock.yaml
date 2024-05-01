@@ -39,6 +39,9 @@ importers:
       '@langri-sha/lint-staged':
         specifier: workspace:*
         version: link:packages/lint-staged
+      '@langri-sha/prettier':
+        specifier: workspace:*
+        version: link:packages/prettier
       '@langri-sha/projen-project':
         specifier: workspace:*
         version: link:packages/projen-project
@@ -263,6 +266,12 @@ importers:
       '@langri-sha/jest-test':
         specifier: workspace:*
         version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+
+  packages/prettier:
+    devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
