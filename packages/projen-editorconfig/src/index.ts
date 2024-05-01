@@ -53,6 +53,7 @@ export class EditorConfig extends Component {
 
     new IniFile(project, '.editorconfig', {
       obj: {
+        ...(this.project?.parent === undefined ? { root: true } : {}),
         ...options,
       },
     })
