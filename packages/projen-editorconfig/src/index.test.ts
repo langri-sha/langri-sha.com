@@ -18,3 +18,24 @@ test('defaults', () => {
   project.synth()
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test(`doesn't configure root for subprojects`, () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const project2 = new Project({
+    name: 'test-project2',
+    parent: project,
+    outdir: 'test-project2',
+  })
+
+  new EditorConfig(project2, {
+    '*': {
+      trim_trailing_whitespace: true,
+    },
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
