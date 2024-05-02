@@ -4,6 +4,9 @@
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",
+  "scripts": {
+    "prepublishOnly": "rm -rf lib; tsc --build tsconfig.build.json"
+  },
   "dependencies": {
     "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
@@ -21,6 +24,8 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts"
   }
 }
