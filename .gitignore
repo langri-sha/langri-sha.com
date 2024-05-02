@@ -20,8 +20,8 @@
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
+apps/*/lib/
+packages/*/lib/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
