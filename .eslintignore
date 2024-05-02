@@ -1,4 +1,5 @@
 .*
 !.eslintrc.js
 
-dist/
+!apps/*/lib/
+!packages/*/lib/
