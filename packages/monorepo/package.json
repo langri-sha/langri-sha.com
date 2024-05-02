@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "license": "MIT",
   "main": "src/index.ts",
+  "scripts": {
+    "prepublishOnly": "rm -rf lib; tsc --build tsconfig.build.json"
+  },
   "dependencies": {
     "find-up": "7.0.0"
   },
@@ -11,6 +14,8 @@
     "@langri-sha/tsconfig": "workspace:*"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts"
   }
 }
