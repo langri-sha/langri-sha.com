@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(tsconfig): Sync package",
+  "packageName": "@langri-sha/tsconfig",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
