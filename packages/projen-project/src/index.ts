@@ -185,8 +185,7 @@ const getGitIgnoreOptions = ({
     !.github/
     !.husky/
     !.projen/
-    dist/
-    local/
+    ${options.workspaces?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/
     `
       .split('\n')
