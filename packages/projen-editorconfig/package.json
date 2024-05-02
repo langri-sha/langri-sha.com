@@ -4,6 +4,9 @@
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",
+  "scripts": {
+    "prepublishOnly": "rm -rf lib; tsc --build tsconfig.build.json"
+  },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
@@ -14,6 +17,8 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts"
   }
 }
