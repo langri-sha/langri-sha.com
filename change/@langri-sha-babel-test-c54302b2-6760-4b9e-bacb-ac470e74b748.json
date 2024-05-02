@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(project): Configure package build",
+  "packageName": "@langri-sha/babel-test",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

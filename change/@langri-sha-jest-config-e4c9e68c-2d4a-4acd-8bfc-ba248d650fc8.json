@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(jest-config): Configure package build",
+  "packageName": "@langri-sha/jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
