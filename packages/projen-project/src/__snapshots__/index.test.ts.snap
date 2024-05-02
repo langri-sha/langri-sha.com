@@ -22,8 +22,6 @@ exports[`defaults 1`] = `
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -83,8 +81,6 @@ exports[`with Beachball configuration 1`] = `
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -173,8 +169,6 @@ indent_style=tab
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -237,8 +231,6 @@ exports[`with Terraform enabled 1`] = `
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -299,8 +291,6 @@ exports[`with TypeScript enabled 1`] = `
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -360,8 +350,7 @@ exports[`with workspaces 1`] = `
 !.github/
 !.husky/
 !.projen/
-dist/
-local/
+packages/*/lib/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
