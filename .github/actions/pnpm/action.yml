@@ -1,6 +1,15 @@
 name: PNPM
 description: |-
   Configures PNPM and Node.js, and installs dependencies.
+inputs:
+  always-auth:
+    description: 'Set always-auth in npmrc.'
+    default: 'false'
+  scope:
+    description: 'Optional scope for authenticating against scoped registries. Will fall back to the repository owner when using the GitHub Packages registry (https://npm.pkg.github.com/).'
+  token:
+    description: Used to pull node distributions from node-versions. Since there's a default, this is typically not supplied by the user. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting.
+    default: ${{ github.server_url == 'https://github.com' && github.token || '' }}
 
 runs:
   using: composite
@@ -14,6 +23,9 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
+        always-auth: ${{ inputs.always-auth }}
+        scope: ${{ inputs.scope }}
+        token: ${{ inputs.token }}
         node-version-file: 'package.json'
         cache: 'pnpm'
 
