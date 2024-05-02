@@ -1,5 +1,5 @@
 .*
 !.eslintrc.js
 
-!apps/*/lib/
-!packages/*/lib/
+apps/*/lib/
+packages/*/lib/

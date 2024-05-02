@@ -5,4 +5,5 @@
 CHANGELOG.md
 pnpm-lock.yaml
 
-dist/
+apps/*/lib/
+packages/*/lib/
