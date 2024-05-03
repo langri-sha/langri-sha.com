@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(workspace): Revise build command",
-  "packageName": "@langri-sha/jest-test",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

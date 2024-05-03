@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-project",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",

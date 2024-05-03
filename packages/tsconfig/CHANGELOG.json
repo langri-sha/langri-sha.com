@@ -2,6 +2,61 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Fri, 03 May 2024 10:44:32 GMT",
+      "version": "0.9.0",
+      "tag": "@langri-sha/tsconfig_v0.9.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "6a66a8377e613ae844cad559a839c7af72c95af7",
+            "comment": "fix(workspace): Sync packages"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "17d90835e998c98a5dc8c9e058037e51fa17d5c9",
+            "comment": "fix(workspace): Sync packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "68e384490ef3496631d9e74f059a50a466179b5d",
+            "comment": "fix(workspace): Revise build command"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "9420af7f871c4c954a1f53459486e1bff942486c",
+            "comment": "fix(workspace): Sync packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "229d4c3ae41cdff66286f3f112bc3659888d0745",
+            "comment": "fix(tsconfig): Sync package"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "4abae560d4ffcc1b784740db37c5cd3091f6ed7a",
+            "comment": "fix(tsconfig): Sync package"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "a87f4ef5aef1e8cd5f793b9364a99c6618cc759d",
+            "comment": "feat(tsconfig): Add build config"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 24 Apr 2024 22:03:36 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/tsconfig_v0.2.0",
