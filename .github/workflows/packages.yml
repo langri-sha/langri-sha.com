@@ -16,15 +16,9 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: ./.github/actions/pnpm
         with:
           always-auth: true
-          node-version-file: package.json
           registry-url: https://registry.npmjs.org
           scope: '@langri-sha'
 
