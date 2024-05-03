@@ -2,6 +2,21 @@
   "name": "@langri-sha/jest-test",
   "entries": [
     {
+      "date": "Fri, 03 May 2024 12:54:50 GMT",
+      "version": "0.7.1",
+      "tag": "@langri-sha/jest-test_v0.7.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-test",
+            "commit": "a2e01a6b6e6b2243be9c5cdd2e77fe7cc162b6de",
+            "comment": "fix(workspace): Correct published paths"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 03 May 2024 10:44:32 GMT",
       "version": "0.7.0",
       "tag": "@langri-sha/jest-test_v0.7.0",
