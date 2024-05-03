@@ -27,6 +27,9 @@ jobs:
           git config user.name "Filip Dupanović"
           git config user.email "filip.dupanovic@gmail.com"
 
+      - name: Build composite projects
+        run: pnpm tsc --build .
+
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
