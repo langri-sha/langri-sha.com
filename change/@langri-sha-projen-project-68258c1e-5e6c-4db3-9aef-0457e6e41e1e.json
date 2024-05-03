@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(project): Add workspace output ignore patterns",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

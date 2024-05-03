@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-lint-synthesized",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",

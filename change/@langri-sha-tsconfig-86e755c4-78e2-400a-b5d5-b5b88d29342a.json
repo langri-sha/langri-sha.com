@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(workspace): Revise build command",
-  "packageName": "@langri-sha/tsconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

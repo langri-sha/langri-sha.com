@@ -2,6 +2,49 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Fri, 03 May 2024 10:44:32 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/jest-config_v0.6.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "6a66a8377e613ae844cad559a839c7af72c95af7",
+            "comment": "fix(workspace): Sync packages"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "17d90835e998c98a5dc8c9e058037e51fa17d5c9",
+            "comment": "fix(workspace): Sync packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "68e384490ef3496631d9e74f059a50a466179b5d",
+            "comment": "fix(workspace): Revise build command"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "9420af7f871c4c954a1f53459486e1bff942486c",
+            "comment": "fix(workspace): Sync packages"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "976a3bb428390ade32e6a6a4332d335d4a39915b",
+            "comment": "feat(jest-config): Configure package build"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 24 Apr 2024 22:14:56 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/jest-config_v0.2.0",

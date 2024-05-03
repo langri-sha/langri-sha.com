@@ -2,6 +2,35 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Fri, 03 May 2024 10:44:32 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/webpack_v0.3.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "68e384490ef3496631d9e74f059a50a466179b5d",
+            "comment": "fix(workspace): Revise build command"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "8fc01f442df883f36f2803d6cde4604854b71d88",
+            "comment": "fix(webpack): Add missing `@types/node`"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "976a3bb428390ade32e6a6a4332d335d4a39915b",
+            "comment": "feat(project): Configure package build"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 24 Apr 2024 22:14:56 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/webpack_v0.2.0",

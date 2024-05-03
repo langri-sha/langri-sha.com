@@ -1,9 +1,22 @@
 # Change Log - @langri-sha/jest-config
 
-This log was last generated on Wed, 24 Apr 2024 22:14:56 GMT and should not be
-manually modified.
+This log was last generated on Fri, 03 May 2024 10:44:32 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.0
+
+Fri, 03 May 2024 10:44:32 GMT
+
+### Minor changes
+
+- feat(jest-config): Configure package build (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(workspace): Sync packages (filip.dupanovic@gmail.com)
+- fix(workspace): Revise build command (filip.dupanovic@gmail.com)
+- fix(workspace): Sync packages (filip.dupanovic@gmail.com)
 
 ## 0.2.0
 

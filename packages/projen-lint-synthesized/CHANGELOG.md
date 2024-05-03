@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Wed, 01 May 2024 23:11:18 GMT and should not be manually modified.
+This log was last generated on Fri, 03 May 2024 10:44:32 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.0
+
+Fri, 03 May 2024 10:44:32 GMT
+
+### Minor changes
+
+- feat(lint-synthesized): Configure package build (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(workspace): Revise build command (filip.dupanovic@gmail.com)
 
 ## 0.1.1
 

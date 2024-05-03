@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Fri, 03 May 2024 10:44:32 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-project_v0.4.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "68e384490ef3496631d9e74f059a50a466179b5d",
+            "comment": "fix(workspace): Revise build command"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "976a3bb428390ade32e6a6a4332d335d4a39915b",
+            "comment": "feat(project): Configure package build"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "19c7d9169fbe48b285e96250fbe4f2e73396979b",
+            "comment": "feat(project): Add workspace output ignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 01 May 2024 23:11:18 GMT",
       "version": "0.3.0",
       "tag": "@langri-sha/projen-project_v0.3.0",
