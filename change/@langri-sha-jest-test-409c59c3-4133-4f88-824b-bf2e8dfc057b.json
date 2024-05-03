@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(workspace): Correct published paths",
+  "packageName": "@langri-sha/jest-test",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
