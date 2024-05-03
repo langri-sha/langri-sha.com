@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix(workspace): Sync packages",
+  "packageName": "@langri-sha/jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
