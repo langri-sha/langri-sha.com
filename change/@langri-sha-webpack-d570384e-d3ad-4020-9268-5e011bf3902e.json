@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(webpack): Add missing `@types/node`",
+  "packageName": "@langri-sha/webpack",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
