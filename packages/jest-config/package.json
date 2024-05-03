@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf lib; tsc --build tsconfig.build.json"
+    "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*"

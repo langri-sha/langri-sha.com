@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf lib; tsc --build tsconfig.build.json"
+    "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
     "@langri-sha/projen-editorconfig": "workspace:*",
