@@ -406,6 +406,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@types/node':
+        specifier: 20.12.7
+        version: 20.12.7
 
 packages:
 

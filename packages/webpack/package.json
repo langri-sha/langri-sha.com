@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "workspace:*",
-    "@langri-sha/tsconfig": "workspace:*"
+    "@langri-sha/tsconfig": "workspace:*",
+    "@types/node": "20.12.7"
   },
   "peerDependencies": {
     "@babel/register": "^7.0.0",
