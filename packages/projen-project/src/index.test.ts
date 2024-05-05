@@ -58,6 +58,15 @@ test('with TypeScript enabled', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with Renovate options', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovateOptions: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('with workspaces', () => {
   const project = new Project({
     name: 'test-project',
