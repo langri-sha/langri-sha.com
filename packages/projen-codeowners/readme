@@ -1,0 +1,9 @@
+# @langri-sha/projen-codeowners
+
+A [projen] component for managing [CODEOWNERS].
+
+## Usage
+
+[projen]: https://projen.io/
+[codeowners]:
+  https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
