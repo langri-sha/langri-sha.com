@@ -16,12 +16,21 @@ import {
   EditorConfig,
   type EditorConfigOptions,
 } from '@langri-sha/projen-editorconfig'
+import {
+  Codeowners,
+  type CodeownersOptions,
+} from '@langri-sha/projen-codeowners'
 
 export interface ProjectOptions extends BaseProjectOptions {
   /*
    * Pass in to set up Beachball.
    */
   beachballConfig?: BeachballConfig
+
+  /*
+   * Pass in to set up Beachball.
+   */
+  codeownersOptions?: CodeownersOptions
 
   /**
    * EditorConfig options.
@@ -65,6 +74,7 @@ export class Project extends BaseProject {
     this.tasks.removeTask('watch')
 
     this.#configureBeachball(options)
+    this.#configureCodeowners(options)
     this.#configureDefaultTask()
     this.#configureEditorConfig(options)
     this.#configureLintSynthesized(options)
@@ -99,6 +109,14 @@ export class Project extends BaseProject {
     ]) {
       file.addLine(line)
     }
+  }
+
+  #configureCodeowners({ codeownersOptions }: ProjectOptions) {
+    if (!codeownersOptions) {
+      return
+    }
+
+    new Codeowners(this, codeownersOptions)
   }
 
   #configureDefaultTask() {

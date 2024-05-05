@@ -20,6 +20,17 @@ test('with Beachball configuration', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with code owners configured', () => {
+  const project = new Project({
+    name: 'test-project',
+    codeownersOptions: {
+      '*': '@admin',
+    },
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('with EditorConfig options', () => {
   const project = new Project({
     name: 'test-project',
