@@ -20,8 +20,10 @@ import {
   Codeowners,
   type CodeownersOptions,
 } from '@langri-sha/projen-codeowners'
+import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 
-export interface ProjectOptions extends BaseProjectOptions {
+export interface ProjectOptions
+  extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
   /*
    * Pass in to set up Beachball.
    */
@@ -36,6 +38,11 @@ export interface ProjectOptions extends BaseProjectOptions {
    * EditorConfig options.
    */
   editorConfigOptions?: EditorConfigOptions
+
+  /*
+   * Pass in to configure Renovate.
+   */
+  renovateOptions?: RenovateOptions
 
   /*
    * Options for the linting synthesized files.
@@ -79,6 +86,7 @@ export class Project extends BaseProject {
     this.#configureDefaultTask()
     this.#configureEditorConfig(options)
     this.#configureLintSynthesized(options)
+    this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
   }
 
@@ -157,6 +165,21 @@ export class Project extends BaseProject {
         '*': 'pnpm prettier --write --ignore-unknown',
       },
     )
+  }
+
+  #configureRenovate({ renovateOptions }: ProjectOptions) {
+    if (!renovateOptions) {
+      return
+    }
+
+    const defaults: RenovateOptions = {
+      configMigration: true,
+      extends: ['config:recommended'],
+      labels: ['dependencies'],
+      reviewersFromCodeOwners: true,
+    }
+
+    new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
