@@ -5,7 +5,7 @@
     ".eslintrc.js",
     "babel.config.js",
     "jest.config.ts",
-    "lint-staged.config.js",
+    "lint-staged.config.mjs",
     "prettier.config.mjs"
   ],
   "references": [

@@ -14,10 +14,10 @@ npm install -D eslint prettier husky lint-staged @langri-sha/lint-staged
 Then add your configuration:
 
 ```js
-// lint-staged.config.js
-const config = require('@langri-sha/lint-staged')
+// lint-staged.config.(m)js
+import config from '@langri-sha/lint-staged'
 
-module.exports = {
+export default {
   ...config,
   /* ... */
 }

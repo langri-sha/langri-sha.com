@@ -1,5 +1,5 @@
-const { ESLint } = require('eslint')
-const prettier = require('prettier')
+import { ESLint } from 'eslint'
+import * as prettier from 'prettier'
 
 const eslintCli = new ESLint({
   extensions: ['.js', '.jsx'],
@@ -8,7 +8,7 @@ const eslintCli = new ESLint({
 /**
  * @type {import('lint-staged').Config}
  */
-module.exports = {
+export default {
   '*.{js,cjs,mjs,jsx,ts,mts,tsx}': async (files) => {
     /** @type {[string, boolean][]} */
     const ignored = await Promise.all(
