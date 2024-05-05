@@ -1,0 +1,13 @@
+# @langri-sha/projen-renovate
+
+A [projen] component for authoring [Renovate] configurations.
+
+## See also
+
+- [Renovate Docs]
+- [Renovate NPM Package]
+
+[projen]: https://projen.io/
+[renovate docs]: https://docs.renovatebot.com/
+[renovate npm package]: https://www.npmjs.com/package/renovate
+[renovate]: https://www.mend.io/renovate/
