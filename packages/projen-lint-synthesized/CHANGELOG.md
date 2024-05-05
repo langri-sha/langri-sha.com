@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Fri, 03 May 2024 12:54:50 GMT and should not be manually modified.
+This log was last generated on Sun, 05 May 2024 07:21:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.2
+
+Sun, 05 May 2024 07:21:05 GMT
+
+### Patches
+
+- fix(lint-synthesized): Add `execa` to dependencies (filip.dupanovic@gmail.com)
 
 ## 0.2.1
 
