@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "debug": "4.3.4",
+    "execa": "8.0.1",
     "minimatch": "9.0.4"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@types/debug": "4.1.12",
-    "execa": "8.0.1",
     "prettier": "3.2.5",
     "projen": "0.81.1"
   },
