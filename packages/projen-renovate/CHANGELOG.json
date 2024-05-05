@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/projen-renovate",
+  "entries": [
+    {
+      "date": "Sun, 05 May 2024 18:38:47 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-renovate_v0.1.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "7c0f7da2b7cd547d16c2ba8148858397570fcce8",
+            "comment": "feat(renovate): Initial release"
+          }
+        ]
+      }
+    }
+  ]
+}
