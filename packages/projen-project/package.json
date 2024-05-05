@@ -11,6 +11,7 @@
     "@langri-sha/projen-codeowners": "workspace:*",
     "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
+    "@langri-sha/projen-renovate": "workspace:*",
     "beachball": "2.43.1",
     "ramda": "0.29.1"
   },
