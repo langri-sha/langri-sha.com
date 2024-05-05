@@ -1,0 +1,24 @@
+{
+  "name": "@langri-sha/projen-renovate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@langri-sha/jest-test": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
+    "projen": "0.81.1"
+  },
+  "peerDependencies": {
+    "projen": "^0.81.1",
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts"
+  }
+}

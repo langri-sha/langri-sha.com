@@ -20,6 +20,7 @@
     { "path": "./packages/projen-editorconfig" },
     { "path": "./packages/projen-lint-synthesized" },
     { "path": "./packages/projen-project" },
+    { "path": "./packages/projen-renovate" },
     { "path": "./packages/tsconfig" },
     { "path": "./packages/webpack" }
   ]
