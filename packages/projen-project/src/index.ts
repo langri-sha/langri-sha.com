@@ -126,16 +126,6 @@ export class Project extends BaseProject {
       ?.exec(`node --loader ts-node/esm .projenrc.mts`)
   }
 
-  #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
-    new LintSynthesized(
-      this,
-      lintSynthesizedOptions ?? {
-        '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
-        '*': 'pnpm prettier --write --ignore-unknown',
-      },
-    )
-  }
-
   #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {
     if (!editorConfigOptions) {
       return
@@ -157,6 +147,16 @@ export class Project extends BaseProject {
     }
 
     new EditorConfig(this, deepMerge(editorConfigOptions ?? {}, defaults))
+  }
+
+  #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
+    new LintSynthesized(
+      this,
+      lintSynthesizedOptions ?? {
+        '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
+        '*': 'pnpm prettier --write --ignore-unknown',
+      },
+    )
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
