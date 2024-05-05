@@ -351,6 +351,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@langri-sha/projen-codeowners':
+        specifier: workspace:*
+        version: link:../projen-codeowners
       '@langri-sha/projen-editorconfig':
         specifier: workspace:*
         version: link:../projen-editorconfig
