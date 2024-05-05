@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "feat(projen-project): Update documentation",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
