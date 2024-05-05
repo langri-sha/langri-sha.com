@@ -41,6 +41,7 @@ export interface ProjectOptions extends BaseProjectOptions {
    * Options for the linting synthesized files.
    */
   lintSynthesizedOptions?: LintSynthesizedOptions
+
   /*
    * Whether to use Terrafom.
    */
