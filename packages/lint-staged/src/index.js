@@ -20,7 +20,7 @@ module.exports = {
 
     return `eslint --ext js,jsx --fix ${filtered.join(' ')}`
   },
-  '*.{css,html,json,md,yaml,yml}': async (files) => {
+  '*': async (files) => {
     const options = { ignorePath: './.prettierignore' }
 
     /** @type {[string, import('prettier').FileInfoResult][]} */
@@ -34,6 +34,8 @@ module.exports = {
       .filter(([, { ignored }]) => !ignored)
       .map(([file]) => `"${file}"`)
 
-    return filtered.length > 0 ? `prettier --write ${filtered.join(' ')}` : []
+    return filtered.length > 0
+      ? `prettier --ignore-unknown --write ${filtered.join(' ')}`
+      : []
   },
 }
