@@ -307,6 +307,9 @@ importers:
       debug:
         specifier: 4.3.4
         version: 4.3.4
+      execa:
+        specifier: 8.0.1
+        version: 8.0.1
       minimatch:
         specifier: 9.0.4
         version: 9.0.4
@@ -323,9 +326,6 @@ importers:
       '@types/debug':
         specifier: 4.1.12
         version: 4.1.12
-      execa:
-        specifier: 8.0.1
-        version: 8.0.1
       prettier:
         specifier: 3.2.5
         version: 3.2.5
