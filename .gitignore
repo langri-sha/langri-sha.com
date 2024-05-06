@@ -28,6 +28,7 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/beachball.config.js
+!/CODEOWNERS
 !/.editorconfig
 !/renovate.json
 !/pnpm-workspace.yaml
