@@ -18,3 +18,11 @@ jobs:
 
       - name: Update Jest snapshots
         run: pnpm jest --updateSnapshot --passWithNoTests
+
+      - name: Create Beachball changes
+        run: |
+          pnpm beachball change \
+            --message "chore(deps): ${{ github.event.pull_request.title }}" \
+            --no-commit \
+            --type patch \
+            --yes
