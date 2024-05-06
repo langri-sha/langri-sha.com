@@ -10,5 +10,5 @@ jobs:
 
     if: ${{ github.actor == 'renovate-bot' || github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Stub
-        run: echo "OK"
+      - name: Checkout
+        uses: actions/checkout@v4
