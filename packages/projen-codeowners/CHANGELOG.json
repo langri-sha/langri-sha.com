@@ -1,0 +1,28 @@
+{
+  "name": "@langri-sha/projen-codeowners",
+  "entries": [
+    {
+      "date": "Mon, 06 May 2024 02:33:10 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/projen-codeowners_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-codeowners",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(projen-codeowners): Add projen marker"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-codeowners",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(codeowners): Manage `CODEOWNERS` files"
+          }
+        ]
+      }
+    }
+  ]
+}

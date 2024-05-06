@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(codeowners): Manage `CODEOWNERS` files",
-  "packageName": "@langri-sha/projen-codeowners",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

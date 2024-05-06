@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Mon, 06 May 2024 02:33:10 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/projen-renovate_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(renovate): Migrate to JSON5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 05 May 2024 18:38:47 GMT",
       "version": "0.1.0",
       "tag": "@langri-sha/projen-renovate_v0.1.0",

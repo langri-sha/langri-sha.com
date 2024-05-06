@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Mon, 06 May 2024 02:33:10 GMT",
+      "version": "0.5.0",
+      "tag": "@langri-sha/projen-project_v0.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(project): Add support for configuring code owners"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(projen-project): Manage Renovate configuration"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(projen-project): Update documentation"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 03 May 2024 12:54:50 GMT",
       "version": "0.4.1",
       "tag": "@langri-sha/projen-project_v0.4.1",

@@ -2,6 +2,27 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Mon, 06 May 2024 02:33:10 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/lint-staged_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(lint-staged): Migrate to ESM"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "4ce9a634d76fb8287290e07ae33aa37e3b6151b4",
+            "comment": "feat(lint-staged): Lint all files with Prettier"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Apr 2024 23:02:33 GMT",
       "version": "0.3.0",
       "tag": "@langri-sha/lint-staged_v0.3.0",

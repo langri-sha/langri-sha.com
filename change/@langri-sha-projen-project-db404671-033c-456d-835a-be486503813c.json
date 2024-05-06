@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(projen-project): Manage Renovate configuration",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/lint-staged
 
-This log was last generated on Tue, 30 Apr 2024 23:02:33 GMT and should not be manually modified.
+This log was last generated on Mon, 06 May 2024 02:33:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Mon, 06 May 2024 02:33:10 GMT
+
+### Minor changes
+
+- feat(lint-staged): Migrate to ESM (filip.dupanovic@gmail.com)
+- feat(lint-staged): Lint all files with Prettier (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 
