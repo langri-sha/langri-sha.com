@@ -34,3 +34,8 @@ jobs:
           if git status --porcelain; then
             echo "has-changes=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Create patch
+        run: |
+          git add -A
+          git diff --cached > patch.txt
