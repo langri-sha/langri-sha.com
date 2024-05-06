@@ -29,4 +29,5 @@ node_modules/
 !/.projen/files.json
 !/beachball.config.js
 !/.editorconfig
+!/renovate.json
 !/pnpm-workspace.yaml
