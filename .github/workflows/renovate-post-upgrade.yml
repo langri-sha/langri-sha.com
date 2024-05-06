@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     if: ${{ github.actor == 'renovate-bot' || github.actor == 'dependabot[bot]' }}
+    outputs:
+      has-changes: ${{ steps.git-changes.outputs.has-changes }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,3 +27,10 @@ jobs:
             --no-commit \
             --type patch \
             --yes
+
+      - name: Check for Git changes
+        id: git-changes
+        run: |
+          if git status --porcelain; then
+            echo "has-changes=true" >> "$GITHUB_OUTPUT"
+          fi
