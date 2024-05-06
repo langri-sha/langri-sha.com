@@ -15,3 +15,6 @@ jobs:
 
       - name: Setup PNPM
         uses: ./.github/actions/pnpm
+
+      - name: Update Jest snapshots
+        run: pnpm jest --updateSnapshot --passWithNoTests
