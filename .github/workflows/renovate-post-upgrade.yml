@@ -1,0 +1,14 @@
+name: Renovate Post-Upgrade
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  post-upgrade:
+    runs-on: ubuntu-latest
+
+    if: ${{ github.actor == 'renovate-bot' || github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Stub
+        run: echo "OK"
