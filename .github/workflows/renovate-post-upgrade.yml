@@ -39,3 +39,9 @@ jobs:
         run: |
           git add -A
           git diff --cached > patch.txt
+
+      - name: Upload diff
+        uses: actions/upload-artifact@v4
+        if: ${{ steps.git-changes.outputs.has-changes }}
+        with:
+          path: patch.txt
