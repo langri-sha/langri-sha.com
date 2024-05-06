@@ -30,5 +30,5 @@ node_modules/
 !/beachball.config.js
 !/CODEOWNERS
 !/.editorconfig
-!/renovate.json
+!/renovate.json5
 !/pnpm-workspace.yaml

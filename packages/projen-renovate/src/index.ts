@@ -14,7 +14,7 @@ export class Renovate extends Component {
   constructor(project: Project, options?: RenovateOptions) {
     super(project)
 
-    new JsonFile(project, 'renovate.json', {
+    new JsonFile(project, 'renovate.json5', {
       obj: {
         $schema: 'https://docs.renovatebot.com/renovate-schema.json',
         ...options,
