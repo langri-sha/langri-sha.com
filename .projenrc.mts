@@ -4,8 +4,9 @@ const project = new Project({
   name: "langri-sha.com",
   beachballConfig: {},
   editorConfigOptions: {},
-  withTypeScript: true,
+  renovateOptions: {},
   withTerraform: true,
+  withTypeScript: true,
   workspaces: [
     'apps/*',
     'packages/*'
