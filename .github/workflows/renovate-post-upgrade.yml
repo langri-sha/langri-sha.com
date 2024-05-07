@@ -7,7 +7,7 @@ jobs:
   post-upgrade:
     runs-on: ubuntu-latest
 
-    if: ${{ github.actor == 'renovate-bot' || github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'renovate[bot]' || github.actor == 'dependabot[bot]' }}
     outputs:
       has-changes: ${{ steps.git-changes.outputs.has-changes }}
     steps:
