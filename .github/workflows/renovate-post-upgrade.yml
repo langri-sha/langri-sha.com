@@ -60,3 +60,10 @@ jobs:
 
       - name: Download diff
         uses: actions/download-artifact@v4
+
+      - name: Apply diff
+        run: |
+          git apply diff.patch
+          git add .
+          git commit -m "chore(deps): Apply upgrade changes"
+          git push origin HEAD
