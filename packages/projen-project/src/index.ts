@@ -141,7 +141,6 @@ export class Project extends BaseProject {
 
     const defaults: EditorConfigOptions = {
       '*': {
-        // eslint-disable-next-line unicorn/text-encoding-identifier-case
         charset: 'utf-8',
         end_of_line: 'lf',
         indent_style: 'space',
@@ -209,8 +208,6 @@ const getGitIgnoreOptions = ({
     !.babelrc
     !.dockerignore
     !.editorconfig
-    !.eslintignore
-    !.eslintrc.js
     !.gitattributes
     !.gitignore
     !.gitkeep

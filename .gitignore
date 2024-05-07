@@ -3,8 +3,6 @@
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
