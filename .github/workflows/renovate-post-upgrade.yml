@@ -51,6 +51,9 @@ jobs:
     if: ${{ github.job.post-upgrade.outputs.has-changes }}
     needs: [post-upgrade]
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
