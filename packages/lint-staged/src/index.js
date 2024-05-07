@@ -1,9 +1,7 @@
 import { ESLint } from 'eslint'
 import * as prettier from 'prettier'
 
-const eslintCli = new ESLint({
-  extensions: ['.js', '.jsx'],
-})
+const eslintCli = new ESLint()
 
 /**
  * @type {import('lint-staged').Config}
@@ -18,7 +16,7 @@ export default {
       .filter(([, isIgnored]) => !isIgnored)
       .map(([file]) => `"${file}"`)
 
-    return `eslint --ext js,jsx --fix ${filtered.join(' ')}`
+    return `eslint --fix ${filtered.join(' ')}`
   },
   '*': async (files) => {
     const options = { ignorePath: './.prettierignore' }

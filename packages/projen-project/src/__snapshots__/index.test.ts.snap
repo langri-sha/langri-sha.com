@@ -7,8 +7,6 @@ exports[`defaults 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -66,8 +64,6 @@ exports[`with Beachball configuration 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -154,8 +150,6 @@ indent_style=tab
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -215,8 +209,6 @@ exports[`with Renovate options 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -287,8 +279,6 @@ exports[`with Terraform enabled 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -347,8 +337,6 @@ exports[`with TypeScript enabled 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -407,8 +395,6 @@ exports[`with code owners configured 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -471,8 +457,6 @@ exports[`with workspaces 1`] = `
 !.babelrc
 !.dockerignore
 !.editorconfig
-!.eslintignore
-!.eslintrc.js
 !.gitattributes
 !.gitignore
 !.gitkeep
