@@ -317,6 +317,9 @@ importers:
 
   packages/projen-husky:
     dependencies:
+      husky:
+        specifier: ^9.0.0
+        version: 9.0.11
       typescript:
         specifier: ^5.0.0
         version: 5.4.5
