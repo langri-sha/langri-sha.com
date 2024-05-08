@@ -315,6 +315,22 @@ importers:
         specifier: 0.81.1
         version: 0.81.1(constructs@10.3.0)
 
+  packages/projen-husky:
+    dependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.4.5
+    devDependencies:
+      '@langri-sha/jest-test':
+        specifier: workspace:*
+        version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      projen:
+        specifier: 0.81.1
+        version: 0.81.1(constructs@10.3.0)
+
   packages/projen-lint-synthesized:
     dependencies:
       debug:

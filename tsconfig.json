@@ -20,6 +20,7 @@
     { "path": "./packages/prettier" },
     { "path": "./packages/projen-codeowners" },
     { "path": "./packages/projen-editorconfig" },
+    { "path": "./packages/projen-husky" },
     { "path": "./packages/projen-lint-synthesized" },
     { "path": "./packages/projen-project" },
     { "path": "./packages/projen-renovate" },
