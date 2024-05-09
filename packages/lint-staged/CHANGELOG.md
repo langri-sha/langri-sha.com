@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/lint-staged
 
-This log was last generated on Mon, 06 May 2024 02:33:10 GMT and should not be manually modified.
+This log was last generated on Thu, 09 May 2024 07:29:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.0
+
+Thu, 09 May 2024 07:29:56 GMT
+
+### Minor changes
+
+- feat(eslint): Upgrade to v9 (filip.dupanovic@gmail.com)
 
 ## 0.4.0
 

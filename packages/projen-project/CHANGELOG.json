@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 09 May 2024 07:29:56 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/projen-project_v0.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "508fb179ee3454c0e43f7ea2a9ed25ca6310e27b",
+            "comment": "feat(eslint): Upgrade to v9"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "508fb179ee3454c0e43f7ea2a9ed25ca6310e27b",
+            "comment": "feat(project): Add support for configuring Husky"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 06 May 2024 02:33:10 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/projen-project_v0.5.0",

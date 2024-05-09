@@ -2,6 +2,21 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Thu, 09 May 2024 07:29:56 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/eslint-config_v0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "508fb179ee3454c0e43f7ea2a9ed25ca6310e27b",
+            "comment": "feat(eslint): Upgrade to v9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 24 Apr 2024 22:14:56 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/eslint-config_v0.2.0",

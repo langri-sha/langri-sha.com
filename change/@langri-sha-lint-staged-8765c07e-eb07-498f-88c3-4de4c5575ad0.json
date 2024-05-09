@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(eslint): Upgrade to v9",
-  "packageName": "@langri-sha/lint-staged",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/projen-husky",
+  "entries": [
+    {
+      "date": "Thu, 09 May 2024 07:29:56 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-husky_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-husky",
+            "commit": "508fb179ee3454c0e43f7ea2a9ed25ca6310e27b",
+            "comment": "feat(husky): Add support for managing Git hooks"
+          }
+        ]
+      }
+    }
+  ]
+}
