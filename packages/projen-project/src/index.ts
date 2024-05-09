@@ -21,6 +21,7 @@ import {
   type CodeownersOptions,
 } from '@langri-sha/projen-codeowners'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
+import { Husky, type HuskyOptions } from '@langri-sha/projen-husky'
 
 export interface ProjectOptions
   extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
@@ -38,6 +39,11 @@ export interface ProjectOptions
    * EditorConfig options.
    */
   editorConfigOptions?: EditorConfigOptions
+
+  /**
+   * Husky options.
+   */
+  huskyOptions?: HuskyOptions
 
   /*
    * Pass in to configure Renovate.
@@ -85,6 +91,7 @@ export class Project extends BaseProject {
     this.#configureCodeowners(options)
     this.#configureDefaultTask()
     this.#configureEditorConfig(options)
+    this.#configureHusky(options)
     this.#configureLintSynthesized(options)
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
@@ -156,6 +163,14 @@ export class Project extends BaseProject {
     new EditorConfig(this, deepMerge(editorConfigOptions ?? {}, defaults))
   }
 
+  #configureHusky({ huskyOptions }: ProjectOptions) {
+    if (!huskyOptions) {
+      return
+    }
+
+    new Husky(this, huskyOptions)
+  }
+
   #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
     new LintSynthesized(
       this,
@@ -197,6 +212,7 @@ export class Project extends BaseProject {
 }
 
 const getGitIgnoreOptions = ({
+  huskyOptions,
   withTerraform,
   withTypeScript,
   ...options
@@ -211,7 +227,6 @@ const getGitIgnoreOptions = ({
     !.gitattributes
     !.gitignore
     !.gitkeep
-    !.husky
     !.npmignore
     !.openssl
     !.prettierignore
@@ -222,7 +237,7 @@ const getGitIgnoreOptions = ({
     ${withTypeScript ? '*.tsbuildinfo' : ''}
 
     !.github/
-    !.husky/
+    ${huskyOptions ? '!.husky/' : ''}
     !.projen/
     ${options.workspaces?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/

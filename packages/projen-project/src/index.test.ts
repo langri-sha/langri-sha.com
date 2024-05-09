@@ -40,6 +40,17 @@ test('with EditorConfig options', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with Husky options', () => {
+  const project = new Project({
+    name: 'test-project',
+    huskyOptions: {
+      'pre-commit': 'lint-staged',
+    },
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('with Terraform enabled', () => {
   const project = new Project({
     name: 'test-project',
