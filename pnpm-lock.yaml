@@ -376,6 +376,9 @@ importers:
       '@langri-sha/projen-editorconfig':
         specifier: workspace:*
         version: link:../projen-editorconfig
+      '@langri-sha/projen-husky':
+        specifier: workspace:*
+        version: link:../projen-husky
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized

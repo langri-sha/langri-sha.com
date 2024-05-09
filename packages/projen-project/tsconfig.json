@@ -9,6 +9,7 @@
     { "path": "../jest-test" },
     { "path": "../projen-codeowners" },
     { "path": "../projen-editorconfig" },
+    { "path": "../projen-husky" },
     { "path": "../projen-lint-synthesized" },
     { "path": "../projen-renovate" },
     { "path": "../tsconfig" }
