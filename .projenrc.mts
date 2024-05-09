@@ -7,6 +7,9 @@ const project = new Project({
     '*': '@langri-sha'
   },
   editorConfigOptions: {},
+  huskyOptions:{
+    'pre-commit': 'pnpm -q lint-staged'
+  },
   renovateOptions: {},
   withTerraform: true,
   withTypeScript: true,
