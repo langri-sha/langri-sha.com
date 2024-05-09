@@ -6,7 +6,6 @@
 !.gitattributes
 !.gitignore
 !.gitkeep
-!.husky
 !.npmignore
 !.openssl
 !.prettierignore
