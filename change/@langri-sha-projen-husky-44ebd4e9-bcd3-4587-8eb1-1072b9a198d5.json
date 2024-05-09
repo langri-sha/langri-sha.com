@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(husky): Add support for managing Git hooks",
+  "packageName": "@langri-sha/projen-husky",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
