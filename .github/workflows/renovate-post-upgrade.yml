@@ -48,7 +48,7 @@ jobs:
 
   commit-upgrade-changes:
     runs-on: ubuntu-latest
-    if: github.job.post-upgrade.outputs.has-changes == 'true'
+    if: ${{ needs.post-upgrade.outputs.has-changes }}
     needs: [post-upgrade]
 
     permissions:
