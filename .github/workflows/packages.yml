@@ -23,9 +23,7 @@ jobs:
           scope: '@langri-sha'
 
       - name: Configure Git user
-        run: |
-          git config user.name "Filip Dupanović"
-          git config user.email "filip.dupanovic@gmail.com"
+        uses: ./.github/actions/github-action-bot-git-user
 
       - name: Build composite projects
         run: pnpm tsc --build .
