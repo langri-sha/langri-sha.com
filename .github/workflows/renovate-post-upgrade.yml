@@ -68,9 +68,7 @@ jobs:
           name: diff
 
       - name: Configure Git user
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        uses: ./.github/actions/github-action-bot-git-user
 
       - name: Apply diff
         run: |
