@@ -1,0 +1,13 @@
+name: GitHub Action Bot Git user
+description: |-
+  Configures the Git user details to represent the GitHub Action bot.
+
+runs:
+  using: composite
+
+  steps:
+    - name: Configure Git user
+      shell: sh
+      run: |
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
