@@ -69,6 +69,9 @@ jobs:
         with:
           name: diff
 
+      - name: Configure Git user
+        uses: ./.github/actions/github-action-bot-git-user
+
       - name: Apply diff
         run: |
           git apply .diff.patch
