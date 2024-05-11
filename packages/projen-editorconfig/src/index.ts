@@ -28,7 +28,7 @@ export interface EditorConfigOptions {
     /**
      * Specifies the encoding of the file.
      */
-    // eslint-disable-next-line unicorn/text-encoding-identifier-case
+
     charset?: 'latin1' | 'utf-8' | 'utf-8-bom' | 'utf-16be' | 'utf-16le'
 
     /**
