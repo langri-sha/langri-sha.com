@@ -75,4 +75,4 @@ jobs:
           git apply .diff.patch
           git add .
           git commit -m "chore(deps): Apply upgrade changes"
-          git push origin HEAD
+          git push
