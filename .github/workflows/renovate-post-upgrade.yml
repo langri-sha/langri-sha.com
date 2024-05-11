@@ -61,18 +61,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Download diff
         uses: actions/download-artifact@v4
         with:
           name: diff
 
-      - name: Configure Git user
-        uses: ./.github/actions/github-action-bot-git-user
-
       - name: Apply diff
         run: |
           git apply .diff.patch
           git add .
           git commit -m "chore(deps): Apply upgrade changes"
-          git push
+          git push origin ${{ github.event.pull_request.head.ref }}
