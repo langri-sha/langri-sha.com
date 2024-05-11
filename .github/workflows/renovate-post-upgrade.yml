@@ -17,6 +17,9 @@ jobs:
       - name: Setup PNPM
         uses: ./.github/actions/pnpm
 
+      - name: Apply ESLint fixes
+        run: pnpm eslint --fix .
+
       - name: Update Jest snapshots
         run: pnpm jest --updateSnapshot --passWithNoTests
 
