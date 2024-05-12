@@ -14,12 +14,12 @@
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
     "beachball": "2.43.1",
-    "ramda": "0.29.1"
+    "ramda": "0.30.0"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/ramda": "0.29.12",
+    "@types/ramda": "0.30.0",
     "projen": "0.81.10"
   },
   "peerDependencies": {
