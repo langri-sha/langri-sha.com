@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): fix(deps): update babel monorepo to v7.24.5",
+  "packageName": "@langri-sha/babel-preset",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
