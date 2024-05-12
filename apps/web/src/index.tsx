@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import { Landing } from './pages'
 import webfont from './lib/webfont'
@@ -11,8 +11,12 @@ import webfont from './lib/webfont'
   if (document) {
     const container = document.querySelector('#app')
 
-    if (container) {
-      ReactDOM.render(<Landing />, container)
+    if (!container) {
+      throw new Error('App container not found')
     }
+
+    const root = createRoot(container)
+
+    root.render(<Landing />)
   }
 })()
