@@ -1,5 +1,6 @@
 .*
 !.editorconfig
+!.projenrc.*
 *.frag
 CHANGELOG.md
 pnpm-lock.yaml

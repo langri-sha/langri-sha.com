@@ -1,22 +1,19 @@
 import { Project } from '@langri-sha/projen-project'
 
 const project = new Project({
-  name: "langri-sha.com",
+  name: 'langri-sha.com',
   beachballConfig: {},
   codeownersOptions: {
-    '*': '@langri-sha'
+    '*': '@langri-sha',
   },
   editorConfigOptions: {},
-  huskyOptions:{
-    'pre-commit': 'pnpm -q lint-staged'
+  huskyOptions: {
+    'pre-commit': 'pnpm -q lint-staged',
   },
   renovateOptions: {},
   withTerraform: true,
   withTypeScript: true,
-  workspaces: [
-    'apps/*',
-    'packages/*'
-  ]
-});
+  workspaces: ['apps/*', 'packages/*'],
+})
 
-project.synth();
+project.synth()
