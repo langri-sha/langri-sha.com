@@ -34,7 +34,7 @@ jobs:
       - name: Check for Git changes
         id: git-changes
         run: |
-          if git status --porcelain; then
+          if [[ `git status --porcelain | wc -c` -ne '0' ]]; then
             echo "has-changes=true" >> "$GITHUB_OUTPUT"
           fi
 
