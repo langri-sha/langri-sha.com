@@ -7,7 +7,7 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "ramda": "0.29.1"
+    "ramda": "0.30.0"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
@@ -15,7 +15,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@types/babel__core": "7.20.5",
     "@types/node": "20.12.11",
-    "@types/ramda": "0.29.12"
+    "@types/ramda": "0.30.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
