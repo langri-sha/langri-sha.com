@@ -22,6 +22,7 @@
     { "path": "./packages/projen-editorconfig" },
     { "path": "./packages/projen-husky" },
     { "path": "./packages/projen-lint-synthesized" },
+    { "path": "./packages/projen-typescript-config" },
     { "path": "./packages/projen-project" },
     { "path": "./packages/projen-renovate" },
     { "path": "./packages/tsconfig" },
