@@ -1,0 +1,7 @@
+# @langri-sha/typescript-config
+
+A [projen] component for managing [TSConfig] files for [TypeScript] projects.
+
+[projen]: https://projen.io/
+[tsconfig]: https://www.typescriptlang.org/tsconfig.
+[typescript]: https://www.typescriptlang.org/
