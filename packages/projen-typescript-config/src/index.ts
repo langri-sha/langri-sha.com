@@ -42,30 +42,33 @@ export class TypeScriptConfig extends Component {
   /**
    * Appends to the list of filenames and patterns to exclude in the program.
    */
-  addExclude(fileNameOrPattern: string) {
-    this.#file.addToArray('exclude', fileNameOrPattern)
+  addExclude(...fileNamesOrPatterns: string[]) {
+    this.#file.addToArray('exclude', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames and patterns to include in the program.
    */
-  addInclude(fileNameOrPattern: string) {
-    this.#file.addToArray('include', fileNameOrPattern)
+  addInclude(...fileNamesOrPatterns: string[]) {
+    this.#file.addToArray('include', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames to include in the program.
    */
-  addFile(fileName: string) {
-    this.#file.addToArray('files', fileName)
+  addFile(...fileNames: string[]) {
+    this.#file.addToArray('files', ...fileNames)
   }
 
   /**
    * Adds a reference project.
    */
-  addReference(path: string) {
-    this.#file.addToArray('references', {
-      path,
-    })
+  addReference(...paths: string[]) {
+    this.#file.addToArray(
+      'references',
+      ...paths.map((path) => ({
+        path,
+      })),
+    )
   }
 }
