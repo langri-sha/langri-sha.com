@@ -15,6 +15,7 @@ test('with Beachball configuration', () => {
   const project = new Project({
     name: 'test-project',
     beachballConfig: {},
+    typeScriptConfigOptions: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -60,20 +61,22 @@ test('with Terraform enabled', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
-test('with TypeScript enabled', () => {
-  const project = new Project({
-    name: 'test-project',
-    withTypeScript: true,
-  })
-
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
 test('with Renovate options', () => {
   const project = new Project({
     name: 'test-project',
     renovateOptions: {},
   })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
+test('with TypeScript options', () => {
+  const project = new Project({
+    name: 'test-project',
+    typeScriptConfigOptions: {},
+  })
+
+  project.typeScriptConfig?.addFile('foo.js', 'bar.js')
 
   expect(synthSnapshot(project)).toMatchSnapshot()
 })

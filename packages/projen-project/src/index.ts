@@ -22,6 +22,10 @@ import {
 } from '@langri-sha/projen-codeowners'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 import { Husky, type HuskyOptions } from '@langri-sha/projen-husky'
+import {
+  TypeScriptConfig,
+  type TypeScriptConfigOptions,
+} from '@langri-sha/projen-typescript-config'
 
 export interface ProjectOptions
   extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
@@ -56,14 +60,14 @@ export interface ProjectOptions
   lintSynthesizedOptions?: LintSynthesizedOptions
 
   /*
+   * Configure TypeScript.
+   */
+  typeScriptConfigOptions?: TypeScriptConfigOptions
+
+  /*
    * Whether to use Terrafom.
    */
   withTerraform?: boolean
-
-  /*
-   * Whether to use TypeScript.
-   */
-  withTypeScript?: boolean
 
   /*
    * PNPM workspaces to generate.
@@ -72,6 +76,8 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  typeScriptConfig?: TypeScriptConfig
+
   constructor(options: ProjectOptions) {
     super({
       ...options,
@@ -86,6 +92,8 @@ export class Project extends BaseProject {
     this.tasks.removeTask('post-compile')
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
+
+    this.#configureTypeScript(options)
 
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
@@ -125,6 +133,8 @@ export class Project extends BaseProject {
     ]) {
       file.addLine(line)
     }
+
+    this.typeScriptConfig?.addFile('beachball.config.js')
   }
 
   #configureCodeowners({ codeownersOptions }: ProjectOptions) {
@@ -196,6 +206,23 @@ export class Project extends BaseProject {
     new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 
+  #configureTypeScript({ typeScriptConfigOptions }: ProjectOptions) {
+    if (!typeScriptConfigOptions) {
+      return
+    }
+
+    const defaults: TypeScriptConfigOptions = {
+      config: {
+        extends: '@langri-sha/tsconfig',
+      },
+    }
+
+    this.typeScriptConfig = new TypeScriptConfig(
+      this,
+      deepMerge(defaults, typeScriptConfigOptions),
+    )
+  }
+
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
     if (!workspaces) {
       return
@@ -213,8 +240,8 @@ export class Project extends BaseProject {
 
 const getGitIgnoreOptions = ({
   huskyOptions,
+  typeScriptConfigOptions,
   withTerraform,
-  withTypeScript,
   ...options
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] => ({
   ...options.gitIgnoreOptions,
@@ -234,7 +261,7 @@ const getGitIgnoreOptions = ({
     ${withTerraform ? '!.terraform.lock.hcl' : ''}
     *.db
     *.log
-    ${withTypeScript ? '*.tsbuildinfo' : ''}
+    ${typeScriptConfigOptions ? '*.tsbuildinfo' : ''}
 
     !.github/
     ${huskyOptions ? '!.husky/' : ''}
