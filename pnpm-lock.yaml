@@ -385,6 +385,9 @@ importers:
       '@langri-sha/projen-renovate':
         specifier: workspace:*
         version: link:../projen-renovate
+      '@langri-sha/projen-typescript-config':
+        specifier: workspace:*
+        version: link:../projen-typescript-config
       beachball:
         specifier: 2.43.1
         version: 2.43.1(typescript@5.4.5)

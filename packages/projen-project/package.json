@@ -13,6 +13,7 @@
     "@langri-sha/projen-husky": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
+    "@langri-sha/projen-typescript-config": "workspace:*",
     "beachball": "2.43.1",
     "ramda": "0.30.0"
   },

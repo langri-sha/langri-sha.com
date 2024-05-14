@@ -12,6 +12,7 @@
     { "path": "../projen-husky" },
     { "path": "../projen-lint-synthesized" },
     { "path": "../projen-renovate" },
+    { "path": "../projen-typescript-config" },
     { "path": "../tsconfig" }
   ]
 }
