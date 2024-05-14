@@ -15,6 +15,18 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('add include', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addInclude('**/*.ts')
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('add file', () => {
   const project = new Project({
     name: 'test-project',
