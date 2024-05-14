@@ -40,6 +40,13 @@ export class TypeScriptConfig extends Component {
   }
 
   /**
+   * Appends to the list of filenames to include in the program.
+   */
+  addFile(fileName: string) {
+    this.#file.addToArray('files', fileName)
+  }
+
+  /**
    * Adds a reference project.
    */
   addReference(path: string) {
