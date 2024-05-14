@@ -40,6 +40,13 @@ export class TypeScriptConfig extends Component {
   }
 
   /**
+   * Appends to the list of filenames and patterns to include in the program.
+   */
+  addInclude(fileNameOrPattern: string) {
+    this.#file.addToArray('include', fileNameOrPattern)
+  }
+
+  /**
    * Appends to the list of filenames to include in the program.
    */
   addFile(fileName: string) {
