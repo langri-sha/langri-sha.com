@@ -2,11 +2,22 @@ import type { JSONSchemaForTheTypeScriptCompilerSConfigurationFile } from '@sche
 import { Component, JsonFile, Project } from 'projen'
 
 export interface TypeScriptConfigOptions {
-  config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile
+  config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile & {
+    /**
+     * Referenced projects. Requires TypeScript version 3.0 or later.
+     */
+    references?: {
+      /**
+       * Path to referenced tsconfig or to folder containing tsconfig.
+       */
+      path: string
+    }[]
+  }
   fileName?: string
 }
 
 export class TypeScriptConfig extends Component {
+  #file: JsonFile
   #options: Required<TypeScriptConfigOptions>
 
   constructor(project: Project, options: TypeScriptConfigOptions) {
@@ -19,12 +30,21 @@ export class TypeScriptConfig extends Component {
       fileName,
     }
 
-    new JsonFile(this, 'tsconfig.json', {
+    this.#file = new JsonFile(this, 'tsconfig.json', {
       allowComments: true,
       obj: {
         $schema: 'http://json.schemastore.org/tsconfig',
         ...this.#options.config,
       },
+    })
+  }
+
+  /**
+   * Adds a reference project.
+   */
+  addReference(path: string) {
+    this.#file.addToArray('references', {
+      path,
     })
   }
 }

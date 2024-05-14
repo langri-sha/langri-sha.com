@@ -14,3 +14,15 @@ test('defaults', () => {
   project.synth()
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test('add reference', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addReference('test')
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
