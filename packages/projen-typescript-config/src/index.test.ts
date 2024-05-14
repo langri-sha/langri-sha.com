@@ -15,6 +15,18 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('add file', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addFile('test.js')
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('add reference', () => {
   const project = new Project({
     name: 'test-project',
