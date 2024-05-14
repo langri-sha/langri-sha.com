@@ -428,6 +428,10 @@ importers:
         version: 0.81.10(constructs@10.3.0)
 
   packages/projen-typescript-config:
+    dependencies:
+      '@schemastore/tsconfig':
+        specifier: 0.0.11
+        version: 0.0.11
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -2012,6 +2016,9 @@ packages:
   '@renovatebot/ruby-semver@3.0.23':
     resolution: {integrity: sha512-YGvsvvyxOgv5Uq+sFEdD1yviyrPGs9hocjhIo7uWTj/EAIlbGyk5YA5JrHql3EkJf0tVsyfmEkM3kLK+45hmIw==}
     engines: {node: ^18.12.0 || >= 20.0.0, pnpm: ^8.6.11}
+
+  '@schemastore/tsconfig@0.0.11':
+    resolution: {integrity: sha512-glWQsBTycNVlq8ZrdvvEGyvHCmTfJy+inpjby4DokwBEyRj5+SFyjWbh1OkZf1cXbdCzrR/fZAQSm5vS73PaYA==}
 
   '@seald-io/binary-search-tree@1.0.3':
     resolution: {integrity: sha512-qv3jnwoakeax2razYaMsGI/luWdliBLHTdC6jU55hQt1hcFqzauH/HsBollQ7IR4ySTtYhT+xyHoijpA16C+tA==}
@@ -9587,6 +9594,8 @@ snapshots:
   '@renovatebot/pep440@3.0.20': {}
 
   '@renovatebot/ruby-semver@3.0.23': {}
+
+  '@schemastore/tsconfig@0.0.11': {}
 
   '@seald-io/binary-search-tree@1.0.3': {}
 
