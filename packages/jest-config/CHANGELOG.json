@@ -2,6 +2,21 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Tue, 14 May 2024 20:41:06 GMT",
+      "version": "0.6.2",
+      "tag": "@langri-sha/jest-config_v0.6.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
+            "comment": "chore(deps): chore(deps): update dependency jest to v29"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 03 May 2024 12:54:50 GMT",
       "version": "0.6.1",
       "tag": "@langri-sha/jest-config_v0.6.1",

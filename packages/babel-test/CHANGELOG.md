@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/babel-test
 
-This log was last generated on Fri, 03 May 2024 12:54:50 GMT and should not be manually modified.
+This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.2
+
+Tue, 14 May 2024 20:41:06 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency ramda to v0.30.0 (email not defined)
+- chore(deps): chore(deps): update node.js to v20.13.1 (email not defined)
 
 ## 0.3.1
 

@@ -1,9 +1,17 @@
 # Change Log - @langri-sha/babel-preset
 
-This log was last generated on Wed, 24 Apr 2024 22:14:56 GMT and should not be
-manually modified.
+This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.3
+
+Tue, 14 May 2024 20:41:06 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update babel monorepo to v7.24.5 (email not defined)
+- chore(deps): chore(deps): update node.js to v20.13.1 (email not defined)
 
 ## 0.2.0
 

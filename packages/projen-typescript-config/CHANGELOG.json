@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/projen-typescript-config",
+  "entries": [
+    {
+      "date": "Tue, 14 May 2024 20:41:06 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-typescript-config_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
+            "comment": "feat(typescript-config): Add support for managing TypeScript config files\""
+          }
+        ]
+      }
+    }
+  ]
+}

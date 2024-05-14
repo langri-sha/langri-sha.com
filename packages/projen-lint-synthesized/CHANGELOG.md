@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Sun, 05 May 2024 07:21:05 GMT and should not be manually modified.
+This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.3
+
+Tue, 14 May 2024 20:41:06 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.81.10 (email not defined)
 
 ## 0.2.2
 

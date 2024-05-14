@@ -2,6 +2,33 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Tue, 14 May 2024 20:41:06 GMT",
+      "version": "0.3.1",
+      "tag": "@langri-sha/eslint-config_v0.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.2.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-unicorn to v53"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 May 2024 07:29:56 GMT",
       "version": "0.3.0",
       "tag": "@langri-sha/eslint-config_v0.3.0",
