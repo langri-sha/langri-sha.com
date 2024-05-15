@@ -2,6 +2,21 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Wed, 15 May 2024 06:47:18 GMT",
+      "version": "0.3.3",
+      "tag": "@langri-sha/babel-test_v0.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "92c7d4c9ac50342a39af3fc029307a2899f0ae34",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.12.12"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 14 May 2024 20:41:06 GMT",
       "version": "0.3.2",
       "tag": "@langri-sha/babel-test_v0.3.2",

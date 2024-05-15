@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.2
+
+Wed, 15 May 2024 06:47:18 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.9.0 (email not defined)
 
 ## 0.3.1
 

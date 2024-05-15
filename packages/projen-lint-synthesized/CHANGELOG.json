@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Wed, 15 May 2024 06:47:18 GMT",
+      "version": "0.2.4",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.2.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "92c7d4c9ac50342a39af3fc029307a2899f0ae34",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.81.11"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 14 May 2024 20:41:06 GMT",
       "version": "0.2.3",
       "tag": "@langri-sha/projen-lint-synthesized_v0.2.3",

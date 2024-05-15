@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-husky
 
-This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.2
+
+Wed, 15 May 2024 06:47:18 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.81.11 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.12.12 (email not defined)
 
 ## 0.1.1
 
