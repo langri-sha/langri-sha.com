@@ -16,7 +16,7 @@
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@types/babel__core": "7.20.5",
-    "@types/node": "20.12.11"
+    "@types/node": "20.12.12"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
