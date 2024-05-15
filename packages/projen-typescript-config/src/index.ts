@@ -33,7 +33,7 @@ export class TypeScriptConfig extends Component {
     this.#file = new JsonFile(this, 'tsconfig.json', {
       allowComments: true,
       obj: {
-        $schema: 'http://json.schemastore.org/tsconfig',
+        $schema: 'https://json.schemastore.org/tsconfig',
         ...this.#options.config,
       },
     })
