@@ -14,6 +14,7 @@ test('defaults', () => {
 test('with Beachball configuration', () => {
   const project = new Project({
     name: 'test-project',
+    package: {},
     beachballConfig: {},
     typeScriptConfigOptions: {},
   })
@@ -44,6 +45,7 @@ test('with EditorConfig options', () => {
 test('with Husky options', () => {
   const project = new Project({
     name: 'test-project',
+    package: {},
     huskyOptions: {
       'pre-commit': 'lint-staged',
     },
@@ -73,6 +75,7 @@ test('with Renovate options', () => {
 test('with TypeScript options', () => {
   const project = new Project({
     name: 'test-project',
+    package: {},
     typeScriptConfigOptions: {},
   })
 

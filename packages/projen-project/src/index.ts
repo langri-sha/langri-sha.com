@@ -3,6 +3,7 @@ import {
   type ProjectOptions as BaseProjectOptions,
   TextFile,
   YamlFile,
+  javascript,
 } from 'projen'
 
 import * as R from 'ramda'
@@ -59,8 +60,13 @@ export interface ProjectOptions
    */
   lintSynthesizedOptions?: LintSynthesizedOptions
 
-  /*
-   * Configure TypeScript.
+  /**
+   * Package configuration options.
+   */
+  package?: javascript.NodePackageOptions
+
+  /**
+   * TypeScript configuration options.
    */
   typeScriptConfigOptions?: TypeScriptConfigOptions
 
@@ -76,6 +82,7 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  package?: javascript.NodePackage
   typeScriptConfig?: TypeScriptConfig
 
   constructor(options: ProjectOptions) {
@@ -93,6 +100,7 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
+    this.#configurePackage(options)
     this.#configureTypeScript(options)
 
     this.#configureBeachball(options)
@@ -134,6 +142,7 @@ export class Project extends BaseProject {
       file.addLine(line)
     }
 
+    this.package?.addDevDeps('beachball@2.43.1')
     this.typeScriptConfig?.addFile('beachball.config.js')
   }
 
@@ -179,6 +188,12 @@ export class Project extends BaseProject {
     }
 
     new Husky(this, huskyOptions)
+
+    if (!this.parent) {
+      this.package?.addDevDeps('husky@9.0.11')
+      this.package?.setScript('prepare', 'husky')
+      this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
+    }
   }
 
   #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
@@ -186,9 +201,29 @@ export class Project extends BaseProject {
       this,
       lintSynthesizedOptions ?? {
         '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
+        '*.json': 'pnpx sort-package-json',
         '*': 'pnpm prettier --write --ignore-unknown',
       },
     )
+  }
+
+  #configurePackage({ package: pkg }: ProjectOptions) {
+    if (!pkg) {
+      return
+    }
+
+    const defaults: javascript.NodePackageOptions = {
+      entrypoint: 'src/index.ts',
+      packageManager: javascript.NodePackageManager.PNPM,
+      minNodeVersion: '20.12.0',
+    }
+
+    this.package = new javascript.NodePackage(this, deepMerge(defaults, pkg))
+
+    if (!this.parent) {
+      this.package.addDevDeps('@langri-sha/projen-project@*')
+      this.package.addDevDeps('projen@0.81.11')
+    }
   }
 
   #configureRenovate({ renovateOptions }: ProjectOptions) {
@@ -221,6 +256,13 @@ export class Project extends BaseProject {
       this,
       deepMerge(defaults, typeScriptConfigOptions),
     )
+
+    if (!this.parent) {
+      this.package?.addDevDeps('typescript@5.4.5')
+      this.package?.addDevDeps('ts-node@10.9.2')
+    }
+
+    this.package?.addDevDeps('@langri-sha/tsconfig@*')
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
