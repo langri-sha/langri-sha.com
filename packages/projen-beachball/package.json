@@ -13,6 +13,7 @@
     "projen": "0.81.11"
   },
   "peerDependencies": {
+    "beachball": "^2.0.0",
     "projen": "^0.81.1",
     "typescript": "^5.0.0"
   },
