@@ -2,6 +2,7 @@ import { synthSnapshot } from 'projen/lib/util/synth'
 import { expect, test } from '@langri-sha/jest-test'
 
 import { Project } from './index'
+import { Husky } from '@langri-sha/projen-husky'
 
 test('defaults', () => {
   const project = new Project({
@@ -9,6 +10,7 @@ test('defaults', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.husky).toBeUndefined()
 })
 
 test('with Beachball configuration', () => {
@@ -52,6 +54,7 @@ test('with Husky options', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.husky).toBeInstanceOf(Husky)
 })
 
 test('with Terraform enabled', () => {
