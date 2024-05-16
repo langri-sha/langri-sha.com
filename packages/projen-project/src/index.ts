@@ -236,6 +236,16 @@ export class Project extends BaseProject {
       extends: ['config:recommended'],
       labels: ['dependencies'],
       reviewersFromCodeOwners: true,
+      customManagers: [
+        {
+          customType: 'regex',
+          datasourceTemplate: 'npm',
+          fileMatch: ['projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          matchStrings: [
+            "\\.add[\\w]*Deps\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+          ],
+        },
+      ],
     }
 
     new Renovate(this, deepMerge(defaults, renovateOptions))

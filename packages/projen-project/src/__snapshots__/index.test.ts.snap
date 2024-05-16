@@ -459,6 +459,18 @@ node_modules/
   "renovate.json5": {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "configMigration": true,
+    "customManagers": [
+      {
+        "customType": "regex",
+        "datasourceTemplate": "npm",
+        "fileMatch": [
+          "projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        ],
+        "matchStrings": [
+          "\\.add[\\w]*Deps\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+        ],
+      },
+    ],
     "extends": [
       "config:recommended",
     ],
