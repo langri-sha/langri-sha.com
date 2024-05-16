@@ -3,6 +3,7 @@ import { expect, test } from '@langri-sha/jest-test'
 
 import { Project } from './index'
 import { Husky } from '@langri-sha/projen-husky'
+import { EditorConfig } from '@langri-sha/projen-editorconfig'
 
 test('defaults', () => {
   const project = new Project({
@@ -10,6 +11,7 @@ test('defaults', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
 })
 
@@ -42,6 +44,7 @@ test('with EditorConfig options', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.editorConfig).toBeInstanceOf(EditorConfig)
 })
 
 test('with Husky options', () => {
