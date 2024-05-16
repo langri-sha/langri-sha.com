@@ -163,7 +163,7 @@ export class Project extends BaseProject {
   }
 
   #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {
-    if (!editorConfigOptions) {
+    if (!editorConfigOptions || this.parent) {
       return
     }
 
