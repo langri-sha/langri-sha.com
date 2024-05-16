@@ -85,6 +85,7 @@ export class Project extends BaseProject {
   husky?: Husky
   package?: javascript.NodePackage
   typeScriptConfig?: TypeScriptConfig
+  editorConfig?: EditorConfig
 
   constructor(options: ProjectOptions) {
     super({
@@ -180,7 +181,10 @@ export class Project extends BaseProject {
       },
     }
 
-    new EditorConfig(this, deepMerge(editorConfigOptions ?? {}, defaults))
+    this.editorConfig = new EditorConfig(
+      this,
+      deepMerge(editorConfigOptions ?? {}, defaults),
+    )
   }
 
   #configureHusky({ huskyOptions }: ProjectOptions) {
