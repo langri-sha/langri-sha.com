@@ -27,6 +27,8 @@ import {
 } from '@langri-sha/projen-typescript-config'
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 
+export * from '@langri-sha/projen-typescript-config'
+
 export interface ProjectOptions
   extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
   /*
@@ -104,6 +106,11 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
+    if (!this.parent) {
+      this.tasks.removeTask('install')
+      this.tasks.removeTask('install:ci')
+    }
+
     this.#configurePackage(options)
     this.#configureTypeScript(options)
 
@@ -115,6 +122,43 @@ export class Project extends BaseProject {
     this.#configureLintSynthesized(options)
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
+  }
+
+  /**
+   * Add a subproject.
+   */
+  addSubproject(projectOptions: ProjectOptions) {
+    return new Project({
+      parent: this,
+      ...projectOptions,
+    })
+  }
+
+  /**
+   * Find a project by it's name, e.g. `@acme/some`.
+   */
+  findSubproject(name: string): Project {
+    const subprojects: Array<BaseProject> = []
+
+    const addSubproject = (project: BaseProject) => {
+      for (const subproject of project.subprojects) {
+        subprojects.push(subproject)
+
+        if (subproject.subprojects.length) {
+          addSubproject(subproject)
+        }
+      }
+    }
+
+    addSubproject(this.root)
+
+    const result = subprojects.find((subproject) => subproject.name === name)
+
+    if (result instanceof Project) {
+      return result
+    }
+
+    throw new Error(`Cannot find subproject ${name}`)
   }
 
   #configureBeachball({ beachballOptions }: ProjectOptions) {
@@ -219,6 +263,13 @@ export class Project extends BaseProject {
       this.package.addDevDeps('@langri-sha/projen-project@*')
       this.package.addDevDeps('projen@0.81.13')
     }
+
+    this.package.removeScript('start')
+    this.package.removeScript('test')
+
+    if (this.parent) {
+      this.package.removeScript('default')
+    }
   }
 
   #configureRenovate({ renovateOptions }: ProjectOptions) {
@@ -246,16 +297,26 @@ export class Project extends BaseProject {
     this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 
-  #configureTypeScript({ typeScriptConfigOptions }: ProjectOptions) {
+  #configureTypeScript({ parent, typeScriptConfigOptions }: ProjectOptions) {
     if (!typeScriptConfigOptions) {
       return
     }
 
-    const defaults: TypeScriptConfigOptions = {
-      config: {
-        extends: '@langri-sha/tsconfig',
-      },
-    }
+    const defaults: TypeScriptConfigOptions = parent
+      ? {
+          config: {
+            extends: '@langri-sha/tsconfig/project.json',
+            compilerOptions: {
+              baseUrl: '.',
+              outDir: '.tsbuild',
+            },
+          },
+        }
+      : {
+          config: {
+            extends: '@langri-sha/tsconfig',
+          },
+        }
 
     this.typeScriptConfig = new TypeScriptConfig(
       this,
@@ -289,11 +350,15 @@ const getGitIgnoreOptions = ({
   huskyOptions,
   typeScriptConfigOptions,
   withTerraform,
+  parent,
+  gitIgnoreOptions,
   ...options
-}: ProjectOptions): ProjectOptions['gitIgnoreOptions'] => ({
-  ...options.gitIgnoreOptions,
-  ignorePatterns: [
-    ...`
+}: ProjectOptions): ProjectOptions['gitIgnoreOptions'] =>
+  parent
+    ? gitIgnoreOptions
+    : {
+        ignorePatterns: [
+          ...`
     .*
     !.babelrc
     !.dockerignore
@@ -316,11 +381,11 @@ const getGitIgnoreOptions = ({
     ${options.workspaces?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/
     `
-      .split('\n')
-      .map((pattern) => pattern.trim())
-      .filter((pattern) => pattern.length > 0),
-    ...(options.gitIgnoreOptions?.ignorePatterns ?? []),
-  ],
-})
+            .split('\n')
+            .map((pattern) => pattern.trim())
+            .filter((pattern) => pattern.length > 0),
+          ...(gitIgnoreOptions?.ignorePatterns ?? []),
+        ],
+      }
 
 const deepMerge = R.mergeDeepWith(R.concat)
