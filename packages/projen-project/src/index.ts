@@ -82,6 +82,7 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  husky?: Husky
   package?: javascript.NodePackage
   typeScriptConfig?: TypeScriptConfig
 
@@ -187,7 +188,7 @@ export class Project extends BaseProject {
       return
     }
 
-    new Husky(this, huskyOptions)
+    this.husky = new Husky(this, huskyOptions)
 
     if (!this.parent) {
       this.package?.addDevDeps('husky@9.0.11')
