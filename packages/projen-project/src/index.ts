@@ -118,7 +118,7 @@ export class Project extends BaseProject {
   }
 
   #configureBeachball({ beachballOptions }: ProjectOptions) {
-    if (!beachballOptions) {
+    if (!beachballOptions || this.parent) {
       return
     }
 
