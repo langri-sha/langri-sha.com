@@ -7,6 +7,7 @@ import { EditorConfig } from '@langri-sha/projen-editorconfig'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { Codeowners } from '@langri-sha/projen-codeowners'
 import { Beachball } from '@langri-sha/projen-beachball'
+import * as path from 'node:path'
 
 test('defaults', () => {
   const project = new Project({
@@ -19,6 +20,44 @@ test('defaults', () => {
   expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
   expect(project.renovate).toBeUndefined()
+})
+
+test('add subproject', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  project.addSubproject({
+    name: '@someproject/test',
+    outdir: path.join('someproject', '@some', 'test'),
+    typeScriptConfigOptions: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
+test('find subproject', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const subproject = project.addSubproject({
+    name: '@someproject/test',
+    outdir: path.join('sub', '@some', 'test'),
+    typeScriptConfigOptions: {},
+  })
+
+  subproject.addSubproject({
+    name: '@someproject/test2',
+    outdir: path.join('subsub', '@some', 'test2'),
+    typeScriptConfigOptions: {},
+  })
+
+  expect(project.findSubproject('@someproject/test')).toBeInstanceOf(Project)
+  expect(project.findSubproject('@someproject/test2')).toBeInstanceOf(Project)
+  expect(() => project.findSubproject('non-existing')).toThrowError(
+    'Cannot find subproject non-existing',
+  )
 })
 
 test('with Beachball configuration', () => {
