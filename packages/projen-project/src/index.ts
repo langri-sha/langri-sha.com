@@ -82,6 +82,7 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  codeowners?: Codeowners
   editorConfig?: EditorConfig
   husky?: Husky
   package?: javascript.NodePackage
@@ -154,7 +155,7 @@ export class Project extends BaseProject {
       return
     }
 
-    new Codeowners(this, codeownersOptions)
+    this.codeowners = new Codeowners(this, codeownersOptions)
   }
 
   #configureDefaultTask() {

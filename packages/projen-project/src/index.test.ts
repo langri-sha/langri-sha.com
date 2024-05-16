@@ -5,6 +5,7 @@ import { Project } from './index'
 import { Husky } from '@langri-sha/projen-husky'
 import { EditorConfig } from '@langri-sha/projen-editorconfig'
 import { Renovate } from '@langri-sha/projen-renovate'
+import { Codeowners } from '@langri-sha/projen-codeowners'
 
 test('defaults', () => {
   const project = new Project({
@@ -12,12 +13,10 @@ test('defaults', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
-<<<<<<< HEAD
   expect(project.husky).toBeUndefined()
-=======
   expect(project.renovate).toBeUndefined()
->>>>>>> d4ccc64 (feat(project): Expose Renovate)
 })
 
 test('with Beachball configuration', () => {
@@ -40,6 +39,7 @@ test('with code owners configured', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.codeowners).toBeInstanceOf(Codeowners)
 })
 
 test('with EditorConfig options', () => {
