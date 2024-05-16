@@ -15,6 +15,19 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with custom file name', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new TypeScriptConfig(project, {
+    fileName: 'tsconfig.build.json',
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('add exclude', () => {
   const project = new Project({
     name: 'test-project',
