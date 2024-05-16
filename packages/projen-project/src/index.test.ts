@@ -6,6 +6,7 @@ import { Husky } from '@langri-sha/projen-husky'
 import { EditorConfig } from '@langri-sha/projen-editorconfig'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { Codeowners } from '@langri-sha/projen-codeowners'
+import { Beachball } from '@langri-sha/projen-beachball'
 
 test('defaults', () => {
   const project = new Project({
@@ -13,6 +14,7 @@ test('defaults', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.beachball).toBeUndefined()
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
@@ -23,11 +25,12 @@ test('with Beachball configuration', () => {
   const project = new Project({
     name: 'test-project',
     package: {},
-    beachballConfig: {},
+    beachballOptions: {},
     typeScriptConfigOptions: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.beachball).toBeInstanceOf(Beachball)
 })
 
 test('with code owners configured', () => {

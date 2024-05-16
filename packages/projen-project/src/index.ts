@@ -1,13 +1,11 @@
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
-  TextFile,
   YamlFile,
   javascript,
 } from 'projen'
 
 import * as R from 'ramda'
-import { type BeachballConfig } from 'beachball'
 
 import {
   LintSynthesized,
@@ -27,13 +25,14 @@ import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
+import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 
 export interface ProjectOptions
   extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
   /*
    * Pass in to set up Beachball.
    */
-  beachballConfig?: BeachballConfig
+  beachballOptions?: BeachballOptions
 
   /*
    * Pass in to set up Beachball.
@@ -82,6 +81,7 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  beachball?: Beachball
   codeowners?: Codeowners
   editorConfig?: EditorConfig
   husky?: Husky
@@ -117,12 +117,12 @@ export class Project extends BaseProject {
     this.#createPnpmWorkspaces(options)
   }
 
-  #configureBeachball({ beachballConfig }: ProjectOptions) {
-    if (!beachballConfig) {
+  #configureBeachball({ beachballOptions }: ProjectOptions) {
+    if (!beachballOptions) {
       return
     }
 
-    const options = deepMerge(beachballConfig, {
+    const options = deepMerge(beachballOptions, {
       branch: 'origin/main',
       gitTags: false,
       ignorePatterns: [
@@ -134,17 +134,7 @@ export class Project extends BaseProject {
       ],
     })
 
-    const file = new TextFile(this, 'beachball.config.js', {
-      readonly: true,
-      marker: true,
-    })
-
-    for (const line of [
-      `/** @type {import('beachball').BeachballConfig} */`,
-      `module.exports = ${JSON.stringify(options, null, 2)}`,
-    ]) {
-      file.addLine(line)
-    }
+    this.beachball = new Beachball(this, options)
 
     this.package?.addDevDeps('beachball@2.43.1')
     this.typeScriptConfig?.addFile('beachball.config.js')

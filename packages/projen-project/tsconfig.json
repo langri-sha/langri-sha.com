@@ -8,6 +8,7 @@
   "references": [
     { "path": "../jest-test" },
     { "path": "../projen-codeowners" },
+    { "path": "../projen-beachball" },
     { "path": "../projen-editorconfig" },
     { "path": "../projen-husky" },
     { "path": "../projen-lint-synthesized" },
