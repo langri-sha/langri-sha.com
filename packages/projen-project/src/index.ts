@@ -85,6 +85,7 @@ export class Project extends BaseProject {
   editorConfig?: EditorConfig
   husky?: Husky
   package?: javascript.NodePackage
+  renovate?: Renovate
   typeScriptConfig?: TypeScriptConfig
 
   constructor(options: ProjectOptions) {
@@ -251,7 +252,7 @@ export class Project extends BaseProject {
       ],
     }
 
-    new Renovate(this, deepMerge(defaults, renovateOptions))
+    this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 
   #configureTypeScript({ typeScriptConfigOptions }: ProjectOptions) {
