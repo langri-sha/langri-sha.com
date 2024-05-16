@@ -392,6 +392,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@langri-sha/projen-beachball':
+        specifier: workspace:*
+        version: link:../projen-beachball
       '@langri-sha/projen-codeowners':
         specifier: workspace:*
         version: link:../projen-codeowners
@@ -410,9 +413,6 @@ importers:
       '@langri-sha/projen-typescript-config':
         specifier: workspace:*
         version: link:../projen-typescript-config
-      beachball:
-        specifier: 2.43.1
-        version: 2.43.1(typescript@5.4.5)
       ramda:
         specifier: 0.30.0
         version: 0.30.0

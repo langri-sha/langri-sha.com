@@ -39,6 +39,9 @@
       "path": "./packages/prettier"
     },
     {
+      "path": "./packages/projen-beachball"
+    },
+    {
       "path": "./packages/projen-codeowners"
     },
     {

@@ -13,7 +13,7 @@ const project = new Project({
     licensed: true,
     repository: 'langri-sha/langri-sha.com',
   },
-  beachballConfig: {},
+  beachballOptions: {},
   codeownersOptions: {
     '*': '@langri-sha',
   },
