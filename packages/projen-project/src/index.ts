@@ -184,17 +184,15 @@ export class Project extends BaseProject {
   }
 
   #configureHusky({ huskyOptions }: ProjectOptions) {
-    if (!huskyOptions) {
+    if (!huskyOptions || this.parent) {
       return
     }
 
     this.husky = new Husky(this, huskyOptions)
 
-    if (!this.parent) {
-      this.package?.addDevDeps('husky@9.0.11')
-      this.package?.setScript('prepare', 'husky')
-      this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
-    }
+    this.package?.addDevDeps('husky@9.0.11')
+    this.package?.setScript('prepare', 'husky')
+    this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
   }
 
   #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
