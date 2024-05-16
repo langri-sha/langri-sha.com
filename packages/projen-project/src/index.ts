@@ -82,10 +82,10 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  editorConfig?: EditorConfig
   husky?: Husky
   package?: javascript.NodePackage
   typeScriptConfig?: TypeScriptConfig
-  editorConfig?: EditorConfig
 
   constructor(options: ProjectOptions) {
     super({
