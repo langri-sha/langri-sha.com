@@ -231,7 +231,7 @@ export class Project extends BaseProject {
   }
 
   #configureRenovate({ renovateOptions }: ProjectOptions) {
-    if (!renovateOptions) {
+    if (!renovateOptions || this.parent) {
       return
     }
 
