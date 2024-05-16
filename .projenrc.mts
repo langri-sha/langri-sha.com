@@ -41,6 +41,7 @@ const project = new Project({
         { path: './packages/lint-staged' },
         { path: './packages/monorepo' },
         { path: './packages/prettier' },
+        { path: './packages/projen-beachball' },
         { path: './packages/projen-codeowners' },
         { path: './packages/projen-editorconfig' },
         { path: './packages/projen-husky' },
