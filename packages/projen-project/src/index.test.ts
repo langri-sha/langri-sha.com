@@ -4,6 +4,7 @@ import { expect, test } from '@langri-sha/jest-test'
 import { Project } from './index'
 import { Husky } from '@langri-sha/projen-husky'
 import { EditorConfig } from '@langri-sha/projen-editorconfig'
+import { Renovate } from '@langri-sha/projen-renovate'
 
 test('defaults', () => {
   const project = new Project({
@@ -12,7 +13,11 @@ test('defaults', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.editorConfig).toBeUndefined()
+<<<<<<< HEAD
   expect(project.husky).toBeUndefined()
+=======
+  expect(project.renovate).toBeUndefined()
+>>>>>>> d4ccc64 (feat(project): Expose Renovate)
 })
 
 test('with Beachball configuration', () => {
@@ -76,6 +81,7 @@ test('with Renovate options', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.renovate).toBeInstanceOf(Renovate)
 })
 
 test('with TypeScript options', () => {
