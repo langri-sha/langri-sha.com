@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): chore(deps): update dependency projen to v0.81.15",
+  "packageName": "@langri-sha/projen-renovate",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
