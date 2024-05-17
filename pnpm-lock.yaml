@@ -67,8 +67,8 @@ importers:
         specifier: 3.2.5
         version: 3.2.5
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
@@ -302,8 +302,8 @@ importers:
         specifier: 2.43.1
         version: 2.43.1(typescript@5.4.5)
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-codeowners:
     dependencies:
@@ -318,8 +318,8 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-editorconfig:
     dependencies:
@@ -334,8 +334,8 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-husky:
     dependencies:
@@ -356,8 +356,8 @@ importers:
         specifier: 20.12.12
         version: 20.12.12
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-lint-synthesized:
     dependencies:
@@ -387,8 +387,8 @@ importers:
         specifier: 3.2.5
         version: 3.2.5
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-project:
     dependencies:
@@ -430,8 +430,8 @@ importers:
         specifier: 0.30.0
         version: 0.30.0
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-renovate:
     dependencies:
@@ -449,8 +449,8 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/projen-typescript-config:
     dependencies:
@@ -468,8 +468,8 @@ importers:
         specifier: 20.12.12
         version: 20.12.12
       projen:
-        specifier: 0.81.13
-        version: 0.81.13(constructs@10.3.0)
+        specifier: 0.81.15
+        version: 0.81.15(constructs@10.3.0)
 
   packages/tsconfig:
     dependencies:
@@ -5501,8 +5501,8 @@ packages:
     resolution: {integrity: sha512-UdA8mJ4weIkUBO224tIarHzuHs4HuYiJvsuGT7j/SPQiUJVjYvNDBIPa0hAorduOfjGohB/qHWRa/lrrWX/mXw==}
     engines: {node: '>=0.4.0'}
 
-  projen@0.81.13:
-    resolution: {integrity: sha512-gmH+/lvhUitjrCNNvV2ZRmiQ6D4sbGVfOBHND5bsEUm/58b5zz5LUvjj3wn5O3/2dECNMlimaYTBAyNuzV1aCw==}
+  projen@0.81.15:
+    resolution: {integrity: sha512-Frr2bcYzqZqgk6yQarjHm+lOQRWW6qAP6LAB7ZgtoxqJUN74tzllbceoGTBY/QOG6DLHJORNlvFQ9xMnXM576A==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -13662,7 +13662,7 @@ snapshots:
 
   progress@1.1.8: {}
 
-  projen@0.81.13(constructs@10.3.0):
+  projen@0.81.15(constructs@10.3.0):
     dependencies:
       constructs: 10.3.0
 
