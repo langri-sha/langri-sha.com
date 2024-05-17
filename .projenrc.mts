@@ -83,6 +83,7 @@ project.package?.addDevDeps(
   'jest@29.7.0',
   'lint-staged@15.2.2',
   'prettier@3.2.5',
+  'projen@0.81.13',
 )
 
 project.package?.addField('private', true)
