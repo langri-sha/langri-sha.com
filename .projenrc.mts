@@ -1,17 +1,39 @@
-import { Project } from '@langri-sha/projen-project'
+import {
+  Project,
+  ProjectOptions,
+  TypeScriptConfig,
+} from '@langri-sha/projen-project'
+import { SampleFile } from 'projen'
+import * as path from 'path'
+
+process.on('unhandledRejection', (err) => {
+  console.error(err)
+
+  process.exit(1)
+})
+
+process.on('uncaughtException', (err) => {
+  console.error(err.stack)
+
+  process.exit(1)
+})
+
+const pkg = {
+  authorEmail: 'filip.dupanovic@gmail.com',
+  authorName: 'Filip Dupanović',
+  authorOrganization: false,
+  authorUrl: 'https://langri-sha.com',
+  license: 'MIT',
+  licensed: true,
+}
 
 const project = new Project({
   name: 'langri-sha.com',
   package: {
-    authorEmail: 'filip.dupanovic@gmail.com',
-    authorName: 'Filip Dupanović',
-    authorOrganization: false,
-    authorUrl: 'https://langri-sha.com',
+    ...pkg,
+    repository: 'langri-sha/langri-sha.com',
     bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
-    license: 'MIT',
-    licensed: true,
-    repository: 'langri-sha/langri-sha.com',
   },
   beachballOptions: {},
   codeownersOptions: {
@@ -89,5 +111,57 @@ project.package?.addDevDeps(
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.1.1')
 project.package?.addEngine('pnpm', '>=9.0.0')
+
+const subprojectOptions: ProjectOptions[] = []
+
+for (const options of subprojectOptions) {
+  const subproject = project.addSubproject(options)
+
+  new SampleFile(subproject, subproject.package?.entrypoint ?? 'src/index.ts', {
+    contents: 'export {}',
+  })
+
+  new SampleFile(subproject, 'readme', {
+    contents: `# ${subproject.name}\n`,
+  })
+
+  subproject.tryRemoveFile('.gitignore')
+
+  subproject.package?.addField('type', 'module')
+  subproject.package?.addField('publishConfig', {
+    access: 'public',
+    main: 'lib/index.js',
+    types: 'lib/index.d.ts',
+  })
+
+  subproject.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
+
+  if (subproject.typeScriptConfig) {
+    project.typeScriptConfig?.addReference(
+      path.relative(project.outdir, subproject.outdir),
+    )
+
+    subproject.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
+
+    subproject.typeScriptConfig?.addReference('../jest-test')
+    subproject.typeScriptConfig?.addReference('../tsconfig')
+
+    new TypeScriptConfig(subproject, {
+      fileName: 'tsconfig.build.json',
+      config: {
+        extends: '@langri-sha/tsconfig/build.json',
+        compilerOptions: {
+          baseUrl: '.',
+          outDir: 'lib',
+        },
+      },
+    })
+
+    subproject.package?.setScript(
+      'prepublishOnly',
+      'rm -rf lib; tsc --project tsconfig.build.json',
+    )
+  }
+}
 
 project.synth()
