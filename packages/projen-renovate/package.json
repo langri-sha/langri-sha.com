@@ -13,7 +13,7 @@
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "projen": "0.81.11"
+    "projen": "0.81.13"
   },
   "peerDependencies": {
     "projen": "^0.81.1",
