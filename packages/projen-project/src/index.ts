@@ -195,8 +195,8 @@ export class Project extends BaseProject {
     new LintSynthesized(
       this,
       lintSynthesizedOptions ?? {
+        'package.json': 'pnpx sort-package-json',
         '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
-        '*.json': 'pnpx sort-package-json',
         '*': 'pnpm prettier --write --ignore-unknown',
       },
     )

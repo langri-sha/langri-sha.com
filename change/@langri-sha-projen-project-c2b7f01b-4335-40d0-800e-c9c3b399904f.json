@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(projen-project): Lint only package modules",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
