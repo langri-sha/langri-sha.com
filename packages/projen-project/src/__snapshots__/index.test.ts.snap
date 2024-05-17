@@ -208,7 +208,7 @@ node_modules/
       {
         "name": "projen",
         "type": "build",
-        "version": "0.81.13",
+        "version": "0.81.15",
       },
       {
         "name": "ts-node",
@@ -288,7 +288,7 @@ module.exports = {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "beachball": "2.43.1",
-      "projen": "0.81.13",
+      "projen": "0.81.15",
       "ts-node": "10.9.2",
       "typescript": "5.4.5",
     },
@@ -431,7 +431,7 @@ lint-staged
       {
         "name": "projen",
         "type": "build",
-        "version": "0.81.13",
+        "version": "0.81.15",
       },
     ],
   },
@@ -487,7 +487,7 @@ lint-staged
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "husky": "9.0.11",
-      "projen": "0.81.13",
+      "projen": "0.81.15",
     },
     "engines": {
       "node": ">= 20.12.0",
@@ -683,7 +683,7 @@ node_modules/
       {
         "name": "projen",
         "type": "build",
-        "version": "0.81.13",
+        "version": "0.81.15",
       },
       {
         "name": "ts-node",
@@ -749,7 +749,7 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "projen": "0.81.13",
+      "projen": "0.81.15",
       "ts-node": "10.9.2",
       "typescript": "5.4.5",
     },
