@@ -67,6 +67,9 @@
     },
     {
       "path": "./packages/webpack"
+    },
+    {
+      "path": "packages/projen-license"
     }
   ]
 }

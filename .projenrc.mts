@@ -100,7 +100,17 @@ project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.1.2')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
-const subprojectOptions: ProjectOptions[] = []
+const subprojectOptions: ProjectOptions[] = [
+  {
+    name: '@langri-sha/projen-license',
+    outdir: path.join('packages', 'projen-license'),
+    typeScriptConfigOptions: {},
+    package: {
+      ...pkg,
+      peerDeps: ['projen@^0.81.15'],
+    },
+  },
+]
 
 for (const options of subprojectOptions) {
   const subproject = project.addSubproject(options)
