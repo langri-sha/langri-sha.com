@@ -11,7 +11,7 @@
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "beachball": "2.43.1",
-    "projen": "0.81.11"
+    "projen": "0.81.13"
   },
   "peerDependencies": {
     "beachball": "^2.0.0",
