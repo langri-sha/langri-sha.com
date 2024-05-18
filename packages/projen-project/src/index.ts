@@ -286,7 +286,7 @@ export class Project extends BaseProject {
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
           matchStrings: [
             "\\.add[\\w]*Deps\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
           ],
