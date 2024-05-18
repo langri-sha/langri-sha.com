@@ -11,6 +11,7 @@
     { "path": "../projen-beachball" },
     { "path": "../projen-editorconfig" },
     { "path": "../projen-husky" },
+    { "path": "../projen-license" },
     { "path": "../projen-lint-synthesized" },
     { "path": "../projen-renovate" },
     { "path": "../projen-typescript-config" },

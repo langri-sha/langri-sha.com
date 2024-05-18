@@ -12,6 +12,7 @@
     "@langri-sha/projen-codeowners": "workspace:*",
     "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-husky": "workspace:*",
+    "@langri-sha/projen-license": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
