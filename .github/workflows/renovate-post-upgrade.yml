@@ -23,6 +23,9 @@ jobs:
       - name: Update Jest snapshots
         run: pnpm jest --updateSnapshot --passWithNoTests
 
+      - name: Apply projen changes
+        run: pnpx projen
+
       - name: Create Beachball changes
         run: |
           pnpm beachball change \
