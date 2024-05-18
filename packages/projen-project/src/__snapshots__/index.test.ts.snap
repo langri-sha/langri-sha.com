@@ -571,6 +571,7 @@ node_modules/
         ],
         "matchStrings": [
           "\\.(?<depType>addDep|addDevDep|addPeerDep)('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+          "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
         ],
       },
     ],
