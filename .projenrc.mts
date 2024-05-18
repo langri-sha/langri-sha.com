@@ -107,6 +107,7 @@ const subprojectOptions: ProjectOptions[] = [
     typeScriptConfigOptions: {},
     package: {
       ...pkg,
+      deps: ['license-o-matic@^1.2.0'],
       peerDeps: ['projen@^0.81.15'],
     },
   },
