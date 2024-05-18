@@ -1,7 +1,7 @@
 import type { ConfigAPI } from '@babel/core'
 
 const config = (
-  api: ConfigAPI,
+  _api: ConfigAPI,
   options: { foobar?: string },
 ): { plugins: Array<Array<unknown>> } => ({
   plugins: [
