@@ -2,34 +2,15 @@
   "tasks": {
     "default": {
       "name": "default",
-      "description": "Synthesize project files",
-      "steps": [
-        {
-          "exec": "npx projen default",
-          "cwd": "../.."
-        },
-        {
-          "exec": "node --loader ts-node/esm .projenrc.mts"
-        }
-      ]
+      "description": "Synthesize project files"
     },
     "install": {
       "name": "install",
-      "description": "Install project dependencies and update lockfile (non-frozen)",
-      "steps": [
-        {
-          "exec": "pnpm i --no-frozen-lockfile"
-        }
-      ]
+      "description": "Install project dependencies and update lockfile (non-frozen)"
     },
     "install:ci": {
       "name": "install:ci",
-      "description": "Install project dependencies using frozen lockfile",
-      "steps": [
-        {
-          "exec": "pnpm i --frozen-lockfile"
-        }
-      ]
+      "description": "Install project dependencies using frozen lockfile"
     },
     "test": {
       "name": "test",
