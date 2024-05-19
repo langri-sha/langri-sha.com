@@ -27,6 +27,8 @@ import {
 } from '@langri-sha/projen-typescript-config'
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 
+import { ProjenrcFile } from './lib/index.js'
+
 export * from '@langri-sha/projen-typescript-config'
 
 export interface ProjectOptions
@@ -88,6 +90,7 @@ export class Project extends BaseProject {
   editorConfig?: EditorConfig
   husky?: Husky
   package?: javascript.NodePackage
+  projenrc?: ProjenrcFile
   renovate?: Renovate
   typeScriptConfig?: TypeScriptConfig
 
@@ -116,10 +119,10 @@ export class Project extends BaseProject {
 
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
-    this.#configureDefaultTask()
     this.#configureEditorConfig(options)
     this.#configureHusky(options)
     this.#configureLintSynthesized(options)
+    this.#configureProjenrc()
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
   }
@@ -190,12 +193,6 @@ export class Project extends BaseProject {
     }
 
     this.codeowners = new Codeowners(this, codeownersOptions)
-  }
-
-  #configureDefaultTask() {
-    this.tasks
-      .tryFind('default')
-      ?.exec(`node --loader ts-node/esm/transpile-only .projenrc.mts`)
   }
 
   #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {
@@ -270,6 +267,14 @@ export class Project extends BaseProject {
     if (this.parent) {
       this.package.removeScript('default')
     }
+  }
+
+  #configureProjenrc() {
+    if (this.parent) {
+      return
+    }
+
+    this.projenrc = new ProjenrcFile(this, {})
   }
 
   #configureRenovate({ renovateOptions }: ProjectOptions) {
@@ -379,7 +384,6 @@ const getGitIgnoreOptions = ({
     !.npmignore
     !.openssl
     !.prettierignore
-    !.projenrc*
     ${withTerraform ? '!.terraform.lock.hcl' : ''}
     *.db
     *.log
