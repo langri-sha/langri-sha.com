@@ -292,7 +292,7 @@ export class Project extends BaseProject {
             "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
           ],
           depTypeTemplate:
-            "{{#if (eq depType 'addDevDep')}}devDependencies{{else if (eq depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
+            "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
         },
       ],
     }
