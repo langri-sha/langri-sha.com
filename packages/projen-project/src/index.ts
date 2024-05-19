@@ -289,7 +289,6 @@ export class Project extends BaseProject {
           fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
           matchStrings: [
             "\\.(?<depType>addDep|addDevDep|addPeerDep)\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
-            "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
           ],
           depTypeTemplate:
             "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
