@@ -195,7 +195,7 @@ export class Project extends BaseProject {
   #configureDefaultTask() {
     this.tasks
       .tryFind('default')
-      ?.exec(`node --loader ts-node/esm .projenrc.mts`)
+      ?.exec(`node --loader ts-node/esm/transpile-only .projenrc.mts`)
   }
 
   #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {

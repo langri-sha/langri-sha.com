@@ -5,7 +5,7 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "node --loader ts-node/esm .projenrc.mts"
+          "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts"
         }
       ]
     },

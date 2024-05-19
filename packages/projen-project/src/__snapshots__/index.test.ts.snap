@@ -42,7 +42,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -83,7 +83,7 @@ node_modules/
             "exec": "npx projen default",
           },
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -146,7 +146,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -242,7 +242,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -373,7 +373,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -454,7 +454,7 @@ lint-staged
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -548,7 +548,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -628,7 +628,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -717,7 +717,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -821,7 +821,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -882,7 +882,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm .projenrc.mts",
+            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
