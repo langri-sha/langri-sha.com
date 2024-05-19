@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(project): Transpile sources only for default task",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
