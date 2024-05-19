@@ -570,7 +570,7 @@ node_modules/
           "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
         ],
         "matchStrings": [
-          "\\.(?<depType>addDep|addDevDep|addPeerDep)('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+          "\\.(?<depType>addDep|addDevDep|addPeerDep)\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
           "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
         ],
       },
