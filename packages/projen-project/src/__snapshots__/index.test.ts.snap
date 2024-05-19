@@ -565,7 +565,7 @@ node_modules/
       {
         "customType": "regex",
         "datasourceTemplate": "npm",
-        "depTypeTemplate": "{{#if (eq depType 'addDevDep')}}devDependencies{{else if (eq depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
+        "depTypeTemplate": "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
         "fileMatch": [
           "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
         ],
