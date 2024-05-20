@@ -3,6 +3,6 @@ terraform {
 
   required_providers {
     google      = "5.30.0"
-    google-beta = "5.29.1"
+    google-beta = "5.30.0"
   }
 }
