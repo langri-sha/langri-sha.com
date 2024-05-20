@@ -6,18 +6,6 @@ import {
 import { SampleFile } from 'projen'
 import * as path from 'path'
 
-process.on('unhandledRejection', (err) => {
-  console.error(err)
-
-  process.exit(1)
-})
-
-process.on('uncaughtException', (err) => {
-  console.error(err.stack)
-
-  process.exit(1)
-})
-
 const pkg = {
   authorEmail: 'filip.dupanovic@gmail.com',
   authorName: 'Filip Dupanović',
