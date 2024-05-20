@@ -44,9 +44,6 @@ node_modules/
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
         ],
       },
       "test": {
@@ -90,9 +87,6 @@ node_modules/
           {
             "cwd": "../../..",
             "exec": "npx projen default",
-          },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
         ],
       },
@@ -154,9 +148,6 @@ node_modules/
         "description": "Synthesize project files",
         "name": "default",
         "steps": [
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
@@ -259,9 +250,6 @@ node_modules/
         "description": "Synthesize project files",
         "name": "default",
         "steps": [
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
@@ -402,9 +390,6 @@ node_modules/
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
         ],
       },
       "test": {
@@ -489,9 +474,6 @@ lint-staged
         "description": "Synthesize project files",
         "name": "default",
         "steps": [
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
@@ -595,9 +577,6 @@ node_modules/
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
         ],
       },
       "test": {
@@ -696,9 +675,6 @@ node_modules/
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
         ],
       },
       "test": {
@@ -791,9 +767,6 @@ node_modules/
         "description": "Synthesize project files",
         "name": "default",
         "steps": [
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
@@ -907,9 +880,6 @@ node_modules/
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
         ],
       },
       "test": {
@@ -974,9 +944,6 @@ node_modules/
         "description": "Synthesize project files",
         "name": "default",
         "steps": [
-          {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
-          },
           {
             "exec": "node --loader ts-node/esm/transpile-only .projenrc.mts",
           },
