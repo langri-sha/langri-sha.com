@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 21 May 2024 07:47:40 GMT",
+      "version": "0.8.1",
+      "tag": "@langri-sha/projen-project_v0.8.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "5620ce2f2f89b683bc0dba64ed440cfa14425c12",
+            "comment": "fix(project): Remove default tasks for subprojects"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 05:22:50 GMT",
       "version": "0.8.0",
       "tag": "@langri-sha/projen-project_v0.8.0",

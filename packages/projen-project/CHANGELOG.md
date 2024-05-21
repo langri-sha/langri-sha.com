@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
+This log was last generated on Tue, 21 May 2024 07:47:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.8.1
+
+Tue, 21 May 2024 07:47:40 GMT
+
+### Patches
+
+- fix(project): Remove default tasks for subprojects (filip.dupanovic@gmail.com)
 
 ## 0.8.0
 
