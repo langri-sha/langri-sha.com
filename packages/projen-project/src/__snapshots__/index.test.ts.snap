@@ -573,6 +573,18 @@ node_modules/
           "\\.(?<depType>addDep|addDevDep|addPeerDep)\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
         ],
       },
+      {
+        "customType": "regex",
+        "datasourceTemplate": "npm",
+        "depNameTemplate": "pnpm",
+        "depTypeTemplate": "dependencies",
+        "fileMatch": [
+          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        ],
+        "matchStrings": [
+          "pnpm@(?<currentValue>[^']+)",
+        ],
+      },
     ],
     "extends": [
       "config:recommended",

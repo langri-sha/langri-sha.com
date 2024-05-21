@@ -293,6 +293,14 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
         },
+        {
+          customType: 'regex',
+          datasourceTemplate: 'npm',
+          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          matchStrings: ["pnpm@(?<currentValue>[^']+)"],
+          depNameTemplate: 'pnpm',
+          depTypeTemplate: 'dependencies',
+        },
       ],
     }
 
