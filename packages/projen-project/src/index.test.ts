@@ -1,5 +1,5 @@
 import { synthSnapshot } from 'projen/lib/util/synth'
-import { expect, test } from '@langri-sha/jest-test'
+import { describe, expect, test } from '@langri-sha/jest-test'
 
 import { Project } from './index'
 import { Husky } from '@langri-sha/projen-husky'
@@ -105,6 +105,72 @@ test('with Husky options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.husky).toBeInstanceOf(Husky)
+})
+
+describe('with license', () => {
+  test('without author name', () => {
+    expect(
+      () =>
+        new Project({
+          name: 'test-project',
+          package: {
+            license: 'MIT',
+          },
+        }),
+    ).toThrowError(/Missing package author name/)
+  })
+
+  test('with author name', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorName: 'John Smith',
+        license: 'MIT',
+      },
+    })
+
+    expect(synthSnapshot(project)['license']).toMatchSnapshot()
+  })
+
+  test('with copyright year', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorName: 'John Smith',
+        copyrightYear: '2000',
+        license: 'MIT',
+      },
+    })
+
+    expect(synthSnapshot(project)['license']).toMatchSnapshot()
+  })
+
+  test('with author email', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorEmail: 'john@example.com',
+        authorName: 'John Smith',
+        license: 'MIT',
+      },
+    })
+
+    expect(synthSnapshot(project)['license']).toMatchSnapshot()
+  })
+
+  test('with author URL', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorEmail: 'john@example.com',
+        authorName: 'John Smith',
+        authorUrl: 'https://example.com',
+        license: 'MIT',
+      },
+    })
+
+    expect(synthSnapshot(project)['license']).toMatchSnapshot()
+  })
 })
 
 test('with Terraform enabled', () => {

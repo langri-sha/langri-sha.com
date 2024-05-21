@@ -26,6 +26,7 @@ import {
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
+import { License } from '@langri-sha/projen-license'
 
 import { ProjenrcFile } from './lib/index.js'
 
@@ -66,7 +67,14 @@ export interface ProjectOptions
   /**
    * Package configuration options.
    */
-  package?: javascript.NodePackageOptions
+  package?: {
+    /**
+     * License copyright year.
+     *
+     * @default "Current full year"
+     */
+    copyrightYear?: string
+  } & javascript.NodePackageOptions
 
   /**
    * TypeScript configuration options.
@@ -89,6 +97,7 @@ export class Project extends BaseProject {
   codeowners?: Codeowners
   editorConfig?: EditorConfig
   husky?: Husky
+  license?: License
   package?: javascript.NodePackage
   projenrc?: ProjenrcFile
   renovate?: Renovate
@@ -122,6 +131,7 @@ export class Project extends BaseProject {
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
     this.#configureHusky(options)
+    this.#configureLicense(options)
     this.#configureLintSynthesized(options)
     this.#configureProjenrc()
     this.#configureRenovate(options)
@@ -231,6 +241,30 @@ export class Project extends BaseProject {
     this.package?.addDevDeps('husky@9.0.11')
     this.package?.setScript('prepare', 'husky')
     this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
+  }
+
+  #configureLicense({ package: pkg }: ProjectOptions) {
+    if (!pkg?.license) {
+      return
+    }
+
+    if (!pkg.authorName) {
+      throw new Error(
+        'Missing package author name. Set `package.authorName` in the project',
+      )
+    }
+
+    this.license = new License(this, {
+      spdx: pkg.license,
+      copyrightHolder: [
+        pkg.authorName,
+        pkg.authorEmail ? `<${pkg.authorEmail}>` : undefined,
+        pkg.authorUrl ? `(${pkg.authorUrl})` : undefined,
+      ]
+        .filter(Boolean)
+        .join(' '),
+      year: pkg.copyrightYear ?? new Date().getFullYear().toString(),
+    })
   }
 
   #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
