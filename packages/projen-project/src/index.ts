@@ -293,11 +293,13 @@ export class Project extends BaseProject {
           customType: 'regex',
           datasourceTemplate: 'npm',
           fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          matchStringsStrategy: 'recursive',
           matchStrings: [
-            "\\.(?<depType>addDep|addDevDep|addPeerDep)\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+            '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
+            "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
           ],
           depTypeTemplate:
-            "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
+            "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
         {
           customType: 'regex',
