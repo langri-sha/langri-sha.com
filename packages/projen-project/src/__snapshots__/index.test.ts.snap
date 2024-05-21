@@ -605,6 +605,19 @@ node_modules/
       {
         "customType": "regex",
         "datasourceTemplate": "npm",
+        "depTypeTemplate": "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+        "fileMatch": [
+          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        ],
+        "matchStrings": [
+          "(?<depType>deps|devDeps|peerDeps):\\s*\\[[^\\]]*\\]",
+          "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
+        ],
+        "matchStringsStrategy": "recursive",
+      },
+      {
+        "customType": "regex",
+        "datasourceTemplate": "npm",
         "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
         "fileMatch": [
