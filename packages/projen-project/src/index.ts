@@ -113,6 +113,7 @@ export class Project extends BaseProject {
     this.#configureTypeScript(options)
 
     if (this.parent) {
+      this.tasks.tryFind('default')?.reset()
       this.tasks.tryFind('install')?.reset()
       this.tasks.tryFind('install:ci')?.reset()
     }
