@@ -592,13 +592,15 @@ node_modules/
       {
         "customType": "regex",
         "datasourceTemplate": "npm",
-        "depTypeTemplate": "{{#if (equals depType 'addDevDep')}}devDependencies{{else if (equals depType 'addPeerDep')}}peerDependencies{{else}}dependencies{{/if}}",
+        "depTypeTemplate": "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         "fileMatch": [
           "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
         ],
         "matchStrings": [
-          "\\.(?<depType>addDep|addDevDep|addPeerDep)\\('(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'\\)",
+          "\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)",
+          "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
         ],
+        "matchStringsStrategy": "recursive",
       },
       {
         "customType": "regex",
