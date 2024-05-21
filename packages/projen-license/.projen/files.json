@@ -4,6 +4,7 @@
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "license",
     "tsconfig.build.json",
     "tsconfig.json"
   ],

@@ -9,6 +9,7 @@
     ".projen/tasks.json",
     "beachball.config.js",
     "CODEOWNERS",
+    "license",
     "pnpm-workspace.yaml",
     "renovate.json5",
     "tsconfig.json"
