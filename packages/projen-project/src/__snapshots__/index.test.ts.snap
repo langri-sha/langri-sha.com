@@ -83,12 +83,6 @@ node_modules/
       "default": {
         "description": "Synthesize project files",
         "name": "default",
-        "steps": [
-          {
-            "cwd": "../../..",
-            "exec": "npx projen default",
-          },
-        ],
       },
       "test": {
         "description": "Run tests",

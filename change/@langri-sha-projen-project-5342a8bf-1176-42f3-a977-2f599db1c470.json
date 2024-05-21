@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(project): Remove default tasks for subprojects",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
