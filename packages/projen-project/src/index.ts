@@ -109,13 +109,13 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
-    if (!this.parent) {
-      this.tasks.removeTask('install')
-      this.tasks.removeTask('install:ci')
-    }
-
     this.#configurePackage(options)
     this.#configureTypeScript(options)
+
+    if (this.parent) {
+      this.tasks.tryFind('install')?.reset()
+      this.tasks.tryFind('install:ci')?.reset()
+    }
 
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
