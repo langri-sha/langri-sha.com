@@ -19,6 +19,7 @@ const project = new Project({
   name: 'langri-sha.com',
   package: {
     ...pkg,
+    copyrightYear: '2016',
     repository: 'langri-sha/langri-sha.com',
     bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
@@ -107,6 +108,7 @@ const subprojectOptions: ProjectOptions[] = [
     typeScriptConfigOptions: {},
     package: {
       ...pkg,
+      copyrightYear: '2024',
       deps: ['license-o-matic@^1.2.0'],
       peerDeps: ['projen@^0.81.15'],
     },
