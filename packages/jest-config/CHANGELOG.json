@@ -2,6 +2,21 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Tue, 21 May 2024 05:22:50 GMT",
+      "version": "0.7.0",
+      "tag": "@langri-sha/jest-config_v0.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "feat(jest-config): Rewrite ESM imports"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 14 May 2024 20:41:06 GMT",
       "version": "0.6.2",
       "tag": "@langri-sha/jest-config_v0.6.2",

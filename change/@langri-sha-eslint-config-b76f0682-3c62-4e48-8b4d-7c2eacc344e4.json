@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(eslint-config): Reconfigure TS unused vars",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

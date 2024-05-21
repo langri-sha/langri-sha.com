@@ -2,6 +2,21 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Tue, 21 May 2024 05:22:50 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/babel-test_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "feat(eslint-config): Reconfigure TS unused vars"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 May 2024 06:47:18 GMT",
       "version": "0.3.3",
       "tag": "@langri-sha/babel-test_v0.3.3",

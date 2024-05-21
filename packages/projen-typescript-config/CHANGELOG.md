@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
+This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.1
+
+Tue, 21 May 2024 05:22:50 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.81.15 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.81.13 (email not defined)
+- fix(typescript-config): Respect configured file name (filip.dupanovic@gmail.com)
 
 ## 0.2.0
 

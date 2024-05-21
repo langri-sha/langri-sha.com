@@ -1,8 +1,30 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
+This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.8.0
+
+Tue, 21 May 2024 05:22:50 GMT
+
+### Minor changes
+
+- feat(projen): Add component for Beacbhall support (filip.dupanovic@gmail.com)
+- feat(project): Add stub projen configuration file (filip.dupanovic@gmail.com)
+- feat(project): Upgrade PNPM with Renovate (filip.dupanovic@gmail.com)
+- feat(project): Add support for Node.js packages (filip.dupanovic@gmail.com)
+- feat(project): Match deps in modules with Renovate (filip.dupanovic@gmail.com)
+- feat(project): Add support for subprojects (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.81.13 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.81.15 (email not defined)
+- fix(project): Transpile sources only for default task (filip.dupanovic@gmail.com)
+- fix(project): Correct Renovate dependency matching (filip.dupanovic@gmail.com)
+- fix(projen-project): Lint only package modules (filip.dupanovic@gmail.com)
+- fix(project): Add looser dependency matching (filip.dupanovic@gmail.com)
 
 ## 0.7.0
 

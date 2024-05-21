@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(jest-config): Rewrite ESM imports",
-  "packageName": "@langri-sha/jest-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

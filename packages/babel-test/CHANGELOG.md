@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/babel-test
 
-This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
+This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Tue, 21 May 2024 05:22:50 GMT
+
+### Minor changes
+
+- feat(eslint-config): Reconfigure TS unused vars (filip.dupanovic@gmail.com)
 
 ## 0.3.3
 

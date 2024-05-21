@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/jest-config
 
-This log was last generated on Tue, 14 May 2024 20:41:06 GMT and should not be manually modified.
+This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.7.0
+
+Tue, 21 May 2024 05:22:50 GMT
+
+### Minor changes
+
+- feat(jest-config): Rewrite ESM imports (filip.dupanovic@gmail.com)
 
 ## 0.6.2
 

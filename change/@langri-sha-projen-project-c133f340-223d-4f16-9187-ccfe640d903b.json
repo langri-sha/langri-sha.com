@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(project): Correct Renovate dependency matching",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,0 +1,34 @@
+{
+  "name": "@langri-sha/projen-beachball",
+  "entries": [
+    {
+      "date": "Tue, 21 May 2024 05:22:50 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-beachball_v0.1.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-beachball",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.81.15"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-beachball",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.81.13"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-beachball",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "feat(beachball): Add support for configuring Beachball"
+          }
+        ]
+      }
+    }
+  ]
+}

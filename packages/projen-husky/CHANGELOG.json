@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-husky",
   "entries": [
     {
+      "date": "Tue, 21 May 2024 05:22:50 GMT",
+      "version": "0.1.3",
+      "tag": "@langri-sha/projen-husky_v0.1.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-husky",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.81.15"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-husky",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.81.13"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 May 2024 06:47:18 GMT",
       "version": "0.1.2",
       "tag": "@langri-sha/projen-husky_v0.1.2",

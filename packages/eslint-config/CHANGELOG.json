@@ -2,6 +2,35 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Tue, 21 May 2024 05:22:50 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/eslint-config_v0.4.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.10.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.3.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "f95709138a43b934997a15555d3e42655a02bee3",
+            "comment": "feat(eslint-config): Reconfigure TS unused vars"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 May 2024 06:47:18 GMT",
       "version": "0.3.2",
       "tag": "@langri-sha/eslint-config_v0.3.2",
