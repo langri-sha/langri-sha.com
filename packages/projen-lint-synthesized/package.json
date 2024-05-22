@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "debug": "4.3.4",
-    "execa": "8.0.1",
+    "execa": "9.1.0",
     "minimatch": "9.0.4"
   },
   "devDependencies": {
