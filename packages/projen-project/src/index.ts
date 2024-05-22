@@ -55,11 +55,6 @@ export interface ProjectOptions
   huskyOptions?: HuskyOptions
 
   /*
-   * Pass in to configure Renovate.
-   */
-  renovateOptions?: RenovateOptions
-
-  /*
    * Options for the linting synthesized files.
    */
   lintSynthesizedOptions?: LintSynthesizedOptions
@@ -75,6 +70,11 @@ export interface ProjectOptions
      */
     copyrightYear?: string
   } & javascript.NodePackageOptions
+
+  /*
+   * Pass in to configure Renovate.
+   */
+  renovateOptions?: RenovateOptions
 
   /**
    * TypeScript configuration options.
