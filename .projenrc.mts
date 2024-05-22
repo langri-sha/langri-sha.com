@@ -92,7 +92,7 @@ project.package?.addDevDeps(
   '@langri-sha/tsconfig@workspace:*',
   'eslint@9.3.0',
   'jest@29.7.0',
-  'lint-staged@15.2.2',
+  'lint-staged@15.2.4',
   'prettier@3.2.5',
   'projen@0.81.15',
 )
