@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): fix(deps): update dependency prettier-plugin-ini to v1.2.0",
+  "packageName": "@langri-sha/prettier",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
