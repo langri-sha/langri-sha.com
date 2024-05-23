@@ -13,9 +13,13 @@
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
+  "dependencies": {
+    "serialize-javascript": "6.0.2"
+  },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
+    "@types/serialize-javascript": "5.0.4",
     "jest": "^28.00 || ^29.00",
     "projen": "0.81.15"
   },
