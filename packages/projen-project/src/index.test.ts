@@ -7,7 +7,11 @@ import { EditorConfig } from '@langri-sha/projen-editorconfig'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { Codeowners } from '@langri-sha/projen-codeowners'
 import { Beachball } from '@langri-sha/projen-beachball'
+import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
 import * as path from 'node:path'
+import { License } from '@langri-sha/projen-license'
+import { ProjenrcFile } from './lib'
+import { NodePackage } from 'projen/lib/javascript'
 
 test('defaults', () => {
   const project = new Project({
@@ -19,7 +23,11 @@ test('defaults', () => {
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
+  expect(project.license).toBeUndefined()
+  expect(project.package).toBeUndefined()
+  expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
   expect(project.renovate).toBeUndefined()
+  expect(project.typeScriptConfig).toBeUndefined()
 })
 
 test('add subproject', () => {
@@ -27,13 +35,14 @@ test('add subproject', () => {
     name: 'test-project',
   })
 
-  project.addSubproject({
+  const sub = project.addSubproject({
     name: '@someproject/test',
     outdir: path.join('someproject', '@some', 'test'),
     typeScriptConfigOptions: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(sub.projenrc).toBeUndefined()
 })
 
 test('find subproject', () => {
@@ -120,6 +129,18 @@ describe('with license', () => {
     ).toThrowError(/Missing package author name/)
   })
 
+  test('assigns license property', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorName: 'John Smith',
+        license: 'MIT',
+      },
+    })
+
+    expect(project.license).toBeInstanceOf(License)
+  })
+
   test('with author name', () => {
     const project = new Project({
       name: 'test-project',
@@ -173,6 +194,26 @@ describe('with license', () => {
   })
 })
 
+describe('with package', () => {
+  test('assigns package property', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+    })
+
+    expect(project.package).toBeInstanceOf(NodePackage)
+  })
+
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+    })
+
+    expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
+  })
+})
+
 test('with Terraform enabled', () => {
   const project = new Project({
     name: 'test-project',
@@ -202,6 +243,7 @@ test('with TypeScript options', () => {
   project.typeScriptConfig?.addFile('foo.js', 'bar.js')
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.typeScriptConfig).toBeInstanceOf(TypeScriptConfig)
 })
 
 test('with workspaces', () => {
