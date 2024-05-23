@@ -12,6 +12,7 @@ import * as path from 'node:path'
 import { License } from '@langri-sha/projen-license'
 import { ProjenrcFile } from './lib'
 import { NodePackage } from 'projen/lib/javascript'
+import { IgnoreFile } from 'projen'
 
 test('defaults', () => {
   const project = new Project({
@@ -24,6 +25,7 @@ test('defaults', () => {
   expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
   expect(project.license).toBeUndefined()
+  expect(project.npmIgnore).toBeUndefined()
   expect(project.package).toBeUndefined()
   expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
   expect(project.renovate).toBeUndefined()
@@ -191,6 +193,26 @@ describe('with license', () => {
     })
 
     expect(synthSnapshot(project)['license']).toMatchSnapshot()
+  })
+})
+
+describe('with NPM ignore', () => {
+  test('assigns npmIgnore property', () => {
+    const project = new Project({
+      name: 'test-project',
+      npmIgnoreOptions: {},
+    })
+
+    expect(project.npmIgnore).toBeInstanceOf(IgnoreFile)
+  })
+
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      npmIgnoreOptions: {},
+    })
+
+    expect(synthSnapshot(project)['.npmignore']).toMatchSnapshot()
   })
 })
 

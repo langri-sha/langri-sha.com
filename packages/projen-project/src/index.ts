@@ -1,6 +1,8 @@
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
+  IgnoreFile,
+  IgnoreFileOptions,
   YamlFile,
   javascript,
 } from 'projen'
@@ -71,6 +73,11 @@ export interface ProjectOptions
     copyrightYear?: string
   } & javascript.NodePackageOptions
 
+  /**
+   * Pass in to configure NPM ignore options.
+   */
+  npmIgnoreOptions?: IgnoreFileOptions
+
   /*
    * Pass in to configure Renovate.
    */
@@ -98,6 +105,7 @@ export class Project extends BaseProject {
   editorConfig?: EditorConfig
   husky?: Husky
   license?: License
+  npmIgnore?: IgnoreFile
   package?: javascript.NodePackage
   projenrc?: ProjenrcFile
   renovate?: Renovate
@@ -133,6 +141,7 @@ export class Project extends BaseProject {
     this.#configureHusky(options)
     this.#configureLicense(options)
     this.#configureLintSynthesized(options)
+    this.#configureNpmIgnore(options)
     this.#configureProjenrc()
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
@@ -275,6 +284,22 @@ export class Project extends BaseProject {
         '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
         '*': 'pnpm prettier --write --ignore-unknown',
       },
+    )
+  }
+
+  #configureNpmIgnore({ npmIgnoreOptions }: ProjectOptions) {
+    if (!npmIgnoreOptions) {
+      return
+    }
+
+    const defaults: IgnoreFileOptions = {
+      ignorePatterns: ['*.test.*', '.*', '__snapshots__/', 'tsconfig*.json'],
+    }
+
+    this.npmIgnore = new IgnoreFile(
+      this,
+      '.npmignore',
+      deepMerge(defaults, npmIgnoreOptions),
     )
   }
 
