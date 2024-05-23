@@ -367,6 +367,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      jest:
+        specifier: ^28.00 || ^29.00
+        version: 29.7.0(@types/node@20.12.12)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       projen:
         specifier: 0.81.15
         version: 0.81.15(constructs@10.3.0)
