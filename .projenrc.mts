@@ -103,6 +103,17 @@ project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
   {
+    name: '@langri-sha/projen-jest-config',
+    outdir: path.join('packages', 'projen-jest-config'),
+    typeScriptConfigOptions: {},
+    npmIgnoreOptions: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      peerDeps: ['projen@^0.81.15'],
+    },
+  },
+  {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
     typeScriptConfigOptions: {},
