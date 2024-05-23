@@ -106,6 +106,7 @@ const subprojectOptions: ProjectOptions[] = [
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
     typeScriptConfigOptions: {},
+    npmIgnoreOptions: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
