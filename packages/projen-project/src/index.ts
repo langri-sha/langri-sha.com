@@ -31,6 +31,7 @@ import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 import { License } from '@langri-sha/projen-license'
 
 import { ProjenrcFile } from './lib/index.js'
+import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -55,6 +56,11 @@ export interface ProjectOptions
    * Husky options.
    */
   huskyOptions?: HuskyOptions
+
+  /**
+   * Configures Jest, when provided.
+   */
+  jestConfigOptions?: JestConfigOptions
 
   /*
    * Options for the linting synthesized files.
@@ -104,6 +110,7 @@ export class Project extends BaseProject {
   codeowners?: Codeowners
   editorConfig?: EditorConfig
   husky?: Husky
+  jestConfig?: JestConfig
   license?: License
   npmIgnore?: IgnoreFile
   package?: javascript.NodePackage
@@ -139,6 +146,7 @@ export class Project extends BaseProject {
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
     this.#configureHusky(options)
+    this.#configureJestConfig(options)
     this.#configureLicense(options)
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
@@ -252,6 +260,14 @@ export class Project extends BaseProject {
     this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
   }
 
+  #configureJestConfig({ jestConfigOptions }: ProjectOptions) {
+    if (!jestConfigOptions || this.parent) {
+      return
+    }
+
+    this.jestConfig = new JestConfig(this, jestConfigOptions)
+  }
+
   #configureLicense({ package: pkg }: ProjectOptions) {
     if (!pkg?.license) {
       return
@@ -287,13 +303,16 @@ export class Project extends BaseProject {
     )
   }
 
-  #configureNpmIgnore({ npmIgnoreOptions }: ProjectOptions) {
+  #configureNpmIgnore({ jestConfigOptions, npmIgnoreOptions }: ProjectOptions) {
     if (!npmIgnoreOptions) {
       return
     }
 
     const defaults: IgnoreFileOptions = {
-      ignorePatterns: ['*.test.*', '.*', '__snapshots__/', 'tsconfig*.json'],
+      ignorePatterns: [
+        ...(jestConfigOptions ? ['*.test.*', '.*', '__snapshots__/'] : []),
+        'tsconfig*.json',
+      ],
     }
 
     this.npmIgnore = new IgnoreFile(
@@ -436,11 +455,11 @@ export class Project extends BaseProject {
 }
 
 const getGitIgnoreOptions = ({
+  gitIgnoreOptions,
   huskyOptions,
+  parent,
   typeScriptConfigOptions,
   withTerraform,
-  parent,
-  gitIgnoreOptions,
   ...options
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] =>
   parent
