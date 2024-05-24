@@ -429,6 +429,10 @@ importers:
         version: 0.81.15(constructs@10.3.0)
 
   packages/projen-prettier:
+    dependencies:
+      serialize-javascript:
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -436,6 +440,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@types/serialize-javascript':
+        specifier: 5.0.4
+        version: 5.0.4
       prettier:
         specifier: 3.0.0
         version: 3.0.0
