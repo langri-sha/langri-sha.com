@@ -442,6 +442,9 @@ importers:
       '@langri-sha/projen-husky':
         specifier: workspace:*
         version: link:../projen-husky
+      '@langri-sha/projen-jest-config':
+        specifier: workspace:*
+        version: link:../projen-jest-config
       '@langri-sha/projen-license':
         specifier: workspace:*
         version: link:../projen-license
