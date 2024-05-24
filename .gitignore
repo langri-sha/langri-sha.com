@@ -28,6 +28,7 @@ node_modules/
 !/beachball.config.js
 !/CODEOWNERS
 !/.editorconfig
+!/jest.config.ts
 !/license
 !/renovate.json5
 !/pnpm-workspace.yaml
