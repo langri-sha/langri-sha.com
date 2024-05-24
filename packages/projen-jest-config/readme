@@ -50,5 +50,5 @@ const config: Config = {
 export default config
 ```
 
-[projen]: https://projen.dev/
+[projen]: https://projen.io/
 [jest]: https://jestjs.io/docs/

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(jest): Update documentation URL",
+  "packageName": "@langri-sha/projen-jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
