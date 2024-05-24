@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaults 1`] = `
+"import type { Config } from 'jest'
+
+    const config: Config = {
+      
+      }
+
+    export default config
+    "
+`;
+
+exports[`with config 1`] = `
+"import type { Config } from 'jest'
+
+    const config: Config = {
+      
+      "testEnvironment":"node"}
+
+    export default config
+    "
+`;
+
+exports[`with extends 1`] = `
+"import type { Config } from 'jest'
+import defaults from '@langri-sha/jest-config'
+
+    const config: Config = {
+      ...defaults,
+      }
+
+    export default config
+    "
+`;
+
+exports[`with filename 1`] = `
+"import type { Config } from 'jest'
+
+    const config: Config = {
+      
+      }
+
+    export default config
+    "
+`;
