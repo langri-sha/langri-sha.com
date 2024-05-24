@@ -7,10 +7,11 @@
   },
   "references": [
     { "path": "../jest-test" },
-    { "path": "../projen-codeowners" },
     { "path": "../projen-beachball" },
+    { "path": "../projen-codeowners" },
     { "path": "../projen-editorconfig" },
     { "path": "../projen-husky" },
+    { "path": "../projen-jest-config" },
     { "path": "../projen-license" },
     { "path": "../projen-lint-synthesized" },
     { "path": "../projen-renovate" },
