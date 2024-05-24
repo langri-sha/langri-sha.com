@@ -32,6 +32,31 @@ const project = new Project({
   huskyOptions: {
     'pre-commit': 'pnpm -q lint-staged',
   },
+  jestConfigOptions: {
+    extends: '@langri-sha/jest-config',
+    config: {
+      transformIgnorePatterns: [
+        `node_modules/(?!(?:.pnpm/)?(${[
+          'execa',
+          'find-up',
+          'get-stream',
+          'human-signals',
+          'is-stream',
+          'locate-path',
+          'mimic-fn',
+          'npm-run-path',
+          'onetime',
+          'p-limit',
+          'p-locate',
+          'path-exists',
+          'path-key',
+          'strip-final-newline',
+          'unicorn-magic',
+          'yocto-queue',
+        ].join('|')}))`,
+      ],
+    },
+  },
   renovateOptions: {},
   typeScriptConfigOptions: {
     config: {
@@ -106,6 +131,7 @@ const subprojectOptions: ProjectOptions[] = [
     name: '@langri-sha/projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
     typeScriptConfigOptions: {},
+    jestConfigOptions: {},
     npmIgnoreOptions: {},
     package: {
       ...pkg,
@@ -118,6 +144,7 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
+    jestConfigOptions: {},
     typeScriptConfigOptions: {},
     npmIgnoreOptions: {},
     package: {
@@ -158,8 +185,11 @@ for (const options of subprojectOptions) {
 
     subproject.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
 
-    subproject.typeScriptConfig?.addReference('../jest-test')
-    subproject.typeScriptConfig?.addReference('../tsconfig')
+    if (options.jestConfigOptions) {
+      subproject.typeScriptConfig.addReference('../jest-test')
+    }
+
+    subproject.typeScriptConfig.addReference('../tsconfig')
 
     new TypeScriptConfig(subproject, {
       fileName: 'tsconfig.build.json',
