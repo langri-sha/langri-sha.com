@@ -7,7 +7,7 @@ A [projen] component for generating license files using [`license-o-matic`].
 Install dependencies:
 
 ```sh
-npm install -D projen @langri-sha/editorconfig
+npm install -D projen @langri-sha/projen-license
 ```
 
 Then, create an `License` component for your projects:
@@ -27,3 +27,6 @@ new License(project, {
   copyrightYear: '2000',
 })
 ```
+
+[license-o-matic]: https://www.npmjs.com/package/license-o-matic
+[projen]: https://projen.io/
