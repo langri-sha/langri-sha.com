@@ -16,9 +16,11 @@
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
+    "prettier": "3.0.0",
     "projen": "0.81.15"
   },
   "peerDependencies": {
+    "prettier": "^3.0.0",
     "projen": "^0.81.15"
   },
   "engines": {

@@ -163,7 +163,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
-      peerDeps: ['projen@^0.81.15'],
+      peerDeps: ['prettier@^3.0.0', 'projen@^0.81.15'],
     },
   },
 ]

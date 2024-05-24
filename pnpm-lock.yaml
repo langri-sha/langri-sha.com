@@ -436,6 +436,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      prettier:
+        specifier: 3.0.0
+        version: 3.0.0
       projen:
         specifier: 0.81.15
         version: 0.81.15(constructs@10.3.0)
@@ -5589,6 +5592,11 @@ packages:
 
   prettier-plugin-ini@1.2.0:
     resolution: {integrity: sha512-8RR2n3AGlObQ11NCpyvv1N+xkTe/RdGp1vko8xeuXubWUa9NrOEZMX463H1AvnhnUX8b1NeJk3TKFkgvWunApg==}
+
+  prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   prettier@3.2.5:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
@@ -13771,6 +13779,8 @@ snapshots:
   prettier-plugin-ini@1.2.0:
     dependencies:
       prettier: 3.2.5
+
+  prettier@3.0.0: {}
 
   prettier@3.2.5: {}
 
