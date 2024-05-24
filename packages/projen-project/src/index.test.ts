@@ -13,6 +13,7 @@ import { License } from '@langri-sha/projen-license'
 import { ProjenrcFile } from './lib'
 import { NodePackage } from 'projen/lib/javascript'
 import { IgnoreFile } from 'projen'
+import { JestConfig } from '@langri-sha/projen-jest-config'
 
 test('defaults', () => {
   const project = new Project({
@@ -24,6 +25,7 @@ test('defaults', () => {
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
   expect(project.husky).toBeUndefined()
+  expect(project.jestConfig).toBeUndefined()
   expect(project.license).toBeUndefined()
   expect(project.npmIgnore).toBeUndefined()
   expect(project.package).toBeUndefined()
@@ -116,6 +118,27 @@ test('with Husky options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.husky).toBeInstanceOf(Husky)
+})
+
+describe('with Jest configuration', () => {
+  test('assigns jestConfig property', () => {
+    const project = new Project({
+      name: 'test-project',
+      jestConfigOptions: {},
+    })
+
+    expect(project.jestConfig).toBeInstanceOf(JestConfig)
+  })
+
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      npmIgnoreOptions: {},
+      jestConfigOptions: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
 })
 
 describe('with license', () => {
