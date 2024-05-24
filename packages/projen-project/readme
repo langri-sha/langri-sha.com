@@ -20,5 +20,5 @@ projects.
 [code owners]:
   https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 [pnpm]: https://pnpm.io
-[projen]: https://projen.dev/
+[projen]: https://projen.io/
 [workspaces]: https://pnpm.io/workspaces
