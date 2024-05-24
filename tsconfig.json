@@ -73,6 +73,9 @@
     },
     {
       "path": "packages/projen-license"
+    },
+    {
+      "path": "packages/projen-prettier"
     }
   ]
 }

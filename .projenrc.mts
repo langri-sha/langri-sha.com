@@ -154,6 +154,18 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  {
+    name: '@langri-sha/projen-prettier',
+    outdir: path.join('packages', 'projen-prettier'),
+    jestConfigOptions: {},
+    typeScriptConfigOptions: {},
+    npmIgnoreOptions: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      peerDeps: ['projen@^0.81.15'],
+    },
+  },
 ]
 
 for (const options of subprojectOptions) {
