@@ -473,6 +473,9 @@ importers:
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized
+      '@langri-sha/projen-prettier':
+        specifier: workspace:*
+        version: link:../projen-prettier
       '@langri-sha/projen-renovate':
         specifier: workspace:*
         version: link:../projen-renovate
