@@ -1,8 +1,25 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Tue, 21 May 2024 07:47:40 GMT and should not be manually modified.
+This log was last generated on Sat, 25 May 2024 03:25:31 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.9.0
+
+Sat, 25 May 2024 03:25:31 GMT
+
+### Minor changes
+
+- feat(projen): Add support for creating licenses (filip.dupanovic@gmail.com)
+- feat(project): Add support for configuring Jest (filip.dupanovic@gmail.com)
+- feat(project): Match project dependencies with Renovate (filip.dupanovic@gmail.com)
+- feat(project): Add projenrc file to subprojects (filip.dupanovic@gmail.com)
+- feat(project): Add support for NPM ignore files (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(project): Update documentation URL (filip.dupanovic@gmail.com)
+- fix(project): Update matching Renovate dependencies (filip.dupanovic@gmail.com)
 
 ## 0.8.1
 

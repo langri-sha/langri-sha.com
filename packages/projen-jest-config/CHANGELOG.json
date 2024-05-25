@@ -1,0 +1,34 @@
+{
+  "name": "@langri-sha/projen-jest-config",
+  "entries": [
+    {
+      "date": "Sat, 25 May 2024 03:25:31 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-jest-config_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(jest-config): Add package for configuring Jest"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Add projenrc file to subprojects"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "fix(jest): Update documentation URL"
+          }
+        ]
+      }
+    }
+  ]
+}

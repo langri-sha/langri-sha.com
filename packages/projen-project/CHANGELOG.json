@@ -2,6 +2,59 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 25 May 2024 03:25:31 GMT",
+      "version": "0.9.0",
+      "tag": "@langri-sha/projen-project_v0.9.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(projen): Add support for creating licenses"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Add support for configuring Jest"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Match project dependencies with Renovate"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Add projenrc file to subprojects"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Add support for NPM ignore files"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "fix(project): Update documentation URL"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "fix(project): Update matching Renovate dependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 07:47:40 GMT",
       "version": "0.8.1",
       "tag": "@langri-sha/projen-project_v0.8.1",

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(license): Update documentation",
-  "packageName": "@langri-sha/projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

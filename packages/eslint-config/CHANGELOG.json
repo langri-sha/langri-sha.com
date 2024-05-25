@@ -2,6 +2,21 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Sat, 25 May 2024 03:25:31 GMT",
+      "version": "0.4.1",
+      "tag": "@langri-sha/eslint-config_v0.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "chore(deps): fix(deps): update eslint monorepo to v9.3.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 05:22:50 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/eslint-config_v0.4.0",

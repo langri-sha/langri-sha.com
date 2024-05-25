@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/prettier
 
-This log was last generated on Wed, 01 May 2024 23:11:18 GMT and should not be manually modified.
+This log was last generated on Sat, 25 May 2024 03:25:31 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.2
+
+Sat, 25 May 2024 03:25:31 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency prettier-plugin-ini to v1.2.0 (email not defined)
 
 ## 0.2.0
 

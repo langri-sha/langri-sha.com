@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(license): Add component for generating licenses",
-  "packageName": "@langri-sha/projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

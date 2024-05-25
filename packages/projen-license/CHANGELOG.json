@@ -1,0 +1,38 @@
+{
+  "name": "@langri-sha/projen-license",
+  "entries": [
+    {
+      "date": "Sat, 25 May 2024 03:25:31 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-license_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(license): Update documentation"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(projen): Add NPM ignore files"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(license): Add component for generating licenses"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "1b0960cb6ed3918c64dbc464cb2baa83f5dc9bdd",
+            "comment": "feat(project): Add projenrc file to subprojects"
+          }
+        ]
+      }
+    }
+  ]
+}
