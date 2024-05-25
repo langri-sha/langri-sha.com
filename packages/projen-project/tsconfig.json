@@ -14,6 +14,7 @@
     { "path": "../projen-jest-config" },
     { "path": "../projen-license" },
     { "path": "../projen-lint-synthesized" },
+    { "path": "../projen-prettier" },
     { "path": "../projen-renovate" },
     { "path": "../projen-typescript-config" },
     { "path": "../tsconfig" }
