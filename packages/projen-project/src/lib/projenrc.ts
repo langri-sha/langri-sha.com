@@ -17,7 +17,14 @@ export class ProjenrcFile extends BaseProjenrcFile {
   ) {
     super(project)
 
+    if (project.parent) {
+      this.filePath = ProjenrcFile.of(project.parent)?.filePath ?? filename
+
+      return
+    }
+
     this.filePath = filename
+
     this.project.defaultTask?.exec(
       `node --loader ts-node/esm/transpile-only ${filename}`,
     )
