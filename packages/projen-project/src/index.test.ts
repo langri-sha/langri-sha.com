@@ -46,7 +46,7 @@ test('add subproject', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(sub.projenrc).toBeUndefined()
+  expect(sub.projenrc).toBeInstanceOf(ProjenrcFile)
 })
 
 test('find subproject', () => {

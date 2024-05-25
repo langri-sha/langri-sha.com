@@ -133,6 +133,7 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
+    this.#configureProjenrc()
     this.#configurePackage(options)
     this.#configureTypeScript(options)
 
@@ -150,7 +151,6 @@ export class Project extends BaseProject {
     this.#configureLicense(options)
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
-    this.#configureProjenrc()
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
   }
@@ -349,10 +349,6 @@ export class Project extends BaseProject {
   }
 
   #configureProjenrc() {
-    if (this.parent) {
-      return
-    }
-
     this.projenrc = new ProjenrcFile(this, {})
   }
 
