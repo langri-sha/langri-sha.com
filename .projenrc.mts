@@ -160,6 +160,18 @@ const subprojectOptions: ProjectOptions[] = [
     },
   },
   {
+    name: '@langri-sha/projen-lint-staged',
+    outdir: path.join('packages', 'projen-lint-staged'),
+    jestConfigOptions: {},
+    typeScriptConfigOptions: {},
+    npmIgnoreOptions: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      peerDeps: ['projen@^0.81.15'],
+    },
+  },
+  {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
     jestConfigOptions: {},
