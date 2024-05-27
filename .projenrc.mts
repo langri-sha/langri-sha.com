@@ -126,7 +126,7 @@ project.package?.addDevDeps(
 )
 
 project.package?.addField('private', true)
-project.package?.addField('packageManager', 'pnpm@9.1.2')
+project.package?.addField('packageManager', 'pnpm@9.1.3')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
