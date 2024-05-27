@@ -30,7 +30,7 @@ import {
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 import { License } from '@langri-sha/projen-license'
 
-import { ProjenrcFile } from './lib/index.js'
+import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
 
 export * from '@langri-sha/projen-typescript-config'
@@ -77,7 +77,7 @@ export interface ProjectOptions
      * @default "Current full year"
      */
     copyrightYear?: string
-  } & javascript.NodePackageOptions
+  } & NodePackageOptions
 
   /**
    * Pass in to configure NPM ignore options.
@@ -113,7 +113,7 @@ export class Project extends BaseProject {
   jestConfig?: JestConfig
   license?: License
   npmIgnore?: IgnoreFile
-  package?: javascript.NodePackage
+  package?: NodePackage
   projenrc?: ProjenrcFile
   renovate?: Renovate
   typeScriptConfig?: TypeScriptConfig
@@ -327,13 +327,13 @@ export class Project extends BaseProject {
       return
     }
 
-    const defaults: javascript.NodePackageOptions = {
+    const defaults: NodePackageOptions = {
       entrypoint: 'src/index.ts',
       packageManager: javascript.NodePackageManager.PNPM,
       minNodeVersion: '20.12.0',
     }
 
-    this.package = new javascript.NodePackage(this, deepMerge(defaults, pkg))
+    this.package = new NodePackage(this, deepMerge(defaults, pkg))
 
     if (!this.parent) {
       this.package.addDevDeps('@langri-sha/projen-project@*')
