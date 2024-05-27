@@ -33,6 +33,7 @@ import { License } from '@langri-sha/projen-license'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
 import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
+import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -52,6 +53,11 @@ export interface ProjectOptions
    * EditorConfig options.
    */
   editorConfigOptions?: EditorConfigOptions
+
+  /**
+   * Pass in to configure ESLint.
+   */
+  eslintOptions?: ESLintOptions
 
   /**
    * Husky options.
@@ -115,6 +121,7 @@ export class Project extends BaseProject {
   beachball?: Beachball
   codeowners?: Codeowners
   editorConfig?: EditorConfig
+  eslint?: ESLint
   husky?: Husky
   jestConfig?: JestConfig
   license?: License
@@ -150,6 +157,7 @@ export class Project extends BaseProject {
       this.tasks.tryFind('install:ci')?.reset()
     }
 
+    this.#configureESLint(options)
     this.#configurePrettier(options)
 
     this.#configureBeachball(options)
@@ -258,6 +266,24 @@ export class Project extends BaseProject {
     )
 
     this.prettier?.ignore.addPatterns('!.editorconfig')
+  }
+
+  #configureESLint({ eslintOptions }: ProjectOptions) {
+    if (!eslintOptions) {
+      return
+    }
+
+    const defaults: ESLintOptions = {
+      filename: 'eslint.config.mjs',
+      ignorePatterns: ['.*'],
+      extends: '@langri-sha/eslint-config',
+    }
+
+    this.eslint = new ESLint(this, deepMerge(defaults, eslintOptions))
+
+    if (this.projenrc?.filePath) {
+      this.eslint.ignorePatterns.push(this.projenrc.filePath)
+    }
   }
 
   #configureHusky({ huskyOptions }: ProjectOptions) {
@@ -484,6 +510,7 @@ export class Project extends BaseProject {
 
     for (const workspace of workspaces) {
       this.prettier?.ignore.exclude(`${workspace}/lib/`)
+      this.eslint?.ignorePatterns.push(`${workspace}/lib/`)
     }
   }
 }

@@ -14,6 +14,7 @@ import { NodePackage, ProjenrcFile } from './lib'
 import { IgnoreFile } from 'projen'
 import { JestConfig } from '@langri-sha/projen-jest-config'
 import { Prettier } from '@langri-sha/projen-prettier'
+import { ESLint } from '@langri-sha/projen-eslint'
 
 test('defaults', () => {
   const project = new Project({
@@ -24,6 +25,7 @@ test('defaults', () => {
   expect(project.beachball).toBeUndefined()
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
+  expect(project.eslint).toBeUndefined()
   expect(project.husky).toBeUndefined()
   expect(project.jestConfig).toBeUndefined()
   expect(project.license).toBeUndefined()
@@ -108,6 +110,17 @@ test('with EditorConfig options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.editorConfig).toBeInstanceOf(EditorConfig)
+})
+
+test('with ESLint options', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: {},
+    eslintOptions: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.eslint).toBeInstanceOf(ESLint)
 })
 
 test('with Husky options', () => {
@@ -307,6 +320,7 @@ test('with TypeScript options', () => {
 test('with workspaces', () => {
   const project = new Project({
     name: 'test-project',
+    eslintOptions: {},
     prettierOptions: {},
     workspaces: ['packages/*'],
   })
