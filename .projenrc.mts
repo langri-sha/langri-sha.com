@@ -139,7 +139,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
-      peerDeps: ['projen@^0.81.15'],
+      peerDeps: ['eslint@^9.0.0', 'projen@^0.81.15'],
     },
   },
   {
