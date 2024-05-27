@@ -10,6 +10,7 @@
     { "path": "../projen-beachball" },
     { "path": "../projen-codeowners" },
     { "path": "../projen-editorconfig" },
+    { "path": "../projen-eslint" },
     { "path": "../projen-husky" },
     { "path": "../projen-jest-config" },
     { "path": "../projen-license" },

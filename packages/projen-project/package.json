@@ -16,6 +16,7 @@
     "@langri-sha/projen-license": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-prettier": "workspace:*",
+    "@langri-sha/projen-eslint": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
     "ramda": "0.30.0"
