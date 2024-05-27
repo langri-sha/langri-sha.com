@@ -427,6 +427,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      lint-staged:
+        specifier: 15.0.0
+        version: 15.0.0
       projen:
         specifier: 0.81.15
         version: 0.81.15(constructs@10.3.0)
@@ -2849,6 +2852,10 @@ packages:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
 
+  ansi-escapes@5.0.0:
+    resolution: {integrity: sha512-5GFMVX8HqE/TB+FuBJGuO5XG0WrsA6ptUqoODaT/n9mmUaZFkqnBueB4leqGBCmrUHnCnC4PCZTCd0E7QQ83bA==}
+    engines: {node: '>=12'}
+
   ansi-escapes@6.2.1:
     resolution: {integrity: sha512-4nJ3yixlEthEJ9Rk4vPcdBRkZvQZlYyu8j4/Mqz5sgIkddmEnH2Yj2ZrnP9S3tQOvSNRUIgVNF/1yPpRAGNRig==}
     engines: {node: '>=14.16'}
@@ -3227,6 +3234,10 @@ packages:
 
   cli-cursor@4.0.0:
     resolution: {integrity: sha512-VGtlMu3x/4DOtIUwEkRezxUZ2lBacNJCHash0N0WeZDBS+7Ux1dm3XWAgWYxLJFMMdOeXMHXorshEFhbMSGelg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  cli-truncate@3.1.0:
+    resolution: {integrity: sha512-wfOBkjXteqSnI59oPcJkcPl/ZmwvMMOj340qUIY1SKZCv0B9Cf4D4fAucRkIKQmsIuYK3x1rrgU7MeGRruiuiA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   cli-truncate@4.0.0:
@@ -4947,6 +4958,10 @@ packages:
   lie@3.1.1:
     resolution: {integrity: sha512-RiNhHysUjhrDQntfYSfY4MU24coXXdEOgw9WGcKHNeEwffDYbF//u87M1EWaMGzuFoSbqW0C9C6lEEhDOAswfw==}
 
+  lilconfig@2.1.0:
+    resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
+    engines: {node: '>=10'}
+
   lilconfig@3.0.0:
     resolution: {integrity: sha512-K2U4W2Ff5ibV7j7ydLr+zLAkIg5JJ4lPn1Ltsdt+Tz/IjQ8buJ55pZAxoP34lqIiwtF9iAvtLv3JGv7CAyAg+g==}
     engines: {node: '>=14'}
@@ -4961,6 +4976,11 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
+  lint-staged@15.0.0:
+    resolution: {integrity: sha512-OdrAd/qZhO4MnPyNRehI1Fh6j8kcfQoGpjQ1Vw8dSkDkNONdqe/HpKXqtKpFIPCAYeF4/tfnE11MnjLYuLKjqA==}
+    engines: {node: '>=18.12.0'}
+    hasBin: true
+
   lint-staged@15.2.2:
     resolution: {integrity: sha512-TiTt93OPh1OZOsb5B7k96A/ATl2AjIZo+vnzFZ6oHK5FuTk63ByDtxGQpHm+kFETjEWqgkF95M8FRXKR/LEBcw==}
     engines: {node: '>=18.12.0'}
@@ -4970,6 +4990,10 @@ packages:
     resolution: {integrity: sha512-j+DfX7W9YUvdzEZl3Rk47FhDF6xwDBV5wwsCPw6BwWZVPYJemusQmvb9bRsW23Sqsaa+vRloAWogbK4BUuU2zA==}
     engines: {node: '>=18.12.0'}
     hasBin: true
+
+  listr2@7.0.1:
+    resolution: {integrity: sha512-nz+7hwgbDp8eWNoDgzdl4hA/xDSLrNRzPu1TLgOYs6l5Y+Ma6zVWWy9Oyt9TQFONwKoSPoka3H50D3vD5EuNwg==}
+    engines: {node: '>=16.0.0'}
 
   listr2@8.0.1:
     resolution: {integrity: sha512-ovJXBXkKGfq+CwmKTjluEqFi3p4h8xvkxGQQAQan22YCgef4KZ1mKGjzfGh6PL6AW5Csw0QiQPNuQyH+6Xk3hA==}
@@ -5010,6 +5034,10 @@ packages:
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
+  log-update@5.0.1:
+    resolution: {integrity: sha512-5UtUDQ/6edw4ofyljDNcOVJQ4c7OjDro4h3y8e1GQL5iYElYclVHJ3zeWchylvMaKnDbDilC8irOVyexnA/Slw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   log-update@6.0.0:
     resolution: {integrity: sha512-niTvB4gqvtof056rRIrTZvjNYE4rCUzO6X/X+kYjd7WFxXeJ0NwEFnRxX6ehkvv3jTwrXnNdtAak5XYZuIyPFw==}
@@ -5134,10 +5162,6 @@ packages:
 
   micromatch@4.0.5:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
-    engines: {node: '>=8.6'}
-
-  micromatch@4.0.6:
-    resolution: {integrity: sha512-Y4Ypn3oujJYxJcMacVgcs92wofTHxp9FzfDpQON4msDefoC0lb3ETvQLOdLcbhSwU1bz8HrL/1sygfBIHudrkQ==}
     engines: {node: '>=8.6'}
 
   micromatch@4.0.7:
@@ -5594,10 +5618,6 @@ packages:
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
-
-  picomatch@4.0.2:
-    resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
-    engines: {node: '>=12'}
 
   pidtree@0.6.0:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
@@ -6542,6 +6562,10 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
+  type-fest@1.4.0:
+    resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
+    engines: {node: '>=10'}
+
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
@@ -6925,6 +6949,10 @@ packages:
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  yaml@2.3.2:
+    resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
+    engines: {node: '>= 14'}
 
   yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
@@ -9284,7 +9312,7 @@ snapshots:
       jest-haste-map: 29.7.0
       jest-regex-util: 29.6.3
       jest-util: 29.7.0
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       pirates: 4.0.6
       slash: 3.0.0
       write-file-atomic: 4.0.2
@@ -10467,7 +10495,7 @@ snapshots:
       fast-glob: 3.3.2
       got: 11.8.6
       lodash: 4.17.21
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       p-limit: 2.3.0
       semver: 7.6.2
       strip-ansi: 6.0.1
@@ -10504,7 +10532,7 @@ snapshots:
       clipanion: 4.0.0-rc.3(typanion@3.14.0)
       cross-spawn: 7.0.3
       fast-glob: 3.3.2
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       tslib: 2.6.2
     transitivePeerDependencies:
       - typanion
@@ -10580,6 +10608,10 @@ snapshots:
   ansi-escapes@4.3.2:
     dependencies:
       type-fest: 0.21.3
+
+  ansi-escapes@5.0.0:
+    dependencies:
+      type-fest: 1.4.0
 
   ansi-escapes@6.2.1: {}
 
@@ -11022,6 +11054,11 @@ snapshots:
   cli-cursor@4.0.0:
     dependencies:
       restore-cursor: 4.0.0
+
+  cli-truncate@3.1.0:
+    dependencies:
+      slice-ansi: 5.0.0
+      string-width: 5.1.2
 
   cli-truncate@4.0.0:
     dependencies:
@@ -11879,7 +11916,7 @@ snapshots:
       '@nodelib/fs.walk': 1.2.8
       glob-parent: 5.1.2
       merge2: 1.4.1
-      micromatch: 4.0.5
+      micromatch: 4.0.7
 
   fast-json-stable-stringify@2.1.0: {}
 
@@ -12383,7 +12420,7 @@ snapshots:
       http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
-      micromatch: 4.0.6
+      micromatch: 4.0.7
     optionalDependencies:
       '@types/express': 4.17.21
     transitivePeerDependencies:
@@ -12802,7 +12839,7 @@ snapshots:
       jest-runner: 29.7.0
       jest-util: 29.7.0
       jest-validate: 29.7.0
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       parse-json: 5.2.0
       pretty-format: 29.7.0
       slash: 3.0.0
@@ -12855,7 +12892,7 @@ snapshots:
       jest-regex-util: 29.6.3
       jest-util: 29.7.0
       jest-worker: 29.7.0
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       walker: 1.0.8
     optionalDependencies:
       fsevents: 2.3.2
@@ -12879,7 +12916,7 @@ snapshots:
       '@types/stack-utils': 2.0.3
       chalk: 4.1.2
       graceful-fs: 4.2.11
-      micromatch: 4.0.6
+      micromatch: 4.0.7
       pretty-format: 29.7.0
       slash: 3.0.0
       stack-utils: 2.0.6
@@ -13154,6 +13191,8 @@ snapshots:
     dependencies:
       immediate: 3.0.6
 
+  lilconfig@2.1.0: {}
+
   lilconfig@3.0.0: {}
 
   lilconfig@3.1.1: {}
@@ -13163,6 +13202,21 @@ snapshots:
   linkify-it@5.0.0:
     dependencies:
       uc.micro: 2.1.0
+
+  lint-staged@15.0.0:
+    dependencies:
+      chalk: 5.3.0
+      commander: 11.1.0
+      debug: 4.3.4
+      execa: 8.0.1
+      lilconfig: 2.1.0
+      listr2: 7.0.1
+      micromatch: 4.0.5
+      pidtree: 0.6.0
+      string-argv: 0.3.2
+      yaml: 2.3.2
+    transitivePeerDependencies:
+      - supports-color
 
   lint-staged@15.2.2:
     dependencies:
@@ -13193,6 +13247,15 @@ snapshots:
       yaml: 2.4.2
     transitivePeerDependencies:
       - supports-color
+
+  listr2@7.0.1:
+    dependencies:
+      cli-truncate: 3.1.0
+      colorette: 2.0.20
+      eventemitter3: 5.0.1
+      log-update: 5.0.1
+      rfdc: 1.3.1
+      wrap-ansi: 8.1.0
 
   listr2@8.0.1:
     dependencies:
@@ -13240,6 +13303,14 @@ snapshots:
   lodash.merge@4.6.2: {}
 
   lodash@4.17.21: {}
+
+  log-update@5.0.1:
+    dependencies:
+      ansi-escapes: 5.0.0
+      cli-cursor: 4.0.0
+      slice-ansi: 5.0.0
+      strip-ansi: 7.1.0
+      wrap-ansi: 8.1.0
 
   log-update@6.0.0:
     dependencies:
@@ -13409,13 +13480,8 @@ snapshots:
 
   micromatch@4.0.5:
     dependencies:
-      braces: 3.0.2
-      picomatch: 2.3.1
-
-  micromatch@4.0.6:
-    dependencies:
       braces: 3.0.3
-      picomatch: 4.0.2
+      picomatch: 2.3.1
 
   micromatch@4.0.7:
     dependencies:
@@ -13850,8 +13916,6 @@ snapshots:
   picocolors@1.0.1: {}
 
   picomatch@2.3.1: {}
-
-  picomatch@4.0.2: {}
 
   pidtree@0.6.0: {}
 
@@ -14979,6 +15043,8 @@ snapshots:
 
   type-fest@0.8.1: {}
 
+  type-fest@1.4.0: {}
+
   type-is@1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -15486,6 +15552,8 @@ snapshots:
   yallist@4.0.0: {}
 
   yaml@1.10.2: {}
+
+  yaml@2.3.2: {}
 
   yaml@2.3.4: {}
 

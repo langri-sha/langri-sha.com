@@ -168,7 +168,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
-      peerDeps: ['projen@^0.81.15'],
+      peerDeps: ['lint-staged@^15.0.0', 'projen@^0.81.15'],
     },
   },
   {
