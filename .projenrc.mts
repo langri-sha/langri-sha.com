@@ -168,6 +168,8 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      deps: ['serialize-javascript@6.0.2'],
+      devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['lint-staged@^15.0.0', 'projen@^0.81.15'],
     },
   },
