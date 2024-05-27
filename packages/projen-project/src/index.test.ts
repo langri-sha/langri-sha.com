@@ -13,6 +13,7 @@ import { License } from '@langri-sha/projen-license'
 import { NodePackage, ProjenrcFile } from './lib'
 import { IgnoreFile } from 'projen'
 import { JestConfig } from '@langri-sha/projen-jest-config'
+import { Prettier } from '@langri-sha/projen-prettier'
 
 test('defaults', () => {
   const project = new Project({
@@ -28,6 +29,7 @@ test('defaults', () => {
   expect(project.license).toBeUndefined()
   expect(project.npmIgnore).toBeUndefined()
   expect(project.package).toBeUndefined()
+  expect(project.prettier).toBeUndefined()
   expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
   expect(project.renovate).toBeUndefined()
   expect(project.typeScriptConfig).toBeUndefined()
@@ -77,6 +79,7 @@ test('with Beachball configuration', () => {
     name: 'test-project',
     package: {},
     beachballOptions: {},
+    prettierOptions: {},
     typeScriptConfigOptions: {},
   })
 
@@ -100,6 +103,7 @@ test('with EditorConfig options', () => {
   const project = new Project({
     name: 'test-project',
     editorConfigOptions: {},
+    prettierOptions: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -258,13 +262,14 @@ describe('with package', () => {
   })
 })
 
-test('with Terraform enabled', () => {
+test('with Prettier options', () => {
   const project = new Project({
     name: 'test-project',
-    withTerraform: true,
+    prettierOptions: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.prettier).toBeInstanceOf(Prettier)
 })
 
 test('with Renovate options', () => {
@@ -275,6 +280,15 @@ test('with Renovate options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.renovate).toBeInstanceOf(Renovate)
+})
+
+test('with Terraform enabled', () => {
+  const project = new Project({
+    name: 'test-project',
+    withTerraform: true,
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
 test('with TypeScript options', () => {
@@ -293,6 +307,7 @@ test('with TypeScript options', () => {
 test('with workspaces', () => {
   const project = new Project({
     name: 'test-project',
+    prettierOptions: {},
     workspaces: ['packages/*'],
   })
 

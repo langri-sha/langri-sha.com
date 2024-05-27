@@ -32,6 +32,7 @@ import { License } from '@langri-sha/projen-license'
 
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
+import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -80,6 +81,11 @@ export interface ProjectOptions
   } & NodePackageOptions
 
   /**
+   * Pass in to configure Prettier.
+   */
+  prettierOptions?: PrettierOptions
+
+  /**
    * Pass in to configure NPM ignore options.
    */
   npmIgnoreOptions?: IgnoreFileOptions
@@ -114,6 +120,7 @@ export class Project extends BaseProject {
   license?: License
   npmIgnore?: IgnoreFile
   package?: NodePackage
+  prettier?: Prettier
   projenrc?: ProjenrcFile
   renovate?: Renovate
   typeScriptConfig?: TypeScriptConfig
@@ -142,6 +149,8 @@ export class Project extends BaseProject {
       this.tasks.tryFind('install')?.reset()
       this.tasks.tryFind('install:ci')?.reset()
     }
+
+    this.#configurePrettier(options)
 
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
@@ -211,6 +220,7 @@ export class Project extends BaseProject {
 
     this.beachball = new Beachball(this, options)
 
+    this.prettier?.ignore.addPatterns('CHANGELOG.md')
     this.package?.addDevDeps('beachball@2.43.1')
     this.typeScriptConfig?.addFile('beachball.config.js')
   }
@@ -246,6 +256,8 @@ export class Project extends BaseProject {
       this,
       deepMerge(editorConfigOptions ?? {}, defaults),
     )
+
+    this.prettier?.ignore.addPatterns('!.editorconfig')
   }
 
   #configureHusky({ huskyOptions }: ProjectOptions) {
@@ -348,6 +360,28 @@ export class Project extends BaseProject {
     }
   }
 
+  #configurePrettier({ prettierOptions }: ProjectOptions) {
+    if (!prettierOptions || this.parent) {
+      return
+    }
+
+    const defaults: PrettierOptions = {
+      filename: 'prettier.config.mjs',
+      extends: '@langri-sha/prettier',
+      ignorePatterns: ['.*'],
+    }
+
+    this.prettier = new Prettier(this, deepMerge(defaults, prettierOptions))
+
+    if (this.projenrc?.filePath) {
+      this.prettier.ignore.include(this.projenrc.filePath)
+    }
+
+    if (this.package?.packageManager === javascript.NodePackageManager.PNPM) {
+      this.prettier.ignore.addPatterns('pnpm-lock.yaml')
+    }
+  }
+
   #configureProjenrc() {
     this.projenrc = new ProjenrcFile(this, {})
   }
@@ -447,6 +481,10 @@ export class Project extends BaseProject {
         packages: workspaces,
       },
     })
+
+    for (const workspace of workspaces) {
+      this.prettier?.ignore.exclude(`${workspace}/lib/`)
+    }
   }
 }
 
