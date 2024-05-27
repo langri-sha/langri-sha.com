@@ -57,6 +57,9 @@ const project = new Project({
       ],
     },
   },
+  prettierOptions: {
+    ignorePatterns: ['*.frag'],
+  },
   renovateOptions: {},
   typeScriptConfigOptions: {
     config: {
