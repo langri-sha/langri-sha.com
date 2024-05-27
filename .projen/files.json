@@ -10,6 +10,7 @@
     ".projen/tasks.json",
     "beachball.config.js",
     "CODEOWNERS",
+    "eslint.config.mjs",
     "jest.config.ts",
     "license",
     "pnpm-workspace.yaml",
