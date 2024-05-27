@@ -131,6 +131,18 @@ project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
   {
+    name: '@langri-sha/projen-eslint',
+    outdir: path.join('packages', 'projen-eslint'),
+    typeScriptConfigOptions: {},
+    jestConfigOptions: {},
+    npmIgnoreOptions: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      peerDeps: ['projen@^0.81.15'],
+    },
+  },
+  {
     name: '@langri-sha/projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
     typeScriptConfigOptions: {},
