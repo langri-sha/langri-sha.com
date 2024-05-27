@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaults 1`] = `"export default []"`;
+
+exports[`with config 1`] = `"export default [{"rules":{"unicorn/no-null":"off"}}]"`;
+
+exports[`with extends with config provided 1`] = `
+"import defaults from '@langri-sha/eslint-config'
+
+export default [...defaults, {"rules":{"unicorn/no-null":"off"}}]"
+`;
+
+exports[`with extends without config provided 1`] = `
+"import defaults from '@langri-sha/eslint-config'
+
+export default [...defaults, ]"
+`;
+
+exports[`with filename 1`] = `"export default []"`;
+
+exports[`with ignore patterns 1`] = `"export default [{"ignores":[".*"]}]"`;
