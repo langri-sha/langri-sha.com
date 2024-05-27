@@ -54,9 +54,13 @@ export class Prettier extends FileBase {
       ...this.config,
     }
 
-    const serialized = serialize(config)
+    const serialized = serialize(config, {
+      unsafe: true,
+    })
 
-    return `${this.#extends ? `import defaults from '${this.#extends}'\n\n` : ''}/** @type {import("prettier").Config} */
+    return `${
+      this.#extends ? `import defaults from '${this.#extends}'\n\n` : ''
+    }/** @type {import("prettier").Config} */
     const config = {
       ${this.#extends ? `...defaults,` : ''}
       ${serialized.slice(1)}
