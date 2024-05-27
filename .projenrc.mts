@@ -29,6 +29,7 @@ const project = new Project({
     '*': '@langri-sha',
   },
   editorConfigOptions: {},
+  eslintOptions: {},
   huskyOptions: {
     'pre-commit': 'pnpm -q lint-staged',
   },
