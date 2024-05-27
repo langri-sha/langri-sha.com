@@ -45,7 +45,9 @@ export class JestConfig extends FileBase {
       ...this.config,
     }
 
-    const serialized = serialize(config)
+    const serialized = serialize(config, {
+      unsafe: true,
+    })
 
     return `import type { Config } from 'jest'${this.#extends ? `\nimport defaults from '${this.#extends}'` : ''}
 
