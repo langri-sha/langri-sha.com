@@ -13,14 +13,14 @@ export class NodePackage extends javascript.NodePackage {
   constructor(project: Project, options?: NodePackageOptions) {
     super(project, options)
 
-    this.addVersion(this.#getPackageJson().version)
+    this.addVersion(this.#getPackageJson()?.version ?? '0.0.0')
   }
 
   #getPackageJson() {
     try {
       return JSON.parse(fs.readFileSync(this.file.absolutePath, 'utf-8'))
     } catch (_) {
-      return '0.0.0'
+      return undefined
     }
   }
 }

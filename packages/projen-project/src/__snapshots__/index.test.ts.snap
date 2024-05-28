@@ -394,6 +394,7 @@ module.exports = {
     "scripts": {
       "default": "npx projen default",
     },
+    "version": "0.0.0",
   },
   "prettier.config.mjs": "import defaults from '@langri-sha/prettier'
 
@@ -527,6 +528,7 @@ export default [...defaults, {"ignores":[".*",".projenrc.mts"]}]",
     "scripts": {
       "default": "npx projen default",
     },
+    "version": "0.0.0",
   },
 }
 `;
@@ -746,6 +748,7 @@ lint-staged
       "default": "npx projen default",
       "prepare": "husky",
     },
+    "version": "0.0.0",
   },
 }
 `;
@@ -1218,6 +1221,7 @@ node_modules/
     "scripts": {
       "default": "npx projen default",
     },
+    "version": "0.0.0",
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
@@ -1369,6 +1373,7 @@ exports[`with package defaults 1`] = `
   "scripts": {
     "default": "npx projen default",
   },
+  "version": "0.0.0",
 }
 `;
 
