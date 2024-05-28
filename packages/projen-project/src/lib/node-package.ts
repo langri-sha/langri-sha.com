@@ -23,4 +23,12 @@ export class NodePackage extends javascript.NodePackage {
       return undefined
     }
   }
+
+  override postSynthesize(): void {
+    if (this.project.parent) {
+      return
+    }
+
+    super.postSynthesize()
+  }
 }
