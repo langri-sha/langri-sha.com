@@ -38,3 +38,19 @@ describe('resolves version', () => {
     expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
   })
 })
+
+describe('skips install on subprojects', () => {
+  const project1 = new Project({
+    name: 'test',
+  })
+
+  const project2 = new Project({
+    name: 'test',
+    parent: project1,
+    outdir: 'project2',
+  })
+
+  new NodePackage(project2)
+
+  expect(synthSnapshot(project1)).toMatchSnapshot()
+})

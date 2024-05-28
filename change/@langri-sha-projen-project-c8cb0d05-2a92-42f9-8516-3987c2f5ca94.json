@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(project): Skip package install on subprojects",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
