@@ -47,7 +47,7 @@ test('add subproject', () => {
   const sub = project.addSubproject({
     name: '@someproject/test',
     outdir: path.join('someproject', '@some', 'test'),
-    typeScriptConfigOptions: {},
+    typeScriptConfig: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -62,13 +62,13 @@ test('find subproject', () => {
   const subproject = project.addSubproject({
     name: '@someproject/test',
     outdir: path.join('sub', '@some', 'test'),
-    typeScriptConfigOptions: {},
+    typeScriptConfig: {},
   })
 
   subproject.addSubproject({
     name: '@someproject/test2',
     outdir: path.join('subsub', '@some', 'test2'),
-    typeScriptConfigOptions: {},
+    typeScriptConfig: {},
   })
 
   expect(project.findSubproject('@someproject/test')).toBeInstanceOf(Project)
@@ -82,9 +82,9 @@ test('with Beachball configuration', () => {
   const project = new Project({
     name: 'test-project',
     package: {},
-    beachballOptions: {},
-    prettierOptions: {},
-    typeScriptConfigOptions: {},
+    beachball: {},
+    prettier: {},
+    typeScriptConfig: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -94,7 +94,7 @@ test('with Beachball configuration', () => {
 test('with code owners configured', () => {
   const project = new Project({
     name: 'test-project',
-    codeownersOptions: {
+    codeowners: {
       '*': '@admin',
     },
   })
@@ -106,8 +106,8 @@ test('with code owners configured', () => {
 test('with EditorConfig options', () => {
   const project = new Project({
     name: 'test-project',
-    editorConfigOptions: {},
-    prettierOptions: {},
+    editorConfig: {},
+    prettier: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -118,7 +118,7 @@ test('with ESLint options', () => {
   const project = new Project({
     name: 'test-project',
     package: {},
-    eslintOptions: {},
+    eslint: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -129,7 +129,7 @@ test('with Husky options', () => {
   const project = new Project({
     name: 'test-project',
     package: {},
-    huskyOptions: {
+    husky: {
       'pre-commit': 'lint-staged',
     },
   })
@@ -142,7 +142,7 @@ describe('with Jest configuration', () => {
   test('assigns jestConfig property', () => {
     const project = new Project({
       name: 'test-project',
-      jestConfigOptions: {},
+      jestConfig: {},
     })
 
     expect(project.jestConfig).toBeInstanceOf(JestConfig)
@@ -151,8 +151,8 @@ describe('with Jest configuration', () => {
   test('defaults', () => {
     const project = new Project({
       name: 'test-project',
-      npmIgnoreOptions: {},
-      jestConfigOptions: {},
+      npmIgnore: {},
+      jestConfig: {},
     })
 
     expect(synthSnapshot(project)).toMatchSnapshot()
@@ -240,7 +240,7 @@ describe('with license', () => {
 test('with `lint-staged`', () => {
   const project = new Project({
     name: 'test-project',
-    lintStagedOptions: {},
+    lintStaged: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -251,7 +251,7 @@ describe('with NPM ignore', () => {
   test('assigns npmIgnore property', () => {
     const project = new Project({
       name: 'test-project',
-      npmIgnoreOptions: {},
+      npmIgnore: {},
     })
 
     expect(project.npmIgnore).toBeInstanceOf(IgnoreFile)
@@ -260,7 +260,7 @@ describe('with NPM ignore', () => {
   test('defaults', () => {
     const project = new Project({
       name: 'test-project',
-      npmIgnoreOptions: {},
+      npmIgnore: {},
     })
 
     expect(synthSnapshot(project)['.npmignore']).toMatchSnapshot()
@@ -290,7 +290,7 @@ describe('with package', () => {
 test('with Prettier options', () => {
   const project = new Project({
     name: 'test-project',
-    prettierOptions: {},
+    prettier: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -300,7 +300,7 @@ test('with Prettier options', () => {
 test('with Renovate options', () => {
   const project = new Project({
     name: 'test-project',
-    renovateOptions: {},
+    renovate: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
@@ -320,7 +320,7 @@ test('with TypeScript options', () => {
   const project = new Project({
     name: 'test-project',
     package: {},
-    typeScriptConfigOptions: {},
+    typeScriptConfig: {},
   })
 
   project.typeScriptConfig?.addFile('foo.js', 'bar.js')
@@ -332,8 +332,8 @@ test('with TypeScript options', () => {
 test('with workspaces', () => {
   const project = new Project({
     name: 'test-project',
-    eslintOptions: {},
-    prettierOptions: {},
+    eslint: {},
+    prettier: {},
     workspaces: ['packages/*'],
   })
 

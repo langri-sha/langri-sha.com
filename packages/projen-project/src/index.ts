@@ -43,42 +43,42 @@ export interface ProjectOptions
   /*
    * Pass in to set up Beachball.
    */
-  beachballOptions?: BeachballOptions
+  beachball?: BeachballOptions
 
   /*
    * Pass in to set up Beachball.
    */
-  codeownersOptions?: CodeownersOptions
+  codeowners?: CodeownersOptions
 
   /**
    * EditorConfig options.
    */
-  editorConfigOptions?: EditorConfigOptions
+  editorConfig?: EditorConfigOptions
 
   /**
    * Pass in to configure ESLint.
    */
-  eslintOptions?: ESLintOptions
+  eslint?: ESLintOptions
 
   /**
    * Husky options.
    */
-  huskyOptions?: HuskyOptions
+  husky?: HuskyOptions
 
   /**
    * Configures Jest, when provided.
    */
-  jestConfigOptions?: JestConfigOptions
+  jestConfig?: JestConfigOptions
 
   /**
    * Configures `lint-staged`, when provided.
    */
-  lintStagedOptions?: LintStagedOptions
+  lintStaged?: LintStagedOptions
 
   /*
    * Options for the linting synthesized files.
    */
-  lintSynthesizedOptions?: LintSynthesizedOptions
+  lintSynthesized?: LintSynthesizedOptions
 
   /**
    * Package configuration options.
@@ -95,22 +95,22 @@ export interface ProjectOptions
   /**
    * Pass in to configure Prettier.
    */
-  prettierOptions?: PrettierOptions
+  prettier?: PrettierOptions
 
   /**
    * Pass in to configure NPM ignore options.
    */
-  npmIgnoreOptions?: IgnoreFileOptions
+  npmIgnore?: IgnoreFileOptions
 
   /*
    * Pass in to configure Renovate.
    */
-  renovateOptions?: RenovateOptions
+  renovate?: RenovateOptions
 
   /**
    * TypeScript configuration options.
    */
-  typeScriptConfigOptions?: TypeScriptConfigOptions
+  typeScriptConfig?: TypeScriptConfigOptions
 
   /*
    * Whether to use Terrafom.
@@ -217,12 +217,12 @@ export class Project extends BaseProject {
     throw new Error(`Cannot find subproject ${name}`)
   }
 
-  #configureBeachball({ beachballOptions }: ProjectOptions) {
-    if (!beachballOptions || this.parent) {
+  #configureBeachball({ beachball }: ProjectOptions) {
+    if (!beachball || this.parent) {
       return
     }
 
-    const options = deepMerge(beachballOptions, {
+    const options = deepMerge(beachball, {
       branch: 'origin/main',
       gitTags: false,
       ignorePatterns: [
@@ -241,7 +241,7 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile('beachball.config.js')
   }
 
-  #configureCodeowners({ codeownersOptions }: ProjectOptions) {
+  #configureCodeowners({ codeowners: codeownersOptions }: ProjectOptions) {
     if (!codeownersOptions) {
       return
     }
@@ -249,7 +249,9 @@ export class Project extends BaseProject {
     this.codeowners = new Codeowners(this, codeownersOptions)
   }
 
-  #configureEditorConfig({ editorConfigOptions }: ProjectOptions) {
+  #configureEditorConfig({
+    editorConfig: editorConfigOptions,
+  }: ProjectOptions) {
     if (!editorConfigOptions || this.parent) {
       return
     }
@@ -276,7 +278,7 @@ export class Project extends BaseProject {
     this.prettier?.ignore.addPatterns('!.editorconfig')
   }
 
-  #configureESLint({ eslintOptions }: ProjectOptions) {
+  #configureESLint({ eslint: eslintOptions }: ProjectOptions) {
     if (!eslintOptions) {
       return
     }
@@ -294,7 +296,7 @@ export class Project extends BaseProject {
     }
   }
 
-  #configureHusky({ huskyOptions }: ProjectOptions) {
+  #configureHusky({ husky: huskyOptions }: ProjectOptions) {
     if (!huskyOptions || this.parent) {
       return
     }
@@ -306,7 +308,7 @@ export class Project extends BaseProject {
     this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
   }
 
-  #configureJestConfig({ jestConfigOptions }: ProjectOptions) {
+  #configureJestConfig({ jestConfig: jestConfigOptions }: ProjectOptions) {
     if (!jestConfigOptions || this.parent) {
       return
     }
@@ -338,7 +340,7 @@ export class Project extends BaseProject {
     })
   }
 
-  #configureLintStaged({ lintStagedOptions }: ProjectOptions) {
+  #configureLintStaged({ lintStaged: lintStagedOptions }: ProjectOptions) {
     if (!lintStagedOptions) {
       return
     }
@@ -354,7 +356,9 @@ export class Project extends BaseProject {
     )
   }
 
-  #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {
+  #configureLintSynthesized({
+    lintSynthesized: lintSynthesizedOptions,
+  }: ProjectOptions) {
     new LintSynthesized(
       this,
       lintSynthesizedOptions ?? {
@@ -365,7 +369,10 @@ export class Project extends BaseProject {
     )
   }
 
-  #configureNpmIgnore({ jestConfigOptions, npmIgnoreOptions }: ProjectOptions) {
+  #configureNpmIgnore({
+    jestConfig: jestConfigOptions,
+    npmIgnore: npmIgnoreOptions,
+  }: ProjectOptions) {
     if (!npmIgnoreOptions) {
       return
     }
@@ -410,7 +417,7 @@ export class Project extends BaseProject {
     }
   }
 
-  #configurePrettier({ prettierOptions }: ProjectOptions) {
+  #configurePrettier({ prettier: prettierOptions }: ProjectOptions) {
     if (!prettierOptions || this.parent) {
       return
     }
@@ -436,7 +443,7 @@ export class Project extends BaseProject {
     this.projenrc = new ProjenrcFile(this, {})
   }
 
-  #configureRenovate({ renovateOptions }: ProjectOptions) {
+  #configureRenovate({ renovate: renovateOptions }: ProjectOptions) {
     if (!renovateOptions || this.parent) {
       return
     }
@@ -485,7 +492,10 @@ export class Project extends BaseProject {
     this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 
-  #configureTypeScript({ parent, typeScriptConfigOptions }: ProjectOptions) {
+  #configureTypeScript({
+    parent,
+    typeScriptConfig: typeScriptConfigOptions,
+  }: ProjectOptions) {
     if (!typeScriptConfigOptions) {
       return
     }
@@ -541,9 +551,9 @@ export class Project extends BaseProject {
 
 const getGitIgnoreOptions = ({
   gitIgnoreOptions,
-  huskyOptions,
+  husky: huskyOptions,
   parent,
-  typeScriptConfigOptions,
+  typeScriptConfig: typeScriptConfigOptions,
   withTerraform,
   ...options
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] =>
