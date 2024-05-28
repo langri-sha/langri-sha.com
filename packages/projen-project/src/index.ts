@@ -34,6 +34,7 @@ import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
 import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
+import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -68,6 +69,11 @@ export interface ProjectOptions
    * Configures Jest, when provided.
    */
   jestConfigOptions?: JestConfigOptions
+
+  /**
+   * Configures `lint-staged`, when provided.
+   */
+  lintStagedOptions?: LintStagedOptions
 
   /*
    * Options for the linting synthesized files.
@@ -125,6 +131,7 @@ export class Project extends BaseProject {
   husky?: Husky
   jestConfig?: JestConfig
   license?: License
+  lintStaged?: LintStaged
   npmIgnore?: IgnoreFile
   package?: NodePackage
   prettier?: Prettier
@@ -166,6 +173,7 @@ export class Project extends BaseProject {
     this.#configureHusky(options)
     this.#configureJestConfig(options)
     this.#configureLicense(options)
+    this.#configureLintStaged(options)
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
     this.#configureRenovate(options)
@@ -328,6 +336,22 @@ export class Project extends BaseProject {
         .join(' '),
       year: pkg.copyrightYear ?? new Date().getFullYear().toString(),
     })
+  }
+
+  #configureLintStaged({ lintStagedOptions }: ProjectOptions) {
+    if (!lintStagedOptions) {
+      return
+    }
+
+    const defaults: LintStagedOptions = {
+      filename: 'lint-staged.config.mjs',
+      extends: '@langri-sha/lint-staged',
+    }
+
+    this.lintStaged = new LintStaged(
+      this,
+      deepMerge(defaults, lintStagedOptions),
+    )
   }
 
   #configureLintSynthesized({ lintSynthesizedOptions }: ProjectOptions) {

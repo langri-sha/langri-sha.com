@@ -15,6 +15,7 @@ import { IgnoreFile } from 'projen'
 import { JestConfig } from '@langri-sha/projen-jest-config'
 import { Prettier } from '@langri-sha/projen-prettier'
 import { ESLint } from '@langri-sha/projen-eslint'
+import { LintStaged } from '@langri-sha/projen-lint-staged'
 
 test('defaults', () => {
   const project = new Project({
@@ -29,6 +30,7 @@ test('defaults', () => {
   expect(project.husky).toBeUndefined()
   expect(project.jestConfig).toBeUndefined()
   expect(project.license).toBeUndefined()
+  expect(project.lintStaged).toBeUndefined()
   expect(project.npmIgnore).toBeUndefined()
   expect(project.package).toBeUndefined()
   expect(project.prettier).toBeUndefined()
@@ -233,6 +235,16 @@ describe('with license', () => {
 
     expect(synthSnapshot(project)['license']).toMatchSnapshot()
   })
+})
+
+test('with `lint-staged`', () => {
+  const project = new Project({
+    name: 'test-project',
+    lintStagedOptions: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.lintStaged).toBeInstanceOf(LintStaged)
 })
 
 describe('with NPM ignore', () => {
