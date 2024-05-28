@@ -15,6 +15,7 @@
     "@langri-sha/projen-husky": "workspace:*",
     "@langri-sha/projen-jest-config": "workspace:*",
     "@langri-sha/projen-license": "workspace:*",
+    "@langri-sha/projen-lint-staged": "workspace:*",
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-prettier": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
