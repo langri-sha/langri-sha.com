@@ -24,16 +24,16 @@ const project = new Project({
     bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
   },
-  beachballOptions: {},
-  codeownersOptions: {
+  beachball: {},
+  codeowners: {
     '*': '@langri-sha',
   },
-  editorConfigOptions: {},
-  eslintOptions: {},
-  huskyOptions: {
+  editorConfig: {},
+  eslint: {},
+  husky: {
     'pre-commit': 'pnpm -q lint-staged',
   },
-  jestConfigOptions: {
+  jestConfig: {
     extends: '@langri-sha/jest-config',
     config: {
       transformIgnorePatterns: [
@@ -58,12 +58,12 @@ const project = new Project({
       ],
     },
   },
-  lintStagedOptions: {},
-  prettierOptions: {
+  lintStaged: {},
+  prettier: {
     ignorePatterns: ['*.frag'],
   },
-  renovateOptions: {},
-  typeScriptConfigOptions: {
+  renovate: {},
+  typeScriptConfig: {
     config: {
       files: [
         'babel.config.js',
@@ -136,9 +136,9 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
-    typeScriptConfigOptions: {},
-    jestConfigOptions: {},
-    npmIgnoreOptions: {},
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -150,9 +150,9 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
-    typeScriptConfigOptions: {},
-    jestConfigOptions: {},
-    npmIgnoreOptions: {},
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -164,9 +164,9 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
-    jestConfigOptions: {},
-    typeScriptConfigOptions: {},
-    npmIgnoreOptions: {},
+    jestConfig: {},
+    typeScriptConfig: {},
+    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -178,9 +178,9 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
-    jestConfigOptions: {},
-    typeScriptConfigOptions: {},
-    npmIgnoreOptions: {},
+    jestConfig: {},
+    typeScriptConfig: {},
+    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -191,9 +191,9 @@ const subprojectOptions: ProjectOptions[] = [
   {
     name: '@langri-sha/projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
-    jestConfigOptions: {},
-    typeScriptConfigOptions: {},
-    npmIgnoreOptions: {},
+    jestConfig: {},
+    typeScriptConfig: {},
+    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -233,7 +233,7 @@ for (const options of subprojectOptions) {
 
     subproject.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
 
-    if (options.jestConfigOptions) {
+    if (options.jestConfig) {
       subproject.typeScriptConfig.addReference('../jest-test')
     }
 
