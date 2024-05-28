@@ -517,6 +517,9 @@ importers:
       '@langri-sha/projen-license':
         specifier: workspace:*
         version: link:../projen-license
+      '@langri-sha/projen-lint-staged':
+        specifier: workspace:*
+        version: link:../projen-lint-staged
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized
