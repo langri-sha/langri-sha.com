@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaults 1`] = `
+"/** @type {import('lint-staged').Config} */
+    const config = {
+      
+      }
+
+    export default config
+    "
+`;
+
+exports[`with config 1`] = `
+"/** @type {import('lint-staged').Config} */
+    const config = {
+      
+      "*":"prettier"}
+
+    export default config
+    "
+`;
+
+exports[`with extends with config 1`] = `
+"import defaults from '@langri-sha/lint-staged'
+
+/** @type {import('lint-staged').Config} */
+    const config = {
+      ...defaults,
+      "*":"prettier"}
+
+    export default config
+    "
+`;
+
+exports[`with extends with no config 1`] = `
+"import defaults from '@langri-sha/lint-staged'
+
+/** @type {import('lint-staged').Config} */
+    const config = {
+      ...defaults,
+      }
+
+    export default config
+    "
+`;
+
+exports[`with filename 1`] = `
+"/** @type {import('lint-staged').Config} */
+    const config = {
+      
+      }
+
+    export default config
+    "
+`;
