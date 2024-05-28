@@ -48,6 +48,9 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
+      '@types/lint-staged':
+        specifier: 13.3.0
+        version: 13.3.0
       beachball:
         specifier: 2.43.1
         version: 2.43.1(typescript@5.4.5)

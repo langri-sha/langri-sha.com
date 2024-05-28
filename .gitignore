@@ -33,6 +33,7 @@ node_modules/
 !/.editorconfig
 !/jest.config.ts
 !/license
+!/lint-staged.config.mjs
 !/renovate.json5
 !/pnpm-workspace.yaml
 !/.projenrc.mts

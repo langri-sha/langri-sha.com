@@ -36,6 +36,11 @@
       "type": "build"
     },
     {
+      "name": "@types/lint-staged",
+      "version": "13.3.0",
+      "type": "build"
+    },
+    {
       "name": "beachball",
       "version": "2.43.1",
       "type": "build"
