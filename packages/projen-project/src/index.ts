@@ -458,6 +458,15 @@ export class Project extends BaseProject {
       customManagers: [
         {
           customType: 'regex',
+          datasourceTemplate: 'node',
+          depNameTemplate: 'node',
+          versioningTemplate: 'node',
+          currentValueTemplate: '>= {{currentValue}}',
+          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          matchStrings: ["minNodeVersion:\\s*'(?<currentValue>[^']+)'"],
+        },
+        {
+          customType: 'regex',
           datasourceTemplate: 'npm',
           fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
           matchStringsStrategy: 'recursive',

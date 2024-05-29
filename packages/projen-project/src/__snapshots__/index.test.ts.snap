@@ -980,6 +980,19 @@ node_modules/
     "configMigration": true,
     "customManagers": [
       {
+        "currentValueTemplate": ">= {{currentValue}}",
+        "customType": "regex",
+        "datasourceTemplate": "node",
+        "depNameTemplate": "node",
+        "fileMatch": [
+          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        ],
+        "matchStrings": [
+          "minNodeVersion:\\s*'(?<currentValue>[^']+)'",
+        ],
+        "versioningTemplate": "node",
+      },
+      {
         "customType": "regex",
         "datasourceTemplate": "npm",
         "depTypeTemplate": "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
