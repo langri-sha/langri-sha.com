@@ -154,7 +154,7 @@ node_modules/
         "name": "install:ci",
         "steps": [
           {
-            "exec": "yarn install --check-files --frozen-lockfile",
+            "exec": "yarn install --check-files",
           },
         ],
       },
