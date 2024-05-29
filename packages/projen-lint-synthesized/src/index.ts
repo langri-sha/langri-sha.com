@@ -1,4 +1,5 @@
-import { Component } from 'projen'
+import { Component, Project } from 'projen'
+import * as path from 'node:path'
 import createDebug from 'debug'
 
 import * as fs from 'node:fs'
@@ -34,18 +35,7 @@ export class LintSynthesized extends Component {
 
     debug('Commencing lints on synthesized files')
 
-    const fileInfo = Object.fromEntries(
-      this.project.files
-        .filter((file) => fs.existsSync(file.absolutePath))
-        .map((file) => [
-          file.path,
-          {
-            file,
-            absolutePath: file.absolutePath,
-            mode: fs.statSync(file.absolutePath).mode,
-          },
-        ]),
-    )
+    const fileInfo = getAllFiles(this.project)
     const paths = Object.keys(fileInfo)
 
     debug(`Found ${paths.length} synthesized files`)
@@ -54,15 +44,16 @@ export class LintSynthesized extends Component {
       .map(([pattern, command]) => ({
         pattern,
         command,
-        files: minimatch.match(paths, pattern, { dot: true }),
+        files: minimatch.match(paths, pattern, {
+          dot: true,
+          matchBase: !pattern.includes('/'),
+        }),
       }))
       .filter(({ files }) => files.length)
 
     for (const { files } of tasks) {
       for (const file of files) {
-        const { absolutePath } = fileInfo[file]
-
-        fs.chmodSync(absolutePath, 0o755)
+        fs.chmodSync(fileInfo[file].absolutePath, 0o755)
       }
     }
 
@@ -99,4 +90,47 @@ export class LintSynthesized extends Component {
       cwd: this.project.outdir,
     })
   }
+}
+
+const getAllFiles = (root: Project) => {
+  const projects = getProjects(root)
+  const files = []
+
+  for (const project of projects) {
+    const current = project.files
+      .filter((file) => fs.existsSync(file.absolutePath))
+      .map(
+        (file) =>
+          [
+            path.relative(root.outdir, file.absolutePath),
+            {
+              file,
+              absolutePath: file.absolutePath,
+              mode: fs.statSync(file.absolutePath).mode,
+            },
+          ] as const,
+      )
+
+    files.push(...current)
+  }
+
+  return Object.fromEntries(files)
+}
+
+const getProjects = (root: Project) => {
+  const projects: Project[] = []
+  const processing = [root]
+
+  while (processing.length) {
+    const project = processing.pop()
+
+    if (!project) {
+      break
+    }
+
+    projects.push(project)
+    processing.push(...(project?.subprojects ?? []))
+  }
+
+  return projects
 }
