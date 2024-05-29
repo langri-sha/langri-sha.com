@@ -39,6 +39,15 @@ describe('resolves version', () => {
   })
 })
 
+test('assigns `module` field', () => {
+  const project = new Project({
+    name: 'test',
+  })
+
+  new NodePackage(project, { type: 'module' })
+  expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
+})
+
 describe('skips install on subprojects', () => {
   const project1 = new Project({
     name: 'test',

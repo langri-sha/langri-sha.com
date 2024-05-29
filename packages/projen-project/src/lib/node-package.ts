@@ -4,7 +4,9 @@ import { Project, javascript } from 'projen'
 /**
  * Options for configuring Node.js packages.
  */
-export interface NodePackageOptions extends javascript.NodePackageOptions {}
+export interface NodePackageOptions extends javascript.NodePackageOptions {
+  type?: 'commonjs' | 'module'
+}
 
 /**
  * Custom Node.js package manager that preserves package.
@@ -14,6 +16,10 @@ export class NodePackage extends javascript.NodePackage {
     super(project, options)
 
     this.addVersion(this.#getPackageJson()?.version ?? '0.0.0')
+
+    if (options?.type) {
+      this.addField('type', options.type)
+    }
   }
 
   #getPackageJson() {
