@@ -356,17 +356,14 @@ export class Project extends BaseProject {
     )
   }
 
-  #configureLintSynthesized({
-    lintSynthesized: lintSynthesizedOptions,
-  }: ProjectOptions) {
-    new LintSynthesized(
-      this,
-      lintSynthesizedOptions ?? {
-        'package.json': 'pnpx sort-package-json',
-        '*.{js,jsx,ts,tsx}': 'pnpm eslint --fix',
-        '*': 'pnpm prettier --write --ignore-unknown',
-      },
-    )
+  #configureLintSynthesized({ lintSynthesized }: ProjectOptions) {
+    const defaults: LintSynthesizedOptions = {
+      'package.json': 'pnpx sort-package-json',
+      '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
+      '*': 'pnpm prettier --write --ignore-unknown',
+    }
+
+    new LintSynthesized(this, deepMerge(defaults, lintSynthesized))
   }
 
   #configureNpmIgnore({
