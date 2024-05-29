@@ -384,9 +384,6 @@ module.exports = {
       "ts-node": "10.9.2",
       "typescript": "5.4.5",
     },
-    "engines": {
-      "node": ">= 20.12.0",
-    },
     "license": "Apache-2.0",
     "main": "src/index.ts",
     "name": "test-project",
@@ -517,9 +514,6 @@ export default [...defaults, {"ignores":[".*",".projenrc.mts"]}]",
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "projen": "0.81.15",
-    },
-    "engines": {
-      "node": ">= 20.12.0",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -737,9 +731,6 @@ lint-staged
       "@langri-sha/projen-project": "*",
       "husky": "9.0.11",
       "projen": "0.81.15",
-    },
-    "engines": {
-      "node": ">= 20.12.0",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -1210,9 +1201,6 @@ node_modules/
       "ts-node": "10.9.2",
       "typescript": "5.4.5",
     },
-    "engines": {
-      "node": ">= 20.12.0",
-    },
     "license": "Apache-2.0",
     "main": "src/index.ts",
     "name": "test-project",
@@ -1361,9 +1349,6 @@ exports[`with package defaults 1`] = `
   "devDependencies": {
     "@langri-sha/projen-project": "*",
     "projen": "0.81.15",
-  },
-  "engines": {
-    "node": ">= 20.12.0",
   },
   "license": "Apache-2.0",
   "main": "src/index.ts",

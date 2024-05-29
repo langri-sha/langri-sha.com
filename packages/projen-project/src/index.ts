@@ -402,7 +402,6 @@ export class Project extends BaseProject {
     const defaults: NodePackageOptions = {
       entrypoint: 'src/index.ts',
       packageManager: javascript.NodePackageManager.PNPM,
-      minNodeVersion: '20.12.0',
     }
 
     this.package = new NodePackage(this, deepMerge(defaults, pkg))

@@ -23,6 +23,7 @@ const project = new Project({
     repository: 'langri-sha/langri-sha.com',
     bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
+    minNodeVersion: '20.12.0',
   },
   beachball: {},
   codeowners: {
