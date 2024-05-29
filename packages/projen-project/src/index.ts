@@ -357,6 +357,10 @@ export class Project extends BaseProject {
   }
 
   #configureLintSynthesized({ lintSynthesized }: ProjectOptions) {
+    if (!lintSynthesized) {
+      return
+    }
+
     const defaults: LintSynthesizedOptions = {
       'package.json': 'pnpx sort-package-json',
       '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',

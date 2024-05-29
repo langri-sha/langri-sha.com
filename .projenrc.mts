@@ -59,6 +59,7 @@ const project = new Project({
     },
   },
   lintStaged: {},
+  lintSynthesized: {},
   prettier: {
     ignorePatterns: ['*.frag'],
   },
