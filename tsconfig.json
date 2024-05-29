@@ -63,9 +63,6 @@
       "path": "./packages/tsconfig"
     },
     {
-      "path": "./packages/webpack"
-    },
-    {
       "path": "packages/projen-eslint"
     },
     {
@@ -82,6 +79,9 @@
     },
     {
       "path": "packages/projen-renovate"
+    },
+    {
+      "path": "packages/webpack"
     }
   ]
 }

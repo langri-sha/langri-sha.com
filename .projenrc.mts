@@ -91,7 +91,6 @@ const project = new Project({
         { path: './packages/projen-project' },
         { path: './packages/projen-typescript-config' },
         { path: './packages/tsconfig' },
-        { path: './packages/webpack' },
       ],
     },
   },
@@ -221,6 +220,30 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  {
+    name: '@langri-sha/webpack',
+    outdir: path.join('packages', 'webpack'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      deps: [
+        'babel-loader@9.1.3',
+        'clean-webpack-plugin@4.0.0',
+        'copy-webpack-plugin@12.0.2',
+        'html-webpack-plugin@5.6.0',
+        'terser-webpack-plugin@5.3.10',
+        'webpack-bundle-analyzer@4.10.2',
+        'webpack-dev-server@5.0.4',
+      ],
+      devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@20.12.12'],
+      peerDeps: ['@babel/register@^7.0.0', 'webpack@^5.0.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
 ]
 
 for (const options of subprojectOptions) {
@@ -242,7 +265,9 @@ for (const options of subprojectOptions) {
     types: 'lib/index.d.ts',
   })
 
-  subproject.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
+  if (options.jestConfig) {
+    subproject.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
+  }
 
   if (subproject.typeScriptConfig) {
     project.typeScriptConfig?.addReference(
