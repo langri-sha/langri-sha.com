@@ -39,9 +39,6 @@
       "path": "./packages/prettier"
     },
     {
-      "path": "./packages/projen-lint-synthesized"
-    },
-    {
       "path": "./packages/projen-project"
     },
     {
@@ -67,6 +64,9 @@
     },
     {
       "path": "packages/projen-jest-config"
+    },
+    {
+      "path": "packages/projen-lint-synthesized"
     },
     {
       "path": "packages/projen-lint-staged"
