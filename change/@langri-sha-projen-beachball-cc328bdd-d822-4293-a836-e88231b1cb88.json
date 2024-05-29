@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(project): Omit Node.js engine package defaults",
+  "packageName": "@langri-sha/projen-beachball",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
