@@ -39,9 +39,6 @@
       "path": "./packages/prettier"
     },
     {
-      "path": "./packages/projen-beachball"
-    },
-    {
       "path": "./packages/projen-codeowners"
     },
     {
@@ -58,6 +55,9 @@
     },
     {
       "path": "./packages/tsconfig"
+    },
+    {
+      "path": "packages/projen-beachball"
     },
     {
       "path": "packages/projen-eslint"

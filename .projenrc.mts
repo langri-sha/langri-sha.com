@@ -83,7 +83,6 @@ const project = new Project({
         { path: './packages/lint-staged' },
         { path: './packages/monorepo' },
         { path: './packages/prettier' },
-        { path: './packages/projen-beachball' },
         { path: './packages/projen-codeowners' },
         { path: './packages/projen-editorconfig' },
         { path: './packages/projen-lint-synthesized' },
@@ -131,6 +130,19 @@ project.package?.addField('packageManager', 'pnpm@9.1.3')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
+  {
+    name: '@langri-sha/projen-beachball',
+    outdir: path.join('packages', 'projen-beachball'),
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['beachball@^2.0.0', 'projen@^0.81.15'],
+    },
+  },
   {
     name: '@langri-sha/projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
