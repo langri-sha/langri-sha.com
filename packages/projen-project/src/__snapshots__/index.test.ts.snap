@@ -346,7 +346,7 @@ CHANGELOG.md
         "name": "install:ci",
         "steps": [
           {
-            "exec": "pnpm i --frozen-lockfile",
+            "exec": "pnpm i --no-frozen-lockfile",
           },
         ],
       },
@@ -490,7 +490,7 @@ node_modules/
         "name": "install:ci",
         "steps": [
           {
-            "exec": "pnpm i --frozen-lockfile",
+            "exec": "pnpm i --no-frozen-lockfile",
           },
         ],
       },
@@ -709,7 +709,7 @@ lint-staged
         "name": "install:ci",
         "steps": [
           {
-            "exec": "pnpm i --frozen-lockfile",
+            "exec": "pnpm i --no-frozen-lockfile",
           },
         ],
       },
@@ -1198,7 +1198,7 @@ node_modules/
         "name": "install:ci",
         "steps": [
           {
-            "exec": "pnpm i --frozen-lockfile",
+            "exec": "pnpm i --no-frozen-lockfile",
           },
         ],
       },

@@ -20,6 +20,11 @@ export class NodePackage extends javascript.NodePackage {
     if (options?.type) {
       this.addField('type', options.type)
     }
+
+    // Reset, so we can run `pnpx projen` on CI after Renovate upgrades.
+    this.project.tasks
+      .tryFind('install:ci')
+      ?.reset(this.project.tasks.tryFind('install')?.steps[0]?.exec)
   }
 
   #getPackageJson() {
