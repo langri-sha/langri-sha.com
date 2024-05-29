@@ -86,7 +86,6 @@ const project = new Project({
         { path: './packages/projen-beachball' },
         { path: './packages/projen-codeowners' },
         { path: './packages/projen-editorconfig' },
-        { path: './packages/projen-husky' },
         { path: './packages/projen-lint-synthesized' },
         { path: './packages/projen-project' },
         { path: './packages/projen-typescript-config' },
@@ -145,6 +144,20 @@ const subprojectOptions: ProjectOptions[] = [
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['eslint@^9.0.0', 'projen@^0.81.15'],
+    },
+  },
+  {
+    name: '@langri-sha/projen-husky',
+    outdir: path.join('packages', 'projen-husky'),
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      type: 'module',
+      copyrightYear: '2024',
+      devDeps: ['@types/node@20.12.12'],
+      peerDeps: ['husky@^9.0.1', 'projen@^0.81.15'],
     },
   },
   {
