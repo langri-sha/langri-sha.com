@@ -57,9 +57,6 @@
       "path": "./packages/projen-project"
     },
     {
-      "path": "./packages/projen-renovate"
-    },
-    {
       "path": "./packages/projen-typescript-config"
     },
     {
@@ -82,6 +79,9 @@
     },
     {
       "path": "packages/projen-prettier"
+    },
+    {
+      "path": "packages/projen-renovate"
     }
   ]
 }
