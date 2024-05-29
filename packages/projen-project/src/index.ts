@@ -491,6 +491,11 @@ export class Project extends BaseProject {
       ],
     }
 
+    this.addTask('renovate', {
+      description: 'Run Renovate locally for debugging',
+      exec: 'pnpx renovate --platform=local --repository-cache=reset --dry-run=full',
+    })
+
     this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
   }
 

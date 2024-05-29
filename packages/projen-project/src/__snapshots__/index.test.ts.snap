@@ -954,6 +954,15 @@ node_modules/
           },
         ],
       },
+      "renovate": {
+        "description": "Run Renovate locally for debugging",
+        "name": "renovate",
+        "steps": [
+          {
+            "exec": "pnpx renovate --platform=local --repository-cache=reset --dry-run=full",
+          },
+        ],
+      },
       "test": {
         "description": "Run tests",
         "name": "test",
