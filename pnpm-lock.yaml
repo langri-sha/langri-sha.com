@@ -317,10 +317,6 @@ importers:
         version: 0.81.15(constructs@10.3.0)
 
   packages/projen-editorconfig:
-    dependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.4.5
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
