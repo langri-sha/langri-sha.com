@@ -143,6 +143,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['eslint@^9.0.0', 'projen@^0.81.15'],
@@ -157,6 +158,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['jest@^28.00 || ^29.00', 'projen@^0.81.15'],
@@ -171,6 +173,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['lint-staged@^15.0.0', 'projen@^0.81.15'],
@@ -185,6 +188,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['license-o-matic@^1.2.0'],
       peerDeps: ['projen@^0.81.15'],
     },
@@ -198,6 +202,7 @@ const subprojectOptions: ProjectOptions[] = [
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['prettier@^3.0.0', 'projen@^0.81.15'],
@@ -218,7 +223,6 @@ for (const options of subprojectOptions) {
 
   subproject.tryRemoveFile('.gitignore')
 
-  subproject.package?.addField('type', 'module')
   subproject.package?.addField('publishConfig', {
     access: 'public',
     main: 'lib/index.js',
