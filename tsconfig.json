@@ -42,9 +42,6 @@
       "path": "./packages/projen-project"
     },
     {
-      "path": "./packages/projen-typescript-config"
-    },
-    {
       "path": "./packages/tsconfig"
     },
     {
@@ -79,6 +76,9 @@
     },
     {
       "path": "packages/projen-renovate"
+    },
+    {
+      "path": "packages/projen-typescript-config"
     },
     {
       "path": "packages/webpack"
