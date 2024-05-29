@@ -89,7 +89,6 @@ const project = new Project({
         { path: './packages/projen-husky' },
         { path: './packages/projen-lint-synthesized' },
         { path: './packages/projen-project' },
-        { path: './packages/projen-renovate' },
         { path: './packages/projen-typescript-config' },
         { path: './packages/tsconfig' },
         { path: './packages/webpack' },
@@ -206,6 +205,20 @@ const subprojectOptions: ProjectOptions[] = [
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['prettier@^3.0.0', 'projen@^0.81.15'],
+    },
+  },
+  {
+    name: '@langri-sha/projen-renovate',
+    outdir: path.join('packages', 'projen-renovate'),
+    jestConfig: {},
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['renovate@^37.342.1'],
+      peerDeps: ['projen@^0.81.15'],
     },
   },
 ]
