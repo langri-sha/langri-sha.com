@@ -371,24 +371,26 @@ export class Project extends BaseProject {
   }
 
   #configureNpmIgnore({
-    jestConfig: jestConfigOptions,
-    npmIgnore: npmIgnoreOptions,
+    typeScriptConfig,
+    jestConfig,
+    npmIgnore,
   }: ProjectOptions) {
-    if (!npmIgnoreOptions) {
+    if (!npmIgnore) {
       return
     }
 
     const defaults: IgnoreFileOptions = {
       ignorePatterns: [
-        ...(jestConfigOptions ? ['*.test.*', '.*', '__snapshots__/'] : []),
-        'tsconfig*.json',
+        '.*',
+        ...(jestConfig ? ['*.test.*', '__snapshots__/'] : []),
+        ...(typeScriptConfig ? ['tsconfig*.json'] : []),
       ],
     }
 
     this.npmIgnore = new IgnoreFile(
       this,
       '.npmignore',
-      deepMerge(defaults, npmIgnoreOptions),
+      deepMerge(defaults, npmIgnore),
     )
   }
 
