@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): chore(deps): update dependency lint-staged to v15.2.5",
+  "packageName": "@langri-sha/projen-lint-staged",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}

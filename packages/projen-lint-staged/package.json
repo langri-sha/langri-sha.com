@@ -20,7 +20,7 @@
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@types/serialize-javascript": "5.0.4",
-    "lint-staged": "15.2.5",
+    "lint-staged": "15.0.0",
     "projen": "0.81.15"
   },
   "peerDependencies": {
