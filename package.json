@@ -22,6 +22,7 @@
     "build": "pnpm run --filter @langri-sha/web build",
     "default": "npx projen default",
     "prepare": "husky",
+    "renovate": "npx projen renovate",
     "start": "pnpm run --filter @langri-sha/web start",
     "test": "pnpm run --filter @langri-sha/web test"
   },
