@@ -83,7 +83,6 @@ const project = new Project({
         { path: './packages/lint-staged' },
         { path: './packages/monorepo' },
         { path: './packages/prettier' },
-        { path: './packages/projen-editorconfig' },
         { path: './packages/projen-lint-synthesized' },
         { path: './packages/projen-project' },
         { path: './packages/projen-typescript-config' },
@@ -153,6 +152,19 @@ const subprojectOptions: ProjectOptions[] = [
       copyrightYear: '2024',
       type: 'module',
       peerDeps: ['beachball@^2.0.0', 'projen@^0.81.15'],
+    },
+  },
+  {
+    name: '@langri-sha/projen-editorconfig',
+    outdir: path.join('packages', 'projen-editorconfig'),
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['projen@^0.81.15'],
     },
   },
   {
