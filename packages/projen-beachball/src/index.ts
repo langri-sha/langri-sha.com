@@ -19,5 +19,10 @@ export class Beachball extends TextFile {
     ]) {
       this.addLine(line)
     }
+
+    project.addTask('change', {
+      description: 'Generate Beachball change files',
+      exec: 'beachball change',
+    })
   }
 }

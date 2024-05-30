@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(beachball): Add `change` task",
+  "packageName": "@langri-sha/projen-beachball",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

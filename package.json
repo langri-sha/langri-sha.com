@@ -20,6 +20,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "pnpm run --filter @langri-sha/web build",
+    "change": "npx projen change",
     "default": "npx projen default",
     "prepare": "husky",
     "renovate": "npx projen renovate",
