@@ -78,7 +78,6 @@ const project = new Project({
         { path: './apps/web' },
         { path: './packages/babel-preset' },
         { path: './packages/eslint-config' },
-        { path: './packages/jest-config' },
         { path: './packages/lint-staged' },
         { path: './packages/prettier' },
         { path: './packages/projen-project' },
@@ -143,6 +142,21 @@ const subprojectOptions: ProjectOptions[] = [
         '@types/ramda@0.30.0',
       ],
       peerDeps: ['@babel/core@^7.8.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
+  {
+    name: '@langri-sha/jest-config',
+    outdir: path.join('packages', 'jest-config'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['jest@^28.0.0 || ^29.0.0'],
       peerDependencyOptions: {
         pinnedDevDependency: false,
       },

@@ -18,9 +18,6 @@
       "path": "./packages/babel-preset"
     },
     {
-      "path": "./packages/babel-test"
-    },
-    {
       "path": "./packages/eslint-config"
     },
     {
@@ -40,6 +37,9 @@
     },
     {
       "path": "packages/babel-test"
+    },
+    {
+      "path": "packages/jest-config"
     },
     {
       "path": "packages/jest-test"
