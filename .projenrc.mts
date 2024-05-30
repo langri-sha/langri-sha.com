@@ -77,7 +77,6 @@ const project = new Project({
       references: [
         { path: './apps/web' },
         { path: './packages/babel-preset' },
-        { path: './packages/babel-test' },
         { path: './packages/eslint-config' },
         { path: './packages/jest-config' },
         { path: './packages/lint-staged' },
@@ -125,6 +124,30 @@ project.package?.addField('packageManager', 'pnpm@9.1.4')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
+  {
+    name: '@langri-sha/babel-test',
+    outdir: path.join('packages', 'babel-test'),
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {
+      ignorePatterns: ['fixtures/'],
+    },
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      deps: ['ramda@0.30.0'],
+      devDeps: [
+        '@langri-sha/monorepo@workspace:*',
+        '@types/babel__core@7.20.5',
+        '@types/node@20.12.13',
+        '@types/ramda@0.30.0',
+      ],
+      peerDeps: ['@babel/core@^7.8.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
   {
     name: '@langri-sha/jest-test',
     outdir: path.join('packages', 'jest-test'),
