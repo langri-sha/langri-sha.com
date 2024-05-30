@@ -51,7 +51,21 @@ export class TypeScriptConfig extends JsonFile {
       matched,
     ) as Required<TypeScriptConfigOptions>['config']
 
-    config.references?.sort((a, b) => a.path.localeCompare(b.path))
+    if (config.references) {
+      config.references.sort((a, b) => a.path.localeCompare(b.path))
+
+      const deduped = Object.values(
+        config.references.reduce(
+          (acc, item) => {
+            acc[item.path] = item
+            return acc
+          },
+          {} as Record<string, { path: string }>,
+        ),
+      )
+
+      config.references = deduped
+    }
 
     const json = JSON.stringify(config, null, 2)
 
