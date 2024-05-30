@@ -1,16 +1,14 @@
 import { type BeachballConfig } from 'beachball'
-import { Component, Project, TextFile } from 'projen'
+import { Project, TextFile } from 'projen'
 
 /**
  * Options for configuring Beachball.
  */
 export interface BeachballOptions extends BeachballConfig {}
 
-export class Beachball extends Component {
+export class Beachball extends TextFile {
   constructor(project: Project, options?: BeachballOptions) {
-    super(project)
-
-    const file = new TextFile(this, 'beachball.config.js', {
+    super(project, 'beachball.config.js', {
       readonly: true,
       marker: true,
     })
@@ -19,7 +17,7 @@ export class Beachball extends Component {
       `/** @type {import('beachball').BeachballConfig} */`,
       `module.exports = ${JSON.stringify(options ?? {}, null, 2)}`,
     ]) {
-      file.addLine(line)
+      this.addLine(line)
     }
   }
 }
