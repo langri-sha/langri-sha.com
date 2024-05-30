@@ -39,6 +39,9 @@
       "path": "./packages/tsconfig"
     },
     {
+      "path": "packages/babel-test"
+    },
+    {
       "path": "packages/jest-test"
     },
     {
