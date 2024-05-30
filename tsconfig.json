@@ -45,6 +45,9 @@
       "path": "./packages/tsconfig"
     },
     {
+      "path": "packages/jest-test"
+    },
+    {
       "path": "packages/projen-beachball"
     },
     {
