@@ -45,10 +45,10 @@
       "path": "./packages/tsconfig"
     },
     {
-      "path": "packages/projen-codeowners"
+      "path": "packages/projen-beachball"
     },
     {
-      "path": "packages/projen-beachball"
+      "path": "packages/projen-codeowners"
     },
     {
       "path": "packages/projen-editorconfig"
@@ -63,13 +63,13 @@
       "path": "packages/projen-jest-config"
     },
     {
-      "path": "packages/projen-lint-synthesized"
+      "path": "packages/projen-license"
     },
     {
       "path": "packages/projen-lint-staged"
     },
     {
-      "path": "packages/projen-license"
+      "path": "packages/projen-lint-synthesized"
     },
     {
       "path": "packages/projen-prettier"
