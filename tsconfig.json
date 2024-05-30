@@ -27,13 +27,7 @@
       "path": "./packages/jest-config"
     },
     {
-      "path": "./packages/jest-test"
-    },
-    {
       "path": "./packages/lint-staged"
-    },
-    {
-      "path": "./packages/monorepo"
     },
     {
       "path": "./packages/prettier"
@@ -46,6 +40,9 @@
     },
     {
       "path": "packages/jest-test"
+    },
+    {
+      "path": "packages/monorepo"
     },
     {
       "path": "packages/projen-beachball"

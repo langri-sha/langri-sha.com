@@ -81,7 +81,6 @@ const project = new Project({
         { path: './packages/eslint-config' },
         { path: './packages/jest-config' },
         { path: './packages/lint-staged' },
-        { path: './packages/monorepo' },
         { path: './packages/prettier' },
         { path: './packages/projen-project' },
         { path: './packages/tsconfig' },
@@ -140,6 +139,20 @@ const subprojectOptions: ProjectOptions[] = [
       peerDependencyOptions: {
         pinnedDevDependency: false,
       },
+    },
+  },
+  {
+    name: '@langri-sha/monorepo',
+    outdir: path.join('packages', 'monorepo'),
+    typeScriptConfig: {},
+    jestConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['find-up@7.0.0'],
+      devDeps: ['@types/node@20.12.13'],
     },
   },
   {
