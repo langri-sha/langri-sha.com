@@ -44,6 +44,20 @@ exports[`defaults 1`] = `
 }
 `;
 
+exports[`sorts references 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "references": [
+    {
+      "path": "a",
+    },
+    {
+      "path": "b",
+    },
+  ],
+}
+`;
+
 exports[`with custom file name 1`] = `
 {
   "$schema": "https://json.schemastore.org/tsconfig",
