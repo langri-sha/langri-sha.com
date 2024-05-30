@@ -48,6 +48,15 @@ node_modules/
           },
         ],
       },
+      "change": {
+        "description": "Generate Beachball change files",
+        "name": "change",
+        "steps": [
+          {
+            "exec": "beachball change",
+          },
+        ],
+      },
       "compile": {
         "description": "Only compile",
         "name": "compile",
@@ -136,6 +145,15 @@ node_modules/
           },
           {
             "spawn": "package",
+          },
+        ],
+      },
+      "change": {
+        "description": "Generate Beachball change files",
+        "name": "change",
+        "steps": [
+          {
+            "exec": "beachball change",
           },
         ],
       },
