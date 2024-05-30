@@ -180,6 +180,24 @@ export class Project extends BaseProject {
     this.#createPnpmWorkspaces(options)
   }
 
+  get allSubprojects(): BaseProject[] {
+    const projects: BaseProject[] = []
+    const processing: BaseProject[] = [...this.subprojects]
+
+    while (processing.length) {
+      const project = processing.pop()
+
+      if (!project) {
+        continue
+      }
+
+      projects.push(project)
+      processing.push(...(project?.subprojects ?? []))
+    }
+
+    return projects
+  }
+
   /**
    * Add a subproject.
    */
