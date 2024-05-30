@@ -217,28 +217,8 @@ export class Project extends BaseProject {
   /**
    * Find a project by it's name, e.g. `@acme/some`.
    */
-  findSubproject(name: string): Project {
-    const subprojects: Array<BaseProject> = []
-
-    const addSubproject = (project: BaseProject) => {
-      for (const subproject of project.subprojects) {
-        subprojects.push(subproject)
-
-        if (subproject.subprojects.length) {
-          addSubproject(subproject)
-        }
-      }
-    }
-
-    addSubproject(this.root)
-
-    const result = subprojects.find((subproject) => subproject.name === name)
-
-    if (result instanceof Project) {
-      return result
-    }
-
-    throw new Error(`Cannot find subproject ${name}`)
+  findSubproject(name: string): Project | undefined {
+    return this.allSubprojectsKind.find((project) => project.name === name)
   }
 
   #configureBeachball({ beachball }: ProjectOptions) {
