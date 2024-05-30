@@ -12,7 +12,7 @@ test('defaults', () => {
   new TypeScriptConfig(project, {})
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
 
 test('with custom file name', () => {
@@ -25,7 +25,7 @@ test('with custom file name', () => {
   })
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.build.json']).toMatchSnapshot()
 })
 
 test('add exclude', () => {
@@ -37,7 +37,7 @@ test('add exclude', () => {
   conf.addExclude('**/*.test.ts')
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
 
 test('add include', () => {
@@ -49,7 +49,7 @@ test('add include', () => {
   conf.addInclude('**/*.ts')
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
 
 test('add file', () => {
@@ -61,7 +61,7 @@ test('add file', () => {
   conf.addFile('test.js')
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
 
 test('add reference', () => {
@@ -73,5 +73,5 @@ test('add reference', () => {
   conf.addReference('test')
 
   project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
