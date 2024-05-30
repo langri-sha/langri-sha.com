@@ -38,6 +38,17 @@ exports[`add reference 1`] = `
 }
 `;
 
+exports[`dedupes references 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "references": [
+    {
+      "path": "a",
+    },
+  ],
+}
+`;
+
 exports[`defaults 1`] = `
 {
   "$schema": "https://json.schemastore.org/tsconfig",

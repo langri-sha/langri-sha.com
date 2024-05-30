@@ -88,3 +88,17 @@ test('sorts references', () => {
   project.synth()
   expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
+
+test('dedupes references', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addReference('a')
+  conf.addReference('a')
+  conf.addReference('a')
+
+  project.synth()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
+})
