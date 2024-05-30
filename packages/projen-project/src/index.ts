@@ -1,3 +1,5 @@
+import * as path from 'node:path'
+
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
@@ -178,6 +180,12 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configureRenovate(options)
     this.#createPnpmWorkspaces(options)
+  }
+
+  override preSynthesize(): void {
+    super.preSynthesize()
+
+    this.#populateTypeScriptProjectReferencesFromDependencies()
   }
 
   get allSubprojects(): BaseProject[] {
@@ -565,6 +573,36 @@ export class Project extends BaseProject {
     for (const workspace of workspaces) {
       this.prettier?.ignore.exclude(`${workspace}/lib/`)
       this.eslint?.ignorePatterns.push(`${workspace}/lib/`)
+    }
+  }
+
+  #populateTypeScriptProjectReferencesFromDependencies() {
+    if (this.parent || !this.package || !this.typeScriptConfig) {
+      return
+    }
+
+    const subprojects = this.allSubprojectsKind.filter(
+      (project) => project.package && project.typeScriptConfig,
+    )
+
+    const root = path.dirname(this.package!.file.absolutePath)
+
+    for (const project of subprojects) {
+      const from = path.dirname(project.package!.file.absolutePath)
+
+      this.typeScriptConfig!.addReference(path.relative(root, from))
+
+      for (const dep of project.deps.all) {
+        const reference = subprojects.find(({ name }) => name === dep.name)
+
+        if (!reference) {
+          continue
+        }
+
+        const to = path.dirname(reference.package!.file.absolutePath)
+
+        project.typeScriptConfig!.addReference(path.relative(from, to))
+      }
     }
   }
 }

@@ -357,17 +357,49 @@ test('with Terraform enabled', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
-test('with TypeScript options', () => {
-  const project = new Project({
-    name: 'test-project',
-    package: {},
-    typeScriptConfig: {},
+describe('with TypeScript options', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {},
+    })
+
+    project.typeScriptConfig?.addFile('foo.js', 'bar.js')
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.typeScriptConfig).toBeInstanceOf(TypeScriptConfig)
   })
 
-  project.typeScriptConfig?.addFile('foo.js', 'bar.js')
+  test('configures project references between subprojects', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {},
+    })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.typeScriptConfig).toBeInstanceOf(TypeScriptConfig)
+    new Project({
+      name: 'sub-project-a',
+      parent: project,
+      outdir: 'sub-project-a',
+      package: {
+        deps: ['sub-project-b@workspace:*'],
+      },
+      typeScriptConfig: {},
+    })
+
+    new Project({
+      name: 'sub-project-b',
+      outdir: 'sub-project-b',
+      parent: project,
+      package: {
+        deps: ['sub-project-a@workspace:*'],
+      },
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
 })
 
 test('with workspaces', () => {
