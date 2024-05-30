@@ -1,7 +1,9 @@
 import type { JSONSchemaForTheTypeScriptCompilerSConfigurationFile } from '@schemastore/tsconfig'
-import { Component, JsonFile, Project } from 'projen'
+import { IResolver, JsonFile, Project } from 'projen'
 
 export interface TypeScriptConfigOptions {
+  fileName?: string
+
   config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile & {
     /**
      * Referenced projects. Requires TypeScript version 3.0 or later.
@@ -13,58 +15,53 @@ export interface TypeScriptConfigOptions {
       path: string
     }[]
   }
-  fileName?: string
 }
 
-export class TypeScriptConfig extends Component {
-  #file: JsonFile
-  #options: Required<TypeScriptConfigOptions>
-
+export class TypeScriptConfig extends JsonFile {
   constructor(project: Project, options: TypeScriptConfigOptions) {
     const fileName = options.fileName ?? 'tsconfig.json'
 
-    super(project, fileName)
-
-    this.#options = {
-      config: options.config ?? {},
-      fileName,
-    }
-
-    this.#file = new JsonFile(this, fileName, {
+    super(project, fileName, {
       allowComments: true,
       obj: {
         $schema: 'https://json.schemastore.org/tsconfig',
-        ...this.#options.config,
+        ...options?.config,
       },
     })
+  }
+
+  protected override synthesizeContent(
+    resolver: IResolver,
+  ): string | undefined {
+    return super.synthesizeContent(resolver)
   }
 
   /**
    * Appends to the list of filenames and patterns to exclude in the program.
    */
   addExclude(...fileNamesOrPatterns: string[]) {
-    this.#file.addToArray('exclude', ...fileNamesOrPatterns)
+    this.addToArray('exclude', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames and patterns to include in the program.
    */
   addInclude(...fileNamesOrPatterns: string[]) {
-    this.#file.addToArray('include', ...fileNamesOrPatterns)
+    this.addToArray('include', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames to include in the program.
    */
   addFile(...fileNames: string[]) {
-    this.#file.addToArray('files', ...fileNames)
+    this.addToArray('files', ...fileNames)
   }
 
   /**
    * Adds a reference project.
    */
   addReference(...paths: string[]) {
-    this.#file.addToArray(
+    this.addToArray(
       'references',
       ...paths.map((path) => ({
         path,
