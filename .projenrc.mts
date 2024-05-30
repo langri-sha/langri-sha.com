@@ -80,7 +80,6 @@ const project = new Project({
         { path: './packages/babel-test' },
         { path: './packages/eslint-config' },
         { path: './packages/jest-config' },
-        { path: './packages/jest-test' },
         { path: './packages/lint-staged' },
         { path: './packages/monorepo' },
         { path: './packages/prettier' },
@@ -127,6 +126,22 @@ project.package?.addField('packageManager', 'pnpm@9.1.4')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
 const subprojectOptions: ProjectOptions[] = [
+  {
+    name: '@langri-sha/jest-test',
+    outdir: path.join('packages', 'jest-test'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['@jest/globals@29.7.0', 'tempy@1.0.1'],
+      peerDeps: ['jest@^29.0.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
   {
     name: '@langri-sha/projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
