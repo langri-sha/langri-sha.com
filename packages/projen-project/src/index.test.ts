@@ -39,6 +39,26 @@ test('defaults', () => {
   expect(project.typeScriptConfig).toBeUndefined()
 })
 
+test('get all subprojects', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const subproject = project.addSubproject({
+    name: '@someproject/test',
+    outdir: path.join('sub', '@some', 'test'),
+    typeScriptConfig: {},
+  })
+
+  subproject.addSubproject({
+    name: '@someproject/test2',
+    outdir: path.join('subsub', '@some', 'test2'),
+    typeScriptConfig: {},
+  })
+
+  expect(project.allSubprojects).toHaveLength(2)
+})
+
 test('add subproject', () => {
   const project = new Project({
     name: 'test-project',
