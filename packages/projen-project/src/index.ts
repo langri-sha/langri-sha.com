@@ -198,6 +198,12 @@ export class Project extends BaseProject {
     return projects
   }
 
+  get allSubprojectsKind(): Project[] {
+    return this.allSubprojects.filter(
+      (project): project is Project => project instanceof Project,
+    )
+  }
+
   /**
    * Add a subproject.
    */

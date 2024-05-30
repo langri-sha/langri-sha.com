@@ -1,3 +1,4 @@
+import { Project as BaseProject } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { describe, expect, test } from '@langri-sha/jest-test'
 
@@ -57,6 +58,28 @@ test('get all subprojects', () => {
   })
 
   expect(project.allSubprojects).toHaveLength(2)
+})
+
+test('get all subprojects kind', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new BaseProject({
+    name: 'project-a',
+    parent: project,
+    outdir: 'project-a',
+  })
+
+  new Project({
+    name: 'project-b',
+    parent: project,
+    outdir: 'project-b',
+  })
+
+  expect(project.allSubprojectsKind).toHaveLength(1)
+  expect(project.allSubprojectsKind[0]).toBeInstanceOf(Project)
+  expect(project.allSubprojectsKind[0].name).toBe('project-b')
 })
 
 test('add subproject', () => {
