@@ -33,7 +33,29 @@ export class TypeScriptConfig extends JsonFile {
   protected override synthesizeContent(
     resolver: IResolver,
   ): string | undefined {
-    return super.synthesizeContent(resolver)
+    const content = super.synthesizeContent(resolver)
+
+    if (!content) {
+      return
+    }
+
+    const pattern = /{[\s\S]*}/
+
+    const matched = content.match(pattern)?.[0]
+
+    if (!matched) {
+      return
+    }
+
+    const config = JSON.parse(
+      matched,
+    ) as Required<TypeScriptConfigOptions>['config']
+
+    config.references?.sort((a, b) => a.path.localeCompare(b.path))
+
+    const json = JSON.stringify(config, null, 2)
+
+    return content.replace(pattern, json)
   }
 
   /**
