@@ -116,9 +116,7 @@ test('find subproject', () => {
 
   expect(project.findSubproject('@someproject/test')).toBeInstanceOf(Project)
   expect(project.findSubproject('@someproject/test2')).toBeInstanceOf(Project)
-  expect(() => project.findSubproject('non-existing')).toThrowError(
-    'Cannot find subproject non-existing',
-  )
+  expect(project.findSubproject('non-existing')).toBeUndefined()
 })
 
 test('with Beachball configuration', () => {
