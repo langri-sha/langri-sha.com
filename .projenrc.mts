@@ -94,7 +94,6 @@ const project = new Project({
       ],
       references: [
         { path: './apps/web' },
-        { path: './packages/lint-staged' },
         { path: './packages/prettier' },
         { path: './packages/tsconfig' },
       ],
@@ -294,6 +293,28 @@ project.addSubproject(
   },
   subproject,
   publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/lint-staged',
+    outdir: path.join('packages', 'lint-staged'),
+    npmIgnore: {},
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2021',
+      type: 'module',
+      entrypoint: 'src/index.js',
+      devDeps: ['@types/lint-staged@13.3.0'],
+      peerDeps: ['eslint@^9.0.0', 'lint-staged@^15.0.0', 'prettier@^3.0.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
+  subproject,
+  publishRaw,
 )
 
 project.addSubproject(

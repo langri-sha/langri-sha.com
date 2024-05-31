@@ -15,9 +15,6 @@
       "path": "./apps/web"
     },
     {
-      "path": "./packages/lint-staged"
-    },
-    {
       "path": "./packages/prettier"
     },
     {
@@ -37,6 +34,9 @@
     },
     {
       "path": "packages/jest-test"
+    },
+    {
+      "path": "packages/lint-staged"
     },
     {
       "path": "packages/monorepo"
