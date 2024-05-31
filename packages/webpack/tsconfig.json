@@ -8,6 +8,9 @@
   },
   "references": [
     {
+      "path": "../babel-preset"
+    },
+    {
       "path": "../tsconfig"
     }
   ]
