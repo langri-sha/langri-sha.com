@@ -443,15 +443,7 @@ for (const options of subprojectOptions) {
   }
 
   if (subproject.typeScriptConfig) {
-    project.typeScriptConfig?.addReference(
-      path.relative(project.outdir, subproject.outdir),
-    )
-
     subproject.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
-
-    if (options.jestConfig) {
-      subproject.typeScriptConfig.addReference('../jest-test')
-    }
 
     subproject.typeScriptConfig.addReference('../tsconfig')
 
