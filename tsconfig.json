@@ -15,9 +15,6 @@
       "path": "./apps/web"
     },
     {
-      "path": "./packages/eslint-config"
-    },
-    {
       "path": "./packages/lint-staged"
     },
     {
@@ -31,6 +28,9 @@
     },
     {
       "path": "packages/babel-test"
+    },
+    {
+      "path": "packages/eslint-config"
     },
     {
       "path": "packages/jest-config"

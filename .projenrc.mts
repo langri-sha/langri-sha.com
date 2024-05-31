@@ -94,7 +94,6 @@ const project = new Project({
       ],
       references: [
         { path: './apps/web' },
-        { path: './packages/eslint-config' },
         { path: './packages/lint-staged' },
         { path: './packages/prettier' },
         { path: './packages/tsconfig' },
@@ -225,6 +224,35 @@ project.addSubproject(
   subproject,
   test,
   publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/eslint-config',
+    outdir: path.join('packages', 'eslint-config'),
+    npmIgnore: {},
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2021',
+      type: 'module',
+      entrypoint: 'src/index.js',
+      deps: [
+        '@eslint/js@9.3.0',
+        'eslint-plugin-prettier@5.1.3',
+        'eslint-plugin-unicorn@53.0.0',
+        'globals@15.3.0',
+        'typescript-eslint@7.11.0',
+      ],
+      devDeps: ['@types/eslint__js@8.42.3'],
+      peerDeps: ['eslint@^9.0.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
+  subproject,
+  publishRaw,
 )
 
 project.addSubproject(
