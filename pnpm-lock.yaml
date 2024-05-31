@@ -516,9 +516,6 @@ importers:
       ramda:
         specifier: 0.30.0
         version: 0.30.0
-      typescript:
-        specifier: ^5.0.0
-        version: 5.4.5
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
