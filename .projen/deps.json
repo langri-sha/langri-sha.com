@@ -27,12 +27,12 @@
     },
     {
       "name": "@langri-sha/projen-project",
-      "version": "workspace:*",
+      "version": "*",
       "type": "build"
     },
     {
       "name": "@langri-sha/tsconfig",
-      "version": "workspace:*",
+      "version": "*",
       "type": "build"
     },
     {
