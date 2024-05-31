@@ -82,19 +82,43 @@ test('get all subprojects kind', () => {
   expect(project.allSubprojectsKind[0].name).toBe('project-b')
 })
 
-test('add subproject', () => {
-  const project = new Project({
-    name: 'test-project',
+describe('add subproject', () => {
+  test('with options', () => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    const sub = project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('someproject', '@some', 'test'),
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(sub.projenrc).toBeInstanceOf(ProjenrcFile)
   })
 
-  const sub = project.addSubproject({
-    name: '@someproject/test',
-    outdir: path.join('someproject', '@some', 'test'),
-    typeScriptConfig: {},
-  })
+  test('with callback', (done) => {
+    expect.assertions(2)
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(sub.projenrc).toBeInstanceOf(ProjenrcFile)
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    project.addSubproject(
+      {
+        name: '@someproject/test',
+        outdir: path.join('someproject', '@some', 'test'),
+        typeScriptConfig: {},
+      },
+      (p) => {
+        expect(p).toBeInstanceOf(Project)
+        expect(p.name).toBe('@someproject/test')
+
+        done()
+      },
+    )
+  })
 })
 
 test('find subproject', () => {
