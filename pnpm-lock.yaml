@@ -116,7 +116,7 @@ importers:
   packages/babel-preset:
     dependencies:
       '@babel/core':
-        specifier: ^7.0.0
+        specifier: ^7.8.0
         version: 7.24.5
       '@babel/plugin-proposal-export-default-from':
         specifier: 7.24.1

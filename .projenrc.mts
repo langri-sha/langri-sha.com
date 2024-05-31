@@ -94,7 +94,6 @@ const project = new Project({
       ],
       references: [
         { path: './apps/web' },
-        { path: './packages/babel-preset' },
         { path: './packages/eslint-config' },
         { path: './packages/lint-staged' },
         { path: './packages/prettier' },
@@ -115,6 +114,10 @@ project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
 project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
 
 const subproject = (project: Project) => {
+  if (project.typeScriptConfig) {
+    project.typeScriptConfig?.addReference('../tsconfig')
+  }
+
   new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
     contents: 'export {}',
   })
@@ -138,26 +141,62 @@ const publish = (project: Project) => {
     types: 'lib/index.d.ts',
   })
 
-  if (project.typeScriptConfig) {
-    project.typeScriptConfig.addReference('../tsconfig')
-
-    new TypeScriptConfig(project, {
-      fileName: 'tsconfig.build.json',
-      config: {
-        extends: '@langri-sha/tsconfig/build.json',
-        compilerOptions: {
-          baseUrl: '.',
-          outDir: 'lib',
-        },
+  new TypeScriptConfig(project, {
+    fileName: 'tsconfig.build.json',
+    config: {
+      extends: '@langri-sha/tsconfig/build.json',
+      compilerOptions: {
+        baseUrl: '.',
+        outDir: 'lib',
       },
-    })
+    },
+  })
 
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf lib; tsc --project tsconfig.build.json',
-    )
-  }
+  project.package?.setScript(
+    'prepublishOnly',
+    'rm -rf lib; tsc --project tsconfig.build.json',
+  )
 }
+
+const publishRaw = (project: Project) => {
+  project.package?.addField('publishConfig', {
+    access: 'public',
+  })
+}
+
+project.addSubproject(
+  {
+    name: '@langri-sha/babel-preset',
+    outdir: path.join('packages', 'babel-preset'),
+    npmIgnore: {},
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2021',
+      entrypoint: 'src/index.js',
+      deps: [
+        '@babel/plugin-proposal-export-default-from@7.24.1',
+        '@babel/preset-env@7.24.5',
+        '@babel/preset-react@7.24.1',
+        '@babel/preset-typescript@7.24.1',
+        '@babel/register@7.23.7',
+        '@emotion/babel-plugin@11.11.0',
+      ],
+      devDeps: [
+        '@langri-sha/babel-test@workspace:*',
+        '@types/babel__core@7.20.5',
+        '@types/node@20.12.13',
+      ],
+      peerDeps: ['@babel/core@^7.8.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
+  subproject,
+  test,
+  publishRaw,
+)
 
 project.addSubproject(
   {

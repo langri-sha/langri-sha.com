@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(babel-preset): Manage package with projen",
+  "packageName": "@langri-sha/webpack",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
