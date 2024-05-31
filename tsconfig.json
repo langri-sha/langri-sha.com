@@ -15,9 +15,6 @@
       "path": "./apps/web"
     },
     {
-      "path": "./packages/prettier"
-    },
-    {
       "path": "./packages/tsconfig"
     },
     {
@@ -40,6 +37,9 @@
     },
     {
       "path": "packages/monorepo"
+    },
+    {
+      "path": "packages/prettier"
     },
     {
       "path": "packages/projen-beachball"
