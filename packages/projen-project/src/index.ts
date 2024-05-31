@@ -215,11 +215,20 @@ export class Project extends BaseProject {
   /**
    * Add a subproject.
    */
-  addSubproject(projectOptions: ProjectOptions) {
-    return new Project({
+  addSubproject(
+    projectOptions: ProjectOptions,
+    ...compose: Array<(project: Project) => void>
+  ) {
+    const project = new Project({
       parent: this,
       ...projectOptions,
     })
+
+    for (const callback of compose) {
+      callback(project)
+    }
+
+    return project
   }
 
   /**
