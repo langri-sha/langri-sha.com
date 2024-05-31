@@ -657,4 +657,11 @@ const getGitIgnoreOptions = ({
         ],
       }
 
-const deepMerge = R.mergeDeepWith(R.concat)
+const deepMerge = R.mergeDeepWith(
+  R.cond([
+    // When both arguments are strings, use the right string.
+    [R.allPass([R.is(String), R.is(String)]), R.nthArg(1)],
+    // Otherwise, concatenate.
+    [R.T, R.concat],
+  ]),
+)
