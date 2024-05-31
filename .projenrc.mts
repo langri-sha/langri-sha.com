@@ -1,8 +1,4 @@
-import {
-  Project,
-  ProjectOptions,
-  TypeScriptConfig,
-} from '@langri-sha/projen-project'
+import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
 import { SampleFile } from 'projen'
 import * as path from 'path'
 
@@ -119,12 +115,58 @@ project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
 project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
 project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
 
-const subprojectOptions: ProjectOptions[] = [
+const subproject = (project: Project) => {
+  new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
+    contents: 'export {}',
+  })
+
+  new SampleFile(project, 'readme', {
+    contents: `# ${project.name}\n`,
+  })
+
+  project.tryRemoveFile('.gitignore')
+}
+
+const test = (project: Project) => {
+  project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
+  project.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
+}
+
+const publish = (project: Project) => {
+  project.package?.addField('publishConfig', {
+    access: 'public',
+    main: 'lib/index.js',
+    types: 'lib/index.d.ts',
+  })
+
+  if (project.typeScriptConfig) {
+    project.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
+
+    project.typeScriptConfig.addReference('../tsconfig')
+
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.build.json',
+      config: {
+        extends: '@langri-sha/tsconfig/build.json',
+        compilerOptions: {
+          baseUrl: '.',
+          outDir: 'lib',
+        },
+      },
+    })
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf lib; tsc --project tsconfig.build.json',
+    )
+  }
+}
+
+project.addSubproject(
   {
     name: '@langri-sha/babel-test',
     outdir: path.join('packages', 'babel-test'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {
       ignorePatterns: ['fixtures/'],
     },
@@ -144,6 +186,12 @@ const subprojectOptions: ProjectOptions[] = [
       },
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/jest-config',
     outdir: path.join('packages', 'jest-config'),
@@ -159,6 +207,11 @@ const subprojectOptions: ProjectOptions[] = [
       },
     },
   },
+  subproject,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/jest-test',
     outdir: path.join('packages', 'jest-test'),
@@ -175,11 +228,15 @@ const subprojectOptions: ProjectOptions[] = [
       },
     },
   },
+  subproject,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/monorepo',
     outdir: path.join('packages', 'monorepo'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -189,11 +246,16 @@ const subprojectOptions: ProjectOptions[] = [
       devDeps: ['@types/node@20.12.13'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -202,11 +264,16 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -215,11 +282,16 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['beachball@^2.0.0', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-editorconfig',
     outdir: path.join('packages', 'projen-editorconfig'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -228,11 +300,16 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -243,11 +320,16 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['eslint@^9.0.0', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-husky',
     outdir: path.join('packages', 'projen-husky'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -257,11 +339,16 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['husky@^9.0.1', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
     typeScriptConfig: {},
-    jestConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -272,10 +359,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['jest@^28.00 || ^29.00', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-lint-synthesized',
     outdir: path.join('packages', 'projen-lint-synthesized'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -287,10 +379,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -302,10 +399,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['lint-staged@^15.0.0', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -316,10 +418,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -331,10 +438,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['prettier@^3.0.0', 'projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-project',
     outdir: path.join('packages', 'projen-project'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -356,18 +468,19 @@ const subprojectOptions: ProjectOptions[] = [
         '@langri-sha/projen-typescript-config@workspace:*',
         'ramda@0.30.0',
       ],
-      devDeps: [
-        '@langri-sha/jest-test@workspace:*',
-        '@langri-sha/tsconfig@workspace:*',
-        '@types/ramda@0.30.0',
-      ],
+      devDeps: ['@langri-sha/tsconfig@workspace:*', '@types/ramda@0.30.0'],
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-renovate',
     outdir: path.join('packages', 'projen-renovate'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -378,10 +491,15 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/projen-typescript-config',
     outdir: path.join('packages', 'projen-typescript-config'),
-    jestConfig: {},
     typeScriptConfig: {},
     npmIgnore: {},
     package: {
@@ -393,6 +511,12 @@ const subprojectOptions: ProjectOptions[] = [
       peerDeps: ['projen@^0.81.15'],
     },
   },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
   {
     name: '@langri-sha/webpack',
     outdir: path.join('packages', 'webpack'),
@@ -417,52 +541,8 @@ const subprojectOptions: ProjectOptions[] = [
       },
     },
   },
-]
-
-for (const options of subprojectOptions) {
-  const subproject = project.addSubproject(options)
-
-  new SampleFile(subproject, subproject.package?.entrypoint ?? 'src/index.ts', {
-    contents: 'export {}',
-  })
-
-  new SampleFile(subproject, 'readme', {
-    contents: `# ${subproject.name}\n`,
-  })
-
-  subproject.tryRemoveFile('.gitignore')
-
-  subproject.package?.addField('publishConfig', {
-    access: 'public',
-    main: 'lib/index.js',
-    types: 'lib/index.d.ts',
-  })
-
-  if (options.jestConfig) {
-    subproject.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
-  }
-
-  if (subproject.typeScriptConfig) {
-    subproject.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
-
-    subproject.typeScriptConfig.addReference('../tsconfig')
-
-    new TypeScriptConfig(subproject, {
-      fileName: 'tsconfig.build.json',
-      config: {
-        extends: '@langri-sha/tsconfig/build.json',
-        compilerOptions: {
-          baseUrl: '.',
-          outDir: 'lib',
-        },
-      },
-    })
-
-    subproject.package?.setScript(
-      'prepublishOnly',
-      'rm -rf lib; tsc --project tsconfig.build.json',
-    )
-  }
-}
+  subproject,
+  publish,
+)
 
 project.synth()
