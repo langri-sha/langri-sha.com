@@ -21,16 +21,10 @@
       "path": "./packages/eslint-config"
     },
     {
-      "path": "./packages/jest-config"
-    },
-    {
       "path": "./packages/lint-staged"
     },
     {
       "path": "./packages/prettier"
-    },
-    {
-      "path": "./packages/projen-project"
     },
     {
       "path": "./packages/tsconfig"
@@ -76,6 +70,9 @@
     },
     {
       "path": "packages/projen-prettier"
+    },
+    {
+      "path": "packages/projen-project"
     },
     {
       "path": "packages/projen-renovate"
