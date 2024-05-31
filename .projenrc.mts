@@ -24,6 +24,29 @@ const project = new Project({
     bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
     minNodeVersion: '20.12.0',
+    deps: [
+      '@babel/core@7.24.5',
+      '@babel/register@7.23.7',
+      'react-dom@18.3.1',
+      'react@18.3.1',
+      'webpack-cli@5.1.4',
+      'webpack@5.91.0',
+    ],
+    devDeps: [
+      '@langri-sha/babel-preset@workspace:*',
+      '@langri-sha/eslint-config@workspace:*',
+      '@langri-sha/jest-config@workspace:*',
+      '@langri-sha/lint-staged@workspace:*',
+      '@langri-sha/prettier@workspace:*',
+      '@langri-sha/projen-project@workspace:*',
+      '@langri-sha/tsconfig@workspace:*',
+      '@types/lint-staged@13.3.0',
+      'eslint@9.3.0',
+      'jest@29.7.0',
+      'lint-staged@15.2.5',
+      'prettier@3.2.5',
+      'projen@0.81.15',
+    ],
   },
   beachball: {},
   codeowners: {
@@ -88,38 +111,13 @@ const project = new Project({
   workspaces: ['apps/*', 'packages/*'],
 })
 
-project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
-project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
-project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
-
-project.package?.addDeps(
-  '@babel/core@7.24.5',
-  '@babel/register@7.23.7',
-  'react-dom@18.3.1',
-  'react@18.3.1',
-  'webpack-cli@5.1.4',
-  'webpack@5.91.0',
-)
-
-project.package?.addDevDeps(
-  '@langri-sha/babel-preset@workspace:*',
-  '@langri-sha/eslint-config@workspace:*',
-  '@langri-sha/jest-config@workspace:*',
-  '@langri-sha/lint-staged@workspace:*',
-  '@langri-sha/prettier@workspace:*',
-  '@langri-sha/projen-project@workspace:*',
-  '@langri-sha/tsconfig@workspace:*',
-  '@types/lint-staged@13.3.0',
-  'eslint@9.3.0',
-  'jest@29.7.0',
-  'lint-staged@15.2.5',
-  'prettier@3.2.5',
-  'projen@0.81.15',
-)
-
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.1.4')
 project.package?.addEngine('pnpm', '>=9.0.0')
+
+project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
+project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
+project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
 
 const subprojectOptions: ProjectOptions[] = [
   {
