@@ -27,6 +27,7 @@ export default [
     },
     rules: {
       // Built-ins.
+      'no-duplicate-imports': 'error',
       'sort-imports': [
         'error',
         {
