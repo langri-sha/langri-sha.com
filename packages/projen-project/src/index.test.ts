@@ -1,4 +1,4 @@
-import { Project as BaseProject } from 'projen'
+import { Project as BaseProject, IgnoreFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { describe, expect, test } from '@langri-sha/jest-test'
 
@@ -12,7 +12,6 @@ import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
 import * as path from 'node:path'
 import { License } from '@langri-sha/projen-license'
 import { NodePackage, ProjenrcFile } from './lib'
-import { IgnoreFile } from 'projen'
 import { JestConfig } from '@langri-sha/projen-jest-config'
 import { Prettier } from '@langri-sha/projen-prettier'
 import { ESLint } from '@langri-sha/projen-eslint'
