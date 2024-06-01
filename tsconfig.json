@@ -5,10 +5,10 @@
   "files": [
     "babel.config.js",
     "eslint.config.mjs",
-    "jest.config.ts",
-    "lint-staged.config.mjs",
     "prettier.config.mjs",
-    "beachball.config.js"
+    "beachball.config.js",
+    "jest.config.ts",
+    "lint-staged.config.mjs"
   ],
   "references": [
     {
