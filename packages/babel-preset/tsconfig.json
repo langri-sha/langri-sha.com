@@ -12,9 +12,6 @@
     },
     {
       "path": "../jest-test"
-    },
-    {
-      "path": "../tsconfig"
     }
   ]
 }

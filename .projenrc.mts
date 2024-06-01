@@ -108,10 +108,6 @@ project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
 project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
 
 const subproject = (project: Project) => {
-  if (project.typeScriptConfig) {
-    project.typeScriptConfig?.addReference('../tsconfig')
-  }
-
   new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
     contents: 'export {}',
   })
