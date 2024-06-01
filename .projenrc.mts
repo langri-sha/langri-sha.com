@@ -35,7 +35,6 @@ const project = new Project({
       '@langri-sha/lint-staged@workspace:*',
       '@langri-sha/prettier@workspace:*',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@workspace:*',
       '@types/lint-staged@13.3.0',
       'eslint@9.3.0',
       'jest@29.7.0',
@@ -140,8 +139,6 @@ const publish = (project: Project) => {
   })
 
   if (project.typeScriptConfig) {
-    project.package?.addDevDeps('@langri-sha/tsconfig@workspace:*')
-
     project.typeScriptConfig.addReference('../tsconfig')
 
     new TypeScriptConfig(project, {
@@ -468,7 +465,7 @@ project.addSubproject(
         '@langri-sha/projen-typescript-config@workspace:*',
         'ramda@0.30.0',
       ],
-      devDeps: ['@langri-sha/tsconfig@workspace:*', '@types/ramda@0.30.0'],
+      devDeps: ['@types/ramda@0.30.0'],
       peerDeps: ['projen@^0.81.15'],
     },
   },
