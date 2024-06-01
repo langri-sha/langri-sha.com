@@ -337,6 +337,8 @@ export class Project extends BaseProject {
     }
 
     this.jestConfig = new JestConfig(this, jestConfigOptions)
+
+    this.typeScriptConfig?.addFile(this.jestConfig.path)
   }
 
   #configureLicense({ package: pkg }: ProjectOptions) {
