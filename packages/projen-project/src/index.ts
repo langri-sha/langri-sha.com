@@ -563,7 +563,9 @@ export class Project extends BaseProject {
       this.package?.addDevDeps('ts-node@10.9.2')
     }
 
-    this.package?.addDevDeps('@langri-sha/tsconfig@*')
+    if (this.name !== '@langri-sha/tsconfig') {
+      this.package?.addDevDeps('@langri-sha/tsconfig@*')
+    }
   }
 
   #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
@@ -599,7 +601,9 @@ export class Project extends BaseProject {
     for (const project of subprojects) {
       const from = path.dirname(project.package!.file.absolutePath)
 
-      this.typeScriptConfig!.addReference(path.relative(root, from))
+      if (project.name !== '@langri-sha/tsconfig') {
+        this.typeScriptConfig!.addReference(path.relative(root, from))
+      }
 
       for (const dep of project.deps.all) {
         const reference = subprojects.find(({ name }) => name === dep.name)

@@ -92,7 +92,7 @@ const project = new Project({
         'lint-staged.config.mjs',
         'prettier.config.mjs',
       ],
-      references: [{ path: './apps/web' }, { path: './packages/tsconfig' }],
+      references: [{ path: './apps/web' }],
     },
   },
   withTerraform: true,
@@ -613,6 +613,26 @@ project.addSubproject(
   subproject,
   test,
   publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/tsconfig',
+    outdir: path.join('packages', 'tsconfig'),
+    npmIgnore: {},
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      entrypoint: 'base.json',
+      peerDeps: ['typescript@^5.0.0'],
+      peerDependencyOptions: {
+        pinnedDevDependency: false,
+      },
+    },
+  },
+  subproject,
+  publishRaw,
 )
 
 project.addSubproject(
