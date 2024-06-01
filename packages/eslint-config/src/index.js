@@ -3,6 +3,7 @@ import ts from 'typescript-eslint'
 import globals from 'globals'
 import unicorn from 'eslint-plugin-unicorn'
 import prettier from 'eslint-plugin-prettier/recommended'
+import jsdoc from 'eslint-plugin-jsdoc'
 
 export default [
   js.configs.recommended,
@@ -21,6 +22,7 @@ export default [
       },
     },
     plugins: {
+      jsdoc,
       unicorn,
     },
     rules: {
