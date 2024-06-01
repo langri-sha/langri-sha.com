@@ -218,6 +218,7 @@ describe('with Jest configuration', () => {
       name: 'test-project',
       npmIgnore: {},
       jestConfig: {},
+      typeScriptConfig: {},
     })
 
     expect(synthSnapshot(project)).toMatchSnapshot()
