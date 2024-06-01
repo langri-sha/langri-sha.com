@@ -183,6 +183,7 @@ test('with ESLint options', () => {
     name: 'test-project',
     package: {},
     eslint: {},
+    typeScriptConfig: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()

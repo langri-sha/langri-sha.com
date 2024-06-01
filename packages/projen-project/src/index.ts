@@ -315,6 +315,8 @@ export class Project extends BaseProject {
     if (this.projenrc?.filePath) {
       this.eslint.ignorePatterns.push(this.projenrc.filePath)
     }
+
+    this.typeScriptConfig?.addFile(this.eslint.path)
   }
 
   #configureHusky({ husky: huskyOptions }: ProjectOptions) {
