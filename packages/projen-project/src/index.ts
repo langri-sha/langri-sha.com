@@ -375,6 +375,8 @@ export class Project extends BaseProject {
       this,
       deepMerge(defaults, lintStagedOptions),
     )
+
+    this.typeScriptConfig?.addFile(this.lintStaged!.path)
   }
 
   #configureLintSynthesized({ lintSynthesized }: ProjectOptions) {
