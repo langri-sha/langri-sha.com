@@ -462,6 +462,8 @@ export class Project extends BaseProject {
     if (this.package?.packageManager === javascript.NodePackageManager.PNPM) {
       this.prettier.ignore.addPatterns('pnpm-lock.yaml')
     }
+
+    this.typeScriptConfig?.addFile(this.prettier!.path)
   }
 
   #configureProjenrc() {
