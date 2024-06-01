@@ -313,7 +313,7 @@ export class Project extends BaseProject {
     this.eslint = new ESLint(this, deepMerge(defaults, eslintOptions))
 
     if (this.projenrc?.filePath) {
-      this.eslint.ignorePatterns.push(this.projenrc.filePath)
+      this.eslint.ignorePatterns.push(`!${this.projenrc.filePath}`)
     }
   }
 
