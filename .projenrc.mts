@@ -85,12 +85,7 @@ const project = new Project({
   renovate: {},
   typeScriptConfig: {
     config: {
-      files: [
-        'babel.config.js',
-        'eslint.config.mjs',
-        'jest.config.ts',
-        'prettier.config.mjs',
-      ],
+      files: ['babel.config.js', 'eslint.config.mjs', 'jest.config.ts'],
       references: [{ path: './apps/web' }],
     },
   },

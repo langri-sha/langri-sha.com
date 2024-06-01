@@ -426,6 +426,7 @@ module.exports = {
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      "prettier.config.mjs",
       "beachball.config.js",
     ],
   },
@@ -863,6 +864,7 @@ exports[`with Prettier options 1`] = `
 !.prettierignore
 *.db
 *.log
+*.tsbuildinfo
 !.github/
 !.projen/
 node_modules/
@@ -870,6 +872,7 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/tsconfig.json
 !/prettier.config.mjs
 !/.prettierignore
 !/.projenrc.mts
@@ -888,6 +891,7 @@ node_modules/
       ".projen/files.json",
       ".projen/tasks.json",
       "prettier.config.mjs",
+      "tsconfig.json",
     ],
   },
   ".projen/tasks.json": {
@@ -923,6 +927,13 @@ node_modules/
 
     export default config
     ",
+  "tsconfig.json": {
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@langri-sha/tsconfig",
+    "files": [
+      "prettier.config.mjs",
+    ],
+  },
 }
 `;
 

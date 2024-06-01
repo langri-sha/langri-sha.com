@@ -356,6 +356,7 @@ test('with Prettier options', () => {
   const project = new Project({
     name: 'test-project',
     prettier: {},
+    typeScriptConfig: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
