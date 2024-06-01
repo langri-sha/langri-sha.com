@@ -178,6 +178,7 @@ exports[`with \`lint-staged\` 1`] = `
 !.prettierignore
 *.db
 *.log
+*.tsbuildinfo
 !.github/
 !.projen/
 node_modules/
@@ -185,6 +186,7 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/tsconfig.json
 !/lint-staged.config.mjs
 !/.projenrc.mts
 ",
@@ -197,6 +199,7 @@ node_modules/
       ".projen/files.json",
       ".projen/tasks.json",
       "lint-staged.config.mjs",
+      "tsconfig.json",
     ],
   },
   ".projen/tasks.json": {
@@ -232,6 +235,13 @@ node_modules/
 
     export default config
     ",
+  "tsconfig.json": {
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@langri-sha/tsconfig",
+    "files": [
+      "lint-staged.config.mjs",
+    ],
+  },
 }
 `;
 

@@ -305,6 +305,7 @@ test('with `lint-staged`', () => {
   const project = new Project({
     name: 'test-project',
     lintStaged: {},
+    typeScriptConfig: {},
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()

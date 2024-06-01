@@ -89,7 +89,6 @@ const project = new Project({
         'babel.config.js',
         'eslint.config.mjs',
         'jest.config.ts',
-        'lint-staged.config.mjs',
         'prettier.config.mjs',
       ],
       references: [{ path: './apps/web' }],
