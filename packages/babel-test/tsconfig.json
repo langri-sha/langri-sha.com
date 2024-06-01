@@ -12,6 +12,9 @@
     },
     {
       "path": "../monorepo"
+    },
+    {
+      "path": "../tsconfig"
     }
   ]
 }

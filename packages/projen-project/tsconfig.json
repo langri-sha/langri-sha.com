@@ -45,6 +45,9 @@
     },
     {
       "path": "../projen-typescript-config"
+    },
+    {
+      "path": "../tsconfig"
     }
   ]
 }
