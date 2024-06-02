@@ -156,9 +156,9 @@ export class Project extends BaseProject {
     this.tasks.removeTask('pre-compile')
     this.tasks.removeTask('watch')
 
-    this.#configureProjenrc()
     this.#configurePackage(options)
     this.#configureTypeScript(options)
+    this.#configureProjenrc()
 
     if (this.parent) {
       this.tasks.tryFind('default')?.reset()
@@ -472,6 +472,10 @@ export class Project extends BaseProject {
 
   #configureProjenrc() {
     this.projenrc = new ProjenrcFile(this, {})
+
+    if (!this.parent) {
+      this.typeScriptConfig?.addFile(this.projenrc.filePath)
+    }
   }
 
   #configureRenovate({ renovate: renovateOptions }: ProjectOptions) {
