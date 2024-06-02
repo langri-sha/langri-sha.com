@@ -21,7 +21,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.19",
-    "@types/react": "18.3.2",
+    "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0"
   }
 }
