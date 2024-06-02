@@ -347,6 +347,24 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-babel',
+    outdir: path.join('packages', 'projen-babel'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['@babel/core@^7.8.0', 'projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
     typeScriptConfig: {},
