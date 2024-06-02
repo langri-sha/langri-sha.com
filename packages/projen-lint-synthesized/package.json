@@ -14,7 +14,7 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "debug": "4.3.4",
+    "debug": "4.3.5",
     "execa": "8.0.1",
     "minimatch": "9.0.4"
   },
