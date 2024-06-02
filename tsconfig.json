@@ -40,6 +40,9 @@
       "path": "packages/prettier"
     },
     {
+      "path": "packages/projen-babel"
+    },
+    {
       "path": "packages/projen-beachball"
     },
     {
