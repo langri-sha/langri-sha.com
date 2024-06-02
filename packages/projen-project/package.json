@@ -26,7 +26,7 @@
     "@langri-sha/projen-prettier": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
-    "ramda": "0.30.0"
+    "ramda": "0.30.1"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",

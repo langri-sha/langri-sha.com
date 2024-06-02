@@ -193,7 +193,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
-      deps: ['ramda@0.30.0'],
+      deps: ['ramda@0.30.1'],
       devDeps: [
         '@langri-sha/monorepo@workspace:*',
         '@types/babel__core@7.20.5',
@@ -542,7 +542,7 @@ project.addSubproject(
         '@langri-sha/projen-prettier@workspace:*',
         '@langri-sha/projen-renovate@workspace:*',
         '@langri-sha/projen-typescript-config@workspace:*',
-        'ramda@0.30.0',
+        'ramda@0.30.1',
       ],
       devDeps: ['@types/ramda@0.30.0'],
       peerDeps: ['projen@^0.82.0'],

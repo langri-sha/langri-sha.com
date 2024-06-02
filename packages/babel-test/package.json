@@ -13,7 +13,7 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "ramda": "0.30.0"
+    "ramda": "0.30.1"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",

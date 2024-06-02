@@ -159,8 +159,8 @@ importers:
         specifier: ^7.8.0
         version: 7.24.5
       ramda:
-        specifier: 0.30.0
-        version: 0.30.0
+        specifier: 0.30.1
+        version: 0.30.1
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -521,8 +521,8 @@ importers:
         specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       ramda:
-        specifier: 0.30.0
-        version: 0.30.0
+        specifier: 0.30.1
+        version: 0.30.1
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -5790,8 +5790,8 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
 
-  ramda@0.30.0:
-    resolution: {integrity: sha512-13Y0iMhIQuAm/wNGBL/9HEqIfRGmNmjKnTPlKWfA9f7dnDkr8d45wQ+S7+ZLh/Pq9PdcGxkqKUEA7ySu1QSd9Q==}
+  ramda@0.30.1:
+    resolution: {integrity: sha512-tEF5I22zJnuclswcZMc8bDIrwRHRzf+NqVEmqg50ShAZMP7MWeR/RGDthfM/p+BlqvF2fXAzpn8i+SJcYD3alw==}
 
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -13991,7 +13991,7 @@ snapshots:
 
   quick-lru@5.1.1: {}
 
-  ramda@0.30.0: {}
+  ramda@0.30.1: {}
 
   randombytes@2.1.0:
     dependencies:
