@@ -484,6 +484,9 @@ export class Project extends BaseProject {
       extends: ['config:recommended'],
       labels: ['dependencies'],
       reviewersFromCodeOwners: true,
+      lockFileMaintenance: {
+        enabled: true,
+      },
       customManagers: [
         {
           customType: 'regex',
