@@ -39,12 +39,24 @@ describe('resolves version', () => {
   })
 })
 
-test('assigns `module` field', () => {
+test('assigns `type` field', () => {
   const project = new Project({
     name: 'test',
   })
 
   new NodePackage(project, { type: 'module' })
+  expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
+})
+
+test('assigns `peerDependenciesMeta` field', () => {
+  const project = new Project({
+    name: 'test',
+  })
+
+  new NodePackage(project, {
+    peerDeps: ['prettier@*'],
+    peerDependenciesMeta: { prettier: { optional: true } },
+  })
   expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
 })
 
