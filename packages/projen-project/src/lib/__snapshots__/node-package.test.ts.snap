@@ -181,6 +181,9 @@ node_modules/
     "license": "Apache-2.0",
     "main": "lib/index.js",
     "name": "test",
+    "publishConfig": {
+      "access": "public",
+    },
     "scripts": {
       "build": "npx projen build",
       "compile": "npx projen compile",
@@ -212,6 +215,9 @@ exports[`assigns \`peerDependenciesMeta\` field 1`] = `
       "optional": true,
     },
   },
+  "publishConfig": {
+    "access": "public",
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",
@@ -232,6 +238,9 @@ exports[`assigns \`type\` field 1`] = `
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "name": "test",
+  "publishConfig": {
+    "access": "public",
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",
@@ -253,6 +262,9 @@ exports[`resolves version with a package set 1`] = `
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "name": "test-project",
+  "publishConfig": {
+    "access": "public",
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",
@@ -273,6 +285,9 @@ exports[`resolves version without a package set 1`] = `
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "name": "test",
+  "publishConfig": {
+    "access": "public",
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",

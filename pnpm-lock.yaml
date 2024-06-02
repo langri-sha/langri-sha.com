@@ -292,7 +292,7 @@ importers:
         specifier: ^2.0.0
         version: 2.43.1(typescript@5.4.5)
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
@@ -305,7 +305,7 @@ importers:
   packages/projen-codeowners:
     dependencies:
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
@@ -318,7 +318,7 @@ importers:
   packages/projen-editorconfig:
     dependencies:
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
@@ -334,7 +334,7 @@ importers:
         specifier: ^9.0.0
         version: 9.3.0
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -356,7 +356,7 @@ importers:
         specifier: ^9.0.1
         version: 9.0.11
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
@@ -375,7 +375,7 @@ importers:
         specifier: ^28.00 || ^29.00
         version: 29.7.0(@types/node@20.12.13)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.12.13)(typescript@5.4.5))
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -397,7 +397,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
@@ -413,7 +413,7 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -463,7 +463,7 @@ importers:
         specifier: ^3.0.0
         version: 3.2.5
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -518,7 +518,7 @@ importers:
         specifier: workspace:*
         version: link:../projen-typescript-config
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       ramda:
         specifier: 0.30.0
@@ -537,7 +537,7 @@ importers:
   packages/projen-renovate:
     dependencies:
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
       renovate:
         specifier: ^37.342.1
@@ -556,7 +556,7 @@ importers:
         specifier: 0.0.11
         version: 0.0.11
       projen:
-        specifier: ^0.81.15 || ^0.82.0
+        specifier: ^0.82.0
         version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
