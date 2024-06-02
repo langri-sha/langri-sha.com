@@ -19,9 +19,7 @@
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/serialize-javascript": "5.0.4",
-    "prettier": "3.0.0",
-    "projen": "0.81.15"
+    "@types/serialize-javascript": "5.0.4"
   },
   "peerDependencies": {
     "prettier": "^3.0.0",

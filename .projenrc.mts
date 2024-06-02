@@ -9,6 +9,9 @@ const pkg = {
   authorUrl: 'https://langri-sha.com',
   license: 'MIT',
   licensed: true,
+  peerDependencyOptions: {
+    pinnedDevDependency: false,
+  },
 }
 
 const project = new Project({
@@ -172,9 +175,6 @@ project.addSubproject(
         '@types/node@20.12.13',
       ],
       peerDeps: ['@babel/core@^7.8.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -201,9 +201,6 @@ project.addSubproject(
         '@types/ramda@0.30.0',
       ],
       peerDeps: ['@babel/core@^7.8.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -232,9 +229,6 @@ project.addSubproject(
       ],
       devDeps: ['@types/eslint__js@8.42.3'],
       peerDeps: ['eslint@^9.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -252,9 +246,6 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       peerDeps: ['jest@^28.0.0 || ^29.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -273,9 +264,6 @@ project.addSubproject(
       type: 'module',
       deps: ['@jest/globals@29.7.0', 'tempy@1.0.1'],
       peerDeps: ['jest@^29.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -295,9 +283,6 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       devDeps: ['@types/lint-staged@13.3.0'],
       peerDeps: ['eslint@^9.0.0', 'lint-staged@^15.0.0', 'prettier@^3.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -336,9 +321,6 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: ['prettier-plugin-ini@1.2.0'],
       peerDeps: ['prettier@^3.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -621,9 +603,6 @@ project.addSubproject(
       copyrightYear: '2024',
       entrypoint: 'base.json',
       peerDeps: ['typescript@^5.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
@@ -650,9 +629,6 @@ project.addSubproject(
       ],
       devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@20.12.12'],
       peerDeps: ['@babel/register@^7.0.0', 'webpack@^5.0.0'],
-      peerDependencyOptions: {
-        pinnedDevDependency: false,
-      },
     },
   },
   subproject,
