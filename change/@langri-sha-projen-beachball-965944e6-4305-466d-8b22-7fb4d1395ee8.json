@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): chore(deps): update dependency beachball to v2.43.1",
+  "packageName": "@langri-sha/projen-beachball",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
