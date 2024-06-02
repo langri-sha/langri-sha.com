@@ -39,7 +39,7 @@ const project = new Project({
       '@langri-sha/prettier@workspace:*',
       '@langri-sha/projen-project@workspace:*',
       '@types/lint-staged@13.3.0',
-      'eslint@9.3.0',
+      'eslint@9.4.0',
       'jest@29.7.0',
       'lint-staged@15.2.5',
       'prettier@3.2.5',
