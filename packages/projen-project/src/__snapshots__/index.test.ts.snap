@@ -426,8 +426,8 @@ module.exports = {
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
-      "prettier.config.mjs",
       "beachball.config.js",
+      "prettier.config.mjs",
     ],
   },
 }
@@ -1617,8 +1617,8 @@ node_modules/
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
-      "foo.js",
       "bar.js",
+      "foo.js",
     ],
   },
 }
