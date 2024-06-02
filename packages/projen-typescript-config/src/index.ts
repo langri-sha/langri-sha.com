@@ -67,6 +67,10 @@ export class TypeScriptConfig extends JsonFile {
       config.references = deduped
     }
 
+    if (Array.isArray(config.files)) {
+      config.files.sort()
+    }
+
     const json = JSON.stringify(config, null, 2)
 
     return content.replace(pattern, json)

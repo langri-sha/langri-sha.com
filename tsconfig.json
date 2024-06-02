@@ -4,11 +4,11 @@
   "extends": "@langri-sha/tsconfig",
   "files": [
     "babel.config.js",
-    "eslint.config.mjs",
-    "prettier.config.mjs",
     "beachball.config.js",
+    "eslint.config.mjs",
     "jest.config.ts",
-    "lint-staged.config.mjs"
+    "lint-staged.config.mjs",
+    "prettier.config.mjs"
   ],
   "references": [
     {
