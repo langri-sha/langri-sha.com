@@ -31,8 +31,7 @@
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/ramda": "0.30.0",
-    "projen": "0.81.15"
+    "@types/ramda": "0.30.0"
   },
   "peerDependencies": {
     "projen": "^0.81.15"
