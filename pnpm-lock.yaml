@@ -70,8 +70,8 @@ importers:
         specifier: 3.2.5
         version: 3.2.5
       projen:
-        specifier: 0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: 0.82.3
+        version: 0.82.3(constructs@10.3.0)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@20.12.13)(typescript@5.4.5)
@@ -292,8 +292,8 @@ importers:
         specifier: ^2.0.0
         version: 2.43.1(typescript@5.4.5)
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -305,8 +305,8 @@ importers:
   packages/projen-codeowners:
     dependencies:
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -318,8 +318,8 @@ importers:
   packages/projen-editorconfig:
     dependencies:
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -334,8 +334,8 @@ importers:
         specifier: ^9.0.0
         version: 9.3.0
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -356,8 +356,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.11
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -375,8 +375,8 @@ importers:
         specifier: ^28.00 || ^29.00
         version: 29.7.0(@types/node@20.12.13)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.12.13)(typescript@5.4.5))
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -397,8 +397,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -413,8 +413,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -454,8 +454,8 @@ importers:
         specifier: 3.2.5
         version: 3.2.5
       projen:
-        specifier: 0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: 0.82.3
+        version: 0.82.3(constructs@10.3.0)
 
   packages/projen-prettier:
     dependencies:
@@ -463,8 +463,8 @@ importers:
         specifier: ^3.0.0
         version: 3.2.5
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -518,8 +518,8 @@ importers:
         specifier: workspace:*
         version: link:../projen-typescript-config
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       ramda:
         specifier: 0.30.0
         version: 0.30.0
@@ -537,8 +537,8 @@ importers:
   packages/projen-renovate:
     dependencies:
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
       renovate:
         specifier: ^37.342.1
         version: 37.363.9(@aws-sdk/client-sso-oidc@3.569.0)(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.569.0))(encoding@0.1.13)(typanion@3.14.0)
@@ -556,8 +556,8 @@ importers:
         specifier: 0.0.11
         version: 0.0.11
       projen:
-        specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        specifier: ^0.81.15 || ^0.82.0
+        version: 0.82.3(constructs@10.3.0)
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
@@ -5679,8 +5679,8 @@ packages:
     resolution: {integrity: sha512-UdA8mJ4weIkUBO224tIarHzuHs4HuYiJvsuGT7j/SPQiUJVjYvNDBIPa0hAorduOfjGohB/qHWRa/lrrWX/mXw==}
     engines: {node: '>=0.4.0'}
 
-  projen@0.81.15:
-    resolution: {integrity: sha512-Frr2bcYzqZqgk6yQarjHm+lOQRWW6qAP6LAB7ZgtoxqJUN74tzllbceoGTBY/QOG6DLHJORNlvFQ9xMnXM576A==}
+  projen@0.82.3:
+    resolution: {integrity: sha512-JLDIFazUjBJcJcq8EqPDZejZsMNq9VKt7CgWDJmERjXUrWoeDP4qHb5Dr8X+6lgwrxFEQ2eF//vOlOY3/A5jxg==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -13844,7 +13844,7 @@ snapshots:
 
   progress@1.1.8: {}
 
-  projen@0.81.15(constructs@10.3.0):
+  projen@0.82.3(constructs@10.3.0):
     dependencies:
       constructs: 10.3.0
 
