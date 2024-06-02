@@ -239,6 +239,7 @@ node_modules/
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "lint-staged.config.mjs",
     ],
   },
@@ -429,6 +430,7 @@ module.exports = {
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "beachball.config.js",
       "prettier.config.mjs",
     ],
@@ -576,6 +578,7 @@ export default [...defaults, {"ignores":[".*","!.projenrc.mts"]}]",
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "eslint.config.mjs",
     ],
   },
@@ -885,6 +888,7 @@ tsconfig*.json
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "jest.config.ts",
     ],
   },
@@ -979,6 +983,7 @@ node_modules/
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "prettier.config.mjs",
     ],
   },
@@ -1494,6 +1499,9 @@ node_modules/
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
+    "files": [
+      ".projenrc.mts",
+    ],
     "references": [
       {
         "path": "sub-project-a",
@@ -1641,6 +1649,7 @@ node_modules/
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "@langri-sha/tsconfig",
     "files": [
+      ".projenrc.mts",
       "bar.js",
       "foo.js",
     ],
