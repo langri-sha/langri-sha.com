@@ -184,8 +184,8 @@ importers:
   packages/eslint-config:
     dependencies:
       '@eslint/js':
-        specifier: 9.4.0
-        version: 9.4.0
+        specifier: 9.3.0
+        version: 9.3.0
       eslint:
         specifier: ^9.0.0
         version: 9.2.0
