@@ -5,6 +5,7 @@ import { Project, javascript } from 'projen'
  * Options for configuring Node.js packages.
  */
 export interface NodePackageOptions extends javascript.NodePackageOptions {
+  peerDependenciesMeta?: Record<string, { optional?: boolean }>
   type?: 'commonjs' | 'module'
 }
 
@@ -19,6 +20,10 @@ export class NodePackage extends javascript.NodePackage {
 
     if (options?.type) {
       this.addField('type', options.type)
+    }
+
+    if (options?.peerDependenciesMeta) {
+      this.addField('peerDependenciesMeta', options.peerDependenciesMeta)
     }
 
     // Reset, so we can run `pnpx projen` on CI after Renovate upgrades.
