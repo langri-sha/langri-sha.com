@@ -26,7 +26,7 @@
     "projen": "0.82.3"
   },
   "peerDependencies": {
-    "projen": "^0.81.15 || ^0.82.0"
+    "projen": "^0.82.0"
   },
   "publishConfig": {
     "access": "public",
