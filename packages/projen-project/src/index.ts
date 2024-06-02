@@ -435,7 +435,7 @@ export class Project extends BaseProject {
 
     if (!this.parent) {
       this.package.addDevDeps('@langri-sha/projen-project@*')
-      this.package.addDevDeps('projen@0.81.15')
+      this.package.addDevDeps('projen@0.82.3')
     }
 
     this.package.removeScript('start')
