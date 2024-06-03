@@ -20,6 +20,9 @@ jobs:
       - name: Apply ESLint fixes
         run: pnpm eslint --fix .
 
+      - name: Apply Prettier fixes
+        run: pnpm prettier --write .
+
       - name: Update Jest snapshots
         run: pnpm jest --updateSnapshot --passWithNoTests
 
