@@ -3,8 +3,8 @@
 A set of [TypeScript] configuration files, focused on type-checking all your
 TypeScript and JavaScript modules
 
-Provides configurations for [composite projects], [React] and [Emotion], using
-the next [JSX runtime] for transforming.
+Provides configurations for [composite projects], [React] and [Emotion], using the
+next [JSX runtime] for transforming.
 
 ## Usage
 
