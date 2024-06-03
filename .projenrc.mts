@@ -352,6 +352,8 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
+      deps: ['serialize-javascript@6.0.2'],
+      devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: [
         '@babel/core@^7.8.0',
         '@types/babel__core@^7.8.0',
