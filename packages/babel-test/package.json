@@ -19,7 +19,7 @@
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/monorepo": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/babel__core": "7.20.5",
+    "@types/babel__core": "^7.8.0",
     "@types/node": "20.12.13",
     "@types/ramda": "0.30.0"
   },

@@ -16,6 +16,11 @@
       "type": "peer"
     },
     {
+      "name": "@types/babel__core",
+      "version": "^7.8.0",
+      "type": "peer"
+    },
+    {
       "name": "projen",
       "version": "^0.82.0",
       "type": "peer"

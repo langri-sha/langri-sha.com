@@ -16,11 +16,6 @@
       "type": "build"
     },
     {
-      "name": "@types/babel__core",
-      "version": "7.20.5",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "20.12.13",
       "type": "build"
