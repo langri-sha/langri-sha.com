@@ -19,6 +19,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.8.0",
+    "@types/babel__core": "^7.8.0",
     "projen": "^0.82.0"
   },
   "publishConfig": {

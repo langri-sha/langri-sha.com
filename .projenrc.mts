@@ -26,6 +26,7 @@ const project = new Project({
     deps: [
       '@babel/core@7.24.5',
       '@babel/register@7.23.7',
+      '@types/babel__core@7.20.5',
       'react-dom@18.3.1',
       'react@18.3.1',
       'webpack-cli@5.1.4',
@@ -169,11 +170,7 @@ project.addSubproject(
         '@babel/register@7.23.7',
         '@emotion/babel-plugin@11.11.0',
       ],
-      devDeps: [
-        '@langri-sha/babel-test@workspace:*',
-        '@types/babel__core@7.20.5',
-        '@types/node@20.12.13',
-      ],
+      devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@20.12.13'],
       peerDeps: ['@babel/core@^7.8.0'],
     },
   },
@@ -196,7 +193,7 @@ project.addSubproject(
       deps: ['ramda@0.30.1'],
       devDeps: [
         '@langri-sha/monorepo@workspace:*',
-        '@types/babel__core@7.20.5',
+        '@types/babel__core@^7.8.0',
         '@types/node@20.12.13',
         '@types/ramda@0.30.0',
       ],
@@ -355,7 +352,11 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      peerDeps: ['@babel/core@^7.8.0', 'projen@^0.82.0'],
+      peerDeps: [
+        '@babel/core@^7.8.0',
+        '@types/babel__core@^7.8.0',
+        'projen@^0.82.0',
+      ],
     },
   },
   subproject,

@@ -96,6 +96,11 @@
       "type": "runtime"
     },
     {
+      "name": "@types/babel__core",
+      "version": "7.20.5",
+      "type": "runtime"
+    },
+    {
       "name": "react-dom",
       "version": "18.3.1",
       "type": "runtime"
