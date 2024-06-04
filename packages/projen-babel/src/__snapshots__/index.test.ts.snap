@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaults 1`] = `
+"/** @type {import('@babel/core').TransformOptions} */
+const config = {}
+
+module.exports = config
+"
+`;
+
+exports[`with blank config API function 1`] = `
+"/** @type {import('@babel/core').ConfigFunction} */
+const config = (api) => {
+return {}
+}
+
+module.exports = config
+"
+`;
+
+exports[`with config API function 1`] = `
+"/** @type {import('@babel/core').ConfigFunction} */
+const config = (api) => {
+api.cache(true)
+
+return {}
+}
+
+module.exports = config
+"
+`;
+
+exports[`with config API function and transform options 1`] = `
+"/** @type {import('@babel/core').ConfigFunction} */
+const config = (api) => {
+api.cache(true)
+
+return {
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
+}
+
+module.exports = config
+"
+`;
+
+exports[`with filename 1`] = `
+"/** @type {import('@babel/core').TransformOptions} */
+const config = {}
+
+module.exports = config
+"
+`;
+
+exports[`with transform options 1`] = `
+"/** @type {import('@babel/core').TransformOptions} */
+const config = {
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
+
+module.exports = config
+"
+`;
