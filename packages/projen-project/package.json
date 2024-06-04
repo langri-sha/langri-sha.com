@@ -14,6 +14,7 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
+    "@langri-sha/projen-babel": "workspace:*",
     "@langri-sha/projen-beachball": "workspace:*",
     "@langri-sha/projen-codeowners": "workspace:*",
     "@langri-sha/projen-editorconfig": "workspace:*",
