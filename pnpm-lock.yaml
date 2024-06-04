@@ -506,6 +506,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@langri-sha/projen-babel':
+        specifier: workspace:*
+        version: link:../projen-babel
       '@langri-sha/projen-beachball':
         specifier: workspace:*
         version: link:../projen-beachball

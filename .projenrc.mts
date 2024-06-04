@@ -551,6 +551,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: [
+        '@langri-sha/projen-babel@workspace:*',
         '@langri-sha/projen-beachball@workspace:*',
         '@langri-sha/projen-codeowners@workspace:*',
         '@langri-sha/projen-editorconfig@workspace:*',

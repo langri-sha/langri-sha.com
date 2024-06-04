@@ -21,6 +21,11 @@
       "type": "peer"
     },
     {
+      "name": "@langri-sha/projen-babel",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-beachball",
       "version": "workspace:*",
       "type": "runtime"
