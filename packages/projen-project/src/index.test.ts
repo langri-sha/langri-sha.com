@@ -16,6 +16,7 @@ import { JestConfig } from '@langri-sha/projen-jest-config'
 import { Prettier } from '@langri-sha/projen-prettier'
 import { ESLint } from '@langri-sha/projen-eslint'
 import { LintStaged } from '@langri-sha/projen-lint-staged'
+import { Babel } from '@langri-sha/projen-babel'
 
 test('defaults', () => {
   const project = new Project({
@@ -23,6 +24,7 @@ test('defaults', () => {
   })
 
   expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.babel).toBeUndefined()
   expect(project.beachball).toBeUndefined()
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
@@ -140,6 +142,18 @@ test('find subproject', () => {
   expect(project.findSubproject('@someproject/test')).toBeInstanceOf(Project)
   expect(project.findSubproject('@someproject/test2')).toBeInstanceOf(Project)
   expect(project.findSubproject('non-existing')).toBeUndefined()
+})
+
+test('with Babel configuration', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: {},
+    babel: {},
+    typeScriptConfig: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.babel).toBeInstanceOf(Babel)
 })
 
 test('with Beachball configuration', () => {

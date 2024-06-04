@@ -37,11 +37,17 @@ import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
 import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
 import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
+import { Babel, BabelOptions } from '@langri-sha/projen-babel'
 
 export * from '@langri-sha/projen-typescript-config'
 
 export interface ProjectOptions
   extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
+  /*
+   * Pass in to set up Beachball.
+   */
+  babel?: BabelOptions
+
   /*
    * Pass in to set up Beachball.
    */
@@ -126,6 +132,7 @@ export interface ProjectOptions
 }
 
 export class Project extends BaseProject {
+  babel?: Babel
   beachball?: Beachball
   codeowners?: Codeowners
   editorConfig?: EditorConfig
@@ -169,6 +176,7 @@ export class Project extends BaseProject {
     this.#configureESLint(options)
     this.#configurePrettier(options)
 
+    this.#configureBabel(options)
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
@@ -236,6 +244,22 @@ export class Project extends BaseProject {
    */
   findSubproject(name: string): Project | undefined {
     return this.allSubprojectsKind.find((project) => project.name === name)
+  }
+
+  #configureBabel({ babel }: ProjectOptions) {
+    if (!babel) {
+      return
+    }
+
+    const defaults: BabelOptions = {
+      options: {
+        presets: ['@langri-sha/babel-preset'],
+      },
+    }
+
+    this.babel = new Babel(this, deepMerge(defaults, babel))
+
+    this.typeScriptConfig?.addFile(this.babel.path)
   }
 
   #configureBeachball({ beachball }: ProjectOptions) {
