@@ -69,6 +69,7 @@ export class TypeScriptConfig extends JsonFile {
 
     if (Array.isArray(config.files)) {
       config.files.sort()
+      config.files = [...new Set(config.files)]
     }
 
     const json = JSON.stringify(config, null, 2)

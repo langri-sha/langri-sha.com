@@ -102,3 +102,29 @@ test('dedupes references', () => {
   project.synth()
   expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
+
+test('sorts files', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addFile('b.ts')
+  conf.addFile('a.ts')
+
+  project.synth()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
+})
+
+test('dedupes files', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const conf = new TypeScriptConfig(project, {})
+  conf.addFile('a.ts')
+  conf.addFile('a.ts')
+
+  project.synth()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
+})

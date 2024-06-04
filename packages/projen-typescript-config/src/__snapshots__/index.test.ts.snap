@@ -38,6 +38,15 @@ exports[`add reference 1`] = `
 }
 `;
 
+exports[`dedupes files 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [
+    "a.ts",
+  ],
+}
+`;
+
 exports[`dedupes references 1`] = `
 {
   "$schema": "https://json.schemastore.org/tsconfig",
@@ -52,6 +61,16 @@ exports[`dedupes references 1`] = `
 exports[`defaults 1`] = `
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+}
+`;
+
+exports[`sorts files 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [
+    "a.ts",
+    "b.ts",
+  ],
 }
 `;
 
