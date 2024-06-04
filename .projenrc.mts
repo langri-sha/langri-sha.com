@@ -47,6 +47,7 @@ const project = new Project({
       'projen@0.82.4',
     ],
   },
+  babel: {},
   beachball: {},
   codeowners: {
     '*': '@langri-sha',
