@@ -482,6 +482,19 @@ importers:
         specifier: 0.82.4
         version: 0.82.4(constructs@10.3.0)
 
+  packages/projen-pnpm-workspace:
+    dependencies:
+      projen:
+        specifier: ^0.82.0
+        version: 0.82.4(constructs@10.3.0)
+    devDependencies:
+      '@langri-sha/jest-test':
+        specifier: workspace:*
+        version: link:../jest-test
+      '@langri-sha/tsconfig':
+        specifier: '*'
+        version: 0.9.0(typescript@5.4.5)
+
   packages/projen-prettier:
     dependencies:
       prettier:

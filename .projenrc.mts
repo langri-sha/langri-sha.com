@@ -617,6 +617,24 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-pnpm-workspace',
+    outdir: path.join('packages', 'projen-pnpm-workspace'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/tsconfig',
     outdir: path.join('packages', 'tsconfig'),
     npmIgnore: {},
