@@ -117,20 +117,8 @@ const getAllFiles = (root: Project) => {
   return Object.fromEntries(files)
 }
 
-const getProjects = (root: Project) => {
-  const projects: Project[] = []
-  const processing = [root]
-
-  while (processing.length) {
-    const project = processing.pop()
-
-    if (!project) {
-      break
-    }
-
-    projects.push(project)
-    processing.push(...(project?.subprojects ?? []))
-  }
-
-  return projects
+const getProjects = (root: Project): Project[] => {
+  return root.node
+    .findAll(0)
+    .filter((node): node is Project => node instanceof Project)
 }
