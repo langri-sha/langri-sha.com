@@ -41,6 +41,9 @@
       "path": "../projen-lint-synthesized"
     },
     {
+      "path": "../projen-pnpm-workspace"
+    },
+    {
       "path": "../projen-prettier"
     },
     {
