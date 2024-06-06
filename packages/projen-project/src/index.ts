@@ -197,21 +197,10 @@ export class Project extends BaseProject {
   }
 
   get allSubprojects(): BaseProject[] {
-    const projects: BaseProject[] = []
-    const processing: BaseProject[] = [...this.subprojects]
-
-    while (processing.length) {
-      const project = processing.pop()
-
-      if (!project) {
-        continue
-      }
-
-      projects.push(project)
-      processing.push(...(project?.subprojects ?? []))
-    }
-
-    return projects
+    return this.root.node
+      .findAll(0)
+      .filter((node) => node !== this.root)
+      .filter((node): node is BaseProject => node instanceof BaseProject)
   }
 
   get allSubprojectsKind(): Project[] {
