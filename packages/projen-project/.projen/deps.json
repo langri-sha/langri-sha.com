@@ -71,6 +71,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-pnpm-workspace",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-prettier",
       "version": "workspace:*",
       "type": "runtime"

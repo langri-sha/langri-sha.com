@@ -562,6 +562,7 @@ project.addSubproject(
         '@langri-sha/projen-license@workspace:*',
         '@langri-sha/projen-lint-staged@workspace:*',
         '@langri-sha/projen-lint-synthesized@workspace:*',
+        '@langri-sha/projen-pnpm-workspace@workspace:*',
         '@langri-sha/projen-prettier@workspace:*',
         '@langri-sha/projen-renovate@workspace:*',
         '@langri-sha/projen-typescript-config@workspace:*',
