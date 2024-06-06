@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(pnpm-workspace): Add support for PNPM workspaces",
+  "packageName": "@langri-sha/projen-pnpm-workspace",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
