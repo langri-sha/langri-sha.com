@@ -13,6 +13,9 @@
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
+  "dependencies": {
+    "yaml": "2.4.3"
+  },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "*"
