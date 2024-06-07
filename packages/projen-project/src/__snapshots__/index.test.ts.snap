@@ -1330,7 +1330,7 @@ node_modules/
         ],
         "matchStrings": [
           "\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)",
-          "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
+          "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
         ],
         "matchStringsStrategy": "recursive",
       },
@@ -1343,7 +1343,7 @@ node_modules/
         ],
         "matchStrings": [
           "(?<depType>deps|devDeps|peerDeps):\\s*\\[[^\\]]*\\]",
-          "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
+          "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
         ],
         "matchStringsStrategy": "recursive",
       },

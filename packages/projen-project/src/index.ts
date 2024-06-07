@@ -538,7 +538,7 @@ export class Project extends BaseProject {
           matchStringsStrategy: 'recursive',
           matchStrings: [
             '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
-            "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
+            "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
           ],
           depTypeTemplate:
             "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
@@ -550,7 +550,7 @@ export class Project extends BaseProject {
           matchStringsStrategy: 'recursive',
           matchStrings: [
             '(?<depType>deps|devDeps|peerDeps):\\s*\\[[^\\]]*\\]',
-            "'(?<depName>[a-zA-Z0-9-]+)@(?<currentValue>[^']+)'",
+            "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
           ],
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
