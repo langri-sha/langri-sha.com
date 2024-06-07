@@ -22,7 +22,7 @@
     "@langri-sha/babel-test": "workspace:*",
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/node": "20.12.13"
+    "@types/node": "20.14.2"
   },
   "peerDependencies": {
     "@babel/core": "^7.8.0"
