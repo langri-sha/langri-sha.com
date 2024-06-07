@@ -87,12 +87,12 @@
     },
     {
       "name": "@babel/core",
-      "version": "7.24.5",
+      "version": "7.24.7",
       "type": "runtime"
     },
     {
       "name": "@babel/register",
-      "version": "7.23.7",
+      "version": "7.24.6",
       "type": "runtime"
     },
     {

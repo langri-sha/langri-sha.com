@@ -27,27 +27,27 @@
     },
     {
       "name": "@babel/plugin-proposal-export-default-from",
-      "version": "7.24.1",
+      "version": "7.24.7",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-env",
-      "version": "7.24.5",
+      "version": "7.24.7",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-react",
-      "version": "7.24.1",
+      "version": "7.24.7",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-typescript",
-      "version": "7.24.1",
+      "version": "7.24.7",
       "type": "runtime"
     },
     {
       "name": "@babel/register",
-      "version": "7.23.7",
+      "version": "7.24.6",
       "type": "runtime"
     },
     {
