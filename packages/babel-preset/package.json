@@ -11,11 +11,11 @@
   "main": "src/index.js",
   "scripts": {},
   "dependencies": {
-    "@babel/plugin-proposal-export-default-from": "7.24.1",
-    "@babel/preset-env": "7.24.5",
-    "@babel/preset-react": "7.24.1",
-    "@babel/preset-typescript": "7.24.1",
-    "@babel/register": "7.23.7",
+    "@babel/plugin-proposal-export-default-from": "7.24.7",
+    "@babel/preset-env": "7.24.7",
+    "@babel/preset-react": "7.24.7",
+    "@babel/preset-typescript": "7.24.7",
+    "@babel/register": "7.24.6",
     "@emotion/babel-plugin": "11.11.0"
   },
   "devDependencies": {
