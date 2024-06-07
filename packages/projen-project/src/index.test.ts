@@ -17,6 +17,7 @@ import { Prettier } from '@langri-sha/projen-prettier'
 import { ESLint } from '@langri-sha/projen-eslint'
 import { LintStaged } from '@langri-sha/projen-lint-staged'
 import { Babel } from '@langri-sha/projen-babel'
+import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
 
 test('defaults', () => {
   const project = new Project({
@@ -35,6 +36,7 @@ test('defaults', () => {
   expect(project.lintStaged).toBeUndefined()
   expect(project.npmIgnore).toBeUndefined()
   expect(project.package).toBeUndefined()
+  expect(project.pnpmWorkspace).toBeUndefined()
   expect(project.prettier).toBeUndefined()
   expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
   expect(project.renovate).toBeUndefined()
@@ -368,6 +370,20 @@ describe('with package', () => {
   })
 })
 
+test('with PNPM workspace', () => {
+  const project = new Project({
+    name: 'test-project',
+    eslint: {},
+    prettier: {},
+    pnpmWorkspace: {
+      packages: ['packages/*'],
+    },
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.pnpmWorkspace).toBeInstanceOf(PnpmWorkspace)
+})
+
 test('with Prettier options', () => {
   const project = new Project({
     name: 'test-project',
@@ -441,15 +457,4 @@ describe('with TypeScript options', () => {
 
     expect(synthSnapshot(project)).toMatchSnapshot()
   })
-})
-
-test('with workspaces', () => {
-  const project = new Project({
-    name: 'test-project',
-    eslint: {},
-    prettier: {},
-    workspaces: ['packages/*'],
-  })
-
-  expect(synthSnapshot(project)).toMatchSnapshot()
 })

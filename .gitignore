@@ -35,6 +35,6 @@ node_modules/
 !/jest.config.ts
 !/license
 !/lint-staged.config.mjs
-!/renovate.json5
 !/pnpm-workspace.yaml
+!/renovate.json5
 !/.projenrc.mts

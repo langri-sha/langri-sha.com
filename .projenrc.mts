@@ -87,6 +87,9 @@ const project = new Project({
   prettier: {
     ignorePatterns: ['*.frag'],
   },
+  pnpmWorkspace: {
+    packages: ['apps/*', 'packages/*'],
+  },
   renovate: {},
   typeScriptConfig: {
     config: {
@@ -95,7 +98,6 @@ const project = new Project({
     },
   },
   withTerraform: true,
-  workspaces: ['apps/*', 'packages/*'],
 })
 
 project.package?.addField('private', true)

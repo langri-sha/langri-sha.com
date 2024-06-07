@@ -5,7 +5,6 @@ import {
   type ProjectOptions as BaseProjectOptions,
   IgnoreFile,
   IgnoreFileOptions,
-  YamlFile,
   javascript,
 } from 'projen'
 
@@ -38,6 +37,10 @@ import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
 import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
 import { Babel, BabelOptions } from '@langri-sha/projen-babel'
+import {
+  PnpmWorkspace,
+  PnpmWorkspaceOptions,
+} from '@langri-sha/projen-pnpm-workspace'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -100,6 +103,11 @@ export interface ProjectOptions
     copyrightYear?: string
   } & NodePackageOptions
 
+  /*
+   * PNPM workspaces to generate, if provided.
+   */
+  pnpmWorkspace?: PnpmWorkspaceOptions
+
   /**
    * Pass in to configure Prettier.
    */
@@ -124,11 +132,6 @@ export interface ProjectOptions
    * Whether to use Terrafom.
    */
   withTerraform?: boolean
-
-  /*
-   * PNPM workspaces to generate.
-   */
-  workspaces?: string[]
 }
 
 export class Project extends BaseProject {
@@ -143,6 +146,7 @@ export class Project extends BaseProject {
   lintStaged?: LintStaged
   npmIgnore?: IgnoreFile
   package?: NodePackage
+  pnpmWorkspace?: PnpmWorkspace
   prettier?: Prettier
   projenrc?: ProjenrcFile
   renovate?: Renovate
@@ -186,8 +190,8 @@ export class Project extends BaseProject {
     this.#configureLintStaged(options)
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
+    this.#configurePnpmWorkspace(options)
     this.#configureRenovate(options)
-    this.#createPnpmWorkspaces(options)
   }
 
   override preSynthesize(): void {
@@ -459,6 +463,19 @@ export class Project extends BaseProject {
     }
   }
 
+  #configurePnpmWorkspace({ pnpmWorkspace }: ProjectOptions) {
+    if (!pnpmWorkspace) {
+      return
+    }
+
+    this.pnpmWorkspace = new PnpmWorkspace(this, pnpmWorkspace)
+
+    for (const workspace of pnpmWorkspace.packages ?? []) {
+      this.prettier?.ignore.exclude(`${workspace}/lib/`)
+      this.eslint?.ignorePatterns.push(`${workspace}/lib/`)
+    }
+  }
+
   #configurePrettier({ prettier: prettierOptions }: ProjectOptions) {
     if (!prettierOptions || this.parent) {
       return
@@ -596,25 +613,6 @@ export class Project extends BaseProject {
     }
   }
 
-  #createPnpmWorkspaces({ workspaces }: ProjectOptions) {
-    if (!workspaces) {
-      return
-    }
-
-    new YamlFile(this, 'pnpm-workspace.yaml', {
-      readonly: true,
-      marker: true,
-      obj: {
-        packages: workspaces,
-      },
-    })
-
-    for (const workspace of workspaces) {
-      this.prettier?.ignore.exclude(`${workspace}/lib/`)
-      this.eslint?.ignorePatterns.push(`${workspace}/lib/`)
-    }
-  }
-
   #populateTypeScriptProjectReferencesFromDependencies() {
     if (this.parent || !this.package || !this.typeScriptConfig) {
       return
@@ -679,7 +677,7 @@ const getGitIgnoreOptions = ({
     !.github/
     ${huskyOptions ? '!.husky/' : ''}
     !.projen/
-    ${options.workspaces?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
+    ${options.pnpmWorkspace?.packages?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/
     `
             .split('\n')
