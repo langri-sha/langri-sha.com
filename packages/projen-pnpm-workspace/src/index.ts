@@ -1,5 +1,6 @@
-import { type IResolver, Project, YamlFile } from 'projen'
+import { type IResolver, Project, YamlFile, javascript } from 'projen'
 import YAML from 'yaml'
+import * as path from 'node:path'
 
 /**
  * Options for maintaining a PNPM workspace.
@@ -29,6 +30,34 @@ export class PnpmWorkspace extends YamlFile {
         packages: [...(options.packages ?? [])],
       },
     })
+  }
+
+  override preSynthesize(): void {
+    const packages = this.project.subprojects
+      .map((project) =>
+        project.node
+          .findAll(1)
+          .filter(
+            (file): file is javascript.NodePackage =>
+              file instanceof javascript.NodePackage,
+          ),
+      )
+      .flat()
+      .map((pkg) =>
+        path.relative(this.project.outdir, path.dirname(pkg.file.absolutePath)),
+      )
+
+    for (const pkg of packages) {
+      if (
+        packages
+          .filter((other) => other !== pkg)
+          .some((other) => path.dirname(other) === path.dirname(pkg))
+      ) {
+        this.addPackages(path.join(path.dirname(pkg), '*'))
+      } else {
+        this.addPackages(pkg)
+      }
+    }
   }
 
   protected override synthesizeContent(
