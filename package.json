@@ -51,7 +51,7 @@
     "jest": "29.7.0",
     "lint-staged": "15.2.5",
     "prettier": "3.3.1",
-    "projen": "0.82.4",
+    "projen": "0.82.5",
     "ts-node": "10.9.2",
     "typescript": "5.4.5"
   },

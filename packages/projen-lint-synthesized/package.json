@@ -23,7 +23,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@types/debug": "4.1.12",
     "prettier": "3.3.1",
-    "projen": "0.82.4"
+    "projen": "0.82.5"
   },
   "peerDependencies": {
     "projen": "^0.82.0"
