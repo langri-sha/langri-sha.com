@@ -27,7 +27,7 @@ provider "google" {
 }
 
 module "org" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/org?ref=v0.5.0"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/org?ref=v0.6.0"
 
   admin_members   = var.admin_members
   billing_account = var.billing_account
@@ -52,7 +52,7 @@ module "org" {
 }
 
 module "terraform_admin" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/terraform-admin?ref=v0.5.0"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/terraform-admin?ref=v0.6.0"
 
   billing_account       = module.org.billing_account
   org_id                = module.org.org_id
@@ -69,7 +69,7 @@ module "terraform_admin" {
 }
 
 module "public_dns" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/public-dns?ref=v0.5.0"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/public-dns?ref=v0.6.0"
 
   domain             = var.domain
   project_id         = module.org.project_id
@@ -88,7 +88,7 @@ module "public_dns" {
 }
 
 module "web" {
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/workspace?ref=v0.5.0"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/workspace?ref=v0.6.0"
 
   name = "web"
 
