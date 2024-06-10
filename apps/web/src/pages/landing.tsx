@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { Global } from '@emotion/react'
 
-import { colors, global } from '../styles'
+import { global } from '../styles'
 import { Drone, Header, Scene } from '../components'
 
 export const Landing = () => (
@@ -18,7 +18,6 @@ export const Landing = () => (
 
 const Root = styled.div`
   display: flex;
-  background: ${colors.background};
   height: 100vh;
   width: 100vw;
   flex-flow: column nowrap;
