@@ -34,15 +34,22 @@ locals {
     "langri-sha.com" = {
       project = module.project["build"].project_id
 
-      actions_variables = {
-        PREVIEW_ASSETS_BUCKET    = google_storage_bucket.public["preview-assets"].name
-        PREVIEW_ASSETS_URL       = local.host_urls["preview-assets"]
-        PREVIEW_BUCKET           = google_storage_bucket.public["preview"].name
-        PREVIEW_URL              = local.host_urls["preview"]
-        PRODUCTION_ASSETS_BUCKET = google_storage_bucket.public["production-assets"].name
-        PRODUCTION_ASSETS_URL    = local.host_urls["production-assets"]
-        PRODUCTION_BUCKET        = google_storage_bucket.public["production"].name
-        PRODUCTION_URL           = local.host_urls["production"]
+      environments = {
+        preview = {
+          actions_variables = {
+            assets_bucket = google_storage_bucket.public["preview-assets"].name
+            assets_url    = local.host_urls["preview-assets"]
+            bucket        = google_storage_bucket.public["preview"].name
+            url           = local.host_urls["preview"]
+          }
+        }
+
+        production = {
+          assets_bucket = google_storage_bucket.public["production-assets"].name
+          assets_url    = local.host_urls["production-assets"]
+          bucket        = google_storage_bucket.public["production"].name
+          url           = local.host_urls["production"]
+        }
       }
     }
   }
