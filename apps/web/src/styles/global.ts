@@ -9,7 +9,7 @@ export default css`
   }
 
   body {
-    position: absolute;
+    position: relative;
     font-size: 1.6rem;
     width: 100%;
     height: 100%;
@@ -17,6 +17,12 @@ export default css`
     padding: 0;
     color: var(--color-text);
     font-family: var(--font-default);
+  }
+
+  #app {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   canvas {
