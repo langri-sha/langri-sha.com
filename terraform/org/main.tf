@@ -39,7 +39,6 @@ module "org" {
 
   activate_apis = [
     "cloudbilling.googleapis.com",
-    "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "dns.googleapis.com",
