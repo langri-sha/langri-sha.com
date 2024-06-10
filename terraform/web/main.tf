@@ -37,18 +37,20 @@ locals {
       environments = {
         preview = {
           actions_variables = {
-            assets_bucket = google_storage_bucket.public["preview-assets"].name
-            assets_url    = local.host_urls["preview-assets"]
-            bucket        = google_storage_bucket.public["preview"].name
-            url           = local.host_urls["preview"]
+            ASSETS_BUCKET = google_storage_bucket.public["preview-assets"].name
+            ASSETS_URL    = local.host_urls["preview-assets"]
+            BUCKET        = google_storage_bucket.public["preview"].name
+            URL           = local.host_urls["preview"]
           }
         }
 
         production = {
-          assets_bucket = google_storage_bucket.public["production-assets"].name
-          assets_url    = local.host_urls["production-assets"]
-          bucket        = google_storage_bucket.public["production"].name
-          url           = local.host_urls["production"]
+          actions_variables = {
+            ASSETS_BUCKET = google_storage_bucket.public["production-assets"].name
+            ASSETS_URL    = local.host_urls["production-assets"]
+            BUCKET        = google_storage_bucket.public["production"].name
+            URL           = local.host_urls["production"]
+          }
         }
       }
     }
