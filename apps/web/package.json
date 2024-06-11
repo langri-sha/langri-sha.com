@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "src/index.tsx",
   "scripts": {
-    "build": "webpack --env production --progress",
+    "build": "webpack --env production --mode production --progress",
     "start": "webpack serve --progress --open --hot --port 8080",
     "test": "webpack --debug --bail"
   },
