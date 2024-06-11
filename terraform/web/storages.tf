@@ -5,6 +5,13 @@ data "google_iam_policy" "public_storage_bucket" {
     ]
     role = "roles/storage.objectViewer"
   }
+
+  binding {
+    members = [
+      "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
+    ]
+    role = "roles/storage.objectAdmin"
+  }
 }
 
 resource "google_storage_bucket" "public" {
