@@ -1,0 +1,16 @@
+name: Web Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Workspace
+      - Web
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
