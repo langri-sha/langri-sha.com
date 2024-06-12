@@ -16,6 +16,7 @@
 !.github/
 !.husky/
 !.projen/
+dist/
 apps/*/lib/
 packages/*/lib/
 node_modules/
