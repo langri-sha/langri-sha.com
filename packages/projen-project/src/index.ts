@@ -677,6 +677,7 @@ const getGitIgnoreOptions = ({
     !.github/
     ${huskyOptions ? '!.husky/' : ''}
     !.projen/
+    dist/
     ${options.pnpmWorkspace?.packages?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/
     `

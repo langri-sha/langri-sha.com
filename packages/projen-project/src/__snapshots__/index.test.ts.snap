@@ -17,6 +17,7 @@ exports[`add subproject with options 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -119,6 +120,7 @@ exports[`defaults 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -181,6 +183,7 @@ exports[`with \`lint-staged\` 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -264,6 +267,7 @@ exports[`with Babel configuration 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -417,6 +421,7 @@ exports[`with Beachball configuration 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -609,6 +614,7 @@ exports[`with ESLint options 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -770,6 +776,7 @@ indent_style=tab
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -852,6 +859,7 @@ exports[`with Husky options 1`] = `
 !.github/
 !.husky/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -976,6 +984,7 @@ exports[`with Jest configuration defaults 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1071,6 +1080,7 @@ exports[`with PNPM workspace 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 packages/*/lib/
 node_modules/
 !/.gitattributes
@@ -1164,6 +1174,7 @@ exports[`with Prettier options 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1252,6 +1263,7 @@ exports[`with Renovate options 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1392,6 +1404,7 @@ exports[`with Terraform enabled 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1454,6 +1467,7 @@ exports[`with TypeScript options configures project references between subprojec
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1777,6 +1791,7 @@ exports[`with TypeScript options defaults 1`] = `
 *.tsbuildinfo
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
@@ -1919,6 +1934,7 @@ exports[`with code owners configured 1`] = `
 *.log
 !.github/
 !.projen/
+dist/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
