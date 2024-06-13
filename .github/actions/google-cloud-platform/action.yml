@@ -1,0 +1,48 @@
+name: Google Cloud Platform
+description: Configures access to Google Cloud Platform resources.
+
+inputs:
+  service_account:
+    description: |-
+      Email address or unique identifier of the Google Cloud service account for
+      which to generate credentials.
+    required: true
+
+  token_format:
+    description:
+      Whether to provide a Google Cloud access token or ID token for calling
+      other Google Cloud APIs.
+    default: 'access_token'
+    required: true
+
+  workload_identity_provider:
+    description: |-
+      The full identifier of the Workload Identity Provider, including the
+      project number, pool name, and provider name. This must be the full
+      identifier which includes all parts, for example:
+      "projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider".
+    required: true
+
+outputs:
+  access_token:
+    description: |-
+      The Google Cloud access token for calling other Google Cloud APIs. This is
+      only available when "token_format" is "access_token".
+    value: ${{ steps.auth.outputs.access_token }}
+
+  id_token:
+    description: |-
+      The Google Cloud ID token. This is only available when "token_format" is
+      "id_token".
+    value: ${{ steps.auth.outputs.id_token }}
+
+runs:
+  using: composite
+  steps:
+    - name: Authenticate to Google Cloud
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        token_format: ${{ inputs.token_format }}
+        service_account: ${{ inputs.service_account }}
+        workload_identity_provider: ${{ inputs.workload_identity_provider }}
