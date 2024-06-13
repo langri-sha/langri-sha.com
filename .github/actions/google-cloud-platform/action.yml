@@ -20,6 +20,12 @@ inputs:
     default: ''
     required: false
 
+  setup_gcloud:
+    description: |-
+      Whether to install and configure the Google Cloud CLI.
+    default: ''
+    required: false
+
   token_format:
     description:
       Whether to provide a Google Cloud access token or ID token for calling
@@ -81,3 +87,7 @@ runs:
         username: oauth2accesstoken
         password: ${{ steps.auth.outputs.access_token }}
         registry: gcr.io
+
+    - name: Set up Google Cloud CLI
+      if: ${{ inputs.setup_gcloud != '' }}
+      uses: google-github-actions/setup-gcloud@v2
