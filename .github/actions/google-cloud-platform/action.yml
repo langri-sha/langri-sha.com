@@ -46,3 +46,10 @@ runs:
         token_format: ${{ inputs.token_format }}
         service_account: ${{ inputs.service_account }}
         workload_identity_provider: ${{ inputs.workload_identity_provider }}
+
+    - name: Set auth outputs
+      run: |
+        echo "access_token=${{ steps.auth.outputs.access_token }}" >> $GITHUB_OUTPUT
+        echo "id_token=${{ steps.auth.outputs.id_token }}" >> $GITHUB_OUTPUT
+        echo "project_id=${{ steps.auth.outputs.project_id }}" >> $GITHUB_OUTPUT
+      shell: bash
