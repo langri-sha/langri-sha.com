@@ -2,11 +2,23 @@ name: Google Cloud Platform
 description: Configures access to Google Cloud Platform resources.
 
 inputs:
+  location:
+    description: |-
+      Location to use for Google Cloud resources.
+    required: true
+
   service_account:
     description: |-
       Email address or unique identifier of the Google Cloud service account for
       which to generate credentials.
     required: true
+
+  setup_docker:
+    description: |-
+      Whether to configure Docker access to Google Container Registry and
+      Artifact Registry.
+    default: ''
+    required: false
 
   token_format:
     description:
@@ -53,3 +65,19 @@ runs:
         echo "id_token=${{ steps.auth.outputs.id_token }}" >> $GITHUB_OUTPUT
         echo "project_id=${{ steps.auth.outputs.project_id }}" >> $GITHUB_OUTPUT
       shell: bash
+
+    - name: Authenticate to Google Cloud Artifact Registry
+      uses: docker/login-action@v3
+      if: inputs.setup_docker != ''
+      with:
+        username: oauth2accesstoken
+        password: ${{ steps.auth.outputs.access_token }}
+        registry: ${{ inputs.location }}-docker.pkg.dev
+
+    - name: Authenticate to Google Container Registry
+      uses: docker/login-action@v3
+      if: inputs.setup_docker != ''
+      with:
+        username: oauth2accesstoken
+        password: ${{ steps.auth.outputs.access_token }}
+        registry: gcr.io
