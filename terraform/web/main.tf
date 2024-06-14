@@ -34,6 +34,11 @@ locals {
     "langri-sha.com" = {
       project = module.project["build"].project_id
 
+      actions_variables = merge({
+        for name, data in module.project :
+          "${upper(name)}_PROJECT_ID" => data.project_id
+      })
+
       environments = {
         preview = {
           actions_variables = {
