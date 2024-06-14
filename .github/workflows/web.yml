@@ -35,6 +35,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     needs: [build]
+    environment: ${{ github.event_name == 'release' && 'production' || 'preview' }}
     permissions:
       contents: read
       id-token: write
@@ -55,3 +56,23 @@ jobs:
         with:
           name: web
           path: dist/web
+
+      - name: Configure environment
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            echo "ASSETS_BUCKET=gs://${{ vars.ASSETS_BUCKET }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo "ASSETS_URL=${{ vars.ASSETS_URL }}/${{ github.event.pull_request.number }}" >> $$GITHUB_ENV
+            echo "BUCKET=gs://${{ vars.BUCKET }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo "URL=${{ vars.URL }}/${{ github.event.pull_request.number }}" >> $$GITHUB_ENV
+          else
+            echo "ASSETS_BUCKET=gs://${{ vars.ASSETS_BUCKET }}"  >> $GITHUB_ENV
+            echo "ASSETS_URL=${{ vars.ASSETS_URL }}"  >> $GITHUB_ENV
+            echo "BUCKET=gs://${{ vars.BUCKET }}" >> $GITHUB_ENV
+            echo "URL=${{ vars.URL }}" >> $GITHUB_ENV
+          fi
+
+      - name: Publish
+        run: |
+          GZIP_TYPES=css,eot,html,js,json,otf,svg,ttf,txt
+
+          gsutil -u ${{ vars.EDGE_PROJECT_ID }} -qm rsync -r -j $GZIP_TYPES -x gz dist/web ${{ env.BUCKET }}
