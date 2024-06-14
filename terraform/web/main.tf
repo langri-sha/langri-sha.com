@@ -124,6 +124,12 @@ locals {
         "roles/iam.roleAdmin" = [
           "serviceAccount:${local.web_service_account_email}",
         ]
+
+        "roles/serviceusage.serviceUsageConsumer" = [
+          # FIXME: Introduces cycles.
+          # "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
+          "serviceAccount:langri-sha--langri-sha-com-gha@build-6a29.iam.gserviceaccount.com",
+        ]
       }
     }
   }
