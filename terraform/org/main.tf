@@ -105,6 +105,7 @@ module "web" {
     "roles/resourcemanager.folderAdmin",
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.projectDeleter",
+    "roles/resourcemanager.projectIamAdmin",
     "roles/storage.admin",
   ]
 
