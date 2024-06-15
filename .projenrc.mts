@@ -508,7 +508,13 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
-    typeScriptConfig: {},
+    typeScriptConfig: {
+      config: {
+        compilerOptions: {
+          typeRoots: ['node_modules/@types', 'types'],
+        },
+      },
+    },
     npmIgnore: {},
     package: {
       ...pkg,
