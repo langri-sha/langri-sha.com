@@ -1,8 +1,53 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Sat, 25 May 2024 03:25:31 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.10.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(project): Add support for finding all subprojects (filip.dupanovic@gmail.com)
+- feat(projen): Simplify options (filip.dupanovic@gmail.com)
+- feat(project): Add subproject callback (filip.dupanovic@gmail.com)
+- feat(projen): Drop pinning peer dependencies (filip.dupanovic@gmail.com)
+- feat(lint-synthesized): Run on all projects (filip.dupanovic@gmail.com)
+- feat(project): Simplify project subfiltering (filip.dupanovic@gmail.com)
+- feat(project): Add config files to TS" (filip.dupanovic@gmail.com)
+- feat(project): Add task for debugging Renovate (filip.dupanovic@gmail.com)
+- feat(project): Support assigning package `module` (filip.dupanovic@gmail.com)
+- feat(projen): Reconfigure project expressions (filip.dupanovic@gmail.com)
+- feat(project): Add support for `lint-staged` (filip.dupanovic@gmail.com)
+- feat(project): Add `peerDependenciesMeta` field (filip.dupanovic@gmail.com)
+- feat(projen): Reset `install:ci` task (filip.dupanovic@gmail.com)
+- feat(project): Automatically configure project references (filip.dupanovic@gmail.com)
+- feat(project): Add support for Prettier (filip.dupanovic@gmail.com)
+- feat(project): Reconfigure PNPM workspace support (filip.dupanovic@gmail.com)
+- feat(project): Add support for configuring ESLint (filip.dupanovic@gmail.com)
+- feat(project): Manage package with projen (filip.dupanovic@gmail.com)
+- feat(project): Enable Renovate lockfile maintenance (filip.dupanovic@gmail.com)
+- feat(project): Reconfigure NPM ignore patterns (filip.dupanovic@gmail.com)
+- feat(project): Add support for configuring Babel (filip.dupanovic@gmail.com)
+- feat(project): Omit Node.js engine package defaults (filip.dupanovic@gmail.com)
+- feat(project): Skip package install on subprojects (filip.dupanovic@gmail.com)
+- feat(project): Ignore `dist/` with Git (filip.dupanovic@gmail.com)
+- feat(project): Add projen config to TS files (filip.dupanovic@gmail.com)
+- feat(project): Improve merging of default options (filip.dupanovic@gmail.com)
+- feat(tsconfig): Manage package with projen (filip.dupanovic@gmail.com)
+- feat(project): Update Node.js version with Renovate (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(project): Ensure package always has version set (filip.dupanovic@gmail.com)
+- chore(deps): chore(deps): update dependency projen to v0.82.4 (email not defined)
+- fix(project): Match scoped packages with Renovate (filip.dupanovic@gmail.com)
+- chore(deps): chore(deps): update dependency projen to v0.82.3 (email not defined)
+- chore(deps): fix(deps): update dependency ramda to v0.30.1 (email not defined)
+- fix(project): Preserve package versions (filip.dupanovic@gmail.com)
+- fix(project): Do not ignore config with ELint (filip.dupanovic@gmail.com)
 
 ## 0.9.0
 

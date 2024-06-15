@@ -2,6 +2,113 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.5.0",
+      "tag": "@langri-sha/eslint-config_v0.5.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.11.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.12"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.4.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency @eslint/js to v9.4.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency @eslint/js to v9.4.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update eslint monorepo to v9.5.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.8"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-unicorn to v54"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.12.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.11"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.13.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update eslint monorepo to v9.4.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(eslint-config): Manage package with projen"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(eslint-config): Add `no-duplicate-imports`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(eslint-config): Add `eslint-plugin-jsdoc`"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 May 2024 03:25:31 GMT",
       "version": "0.4.1",
       "tag": "@langri-sha/eslint-config_v0.4.1",

@@ -2,6 +2,83 @@
   "name": "@langri-sha/projen-typescript-config",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/projen-typescript-config_v0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(typescript-config): Dedupe files"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Reconfigure project expressions"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(typescript-config): Sort files array"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(typescript-config): Dedupe references"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Drop pinning peer dependencies"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(project): Omit Node.js engine package defaults"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(typescript-config): Sort references"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(typescript-config): Manage package with projen"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update node.js to v20.14.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.82.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 05:22:50 GMT",
       "version": "0.2.1",
       "tag": "@langri-sha/projen-typescript-config_v0.2.1",

@@ -2,6 +2,47 @@
   "name": "@langri-sha/projen-editorconfig",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-editorconfig_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Reconfigure project expressions"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Drop pinning peer dependencies"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(project): Omit Node.js engine package defaults"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(editorconfig): Manage package with projen"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.82.3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 05:22:50 GMT",
       "version": "0.3.4",
       "tag": "@langri-sha/projen-editorconfig_v0.3.4",

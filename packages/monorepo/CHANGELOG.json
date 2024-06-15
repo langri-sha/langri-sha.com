@@ -2,6 +2,41 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/monorepo_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Reconfigure project expressions"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(monorepo): Manage package with projen"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update node.js to v20.14.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 May 2024 06:47:18 GMT",
       "version": "0.3.3",
       "tag": "@langri-sha/monorepo_v0.3.3",

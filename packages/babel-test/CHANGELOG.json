@@ -2,6 +2,53 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:06 GMT",
+      "version": "0.5.0",
+      "tag": "@langri-sha/babel-test_v0.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(babel-preset): Hoist TS types to peers"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(babel-test): Manage package with projen"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(projen): Reconfigure project expressions"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update node.js to v20.14.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency ramda to v0.30.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 21 May 2024 05:22:50 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/babel-test_v0.4.0",

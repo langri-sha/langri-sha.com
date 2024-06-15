@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(babel-preset): Hoist TS types to peers",
-  "packageName": "@langri-sha/babel-test",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

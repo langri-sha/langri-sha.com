@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/lint-staged
 
-This log was last generated on Thu, 09 May 2024 07:29:56 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(lint-staged): Manage package with projen (filip.dupanovic@gmail.com)
 
 ## 0.5.0
 

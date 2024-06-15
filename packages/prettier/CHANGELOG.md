@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/prettier
 
-This log was last generated on Sat, 25 May 2024 03:25:31 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(prettier): Manage package with projen (filip.dupanovic@gmail.com)
 
 ## 0.2.2
 

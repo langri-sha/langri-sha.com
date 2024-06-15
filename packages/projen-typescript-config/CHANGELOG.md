@@ -1,8 +1,29 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(typescript-config): Dedupe files (filip.dupanovic@gmail.com)
+- feat(projen): Reconfigure project expressions (filip.dupanovic@gmail.com)
+- feat(typescript-config): Sort files array (filip.dupanovic@gmail.com)
+- feat(typescript-config): Dedupe references (filip.dupanovic@gmail.com)
+- feat(projen): Drop pinning peer dependencies (filip.dupanovic@gmail.com)
+- feat(project): Omit Node.js engine package defaults (filip.dupanovic@gmail.com)
+- feat(typescript-config): Sort references (filip.dupanovic@gmail.com)
+- feat(typescript-config): Manage package with projen (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update node.js to v20.14.0 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.82.3 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.2 (email not defined)
 
 ## 0.2.1
 

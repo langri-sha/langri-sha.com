@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(codeowners): Manage package with projen",
-  "packageName": "@langri-sha/projen-codeowners",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

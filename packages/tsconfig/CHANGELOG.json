@@ -2,6 +2,29 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.10.0",
+      "tag": "@langri-sha/tsconfig_v0.10.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(tsconfig): Manage package with projen"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "fix(tsconfig): Apply Prettier changes"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 03 May 2024 10:44:32 GMT",
       "version": "0.9.0",
       "tag": "@langri-sha/tsconfig_v0.9.0",

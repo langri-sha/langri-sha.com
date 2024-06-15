@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(babel): Add component for configuring Babel",
-  "packageName": "@langri-sha/projen-babel",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

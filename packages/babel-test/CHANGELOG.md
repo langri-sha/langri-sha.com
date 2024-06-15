@@ -1,8 +1,24 @@
 # Change Log - @langri-sha/babel-test
 
-This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sat, 15 Jun 2024 09:09:06 GMT
+
+### Minor changes
+
+- feat(babel-preset): Hoist TS types to peers (filip.dupanovic@gmail.com)
+- feat(babel-test): Manage package with projen (filip.dupanovic@gmail.com)
+- feat(projen): Reconfigure project expressions (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update node.js to v20.14.0 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.2 (email not defined)
+- chore(deps): fix(deps): update dependency ramda to v0.30.1 (email not defined)
 
 ## 0.4.0
 

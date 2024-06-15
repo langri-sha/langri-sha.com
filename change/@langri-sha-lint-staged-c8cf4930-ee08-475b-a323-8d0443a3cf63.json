@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(lint-staged): Manage package with projen",
-  "packageName": "@langri-sha/lint-staged",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

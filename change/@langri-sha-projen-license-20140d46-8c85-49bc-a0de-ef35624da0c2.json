@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): chore(deps): update dependency projen to v0.82.3",
-  "packageName": "@langri-sha/projen-license",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

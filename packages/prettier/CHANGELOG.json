@@ -2,6 +2,21 @@
   "name": "@langri-sha/prettier",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/prettier_v0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(prettier): Manage package with projen"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 May 2024 03:25:31 GMT",
       "version": "0.2.2",
       "tag": "@langri-sha/prettier_v0.2.2",

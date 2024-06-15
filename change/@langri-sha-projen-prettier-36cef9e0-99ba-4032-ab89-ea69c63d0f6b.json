@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "fix(prettier): Sync package version",
-  "packageName": "@langri-sha/projen-prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

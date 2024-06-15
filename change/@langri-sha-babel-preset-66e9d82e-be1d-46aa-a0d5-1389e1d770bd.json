@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): chore(deps): update node.js to v20.14.0",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

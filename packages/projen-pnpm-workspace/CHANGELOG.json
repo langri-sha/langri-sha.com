@@ -1,0 +1,40 @@
+{
+  "name": "@langri-sha/projen-pnpm-workspace",
+  "entries": [
+    {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.1.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency yaml to v2.4.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "chore(deps): fix(deps): update dependency yaml to v2.4.5"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(pnpm-workspace): Atomatically add packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(pnpm-workspace): Add support for PNPM workspaces"
+          }
+        ]
+      }
+    }
+  ]
+}

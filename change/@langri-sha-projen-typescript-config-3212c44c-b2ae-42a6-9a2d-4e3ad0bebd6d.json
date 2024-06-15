@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(typescript-config): Dedupe files",
-  "packageName": "@langri-sha/projen-typescript-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

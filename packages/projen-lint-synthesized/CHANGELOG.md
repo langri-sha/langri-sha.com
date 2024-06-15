@@ -1,8 +1,29 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Tue, 21 May 2024 05:22:50 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(projen): Reconfigure project expressions (filip.dupanovic@gmail.com)
+- feat(lint-synthesized): Manage package with projen (filip.dupanovic@gmail.com)
+- feat(project): Omit Node.js engine package defaults (filip.dupanovic@gmail.com)
+- feat(lint-synthesized): Simplify finding projects (filip.dupanovic@gmail.com)
+- feat(lint-synthesized): Run on all projects (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.82.4 (email not defined)
+- chore(deps): fix(deps): update dependency debug to v4.3.5 (email not defined)
+- chore(deps): chore(deps): update dependency prettier to v3.3.2 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.82.3 (email not defined)
+- chore(deps): chore(deps): update dependency prettier to v3.3.0 (email not defined)
+- chore(deps): chore(deps): update dependency prettier to v3.3.1 (email not defined)
 
 ## 0.2.5
 

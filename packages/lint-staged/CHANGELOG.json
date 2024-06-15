@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Sat, 15 Jun 2024 09:09:05 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/lint-staged_v0.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
+            "comment": "feat(lint-staged): Manage package with projen"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 May 2024 07:29:56 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/lint-staged_v0.5.0",

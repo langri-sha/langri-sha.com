@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): fix(deps): update dependency yaml to v2.4.5",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

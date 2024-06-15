@@ -1,8 +1,22 @@
 # Change Log - @langri-sha/monorepo
 
-This log was last generated on Wed, 15 May 2024 06:47:18 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(projen): Reconfigure project expressions (filip.dupanovic@gmail.com)
+- feat(monorepo): Manage package with projen (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @types/node to v20.14.2 (email not defined)
+- chore(deps): chore(deps): update node.js to v20.14.0 (email not defined)
 
 ## 0.3.3
 

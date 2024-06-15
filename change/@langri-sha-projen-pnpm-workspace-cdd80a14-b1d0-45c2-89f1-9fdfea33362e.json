@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(pnpm-workspace): Atomatically add packages",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

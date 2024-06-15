@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(prettier): Add support for configuring Prettier",
-  "packageName": "@langri-sha/projen-prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

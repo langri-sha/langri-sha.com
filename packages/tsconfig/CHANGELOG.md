@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/tsconfig
 
-This log was last generated on Fri, 03 May 2024 10:44:32 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.10.0
+
+Sat, 15 Jun 2024 09:09:05 GMT
+
+### Minor changes
+
+- feat(tsconfig): Manage package with projen (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(tsconfig): Apply Prettier changes (filip.dupanovic@gmail.com)
 
 ## 0.9.0
 
