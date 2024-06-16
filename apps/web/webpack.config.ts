@@ -1,3 +1,4 @@
+/// <reference types="./src/web.d.ts" />
 import path from 'node:path'
 
 import {
@@ -91,6 +92,7 @@ export default env(({ development, production }) => ({
     }),
     new EnvironmentPlugin({
       NODE_ENV: development ? 'development' : 'production',
-    }),
+      EXPERIMENTAL_SCENE: null,
+    } satisfies WebEnv),
   ],
 }))

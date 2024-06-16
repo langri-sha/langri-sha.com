@@ -11,7 +11,7 @@ export const Landing = () => (
     <Root>
       <Root>
         <Header />
-        <Scene />
+        {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
         <Drone />
       </Root>
     </Root>
