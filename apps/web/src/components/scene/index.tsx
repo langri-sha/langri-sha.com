@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import * as React from 'react'
 
 import vertexShaderSource from './default.vert'
@@ -69,18 +69,7 @@ export const Scene = () => {
     gl.drawArrays(primitiveType, offset, count)
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      css={css`
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-      `}
-    />
-  )
+  return <Canvas ref={canvasRef} />
 }
 
 const createShader = (
@@ -142,3 +131,11 @@ const resize = (canvas: HTMLCanvasElement) => {
     canvas.height = displayHeight
   }
 }
+
+const Canvas = styled.canvas`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+`
