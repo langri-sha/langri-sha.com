@@ -26,6 +26,7 @@ export default env(({ development, production }) => ({
   mode: production ? 'production' : 'development',
   entry: './src/index.tsx',
   optimization: {
+    nodeEnv: false,
     minimizer: [
       new TerserPlugin({
         parallel: true,
