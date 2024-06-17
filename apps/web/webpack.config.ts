@@ -15,14 +15,19 @@ import {
 type Options = {
   development?: boolean
   production?: boolean
+  publicPath?: string
 }
 
 const env =
   (options: (config: Options) => Configuration) =>
-  ({ development = true, production = false }: Options = {}) =>
-    options({ development, production })
+  ({
+    development = true,
+    production = false,
+    publicPath = 'auto',
+  }: Options = {}) =>
+    options({ development, production, publicPath })
 
-export default env(({ development, production }) => ({
+export default env(({ development, production, publicPath }) => ({
   target: 'web',
   mode: production ? 'production' : 'development',
   entry: './src/index.tsx',
@@ -47,6 +52,7 @@ export default env(({ development, production }) => ({
       `[name]${production ? '.[chunkhash].min' : ''}.js`,
     ),
     path: path.resolve(__dirname, 'dist'),
+    publicPath,
     hashFunction: 'xxhash64',
   },
   module: {
