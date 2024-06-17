@@ -40,6 +40,14 @@ export default env(({ development, production }) => ({
   },
   resolve,
   resolveLoader,
+  output: {
+    filename: path.join(
+      'assets',
+      'sripts',
+      `[name]${production ? '.[chunkhash].min' : ''}.js`,
+    ),
+    path: path.resolve(__dirname, 'dist'),
+  },
   module: {
     rules: [
       {
