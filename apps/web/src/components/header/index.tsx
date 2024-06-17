@@ -69,6 +69,7 @@ const Title = styled.h1`
   color: ${colors.text};
   font-size: 6rem;
   letter-spacing: -0.03em;
+  margin-top: 0;
   user-select: none;
 
   ${media.medium} {
