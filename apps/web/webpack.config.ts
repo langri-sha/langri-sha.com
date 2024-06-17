@@ -47,6 +47,7 @@ export default env(({ development, production }) => ({
       `[name]${production ? '.[chunkhash].min' : ''}.js`,
     ),
     path: path.resolve(__dirname, 'dist'),
+    hashFunction: 'xxhash64',
   },
   module: {
     rules: [
