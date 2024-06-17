@@ -19,7 +19,7 @@
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/node": "20.14.2"
+    "@types/node": "20.14.3"
   },
   "publishConfig": {
     "access": "public",

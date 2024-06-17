@@ -24,7 +24,7 @@
   "devDependencies": {
     "@langri-sha/babel-preset": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@types/node": "20.14.2"
+    "@types/node": "20.14.3"
   },
   "peerDependencies": {
     "@babel/register": "^7.0.0",
