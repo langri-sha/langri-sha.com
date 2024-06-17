@@ -81,7 +81,6 @@ const Title = styled.h1`
 `
 
 const Nav = styled.nav`
-  position: absolute;
   display: flex;
   width: 100%;
   left: 0;
