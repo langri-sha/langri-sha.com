@@ -20,12 +20,8 @@ type Options = {
 
 const env =
   (options: (config: Options) => Configuration) =>
-  ({
-    development = true,
-    production = false,
-    publicPath = 'auto',
-  }: Options = {}) =>
-    options({ development, production, publicPath })
+  ({ production = false, publicPath = 'auto' }: Options = {}) =>
+    options({ development: !production, production, publicPath })
 
 export default env(({ development, production, publicPath }) => ({
   target: 'web',
