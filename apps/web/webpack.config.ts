@@ -65,7 +65,10 @@ export default env(({ development, environment, production, publicPath }) => ({
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         options: {
+          babelrc: false,
           cacheDirectory: true,
+          envName: environment,
+          presets: ['@langri-sha'],
         },
       },
       {
