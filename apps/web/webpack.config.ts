@@ -41,7 +41,11 @@ export default env(({ development, environment, production, publicPath }) => ({
         parallel: true,
         extractComments: {
           condition: 'some',
-          filename: (filename) => `${filename}.LICENSE.txt`,
+          filename: (filedata) => script(`${filedata.basename}.LICENSE.txt`),
+          banner: (licenseFile) =>
+            publicPath
+              ? new URL(licenseFile, publicPath).toString()
+              : licenseFile,
         },
       }),
     ],
@@ -49,11 +53,7 @@ export default env(({ development, environment, production, publicPath }) => ({
   resolve,
   resolveLoader,
   output: {
-    filename: path.join(
-      'assets',
-      'sripts',
-      `[name]${production ? '.[chunkhash].min' : ''}.js`,
-    ),
+    filename: script(`[name]${production ? '.[chunkhash].min' : ''}.js`),
     path: path.resolve(__dirname, 'dist'),
     publicPath,
     hashFunction: 'xxhash64',
@@ -114,3 +114,5 @@ export default env(({ development, environment, production, publicPath }) => ({
     } satisfies WebEnv),
   ],
 }))
+
+const script = (name: string) => path.join('assets', 'scripts', name)
