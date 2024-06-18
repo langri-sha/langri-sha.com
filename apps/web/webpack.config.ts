@@ -29,10 +29,11 @@ const env =
       publicPath,
     })
 
-export default env(({ environment, production, publicPath }) => ({
+export default env(({ development, environment, production, publicPath }) => ({
   target: 'web',
   mode: environment,
   entry: './src/index.tsx',
+  devtool: development ? 'eval-cheap-module-source-map' : 'hidden-source-map',
   optimization: {
     nodeEnv: false,
     minimizer: [
