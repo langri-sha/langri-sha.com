@@ -1,8 +1,9 @@
 import defaults from '@langri-sha/prettier'
 
 /** @type {import("prettier").Config} */
-const config = {
-  ...defaults,
-}
+    const config = {
+      ...defaults,
+      }
 
-export default config
+    export default config
+    

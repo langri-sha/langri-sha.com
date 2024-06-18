@@ -5,7 +5,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": ".tsbuild",
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
   "references": [
     {
