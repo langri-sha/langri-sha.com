@@ -16,6 +16,7 @@ export const Drone: React.FC<Record<string, never>> = () => {
 
 /**
  * Adopted from @mattdiamond's JS drone project.
+ * @preserve
  * @see http://matt-diamond.com/drone.html
  */
 class Processor {

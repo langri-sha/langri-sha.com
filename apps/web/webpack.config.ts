@@ -43,7 +43,7 @@ export default env(({ development, environment, production, publicPath }) => ({
           condition: 'some',
           filename: (filedata) => script(`${filedata.basename}.LICENSE.txt`),
           banner: (licenseFile) =>
-            publicPath
+            publicPath !== 'auto'
               ? new URL(licenseFile, publicPath).toString()
               : licenseFile,
         },
