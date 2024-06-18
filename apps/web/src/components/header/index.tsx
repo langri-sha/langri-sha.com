@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 import { animations, colors, fonts, layers, media } from '../../styles'
-import { Link } from '../link'
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 
 export const Header = () => (
@@ -42,17 +41,9 @@ export const Header = () => (
           ],
         ] as const
       ).map(([name, href, title, icon]) => (
-        <EnhancedLink
-          key={name}
-          href={href}
-          title={title}
-          target="_blank"
-          eventCategory="Social Links"
-          eventAction="click"
-          eventLabel={name}
-        >
+        <Link key={name} href={href} title={title}>
           {icon}
-        </EnhancedLink>
+        </Link>
       ))}
     </Nav>
   </Root>
@@ -90,7 +81,7 @@ const Nav = styled.nav`
   justify-content: center;
 `
 
-const EnhancedLink: typeof Link = styled(Link)`
+const Link = styled.a`
   color: ${colors.text};
   font-size: 3.2rem;
   text-decoration: none;
