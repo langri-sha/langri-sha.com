@@ -73,8 +73,8 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       projen:
-        specifier: 0.82.4
-        version: 0.82.4(constructs@10.3.0)
+        specifier: 0.82.6
+        version: 0.82.6(constructs@10.3.0)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@20.14.3)(typescript@5.4.5)
@@ -479,8 +479,8 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       projen:
-        specifier: 0.82.4
-        version: 0.82.4(constructs@10.3.0)
+        specifier: 0.82.6
+        version: 0.82.6(constructs@10.3.0)
 
   packages/projen-pnpm-workspace:
     dependencies:
@@ -5854,6 +5854,27 @@ packages:
 
   projen@0.82.4:
     resolution: {integrity: sha512-tZhYkxZpl3PyaOvzIyUfLdCY3iMFZaGsMpBZZcX0efnumm0sP4VMj75TBxVrqdTxf4XwE18cCvIOOFvI/iuFxA==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    peerDependencies:
+      constructs: ^10.0.0
+    bundledDependencies:
+      - '@iarna/toml'
+      - case
+      - chalk
+      - comment-json
+      - conventional-changelog-config-spec
+      - fast-json-patch
+      - glob
+      - ini
+      - semver
+      - shx
+      - xmlbuilder2
+      - yaml
+      - yargs
+
+  projen@0.82.6:
+    resolution: {integrity: sha512-odAYFpNvR57BAYF5gLWq4d53edcsdvyJ8YjbX/0MDLLuS99gnHvQzGIj0ZeB13ahkrFv5dW+EanpcUKg5LA/Aw==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -14377,6 +14398,10 @@ snapshots:
   progress@1.1.8: {}
 
   projen@0.82.4(constructs@10.3.0):
+    dependencies:
+      constructs: 10.3.0
+
+  projen@0.82.6(constructs@10.3.0):
     dependencies:
       constructs: 10.3.0
 
