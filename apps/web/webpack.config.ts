@@ -14,18 +14,24 @@ import {
 
 type Options = {
   development?: boolean
+  environment?: 'development' | 'production'
   production?: boolean
   publicPath?: string
 }
 
 const env =
-  (options: (config: Options) => Configuration) =>
+  (options: (config: Required<Options>) => Configuration) =>
   ({ production = false, publicPath = 'auto' }: Options = {}) =>
-    options({ development: !production, production, publicPath })
+    options({
+      development: !production,
+      environment: production ? 'production' : 'development',
+      production,
+      publicPath,
+    })
 
-export default env(({ development, production, publicPath }) => ({
+export default env(({ environment, production, publicPath }) => ({
   target: 'web',
-  mode: production ? 'production' : 'development',
+  mode: environment,
   entry: './src/index.tsx',
   optimization: {
     nodeEnv: false,
@@ -102,7 +108,7 @@ export default env(({ development, production, publicPath }) => ({
       template: require.resolve('./src/index.ejs'),
     }),
     new EnvironmentPlugin({
-      NODE_ENV: development ? 'development' : 'production',
+      NODE_ENV: environment,
       EXPERIMENTAL_SCENE: null,
     } satisfies WebEnv),
   ],
