@@ -17,12 +17,6 @@ export const Header = () => (
             <Stackoverflow key={'stackoverflow'} />,
           ],
           [
-            'Keybase',
-            'https://keybase.io/langrisha',
-            'Identity details on Keybase.io',
-            <Keybase key={'keybase'} />,
-          ],
-          [
             'GitHub',
             'https://github.com/langri-sha',
             'GitHub profile',
@@ -39,6 +33,12 @@ export const Header = () => (
             'https://www.npmjs.com/~langri-sha',
             'NPM profile',
             <Npm key={'npm'} />,
+          ],
+          [
+            'Keybase',
+            'https://keybase.io/langrisha',
+            'Identity details on Keybase.io',
+            <Keybase key={'keybase'} />,
           ],
         ] as const
       ).map(([name, href, title, icon]) => (
