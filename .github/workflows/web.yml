@@ -13,6 +13,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event_name == 'release' && 'production' || 'preview' }}
 
     steps:
       - name: Checkout
@@ -22,7 +24,7 @@ jobs:
         uses: ./.github/actions/pnpm
 
       - name: Build
-        run: pnpm build
+        run: pnpm build --env publicPath=${{ vars.ASSETS_URL }}
 
       - name: Create artifact
         uses: actions/upload-artifact@v4
