@@ -66,18 +66,16 @@ jobs:
       - name: Configure environment
         run: |
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            echo "URL=${{ vars.URL }}/${{ github.event.pull_request.number }}" >> $$GITHUB_ENV
+            echo "BUCKET=${{ vars.BUCKET }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo "URL=${{ vars.URL }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
           else
+            echo "BUCKET=${{ vars.BUCKET }}" >> $GITHUB_ENV
             echo "URL=${{ vars.URL }}" >> $GITHUB_ENV
           fi
 
-          echo "ASSETS_BUCKET=gs://${{ vars.ASSETS_BUCKET }}" >> $GITHUB_ENV
-          echo "ASSETS_URL=${{ vars.ASSETS_URL }}" >> $$GITHUB_ENV
-          echo "BUCKET=gs://${{ vars.BUCKET }}" >> $GITHUB_ENV
-
       - name: Publish assets
         run: |
-          gcloud storage cp dist/web/assets/* ${{ env.BUCKET }}/assets \
+          gcloud storage cp dist/web/assets/** gs://${{ vars.ASSETS_BUCKET }}/assets \
             --cache-control="public, max-age=31536000, immutable" \
             --no-clobber \
             --project ${{ vars.EDGE_PROJECT_ID }} \
@@ -85,4 +83,9 @@ jobs:
 
       - name: Publish
         run: |
-          gsutil -u ${{ vars.EDGE_PROJECT_ID }} -qm rsync -r -j $GZIP_TYPES -x gz dist/web ${{ env.BUCKET }}
+          rm -rf dist/web/assets
+
+          gcloud storage cp dist/web/* gs://${{ env.BUCKET }} \
+            --cache-control="public, no-store" \
+            --project ${{ vars.EDGE_PROJECT_ID }} \
+            --recursive
