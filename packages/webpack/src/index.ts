@@ -6,6 +6,7 @@ export { default, EnvironmentPlugin, type Configuration } from 'webpack'
 
 // Theirs.
 export { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
+export { SubresourceIntegrityPlugin } from 'webpack-subresource-integrity'
 export { default as CopyPlugin } from 'copy-webpack-plugin'
 export { default as HtmlPlugin } from 'html-webpack-plugin'
 export { default as TerserPlugin } from 'terser-webpack-plugin'
