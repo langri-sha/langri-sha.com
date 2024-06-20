@@ -53,6 +53,7 @@ export default env(({ development, environment, production, publicPath }) => ({
   resolve,
   resolveLoader,
   output: {
+    crossOriginLoading: 'anonymous',
     filename: script(`[name]${production ? '.[chunkhash].min' : ''}.js`),
     path: path.resolve(__dirname, 'dist'),
     publicPath,
