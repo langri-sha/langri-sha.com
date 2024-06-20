@@ -7,6 +7,7 @@ import {
   CopyPlugin,
   EnvironmentPlugin,
   HtmlPlugin,
+  SubresourceIntegrityPlugin,
   TerserPlugin,
   resolve,
   resolveLoader,
@@ -108,6 +109,7 @@ export default env(({ development, environment, production, publicPath }) => ({
         },
       ],
     }),
+    new SubresourceIntegrityPlugin(),
     new HtmlPlugin({
       title: 'Langri-Sha',
       template: require.resolve('./src/index.ejs'),
