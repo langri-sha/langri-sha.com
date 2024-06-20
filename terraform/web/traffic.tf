@@ -2,7 +2,7 @@ locals {
   certificate_hash = substr(md5(join(",", values(local.host_names))), 0, 4)
   limited_hosts = toset(compact([
     for host in local.hosts :
-    contains(keys(local.host_redirects), host) ? "" : host == "production-assets" ? "" : host
+    contains(keys(local.host_redirects), host) ? "" : host
   ]))
 }
 
