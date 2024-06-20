@@ -50,6 +50,7 @@ resource "google_compute_backend_bucket" "public" {
   project = module.project["edge"].project_id
 
   bucket_name = google_storage_bucket.public[each.value].name
+  compression_mode = "AUTOMATIC"
   enable_cdn  = true
 
   custom_response_headers = [
