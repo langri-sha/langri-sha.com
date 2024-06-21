@@ -80,28 +80,28 @@ export class TypeScriptConfig extends JsonFile {
   /**
    * Appends to the list of filenames and patterns to exclude in the program.
    */
-  addExclude(...fileNamesOrPatterns: string[]) {
+  addExclude(...fileNamesOrPatterns: string[]): void {
     this.addToArray('exclude', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames and patterns to include in the program.
    */
-  addInclude(...fileNamesOrPatterns: string[]) {
+  addInclude(...fileNamesOrPatterns: string[]): void {
     this.addToArray('include', ...fileNamesOrPatterns)
   }
 
   /**
    * Appends to the list of filenames to include in the program.
    */
-  addFile(...fileNames: string[]) {
+  addFile(...fileNames: string[]): void {
     this.addToArray('files', ...fileNames)
   }
 
   /**
    * Adds a reference project.
    */
-  addReference(...paths: string[]) {
+  addReference(...paths: string[]): void {
     this.addToArray(
       'references',
       ...paths.map((path) => ({

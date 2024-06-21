@@ -1,7 +1,7 @@
-import { css } from '@emotion/react'
+import { type SerializedStyles, css } from '@emotion/react'
 import normalize from 'normalize.css'
 
-export default css`
+const global: SerializedStyles = css`
   ${normalize};
 
   html {
@@ -29,3 +29,5 @@ export default css`
     display: block;
   }
 `
+
+export default global

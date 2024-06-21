@@ -5,7 +5,7 @@ import { Global } from '@emotion/react'
 import { global } from '../styles'
 import { Drone, Header, Scene } from '../components'
 
-export const Landing = () => (
+export const Landing: React.FC = () => (
   <React.Fragment>
     <Global styles={global} />
     <Root>

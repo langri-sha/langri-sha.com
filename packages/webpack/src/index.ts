@@ -1,5 +1,5 @@
 import path from 'path'
-import type { ResolveOptions } from 'webpack'
+import type { Configuration, ResolveOptions } from 'webpack'
 
 // Stock.
 export { default, EnvironmentPlugin, type Configuration } from 'webpack'
@@ -14,7 +14,7 @@ export { default as TerserPlugin } from 'terser-webpack-plugin'
 /**
  * Reusable resolve settings.
  */
-export const resolve = {
+export const resolve: Configuration['resolve'] = {
   extensions: ['.tsx', '.ts', '.js'],
 }
 

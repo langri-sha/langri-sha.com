@@ -219,7 +219,7 @@ export class Project extends BaseProject {
   addSubproject(
     projectOptions: ProjectOptions,
     ...compose: Array<(project: Project) => void>
-  ) {
+  ): Project {
     const project = new Project({
       parent: this,
       ...projectOptions,
