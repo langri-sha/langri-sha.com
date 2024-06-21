@@ -2,8 +2,9 @@ import styled from '@emotion/styled'
 
 import { animations, colors, fonts, layers, media } from '../../styles'
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
+import * as React from 'react'
 
-export const Header = () => (
+export const Header: React.FC = () => (
   <Root>
     <Title>Langri-Sha</Title>
     <Nav>

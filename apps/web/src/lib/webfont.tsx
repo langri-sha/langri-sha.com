@@ -5,5 +5,8 @@ const defaults = {
   events: false,
 }
 
-export default (options: { families: string[]; text?: string }) =>
-  WebFont.load({ ...defaults, google: options })
+export const webfont: (options: {
+  families: string[]
+  text?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}) => any = (options) => WebFont.load({ ...defaults, google: options })

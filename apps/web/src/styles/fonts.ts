@@ -1,9 +1,9 @@
-import { css } from '@emotion/react'
+import { type SerializedStyles, css } from '@emotion/react'
 
-export const base = css`
+export const base: SerializedStyles = css`
   font-family: serif;
 `
 
-export const heading = css`
+export const heading: SerializedStyles = css`
   font-family: 'Cinzel Decorative', serif;
 `

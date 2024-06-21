@@ -4,7 +4,7 @@ import * as React from 'react'
 import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
 
-export const Scene = () => {
+export const Scene: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {

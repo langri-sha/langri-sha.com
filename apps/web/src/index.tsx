@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 
 import { Landing } from './pages'
-import webfont from './lib/webfont'
+import { webfont } from './lib/webfont'
 ;(() => {
   webfont({
     families: ['Cinzel Decorative:400&display=swap'],
