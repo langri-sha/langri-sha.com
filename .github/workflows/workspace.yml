@@ -143,6 +143,7 @@ jobs:
 
           if [[ $(git status --porcelain) ]]; then
             echo '::error::Some projen changes haven not been appplied. Run `pnpx projen`.'
+            git status
             git diff
             exit 1
           fi
