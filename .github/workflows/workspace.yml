@@ -25,7 +25,7 @@ jobs:
         run: pnpm prettier --check .
 
       - name: TypeScript
-        run: tsc --build .
+        run: pnpm tsc --build .
 
       - name: Beachball
         if: github.event_name == 'pull_request'
