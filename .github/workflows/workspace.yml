@@ -8,6 +8,7 @@ on:
 
 jobs:
   post-upgrade:
+    name: Renovate Post-Upgrade
     runs-on: ubuntu-latest
 
     if: ${{ github.actor == 'renovate[bot]' || github.actor == 'dependabot[bot]' }}
@@ -60,6 +61,7 @@ jobs:
           path: .diff.patch
 
   commit-upgrade-changes:
+    name: Commit Upgrade Changes
     runs-on: ubuntu-latest
     if: ${{ needs.post-upgrade.outputs.has-changes }}
     needs: [post-upgrade]
