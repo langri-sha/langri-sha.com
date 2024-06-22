@@ -94,11 +94,7 @@ node_modules/
   },
   "someproject/@some/test/tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "outDir": ".tsbuild",
-    },
-    "extends": "@langri-sha/tsconfig/project.json",
+    "extends": "@langri-sha/tsconfig/project",
   },
 }
 `;
@@ -1657,11 +1653,7 @@ node_modules/
   },
   "sub-project-a/tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "outDir": ".tsbuild",
-    },
-    "extends": "@langri-sha/tsconfig/project.json",
+    "extends": "@langri-sha/tsconfig/project",
     "references": [
       {
         "path": "../sub-project-b",
@@ -1744,11 +1736,7 @@ node_modules/
   },
   "sub-project-b/tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "outDir": ".tsbuild",
-    },
-    "extends": "@langri-sha/tsconfig/project.json",
+    "extends": "@langri-sha/tsconfig/project",
     "references": [
       {
         "path": "../sub-project-a",

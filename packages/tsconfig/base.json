@@ -3,6 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "${configDir}",
     "checkJs": true,
     "esModuleInterop": true,
     "experimentalDecorators": false,
@@ -15,6 +16,10 @@
     "noImplicitOverride": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "outDir": "${configDir}/dist",
+    "paths": {
+      "got": ["${configDir}/node_modules/got/dist/source"]
+    },
     "pretty": true,
     "removeComments": false,
     "resolveJsonModule": true,

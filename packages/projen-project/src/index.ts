@@ -585,11 +585,7 @@ export class Project extends BaseProject {
     const defaults: TypeScriptConfigOptions = parent
       ? {
           config: {
-            extends: '@langri-sha/tsconfig/project.json',
-            compilerOptions: {
-              baseUrl: '.',
-              outDir: '.tsbuild',
-            },
+            extends: '@langri-sha/tsconfig/project',
           },
         }
       : {
