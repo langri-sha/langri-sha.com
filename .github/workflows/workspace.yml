@@ -136,6 +136,7 @@ jobs:
 
           if [[ $(git status --porcelain) ]]; then
             echo '::error::Some packages need fixing.'
+            git status
             git diff
             exit 1
           fi
