@@ -118,11 +118,7 @@ const publish = (project: Project) => {
   new TypeScriptConfig(project, {
     fileName: 'tsconfig.build.json',
     config: {
-      extends: '@langri-sha/tsconfig/build.json',
-      compilerOptions: {
-        baseUrl: '.',
-        outDir: 'lib',
-      },
+      extends: '@langri-sha/tsconfig/build',
     },
   })
 
@@ -669,15 +665,7 @@ project.addSubproject(
   {
     name: '@langri-sha/schemastore-to-typescript',
     outdir: path.join('packages', 'schemastore-to-typescript'),
-    typeScriptConfig: {
-      config: {
-        compilerOptions: {
-          paths: {
-            got: ['node_modules/got/dist/source'],
-          },
-        },
-      },
-    },
+    typeScriptConfig: {},
     npmIgnore: {},
     package: {
       ...pkg,
@@ -720,7 +708,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       entrypoint: 'base.json',
-      peerDeps: ['typescript@^5.0.0'],
+      peerDeps: ['typescript@^5.5.0'],
     },
   },
   subproject,
