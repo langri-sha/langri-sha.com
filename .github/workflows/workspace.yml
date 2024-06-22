@@ -155,6 +155,7 @@ jobs:
     name: Jest
     runs-on: ubuntu-latest
     needs: [commit-upgrade-changes]
+    if: always()
 
     steps:
       - name: Checkout
