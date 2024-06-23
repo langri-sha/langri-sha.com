@@ -22,7 +22,7 @@
     },
     {
       "name": "eslint-plugin-jsdoc",
-      "version": "48.2.13",
+      "version": "48.2.15",
       "type": "runtime"
     },
     {
