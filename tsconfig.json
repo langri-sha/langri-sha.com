@@ -84,6 +84,9 @@
       "path": "packages/projen-typescript-config"
     },
     {
+      "path": "packages/schemastore-to-typescript"
+    },
+    {
       "path": "packages/vitest"
     },
     {

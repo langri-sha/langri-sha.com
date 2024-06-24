@@ -649,6 +649,19 @@ importers:
         specifier: 20.14.9
         version: 20.14.9
 
+  packages/schemastore-to-typescript:
+    dependencies:
+      projen:
+        specifier: ^0.82.0
+        version: 0.82.4(constructs@10.3.0)
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: '*'
+        version: 0.9.0(typescript@5.5.2)
+      '@langri-sha/vitest':
+        specifier: workspace:*
+        version: link:../vitest
+
   packages/tsconfig:
     dependencies:
       typescript:

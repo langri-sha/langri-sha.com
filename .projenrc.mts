@@ -660,6 +660,24 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/schemastore-to-typescript',
+    outdir: path.join('packages', 'schemastore-to-typescript'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/tsconfig',
     outdir: path.join('packages', 'tsconfig'),
     npmIgnore: {},
