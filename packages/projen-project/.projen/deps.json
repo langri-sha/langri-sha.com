@@ -16,8 +16,58 @@
       "type": "build"
     },
     {
+      "name": "@babel/core",
+      "version": "^7.8.0",
+      "type": "peer"
+    },
+    {
+      "name": "@types/babel__core",
+      "version": "^7.8.0",
+      "type": "peer"
+    },
+    {
+      "name": "beachball",
+      "version": "^2.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "eslint",
+      "version": "^9.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "husky",
+      "version": "^9.0.1",
+      "type": "peer"
+    },
+    {
+      "name": "jest",
+      "version": "^28.0.0 || ^29.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "lint-staged",
+      "version": "^15.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "prettier",
+      "version": "^3.0.0",
+      "type": "peer"
+    },
+    {
       "name": "projen",
       "version": "^0.82.0",
+      "type": "peer"
+    },
+    {
+      "name": "ts-node",
+      "version": "^10.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "typescript",
+      "version": "^5.5.0",
       "type": "peer"
     },
     {

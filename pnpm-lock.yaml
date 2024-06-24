@@ -522,6 +522,9 @@ importers:
 
   packages/projen-project:
     dependencies:
+      '@babel/core':
+        specifier: ^7.8.0
+        version: 7.24.7
       '@langri-sha/projen-babel':
         specifier: workspace:*
         version: link:../projen-babel
@@ -564,12 +567,39 @@ importers:
       '@langri-sha/projen-typescript-config':
         specifier: workspace:*
         version: link:../projen-typescript-config
+      '@types/babel__core':
+        specifier: ^7.8.0
+        version: 7.20.5
+      beachball:
+        specifier: ^2.0.0
+        version: 2.43.1(typescript@5.5.2)
+      eslint:
+        specifier: ^9.0.0
+        version: 9.5.0
+      husky:
+        specifier: ^9.0.1
+        version: 9.0.11
+      jest:
+        specifier: ^28.0.0 || ^29.0.0
+        version: 29.7.0(@types/node@20.14.8)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.14.8)(typescript@5.5.2))
+      lint-staged:
+        specifier: ^15.0.0
+        version: 15.2.7
+      prettier:
+        specifier: ^3.0.0
+        version: 3.3.2
       projen:
         specifier: ^0.82.0
         version: 0.82.4(constructs@10.3.0)
       ramda:
         specifier: 0.30.1
         version: 0.30.1
+      ts-node:
+        specifier: ^10.0.0
+        version: 10.9.2(@types/node@20.14.8)(typescript@5.5.2)
+      typescript:
+        specifier: ^5.5.0
+        version: 5.5.2
     devDependencies:
       '@langri-sha/jest-test':
         specifier: workspace:*
