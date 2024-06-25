@@ -16,6 +16,11 @@
       "type": "runtime"
     },
     {
+      "name": "nock",
+      "version": "13.5.4",
+      "type": "runtime"
+    },
+    {
       "name": "tempy",
       "version": "1.0.1",
       "type": "runtime"
