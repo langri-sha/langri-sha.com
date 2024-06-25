@@ -115,6 +115,9 @@ const publish = (project: Project) => {
       compilerOptions: {
         baseUrl: '.',
         outDir: 'lib',
+        ...(project.name === '@langri-sha/schemastore-to-typescript'
+          ? { paths: { got: ['node_modules/got/dist/source'] } }
+          : {}),
       },
     },
   })
@@ -662,12 +665,21 @@ project.addSubproject(
   {
     name: '@langri-sha/schemastore-to-typescript',
     outdir: path.join('packages', 'schemastore-to-typescript'),
-    typeScriptConfig: {},
+    typeScriptConfig: {
+      config: {
+        compilerOptions: {
+          paths: {
+            got: ['node_modules/got/dist/source'],
+          },
+        },
+      },
+    },
     npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
+      deps: ['got@14.4.1'],
       peerDeps: ['projen@^0.82.0'],
     },
   },

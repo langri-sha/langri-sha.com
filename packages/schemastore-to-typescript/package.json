@@ -13,6 +13,9 @@
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
+  "dependencies": {
+    "got": "14.4.1"
+  },
   "devDependencies": {
     "@langri-sha/tsconfig": "*",
     "@langri-sha/vitest": "workspace:*"
