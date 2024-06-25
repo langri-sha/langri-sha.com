@@ -233,6 +233,9 @@ importers:
       jest:
         specifier: ^29.0.0
         version: 29.7.0(@types/node@20.14.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.14.9)(typescript@5.5.3))
+      nock:
+        specifier: 13.5.4
+        version: 13.5.4
       tempy:
         specifier: 1.0.1
         version: 1.0.1
@@ -660,7 +663,7 @@ importers:
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: '*'
-        version: 0.9.0(typescript@5.5.2)
+        version: 0.9.0(typescript@5.5.3)
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
@@ -5892,6 +5895,10 @@ packages:
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
+  nock@13.5.4:
+    resolution: {integrity: sha512-yAyTfdeNJGGBFxWdzSKCBYxs5FxLbCg5X5Q4ets974hcQzG1+qCxvIyOo4j2Ry6MUlhWVMX4OoYDefAIIwupjw==}
+    engines: {node: '>= 10.13'}
+
   node-abi@3.62.0:
     resolution: {integrity: sha512-CPMcGa+y33xuL1E0TcNIu4YyaZCxnnvkVaEXrsosR3FxN+fV8xvb7Mzpb7IgKler10qeMkE6+Dp8qJhpzdq35g==}
     engines: {node: '>=10'}
@@ -6327,6 +6334,10 @@ packages:
   prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
     engines: {node: '>= 6'}
+
+  propagate@2.0.1:
+    resolution: {integrity: sha512-vGrhOavPSTz4QVNuBNdcNXePNdNMaO1xj9yBeH1ScQPjk/rhg9sSlCXPhMkFuaNNW/syTvYqsnbIJxMBfRbbag==}
+    engines: {node: '>= 8'}
 
   protocols@2.0.1:
     resolution: {integrity: sha512-/XJ368cyBJ7fzLMwLKv1e4vLxOju2MNAIokcr7meSaNcVbWz/CPcW22cP04mwxOErdA5mwjA8Q6w/cdAQxVn7Q==}
@@ -15001,6 +15012,14 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.6.3
 
+  nock@13.5.4:
+    dependencies:
+      debug: 4.3.5
+      json-stringify-safe: 5.0.1
+      propagate: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
   node-abi@3.62.0:
     dependencies:
       semver: 7.6.2
@@ -15410,6 +15429,8 @@ snapshots:
     dependencies:
       kleur: 3.0.3
       sisteransi: 1.0.5
+
+  propagate@2.0.1: {}
 
   protocols@2.0.1: {}
 
