@@ -16,7 +16,7 @@
   "dependencies": {
     "debug": "4.3.5",
     "execa": "8.0.1",
-    "minimatch": "9.0.4"
+    "minimatch": "9.0.5"
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
