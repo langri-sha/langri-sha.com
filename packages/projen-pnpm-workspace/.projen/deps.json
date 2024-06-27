@@ -11,6 +11,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/vitest",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "version": "^0.82.0",
       "type": "peer"

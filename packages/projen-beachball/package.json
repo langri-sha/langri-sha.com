@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
-    "@langri-sha/tsconfig": "workspace:*"
+    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/vitest": "workspace:*"
   },
   "peerDependencies": {
     "beachball": "^2.0.0",
