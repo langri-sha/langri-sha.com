@@ -13,6 +13,9 @@
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
+  "dependencies": {
+    "tempy": "1.0.1"
+  },
   "devDependencies": {
     "@langri-sha/tsconfig": "*"
   },
