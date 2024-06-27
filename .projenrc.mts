@@ -679,7 +679,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['got@14.4.1'],
+      deps: ['json-schema-to-typescript@14.1.0', 'got@14.4.1'],
       peerDeps: ['projen@^0.82.0'],
     },
   },
