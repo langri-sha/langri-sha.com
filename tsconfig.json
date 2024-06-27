@@ -85,6 +85,9 @@
       "path": "packages/projen-typescript-config"
     },
     {
+      "path": "packages/vitest"
+    },
+    {
       "path": "packages/webpack"
     }
   ]

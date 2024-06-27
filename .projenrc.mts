@@ -701,6 +701,23 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/vitest',
+    outdir: path.join('packages', 'vitest'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['vitest@^1.6.0'],
+    },
+  },
+  subproject,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/webpack',
     outdir: path.join('packages', 'webpack'),
     typeScriptConfig: {},
