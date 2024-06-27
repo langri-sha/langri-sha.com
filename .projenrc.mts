@@ -58,31 +58,6 @@ const project = new Project({
   husky: {
     'pre-commit': 'pnpm -q lint-staged',
   },
-  jestConfig: {
-    extends: '@langri-sha/jest-config',
-    config: {
-      transformIgnorePatterns: [
-        `node_modules/(?!(?:.pnpm/)?(${[
-          'execa',
-          'find-up',
-          'get-stream',
-          'human-signals',
-          'is-stream',
-          'locate-path',
-          'mimic-fn',
-          'npm-run-path',
-          'onetime',
-          'p-limit',
-          'p-locate',
-          'path-exists',
-          'path-key',
-          'strip-final-newline',
-          'unicorn-magic',
-          'yocto-queue',
-        ].join('|')}))`,
-      ],
-    },
-  },
   lintStaged: {},
   lintSynthesized: {},
   prettier: {

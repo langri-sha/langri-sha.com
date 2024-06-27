@@ -7,7 +7,6 @@
     "babel.config.js",
     "beachball.config.js",
     "eslint.config.mjs",
-    "jest.config.ts",
     "lint-staged.config.mjs",
     "prettier.config.mjs"
   ],
