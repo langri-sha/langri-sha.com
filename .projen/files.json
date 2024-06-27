@@ -12,7 +12,6 @@
     "beachball.config.js",
     "CODEOWNERS",
     "eslint.config.mjs",
-    "jest.config.ts",
     "license",
     "lint-staged.config.mjs",
     "pnpm-workspace.yaml",

@@ -33,7 +33,6 @@ node_modules/
 !/beachball.config.js
 !/CODEOWNERS
 !/.editorconfig
-!/jest.config.ts
 !/license
 !/lint-staged.config.mjs
 !/pnpm-workspace.yaml
