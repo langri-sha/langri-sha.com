@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(vitest): Add `nock`",
+  "packageName": "@langri-sha/vitest",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

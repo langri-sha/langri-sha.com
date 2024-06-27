@@ -14,6 +14,7 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
+    "nock": "13.5.4",
     "tempy": "1.0.1"
   },
   "devDependencies": {

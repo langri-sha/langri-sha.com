@@ -676,6 +676,9 @@ importers:
 
   packages/vitest:
     dependencies:
+      nock:
+        specifier: 13.5.4
+        version: 13.5.4
       tempy:
         specifier: 1.0.1
         version: 1.0.1
