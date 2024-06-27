@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`defaults 1`] = `
 {
@@ -200,7 +200,7 @@ node_modules/
 }
 `;
 
-exports[`with extends with config 1`] = `
+exports[`with extends > with config 1`] = `
 "import defaults from '@langri-sha/prettier'
 
 /** @type {import("prettier").Config} */
@@ -212,7 +212,7 @@ exports[`with extends with config 1`] = `
     "
 `;
 
-exports[`with extends with no config 1`] = `
+exports[`with extends > with no config 1`] = `
 "import defaults from '@langri-sha/prettier'
 
 /** @type {import("prettier").Config} */

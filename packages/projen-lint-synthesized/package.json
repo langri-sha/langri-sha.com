@@ -19,7 +19,6 @@
     "minimatch": "9.0.4"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/debug": "4.1.12",

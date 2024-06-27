@@ -17,7 +17,6 @@
     "serialize-javascript": "6.0.2"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "*",
     "@langri-sha/vitest": "workspace:*",
     "@types/serialize-javascript": "5.0.4"

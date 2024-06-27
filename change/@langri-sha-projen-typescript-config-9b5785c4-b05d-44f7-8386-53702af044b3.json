@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(workspace): Use `vitest`",
+  "packageName": "@langri-sha/projen-typescript-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

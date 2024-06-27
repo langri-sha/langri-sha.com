@@ -123,7 +123,6 @@ const subproject = (project: Project) => {
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/jest-test@workspace:*')
   project.package?.addDevDeps('@langri-sha/vitest@workspace:*')
 }
 
@@ -195,6 +194,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      type: 'module',
       deps: ['ramda@0.30.1'],
       devDeps: [
         '@langri-sha/monorepo@workspace:*',

@@ -1,5 +1,5 @@
 import { directorySnapshot } from 'projen/lib/util/synth'
-import { expect, tempy, test } from '@langri-sha/jest-test'
+import { expect, tempy, test } from '@langri-sha/vitest'
 
 import { promises as fs } from 'node:fs'
 import path from 'node:path'

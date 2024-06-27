@@ -1,11 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@langri-sha/jest-test",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/monorepo",
       "version": "workspace:*",
       "type": "build"

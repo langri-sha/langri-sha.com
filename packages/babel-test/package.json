@@ -8,6 +8,7 @@
     "url": "https://langri-sha.com",
     "organization": false
   },
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
@@ -16,7 +17,6 @@
     "ramda": "0.30.1"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/monorepo": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",

@@ -31,7 +31,6 @@
     "ramda": "0.30.1"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/ramda": "0.30.0"
