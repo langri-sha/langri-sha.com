@@ -14,7 +14,8 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "got": "14.4.1"
+    "got": "14.4.1",
+    "json-schema-to-typescript": "14.1.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "*",
