@@ -54,6 +54,9 @@
     },
     {
       "path": "../tsconfig"
+    },
+    {
+      "path": "../vitest"
     }
   ]
 }

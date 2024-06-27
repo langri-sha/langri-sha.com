@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/vitest",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "20.14.8",
       "type": "build"

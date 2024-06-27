@@ -11,6 +11,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/vitest",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "beachball",
       "version": "^2.0.0",
       "type": "peer"

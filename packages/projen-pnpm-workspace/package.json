@@ -18,7 +18,8 @@
   },
   "devDependencies": {
     "@langri-sha/jest-test": "workspace:*",
-    "@langri-sha/tsconfig": "*"
+    "@langri-sha/tsconfig": "*",
+    "@langri-sha/vitest": "workspace:*"
   },
   "peerDependencies": {
     "projen": "^0.82.0"
