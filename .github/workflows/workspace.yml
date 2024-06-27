@@ -27,8 +27,8 @@ jobs:
       - name: Apply Prettier fixes
         run: pnpm prettier --write .
 
-      - name: Update Jest snapshots
-        run: pnpm jest --updateSnapshot --passWithNoTests
+      - name: Update Vitest snapshots
+        run: pnpm vitest --update --passWithNoTests
 
       - name: Apply projen changes
         run: pnpx projen
@@ -152,8 +152,8 @@ jobs:
             exit 1
           fi
 
-  jest:
-    name: Jest
+  vitest:
+    name: Vitest
     runs-on: ubuntu-latest
     needs: [commit-upgrade-changes]
     if: always()
@@ -165,5 +165,5 @@ jobs:
       - name: Setup PNPM
         uses: ./.github/actions/pnpm
 
-      - name: Jest
-        run: pnpm jest --passWithNoTests
+      - name: Vitest
+        run: pnpm vitest --passWithNoTests
