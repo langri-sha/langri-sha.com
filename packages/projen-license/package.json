@@ -17,7 +17,6 @@
     "license-o-matic": "^1.2.0"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*"
   },

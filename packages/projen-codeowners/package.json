@@ -14,7 +14,6 @@
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
-    "@langri-sha/jest-test": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*"
   },

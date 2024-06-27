@@ -1,5 +1,5 @@
 import { synthSnapshot } from 'projen/lib/util/synth'
-import { expect, test } from '@langri-sha/jest-test'
+import { expect, test } from '@langri-sha/vitest'
 
 import { Project } from 'projen'
 import { PnpmWorkspace } from './index'

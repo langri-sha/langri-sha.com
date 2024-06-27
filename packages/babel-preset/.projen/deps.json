@@ -6,11 +6,6 @@
       "type": "build"
     },
     {
-      "name": "@langri-sha/jest-test",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"

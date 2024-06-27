@@ -9,9 +9,6 @@
   },
   "references": [
     {
-      "path": "../jest-test"
-    },
-    {
       "path": "../tsconfig"
     },
     {

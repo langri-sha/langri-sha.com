@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs'
 import * as path from 'node:path'
-import { describe, expect, tempy, test } from '@langri-sha/jest-test'
+import { describe, expect, tempy, test } from '@langri-sha/vitest'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
 import { NodePackage } from './node-package'
@@ -60,7 +60,7 @@ test('assigns `peerDependenciesMeta` field', () => {
   expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
 })
 
-describe('skips install on subprojects', () => {
+test('skips install on subprojects', () => {
   const project1 = new Project({
     name: 'test',
   })

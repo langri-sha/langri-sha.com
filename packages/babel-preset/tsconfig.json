@@ -11,9 +11,6 @@
       "path": "../babel-test"
     },
     {
-      "path": "../jest-test"
-    },
-    {
       "path": "../tsconfig"
     },
     {

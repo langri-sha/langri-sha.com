@@ -14,7 +14,7 @@ Then import your Jest test dependencies from here:
 
 ```js
 // some.test.js
-import { expect, test, tempy } from '@langri-sha/jest-test'
+import { expect, test, tempy } from '@langri-sha/vitest'
 
 test(/*...*/)
 ```

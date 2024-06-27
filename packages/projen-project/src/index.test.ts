@@ -1,6 +1,6 @@
 import { Project as BaseProject, IgnoreFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
-import { describe, expect, test } from '@langri-sha/jest-test'
+import { describe, expect, test } from '@langri-sha/vitest'
 
 import { Project } from './index'
 import { Husky } from '@langri-sha/projen-husky'
@@ -101,27 +101,28 @@ describe('add subproject', () => {
     expect(sub.projenrc).toBeInstanceOf(ProjenrcFile)
   })
 
-  test('with callback', (done) => {
-    expect.assertions(2)
+  test('with callback', () =>
+    new Promise((resolve) => {
+      expect.assertions(2)
 
-    const project = new Project({
-      name: 'test-project',
-    })
+      const project = new Project({
+        name: 'test-project',
+      })
 
-    project.addSubproject(
-      {
-        name: '@someproject/test',
-        outdir: path.join('someproject', '@some', 'test'),
-        typeScriptConfig: {},
-      },
-      (p) => {
-        expect(p).toBeInstanceOf(Project)
-        expect(p.name).toBe('@someproject/test')
+      project.addSubproject(
+        {
+          name: '@someproject/test',
+          outdir: path.join('someproject', '@some', 'test'),
+          typeScriptConfig: {},
+        },
+        (p) => {
+          expect(p).toBeInstanceOf(Project)
+          expect(p.name).toBe('@someproject/test')
 
-        done()
-      },
-    )
-  })
+          resolve(undefined)
+        },
+      )
+    }))
 })
 
 test('find subproject', () => {
