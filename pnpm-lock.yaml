@@ -654,6 +654,9 @@ importers:
 
   packages/schemastore-to-typescript:
     dependencies:
+      env-paths:
+        specifier: 3.0.0
+        version: 3.0.0
       got:
         specifier: 14.4.1
         version: 14.4.1
@@ -4214,6 +4217,10 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+
+  env-paths@3.0.0:
+    resolution: {integrity: sha512-dtJUTepzMW3Lm/NPxRf3wP4642UWhjL2sQxc+ym2YMj1m/H2zDNQOlezafzkHwn6sMstjHTwG6iQQsctDW/b1A==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   envinfo@7.13.0:
     resolution: {integrity: sha512-cvcaMr7KqXVh4nyzGTVqTum+gAiL265x5jUWQIDLq//zOGbW+gSW/C+OWLleY/rs9Qole6AZLMXPbtIFQbqu+Q==}
@@ -12827,6 +12834,8 @@ snapshots:
 
   env-paths@2.2.1:
     optional: true
+
+  env-paths@3.0.0: {}
 
   envinfo@7.13.0: {}
 
