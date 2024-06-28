@@ -680,6 +680,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: [
+        'commander@12.1.0',
         'env-paths@3.0.0',
         'got@14.4.1',
         'json-schema-to-typescript@14.1.0',
