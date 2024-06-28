@@ -16,6 +16,11 @@
       "type": "peer"
     },
     {
+      "name": "env-paths",
+      "version": "3.0.0",
+      "type": "runtime"
+    },
+    {
       "name": "got",
       "version": "14.4.1",
       "type": "runtime"
