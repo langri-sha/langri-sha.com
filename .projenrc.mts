@@ -681,8 +681,10 @@ project.addSubproject(
       type: 'module',
       deps: [
         'env-paths@3.0.0',
-        'json-schema-to-typescript@14.1.0',
         'got@14.4.1',
+        'json-schema-to-typescript@14.1.0',
+        'keyv@4.5.4',
+        'keyv-file@0.3.1',
       ],
       peerDeps: ['projen@^0.82.0'],
     },
