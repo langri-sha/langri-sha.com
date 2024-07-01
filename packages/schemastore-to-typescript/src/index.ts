@@ -1,16 +1,34 @@
+import * as path from 'node:path'
 import got, { HTTPError } from 'got'
 import {
   type JSONSchema,
   compile as compileSource,
 } from 'json-schema-to-typescript'
+import envPaths from 'env-paths'
+import Keyv from 'keyv'
+import { KeyvFile } from 'keyv-file'
 
-export const compile = async (name: string): Promise<string> => {
+const paths = envPaths('schemastore-to-typescript')
+
+const keyv = new Keyv({
+  store: new KeyvFile({
+    filename: path.join(paths.cache, 'requests.json'),
+    writeDelay: 0,
+  }),
+})
+
+export const compile = async (
+  name: string,
+  cache: boolean = true,
+): Promise<string> => {
   let schema
 
   const url = new URL(name, 'https://json.schemastore.org').toString()
 
   try {
-    schema = await got(url).json<JSONSchema>()
+    schema = await got(url, {
+      cache: cache ? keyv : undefined,
+    }).json<JSONSchema>()
   } catch (e) {
     if (e instanceof HTTPError) {
       if (e.response.statusCode === 404) {
@@ -20,10 +38,6 @@ export const compile = async (name: string): Promise<string> => {
       }
 
       throw new Error(`Couldn't retrieve schema from ${url}. [${e.code}]`)
-    }
-
-    if (e instanceof Error) {
-      throw new Error(`${e.name} Couldn't retrieve schema from ${url}.]`)
     }
 
     throw e
