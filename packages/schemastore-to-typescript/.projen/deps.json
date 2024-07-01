@@ -26,6 +26,11 @@
       "type": "runtime"
     },
     {
+      "name": "es-main",
+      "version": "1.3.0",
+      "type": "runtime"
+    },
+    {
       "name": "got",
       "version": "14.4.1",
       "type": "runtime"

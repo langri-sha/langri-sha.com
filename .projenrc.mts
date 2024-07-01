@@ -679,13 +679,17 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
+      bin: {
+        'schemastore-to-typescript': './src/cli.ts',
+      },
       deps: [
         'commander@12.1.0',
         'env-paths@3.0.0',
+        'es-main@1.3.0',
         'got@14.4.1',
         'json-schema-to-typescript@14.1.0',
-        'keyv@4.5.4',
         'keyv-file@0.3.1',
+        'keyv@4.5.4',
       ],
       peerDeps: ['projen@^0.82.0'],
     },
