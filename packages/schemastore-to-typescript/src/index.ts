@@ -30,6 +30,9 @@ export const compile = async (
   try {
     schema = await got(url, {
       cache: cache ? keyv : undefined,
+      headers: {
+        accept: '*/*',
+      },
     }).json<JSONSchema>()
   } catch (e) {
     debug(e)

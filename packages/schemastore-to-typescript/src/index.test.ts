@@ -123,6 +123,26 @@ test('uses cache', async () => {
   )
 })
 
+test('wide accept header', async () => {
+  nock('https://json.schemastore.org')
+    .get('/accept')
+    .matchHeader('accept', '*/*')
+    .reply(200, {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      title: 'Some Schema',
+      type: 'object',
+      properties: {
+        id: {
+          type: 'string',
+          description: 'The unique identifier for some item.',
+        },
+      },
+      required: ['id'],
+    })
+
+  await expect(compile('accept')).resolves.toBeTruthy()
+})
+
 test('handles missing schemas', async () => {
   nock('https://json.schemastore.org').get('/unknown').reply(404)
 
