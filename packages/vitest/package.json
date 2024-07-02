@@ -18,7 +18,7 @@
     "tempy": "1.0.1"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "*"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "vitest": "^1.6.0"
