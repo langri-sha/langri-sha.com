@@ -48,6 +48,9 @@ importers:
       '@langri-sha/projen-project':
         specifier: workspace:*
         version: link:packages/projen-project
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:packages/schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
