@@ -680,7 +680,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       bin: {
-        'schemastore-to-typescript': './src/cli.ts',
+        'schemastore-to-typescript': 'src/cli.ts',
       },
       deps: [
         'commander@12.1.0',
@@ -699,6 +699,11 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    project
+      .tryFindObjectFile('package.json')
+      ?.addOverride('publishConfig.bin.schemastore-to-typescript', 'lib/cli.js')
+  },
 )
 
 project.addSubproject(

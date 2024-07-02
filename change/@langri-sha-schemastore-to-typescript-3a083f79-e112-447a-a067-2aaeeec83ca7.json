@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(schema2ts): Compile store schema",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
