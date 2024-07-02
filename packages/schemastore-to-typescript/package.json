@@ -11,7 +11,7 @@
   "type": "module",
   "main": "src/index.ts",
   "bin": {
-    "schemastore-to-typescript": "./src/cli.ts"
+    "schemastore-to-typescript": "src/cli.ts"
   },
   "scripts": {
     "prepublishOnly": "rm -rf lib; tsc --project tsconfig.build.json"
@@ -36,6 +36,9 @@
   },
   "publishConfig": {
     "access": "public",
+    "bin": {
+      "schemastore-to-typescript": "lib/cli.js"
+    },
     "main": "lib/index.js",
     "types": "lib/index.d.ts"
   },
