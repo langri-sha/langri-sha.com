@@ -43,6 +43,7 @@
     "@langri-sha/lint-staged": "workspace:*",
     "@langri-sha/prettier": "workspace:*",
     "@langri-sha/projen-project": "workspace:*",
+    "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@types/lint-staged": "13.3.0",
     "beachball": "2.43.1",
