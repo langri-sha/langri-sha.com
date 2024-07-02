@@ -202,7 +202,7 @@ project.addSubproject(
         'eslint-plugin-jsdoc@48.5.0',
         'eslint-plugin-prettier@5.1.3',
         'eslint-plugin-unicorn@54.0.0',
-        'globals@15.7.0',
+        'globals@15.8.0',
         'typescript-eslint@7.15.0',
       ],
       devDeps: ['@types/eslint__js@8.42.3'],
