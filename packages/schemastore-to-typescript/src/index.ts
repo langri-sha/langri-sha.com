@@ -7,7 +7,9 @@ import {
 import envPaths from 'env-paths'
 import Keyv from 'keyv'
 import { KeyvFile } from 'keyv-file'
+import createDebug from 'debug'
 
+const debug = createDebug('schema-store-to-typescript')
 const paths = envPaths('schemastore-to-typescript')
 
 const keyv = new Keyv({
@@ -30,6 +32,8 @@ export const compile = async (
       cache: cache ? keyv : undefined,
     }).json<JSONSchema>()
   } catch (e) {
+    debug(e)
+
     if (e instanceof HTTPError) {
       if (e.response.statusCode === 404) {
         throw new Error(
