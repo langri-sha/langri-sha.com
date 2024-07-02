@@ -116,9 +116,6 @@ const publish = (project: Project) => {
       compilerOptions: {
         baseUrl: '.',
         outDir: 'lib',
-        ...(project.name === '@langri-sha/schemastore-to-typescript'
-          ? { paths: { got: ['node_modules/got/dist/source'] } }
-          : {}),
       },
     },
   })

@@ -4,9 +4,6 @@
   "extends": "@langri-sha/tsconfig/build.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib",
-    "paths": {
-      "got": ["node_modules/got/dist/source"]
-    }
+    "outDir": "lib"
   }
 }
