@@ -95,6 +95,12 @@ const subproject = (project: Project) => {
   })
 
   project.tryRemoveFile('.gitignore')
+
+  if (project.name !== '@langri-sha/tsconfig') {
+    project
+      .tryFindObjectFile('package.json')
+      ?.addOverride('devDependencies.@langri-sha/tsconfig', 'workspace:*')
+  }
 }
 
 const test = (project: Project) => {

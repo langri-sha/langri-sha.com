@@ -311,8 +311,8 @@ importers:
         version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
-        version: 0.9.0(typescript@5.5.3)
+        specifier: workspace:*
+        version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
@@ -501,8 +501,8 @@ importers:
         version: 2.4.5
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
-        version: 0.9.0(typescript@5.5.3)
+        specifier: workspace:*
+        version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
@@ -686,8 +686,8 @@ importers:
         version: 0.82.4(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
-        version: 0.9.0(typescript@5.5.3)
+        specifier: workspace:*
+        version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
@@ -714,8 +714,8 @@ importers:
         version: 1.6.0(@types/node@20.14.9)(terser@5.30.0)
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
-        version: 0.9.0(typescript@5.5.3)
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/webpack:
     dependencies:
@@ -2246,11 +2246,6 @@ packages:
 
   '@kwsites/promise-deferred@1.1.1':
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
-
-  '@langri-sha/tsconfig@0.9.0':
-    resolution: {integrity: sha512-YFHwApAiT/RGQFkmw02BZSVmvxqaQu7LVn/Sihm42f6jvC7aB9HSoDZNt1FNlIHmnLtntaW8MObCM4N9cg9tGg==}
-    peerDependencies:
-      typescript: ^5.0.0
 
   '@leichtgewicht/ip-codec@2.0.4':
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
@@ -10512,10 +10507,6 @@ snapshots:
       - supports-color
 
   '@kwsites/promise-deferred@1.1.1': {}
-
-  '@langri-sha/tsconfig@0.9.0(typescript@5.5.3)':
-    dependencies:
-      typescript: 5.5.3
 
   '@leichtgewicht/ip-codec@2.0.4': {}
 
