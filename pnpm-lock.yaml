@@ -657,6 +657,9 @@ importers:
       commander:
         specifier: 12.1.0
         version: 12.1.0
+      debug:
+        specifier: 4.3.5
+        version: 4.3.5
       env-paths:
         specifier: 3.0.0
         version: 3.0.0
@@ -685,6 +688,9 @@ importers:
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
+      '@types/debug':
+        specifier: 4.1.12
+        version: 4.1.12
 
   packages/tsconfig:
     dependencies:

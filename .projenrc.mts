@@ -684,6 +684,7 @@ project.addSubproject(
       },
       deps: [
         'commander@12.1.0',
+        'debug@4.3.5',
         'env-paths@3.0.0',
         'es-main@1.3.0',
         'got@14.4.1',
@@ -691,6 +692,7 @@ project.addSubproject(
         'keyv-file@0.3.1',
         'keyv@4.5.4',
       ],
+      devDeps: ['@types/debug@4.1.12'],
       peerDeps: ['projen@^0.82.0'],
     },
   },
