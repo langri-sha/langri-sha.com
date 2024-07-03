@@ -81,6 +81,9 @@
       "path": "packages/projen-renovate"
     },
     {
+      "path": "packages/projen-swcrc"
+    },
+    {
       "path": "packages/projen-typescript-config"
     },
     {

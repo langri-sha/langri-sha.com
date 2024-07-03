@@ -636,6 +636,19 @@ importers:
         specifier: workspace:*
         version: link:../vitest
 
+  packages/projen-swcrc:
+    dependencies:
+      projen:
+        specifier: ^0.82.0
+        version: 0.82.4(constructs@10.3.0)
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@langri-sha/vitest':
+        specifier: workspace:*
+        version: link:../vitest
+
   packages/projen-typescript-config:
     dependencies:
       '@schemastore/tsconfig':
