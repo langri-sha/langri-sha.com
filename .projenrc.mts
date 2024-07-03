@@ -662,6 +662,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
+      devDeps: ['@langri-sha/schemastore-to-typescript@workspace:*'],
       peerDeps: ['projen@^0.82.0'],
     },
   },
