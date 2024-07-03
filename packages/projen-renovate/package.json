@@ -14,9 +14,6 @@
     "prepare": "NODE_OPTIONS=\"--loader ts-node/esm/transpile-only\" schemastore-to-typescript renovate src/renovate.d.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
-  "dependencies": {
-    "renovate": "^37.342.1"
-  },
   "devDependencies": {
     "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
