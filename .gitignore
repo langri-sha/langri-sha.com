@@ -17,8 +17,6 @@
 !.husky/
 !.projen/
 dist/
-apps/*/lib/
-packages/*/lib/
 node_modules/
 !/.gitattributes
 !/.projen/tasks.json
