@@ -41,6 +41,11 @@
       "type": "build"
     },
     {
+      "name": "@swc/core",
+      "version": "1.6.6",
+      "type": "build"
+    },
+    {
       "name": "@types/lint-staged",
       "version": "13.3.0",
       "type": "build"

@@ -20,6 +20,7 @@
     "@langri-sha/vitest": "workspace:*"
   },
   "peerDependencies": {
+    "@swc/core": "^1.6.0",
     "projen": "^0.82.0"
   },
   "publishConfig": {
