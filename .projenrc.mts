@@ -511,6 +511,25 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-pnpm-workspace',
+    outdir: path.join('packages', 'projen-pnpm-workspace'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['yaml@2.4.5'],
+      peerDeps: ['projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
     typeScriptConfig: {},
@@ -634,25 +653,6 @@ project.addSubproject(
       type: 'module',
       deps: ['@schemastore/tsconfig@0.0.11'],
       devDeps: ['@types/node@20.14.9'],
-      peerDeps: ['projen@^0.82.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/projen-pnpm-workspace',
-    outdir: path.join('packages', 'projen-pnpm-workspace'),
-    typeScriptConfig: {},
-    npmIgnore: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['yaml@2.4.5'],
       peerDeps: ['projen@^0.82.0'],
     },
   },
