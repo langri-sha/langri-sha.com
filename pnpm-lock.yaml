@@ -576,6 +576,9 @@ importers:
       '@langri-sha/projen-renovate':
         specifier: workspace:*
         version: link:../projen-renovate
+      '@langri-sha/projen-swcrc':
+        specifier: workspace:*
+        version: link:../projen-swcrc
       '@langri-sha/projen-typescript-config':
         specifier: workspace:*
         version: link:../projen-typescript-config
