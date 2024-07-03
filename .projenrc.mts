@@ -111,8 +111,8 @@ const test = (project: Project) => {
 const publish = (project: Project) => {
   project.package?.addField('publishConfig', {
     access: 'public',
-    main: 'lib/index.js',
-    types: 'lib/index.d.ts',
+    main: 'dist/index.js',
+    types: 'dist/index.d.ts',
   })
 
   new TypeScriptConfig(project, {
@@ -124,7 +124,7 @@ const publish = (project: Project) => {
 
   project.package?.setScript(
     'prepublishOnly',
-    'rm -rf lib; tsc --project tsconfig.build.json',
+    'rm -rf dist; tsc --project tsconfig.build.json',
   )
 }
 
@@ -694,7 +694,10 @@ project.addSubproject(
   (project) => {
     project
       .tryFindObjectFile('package.json')
-      ?.addOverride('publishConfig.bin.schemastore-to-typescript', 'lib/cli.js')
+      ?.addOverride(
+        'publishConfig.bin.schemastore-to-typescript',
+        'dist/cli.js',
+      )
   },
 )
 

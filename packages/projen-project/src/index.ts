@@ -323,7 +323,7 @@ export class Project extends BaseProject {
 
     const defaults: ESLintOptions = {
       filename: 'eslint.config.mjs',
-      ignorePatterns: ['.*'],
+      ignorePatterns: ['.*', 'dist/'],
       extends: '@langri-sha/eslint-config',
     }
 
@@ -469,11 +469,6 @@ export class Project extends BaseProject {
     }
 
     this.pnpmWorkspace = new PnpmWorkspace(this, pnpmWorkspace)
-
-    for (const workspace of pnpmWorkspace.packages ?? []) {
-      this.prettier?.ignore.exclude(`${workspace}/lib/`)
-      this.eslint?.ignorePatterns.push(`${workspace}/lib/`)
-    }
   }
 
   #configurePrettier({ prettier: prettierOptions }: ProjectOptions) {
@@ -484,7 +479,7 @@ export class Project extends BaseProject {
     const defaults: PrettierOptions = {
       filename: 'prettier.config.mjs',
       extends: '@langri-sha/prettier',
-      ignorePatterns: ['.*'],
+      ignorePatterns: ['.*', 'dist/'],
     }
 
     this.prettier = new Prettier(this, deepMerge(defaults, prettierOptions))
@@ -648,7 +643,6 @@ const getGitIgnoreOptions = ({
   parent,
   typeScriptConfig: typeScriptConfigOptions,
   withTerraform,
-  ...options
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] =>
   parent
     ? gitIgnoreOptions
@@ -674,7 +668,6 @@ const getGitIgnoreOptions = ({
     ${huskyOptions ? '!.husky/' : ''}
     !.projen/
     dist/
-    ${options.pnpmWorkspace?.packages?.map((workspace) => `${workspace}/lib/`).join('\n') ?? ''}
     node_modules/
     `
             .split('\n')
