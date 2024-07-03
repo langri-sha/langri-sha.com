@@ -4,6 +4,9 @@
   "extends": "@langri-sha/tsconfig/project",
   "references": [
     {
+      "path": "../schemastore-to-typescript"
+    },
+    {
       "path": "../tsconfig"
     },
     {
