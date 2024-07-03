@@ -654,6 +654,24 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-swcrc',
+    outdir: path.join('packages', 'projen-swcrc'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-typescript-config',
     outdir: path.join('packages', 'projen-typescript-config'),
     typeScriptConfig: {},
