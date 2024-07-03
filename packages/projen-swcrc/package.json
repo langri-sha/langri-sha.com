@@ -11,6 +11,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
+    "prepare": "NODE_OPTIONS=\"--loader ts-node/esm/transpile-only\" schemastore-to-typescript swcrc src/swcrc.d.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
