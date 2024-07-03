@@ -84,7 +84,7 @@ export class PnpmWorkspace extends YamlFile {
     ].join('\n')
   }
 
-  addPackages(...packages: string[]) {
+  addPackages(...packages: string[]): void {
     for (const pkg of packages) {
       this.addToArray('packages', pkg)
     }
