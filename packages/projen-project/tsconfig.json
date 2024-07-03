@@ -43,6 +43,9 @@
       "path": "../projen-renovate"
     },
     {
+      "path": "../projen-swcrc"
+    },
+    {
       "path": "../projen-typescript-config"
     },
     {

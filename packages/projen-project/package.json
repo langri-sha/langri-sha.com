@@ -27,6 +27,7 @@
     "@langri-sha/projen-pnpm-workspace": "workspace:*",
     "@langri-sha/projen-prettier": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
+    "@langri-sha/projen-swcrc": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
     "ramda": "0.30.1"
   },
