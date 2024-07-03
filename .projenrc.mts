@@ -1,5 +1,5 @@
 import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
-import { SampleFile } from 'projen'
+import { IgnoreFile, SampleFile } from 'projen'
 import * as path from 'path'
 
 const pkg = {
@@ -55,14 +55,16 @@ const project = new Project({
     '*': '@langri-sha',
   },
   editorConfig: {},
-  eslint: {},
+  eslint: {
+    ignorePatterns: ['renovate.d.ts'],
+  },
   husky: {
     'pre-commit': 'pnpm -q lint-staged',
   },
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: ['*.frag'],
+    ignorePatterns: ['*.frag', 'renovate.d.ts'],
   },
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],
@@ -640,6 +642,15 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    const ignore = new IgnoreFile(project, '.gitignore')
+    ignore.addPatterns('renovate.d.ts')
+
+    project.package?.setScript(
+      'prepare',
+      'NODE_OPTIONS="--loader ts-node/esm/transpile-only" schemastore-to-typescript renovate src/renovate.d.ts',
+    )
+  },
 )
 
 project.addSubproject(
