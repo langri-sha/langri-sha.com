@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@langri-sha/schemastore-to-typescript",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"

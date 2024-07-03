@@ -642,6 +642,9 @@ importers:
         specifier: ^0.82.0
         version: 0.82.4(constructs@10.3.0)
     devDependencies:
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig

@@ -14,6 +14,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
+    "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*"
   },
