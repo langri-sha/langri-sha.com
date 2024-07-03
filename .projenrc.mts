@@ -56,7 +56,7 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: ['renovate.d.ts'],
+    ignorePatterns: ['renovate.d.ts', 'swcrc.d.ts'],
   },
   husky: {
     'pre-commit': 'pnpm -q lint-staged',
@@ -64,7 +64,7 @@ const project = new Project({
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: ['*.frag', 'renovate.d.ts'],
+    ignorePatterns: ['*.frag', 'renovate.d.ts', 'swcrc.d.ts'],
   },
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],
@@ -669,6 +669,15 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    const ignore = new IgnoreFile(project, '.gitignore')
+    ignore.addPatterns('swcrc.d.ts')
+
+    project.package?.setScript(
+      'prepare',
+      'NODE_OPTIONS="--loader ts-node/esm/transpile-only" schemastore-to-typescript swcrc src/swcrc.d.ts',
+    )
+  },
 )
 
 project.addSubproject(
