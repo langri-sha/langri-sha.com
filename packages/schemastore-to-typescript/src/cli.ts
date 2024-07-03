@@ -8,7 +8,7 @@ import createDebug from 'debug'
 
 const debug = createDebug('schema-store-to-typescript')
 
-export const program = new Command()
+export const program: Command = new Command()
   .name('schemastore-to-typescript')
   .description('Compile a JSON schema store schema to TypeScript definitions')
   .argument('<schema>', 'JSON schema store schema')
