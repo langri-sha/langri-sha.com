@@ -629,6 +629,9 @@ importers:
         specifier: ^37.342.1
         version: 37.363.9(@aws-sdk/client-sso-oidc@3.569.0)(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.569.0))(encoding@0.1.13)(typanion@3.14.0)
     devDependencies:
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
