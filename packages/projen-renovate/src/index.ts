@@ -1,11 +1,12 @@
-import { type RenovateConfig } from 'renovate/dist/config/types'
+import { type JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom } from './renovate'
 
 import { Component, JsonFile, type Project } from 'projen'
 
 /**
  * Renovate configuration options.
  */
-export interface RenovateOptions extends RenovateConfig {}
+export interface RenovateOptions
+  extends JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom {}
 
 /**
  * A component for managing Renovate configurations.
