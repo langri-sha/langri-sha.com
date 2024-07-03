@@ -72,6 +72,11 @@ const project = new Project({
   renovate: {},
   typeScriptConfig: {
     config: {
+      compilerOptions: {
+        allowJs: true,
+        checkJs: true,
+        isolatedDeclarations: false,
+      },
       files: ['babel.config.js'],
       references: [{ path: './apps/web' }],
     },

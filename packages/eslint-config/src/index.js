@@ -1,3 +1,4 @@
+/// <reference types="./eslint-config.d.ts" />
 import js from '@eslint/js'
 import ts from 'typescript-eslint'
 import globals from 'globals'
