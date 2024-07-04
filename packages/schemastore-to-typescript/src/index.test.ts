@@ -108,7 +108,7 @@ test('uses cache', async () => {
   expect(await compile('foobar')).toBe(await compile('foobar'))
 
   await new Promise((resolve) => {
-    setTimeout(resolve, 0)
+    setTimeout(resolve, 100)
   })
 
   const cached = JSON.parse(
