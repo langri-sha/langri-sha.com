@@ -18,6 +18,7 @@ import { ESLint } from '@langri-sha/projen-eslint'
 import { LintStaged } from '@langri-sha/projen-lint-staged'
 import { Babel } from '@langri-sha/projen-babel'
 import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
+import { SWCConfig } from '@langri-sha/projen-swcrc'
 
 test('defaults', () => {
   const project = new Project({
@@ -40,6 +41,7 @@ test('defaults', () => {
   expect(project.prettier).toBeUndefined()
   expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
   expect(project.renovate).toBeUndefined()
+  expect(project.swcrc).toBeUndefined()
   expect(project.typeScriptConfig).toBeUndefined()
 })
 
@@ -404,6 +406,28 @@ test('with Renovate options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.renovate).toBeInstanceOf(Renovate)
+})
+
+describe('with SWC options', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      swcrc: {},
+    })
+
+    expect(synthSnapshot(project)['.swcrc']).toMatchSnapshot()
+    expect(project.swcrc).toBeInstanceOf(SWCConfig)
+  })
+
+  test('with TypeScript', () => {
+    const project = new Project({
+      name: 'test-project',
+      swcrc: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)['.swcrc']).toMatchSnapshot()
+  })
 })
 
 test('with Terraform enabled', () => {

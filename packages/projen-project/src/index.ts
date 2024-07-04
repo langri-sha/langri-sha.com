@@ -41,6 +41,7 @@ import {
   PnpmWorkspace,
   PnpmWorkspaceOptions,
 } from '@langri-sha/projen-pnpm-workspace'
+import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 
 export * from '@langri-sha/projen-typescript-config'
 
@@ -123,6 +124,11 @@ export interface ProjectOptions
    */
   renovate?: RenovateOptions
 
+  /*
+   * Pass in to configure SWC.
+   */
+  swcrc?: SWCConfigOptions
+
   /**
    * TypeScript configuration options.
    */
@@ -150,6 +156,7 @@ export class Project extends BaseProject {
   prettier?: Prettier
   projenrc?: ProjenrcFile
   renovate?: Renovate
+  swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
 
   constructor(options: ProjectOptions) {
@@ -192,6 +199,7 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
     this.#configureRenovate(options)
+    this.#configureSWC(options)
   }
 
   override preSynthesize(): void {
@@ -567,6 +575,32 @@ export class Project extends BaseProject {
     })
 
     this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
+  }
+
+  #configureSWC({ swcrc, typeScriptConfig }: ProjectOptions) {
+    if (!swcrc) {
+      return
+    }
+
+    const defaults: SWCConfigOptions = {
+      $schema: 'https://json.schemastore.org/swcrc',
+      ...(typeScriptConfig
+        ? {
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+              },
+            },
+          }
+        : {}),
+      env: {
+        targets: {
+          node: 'current',
+        },
+      },
+    }
+
+    this.swcrc = new SWCConfig(this, deepMerge(defaults, swcrc))
   }
 
   #configureTypeScript({
