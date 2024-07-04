@@ -35,4 +35,5 @@ node_modules/
 !/lint-staged.config.mjs
 !/pnpm-workspace.yaml
 !/renovate.json5
+!/.swcrc
 !/.projenrc.mts

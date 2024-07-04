@@ -71,6 +71,7 @@ const project = new Project({
     packages: ['apps/*', 'packages/*'],
   },
   renovate: {},
+  swcrc: {},
   typeScriptConfig: {
     config: {
       files: ['babel.config.js'],
