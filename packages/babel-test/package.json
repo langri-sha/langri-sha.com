@@ -22,7 +22,7 @@
     "@langri-sha/vitest": "workspace:*",
     "@types/babel__core": "^7.8.0",
     "@types/node": "20.14.10",
-    "@types/ramda": "0.30.0"
+    "@types/ramda": "0.30.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.8.0"
