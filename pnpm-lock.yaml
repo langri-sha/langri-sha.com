@@ -187,8 +187,8 @@ importers:
         specifier: 20.14.10
         version: 20.14.10
       '@types/ramda':
-        specifier: 0.30.0
-        version: 0.30.0
+        specifier: 0.30.1
+        version: 0.30.1
 
   packages/eslint-config:
     dependencies:
@@ -623,8 +623,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       '@types/ramda':
-        specifier: 0.30.0
-        version: 0.30.0
+        specifier: 0.30.1
+        version: 0.30.1
 
   packages/projen-renovate:
     dependencies:
@@ -2355,8 +2355,8 @@ packages:
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
 
-  '@types/ramda@0.30.0':
-    resolution: {integrity: sha512-DQtfqUbSB18iM9NHbQ++kVUDuBWHMr6T2FpW1XTiksYRGjq4WnNPZLt712OEHEBJs7aMyJ68Mf2kGMOP1srVVw==}
+  '@types/ramda@0.30.1':
+    resolution: {integrity: sha512-aoyF/ADPL6N+/NXXfhPWF+Qj6w1Cql59m9wX0Gi15uyF+bpzXeLd63HPdiTDE2bmLXfNcVufsDPKmbfOrOzTBA==}
 
   '@types/range-parser@1.2.4':
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
@@ -5448,8 +5448,8 @@ packages:
   type@2.7.3:
     resolution: {integrity: sha512-8j+1QmAbPvLZow5Qpi6NCaN8FB60p/6x8/vfNqOk/hC+HuvFZhL4+WfekuhQLiqFZXOgQdrs3B+XxEmCc6b3FQ==}
 
-  types-ramda@0.30.0:
-    resolution: {integrity: sha512-oVPw/KHB5M0Du0txTEKKM8xZOG9cZBRdCVXvwHYuNJUVkAiJ9oWyqkA+9Bj2gjMsHgkkhsYevobQBWs8I2/Xvw==}
+  types-ramda@0.30.1:
+    resolution: {integrity: sha512-1HTsf5/QVRmLzcGfldPFvkVsAdi1db1BBKzi7iW3KBUlOICg/nKnFS+jGqDJS3YD8VsWbAh7JiHeBvbsw8RPxA==}
 
   typescript-eslint@7.15.0:
     resolution: {integrity: sha512-Ta40FhMXBCwHura4X4fncaCVkVcnJ9jnOq5+Lp4lN8F4DzHZtOwZdRvVBiNUGznUDHPwdGnrnwxmUOU2fFQqFA==}
@@ -7708,9 +7708,9 @@ snapshots:
 
   '@types/qs@6.9.7': {}
 
-  '@types/ramda@0.30.0':
+  '@types/ramda@0.30.1':
     dependencies:
-      types-ramda: 0.30.0
+      types-ramda: 0.30.1
 
   '@types/range-parser@1.2.4': {}
 
@@ -11384,7 +11384,7 @@ snapshots:
 
   type@2.7.3: {}
 
-  types-ramda@0.30.0:
+  types-ramda@0.30.1:
     dependencies:
       ts-toolbelt: 9.6.0
 

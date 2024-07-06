@@ -182,7 +182,7 @@ project.addSubproject(
         '@langri-sha/monorepo@workspace:*',
         '@types/babel__core@^7.8.0',
         '@types/node@20.14.10',
-        '@types/ramda@0.30.0',
+        '@types/ramda@0.30.1',
       ],
       peerDeps: ['@babel/core@^7.8.0'],
     },
@@ -580,7 +580,7 @@ project.addSubproject(
         '@langri-sha/projen-swcrc@workspace:*',
         'ramda@0.30.1',
       ],
-      devDeps: ['@types/ramda@0.30.0'],
+      devDeps: ['@types/ramda@0.30.1'],
       peerDeps: [
         '@babel/core@^7.8.0',
         '@types/babel__core@^7.8.0',
