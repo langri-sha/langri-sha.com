@@ -1,12 +1,14 @@
 import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
 import { IgnoreFile, SampleFile } from 'projen'
-import * as path from 'path'
+import { fileURLToPath } from 'node:url'
+import * as path from 'node:path'
 
 const pkg = {
   authorEmail: 'filip.dupanovic@gmail.com',
   authorName: 'Filip Dupanović',
   authorOrganization: false,
   authorUrl: 'https://langri-sha.com',
+  bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
   license: 'MIT',
   licensed: true,
   peerDependencyOptions: {
@@ -20,7 +22,6 @@ const project = new Project({
     ...pkg,
     copyrightYear: '2016',
     repository: 'langri-sha/langri-sha.com',
-    bugsUrl: 'https://github.com/langri-sha/langri-sha.com/issues',
     homepage: 'https://langri-sha.com',
     minNodeVersion: '20.12.0',
     deps: [
@@ -101,6 +102,17 @@ const subproject = (project: Project) => {
   })
 
   project.tryRemoveFile('.gitignore')
+
+  project.package?.addField('repository', {
+    url: 'langri-sha/langri-sha.com',
+    path: path.join(
+      '/',
+      path.relative(
+        path.dirname(fileURLToPath(import.meta.url)),
+        project.outdir,
+      ),
+    ),
+  })
 
   if (project.name !== '@langri-sha/tsconfig') {
     project

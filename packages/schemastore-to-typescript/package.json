@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/schemastore-to-typescript",
   "version": "0.0.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "langri-sha/langri-sha.com",
+    "path": "/packages/schemastore-to-typescript"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

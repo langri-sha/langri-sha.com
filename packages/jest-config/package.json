@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/jest-config",
   "version": "0.8.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "langri-sha/langri-sha.com",
+    "path": "/packages/jest-config"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

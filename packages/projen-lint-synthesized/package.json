@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/projen-lint-synthesized",
   "version": "0.3.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "langri-sha/langri-sha.com",
+    "path": "/packages/projen-lint-synthesized"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

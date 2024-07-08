@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/projen-pnpm-workspace",
   "version": "0.1.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "langri-sha/langri-sha.com",
+    "path": "/packages/projen-pnpm-workspace"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",
