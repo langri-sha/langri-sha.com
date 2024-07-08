@@ -176,6 +176,7 @@ export class Project extends BaseProject {
 
     this.#configurePackage(options)
     this.#configureTypeScript(options)
+    this.#configureSWC(options)
     this.#configureProjenrc()
 
     if (this.parent) {
@@ -199,7 +200,6 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
     this.#configureRenovate(options)
-    this.#configureSWC(options)
   }
 
   override preSynthesize(): void {
@@ -582,6 +582,11 @@ export class Project extends BaseProject {
       return
     }
 
+    if (!this.parent) {
+      this.package?.addDevDeps('@swc/core@1.6.13')
+      this.package?.addDevDeps('@swc-node/register@1.10.2')
+    }
+
     const defaults: SWCConfigOptions = {
       $schema: 'https://json.schemastore.org/swcrc',
       ...(typeScriptConfig
@@ -603,11 +608,8 @@ export class Project extends BaseProject {
     this.swcrc = new SWCConfig(this, deepMerge(defaults, swcrc))
   }
 
-  #configureTypeScript({
-    parent,
-    typeScriptConfig: typeScriptConfigOptions,
-  }: ProjectOptions) {
-    if (!typeScriptConfigOptions) {
+  #configureTypeScript({ parent, typeScriptConfig, swcrc }: ProjectOptions) {
+    if (!typeScriptConfig) {
       return
     }
 
@@ -625,12 +627,15 @@ export class Project extends BaseProject {
 
     this.typeScriptConfig = new TypeScriptConfig(
       this,
-      deepMerge(defaults, typeScriptConfigOptions),
+      deepMerge(defaults, typeScriptConfig),
     )
 
     if (!this.parent) {
       this.package?.addDevDeps('typescript@5.5.3')
-      this.package?.addDevDeps('ts-node@10.9.2')
+
+      if (!swcrc) {
+        this.package?.addDevDeps('ts-node@10.9.2')
+      }
     }
 
     if (this.name !== '@langri-sha/tsconfig') {

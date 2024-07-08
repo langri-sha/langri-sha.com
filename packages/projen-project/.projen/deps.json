@@ -21,6 +21,16 @@
       "type": "peer"
     },
     {
+      "name": "@swc-node/register",
+      "version": "^1.0.0",
+      "type": "peer"
+    },
+    {
+      "name": "@swc/core",
+      "version": "^1.6.0",
+      "type": "peer"
+    },
+    {
       "name": "@types/babel__core",
       "version": "^7.8.0",
       "type": "peer"

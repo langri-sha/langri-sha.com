@@ -24,6 +24,7 @@ node_modules/
 !/.projen/files.json
 !/package.json
 !/tsconfig.json
+!/.swcrc
 !/eslint.config.mjs
 !/prettier.config.mjs
 !/.prettierignore
@@ -35,5 +36,4 @@ node_modules/
 !/lint-staged.config.mjs
 !/pnpm-workspace.yaml
 !/renovate.json5
-!/.swcrc
 !/.projenrc.mts

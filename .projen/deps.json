@@ -41,6 +41,11 @@
       "type": "build"
     },
     {
+      "name": "@swc-node/register",
+      "version": "1.10.2",
+      "type": "build"
+    },
+    {
       "name": "@swc/core",
       "version": "1.6.13",
       "type": "build"
