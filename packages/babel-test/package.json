@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/babel-test",
   "version": "0.5.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "path": "/packages/babel-test"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

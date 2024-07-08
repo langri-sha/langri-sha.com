@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/vitest",
   "version": "0.0.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "path": "/packages/vitest"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",
