@@ -38,6 +38,8 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.8.0",
+    "@swc-node/register": "^1.0.0",
+    "@swc/core": "^1.6.0",
     "@types/babel__core": "^7.8.0",
     "beachball": "^2.0.0",
     "eslint": "^9.0.0",
@@ -51,6 +53,12 @@
   },
   "peerDependenciesMeta": {
     "@babel/core": {
+      "optional": true
+    },
+    "@swc-node/register": {
+      "optional": true
+    },
+    "@swc/core": {
       "optional": true
     },
     "@types/babel__core": {
@@ -72,6 +80,9 @@
       "optional": true
     },
     "prettier": {
+      "optional": true
+    },
+    "ts-node": {
       "optional": true
     }
   },

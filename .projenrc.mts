@@ -40,14 +40,16 @@ const project = new Project({
       '@langri-sha/prettier@workspace:*',
       '@langri-sha/projen-project@workspace:*',
       '@langri-sha/schemastore-to-typescript@workspace:*',
+      '@swc-node/register@1.10.2',
       '@swc/core@1.6.13',
       '@types/lint-staged@13.3.0',
       'eslint@9.6.0',
       'jest@29.7.0',
       'lint-staged@15.2.7',
       'prettier@3.3.2',
-      'vitest@1.6.0',
       'projen@0.82.4',
+      'ts-node@10.9.2',
+      'vitest@1.6.0',
     ],
   },
   babel: {},
@@ -583,6 +585,8 @@ project.addSubproject(
       devDeps: ['@types/ramda@0.30.1'],
       peerDeps: [
         '@babel/core@^7.8.0',
+        '@swc-node/register@^1.0.0',
+        '@swc/core@^1.6.0',
         '@types/babel__core@^7.8.0',
         'beachball@^2.0.0',
         'eslint@^9.0.0',
@@ -596,6 +600,12 @@ project.addSubproject(
       ],
       peerDependenciesMeta: {
         '@babel/core': {
+          optional: true,
+        },
+        '@swc-node/register': {
+          optional: true,
+        },
+        '@swc/core': {
           optional: true,
         },
         '@types/babel__core': {
@@ -617,6 +627,9 @@ project.addSubproject(
           optional: true,
         },
         prettier: {
+          optional: true,
+        },
+        'ts-node': {
           optional: true,
         },
       },

@@ -412,6 +412,7 @@ describe('with SWC options', () => {
   test('defaults', () => {
     const project = new Project({
       name: 'test-project',
+      package: {},
       swcrc: {},
     })
 
@@ -422,6 +423,7 @@ describe('with SWC options', () => {
   test('with TypeScript', () => {
     const project = new Project({
       name: 'test-project',
+      package: {},
       swcrc: {},
       typeScriptConfig: {},
     })
@@ -451,6 +453,17 @@ describe('with TypeScript options', () => {
 
     expect(synthSnapshot(project)).toMatchSnapshot()
     expect(project.typeScriptConfig).toBeInstanceOf(TypeScriptConfig)
+  })
+
+  test('with SWC', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {},
+      swcrc: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
   })
 
   test('configures project references between subprojects', () => {
