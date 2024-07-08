@@ -2,6 +2,49 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:05 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-renovate_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(renovate): Remove Renovate dependency"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Use `vitest`"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "fix(projen): Use correct output directory"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.3.0",
       "tag": "@langri-sha/projen-renovate_v0.3.0",

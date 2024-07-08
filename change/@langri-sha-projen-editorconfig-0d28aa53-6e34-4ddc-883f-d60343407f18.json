@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(workspace): Use `vitest`",
-  "packageName": "@langri-sha/projen-editorconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

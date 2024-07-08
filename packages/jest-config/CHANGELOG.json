@@ -2,6 +2,35 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:05 GMT",
+      "version": "0.8.1",
+      "tag": "@langri-sha/jest-config_v0.8.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "fix(projen): Use correct output directory"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.8.0",
       "tag": "@langri-sha/jest-config_v0.8.0",

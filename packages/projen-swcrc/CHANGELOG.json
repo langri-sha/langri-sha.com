@@ -1,0 +1,36 @@
+{
+  "name": "@langri-sha/projen-swcrc",
+  "entries": [
+    {
+      "date": "Mon, 08 Jul 2024 21:43:05 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-swcrc_v0.1.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "fix(swcrc): Remove JSON marker"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(swcrc): Add support for configuring SWC"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          }
+        ]
+      }
+    }
+  ]
+}

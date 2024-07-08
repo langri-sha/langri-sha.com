@@ -2,6 +2,85 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:04 GMT",
+      "version": "0.5.0",
+      "tag": "@langri-sha/monorepo_v0.5.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.6"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update node.js to v20.15.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "fix(projen): Use correct output directory"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.10"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.8"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.7"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.5"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Use `vitest`"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/monorepo_v0.4.0",

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(swcrc): Add support for configuring SWC",
-  "packageName": "@langri-sha/projen-swcrc",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

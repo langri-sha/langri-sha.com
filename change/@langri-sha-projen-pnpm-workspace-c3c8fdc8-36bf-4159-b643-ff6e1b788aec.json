@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Add explicit return types",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

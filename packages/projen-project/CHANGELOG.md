@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
+This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.11.0
+
+Mon, 08 Jul 2024 21:43:05 GMT
+
+### Minor changes
+
+- feat(project): Add SWC support (filip.dupanovic@gmail.com)
+- feat(project): Add peer dependencies (filip.dupanovic@gmail.com)
+- feat(project): Add SWC dependencies (filip.dupanovic@gmail.com)
+- feat(workspace): Use `vitest` (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(projen): Use correct output directory (filip.dupanovic@gmail.com)
+- chore(deps): chore(deps): update dependency typescript to v5.5.3 (email not defined)
+- chore(deps): chore(deps): update dependency @types/ramda to v0.30.1 (email not defined)
+- chore(deps): chore(deps): update dependency typescript to v5.5.2 (email not defined)
 
 ## 0.10.0
 

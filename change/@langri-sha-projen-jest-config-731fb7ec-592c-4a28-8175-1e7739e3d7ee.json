@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Add repository path",
-  "packageName": "@langri-sha/projen-jest-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

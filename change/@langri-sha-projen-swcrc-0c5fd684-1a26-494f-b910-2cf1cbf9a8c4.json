@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(swcrc): Remove JSON marker",
-  "packageName": "@langri-sha/projen-swcrc",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

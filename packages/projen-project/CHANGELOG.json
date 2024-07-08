@@ -2,6 +2,85 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:05 GMT",
+      "version": "0.11.0",
+      "tag": "@langri-sha/projen-project_v0.11.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(project): Add SWC support"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(project): Add peer dependencies"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(project): Add SWC dependencies"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Use `vitest`"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add explicit return types"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "fix(projen): Use correct output directory"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency typescript to v5.5.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency @types/ramda to v0.30.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): chore(deps): update dependency typescript to v5.5.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.10.0",
       "tag": "@langri-sha/projen-project_v0.10.0",

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(renovate): Remove Renovate dependency",
-  "packageName": "@langri-sha/projen-renovate",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

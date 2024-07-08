@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Add explicit return types",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

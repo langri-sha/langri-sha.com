@@ -2,6 +2,101 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:05 GMT",
+      "version": "0.5.1",
+      "tag": "@langri-sha/eslint-config_v0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.13"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.15.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.13.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.7.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.15"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.14.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency globals to v15.6.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "chore(deps): fix(deps): update eslint monorepo to v9.6.0"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/eslint-config_v0.5.0",

@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-codeowners
 
-This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
+This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Mon, 08 Jul 2024 21:43:05 GMT
+
+### Minor changes
+
+- feat(workspace): Use `vitest` (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(projen): Use correct output directory (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 

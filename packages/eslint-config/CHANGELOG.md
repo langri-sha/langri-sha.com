@@ -1,8 +1,27 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Sat, 15 Jun 2024 09:09:05 GMT and should not be manually modified.
+This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.1
+
+Mon, 08 Jul 2024 21:43:05 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.13 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.1 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.15.0 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.13.1 (email not defined)
+- chore(deps): fix(deps): update dependency globals to v15.7.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.2.15 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.14.1 (email not defined)
+- chore(deps): fix(deps): update dependency globals to v15.8.0 (email not defined)
+- chore(deps): fix(deps): update dependency globals to v15.6.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.5.2 (email not defined)
+- chore(deps): fix(deps): update eslint monorepo to v9.6.0 (email not defined)
 
 ## 0.5.0
 

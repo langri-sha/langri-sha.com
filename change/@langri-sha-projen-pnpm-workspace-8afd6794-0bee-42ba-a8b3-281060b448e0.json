@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(projen): Use workspace `@langri-sha/tsconfig`",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

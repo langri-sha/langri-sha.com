@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/babel-preset
 
-This log was last generated on Sat, 15 Jun 2024 09:09:06 GMT and should not be manually modified.
+This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Mon, 08 Jul 2024 21:43:05 GMT
+
+### Minor changes
+
+- feat(workspace): Use `vitest` (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @types/node to v20.14.5 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.3 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.8 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.10 (email not defined)
+- chore(deps): chore(deps): update node.js to v20.15.0 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.7 (email not defined)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.6 (email not defined)
 
 ## 0.3.0
 

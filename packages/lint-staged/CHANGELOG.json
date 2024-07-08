@@ -2,6 +2,27 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Mon, 08 Jul 2024 21:43:04 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/lint-staged_v0.6.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(tsconfig): Use `${configDir}`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
+            "comment": "feat(workspace): Add repository path"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 15 Jun 2024 09:09:05 GMT",
       "version": "0.6.0",
       "tag": "@langri-sha/lint-staged_v0.6.0",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.8",
-  "packageName": "@langri-sha/monorepo",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}
