@@ -105,13 +105,11 @@ const subproject = (project: Project) => {
   project.tryRemoveFile('.gitignore')
 
   project.package?.addField('repository', {
+    type: 'git',
     url: 'git+https://github.com/langri-sha/langri-sha.com.git',
-    path: path.join(
-      '/',
-      path.relative(
-        path.dirname(fileURLToPath(import.meta.url)),
-        project.outdir,
-      ),
+    directory: path.relative(
+      path.dirname(fileURLToPath(import.meta.url)),
+      project.outdir,
     ),
   })
 

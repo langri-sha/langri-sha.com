@@ -5,8 +5,9 @@
     "url": "https://github.com/langri-sha/langri-sha.com/issues"
   },
   "repository": {
+    "type": "git",
     "url": "git+https://github.com/langri-sha/langri-sha.com.git",
-    "path": "/packages/projen-husky"
+    "directory": "packages/projen-husky"
   },
   "license": "MIT",
   "author": {
