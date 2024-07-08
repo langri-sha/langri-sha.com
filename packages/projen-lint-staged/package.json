@@ -5,8 +5,9 @@
     "url": "https://github.com/langri-sha/langri-sha.com/issues"
   },
   "repository": {
+    "type": "git",
     "url": "git+https://github.com/langri-sha/langri-sha.com.git",
-    "path": "/packages/projen-lint-staged"
+    "directory": "packages/projen-lint-staged"
   },
   "license": "MIT",
   "author": {
