@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/jest-test",
   "version": "0.8.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "path": "/packages/jest-test"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

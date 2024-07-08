@@ -1,6 +1,13 @@
 {
   "name": "@langri-sha/lint-staged",
   "version": "0.6.0",
+  "bugs": {
+    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+  },
+  "repository": {
+    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "path": "/packages/lint-staged"
+  },
   "license": "MIT",
   "author": {
     "name": "Filip Dupanović",

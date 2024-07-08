@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "feat(workspace): Add repository path",
+  "packageName": "@langri-sha/eslint-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
