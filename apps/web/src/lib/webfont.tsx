@@ -1,3 +1,4 @@
+'use client'
 import WebFont from 'webfontloader'
 
 const defaults = {
