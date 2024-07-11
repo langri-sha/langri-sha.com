@@ -1,9 +1,14 @@
+'use client'
 import * as React from 'react'
 
 export const Drone: React.FC<Record<string, never>> = () => {
-  const processor = new Processor()
-
   React.useEffect(() => {
+    if (!window.AudioContext) {
+      return
+    }
+
+    const processor = new Processor()
+
     processor.generate()
 
     return () => {

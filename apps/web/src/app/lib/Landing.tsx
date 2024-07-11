@@ -1,9 +1,12 @@
+/** @jsxImportSource @emotion/react */
+'use client'
+
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { Global } from '@emotion/react'
 
-import { global } from '../styles'
-import { Drone, Header, Scene } from '../components'
+import { global } from '@/styles'
+import { Drone, Header, Scene } from '@/components'
 
 export const Landing: React.FC = () => (
   <React.Fragment>
@@ -29,7 +32,6 @@ const Root = styled.div`
   &::before {
     content: '';
     position: absolute;
-    top: -20%;
     left: 0;
     width: 100vw;
     height: 100vh;

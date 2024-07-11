@@ -6,14 +6,13 @@
   "license": "MIT",
   "main": "src/index.tsx",
   "scripts": {
-    "build": "webpack --env production --mode production --progress",
-    "start": "webpack serve --progress --open --hot --port 8080",
-    "test": "webpack --debug --bail"
+    "build": "next build",
+    "start": "next dev"
   },
   "dependencies": {
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "normalize.css": "8.0.1",
     "webfontloader": "1.6.28"
   },
