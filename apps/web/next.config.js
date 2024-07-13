@@ -10,6 +10,9 @@ const config = {
   reactStrictMode: true,
 
   compiler: { emotion: true },
+  experimental: {
+    optimizeCss: true,
+  },
 
   webpack: (config) => {
     config.module.rules.push({
