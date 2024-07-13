@@ -13,7 +13,7 @@ export class ProjenrcFile extends BaseProjenrcFile {
 
   constructor(
     project: Project,
-    { filename = '.projenrc.mts' }: ProjenrcOptions,
+    { filename = '.projenrc.ts' }: ProjenrcOptions,
   ) {
     super(project)
 
