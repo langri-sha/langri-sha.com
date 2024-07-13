@@ -149,6 +149,27 @@ test('find subproject', () => {
   expect(project.findSubproject('non-existing')).toBeUndefined()
 })
 
+describe('creates `.projenrc` Projen project configuration', () => {
+  test('with defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
+
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        type: 'module',
+      },
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
+})
+
 test('with Babel configuration', () => {
   const project = new Project({
     name: 'test-project',
