@@ -177,7 +177,7 @@ export class Project extends BaseProject {
     this.#configurePackage(options)
     this.#configureTypeScript(options)
     this.#configureSWC(options)
-    this.#configureProjenrc()
+    this.#configureProjenrc(options)
 
     if (this.parent) {
       this.tasks.tryFind('default')?.reset()
@@ -503,8 +503,10 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.prettier!.path)
   }
 
-  #configureProjenrc() {
-    this.projenrc = new ProjenrcFile(this, {})
+  #configureProjenrc({ package: pkg }: ProjectOptions) {
+    this.projenrc = new ProjenrcFile(this, {
+      filename: pkg?.type === 'module' ? '.projenrc.ts' : '.projenrc.mts',
+    })
 
     if (!this.parent) {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
