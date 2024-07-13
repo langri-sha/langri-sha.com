@@ -21,9 +21,11 @@ const project = new Project({
   package: {
     ...pkg,
     copyrightYear: '2016',
-    repository: 'langri-sha/langri-sha.com',
     homepage: 'https://langri-sha.com',
     minNodeVersion: '20.12.0',
+    repository: 'langri-sha/langri-sha.com',
+    type: 'module',
+
     deps: [
       '@babel/core@7.24.9',
       '@babel/register@7.24.6',

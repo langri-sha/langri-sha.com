@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "feat(root): Migrate to ESM",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
