@@ -3,4 +3,4 @@ const config = {
   presets: ['@langri-sha/babel-preset'],
 }
 
-module.exports = config
+export default config

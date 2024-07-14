@@ -50,13 +50,13 @@ export class Babel extends FileBase {
         this.#configApiFunction ? `${this.#configApiFunction}\n` : '',
         `return ${serialize(this.options, { space: 2, unsafe: true })}`,
         `}\n`,
-        `module.exports = config\n`,
+        `export default config\n`,
       ].filter(Boolean)
     } else {
       lines = [
         `/** @type {import('@babel/core').TransformOptions} */`,
         `const config = ${serialize(this.options, { space: 2, unsafe: true })}\n`,
-        `module.exports = config\n`,
+        `export default config\n`,
       ]
     }
 

@@ -247,12 +247,13 @@ export class Project extends BaseProject {
     return this.allSubprojectsKind.find((project) => project.name === name)
   }
 
-  #configureBabel({ babel }: ProjectOptions) {
+  #configureBabel({ babel, package: pkg }: ProjectOptions) {
     if (!babel) {
       return
     }
 
     const defaults: BabelOptions = {
+      filename: pkg?.type === 'module' ? 'babel.config.mjs' : 'babel.config.js',
       options: {
         presets: ['@langri-sha/babel-preset'],
       },
