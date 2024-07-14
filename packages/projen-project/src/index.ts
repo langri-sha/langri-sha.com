@@ -263,12 +263,14 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.babel.path)
   }
 
-  #configureBeachball({ beachball }: ProjectOptions) {
+  #configureBeachball({ beachball, package: pkg }: ProjectOptions) {
     if (!beachball || this.parent) {
       return
     }
 
     const defaults: BeachballOptions = {
+      filename:
+        pkg?.type === 'module' ? 'beachball.config.cjs' : 'beachball.config.js',
       config: {
         branch: 'origin/main',
         gitTags: false,
