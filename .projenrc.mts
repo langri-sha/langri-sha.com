@@ -218,7 +218,7 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: [
         '@eslint/js@9.7.0',
-        'eslint-plugin-jsdoc@48.6.0',
+        'eslint-plugin-jsdoc@48.7.0',
         'eslint-plugin-prettier@5.1.3',
         'eslint-plugin-unicorn@54.0.0',
         'globals@15.8.0',
