@@ -12,7 +12,7 @@ export interface BeachballOptions {
 export class Beachball extends TextFile {
   constructor(
     project: Project,
-    { filename = 'beachball.config.js', config }: BeachballOptions = {},
+    { filename = 'beachball.config.cjs', config }: BeachballOptions = {},
   ) {
     super(project, filename, {
       readonly: true,
