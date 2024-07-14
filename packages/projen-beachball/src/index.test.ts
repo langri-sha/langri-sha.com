@@ -21,14 +21,14 @@ test('with filename', () => {
   })
 
   new Beachball(project, {
-    filename: 'beachball.config.cjs',
+    filename: 'beachball.config.js',
   })
 
   project.synth()
-  expect(synthSnapshot(project)['beachball.config.cjs']).toBeTruthy()
+  expect(synthSnapshot(project)['beachball.config.js']).toBeTruthy()
 })
 
-test('with some options', () => {
+test('with some config', () => {
   const project = new Project({
     name: 'test-project',
   })
