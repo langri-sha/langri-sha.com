@@ -343,15 +343,31 @@ describe('with license', () => {
   })
 })
 
-test('with `lint-staged`', () => {
-  const project = new Project({
-    name: 'test-project',
-    lintStaged: {},
-    typeScriptConfig: {},
+describe('with `lint-staged`', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.lintStaged).toBeInstanceOf(LintStaged)
   })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.lintStaged).toBeInstanceOf(LintStaged)
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {},
+      package: {
+        type: 'module',
+      },
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.lintStaged).toBeInstanceOf(LintStaged)
+  })
 })
 
 describe('with NPM ignore', () => {

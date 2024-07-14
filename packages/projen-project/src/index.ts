@@ -395,20 +395,20 @@ export class Project extends BaseProject {
     })
   }
 
-  #configureLintStaged({ lintStaged: lintStagedOptions }: ProjectOptions) {
-    if (!lintStagedOptions) {
+  #configureLintStaged({ lintStaged, package: pkg }: ProjectOptions) {
+    if (!lintStaged) {
       return
     }
 
     const defaults: LintStagedOptions = {
-      filename: 'lint-staged.config.mjs',
+      filename:
+        pkg?.type === 'module'
+          ? 'lint-staged.config.js'
+          : 'lint-staged.config.mjs',
       extends: '@langri-sha/lint-staged',
     }
 
-    this.lintStaged = new LintStaged(
-      this,
-      deepMerge(defaults, lintStagedOptions),
-    )
+    this.lintStaged = new LintStaged(this, deepMerge(defaults, lintStaged))
 
     this.typeScriptConfig?.addFile(this.lintStaged!.path)
   }
