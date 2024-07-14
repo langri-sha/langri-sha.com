@@ -408,15 +408,30 @@ test('with PNPM workspace', () => {
   expect(project.pnpmWorkspace).toBeInstanceOf(PnpmWorkspace)
 })
 
-test('with Prettier options', () => {
-  const project = new Project({
-    name: 'test-project',
-    prettier: {},
-    typeScriptConfig: {},
+describe('with Prettier options', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      prettier: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.prettier).toBeInstanceOf(Prettier)
   })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.prettier).toBeInstanceOf(Prettier)
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      prettier: {},
+      package: {
+        type: 'module',
+      },
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.prettier).toBeInstanceOf(Prettier)
+  })
 })
 
 test('with Renovate options', () => {

@@ -484,18 +484,19 @@ export class Project extends BaseProject {
     this.pnpmWorkspace = new PnpmWorkspace(this, pnpmWorkspace)
   }
 
-  #configurePrettier({ prettier: prettierOptions }: ProjectOptions) {
-    if (!prettierOptions || this.parent) {
+  #configurePrettier({ prettier, package: pkg }: ProjectOptions) {
+    if (!prettier || this.parent) {
       return
     }
 
     const defaults: PrettierOptions = {
-      filename: 'prettier.config.mjs',
+      filename:
+        pkg?.type === 'module' ? 'prettier.config.js' : 'prettier.config.mjs',
       extends: '@langri-sha/prettier',
       ignorePatterns: ['.*', 'dist/'],
     }
 
-    this.prettier = new Prettier(this, deepMerge(defaults, prettierOptions))
+    this.prettier = new Prettier(this, deepMerge(defaults, prettier))
 
     if (this.projenrc?.filePath) {
       this.prettier.ignore.include(this.projenrc.filePath)
