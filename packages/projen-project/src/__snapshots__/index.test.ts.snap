@@ -2292,7 +2292,7 @@ node_modules/
       {
         "name": "@swc-node/register",
         "type": "build",
-        "version": "1.10.2",
+        "version": "1.10.7",
       },
       {
         "name": "@swc/core",
@@ -2384,7 +2384,7 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "@swc-node/register": "1.10.2",
+      "@swc-node/register": "1.10.7",
       "@swc/core": "1.6.13",
       "projen": "0.82.4",
       "typescript": "5.5.3",
