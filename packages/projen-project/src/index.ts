@@ -268,19 +268,21 @@ export class Project extends BaseProject {
       return
     }
 
-    const options = deepMerge(beachball, {
-      branch: 'origin/main',
-      gitTags: false,
-      ignorePatterns: [
-        '*.test.*',
-        '.*/**',
-        '__snapshots__/',
-        'dist/',
-        'node_modules/',
-      ],
-    })
+    const defaults: BeachballOptions = {
+      config: {
+        branch: 'origin/main',
+        gitTags: false,
+        ignorePatterns: [
+          '*.test.*',
+          '.*/**',
+          '__snapshots__/',
+          'dist/',
+          'node_modules/',
+        ],
+      },
+    }
 
-    this.beachball = new Beachball(this, options)
+    this.beachball = new Beachball(this, deepMerge(defaults, beachball))
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
     this.package?.addDevDeps('beachball@2.43.1')

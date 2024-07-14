@@ -15,13 +15,28 @@ test('defaults', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with filename', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new Beachball(project, {
+    filename: 'beachball.config.cjs',
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)['beachball.config.cjs']).toBeTruthy()
+})
+
 test('with some options', () => {
   const project = new Project({
     name: 'test-project',
   })
 
   new Beachball(project, {
-    branch: 'main',
+    config: {
+      branch: 'main',
+    },
   })
 
   project.synth()
