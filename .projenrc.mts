@@ -77,7 +77,6 @@ const project = new Project({
   swcrc: {},
   typeScriptConfig: {
     config: {
-      files: ['babel.config.js'],
       references: [{ path: './apps/web' }],
     },
   },
