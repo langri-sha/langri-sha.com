@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(eslint-config): Add missing `eslint-config-prettier`",
+  "packageName": "@langri-sha/eslint-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
