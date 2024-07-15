@@ -233,7 +233,7 @@ project.addSubproject(
         'eslint-plugin-prettier@5.1.3',
         'eslint-plugin-unicorn@54.0.0',
         'globals@15.8.0',
-        'typescript-eslint@7.16.0',
+        'typescript-eslint@7.16.1',
       ],
       devDeps: ['@types/eslint__js@8.42.3'],
       peerDeps: ['eslint@^9.0.0'],
