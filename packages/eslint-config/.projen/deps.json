@@ -21,6 +21,11 @@
       "type": "runtime"
     },
     {
+      "name": "eslint-config-prettier",
+      "version": "9.1.0",
+      "type": "runtime"
+    },
+    {
       "name": "eslint-plugin-jsdoc",
       "version": "48.7.0",
       "type": "runtime"
