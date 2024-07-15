@@ -90,7 +90,7 @@
   ],
   "files": [
     ".projenrc.mts",
-    "babel.config.js",
+    "babel.config.mjs",
     "beachball.config.js",
     "eslint.config.mjs",
     "lint-staged.config.mjs",

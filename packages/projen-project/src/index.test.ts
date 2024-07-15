@@ -170,16 +170,30 @@ describe('creates `.projenrc` Projen project configuration', () => {
   })
 })
 
-test('with Babel configuration', () => {
-  const project = new Project({
-    name: 'test-project',
-    package: {},
-    babel: {},
-    typeScriptConfig: {},
+describe('with Babel configuration', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      babel: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.babel).toBeInstanceOf(Babel)
   })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.babel).toBeInstanceOf(Babel)
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        type: 'module',
+      },
+      babel: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
 })
 
 test('with Beachball configuration', () => {

@@ -9,7 +9,7 @@
     ".projen/files.json",
     ".projen/tasks.json",
     ".swcrc",
-    "babel.config.js",
+    "babel.config.mjs",
     "beachball.config.js",
     "CODEOWNERS",
     "eslint.config.mjs",
