@@ -25,7 +25,7 @@ const project = new Project({
     homepage: 'https://langri-sha.com',
     minNodeVersion: '20.12.0',
     deps: [
-      '@babel/core@7.24.8',
+      '@babel/core@7.24.9',
       '@babel/register@7.24.6',
       '@types/babel__core@7.20.5',
       'react-dom@18.3.1',
