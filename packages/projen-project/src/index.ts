@@ -253,7 +253,7 @@ export class Project extends BaseProject {
     }
 
     const defaults: BabelOptions = {
-      filename: pkg?.type === 'module' ? 'babel.config.mjs' : 'babel.config.js',
+      filename: pkg?.type === 'module' ? 'babel.config.js' : 'babel.config.mjs',
       options: {
         presets: ['@langri-sha/babel-preset'],
       },

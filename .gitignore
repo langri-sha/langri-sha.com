@@ -28,7 +28,7 @@ node_modules/
 !/eslint.config.mjs
 !/prettier.config.mjs
 !/.prettierignore
-!/babel.config.js
+!/babel.config.mjs
 !/beachball.config.js
 !/CODEOWNERS
 !/.editorconfig
