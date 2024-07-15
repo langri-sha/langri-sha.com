@@ -2,14 +2,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig",
-  "files": [
-    ".projenrc.mts",
-    "babel.config.js",
-    "beachball.config.js",
-    "eslint.config.mjs",
-    "lint-staged.config.mjs",
-    "prettier.config.mjs"
-  ],
   "references": [
     {
       "path": "./apps/web"
@@ -95,5 +87,13 @@
     {
       "path": "packages/webpack"
     }
+  ],
+  "files": [
+    ".projenrc.mts",
+    "babel.config.js",
+    "beachball.config.js",
+    "eslint.config.mjs",
+    "lint-staged.config.mjs",
+    "prettier.config.mjs"
   ]
 }
