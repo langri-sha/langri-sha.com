@@ -28,7 +28,7 @@
     "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
-    "vitest": "^1.6.0 || ^2.0.0"
+    "vitest": "^2.0.0"
   },
   "publishConfig": {
     "access": "public",
