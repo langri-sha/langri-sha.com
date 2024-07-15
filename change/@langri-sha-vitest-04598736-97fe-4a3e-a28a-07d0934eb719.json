@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): chore(deps): update dependency vitest to v2",
+  "packageName": "@langri-sha/vitest",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
