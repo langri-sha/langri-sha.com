@@ -196,17 +196,33 @@ describe('with Babel configuration', () => {
   })
 })
 
-test('with Beachball configuration', () => {
-  const project = new Project({
-    name: 'test-project',
-    package: {},
-    beachball: {},
-    prettier: {},
-    typeScriptConfig: {},
+describe('with Beachball configuration', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      beachball: {},
+      prettier: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.beachball).toBeInstanceOf(Beachball)
   })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.beachball).toBeInstanceOf(Beachball)
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        type: 'module',
+      },
+      beachball: {},
+      prettier: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
 })
 
 test('with code owners configured', () => {

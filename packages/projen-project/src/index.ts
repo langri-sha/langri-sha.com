@@ -289,7 +289,7 @@ export class Project extends BaseProject {
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
     this.package?.addDevDeps('beachball@2.43.1')
-    this.typeScriptConfig?.addFile('beachball.config.js')
+    this.typeScriptConfig?.addFile(this.beachball!.path)
   }
 
   #configureCodeowners({ codeowners: codeownersOptions }: ProjectOptions) {
