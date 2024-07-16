@@ -229,6 +229,7 @@ project.addSubproject(
       deps: [
         '@eslint/js@9.7.0',
         'eslint-config-prettier@9.1.0',
+        'eslint-plugin-import@2.29.1',
         'eslint-plugin-jsdoc@48.7.0',
         'eslint-plugin-prettier@5.1.3',
         'eslint-plugin-react@7.34.4',
