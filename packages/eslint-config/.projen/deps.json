@@ -36,6 +36,11 @@
       "type": "runtime"
     },
     {
+      "name": "eslint-plugin-react",
+      "version": "7.34.4",
+      "type": "runtime"
+    },
+    {
       "name": "eslint-plugin-unicorn",
       "version": "54.0.0",
       "type": "runtime"
