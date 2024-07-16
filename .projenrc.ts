@@ -75,7 +75,17 @@ const project = new Project({
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],
   },
-  renovate: {},
+  renovate: {
+    packageRules: [
+      {
+        description: 'Google Terraform Providers',
+        groupName: 'Google Providers',
+        groupSlug: 'terraform-google',
+        matchDatasources: ['terraform-provider'],
+        matchPackagePrefixes: 'hashicorp/google',
+      },
+    ],
+  },
   swcrc: {},
   typeScriptConfig: {
     config: {
