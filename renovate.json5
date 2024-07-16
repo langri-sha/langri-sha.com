@@ -49,4 +49,13 @@
       depTypeTemplate: 'dependencies',
     },
   ],
+  packageRules: [
+    {
+      description: 'Google Terraform Providers',
+      groupName: 'Google Providers',
+      groupSlug: 'terraform-google',
+      matchDatasources: ['terraform-provider'],
+      matchPackagePrefixes: 'hashicorp/google',
+    },
+  ],
 }
