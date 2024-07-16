@@ -4,9 +4,13 @@ import globals from 'globals'
 import unicorn from 'eslint-plugin-unicorn'
 import prettier from 'eslint-plugin-prettier/recommended'
 import jsdoc from 'eslint-plugin-jsdoc'
+import react from 'eslint-plugin-react/configs/recommended.js'
+import reactRuntime from 'eslint-plugin-react/configs/jsx-runtime.js'
 
 export default [
   js.configs.recommended,
+  react,
+  reactRuntime,
   ...ts.configs.recommended,
   {
     files: ['**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}'],
