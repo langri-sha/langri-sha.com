@@ -26,6 +26,11 @@
       "type": "runtime"
     },
     {
+      "name": "eslint-plugin-import",
+      "version": "2.29.1",
+      "type": "runtime"
+    },
+    {
       "name": "eslint-plugin-jsdoc",
       "version": "48.7.0",
       "type": "runtime"
