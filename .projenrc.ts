@@ -62,7 +62,7 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: ['renovate.d.ts', 'swcrc.d.ts'],
+    ignorePatterns: ['**/renovate.d.ts', '**/swcrc.d.ts'],
   },
   husky: {
     'pre-commit': 'pnpm -q lint-staged',
