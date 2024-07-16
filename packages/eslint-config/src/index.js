@@ -11,6 +11,14 @@ export default [
   js.configs.recommended,
   react,
   reactRuntime,
+  {
+    settings: {
+      react: {
+        defaultVersion: '',
+        version: 'detect',
+      },
+    },
+  },
   ...ts.configs.recommended,
   {
     files: ['**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}'],
