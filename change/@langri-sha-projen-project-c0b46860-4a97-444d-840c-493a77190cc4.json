@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): chore(deps): update dependency @swc-node/register to v1.10.8",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
