@@ -336,7 +336,7 @@ export class Project extends BaseProject {
 
     const defaults: ESLintOptions = {
       filename: 'eslint.config.mjs',
-      ignorePatterns: ['.*', 'dist/'],
+      ignorePatterns: ['**/.*', '**/dist/'],
       extends: '@langri-sha/eslint-config',
     }
 
