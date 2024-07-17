@@ -668,6 +668,24 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-readme',
+    outdir: path.join('packages', 'projen-readme'),
+    typeScriptConfig: {},
+    npmIgnore: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['projen@^0.82.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-renovate',
     outdir: path.join('packages', 'projen-renovate'),
     typeScriptConfig: {},
