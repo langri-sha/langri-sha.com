@@ -1,5 +1,35 @@
 import * as path from 'node:path'
 
+import { Babel, BabelOptions } from '@langri-sha/projen-babel'
+import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
+import {
+  Codeowners,
+  type CodeownersOptions,
+} from '@langri-sha/projen-codeowners'
+import {
+  EditorConfig,
+  type EditorConfigOptions,
+} from '@langri-sha/projen-editorconfig'
+import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
+import { Husky, type HuskyOptions } from '@langri-sha/projen-husky'
+import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
+import { License } from '@langri-sha/projen-license'
+import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
+import {
+  LintSynthesized,
+  type LintSynthesizedOptions,
+} from '@langri-sha/projen-lint-synthesized'
+import {
+  PnpmWorkspace,
+  PnpmWorkspaceOptions,
+} from '@langri-sha/projen-pnpm-workspace'
+import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
+import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
+import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
+import {
+  TypeScriptConfig,
+  type TypeScriptConfigOptions,
+} from '@langri-sha/projen-typescript-config'
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
@@ -7,41 +37,9 @@ import {
   IgnoreFileOptions,
   javascript,
 } from 'projen'
-
 import * as R from 'ramda'
 
-import {
-  LintSynthesized,
-  type LintSynthesizedOptions,
-} from '@langri-sha/projen-lint-synthesized'
-import {
-  EditorConfig,
-  type EditorConfigOptions,
-} from '@langri-sha/projen-editorconfig'
-import {
-  Codeowners,
-  type CodeownersOptions,
-} from '@langri-sha/projen-codeowners'
-import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
-import { Husky, type HuskyOptions } from '@langri-sha/projen-husky'
-import {
-  TypeScriptConfig,
-  type TypeScriptConfigOptions,
-} from '@langri-sha/projen-typescript-config'
-import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
-import { License } from '@langri-sha/projen-license'
-
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
-import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
-import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
-import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
-import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
-import { Babel, BabelOptions } from '@langri-sha/projen-babel'
-import {
-  PnpmWorkspace,
-  PnpmWorkspaceOptions,
-} from '@langri-sha/projen-pnpm-workspace'
-import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 
 export * from '@langri-sha/projen-typescript-config'
 

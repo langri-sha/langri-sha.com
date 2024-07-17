@@ -1,6 +1,6 @@
-import serialize from 'serialize-javascript'
 import type { Config } from 'prettier'
 import { FileBase, IResolver, IgnoreFile, Project } from 'projen'
+import serialize from 'serialize-javascript'
 
 /**
  * Options for configuring Prettier.

@@ -1,6 +1,7 @@
+import { expect, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
-import { expect, test } from '@langri-sha/vitest'
+
 import { ProjenrcFile } from './projenrc'
 
 test('defaults', () => {

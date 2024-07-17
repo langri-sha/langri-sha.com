@@ -1,4 +1,5 @@
 import { type SerializedStyles, css } from '@emotion/react'
+
 import { cinzel } from '@/lib/fonts'
 
 export const base: SerializedStyles = css`

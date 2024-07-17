@@ -1,5 +1,5 @@
-import { FileBase, type IResolver, Project } from 'projen'
 import licenseOMatic, { type Spdx } from 'license-o-matic'
+import { FileBase, type IResolver, Project } from 'projen'
 
 export interface LicenseOptions {
   /**

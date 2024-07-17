@@ -1,5 +1,5 @@
-import serialize from 'serialize-javascript'
 import { FileBase, IResolver, Project } from 'projen'
+import serialize from 'serialize-javascript'
 
 /**
  * Options for configuring ESLint.

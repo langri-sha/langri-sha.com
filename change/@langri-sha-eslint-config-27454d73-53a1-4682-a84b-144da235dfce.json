@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(eslint-config): Add `import/order` rule",
+  "packageName": "@langri-sha/eslint-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

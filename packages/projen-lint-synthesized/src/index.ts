@@ -1,11 +1,10 @@
-import { Component, Project } from 'projen'
-import * as path from 'node:path'
-import createDebug from 'debug'
-
 import * as fs from 'node:fs'
+import * as path from 'node:path'
 
+import createDebug from 'debug'
 import { execaSync } from 'execa'
 import { minimatch } from 'minimatch'
+import { Component, Project } from 'projen'
 
 const debug = createDebug('projen-lint-synthesized')
 

@@ -1,10 +1,11 @@
 import { promises as fs } from 'node:fs'
 import * as path from 'node:path'
+
 import { describe, expect, tempy, test } from '@langri-sha/vitest'
+import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
 import { NodePackage } from './node-package'
-import { Project } from 'projen'
 
 describe('resolves version', () => {
   test('without a package set', () => {

@@ -1,13 +1,14 @@
 import * as path from 'node:path'
+
+import createDebug from 'debug'
+import envPaths from 'env-paths'
 import got, { HTTPError } from 'got'
 import {
   type JSONSchema,
   compile as compileSource,
 } from 'json-schema-to-typescript'
-import envPaths from 'env-paths'
 import Keyv from 'keyv'
 import { KeyvFile } from 'keyv-file'
-import createDebug from 'debug'
 
 const debug = createDebug('schema-store-to-typescript')
 const paths = envPaths('schemastore-to-typescript')

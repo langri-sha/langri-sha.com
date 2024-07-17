@@ -1,6 +1,6 @@
-import serialize from 'serialize-javascript'
 import type { TransformOptions } from '@babel/core'
 import { FileBase, IResolver, Project } from 'projen'
+import serialize from 'serialize-javascript'
 
 /**
  * Options for configuring Babel.

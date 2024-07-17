@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
-import esMain from 'es-main'
+import * as path from 'node:path'
+
 import { Command } from 'commander'
-import { compile } from './index.js'
 import createDebug from 'debug'
+import esMain from 'es-main'
+
+import { compile } from './index.js'
 
 const debug = createDebug('schema-store-to-typescript')
 

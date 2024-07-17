@@ -1,7 +1,7 @@
-import { synthSnapshot } from 'projen/lib/util/synth'
 import { expect, test } from '@langri-sha/vitest'
-
 import { Project } from 'projen'
+import { synthSnapshot } from 'projen/lib/util/synth'
+
 import { License } from './index'
 
 test('defaults', () => {
