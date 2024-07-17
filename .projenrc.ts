@@ -1,7 +1,8 @@
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
 import { IgnoreFile, SampleFile } from 'projen'
-import { fileURLToPath } from 'node:url'
-import * as path from 'node:path'
 
 const pkg = {
   authorEmail: 'filip.dupanovic@gmail.com',

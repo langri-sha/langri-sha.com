@@ -1,6 +1,7 @@
+import * as path from 'node:path'
+
 import { type IResolver, Project, YamlFile, javascript } from 'projen'
 import YAML from 'yaml'
-import * as path from 'node:path'
 
 /**
  * Options for maintaining a PNPM workspace.

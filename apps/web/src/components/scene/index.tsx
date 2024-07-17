@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import vertexShaderSource from './default.vert'
 import fragmentShaderSource from './default.frag'
+import vertexShaderSource from './default.vert'
 
 export const Scene: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)

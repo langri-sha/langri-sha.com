@@ -1,4 +1,5 @@
 import path from 'node:path'
+
 import { Component, type Project, TextFile } from 'projen'
 
 type Hooks =

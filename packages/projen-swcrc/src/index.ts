@@ -1,5 +1,6 @@
-import { type SwcConfigurationSchema } from './swcrc'
 import { JsonFile, type Project } from 'projen'
+
+import { type SwcConfigurationSchema } from './swcrc'
 
 /**
  * SWC configuration options.

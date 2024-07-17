@@ -1,9 +1,12 @@
-import { beforeAll, tempy, test } from '@langri-sha/vitest'
-import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
-import { compile } from './index.js'
-import { program } from './cli.js'
+import * as path from 'node:path'
+
+import { beforeAll, tempy, test } from '@langri-sha/vitest'
 import { expect, vi } from 'vitest'
+
+import { program } from './cli.js'
+
+import { compile } from './index.js'
 
 vi.mock('./index', () => ({ compile: vi.fn(() => 'export {}') }))
 

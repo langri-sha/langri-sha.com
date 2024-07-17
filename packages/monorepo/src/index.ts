@@ -1,5 +1,6 @@
-import { findUpSync } from 'find-up'
 import path from 'node:path'
+
+import { findUpSync } from 'find-up'
 
 let root: string | undefined
 

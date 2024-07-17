@@ -1,5 +1,5 @@
-import { FileBase, IResolver, Project } from 'projen'
 import { Config } from 'jest'
+import { FileBase, IResolver, Project } from 'projen'
 import serialize from 'serialize-javascript'
 
 /**

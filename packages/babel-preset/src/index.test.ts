@@ -1,6 +1,5 @@
-import { expect, test } from '@langri-sha/vitest'
-
 import { loadPresetPlugins } from '@langri-sha/babel-test'
+import { expect, test } from '@langri-sha/vitest'
 
 test.skip('default preset plugins', async () => {
   for (const environment of ['development', 'production']) {

@@ -1,6 +1,6 @@
-import { type JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom } from './renovate'
-
 import { Component, JsonFile, type Project } from 'projen'
+
+import { type JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom } from './renovate'
 
 /**
  * Renovate configuration options.

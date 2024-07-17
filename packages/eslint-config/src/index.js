@@ -1,11 +1,13 @@
+import { fixupPluginRules } from '@eslint/compat'
 import js from '@eslint/js'
-import ts from 'typescript-eslint'
-import globals from 'globals'
-import unicorn from 'eslint-plugin-unicorn'
-import prettier from 'eslint-plugin-prettier/recommended'
+import imprt from 'eslint-plugin-import'
 import jsdoc from 'eslint-plugin-jsdoc'
-import react from 'eslint-plugin-react/configs/recommended.js'
+import prettier from 'eslint-plugin-prettier/recommended'
 import reactRuntime from 'eslint-plugin-react/configs/jsx-runtime.js'
+import react from 'eslint-plugin-react/configs/recommended.js'
+import unicorn from 'eslint-plugin-unicorn'
+import globals from 'globals'
+import ts from 'typescript-eslint'
 
 export default [
   js.configs.recommended,
@@ -34,6 +36,7 @@ export default [
       },
     },
     plugins: {
+      import: fixupPluginRules(imprt),
       jsdoc,
       unicorn,
     },
@@ -59,6 +62,31 @@ export default [
           destructuredArrayIgnorePattern: '^_',
           varsIgnorePattern: '^_',
           ignoreRestSiblings: true,
+        },
+      ],
+
+      'import/order': [
+        'error',
+        {
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+            },
+          ],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
         },
       ],
 

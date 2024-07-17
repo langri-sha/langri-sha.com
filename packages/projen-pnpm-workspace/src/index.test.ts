@@ -1,9 +1,9 @@
-import { synthSnapshot } from 'projen/lib/util/synth'
 import { expect, test } from '@langri-sha/vitest'
-
 import { Project } from 'projen'
-import { PnpmWorkspace } from './index'
 import { NodePackage } from 'projen/lib/javascript'
+import { synthSnapshot } from 'projen/lib/util/synth'
+
+import { PnpmWorkspace } from './index'
 
 test('defaults', () => {
   const project = new Project({

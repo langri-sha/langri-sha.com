@@ -1,4 +1,5 @@
 import path from 'path'
+
 import type { Configuration, ResolveOptions } from 'webpack'
 
 // Stock.
