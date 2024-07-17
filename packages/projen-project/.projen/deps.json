@@ -141,6 +141,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-readme",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-renovate",
       "version": "workspace:*",
       "type": "runtime"

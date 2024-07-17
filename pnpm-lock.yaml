@@ -600,6 +600,9 @@ importers:
       '@langri-sha/projen-prettier':
         specifier: workspace:*
         version: link:../projen-prettier
+      '@langri-sha/projen-readme':
+        specifier: workspace:*
+        version: link:../projen-readme
       '@langri-sha/projen-renovate':
         specifier: workspace:*
         version: link:../projen-renovate

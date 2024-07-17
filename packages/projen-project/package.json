@@ -34,6 +34,7 @@
     "@langri-sha/projen-lint-synthesized": "workspace:*",
     "@langri-sha/projen-pnpm-workspace": "workspace:*",
     "@langri-sha/projen-prettier": "workspace:*",
+    "@langri-sha/projen-readme": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
     "@langri-sha/projen-swcrc": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
