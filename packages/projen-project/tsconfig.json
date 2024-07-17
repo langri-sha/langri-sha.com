@@ -40,6 +40,9 @@
       "path": "../projen-prettier"
     },
     {
+      "path": "../projen-readme"
+    },
+    {
       "path": "../projen-renovate"
     },
     {
