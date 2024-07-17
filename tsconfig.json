@@ -70,6 +70,9 @@
       "path": "packages/projen-project"
     },
     {
+      "path": "packages/projen-readme"
+    },
+    {
       "path": "packages/projen-renovate"
     },
     {
