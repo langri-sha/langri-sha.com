@@ -227,6 +227,7 @@ project.addSubproject(
       type: 'module',
       entrypoint: 'src/index.js',
       deps: [
+        '@eslint/compat@1.1.1',
         '@eslint/js@9.7.0',
         'eslint-config-prettier@9.1.0',
         'eslint-plugin-import@2.29.1',
