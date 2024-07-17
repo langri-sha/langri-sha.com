@@ -24,6 +24,7 @@ import {
   PnpmWorkspaceOptions,
 } from '@langri-sha/projen-pnpm-workspace'
 import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
+import { ReadmeFile, type ReadmeFileOptions } from '@langri-sha/projen-readme'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 import {
@@ -118,6 +119,11 @@ export interface ProjectOptions
   npmIgnore?: IgnoreFileOptions
 
   /*
+   * Add a sample `README`.
+   */
+  readme?: ReadmeFileOptions
+
+  /*
    * Pass in to configure Renovate.
    */
   renovate?: RenovateOptions
@@ -153,6 +159,7 @@ export class Project extends BaseProject {
   pnpmWorkspace?: PnpmWorkspace
   prettier?: Prettier
   projenrc?: ProjenrcFile
+  readme?: ReadmeFile
   renovate?: Renovate
   swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
@@ -197,6 +204,7 @@ export class Project extends BaseProject {
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
+    this.#configureReadme(options)
     this.#configureRenovate(options)
   }
 
@@ -515,6 +523,14 @@ export class Project extends BaseProject {
     if (!this.parent) {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
     }
+  }
+
+  #configureReadme({ readme }: ProjectOptions) {
+    if (!readme) {
+      return
+    }
+
+    this.readme = new ReadmeFile(this, readme)
   }
 
   #configureRenovate({ renovate: renovateOptions }: ProjectOptions) {

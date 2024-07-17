@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(project): Add `ReadmeFile` support",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
