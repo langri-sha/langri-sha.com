@@ -2,6 +2,43 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Wed, 17 Jul 2024 10:48:16 GMT",
+      "version": "0.3.0",
+      "tag": "@langri-sha/projen-babel_v0.3.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(workspace): Use correct GitHub directory"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(root): Migrate to ESM"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `import/order` rule"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(babel): Migrate to ESM configuration"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 08 Jul 2024 21:43:05 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/projen-babel_v0.2.0",

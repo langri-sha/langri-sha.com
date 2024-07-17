@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/webpack
 
-This log was last generated on Mon, 08 Jul 2024 21:43:04 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.1
+
+Wed, 17 Jul 2024 10:48:16 GMT
+
+### Patches
+
+- fix(workspace): Use correct GitHub directory (filip.dupanovic@gmail.com)
+- chore(deps): chore(deps): update dependency @types/node to v20.14.11 (email not defined)
 
 ## 0.5.0
 

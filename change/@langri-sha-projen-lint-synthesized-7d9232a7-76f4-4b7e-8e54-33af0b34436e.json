@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): fix(deps): update dependency minimatch to v10",
-  "packageName": "@langri-sha/projen-lint-synthesized",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

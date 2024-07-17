@@ -1,8 +1,28 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.0
+
+Wed, 17 Jul 2024 10:48:16 GMT
+
+### Minor changes
+
+- feat(eslint-config): Add `import/order` rule (filip.dupanovic@gmail.com)
+- feat(eslint-config): Add `eslint-plugin-import` (filip.dupanovic@gmail.com)
+- feat(eslint-config): Restore React support (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(eslint-config): Add missing `eslint-config-prettier` (filip.dupanovic@gmail.com)
+- fix(workspace): Use correct GitHub directory (filip.dupanovic@gmail.com)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.7.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.6.0 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.16.1 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.16.0 (email not defined)
+- chore(deps): fix(deps): update eslint monorepo to v9.7.0 (email not defined)
 
 ## 0.5.1
 

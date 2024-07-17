@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(workspace): Use correct GitHub directory",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

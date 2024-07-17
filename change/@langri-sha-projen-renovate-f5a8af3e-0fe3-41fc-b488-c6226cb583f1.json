@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(eslint-config): Add `import/order` rule",
-  "packageName": "@langri-sha/projen-renovate",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

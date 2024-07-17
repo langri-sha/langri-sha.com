@@ -1,8 +1,30 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.12.0
+
+Wed, 17 Jul 2024 10:48:16 GMT
+
+### Minor changes
+
+- feat(beachball): Add support for configuring filename (filip.dupanovic@gmail.com)
+- feat(project): Change default Projen config filename (filip.dupanovic@gmail.com)
+- feat(project): Reconfigure Lint Staged filename for ESM packages (filip.dupanovic@gmail.com)
+- feat(project): Reconfigure Prettier filename for ESM packages (filip.dupanovic@gmail.com)
+- feat(babel): Migrate to ESM configuration (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @swc-node/register to v1.10.9 (email not defined)
+- chore(deps): chore(deps): update dependency @swc-node/register to v1.10.7 (email not defined)
+- fix(project): Apply ESLint ignore patterns to subdirectories (filip.dupanovic@gmail.com)
+- fix(workspace): Use correct GitHub directory (filip.dupanovic@gmail.com)
+- fix(project): Correctly name Babel configuration for ESM packages (filip.dupanovic@gmail.com)
+- chore(deps): chore(deps): update dependency @swc-node/register to v1.10.8 (email not defined)
+- fix(project): Use actual Beachball filename (filip.dupanovic@gmail.com)
 
 ## 0.11.0
 

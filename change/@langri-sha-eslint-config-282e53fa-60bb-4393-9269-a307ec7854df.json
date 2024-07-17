@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.6.0",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

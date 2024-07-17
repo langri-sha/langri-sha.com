@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(workspace): Use correct GitHub directory",
-  "packageName": "@langri-sha/projen-typescript-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

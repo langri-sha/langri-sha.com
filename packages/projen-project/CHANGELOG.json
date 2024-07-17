@@ -2,6 +2,103 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Wed, 17 Jul 2024 10:48:16 GMT",
+      "version": "0.12.0",
+      "tag": "@langri-sha/projen-project_v0.12.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(beachball): Add support for configuring filename"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(project): Change default Projen config filename"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(project): Reconfigure Lint Staged filename for ESM packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(project): Reconfigure Prettier filename for ESM packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(babel): Migrate to ESM configuration"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(root): Migrate to ESM"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `import/order` rule"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): chore(deps): update dependency @swc-node/register to v1.10.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): chore(deps): update dependency @swc-node/register to v1.10.7"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(project): Apply ESLint ignore patterns to subdirectories"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(workspace): Use correct GitHub directory"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(project): Correctly name Babel configuration for ESM packages"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): chore(deps): update dependency @swc-node/register to v1.10.8"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(project): Use actual Beachball filename"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 08 Jul 2024 21:43:05 GMT",
       "version": "0.11.0",
       "tag": "@langri-sha/projen-project_v0.11.0",

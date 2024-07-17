@@ -2,6 +2,35 @@
   "name": "@langri-sha/schemastore-to-typescript",
   "entries": [
     {
+      "date": "Wed, 17 Jul 2024 10:48:16 GMT",
+      "version": "0.1.1",
+      "tag": "@langri-sha/schemastore-to-typescript_v0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(workspace): Use correct GitHub directory"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `import/order` rule"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(root): Migrate to ESM"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 08 Jul 2024 21:43:05 GMT",
       "version": "0.1.0",
       "tag": "@langri-sha/schemastore-to-typescript_v0.1.0",

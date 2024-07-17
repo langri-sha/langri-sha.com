@@ -2,6 +2,41 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Wed, 17 Jul 2024 10:48:16 GMT",
+      "version": "0.5.1",
+      "tag": "@langri-sha/webpack_v0.5.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `import/order` rule"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(root): Migrate to ESM"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(workspace): Use correct GitHub directory"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.11"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 08 Jul 2024 21:43:04 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/webpack_v0.5.0",

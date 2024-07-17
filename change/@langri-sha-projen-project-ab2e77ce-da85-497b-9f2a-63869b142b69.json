@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(project): Correctly name Babel configuration for ESM packages",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

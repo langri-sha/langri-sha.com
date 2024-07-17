@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(project): Apply ESLint ignore patterns to subdirectories",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

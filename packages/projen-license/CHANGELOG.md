@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-license
 
-This log was last generated on Mon, 08 Jul 2024 21:43:05 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.1
+
+Wed, 17 Jul 2024 10:48:16 GMT
+
+### Patches
+
+- fix(workspace): Use correct GitHub directory (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 

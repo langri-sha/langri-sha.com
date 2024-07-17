@@ -2,6 +2,85 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Wed, 17 Jul 2024 10:48:16 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/eslint-config_v0.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(eslint-config): Add missing `eslint-config-prettier`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "fix(workspace): Use correct GitHub directory"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.7.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.6.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.16.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.16.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "chore(deps): fix(deps): update eslint monorepo to v9.7.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `import/order` rule"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Add `eslint-plugin-import`"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(eslint-config): Restore React support"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
+            "comment": "feat(root): Migrate to ESM"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 08 Jul 2024 21:43:05 GMT",
       "version": "0.5.1",
       "tag": "@langri-sha/eslint-config_v0.5.1",
