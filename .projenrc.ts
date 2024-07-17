@@ -76,6 +76,9 @@ const project = new Project({
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],
   },
+  readme: {
+    filename: 'readme',
+  },
   renovate: {
     packageRules: [
       {
@@ -107,10 +110,6 @@ project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
 const subproject = (project: Project) => {
   new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
     contents: 'export {}',
-  })
-
-  new SampleFile(project, 'readme', {
-    contents: `# ${project.name}\n`,
   })
 
   project.tryRemoveFile('.gitignore')
@@ -167,6 +166,9 @@ project.addSubproject(
     name: '@langri-sha/babel-preset',
     outdir: path.join('packages', 'babel-preset'),
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {},
     package: {
       ...pkg,
@@ -193,10 +195,13 @@ project.addSubproject(
   {
     name: '@langri-sha/babel-test',
     outdir: path.join('packages', 'babel-test'),
-    typeScriptConfig: {},
     npmIgnore: {
       ignorePatterns: ['fixtures/'],
     },
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -221,6 +226,9 @@ project.addSubproject(
     name: '@langri-sha/eslint-config',
     outdir: path.join('packages', 'eslint-config'),
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {},
     package: {
       ...pkg,
@@ -251,8 +259,11 @@ project.addSubproject(
   {
     name: '@langri-sha/jest-config',
     outdir: path.join('packages', 'jest-config'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -268,8 +279,11 @@ project.addSubproject(
   {
     name: '@langri-sha/jest-test',
     outdir: path.join('packages', 'jest-test'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -287,6 +301,9 @@ project.addSubproject(
     name: '@langri-sha/lint-staged',
     outdir: path.join('packages', 'lint-staged'),
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {},
     package: {
       ...pkg,
@@ -305,8 +322,11 @@ project.addSubproject(
   {
     name: '@langri-sha/monorepo',
     outdir: path.join('packages', 'monorepo'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -325,6 +345,9 @@ project.addSubproject(
     name: '@langri-sha/prettier',
     outdir: path.join('packages', 'prettier'),
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {},
     package: {
       ...pkg,
@@ -343,8 +366,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -361,8 +387,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-babel',
     outdir: path.join('packages', 'projen-babel'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -385,8 +414,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -403,8 +435,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-editorconfig',
     outdir: path.join('packages', 'projen-editorconfig'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -421,8 +456,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -441,8 +479,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-husky',
     outdir: path.join('packages', 'projen-husky'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       type: 'module',
@@ -460,8 +501,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -480,8 +524,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-lint-synthesized',
     outdir: path.join('packages', 'projen-lint-synthesized'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -500,8 +547,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -520,6 +570,10 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-license',
     outdir: path.join('packages', 'projen-license'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {
       config: {
         compilerOptions: {
@@ -527,7 +581,6 @@ project.addSubproject(
         },
       },
     },
-    npmIgnore: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -545,8 +598,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-pnpm-workspace',
     outdir: path.join('packages', 'projen-pnpm-workspace'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -564,8 +620,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -584,8 +643,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-project',
     outdir: path.join('packages', 'projen-project'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -671,8 +733,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-readme',
     outdir: path.join('packages', 'projen-readme'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -689,8 +754,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-renovate',
     outdir: path.join('packages', 'projen-renovate'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -717,8 +785,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-swcrc',
     outdir: path.join('packages', 'projen-swcrc'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -745,8 +816,11 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-typescript-config',
     outdir: path.join('packages', 'projen-typescript-config'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -765,8 +839,11 @@ project.addSubproject(
   {
     name: '@langri-sha/schemastore-to-typescript',
     outdir: path.join('packages', 'schemastore-to-typescript'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -806,6 +883,9 @@ project.addSubproject(
     name: '@langri-sha/tsconfig',
     outdir: path.join('packages', 'tsconfig'),
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
     typeScriptConfig: {},
     package: {
       ...pkg,
@@ -822,8 +902,11 @@ project.addSubproject(
   {
     name: '@langri-sha/vitest',
     outdir: path.join('packages', 'vitest'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
@@ -840,8 +923,11 @@ project.addSubproject(
   {
     name: '@langri-sha/webpack',
     outdir: path.join('packages', 'webpack'),
-    typeScriptConfig: {},
     npmIgnore: {},
+    readme: {
+      filename: 'readme',
+    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
