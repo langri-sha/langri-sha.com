@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`custom filename 1`] = `
+"# test-project
+"
+`;
+
+exports[`defaults 1`] = `
+"# test-project
+"
+`;
