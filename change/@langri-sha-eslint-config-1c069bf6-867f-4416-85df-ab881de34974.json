@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): fix(deps): update dependency eslint-plugin-prettier to v5.2.1",
+  "packageName": "@langri-sha/eslint-config",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
