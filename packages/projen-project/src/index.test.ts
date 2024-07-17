@@ -11,6 +11,7 @@ import { License } from '@langri-sha/projen-license'
 import { LintStaged } from '@langri-sha/projen-lint-staged'
 import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
 import { Prettier } from '@langri-sha/projen-prettier'
+import { ReadmeFile } from '@langri-sha/projen-readme'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { SWCConfig } from '@langri-sha/projen-swcrc'
 import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
@@ -42,6 +43,7 @@ test('defaults', () => {
   expect(project.pnpmWorkspace).toBeUndefined()
   expect(project.prettier).toBeUndefined()
   expect(project.projenrc).toBeInstanceOf(ProjenrcFile)
+  expect(project.readme).toBeUndefined()
   expect(project.renovate).toBeUndefined()
   expect(project.swcrc).toBeUndefined()
   expect(project.typeScriptConfig).toBeUndefined()
@@ -480,6 +482,16 @@ describe('with Prettier options', () => {
     expect(synthSnapshot(project)).toMatchSnapshot()
     expect(project.prettier).toBeInstanceOf(Prettier)
   })
+})
+
+test('With README options', () => {
+  const project = new Project({
+    name: 'test-project',
+    readme: {},
+  })
+
+  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(project.readme).toBeInstanceOf(ReadmeFile)
 })
 
 test('with Renovate options', () => {
