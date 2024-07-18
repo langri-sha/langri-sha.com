@@ -66,7 +66,7 @@ const project = new Project({
     ignorePatterns: ['**/renovate.d.ts', '**/swcrc.d.ts'],
   },
   husky: {
-    'pre-commit': 'pnpm -q lint-staged',
+    'pre-commit': 'lint-staged',
   },
   lintStaged: {},
   lintSynthesized: {},
