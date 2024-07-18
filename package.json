@@ -47,7 +47,7 @@
     "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@swc-node/register": "1.10.9",
-    "@swc/core": "1.6.13",
+    "@swc/core": "1.7.0",
     "@types/lint-staged": "13.3.0",
     "beachball": "2.43.1",
     "eslint": "9.7.0",
