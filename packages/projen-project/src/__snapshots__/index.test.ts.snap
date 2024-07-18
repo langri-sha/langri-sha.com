@@ -2732,7 +2732,7 @@ node_modules/
       {
         "name": "@swc/core",
         "type": "build",
-        "version": "1.6.13",
+        "version": "1.7.0",
       },
       {
         "name": "projen",
@@ -2820,7 +2820,7 @@ node_modules/
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "@swc-node/register": "1.10.9",
-      "@swc/core": "1.6.13",
+      "@swc/core": "1.7.0",
       "projen": "0.82.4",
       "typescript": "5.5.3",
     },
