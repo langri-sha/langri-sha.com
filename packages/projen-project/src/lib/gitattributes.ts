@@ -9,6 +9,13 @@ export class GitAttributesFile extends BaseGitAttributesFile {
   ): string | undefined {
     const content = super.synthesizeContent(resolver)?.split('\n')
 
-    return content?.join('\n')
+    if (!content) {
+      return
+    }
+
+    const [marker, blank, ...rest] = content
+    rest.sort((a, b) => a.localeCompare(b))
+
+    return [marker, blank, ...rest].join('\n')
   }
 }
