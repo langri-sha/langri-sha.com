@@ -208,6 +208,24 @@ export class Project extends BaseProject {
     this.#configureRenovate(options)
   }
 
+  /**
+   * Annotate generated files on root projects.
+   */
+  override annotateGenerated(glob: string): void {
+    if (this.parent) {
+      if (path.isAbsolute(glob)) {
+        this.root.gitattributes.addAttributes(
+          `/${path.relative(this.root.outdir, path.join(this.outdir, glob))}`,
+          'linguist-generated',
+        )
+      }
+
+      return
+    }
+
+    this.gitattributes.addAttributes(glob, 'linguist-generated')
+  }
+
   override preSynthesize(): void {
     super.preSynthesize()
 
