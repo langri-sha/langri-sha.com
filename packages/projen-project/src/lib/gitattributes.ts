@@ -16,6 +16,6 @@ export class GitAttributesFile extends BaseGitAttributesFile {
     const [marker, blank, ...rest] = content
     rest.sort((a, b) => a.localeCompare(b))
 
-    return [marker, blank, ...rest].join('\n')
+    return [marker, blank, ...rest, ''].join('\n')
   }
 }
