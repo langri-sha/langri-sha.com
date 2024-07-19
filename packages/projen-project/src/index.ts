@@ -40,6 +40,7 @@ import {
 } from 'projen'
 import * as R from 'ramda'
 
+import { GitAttributesFile } from './lib/gitattributes.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
 export * from '@langri-sha/projen-typescript-config'
@@ -155,6 +156,7 @@ export class Project extends BaseProject {
   license?: License
   lintStaged?: LintStaged
   npmIgnore?: IgnoreFile
+  override readonly gitattributes: GitAttributesFile
   package?: NodePackage
   pnpmWorkspace?: PnpmWorkspace
   prettier?: Prettier
@@ -169,6 +171,9 @@ export class Project extends BaseProject {
       ...options,
       gitIgnoreOptions: getGitIgnoreOptions(options),
     })
+
+    this.tryRemoveFile('.gitattributes')
+    this.gitattributes = new GitAttributesFile(this)
 
     // Clean up tasks not required at top-level.
     this.tasks.removeTask('build')
@@ -197,6 +202,7 @@ export class Project extends BaseProject {
     this.#configureBeachball(options)
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
+    this.#configureGitAttributes()
     this.#configureHusky(options)
     this.#configureJestConfig(options)
     this.#configureLicense(options)
@@ -351,6 +357,12 @@ export class Project extends BaseProject {
     )
 
     this.prettier?.ignore.addPatterns('!.editorconfig')
+  }
+
+  #configureGitAttributes() {
+    this.annotateGenerated('/.gitignore')
+    this.annotateGenerated('/.projen/**')
+    this.annotateGenerated(`/${this.gitattributes.path}`)
   }
 
   #configureESLint({ eslint: eslintOptions }: ProjectOptions) {

@@ -20,6 +20,7 @@ import { Project as BaseProject, IgnoreFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
 import { NodePackage, ProjenrcFile } from './lib'
+import { GitAttributesFile } from './lib/gitattributes'
 
 import { Project } from './index'
 
@@ -34,6 +35,7 @@ test('defaults', () => {
   expect(project.codeowners).toBeUndefined()
   expect(project.editorConfig).toBeUndefined()
   expect(project.eslint).toBeUndefined()
+  expect(project.gitattributes).toBeInstanceOf(GitAttributesFile)
   expect(project.husky).toBeUndefined()
   expect(project.jestConfig).toBeUndefined()
   expect(project.license).toBeUndefined()
