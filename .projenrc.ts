@@ -99,6 +99,8 @@ const project = new Project({
   withTerraform: true,
 })
 
+project.gitattributes.addAttributes('readme', 'linguist-language=Markdown')
+
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.5.0')
 project.package?.addEngine('pnpm', '>=9.0.0')
