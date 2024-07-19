@@ -6,9 +6,6 @@
 /.husky/pre-commit linguist-generated
 /.prettierignore linguist-generated
 /.projen/** linguist-generated
-/.projen/deps.json linguist-generated
-/.projen/files.json linguist-generated
-/.projen/tasks.json linguist-generated
 /.swcrc linguist-generated
 /babel.config.js linguist-generated
 /beachball.config.cjs linguist-generated
@@ -365,4 +362,4 @@
 /prettier.config.js linguist-generated
 /renovate.json5 linguist-generated
 /tsconfig.json linguist-generated
-readme linguist-language=Markdown
+readme text=auto linguist-language=Markdown
