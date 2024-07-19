@@ -82,8 +82,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       projen:
-        specifier: 0.82.4
-        version: 0.82.4(constructs@10.3.0)
+        specifier: 0.84.6
+        version: 0.84.6(constructs@10.3.0)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@swc/core@1.7.0(@swc/helpers@0.5.5))(@types/node@20.14.11)(typescript@5.5.3)
@@ -334,8 +334,8 @@ importers:
         specifier: ^7.8.0
         version: 7.20.5
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -356,8 +356,8 @@ importers:
         specifier: ^2.0.0
         version: 2.43.1(typescript@5.5.3)
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -369,8 +369,8 @@ importers:
   packages/projen-codeowners:
     dependencies:
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -382,8 +382,8 @@ importers:
   packages/projen-editorconfig:
     dependencies:
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -398,8 +398,8 @@ importers:
         specifier: ^9.0.0
         version: 9.3.0
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -420,8 +420,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.11
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -439,8 +439,8 @@ importers:
         specifier: ^28.00 || ^29.00
         version: 29.7.0(@types/node@20.14.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.7.0(@swc/helpers@0.5.5))(@types/node@20.14.11)(typescript@5.5.3))
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -461,8 +461,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -477,8 +477,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -518,14 +518,14 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       projen:
-        specifier: 0.82.4
-        version: 0.82.4(constructs@10.3.0)
+        specifier: 0.84.6
+        version: 0.84.6(constructs@10.3.0)
 
   packages/projen-pnpm-workspace:
     dependencies:
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       yaml:
         specifier: 2.4.5
         version: 2.4.5
@@ -543,8 +543,8 @@ importers:
         specifier: ^3.0.0
         version: 3.2.5
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -640,8 +640,8 @@ importers:
         specifier: ^3.0.0
         version: 3.3.2
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
       ramda:
         specifier: 0.30.1
         version: 0.30.1
@@ -665,8 +665,8 @@ importers:
   packages/projen-readme:
     dependencies:
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -678,8 +678,8 @@ importers:
   packages/projen-renovate:
     dependencies:
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
@@ -697,8 +697,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.6(@swc/helpers@0.5.5)
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
@@ -716,8 +716,8 @@ importers:
         specifier: 0.0.11
         version: 0.0.11
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -756,8 +756,8 @@ importers:
         specifier: 0.3.1
         version: 0.3.1
       projen:
-        specifier: ^0.82.0
-        version: 0.82.4(constructs@10.3.0)
+        specifier: ^0.82.0 || ^0.84.0
+        version: 0.84.6(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -5560,8 +5560,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.82.4:
-    resolution: {integrity: sha512-tZhYkxZpl3PyaOvzIyUfLdCY3iMFZaGsMpBZZcX0efnumm0sP4VMj75TBxVrqdTxf4XwE18cCvIOOFvI/iuFxA==}
+  projen@0.84.6:
+    resolution: {integrity: sha512-1U5NguoaTq8F0xipZEyjriWrHbcJrtS6NaViFNHH7ABMRBYVXcfE2GGUSn1mVaAk51n09kSDit4D0n5W0di1Hg==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -12498,7 +12498,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.82.4(constructs@10.3.0):
+  projen@0.84.6(constructs@10.3.0):
     dependencies:
       constructs: 10.3.0
 
