@@ -186,7 +186,7 @@ project.addSubproject(
         '@babel/preset-react@7.24.7',
         '@babel/preset-typescript@7.24.7',
         '@babel/register@7.24.6',
-        '@emotion/babel-plugin@11.11.0',
+        '@emotion/babel-plugin@11.12.0',
       ],
       devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@20.14.11'],
       peerDeps: ['@babel/core@^7.8.0'],
