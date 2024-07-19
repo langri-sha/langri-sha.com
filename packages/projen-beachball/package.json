@@ -27,7 +27,7 @@
   },
   "peerDependencies": {
     "beachball": "^2.0.0",
-    "projen": "^0.82.0 || ^0.84.0"
+    "projen": "^0.84.0"
   },
   "publishConfig": {
     "access": "public",
