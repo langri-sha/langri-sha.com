@@ -77,7 +77,7 @@ const project = new Project({
     packages: ['apps/*', 'packages/*'],
   },
   readme: {
-    filename: 'readme',
+    filename: 'readme.md',
   },
   renovate: {
     packageRules: [
@@ -173,7 +173,7 @@ project.addSubproject(
     outdir: path.join('packages', 'babel-preset'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -205,7 +205,7 @@ project.addSubproject(
       ignorePatterns: ['fixtures/'],
     },
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -233,7 +233,7 @@ project.addSubproject(
     outdir: path.join('packages', 'eslint-config'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -267,7 +267,7 @@ project.addSubproject(
     outdir: path.join('packages', 'jest-config'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -287,7 +287,7 @@ project.addSubproject(
     outdir: path.join('packages', 'jest-test'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -308,7 +308,7 @@ project.addSubproject(
     outdir: path.join('packages', 'lint-staged'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -330,7 +330,7 @@ project.addSubproject(
     outdir: path.join('packages', 'monorepo'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -352,7 +352,7 @@ project.addSubproject(
     outdir: path.join('packages', 'prettier'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -374,7 +374,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-codeowners'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -395,7 +395,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-babel'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -422,7 +422,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-beachball'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -443,7 +443,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-editorconfig'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -464,7 +464,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-eslint'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -487,7 +487,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-husky'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -509,7 +509,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-jest-config'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -532,7 +532,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-lint-synthesized'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -555,7 +555,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-lint-staged'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -578,7 +578,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-license'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {
       config: {
@@ -606,7 +606,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-pnpm-workspace'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -628,7 +628,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-prettier'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -651,7 +651,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-project'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -741,7 +741,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-readme'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -762,7 +762,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-renovate'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -793,7 +793,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-swcrc'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -824,7 +824,7 @@ project.addSubproject(
     outdir: path.join('packages', 'projen-typescript-config'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -847,7 +847,7 @@ project.addSubproject(
     outdir: path.join('packages', 'schemastore-to-typescript'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -890,7 +890,7 @@ project.addSubproject(
     outdir: path.join('packages', 'tsconfig'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -910,7 +910,7 @@ project.addSubproject(
     outdir: path.join('packages', 'vitest'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
@@ -931,7 +931,7 @@ project.addSubproject(
     outdir: path.join('packages', 'webpack'),
     npmIgnore: {},
     readme: {
-      filename: 'readme',
+      filename: 'readme.md',
     },
     typeScriptConfig: {},
     package: {
