@@ -365,3 +365,4 @@
 /prettier.config.js linguist-generated
 /renovate.json5 linguist-generated
 /tsconfig.json linguist-generated
+readme linguist-language=Markdown
