@@ -5,8 +5,10 @@ import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, Header, Scene } from '@/components'
+import { Drone, Scene } from '@/components'
 import { global } from '@/styles'
+
+import { Header } from './header'
 
 export const Landing: React.FC = () => (
   <React.Fragment>
