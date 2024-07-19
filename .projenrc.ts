@@ -99,8 +99,6 @@ const project = new Project({
   withTerraform: true,
 })
 
-project.gitattributes.addAttributes('readme', 'linguist-language=Markdown')
-
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.5.0')
 project.package?.addEngine('pnpm', '>=9.0.0')
@@ -108,6 +106,12 @@ project.package?.addEngine('pnpm', '>=9.0.0')
 project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
 project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
 project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
+
+project.gitattributes.addAttributes(
+  'readme',
+  'text=auto',
+  'linguist-language=Markdown',
+)
 
 const subproject = (project: Project) => {
   new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
