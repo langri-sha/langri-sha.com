@@ -1,4 +1,4 @@
-import { Landing } from './lib/Landing'
+import { Landing } from './lib/landing'
 
 const Page = () => <Landing />
 
