@@ -11,17 +11,17 @@ export interface JestConfigOptions {
    *
    * @default 'jest.config.ts'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * Name of a Jest configuration package to extend from.
    */
-  extends?: string
+  readonly extends?: string
 
   /**
    * Jest configuration object.
    */
-  config?: Config
+  readonly config?: Config
 }
 
 export class JestConfig extends FileBase {

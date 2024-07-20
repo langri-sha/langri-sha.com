@@ -4,7 +4,7 @@ import { Project, SampleFile } from 'projen'
  * Initial `README` for new packages.
  */
 export interface ReadmeFileOptions {
-  filename?: string
+  readonly filename?: string
 }
 
 /**

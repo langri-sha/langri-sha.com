@@ -5,8 +5,8 @@ import { Project, TextFile } from 'projen'
  * Options for configuring Beachball.
  */
 export interface BeachballOptions {
-  filename?: string
-  config?: BeachballConfig
+  readonly filename?: string
+  readonly config?: BeachballConfig
 }
 
 export class Beachball extends TextFile {

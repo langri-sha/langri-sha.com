@@ -12,12 +12,12 @@ export interface PnpmWorkspaceOptions {
    *
    * @default 'pnpm-workspace.yaml'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * List of package paths.
    */
-  packages?: string[]
+  readonly packages?: string[]
 }
 
 export class PnpmWorkspace extends YamlFile {
@@ -70,8 +70,9 @@ export class PnpmWorkspace extends YamlFile {
       return
     }
 
-    const parsed: Required<Exclude<PnpmWorkspaceOptions, 'filename'>> =
-      YAML.parse(yaml)
+    const parsed: Writable<
+      Required<Exclude<PnpmWorkspaceOptions, 'filename'>>
+    > = YAML.parse(yaml)
 
     parsed.packages = [...new Set(parsed.packages)]
     parsed.packages.sort()
@@ -90,4 +91,8 @@ export class PnpmWorkspace extends YamlFile {
       this.addToArray('packages', pkg)
     }
   }
+}
+
+type Writable<T> = {
+  -readonly [K in keyof T]: T[K]
 }

@@ -11,17 +11,17 @@ export interface BabelOptions {
    *
    * @default 'babel.config.js'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * Whether to output a config function, and the code to be executed.
    */
-  configApiFunction?: string
+  readonly configApiFunction?: string
 
   /**
    * Options for transforming Babel.
    */
-  options?: TransformOptions
+  readonly options?: TransformOptions
 }
 
 export class Babel extends FileBase {

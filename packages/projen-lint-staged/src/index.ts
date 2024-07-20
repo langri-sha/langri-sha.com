@@ -11,17 +11,17 @@ export interface LintStagedOptions {
    *
    * @default 'lint-staged.config.js'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * Name of the `lint-staged` configuration package to extend from.
    */
-  extends?: string
+  readonly extends?: string
 
   /**
    * `lint-staged` configuration.
    */
-  config?: Config
+  readonly config?: Config
 }
 
 export class LintStaged extends FileBase {
