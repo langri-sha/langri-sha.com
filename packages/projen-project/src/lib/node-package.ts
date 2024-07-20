@@ -6,8 +6,8 @@ import { Project, javascript } from 'projen'
  * Options for configuring Node.js packages.
  */
 export interface NodePackageOptions extends javascript.NodePackageOptions {
-  peerDependenciesMeta?: Record<string, { optional?: boolean }>
-  type?: 'commonjs' | 'module'
+  readonly peerDependenciesMeta?: Record<string, { optional?: boolean }>
+  readonly type?: 'commonjs' | 'module'
 }
 
 /**

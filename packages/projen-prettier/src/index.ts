@@ -11,22 +11,22 @@ export interface PrettierOptions {
    *
    * @default 'prettier.config.js'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * Name of the Prettier configuration package to extend from.
    */
-  extends?: string
+  readonly extends?: string
 
   /**
    * Ignore patterns.
    */
-  ignorePatterns?: string[]
+  readonly ignorePatterns?: string[]
 
   /**
    * Prettier configuration object.
    */
-  config?: Config
+  readonly config?: Config
 }
 
 export class Prettier extends FileBase {

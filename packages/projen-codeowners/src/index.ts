@@ -4,7 +4,7 @@ import { Component, type Project, TextFile } from 'projen'
  * Codeowners options.
  */
 export interface CodeownersOptions {
-  [pattern: string]: string | string[]
+  readonly [pattern: string]: string | string[]
 }
 
 /**

@@ -10,23 +10,23 @@ export interface ESLintOptions {
    *
    * @default 'eslint.config.js'
    */
-  filename?: string
+  readonly filename?: string
 
   /**
    * Name of the ESLint configuration package to extend from.
    */
-  extends?: string
+  readonly extends?: string
 
   /**
    * Ignore patterns.
    */
-  ignorePatterns?: string[]
+  readonly ignorePatterns?: string[]
 
   /**
    * Prettier configuration object.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  config?: any[]
+  readonly config?: any[]
 }
 
 export class ESLint extends FileBase {

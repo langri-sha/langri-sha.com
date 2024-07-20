@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "feat(workspace): Harden Projen component types",
+  "packageName": "@langri-sha/projen-babel",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

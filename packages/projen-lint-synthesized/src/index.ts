@@ -9,7 +9,7 @@ import { Component, Project } from 'projen'
 const debug = createDebug('projen-lint-synthesized')
 
 export interface LintSynthesizedOptions {
-  [pattern: string]: string | ((files: string[]) => string)
+  readonly [pattern: string]: string | ((files: string[]) => string)
 }
 
 /**

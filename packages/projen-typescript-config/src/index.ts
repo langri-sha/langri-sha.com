@@ -2,9 +2,9 @@ import type { JSONSchemaForTheTypeScriptCompilerSConfigurationFile } from '@sche
 import { IResolver, JsonFile, Project } from 'projen'
 
 export interface TypeScriptConfigOptions {
-  fileName?: string
+  readonly fileName?: string
 
-  config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile & {
+  readonly config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile & {
     /**
      * Referenced projects. Requires TypeScript version 3.0 or later.
      */
