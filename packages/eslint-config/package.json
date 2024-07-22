@@ -29,7 +29,7 @@
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-unicorn": "54.0.0",
     "globals": "15.8.0",
-    "typescript-eslint": "7.16.1"
+    "typescript-eslint": "7.17.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
