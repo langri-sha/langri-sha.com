@@ -2,7 +2,7 @@ import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
-import { IgnoreFile, SampleFile } from 'projen'
+import { SampleFile } from 'projen'
 
 const pkg = {
   authorEmail: 'filip.dupanovic@gmail.com',
@@ -117,8 +117,6 @@ const subproject = (project: Project) => {
   new SampleFile(project, project.package?.entrypoint ?? 'src/index.ts', {
     contents: 'export {}',
   })
-
-  project.tryRemoveFile('.gitignore')
 
   project.package?.addField('repository', {
     type: 'git',
@@ -777,8 +775,7 @@ project.addSubproject(
   test,
   publish,
   (project) => {
-    const ignore = new IgnoreFile(project, '.gitignore')
-    ignore.addPatterns('renovate.d.ts')
+    project.addGitIgnore('renovate.d.ts')
 
     project.package?.setScript(
       'prepare',
@@ -808,8 +805,7 @@ project.addSubproject(
   test,
   publish,
   (project) => {
-    const ignore = new IgnoreFile(project, '.gitignore')
-    ignore.addPatterns('swcrc.d.ts')
+    project.addGitIgnore('swcrc.d.ts')
 
     project.package?.setScript(
       'prepare',
