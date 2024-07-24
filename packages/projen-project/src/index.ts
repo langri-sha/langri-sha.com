@@ -635,7 +635,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.package?.addDevDeps('@swc/core@1.7.0')
+      this.package?.addDevDeps('@swc/core@1.7.1')
       this.package?.addDevDeps('@swc-node/register@1.10.9')
     }
 
