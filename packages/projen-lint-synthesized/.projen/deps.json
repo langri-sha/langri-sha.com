@@ -22,7 +22,7 @@
     },
     {
       "name": "projen",
-      "version": "0.84.8",
+      "version": "0.84.9",
       "type": "build"
     },
     {

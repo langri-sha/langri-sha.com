@@ -3,7 +3,10 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig/project",
   "compilerOptions": {
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
   "references": [
     {
