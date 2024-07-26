@@ -47,7 +47,7 @@ const project = new Project({
       '@swc-node/register@1.10.9',
       '@swc/core@1.7.2',
       '@types/lint-staged@13.3.0',
-      'eslint@9.7.0',
+      'eslint@9.8.0',
       'jest@29.7.0',
       'lint-staged@15.2.7',
       'prettier@3.3.3',
@@ -241,7 +241,7 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: [
         '@eslint/compat@1.1.1',
-        '@eslint/js@9.7.0',
+        '@eslint/js@9.8.0',
         'eslint-config-prettier@9.1.0',
         'eslint-plugin-import@2.29.1',
         'eslint-plugin-jsdoc@48.8.3',
