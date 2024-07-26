@@ -2,6 +2,27 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Fri, 26 Jul 2024 21:00:29 GMT",
+      "version": "0.1.1",
+      "tag": "@langri-sha/vitest_v0.1.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(workspace): Migrate documentation pathnames"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(projen): Add Git ignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 Jul 2024 10:48:15 GMT",
       "version": "0.1.1",
       "tag": "@langri-sha/vitest_v0.1.1",

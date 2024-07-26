@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-license
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.2
+
+Fri, 26 Jul 2024 21:00:28 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.84.6 (email not defined)
 
 ## 0.3.1
 

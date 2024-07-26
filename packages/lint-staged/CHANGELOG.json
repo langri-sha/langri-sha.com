@@ -2,6 +2,27 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Fri, 26 Jul 2024 21:00:29 GMT",
+      "version": "0.6.1",
+      "tag": "@langri-sha/lint-staged_v0.6.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(projen): Add Git ignore patterns"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(workspace): Migrate documentation pathnames"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 Jul 2024 10:48:16 GMT",
       "version": "0.6.1",
       "tag": "@langri-sha/lint-staged_v0.6.1",

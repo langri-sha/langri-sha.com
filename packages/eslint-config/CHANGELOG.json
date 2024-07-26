@@ -2,6 +2,71 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Fri, 26 Jul 2024 21:00:29 GMT",
+      "version": "0.6.1",
+      "tag": "@langri-sha/eslint-config_v0.6.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(workspace): Migrate documentation pathnames"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(projen): Add Git ignore patterns"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-prettier to v5.2.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.17.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-unicorn to v55"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-react to v7.35.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 Jul 2024 10:48:16 GMT",
       "version": "0.6.0",
       "tag": "@langri-sha/eslint-config_v0.6.0",

@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Migrate documentation pathnames",
-  "packageName": "@langri-sha/webpack",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

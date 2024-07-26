@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/monorepo
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.2
+
+Fri, 26 Jul 2024 21:00:29 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @types/node to v20.14.12 (email not defined)
 
 ## 0.5.1
 

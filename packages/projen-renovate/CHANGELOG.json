@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Fri, 26 Jul 2024 21:00:29 GMT",
+      "version": "0.4.2",
+      "tag": "@langri-sha/projen-renovate_v0.4.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(workspace): Migrate documentation pathnames"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(projen): Add Git ignore patterns"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "chore(deps): chore(deps): update dependency projen to v0.84.6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 Jul 2024 10:48:16 GMT",
       "version": "0.4.1",
       "tag": "@langri-sha/projen-renovate_v0.4.1",

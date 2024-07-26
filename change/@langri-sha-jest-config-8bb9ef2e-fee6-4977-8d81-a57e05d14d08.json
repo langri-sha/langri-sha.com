@@ -1,7 +1,0 @@
-{
-  "comment": "feat(projen): Add Git ignore patterns",
-  "type": "none",
-  "packageName": "@langri-sha/jest-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

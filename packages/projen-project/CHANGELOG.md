@@ -1,8 +1,31 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.13.0
+
+Fri, 26 Jul 2024 21:00:28 GMT
+
+### Minor changes
+
+- feat(project): Add `ReadmeFile` support (filip.dupanovic@gmail.com)
+- feat(workspace): Harden Projen component types (filip.dupanovic@gmail.com)
+- feat(project): Annotate generated files on root project (filip.dupanovic@gmail.com)
+- feat(projectj): Add custom `GitAttributesFile` (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.0 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.84.7 (email not defined)
+- chore(deps): chore(deps): update dependency husky to v9.1.0 (email not defined)
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.1 (email not defined)
+- chore(deps): chore(deps): update dependency typescript to v5.5.4 (email not defined)
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.2 (email not defined)
+- chore(deps): chore(deps): update dependency husky to v9.1.2 (email not defined)
+- chore(deps): chore(deps): update dependency husky to v9.1.3 (email not defined)
+- chore(deps): chore(deps): update dependency projen to v0.84.6 (email not defined)
 
 ## 0.12.0
 

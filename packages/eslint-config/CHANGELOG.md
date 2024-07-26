@@ -1,8 +1,22 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.1
+
+Fri, 26 Jul 2024 21:00:29 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency eslint-plugin-prettier to v5.2.1 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.0 (email not defined)
+- chore(deps): fix(deps): update dependency typescript-eslint to v7.17.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.3 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-unicorn to v55 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.8.1 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-react to v7.35.0 (email not defined)
 
 ## 0.6.0
 

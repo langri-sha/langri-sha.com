@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-lint-staged
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Fri, 26 Jul 2024 21:00:28 GMT
+
+### Minor changes
+
+- feat(workspace): Harden Projen component types (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.84.6 (email not defined)
 
 ## 0.2.1
 

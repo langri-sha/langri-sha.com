@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/schemastore-to-typescript
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.2
+
+Fri, 26 Jul 2024 21:00:29 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency projen to v0.84.6 (email not defined)
+- chore(deps): fix(deps): update dependency got to v14.4.2 (email not defined)
+- chore(deps): fix(deps): update dependency json-schema-to-typescript to v15 (email not defined)
 
 ## 0.1.1
 

@@ -2,6 +2,27 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Fri, 26 Jul 2024 21:00:29 GMT",
+      "version": "0.8.2",
+      "tag": "@langri-sha/jest-config_v0.8.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(workspace): Migrate documentation pathnames"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
+            "comment": "feat(projen): Add Git ignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 Jul 2024 10:48:16 GMT",
       "version": "0.8.2",
       "tag": "@langri-sha/jest-config_v0.8.2",

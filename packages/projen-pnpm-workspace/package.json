@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-pnpm-workspace",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "bugs": {
     "url": "https://github.com/langri-sha/langri-sha.com/issues"
   },

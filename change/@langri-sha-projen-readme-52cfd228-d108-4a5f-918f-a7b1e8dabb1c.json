@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(readme): Add `ReadmeFile`",
-  "packageName": "@langri-sha/projen-readme",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Migrate documentation pathnames",
-  "packageName": "@langri-sha/babel-test",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

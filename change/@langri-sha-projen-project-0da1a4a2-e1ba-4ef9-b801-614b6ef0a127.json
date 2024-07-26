@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): chore(deps): update dependency @swc/core to v1.7.0",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

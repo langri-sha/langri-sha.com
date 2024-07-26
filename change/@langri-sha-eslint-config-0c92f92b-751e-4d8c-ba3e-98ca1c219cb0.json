@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Migrate documentation pathnames",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}
