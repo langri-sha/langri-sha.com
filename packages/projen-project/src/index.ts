@@ -392,7 +392,7 @@ export class Project extends BaseProject {
 
     this.husky = new Husky(this, huskyOptions)
 
-    this.package?.addDevDeps('husky@9.1.2')
+    this.package?.addDevDeps('husky@9.1.3')
     this.package?.setScript('prepare', 'husky')
     this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
   }
