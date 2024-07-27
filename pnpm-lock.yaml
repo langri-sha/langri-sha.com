@@ -63,6 +63,9 @@ importers:
       '@types/lint-staged':
         specifier: 13.3.0
         version: 13.3.0
+      '@types/node':
+        specifier: 20.14.12
+        version: 20.14.12
       beachball:
         specifier: 2.43.1
         version: 2.43.1(typescript@5.5.4)
