@@ -56,6 +56,11 @@
       "type": "build"
     },
     {
+      "name": "@types/node",
+      "version": "20.14.12",
+      "type": "build"
+    },
+    {
       "name": "beachball",
       "version": "2.43.1",
       "type": "build"
