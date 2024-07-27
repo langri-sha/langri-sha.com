@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-license",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 14:06:08 GMT",
+      "version": "0.3.3",
+      "tag": "@langri-sha/projen-license_v0.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "e17f674711bb0ce427303fb3804e0811be8d3a48",
+            "comment": "fix(project): Resolve missing `license-o-matic` declarations"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:28 GMT",
       "version": "0.3.2",
       "tag": "@langri-sha/projen-license_v0.3.2",

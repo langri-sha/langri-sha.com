@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(project): Resolve missing `license-o-matic` declarations",
-  "packageName": "@langri-sha/projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

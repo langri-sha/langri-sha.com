@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
+This log was last generated on Sat, 27 Jul 2024 14:06:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.14.0
+
+Sat, 27 Jul 2024 14:06:08 GMT
+
+### Minor changes
+
+- feat(project): Reconfigure ESLint filename for ESM packages (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(project): Resolve missing `license-o-matic` declarations (filip.dupanovic@gmail.com)
 
 ## 0.13.0
 

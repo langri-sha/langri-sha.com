@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+This log was last generated on Sat, 27 Jul 2024 14:06:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.3
+
+Sat, 27 Jul 2024 14:06:08 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update eslint monorepo to v9.8.0 (email not defined)
 
 ## 0.6.1
 
