@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "feat(workspace): Exclude compiling test modules",
+  "packageName": "@langri-sha/projen-editorconfig",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

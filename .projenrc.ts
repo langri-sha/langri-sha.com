@@ -151,6 +151,7 @@ const publish = (project: Project) => {
     fileName: 'tsconfig.build.json',
     config: {
       extends: '@langri-sha/tsconfig/build',
+      exclude: ['**/*.test.*'],
     },
   })
 
