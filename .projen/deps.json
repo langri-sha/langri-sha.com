@@ -47,7 +47,7 @@
     },
     {
       "name": "@swc/core",
-      "version": "1.7.2",
+      "version": "1.7.3",
       "type": "build"
     },
     {
