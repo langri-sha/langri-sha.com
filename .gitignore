@@ -25,7 +25,7 @@ node_modules/
 !/package.json
 !/tsconfig.json
 !/.swcrc
-!/eslint.config.mjs
+!/eslint.config.js
 !/prettier.config.js
 !/.prettierignore
 !/babel.config.js
