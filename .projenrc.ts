@@ -194,7 +194,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishRaw,
+  publish,
 )
 
 project.addSubproject(
@@ -258,7 +258,7 @@ project.addSubproject(
     },
   },
   subproject,
-  publishRaw,
+  publish,
 )
 
 project.addSubproject(
@@ -321,7 +321,7 @@ project.addSubproject(
     },
   },
   subproject,
-  publishRaw,
+  publish,
 )
 
 project.addSubproject(
@@ -365,7 +365,7 @@ project.addSubproject(
     },
   },
   subproject,
-  publishRaw,
+  publish,
 )
 
 project.addSubproject(
