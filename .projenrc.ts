@@ -578,13 +578,7 @@ project.addSubproject(
     readme: {
       filename: 'readme.md',
     },
-    typeScriptConfig: {
-      config: {
-        compilerOptions: {
-          typeRoots: ['node_modules/@types', 'types'],
-        },
-      },
-    },
+    typeScriptConfig: {},
     package: {
       ...pkg,
       copyrightYear: '2024',
