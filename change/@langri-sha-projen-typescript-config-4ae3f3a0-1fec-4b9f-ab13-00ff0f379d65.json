@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "feat(workspace): Exclude compiling test modules",
-  "packageName": "@langri-sha/projen-typescript-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

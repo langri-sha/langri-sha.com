@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:16 GMT",
+      "version": "0.7.0",
+      "tag": "@langri-sha/lint-staged_v0.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Publish package types"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:29 GMT",
       "version": "0.6.1",
       "tag": "@langri-sha/lint-staged_v0.6.1",

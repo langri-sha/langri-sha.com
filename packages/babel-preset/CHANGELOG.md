@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/babel-preset
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sat, 27 Jul 2024 15:50:16 GMT
+
+### Minor changes
+
+- feat(workspace): Publish package types (filip.dupanovic@gmail.com)
 
 ## 0.4.2
 

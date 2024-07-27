@@ -2,6 +2,21 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:16 GMT",
+      "version": "0.5.2",
+      "tag": "@langri-sha/monorepo_v0.5.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Exclude compiling test modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:29 GMT",
       "version": "0.5.2",
       "tag": "@langri-sha/monorepo_v0.5.2",

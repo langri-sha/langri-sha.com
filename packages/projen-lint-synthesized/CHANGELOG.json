@@ -2,6 +2,29 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:16 GMT",
+      "version": "0.5.1",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "chore(deps): fix(deps): update dependency debug to v4.3.6"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Exclude compiling test modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:28 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/projen-lint-synthesized_v0.5.0",

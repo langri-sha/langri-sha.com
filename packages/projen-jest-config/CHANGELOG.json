@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-jest-config",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:16 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-jest-config_v0.4.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Exclude compiling test modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:28 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/projen-jest-config_v0.4.0",

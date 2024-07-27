@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(workspace): Publish package types",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

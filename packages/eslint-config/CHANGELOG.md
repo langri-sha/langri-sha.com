@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Sat, 27 Jul 2024 14:06:08 GMT and should not be manually modified.
+This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.7.0
+
+Sat, 27 Jul 2024 15:50:16 GMT
+
+### Minor changes
+
+- feat(workspace): Publish package types (filip.dupanovic@gmail.com)
 
 ## 0.6.3
 

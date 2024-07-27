@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
+This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.1
+
+Sat, 27 Jul 2024 15:50:16 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency debug to v4.3.6 (email not defined)
 
 ## 0.5.0
 

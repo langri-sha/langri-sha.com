@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:17 GMT",
+      "version": "0.14.1",
+      "tag": "@langri-sha/projen-project_v0.14.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Exclude compiling test modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 14:06:08 GMT",
       "version": "0.14.0",
       "tag": "@langri-sha/projen-project_v0.14.0",

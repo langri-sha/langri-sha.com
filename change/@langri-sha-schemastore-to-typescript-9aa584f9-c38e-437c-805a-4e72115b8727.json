@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): fix(deps): update dependency debug to v4.3.6",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

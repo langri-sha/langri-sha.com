@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Sat, 27 Jul 2024 15:50:17 GMT",
+      "version": "0.4.3",
+      "tag": "@langri-sha/projen-renovate_v0.4.3",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "d542415a6b2c2c339a8367c77b925842000f9f9a",
+            "comment": "feat(workspace): Exclude compiling test modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:29 GMT",
       "version": "0.4.2",
       "tag": "@langri-sha/projen-renovate_v0.4.2",
