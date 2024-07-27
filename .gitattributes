@@ -24,6 +24,7 @@
 /packages/babel-preset/license linguist-generated
 /packages/babel-preset/package.json linguist-generated
 /packages/babel-preset/pnpm-lock.yaml linguist-generated
+/packages/babel-preset/tsconfig.build.json linguist-generated
 /packages/babel-preset/tsconfig.json linguist-generated
 /packages/babel-test/.gitattributes linguist-generated
 /packages/babel-test/.gitignore linguist-generated
@@ -47,6 +48,7 @@
 /packages/eslint-config/license linguist-generated
 /packages/eslint-config/package.json linguist-generated
 /packages/eslint-config/pnpm-lock.yaml linguist-generated
+/packages/eslint-config/tsconfig.build.json linguist-generated
 /packages/eslint-config/tsconfig.json linguist-generated
 /packages/jest-config/.gitattributes linguist-generated
 /packages/jest-config/.gitignore linguist-generated
@@ -82,6 +84,7 @@
 /packages/lint-staged/license linguist-generated
 /packages/lint-staged/package.json linguist-generated
 /packages/lint-staged/pnpm-lock.yaml linguist-generated
+/packages/lint-staged/tsconfig.build.json linguist-generated
 /packages/lint-staged/tsconfig.json linguist-generated
 /packages/monorepo/.gitattributes linguist-generated
 /packages/monorepo/.gitignore linguist-generated
@@ -105,6 +108,7 @@
 /packages/prettier/license linguist-generated
 /packages/prettier/package.json linguist-generated
 /packages/prettier/pnpm-lock.yaml linguist-generated
+/packages/prettier/tsconfig.build.json linguist-generated
 /packages/prettier/tsconfig.json linguist-generated
 /packages/projen-babel/.gitattributes linguist-generated
 /packages/projen-babel/.gitignore linguist-generated
