@@ -254,16 +254,30 @@ test('with EditorConfig options', () => {
   expect(project.editorConfig).toBeInstanceOf(EditorConfig)
 })
 
-test('with ESLint options', () => {
-  const project = new Project({
-    name: 'test-project',
-    package: {},
-    eslint: {},
-    typeScriptConfig: {},
+describe('with ESLint options', () => {
+  test('default', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      eslint: {},
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.eslint).toBeInstanceOf(ESLint)
   })
 
-  expect(synthSnapshot(project)).toMatchSnapshot()
-  expect(project.eslint).toBeInstanceOf(ESLint)
+  test('with ESM package', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        type: 'module',
+      },
+      eslint: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
 })
 
 test('with Husky options', () => {

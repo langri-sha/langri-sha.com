@@ -12,7 +12,7 @@
     "babel.config.js",
     "beachball.config.cjs",
     "CODEOWNERS",
-    "eslint.config.mjs",
+    "eslint.config.js",
     "license",
     "lint-staged.config.js",
     "pnpm-workspace.yaml",

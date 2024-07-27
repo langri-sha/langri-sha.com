@@ -365,18 +365,19 @@ export class Project extends BaseProject {
     this.annotateGenerated(`/${this.gitattributes.path}`)
   }
 
-  #configureESLint({ eslint: eslintOptions }: ProjectOptions) {
-    if (!eslintOptions) {
+  #configureESLint({ eslint, package: pkg }: ProjectOptions) {
+    if (!eslint) {
       return
     }
 
     const defaults: ESLintOptions = {
-      filename: 'eslint.config.mjs',
+      filename:
+        pkg?.type === 'module' ? 'eslint.config.js' : 'eslint.config.mjs',
       ignorePatterns: ['**/.*', '**/dist/'],
       extends: '@langri-sha/eslint-config',
     }
 
-    this.eslint = new ESLint(this, deepMerge(defaults, eslintOptions))
+    this.eslint = new ESLint(this, deepMerge(defaults, eslint))
 
     if (this.projenrc?.filePath) {
       this.eslint.ignorePatterns.push(`!${this.projenrc.filePath}`)
