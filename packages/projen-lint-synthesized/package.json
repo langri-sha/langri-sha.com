@@ -22,7 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "debug": "4.3.5",
+    "debug": "4.3.6",
     "execa": "8.0.1",
     "minimatch": "10.0.1"
   },
