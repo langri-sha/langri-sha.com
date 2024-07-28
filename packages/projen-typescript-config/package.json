@@ -27,7 +27,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/node": "20.14.12"
+    "@types/node": "22.0.0"
   },
   "peerDependencies": {
     "projen": "^0.84.0"
