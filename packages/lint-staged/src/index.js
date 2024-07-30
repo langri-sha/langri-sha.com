@@ -3,7 +3,14 @@
  */
 export default {
   '*.{js,cjs,mjs,jsx,ts,mts,tsx}': async (files) => {
-    const { ESLint } = await import('eslint')
+    let ESLint
+
+    try {
+      ESLint = (await import('eslint'))['ESLint']
+    } catch {
+      return ''
+    }
+
     const eslintCli = new ESLint()
 
     /** @type {[string, boolean][]} */
