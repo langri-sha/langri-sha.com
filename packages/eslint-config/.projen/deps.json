@@ -37,7 +37,7 @@
     },
     {
       "name": "eslint-plugin-jsdoc",
-      "version": "48.10.1",
+      "version": "48.10.2",
       "type": "runtime"
     },
     {
