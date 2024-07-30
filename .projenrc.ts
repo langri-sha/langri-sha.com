@@ -28,7 +28,7 @@ const project = new Project({
     type: 'module',
 
     deps: [
-      '@babel/core@7.24.9',
+      '@babel/core@7.25.2',
       '@babel/register@7.24.6',
       '@types/babel__core@7.20.5',
       'react-dom@18.3.1',
@@ -182,7 +182,7 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: [
         '@babel/plugin-proposal-export-default-from@7.24.7',
-        '@babel/preset-env@7.25.0',
+        '@babel/preset-env@7.25.2',
         '@babel/preset-react@7.24.7',
         '@babel/preset-typescript@7.24.7',
         '@babel/register@7.24.6',
