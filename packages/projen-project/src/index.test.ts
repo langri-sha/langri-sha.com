@@ -9,20 +9,30 @@ import { Husky } from '@langri-sha/projen-husky'
 import { JestConfig } from '@langri-sha/projen-jest-config'
 import { License } from '@langri-sha/projen-license'
 import { LintStaged } from '@langri-sha/projen-lint-staged'
+import { LintSynthesized } from '@langri-sha/projen-lint-synthesized'
 import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
 import { Prettier } from '@langri-sha/projen-prettier'
 import { ReadmeFile } from '@langri-sha/projen-readme'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { SWCConfig } from '@langri-sha/projen-swcrc'
 import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
-import { describe, expect, test } from '@langri-sha/vitest'
+import { afterEach, describe, expect, test } from '@langri-sha/vitest'
 import { Project as BaseProject, IgnoreFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { vi } from 'vitest'
 
 import { NodePackage, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
 import { Project } from './index'
+
+vi.mock('@langri-sha/projen-lint-synthesized', () => ({
+  LintSynthesized: vi.fn(),
+}))
+
+afterEach(() => {
+  vi.resetAllMocks()
+})
 
 test('defaults', () => {
   const project = new Project({
@@ -417,6 +427,22 @@ describe('with `lint-staged`', () => {
 
     expect(synthSnapshot(project)).toMatchSnapshot()
     expect(project.lintStaged).toBeInstanceOf(LintStaged)
+  })
+})
+
+describe('with `lint-synthesized`', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintSynthesized: {},
+    })
+
+    synthSnapshot(project)
+    expect(LintSynthesized).toHaveBeenCalledWith(project, {
+      'package.json': 'pnpx sort-package-json',
+      '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
+      '*': 'pnpm prettier --write --ignore-unknown',
+    })
   })
 })
 
