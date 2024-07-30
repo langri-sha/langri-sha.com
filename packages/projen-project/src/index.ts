@@ -450,7 +450,11 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.lintStaged!.path)
   }
 
-  #configureLintSynthesized({ eslint, lintSynthesized }: ProjectOptions) {
+  #configureLintSynthesized({
+    eslint,
+    lintSynthesized,
+    prettier,
+  }: ProjectOptions) {
     if (!lintSynthesized) {
       return
     }
@@ -460,7 +464,7 @@ export class Project extends BaseProject {
       ...(eslint && {
         '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
       }),
-      '*': 'pnpm prettier --write --ignore-unknown',
+      ...(prettier && { '*': 'pnpm prettier --write --ignore-unknown' }),
     }
 
     new LintSynthesized(this, deepMerge(defaults, lintSynthesized))
