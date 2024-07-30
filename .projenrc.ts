@@ -318,6 +318,11 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       devDeps: ['@types/lint-staged@13.3.0'],
       peerDeps: ['eslint@^9.0.0', 'lint-staged@^15.0.0', 'prettier@^3.0.0'],
+      peerDependenciesMeta: {
+        eslint: {
+          optional: true,
+        },
+      },
     },
   },
   subproject,
