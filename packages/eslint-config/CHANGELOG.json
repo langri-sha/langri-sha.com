@@ -2,6 +2,33 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Tue, 30 Jul 2024 01:07:42 GMT",
+      "version": "0.7.1",
+      "tag": "@langri-sha/eslint-config_v0.7.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.9.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): fix(deps): update dependency typescript-eslint to v7.18.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.9.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 15:50:16 GMT",
       "version": "0.7.0",
       "tag": "@langri-sha/eslint-config_v0.7.0",

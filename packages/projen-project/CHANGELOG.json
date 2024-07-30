@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 30 Jul 2024 01:07:42 GMT",
+      "version": "0.15.0",
+      "tag": "@langri-sha/projen-project_v0.15.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): chore(deps): update dependency husky to v9.1.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): chore(deps): update dependency @swc/core to v1.7.3"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "feat(project): Lint synthesized with ESLint and Prettier when configured"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 15:50:17 GMT",
       "version": "0.14.1",
       "tag": "@langri-sha/projen-project_v0.14.1",

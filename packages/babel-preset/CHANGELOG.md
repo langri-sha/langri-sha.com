@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/babel-preset
 
-This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
+This log was last generated on Tue, 30 Jul 2024 01:07:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.1
+
+Tue, 30 Jul 2024 01:07:42 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @types/node to v20.14.13 (email not defined)
 
 ## 0.5.0
 

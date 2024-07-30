@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Sat, 27 Jul 2024 14:06:08 GMT and should not be manually modified.
+This log was last generated on Tue, 30 Jul 2024 01:07:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.15.0
+
+Tue, 30 Jul 2024 01:07:42 GMT
+
+### Minor changes
+
+- feat(project): Lint synthesized with ESLint and Prettier when configured (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency husky to v9.1.4 (email not defined)
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.3 (email not defined)
 
 ## 0.14.0
 

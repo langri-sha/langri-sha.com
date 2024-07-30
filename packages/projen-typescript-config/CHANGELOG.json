@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-typescript-config",
   "entries": [
     {
+      "date": "Tue, 30 Jul 2024 01:07:42 GMT",
+      "version": "0.5.1",
+      "tag": "@langri-sha/projen-typescript-config_v0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.13"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 15:50:17 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/projen-typescript-config_v0.5.0",

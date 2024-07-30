@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): chore(deps): update dependency husky to v9.1.4",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}
