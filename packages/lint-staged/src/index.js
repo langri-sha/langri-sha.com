@@ -22,29 +22,26 @@ export default {
     }
   },
   '*': async (files) => {
-    let prettier
-
     try {
-      prettier = await import('prettier')
+      const prettier = await import('prettier')
+      const options = { ignorePath: './.prettierignore' }
+
+      /** @type {[string, import('prettier').FileInfoResult][]} */
+      const ignored = await Promise.all(
+        files.map(async (file) => [
+          file,
+          await prettier.getFileInfo(file, options),
+        ]),
+      )
+      const filtered = ignored
+        .filter(([, { ignored }]) => !ignored)
+        .map(([file]) => `"${file}"`)
+
+      return filtered.length > 0
+        ? `prettier --ignore-unknown --write ${filtered.join(' ')}`
+        : []
     } catch {
       return ''
     }
-
-    const options = { ignorePath: './.prettierignore' }
-
-    /** @type {[string, import('prettier').FileInfoResult][]} */
-    const ignored = await Promise.all(
-      files.map(async (file) => [
-        file,
-        await prettier.getFileInfo(file, options),
-      ]),
-    )
-    const filtered = ignored
-      .filter(([, { ignored }]) => !ignored)
-      .map(([file]) => `"${file}"`)
-
-    return filtered.length > 0
-      ? `prettier --ignore-unknown --write ${filtered.join(' ')}`
-      : []
   },
 }
