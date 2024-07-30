@@ -450,14 +450,16 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.lintStaged!.path)
   }
 
-  #configureLintSynthesized({ lintSynthesized }: ProjectOptions) {
+  #configureLintSynthesized({ eslint, lintSynthesized }: ProjectOptions) {
     if (!lintSynthesized) {
       return
     }
 
     const defaults: LintSynthesizedOptions = {
       'package.json': 'pnpx sort-package-json',
-      '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
+      ...(eslint && {
+        '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
+      }),
       '*': 'pnpm prettier --write --ignore-unknown',
     }
 

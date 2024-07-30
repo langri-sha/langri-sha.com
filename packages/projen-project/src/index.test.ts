@@ -440,6 +440,20 @@ describe('with `lint-synthesized`', () => {
     synthSnapshot(project)
     expect(LintSynthesized).toHaveBeenCalledWith(project, {
       'package.json': 'pnpx sort-package-json',
+      '*': 'pnpm prettier --write --ignore-unknown',
+    })
+  })
+
+  test('with ESLint', () => {
+    const project = new Project({
+      name: 'test-project',
+      eslint: {},
+      lintSynthesized: {},
+    })
+
+    synthSnapshot(project)
+    expect(LintSynthesized).toHaveBeenCalledWith(project, {
+      'package.json': 'pnpx sort-package-json',
       '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}': 'pnpm eslint --fix',
       '*': 'pnpm prettier --write --ignore-unknown',
     })
