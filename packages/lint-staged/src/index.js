@@ -24,7 +24,13 @@ export default {
     return `eslint --fix ${filtered.join(' ')}`
   },
   '*': async (files) => {
-    const prettier = await import('prettier')
+    let prettier
+
+    try {
+      prettier = await import('prettier')
+    } catch {
+      return ''
+    }
 
     const options = { ignorePath: './.prettierignore' }
 
