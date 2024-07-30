@@ -33,6 +33,9 @@
   "peerDependenciesMeta": {
     "eslint": {
       "optional": true
+    },
+    "prettier": {
+      "optional": true
     }
   },
   "publishConfig": {
