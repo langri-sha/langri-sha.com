@@ -112,7 +112,7 @@
     },
     {
       "name": "@babel/core",
-      "version": "7.24.9",
+      "version": "7.25.2",
       "type": "runtime"
     },
     {
