@@ -1,13 +1,11 @@
-import { ESLint } from 'eslint'
-import * as prettier from 'prettier'
-
-const eslintCli = new ESLint()
-
 /**
  * @type {import('lint-staged').Config}
  */
 export default {
   '*.{js,cjs,mjs,jsx,ts,mts,tsx}': async (files) => {
+    const { ESLint } = await import('eslint')
+    const eslintCli = new ESLint()
+
     /** @type {[string, boolean][]} */
     const ignored = await Promise.all(
       files.map(async (file) => [file, await eslintCli.isPathIgnored(file)]),
@@ -19,6 +17,8 @@ export default {
     return `eslint --fix ${filtered.join(' ')}`
   },
   '*': async (files) => {
+    const prettier = await import('prettier')
+
     const options = { ignorePath: './.prettierignore' }
 
     /** @type {[string, import('prettier').FileInfoResult][]} */
