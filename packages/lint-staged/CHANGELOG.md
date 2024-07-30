@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/lint-staged
 
-This log was last generated on Tue, 30 Jul 2024 08:17:22 GMT and should not be manually modified.
+This log was last generated on Tue, 30 Jul 2024 15:10:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.9.0
+
+Tue, 30 Jul 2024 15:10:54 GMT
+
+### Minor changes
+
+- feat(lint-staged): Gracefully degrade when ESLint or Prettier config is missing" (filip.dupanovic@gmail.com)
 
 ## 0.8.0
 

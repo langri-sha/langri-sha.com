@@ -2,6 +2,21 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Tue, 30 Jul 2024 15:10:54 GMT",
+      "version": "0.7.3",
+      "tag": "@langri-sha/eslint-config_v0.7.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "bb953ab29b2f8458592e028f08ae161578d19e92",
+            "comment": "chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.10.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Jul 2024 08:17:22 GMT",
       "version": "0.7.2",
       "tag": "@langri-sha/eslint-config_v0.7.2",

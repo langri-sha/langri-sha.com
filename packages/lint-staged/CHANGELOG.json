@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Tue, 30 Jul 2024 15:10:54 GMT",
+      "version": "0.9.0",
+      "tag": "@langri-sha/lint-staged_v0.9.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "bb953ab29b2f8458592e028f08ae161578d19e92",
+            "comment": "feat(lint-staged): Gracefully degrade when ESLint or Prettier config is missing\""
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Jul 2024 08:17:22 GMT",
       "version": "0.8.0",
       "tag": "@langri-sha/lint-staged_v0.8.0",
