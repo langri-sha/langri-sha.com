@@ -322,6 +322,9 @@ project.addSubproject(
         eslint: {
           optional: true,
         },
+        prettier: {
+          optional: true,
+        },
       },
     },
   },
