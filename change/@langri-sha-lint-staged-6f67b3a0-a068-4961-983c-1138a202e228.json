@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat(lint-staged): Make ESlint and Prettier optional",
-  "packageName": "@langri-sha/lint-staged",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

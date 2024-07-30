@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/lint-staged
 
-This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
+This log was last generated on Tue, 30 Jul 2024 08:17:22 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.8.0
+
+Tue, 30 Jul 2024 08:17:22 GMT
+
+### Minor changes
+
+- feat(lint-staged): Make ESlint and Prettier optional (filip.dupanovic@gmail.com)
 
 ## 0.7.0
 
