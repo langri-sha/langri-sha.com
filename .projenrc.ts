@@ -54,7 +54,7 @@ const project = new Project({
       'prettier@3.3.3',
       'projen@0.84.8',
       'ts-node@10.9.2',
-      'vitest@2.0.4',
+      'vitest@2.0.5',
     ],
   },
   babel: {},
