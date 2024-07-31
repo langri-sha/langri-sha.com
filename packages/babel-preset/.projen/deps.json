@@ -32,7 +32,7 @@
     },
     {
       "name": "@babel/preset-env",
-      "version": "7.25.2",
+      "version": "7.25.3",
       "type": "runtime"
     },
     {
