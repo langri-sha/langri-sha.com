@@ -36,7 +36,7 @@ locals {
 
       actions_variables = merge({
         for name, data in module.project :
-          "${upper(name)}_PROJECT_ID" => data.project_id
+        "${upper(name)}_PROJECT_ID" => data.project_id
       })
 
       environments = {

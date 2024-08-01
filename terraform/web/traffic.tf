@@ -49,9 +49,9 @@ resource "google_compute_backend_bucket" "public" {
   name    = "${each.value}-backend-bucket"
   project = module.project["edge"].project_id
 
-  bucket_name = google_storage_bucket.public[each.value].name
+  bucket_name      = google_storage_bucket.public[each.value].name
   compression_mode = "AUTOMATIC"
-  enable_cdn  = true
+  enable_cdn       = true
 
   custom_response_headers = [
     "Referrer-Policy: no-referrer",
