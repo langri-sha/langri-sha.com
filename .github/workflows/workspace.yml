@@ -105,8 +105,15 @@ jobs:
       - name: Setup PNPM
         uses: langri-sha/github/actions/pnpm@v0.2.0
 
-      - name: ESLint
-        run: pnpm eslint .
+      - name: Lint
+        uses: langri-sha/github/actions/lint@b7a15dd9b82505349b8c4f3d5155fe0dbabefe02
+        with:
+          beachball: true
+          eslint: true
+          packages: true
+          prettier: true
+          projen: true
+          typescript: true
 
       - name: Prettier
         run: pnpm prettier --check .
