@@ -16,14 +16,14 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.3.0
+        uses: langri-sha/github/actions/pnpm@v0.4.0
         with:
           always-auth: true
           registry-url: https://registry.npmjs.org
           scope: '@langri-sha'
 
       - name: Configure Git user
-        uses: langri-sha/github/actions/github-action-bot-git-user@v0.3.0
+        uses: langri-sha/github/actions/github-action-bot-git-user@v0.4.0
 
       - name: Build composite projects
         run: pnpm tsc --build .
