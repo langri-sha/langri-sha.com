@@ -625,6 +625,16 @@ export class Project extends BaseProject {
           depNameTemplate: 'pnpm',
           depTypeTemplate: 'dependencies',
         },
+        {
+          customType: 'regex',
+          datasourceTemplate: 'npm',
+          fileMatch: ['*.(js|cjs|mjs|ts|mts|cts|ya?ml)$'],
+          matchStrings: [
+            '(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)',
+          ],
+          depNameTemplate: 'pnpm',
+          depTypeTemplate: 'dependencies',
+        },
       ],
     }
 
