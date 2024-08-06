@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.2.0
+        uses: langri-sha/github/actions/pnpm@v0.3.0
 
       - name: Apply ESLint fixes
         run: pnpm eslint --fix .
@@ -81,7 +81,7 @@ jobs:
           name: diff
 
       - name: Configure Git user
-        uses: langri-sha/github/actions/github-action-bot-git-user@v0.2.0
+        uses: langri-sha/github/actions/github-action-bot-git-user@v0.3.0
 
       - name: Apply diff
         run: |
@@ -103,7 +103,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.2.0
+        uses: langri-sha/github/actions/pnpm@v0.3.0
 
       - name: ESLint
         run: pnpm eslint .
@@ -163,7 +163,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.2.0
+        uses: langri-sha/github/actions/pnpm@v0.3.0
 
       - name: Vitest
         run: pnpm vitest --passWithNoTests

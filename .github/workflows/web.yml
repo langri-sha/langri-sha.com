@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.2.0
+        uses: langri-sha/github/actions/pnpm@v0.3.0
 
       - name: Build
         run: pnpm build
@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Google Cloud Platform
-        uses: langri-sha/github/actions/google-cloud-platform@v0.2.0
+        uses: langri-sha/github/actions/google-cloud-platform@v0.3.0
         with:
           service_account: ${{ vars.SERVICE_ACCOUNT }}
           setup_gcloud: true
