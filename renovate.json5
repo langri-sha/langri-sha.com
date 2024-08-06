@@ -55,7 +55,7 @@
       groupName: 'Google Providers',
       groupSlug: 'terraform-google',
       matchDatasources: ['terraform-provider'],
-      matchPackagePrefixes: 'hashicorp/google',
+      matchPackageNames: 'hashicorp/google*',
     },
   ],
 }
