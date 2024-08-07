@@ -1,39 +1,13 @@
-name: Packages
+name: Release
 
 on:
   workflow_dispatch:
 
 jobs:
-  publish:
-    name: Publish
-    runs-on: ubuntu-latest
-    environment: release
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.REPO_TOKEN }}
-
-      - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.4.0
-        with:
-          always-auth: true
-          registry-url: https://registry.npmjs.org
-          scope: '@langri-sha'
-
-      - name: Configure Git user
-        uses: langri-sha/github/actions/github-action-bot-git-user@v0.4.0
-
-      - name: Build composite projects
-        run: pnpm tsc --build .
-
-      - name: Publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npx beachball@2.43.1 publish \
-            --access public \
-            --message "feat(beachball): Publish packages" \
-            --new \
-            --yes
+  packages:
+    name: Packages
+    uses: langri-sha/github/.github/workflows/packages.yml@v0.5.2
+    with:
+      environment: release
+      scope: '@langri-sha'
+    secrets: inherit
