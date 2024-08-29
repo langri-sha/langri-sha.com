@@ -628,7 +628,7 @@ export class Project extends BaseProject {
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['*.(js|cjs|mjs|ts|mts|cts|ya?ml)$'],
+          fileMatch: ['\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$'],
           matchStrings: [
             '(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)',
           ],
