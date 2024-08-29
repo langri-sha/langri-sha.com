@@ -1,8 +1,22 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Tue, 30 Jul 2024 01:07:42 GMT and should not be manually modified.
+This log was last generated on Thu, 29 Aug 2024 21:44:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.16.0
+
+Thu, 29 Aug 2024 21:44:25 GMT
+
+### Minor changes
+
+- feat(project): Match Renovate with GHA package executions (filip.dupanovic@gmail.com)
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.6 (email not defined)
+- chore(deps): chore(deps): update dependency @swc/core to v1.7.4 (email not defined)
+- fix(project): Correct file match pattern for Renovate (filip.dupanovic@gmail.com)
 
 ## 0.15.0
 

@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Tue, 30 Jul 2024 15:10:54 GMT and should not be manually modified.
+This log was last generated on Thu, 29 Aug 2024 21:44:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.7.4
+
+Thu, 29 Aug 2024 21:44:25 GMT
+
+### Patches
+
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.11.0 (email not defined)
+- chore(deps): fix(deps): update dependency eslint-plugin-jsdoc to v48.10.2 (email not defined)
+- chore(deps): fix(deps): update dependency globals to v15.9.0 (email not defined)
 
 ## 0.7.3
 

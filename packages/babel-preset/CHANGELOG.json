@@ -2,6 +2,27 @@
   "name": "@langri-sha/babel-preset",
   "entries": [
     {
+      "date": "Thu, 29 Aug 2024 21:44:25 GMT",
+      "version": "0.5.3",
+      "tag": "@langri-sha/babel-preset_v0.5.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "chore(deps): fix(deps): update dependency @babel/preset-env to v7.25.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.14"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Jul 2024 08:17:22 GMT",
       "version": "0.5.2",
       "tag": "@langri-sha/babel-preset_v0.5.2",

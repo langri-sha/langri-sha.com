@@ -2,6 +2,41 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 29 Aug 2024 21:44:25 GMT",
+      "version": "0.16.0",
+      "tag": "@langri-sha/projen-project_v0.16.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "feat(project): Match Renovate with GHA package executions"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "chore(deps): chore(deps): update dependency @swc/core to v1.7.6"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "chore(deps): chore(deps): update dependency @swc/core to v1.7.4"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
+            "comment": "fix(project): Correct file match pattern for Renovate"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Jul 2024 01:07:42 GMT",
       "version": "0.15.0",
       "tag": "@langri-sha/projen-project_v0.15.0",

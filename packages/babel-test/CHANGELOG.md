@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/babel-test
 
-This log was last generated on Tue, 30 Jul 2024 01:07:42 GMT and should not be manually modified.
+This log was last generated on Thu, 29 Aug 2024 21:44:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.6.4
+
+Thu, 29 Aug 2024 21:44:25 GMT
+
+### Patches
+
+- chore(deps): chore(deps): update dependency @types/node to v20.14.14 (email not defined)
 
 ## 0.6.3
 
