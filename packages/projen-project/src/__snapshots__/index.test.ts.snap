@@ -2480,6 +2480,18 @@ node_modules/
           "pnpm@(?<currentValue>[^']+)",
         ],
       },
+      {
+        "customType": "regex",
+        "datasourceTemplate": "npm",
+        "depNameTemplate": "pnpm",
+        "depTypeTemplate": "dependencies",
+        "fileMatch": [
+          "\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$",
+        ],
+        "matchStrings": [
+          "(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)",
+        ],
+      },
     ],
     "extends": [
       "config:recommended",
