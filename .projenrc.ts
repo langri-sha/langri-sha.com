@@ -182,7 +182,7 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: [
         '@babel/plugin-proposal-export-default-from@7.24.7',
-        '@babel/preset-env@7.25.3',
+        '@babel/preset-env@7.25.4',
         '@babel/preset-react@7.24.7',
         '@babel/preset-typescript@7.24.7',
         '@babel/register@7.24.6',
