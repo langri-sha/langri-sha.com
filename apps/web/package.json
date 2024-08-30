@@ -10,7 +10,7 @@
     "start": "next dev"
   },
   "dependencies": {
-    "@emotion/react": "11.13.0",
+    "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
     "next": "14.2.5",
     "normalize.css": "8.0.1",
