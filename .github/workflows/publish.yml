@@ -6,7 +6,7 @@ on:
 jobs:
   packages:
     name: Packages
-    uses: langri-sha/github/.github/workflows/packages.yml@v0.5.2
+    uses: langri-sha/github/.github/workflows/packages.yml@v0.7.1
     with:
       environment: release
       scope: '@langri-sha'
