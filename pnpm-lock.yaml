@@ -205,8 +205,8 @@ importers:
         specifier: 20.14.14
         version: 20.14.14
       '@types/ramda':
-        specifier: 0.30.1
-        version: 0.30.1
+        specifier: 0.30.2
+        version: 0.30.2
 
   packages/eslint-config:
     dependencies:
@@ -662,8 +662,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       '@types/ramda':
-        specifier: 0.30.1
-        version: 0.30.1
+        specifier: 0.30.2
+        version: 0.30.2
 
   packages/projen-readme:
     dependencies:
@@ -2802,8 +2802,8 @@ packages:
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
 
-  '@types/ramda@0.30.1':
-    resolution: {integrity: sha512-aoyF/ADPL6N+/NXXfhPWF+Qj6w1Cql59m9wX0Gi15uyF+bpzXeLd63HPdiTDE2bmLXfNcVufsDPKmbfOrOzTBA==}
+  '@types/ramda@0.30.2':
+    resolution: {integrity: sha512-PyzHvjCalm2BRYjAU6nIB3TprYwMNOUY/7P/N8bSzp9W/yM2YrtGtAnnVtaCNSeOZ8DzKyFDvaqQs7LnWwwmBA==}
 
   '@types/range-parser@1.2.4':
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
@@ -9190,7 +9190,7 @@ snapshots:
 
   '@types/qs@6.9.7': {}
 
-  '@types/ramda@0.30.1':
+  '@types/ramda@0.30.2':
     dependencies:
       types-ramda: 0.30.1
 
