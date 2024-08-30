@@ -50,7 +50,7 @@
     "@swc/core": "1.7.22",
     "@types/lint-staged": "13.3.0",
     "@types/node": "20.14.14",
-    "beachball": "2.43.1",
+    "beachball": "2.45.0",
     "eslint": "9.8.0",
     "husky": "9.1.5",
     "jest": "29.7.0",
