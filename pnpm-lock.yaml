@@ -270,8 +270,8 @@ importers:
         specifier: ^29.0.0
         version: 29.7.0(@types/node@20.14.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.7.22(@swc/helpers@0.5.5))(@types/node@20.14.14)(typescript@5.5.4))
       nock:
-        specifier: 13.5.4
-        version: 13.5.4
+        specifier: 13.5.5
+        version: 13.5.5
       tempy:
         specifier: 1.0.1
         version: 1.0.1
@@ -781,8 +781,8 @@ importers:
   packages/vitest:
     dependencies:
       nock:
-        specifier: 13.5.4
-        version: 13.5.4
+        specifier: 13.5.5
+        version: 13.5.5
       tempy:
         specifier: 1.0.1
         version: 1.0.1
@@ -5348,8 +5348,8 @@ packages:
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
-  nock@13.5.4:
-    resolution: {integrity: sha512-yAyTfdeNJGGBFxWdzSKCBYxs5FxLbCg5X5Q4ets974hcQzG1+qCxvIyOo4j2Ry6MUlhWVMX4OoYDefAIIwupjw==}
+  nock@13.5.5:
+    resolution: {integrity: sha512-XKYnqUrCwXC8DGG1xX4YH5yNIrlh9c065uaMZZHUoeUUINTOyt+x/G+ezYk0Ft6ExSREVIs+qBJDK503viTfFA==}
     engines: {node: '>= 10.13'}
 
   node-domexception@1.0.0:
@@ -12569,9 +12569,9 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.6.3
 
-  nock@13.5.4:
+  nock@13.5.5:
     dependencies:
-      debug: 4.3.5
+      debug: 4.3.6
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
     transitivePeerDependencies:

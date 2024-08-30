@@ -22,7 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "nock": "13.5.4",
+    "nock": "13.5.5",
     "tempy": "1.0.1"
   },
   "devDependencies": {
