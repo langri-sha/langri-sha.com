@@ -217,7 +217,7 @@ project.addSubproject(
         '@langri-sha/monorepo@workspace:*',
         '@types/babel__core@^7.8.0',
         '@types/node@20.14.14',
-        '@types/ramda@0.30.1',
+        '@types/ramda@0.30.2',
       ],
       peerDeps: ['@babel/core@^7.8.0'],
     },
@@ -679,7 +679,7 @@ project.addSubproject(
         '@langri-sha/projen-typescript-config@workspace:*',
         'ramda@0.30.1',
       ],
-      devDeps: ['@types/ramda@0.30.1'],
+      devDeps: ['@types/ramda@0.30.2'],
       peerDeps: [
         '@babel/core@^7.8.0',
         '@swc-node/register@^1.0.0',
