@@ -31,10 +31,10 @@
     "@langri-sha/vitest": "workspace:*",
     "@types/debug": "4.1.12",
     "prettier": "3.3.3",
-    "projen": "0.84.8"
+    "projen": "0.86.5"
   },
   "peerDependencies": {
-    "projen": "^0.84.0"
+    "projen": "^0.84.0 || ^0.86.0"
   },
   "publishConfig": {
     "access": "public",
