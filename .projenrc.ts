@@ -34,7 +34,7 @@ const project = new Project({
       'react-dom@18.3.1',
       'react@18.3.1',
       'webpack-cli@5.1.4',
-      'webpack@5.93.0',
+      'webpack@5.94.0',
     ],
     devDeps: [
       '@langri-sha/babel-preset@workspace:*',

@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "feat(projen): Post-upgrade updates",
+  "packageName": "@langri-sha/projen-codeowners",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

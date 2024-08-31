@@ -22,7 +22,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.84.0",
+      "version": "^0.86.0",
       "type": "peer"
     }
   ],

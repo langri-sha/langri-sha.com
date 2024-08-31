@@ -190,6 +190,7 @@ export class Project extends BaseProject {
     this.#configureProjenrc(options)
 
     if (this.parent) {
+      this.tryRemoveFile('.gitattributes')
       this.tasks.tryFind('default')?.reset()
       this.tasks.tryFind('install')?.reset()
       this.tasks.tryFind('install:ci')?.reset()
