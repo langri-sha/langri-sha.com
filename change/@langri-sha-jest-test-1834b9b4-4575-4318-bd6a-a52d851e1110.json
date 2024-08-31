@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix(projen): Apply upgrade changes",
+  "packageName": "@langri-sha/jest-test",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
