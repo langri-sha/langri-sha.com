@@ -5,6 +5,7 @@ import jsdoc from 'eslint-plugin-jsdoc'
 import prettier from 'eslint-plugin-prettier/recommended'
 import reactRuntime from 'eslint-plugin-react/configs/jsx-runtime.js'
 import react from 'eslint-plugin-react/configs/recommended.js'
+import reactHooks from 'eslint-plugin-react-hooks'
 import unicorn from 'eslint-plugin-unicorn'
 import globals from 'globals'
 import ts from 'typescript-eslint'
@@ -36,6 +37,7 @@ export default [
       },
     },
     plugins: {
+      'react-hooks': reactHooks,
       import: fixupPluginRules(imprt),
       jsdoc,
       unicorn,
