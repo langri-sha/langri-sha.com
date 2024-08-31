@@ -1030,7 +1030,7 @@ CHANGELOG.md
       {
         "name": "beachball",
         "type": "build",
-        "version": "2.43.1",
+        "version": "2.45.0",
       },
       {
         "name": "projen",
@@ -1131,7 +1131,7 @@ module.exports = {
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "beachball": "2.43.1",
+      "beachball": "2.45.0",
       "projen": "0.86.5",
       "ts-node": "10.9.2",
       "typescript": "5.5.4",
@@ -1237,7 +1237,7 @@ CHANGELOG.md
       {
         "name": "beachball",
         "type": "build",
-        "version": "2.43.1",
+        "version": "2.45.0",
       },
       {
         "name": "projen",
@@ -1338,7 +1338,7 @@ module.exports = {
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "beachball": "2.43.1",
+      "beachball": "2.45.0",
       "projen": "0.86.5",
       "ts-node": "10.9.2",
       "typescript": "5.5.4",
