@@ -660,3 +660,20 @@ describe('with TypeScript options', () => {
     expect(synthSnapshot(project)).toMatchSnapshot()
   })
 })
+
+test('removes .gitattributes for subprojects', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: {},
+    typeScriptConfig: {},
+  })
+
+  new Project({
+    name: 'sub-project-a',
+    parent: project,
+    outdir: 'sub-project-a',
+    typeScriptConfig: {},
+  })
+
+  expect(synthSnapshot(project)['sub-project-a/.gitattributes']).toBeUndefined()
+})

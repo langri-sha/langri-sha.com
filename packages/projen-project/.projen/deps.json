@@ -12,7 +12,7 @@
     },
     {
       "name": "@types/ramda",
-      "version": "0.30.1",
+      "version": "0.30.2",
       "type": "build"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.84.0",
+      "version": "^0.86.0",
       "type": "peer"
     },
     {

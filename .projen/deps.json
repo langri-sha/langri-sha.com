@@ -47,7 +47,7 @@
     },
     {
       "name": "@swc/core",
-      "version": "1.7.6",
+      "version": "1.7.22",
       "type": "build"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "name": "husky",
-      "version": "9.1.4",
+      "version": "9.1.5",
       "type": "build"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "name": "lint-staged",
-      "version": "15.2.8",
+      "version": "15.2.9",
       "type": "build"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "name": "projen",
-      "version": "0.84.8",
+      "version": "0.86.5",
       "type": "build"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "name": "webpack",
-      "version": "5.93.0",
+      "version": "5.94.0",
       "type": "runtime"
     }
   ],
