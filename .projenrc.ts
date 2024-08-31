@@ -864,7 +864,7 @@ project.addSubproject(
         'es-main@1.3.0',
         'got@14.4.2',
         'json-schema-to-typescript@15.0.2',
-        'keyv-file@0.3.1',
+        'keyv-file@0.3.3',
         'keyv@4.5.4',
       ],
       devDeps: ['@types/debug@4.1.12'],
