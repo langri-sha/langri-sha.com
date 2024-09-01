@@ -13,6 +13,7 @@ import { KeyvFile } from 'keyv-file'
 const debug = createDebug('schema-store-to-typescript')
 const paths = envPaths('schemastore-to-typescript')
 
+// @ts-expect-error: Error with `keyv-file` package.
 const keyv = new Keyv({
   store: new KeyvFile({
     filename: path.join(paths.cache, 'requests.json'),
