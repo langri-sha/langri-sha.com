@@ -759,8 +759,8 @@ importers:
         specifier: 4.5.4
         version: 4.5.4
       keyv-file:
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 5.0.2
+        version: 5.0.2
       projen:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
@@ -5008,8 +5008,8 @@ packages:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
 
-  keyv-file@0.3.1:
-    resolution: {integrity: sha512-nrIyNaGlw8nf11mu8p7ttr+Qj6V3N0/BO62Y/oDsi02aWKWYaQjGVPLo0XPfRIwgaByQabuA/IH1se7i150LnQ==}
+  keyv-file@5.0.2:
+    resolution: {integrity: sha512-iuXUp++YA5oa+Sw9eyX93FWmvSKl/CbuC+8F3rEuovRCaaCI0NLtcJ6EEPW3cNv7xv6+EngT9VwLwy5mHSgI2g==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -12114,13 +12114,10 @@ snapshots:
       object.assign: 4.1.5
       object.values: 1.2.0
 
-  keyv-file@0.3.1:
+  keyv-file@5.0.2:
     dependencies:
-      debug: 4.3.6
       fs-extra: 4.0.3
       tslib: 1.14.1
-    transitivePeerDependencies:
-      - supports-color
 
   keyv@4.5.4:
     dependencies:
