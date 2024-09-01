@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(schemastore-to-typescript): Supress `keyv-file` type errors",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
