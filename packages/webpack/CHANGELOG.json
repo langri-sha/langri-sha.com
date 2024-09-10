@@ -2,6 +2,35 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.5.7",
+      "tag": "@langri-sha/webpack_v0.5.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "chore(deps): update dependency @types/node to v20.16.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "chore(deps): update node.js to v20.17.0"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Aug 2024 21:44:25 GMT",
       "version": "0.5.6",
       "tag": "@langri-sha/webpack_v0.5.6",

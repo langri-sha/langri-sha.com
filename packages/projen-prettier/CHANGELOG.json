@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-prettier",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-prettier_v0.4.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-prettier",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 15:50:16 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/projen-prettier_v0.4.0",

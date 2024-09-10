@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/schemastore-to-typescript
 
-This log was last generated on Sat, 27 Jul 2024 15:50:17 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.4
+
+Tue, 10 Sep 2024 10:39:17 GMT
+
+### Patches
+
+- fix(schemastore-to-typescript): Supress `keyv-file` type errors (filip.dupanovic@gmail.com)
+- fix(deps): update dependency keyv-file to v5 (email not defined)
 
 ## 0.1.3
 

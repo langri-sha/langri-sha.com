@@ -2,6 +2,49 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.8.0",
+      "tag": "@langri-sha/eslint-config_v0.8.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "fix(deps): update dependency eslint-plugin-react-hooks to v5.1.0-rc-fb9a90fa48-20240614"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "fix(deps): update eslint monorepo to v9.9.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "fix(deps): update dependency eslint-plugin-jsdoc to v50"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(eslint-config): Add `eslint-plugin-react-hooks`"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Aug 2024 21:44:25 GMT",
       "version": "0.7.4",
       "tag": "@langri-sha/eslint-config_v0.7.4",

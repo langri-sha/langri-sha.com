@@ -2,6 +2,27 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.1.1",
+      "tag": "@langri-sha/vitest_v0.1.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "fix(projen): Apply upgrade changes"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 27 Jul 2024 15:50:17 GMT",
       "version": "0.1.1",
       "tag": "@langri-sha/vitest_v0.1.1",

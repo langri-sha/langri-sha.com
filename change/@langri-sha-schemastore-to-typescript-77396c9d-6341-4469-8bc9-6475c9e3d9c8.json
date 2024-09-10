@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency keyv-file to v5",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

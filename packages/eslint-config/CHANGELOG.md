@@ -1,8 +1,22 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Thu, 29 Aug 2024 21:44:25 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.8.0
+
+Tue, 10 Sep 2024 10:39:17 GMT
+
+### Minor changes
+
+- feat(eslint-config): Add `eslint-plugin-react-hooks` (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(deps): update dependency eslint-plugin-react-hooks to v5.1.0-rc-fb9a90fa48-20240614 (email not defined)
+- fix(deps): update eslint monorepo to v9.9.1 (email not defined)
+- fix(deps): update dependency eslint-plugin-jsdoc to v50 (email not defined)
 
 ## 0.7.4
 

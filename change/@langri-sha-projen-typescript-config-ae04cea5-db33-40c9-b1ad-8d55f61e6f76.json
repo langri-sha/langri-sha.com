@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): update dependency @types/node to v20.16.3",
-  "packageName": "@langri-sha/projen-typescript-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

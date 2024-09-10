@@ -2,6 +2,35 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.6.5",
+      "tag": "@langri-sha/babel-test_v0.6.5",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "chore(deps): update dependency @types/node to v20.16.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "chore(deps): update node.js to v20.17.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Aug 2024 21:44:25 GMT",
       "version": "0.6.4",
       "tag": "@langri-sha/babel-test_v0.6.4",

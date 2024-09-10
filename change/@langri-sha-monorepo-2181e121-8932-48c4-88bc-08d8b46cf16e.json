@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): update node.js to v20.17.0",
-  "packageName": "@langri-sha/monorepo",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

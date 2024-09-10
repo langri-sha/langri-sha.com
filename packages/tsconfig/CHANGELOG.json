@@ -2,6 +2,21 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 10:39:17 GMT",
+      "version": "0.10.1",
+      "tag": "@langri-sha/tsconfig_v0.10.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "ed5540272c92323003c8a7fc1a315b7580a1a2c9",
+            "comment": "feat(projen): Post-upgrade updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Jul 2024 21:00:29 GMT",
       "version": "0.10.1",
       "tag": "@langri-sha/tsconfig_v0.10.1",
