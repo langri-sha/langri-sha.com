@@ -533,8 +533,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       yaml:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.6.0
+        version: 2.6.0
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -6792,6 +6792,11 @@ packages:
 
   yaml@2.5.0:
     resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
+  yaml@2.6.0:
+    resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
     engines: {node: '>= 14'}
     hasBin: true
 
@@ -14080,6 +14085,8 @@ snapshots:
   yaml@2.4.5: {}
 
   yaml@2.5.0: {}
+
+  yaml@2.6.0: {}
 
   yargs-parser@21.1.1: {}
 
