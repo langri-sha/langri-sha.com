@@ -616,7 +616,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['yaml@2.5.0'],
+      deps: ['yaml@2.6.0'],
       peerDeps: ['projen@^0.86.0'],
     },
   },
