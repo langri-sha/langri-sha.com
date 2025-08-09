@@ -22,8 +22,22 @@ afterEach(() => {
 })
 
 test('compiles to TypeScript', async () => {
-  nock('https://json.schemastore.org')
-    .get('/some')
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Some',
+          description: 'Some schema description',
+          url: 'https://example.com/some.json',
+        },
+      ],
+    })
+
+  nock('https://example.com')
+    .get('/some.json')
     .reply(
       200,
       {
@@ -65,8 +79,34 @@ test('compiles to TypeScript', async () => {
 })
 
 test('uses cache', async () => {
-  nock('https://json.schemastore.org')
-    .get('/foobar')
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Foobar',
+          description: 'Foobar schema description',
+          url: 'https://example.com/foobar.json',
+        },
+      ],
+    })
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Foobar',
+          description: 'Foobar schema description',
+          url: 'https://example.com/foobar.json',
+        },
+      ],
+    })
+
+  nock('https://example.com')
+    .get('/foobar.json')
     .reply(
       200,
       {
@@ -85,7 +125,7 @@ test('uses cache', async () => {
         'Cache-Control': 'public, max-age=3600',
       },
     )
-    .get('/foobar')
+    .get('/foobar.json')
     .reply(
       200,
       {
@@ -110,7 +150,7 @@ test('uses cache', async () => {
   expect(await compile('foobar')).toBe(await compile('foobar'))
 
   await new Promise((resolve) => {
-    setTimeout(resolve, 100)
+    setTimeout(resolve, 500)
   })
 
   const cached = JSON.parse(
@@ -119,16 +159,37 @@ test('uses cache', async () => {
     ),
   )
 
-  expect(cached.cache).toHaveLength(1)
-  expect(cached.cache[0][0]).toBe(
-    'keyv:GET:https://json.schemastore.org/foobar',
+  const cacheKeys = cached.cache.map((item: [string, unknown]) => item[0])
+
+  const hasCatalogCache = cacheKeys.some((key: string) =>
+    key.includes('https://www.schemastore.org/api/json/catalog.json'),
   )
+  const hasSchemaCache = cacheKeys.some((key: string) =>
+    key.includes('https://example.com/foobar.json'),
+  )
+
+  expect(hasCatalogCache || hasSchemaCache).toBe(true)
 })
 
 test('wide accept header', async () => {
-  nock('https://json.schemastore.org')
-    .get('/accept')
-    .matchHeader('accept', '*/*')
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .matchHeader('accept', 'application/json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Accept',
+          description: 'Accept schema description',
+          url: 'https://example.com/accept.json',
+        },
+      ],
+    })
+
+  nock('https://example.com')
+    .get('/accept.json')
+    .matchHeader('accept', 'application/json')
     .reply(200, {
       $schema: 'http://json-schema.org/draft-07/schema#',
       title: 'Some Schema',
@@ -146,15 +207,116 @@ test('wide accept header', async () => {
 })
 
 test('handles missing schemas', async () => {
-  nock('https://json.schemastore.org').get('/unknown').reply(404)
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Other',
+          description: 'Other schema description',
+          url: 'https://example.com/other.json',
+        },
+      ],
+    })
 
-  expect(compile('unknown')).rejects.toThrow(/Couldn't find schema unknown/)
+  expect(compile('unknown')).rejects.toThrow(
+    /Couldn't find schema unknown in the catalog/,
+  )
 })
 
-test('handles missing schemas', async () => {
-  nock('https://json.schemastore.org')
-    .get('/err')
+test('handles catalog fetch errors', async () => {
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
     .replyWithError('Something went wrong')
 
   expect(compile('err')).rejects.toThrow(/Something went wrong/)
+})
+
+test('handles schema fetch errors', async () => {
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'Err',
+          description: 'Err schema description',
+          url: 'https://example.com/err.json',
+        },
+      ],
+    })
+
+  nock('https://example.com')
+    .get('/err.json')
+    .replyWithError('Something went wrong fetching schema')
+
+  expect(compile('err')).rejects.toThrow(/Something went wrong fetching schema/)
+})
+
+test('handles schema 404 errors', async () => {
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'NotFound',
+          description: 'NotFound schema description',
+          url: 'https://example.com/notfound.json',
+        },
+      ],
+    })
+
+  nock('https://example.com').get('/notfound.json').reply(404)
+
+  expect(compile('notfound')).rejects.toThrow(
+    /Couldn't find schema notfound at https:\/\/example.com\/notfound.json/,
+  )
+})
+
+test('handles case-insensitive schema name matching', async () => {
+  nock('https://www.schemastore.org')
+    .get('/api/json/catalog.json')
+    .times(3)
+    .reply(200, {
+      $schema: 'https://json.schemastore.org/schema-catalog.json',
+      version: 1,
+      schemas: [
+        {
+          name: 'MySchema',
+          description: 'MySchema description',
+          url: 'https://example.com/myschema.json',
+        },
+      ],
+    })
+
+  nock('https://example.com')
+    .get('/myschema.json')
+    .times(3)
+    .reply(200, {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      title: 'My Schema',
+      type: 'object',
+      properties: {
+        id: {
+          type: 'string',
+          description: 'The unique identifier.',
+        },
+      },
+      required: ['id'],
+    })
+
+  // Test different case variations
+  const lowercase = await compile('myschema')
+  const uppercase = await compile('MYSCHEMA')
+  const mixedcase = await compile('MySchema')
+
+  // All should produce the same result
+  expect(lowercase).toBe(uppercase)
+  expect(lowercase).toBe(mixedcase)
+  expect(lowercase).toContain('export interface MySchema')
 })

@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Refactor schema fetching to use catalog API and improve tests",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "bot@langri-sha.com",
+  "dependentChangeType": "patch"
+}
