@@ -1,11 +1,11 @@
 import { JsonFile, type Project } from 'projen'
 
-import { type SwcConfigurationSchema } from './swcrc'
+import { type Swcrc } from './swcrc'
 
 /**
  * SWC configuration options.
  */
-export type SWCConfigOptions = SwcConfigurationSchema
+export type SWCConfigOptions = Swcrc
 
 /**
  * A component for managing Renovate configurations.
