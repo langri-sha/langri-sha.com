@@ -16,7 +16,14 @@ import { ReadmeFile } from '@langri-sha/projen-readme'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { SWCConfig } from '@langri-sha/projen-swcrc'
 import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
-import { afterEach, describe, expect, test } from '@langri-sha/vitest'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  test,
+} from '@langri-sha/vitest'
 import { Project as BaseProject, IgnoreFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { vi } from 'vitest'
@@ -29,6 +36,16 @@ import { Project } from './index'
 vi.mock('@langri-sha/projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
 }))
+
+// Mock system time to January 1, 2024 for consistent test snapshots
+beforeAll(() => {
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date('2024-01-01'))
+})
+
+afterAll(() => {
+  vi.useRealTimers()
+})
 
 afterEach(() => {
   vi.resetAllMocks()
