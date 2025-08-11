@@ -2453,8 +2453,8 @@ node_modules/
         "customType": "regex",
         "datasourceTemplate": "node",
         "depNameTemplate": "node",
-        "fileMatch": [
-          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        "managerFilePatterns": [
+          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
           "minNodeVersion:\\s*'(?<currentValue>[^']+)'",
@@ -2465,8 +2465,8 @@ node_modules/
         "customType": "regex",
         "datasourceTemplate": "npm",
         "depTypeTemplate": "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
-        "fileMatch": [
-          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        "managerFilePatterns": [
+          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
           "\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)",
@@ -2478,8 +2478,8 @@ node_modules/
         "customType": "regex",
         "datasourceTemplate": "npm",
         "depTypeTemplate": "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
-        "fileMatch": [
-          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        "managerFilePatterns": [
+          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
           "(?<depType>deps|devDeps|peerDeps):\\s*\\[[^\\]]*\\]",
@@ -2492,8 +2492,8 @@ node_modules/
         "datasourceTemplate": "npm",
         "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
-        "fileMatch": [
-          "\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$",
+        "managerFilePatterns": [
+          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
           "pnpm@(?<currentValue>[^']+)",
@@ -2504,8 +2504,8 @@ node_modules/
         "datasourceTemplate": "npm",
         "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
-        "fileMatch": [
-          "\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$",
+        "managerFilePatterns": [
+          "/\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$/",
         ],
         "matchStrings": [
           "(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)",

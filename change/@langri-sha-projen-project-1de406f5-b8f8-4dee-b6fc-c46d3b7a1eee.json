@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "fix(renovate): Migrate to managerFilePatterns and fix regex escaping",
+  "packageName": "@langri-sha/projen-project",
+  "email": "bot@langri-sha.com",
+  "dependentChangeType": "patch"
+}
