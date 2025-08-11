@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(deps): update dependency webpack-dev-server to v5.2.1 [security]",
+  "packageName": "@langri-sha/webpack",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
