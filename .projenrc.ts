@@ -87,7 +87,7 @@ const project = new Project({
         groupName: 'Google Providers',
         groupSlug: 'terraform-google',
         matchDatasources: ['terraform-provider'],
-        matchPackageNames: 'hashicorp/google*',
+        matchPackageNames: ['hashicorp/google*'],
       },
     ],
   },

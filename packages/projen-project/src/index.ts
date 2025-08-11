@@ -591,13 +591,13 @@ export class Project extends BaseProject {
           depNameTemplate: 'node',
           versioningTemplate: 'node',
           currentValueTemplate: '>= {{currentValue}}',
-          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
           matchStrings: ["minNodeVersion:\\s*'(?<currentValue>[^']+)'"],
         },
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
           matchStringsStrategy: 'recursive',
           matchStrings: [
             '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
@@ -609,7 +609,7 @@ export class Project extends BaseProject {
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
           matchStringsStrategy: 'recursive',
           matchStrings: [
             '(?<depType>deps|devDeps|peerDeps):\\s*\\[[^\\]]*\\]',
@@ -621,7 +621,7 @@ export class Project extends BaseProject {
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$'],
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
           matchStrings: ["pnpm@(?<currentValue>[^']+)"],
           depNameTemplate: 'pnpm',
           depTypeTemplate: 'dependencies',
@@ -629,7 +629,7 @@ export class Project extends BaseProject {
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          fileMatch: ['\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$'],
+          managerFilePatterns: ['/\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$/'],
           matchStrings: [
             '(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)',
           ],
