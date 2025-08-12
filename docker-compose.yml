@@ -20,6 +20,12 @@ x-gcloud-volume: &gcloud-volume
   target: /home/terraform/.config/gcloud
   type: bind
 
+x-terraform-credentials-volume: &terraform-credentials-volume
+  read_only: true
+  source: ~/.terraform.d
+  target: /home/terraform/.terraform.d
+  type: bind
+
 x-workspace-volume: &workspace-volume
   source: .
   target: /workspace
@@ -38,6 +44,7 @@ x-terraform-svc: &terraform-svc
   init: true
   volumes:
     - *gcloud-volume
+    - *terraform-credentials-volume
     - *workspace-volume
   environment:
     <<: *terraform-env
