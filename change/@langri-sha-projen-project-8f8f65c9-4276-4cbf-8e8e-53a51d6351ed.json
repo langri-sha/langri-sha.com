@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Prioritize security updates for projen configuration files",
+  "packageName": "@langri-sha/projen-project",
+  "email": "bot@langri-sha.com",
+  "dependentChangeType": "patch"
+}

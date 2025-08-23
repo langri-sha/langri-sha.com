@@ -8,6 +8,20 @@
   lockFileMaintenance: {
     enabled: true,
   },
+  packageRules: [
+    {
+      description: 'Prioritize updates in Projen configurations',
+      matchFileNames: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
+      enabled: true,
+    },
+    {
+      description: 'Google Terraform Providers',
+      groupName: 'Google Providers',
+      groupSlug: 'terraform-google',
+      matchDatasources: ['terraform-provider'],
+      matchPackageNames: ['hashicorp/google*'],
+    },
+  ],
   customManagers: [
     {
       customType: 'regex',
@@ -57,15 +71,6 @@
       ],
       depNameTemplate: 'pnpm',
       depTypeTemplate: 'dependencies',
-    },
-  ],
-  packageRules: [
-    {
-      description: 'Google Terraform Providers',
-      groupName: 'Google Providers',
-      groupSlug: 'terraform-google',
-      matchDatasources: ['terraform-provider'],
-      matchPackageNames: ['hashicorp/google*'],
     },
   ],
 }

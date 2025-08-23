@@ -584,6 +584,13 @@ export class Project extends BaseProject {
       lockFileMaintenance: {
         enabled: true,
       },
+      packageRules: [
+        {
+          description: 'Prioritize updates in Projen configurations',
+          matchFileNames: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
+          enabled: true,
+        },
+      ],
       customManagers: [
         {
           customType: 'regex',

@@ -2521,6 +2521,15 @@ node_modules/
     "lockFileMaintenance": {
       "enabled": true,
     },
+    "packageRules": [
+      {
+        "description": "Prioritize updates in Projen configurations",
+        "enabled": true,
+        "matchFileNames": [
+          "/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/",
+        ],
+      },
+    ],
     "reviewersFromCodeOwners": true,
   },
 }
