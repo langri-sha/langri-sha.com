@@ -832,7 +832,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['@schemastore/tsconfig@0.0.11'],
+      deps: ['@schemastore/tsconfig@0.0.12'],
       devDeps: ['@types/node@20.19.11'],
       peerDeps: ['projen@^0.86.0'],
     },
