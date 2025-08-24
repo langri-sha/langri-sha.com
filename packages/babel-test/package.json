@@ -29,7 +29,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/babel__core": "^7.8.0",
-    "@types/node": "20.16.3",
+    "@types/node": "20.19.11",
     "@types/ramda": "0.30.2"
   },
   "peerDependencies": {
