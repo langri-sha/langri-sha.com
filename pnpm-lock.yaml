@@ -719,8 +719,8 @@ importers:
   packages/projen-typescript-config:
     dependencies:
       '@schemastore/tsconfig':
-        specifier: 0.0.11
-        version: 0.0.11
+        specifier: 0.0.12
+        version: 0.0.12
       projen:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
@@ -2449,8 +2449,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@schemastore/tsconfig@0.0.11':
-    resolution: {integrity: sha512-glWQsBTycNVlq8ZrdvvEGyvHCmTfJy+inpjby4DokwBEyRj5+SFyjWbh1OkZf1cXbdCzrR/fZAQSm5vS73PaYA==}
+  '@schemastore/tsconfig@0.0.12':
+    resolution: {integrity: sha512-eGy7hfJUeetZEeoh6ZS3QWr/OhfSIjnV5R42KWp9Z9yLDos0JeQMqhpouuTI/86bTO+PAk1NQAJdka8jFQIX1w==}
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -8936,7 +8936,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
-  '@schemastore/tsconfig@0.0.11': {}
+  '@schemastore/tsconfig@0.0.12': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
 
