@@ -85,8 +85,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.3.0)
+        specifier: 0.99.8
+        version: 0.99.8(constructs@10.3.0)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@swc/core@1.13.3)(@types/node@20.19.20)(typescript@5.5.4)
@@ -106,8 +106,8 @@ importers:
         specifier: 11.13.0
         version: 11.13.0(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@types/react@18.3.5)(react@18.3.1)
       next:
-        specifier: 14.2.7
-        version: 14.2.7(@babel/core@7.25.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 14.2.10
+        version: 14.2.10(@babel/core@7.25.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       normalize.css:
         specifier: 8.0.1
         version: 8.0.1
@@ -340,8 +340,8 @@ importers:
         specifier: ^7.8.0
         version: 7.20.5
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -362,8 +362,8 @@ importers:
         specifier: ^2.0.0
         version: 2.43.1(typescript@5.5.4)
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -375,8 +375,8 @@ importers:
   packages/projen-codeowners:
     dependencies:
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -388,8 +388,8 @@ importers:
   packages/projen-editorconfig:
     dependencies:
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -404,8 +404,8 @@ importers:
         specifier: ^9.0.0
         version: 9.3.0
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -426,8 +426,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.11
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -445,8 +445,8 @@ importers:
         specifier: ^28.00 || ^29.00
         version: 29.7.0(@types/node@20.19.20)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.3)(@types/node@20.19.20)(typescript@5.5.4))
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -467,8 +467,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -483,8 +483,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -524,14 +524,14 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.3.0)
+        specifier: 0.99.8
+        version: 0.99.8(constructs@10.3.0)
 
   packages/projen-pnpm-workspace:
     dependencies:
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       yaml:
         specifier: 2.6.0
         version: 2.6.0
@@ -549,8 +549,8 @@ importers:
         specifier: ^3.0.0
         version: 3.2.5
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
         version: 6.0.2
@@ -646,8 +646,8 @@ importers:
         specifier: ^3.0.0
         version: 3.3.2
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
       ramda:
         specifier: 0.30.1
         version: 0.30.1
@@ -671,8 +671,8 @@ importers:
   packages/projen-readme:
     dependencies:
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -684,8 +684,8 @@ importers:
   packages/projen-renovate:
     dependencies:
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
@@ -703,8 +703,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.6(@swc/helpers@0.5.5)
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
@@ -722,8 +722,8 @@ importers:
         specifier: 0.0.12
         version: 0.0.12
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -762,8 +762,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.3.0)
+        specifier: ^0.86.0 || ^0.99.0
+        version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -2174,59 +2174,59 @@ packages:
   '@napi-rs/wasm-runtime@0.2.4':
     resolution: {integrity: sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==}
 
-  '@next/env@14.2.7':
-    resolution: {integrity: sha512-OTx9y6I3xE/eih+qtthppwLytmpJVPM5PPoJxChFsbjIEFXIayG0h/xLzefHGJviAa3Q5+Fd+9uYojKkHDKxoQ==}
+  '@next/env@14.2.10':
+    resolution: {integrity: sha512-dZIu93Bf5LUtluBXIv4woQw2cZVZ2DJTjax5/5DOs3lzEOeKLy7GxRSr4caK9/SCPdaW6bCgpye6+n4Dh9oJPw==}
 
-  '@next/swc-darwin-arm64@14.2.7':
-    resolution: {integrity: sha512-UhZGcOyI9LE/tZL3h9rs/2wMZaaJKwnpAyegUVDGZqwsla6hMfeSj9ssBWQS9yA4UXun3pPhrFLVnw5KXZs3vw==}
+  '@next/swc-darwin-arm64@14.2.10':
+    resolution: {integrity: sha512-V3z10NV+cvMAfxQUMhKgfQnPbjw+Ew3cnr64b0lr8MDiBJs3eLnM6RpGC46nhfMZsiXgQngCJKWGTC/yDcgrDQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@14.2.7':
-    resolution: {integrity: sha512-ys2cUgZYRc+CbyDeLAaAdZgS7N1Kpyy+wo0b/gAj+SeOeaj0Lw/q+G1hp+DuDiDAVyxLBCJXEY/AkhDmtihUTA==}
+  '@next/swc-darwin-x64@14.2.10':
+    resolution: {integrity: sha512-Y0TC+FXbFUQ2MQgimJ/7Ina2mXIKhE7F+GUe1SgnzRmwFY3hX2z8nyVCxE82I2RicspdkZnSWMn4oTjIKz4uzA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@14.2.7':
-    resolution: {integrity: sha512-2xoWtE13sUJ3qrC1lwE/HjbDPm+kBQYFkkiVECJWctRASAHQ+NwjMzgrfqqMYHfMxFb5Wws3w9PqzZJqKFdWcQ==}
+  '@next/swc-linux-arm64-gnu@14.2.10':
+    resolution: {integrity: sha512-ZfQ7yOy5zyskSj9rFpa0Yd7gkrBnJTkYVSya95hX3zeBG9E55Z6OTNPn1j2BTFWvOVVj65C3T+qsjOyVI9DQpA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@14.2.7':
-    resolution: {integrity: sha512-+zJ1gJdl35BSAGpkCbfyiY6iRTaPrt3KTl4SF/B1NyELkqqnrNX6cp4IjjjxKpd64/7enI0kf6b9O1Uf3cL0pw==}
+  '@next/swc-linux-arm64-musl@14.2.10':
+    resolution: {integrity: sha512-n2i5o3y2jpBfXFRxDREr342BGIQCJbdAUi/K4q6Env3aSx8erM9VuKXHw5KNROK9ejFSPf0LhoSkU/ZiNdacpQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@14.2.7':
-    resolution: {integrity: sha512-m6EBqrskeMUzykBrv0fDX/28lWIBGhMzOYaStp0ihkjzIYJiKUOzVYD1gULHc8XDf5EMSqoH/0/TRAgXqpQwmw==}
+  '@next/swc-linux-x64-gnu@14.2.10':
+    resolution: {integrity: sha512-GXvajAWh2woTT0GKEDlkVhFNxhJS/XdDmrVHrPOA83pLzlGPQnixqxD8u3bBB9oATBKB//5e4vpACnx5Vaxdqg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@14.2.7':
-    resolution: {integrity: sha512-gUu0viOMvMlzFRz1r1eQ7Ql4OE+hPOmA7smfZAhn8vC4+0swMZaZxa9CSIozTYavi+bJNDZ3tgiSdMjmMzRJlQ==}
+  '@next/swc-linux-x64-musl@14.2.10':
+    resolution: {integrity: sha512-opFFN5B0SnO+HTz4Wq4HaylXGFV+iHrVxd3YvREUX9K+xfc4ePbRrxqOuPOFjtSuiVouwe6uLeDtabjEIbkmDA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@14.2.7':
-    resolution: {integrity: sha512-PGbONHIVIuzWlYmLvuFKcj+8jXnLbx4WrlESYlVnEzDsa3+Q2hI1YHoXaSmbq0k4ZwZ7J6sWNV4UZfx1OeOlbQ==}
+  '@next/swc-win32-arm64-msvc@14.2.10':
+    resolution: {integrity: sha512-9NUzZuR8WiXTvv+EiU/MXdcQ1XUvFixbLIMNQiVHuzs7ZIFrJDLJDaOF1KaqttoTujpcxljM/RNAOmw1GhPPQQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-ia32-msvc@14.2.7':
-    resolution: {integrity: sha512-BiSY5umlx9ed5RQDoHcdbuKTUkuFORDqzYKPHlLeS+STUWQKWziVOn3Ic41LuTBvqE0TRJPKpio9GSIblNR+0w==}
+  '@next/swc-win32-ia32-msvc@14.2.10':
+    resolution: {integrity: sha512-fr3aEbSd1GeW3YUMBkWAu4hcdjZ6g4NBl1uku4gAn661tcxd1bHs1THWYzdsbTRLcCKLjrDZlNp6j2HTfrw+Bg==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@14.2.7':
-    resolution: {integrity: sha512-pxsI23gKWRt/SPHFkDEsP+w+Nd7gK37Hpv0ngc5HpWy2e7cKx9zR/+Q2ptAUqICNTecAaGWvmhway7pj/JLEWA==}
+  '@next/swc-win32-x64-msvc@14.2.10':
+    resolution: {integrity: sha512-UjeVoRGKNL2zfbcQ6fscmgjBAS/inHBh63mjIlfPg/NG8Yn2ztqylXt5qilYb6hoHIwaU2ogHknHWWmahJjgZQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -3411,9 +3411,6 @@ packages:
   camelcase@6.3.0:
     resolution: {integrity: sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==}
     engines: {node: '>=10'}
-
-  caniuse-lite@1.0.30001605:
-    resolution: {integrity: sha512-nXwGlFWo34uliI9z3n6Qc0wZaf7zaZWA1CPZ169La5mV3I/gem7bst0vr5XQH5TJXZIMfDeZyOrZnSlVzKxxHQ==}
 
   caniuse-lite@1.0.30001654:
     resolution: {integrity: sha512-wLJc602fW0OdrUR+PqsBUH3dgrjDcT+mWs/Kw86zPvgjiqOiI2TXMkBFK4KihYzZclmJxrFwgYhZDSEogFai/g==}
@@ -5321,9 +5318,10 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next@14.2.7:
-    resolution: {integrity: sha512-4Qy2aK0LwH4eQiSvQWyKuC7JXE13bIopEQesWE0c/P3uuNRnZCQanI0vsrMLmUQJLAto+A+/8+sve2hd+BQuOQ==}
+  next@14.2.10:
+    resolution: {integrity: sha512-sDDExXnh33cY3RkS9JuFEKaS4HmlWmDKP1VJioucCG6z5KuA008DPsDZOzi8UfqEk3Ii+2NCQSJrfbEWtZZfww==}
     engines: {node: '>=18.17.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -5689,8 +5687,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.86.5:
-    resolution: {integrity: sha512-JVckfyzjFQ46MdHjowslWWNH309A5kxYrpCIkobRTsB1F2KFiiESenjnS+vyWGML9NcfDIw6UIMRNYD6enuTIQ==}
+  projen@0.99.8:
+    resolution: {integrity: sha512-1loAy1XQ5rZ0vobXOdt+ytHTz/6F77H4d4Rtn1Kz0TA/UzTxPgCgBmfOy6ZYAmsXE7Jq+ODGjYdZhaKSQDw10Q==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -5701,9 +5699,10 @@ packages:
       - chalk
       - comment-json
       - conventional-changelog-config-spec
+      - fast-glob
       - fast-json-patch
-      - glob
       - ini
+      - parse-conflict-json
       - semver
       - shx
       - xmlbuilder2
@@ -8764,33 +8763,33 @@ snapshots:
       '@tybys/wasm-util': 0.9.0
     optional: true
 
-  '@next/env@14.2.7': {}
+  '@next/env@14.2.10': {}
 
-  '@next/swc-darwin-arm64@14.2.7':
+  '@next/swc-darwin-arm64@14.2.10':
     optional: true
 
-  '@next/swc-darwin-x64@14.2.7':
+  '@next/swc-darwin-x64@14.2.10':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@14.2.7':
+  '@next/swc-linux-arm64-gnu@14.2.10':
     optional: true
 
-  '@next/swc-linux-arm64-musl@14.2.7':
+  '@next/swc-linux-arm64-musl@14.2.10':
     optional: true
 
-  '@next/swc-linux-x64-gnu@14.2.7':
+  '@next/swc-linux-x64-gnu@14.2.10':
     optional: true
 
-  '@next/swc-linux-x64-musl@14.2.7':
+  '@next/swc-linux-x64-musl@14.2.10':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@14.2.7':
+  '@next/swc-win32-arm64-msvc@14.2.10':
     optional: true
 
-  '@next/swc-win32-ia32-msvc@14.2.7':
+  '@next/swc-win32-ia32-msvc@14.2.10':
     optional: true
 
-  '@next/swc-win32-x64-msvc@14.2.7':
+  '@next/swc-win32-x64-msvc@14.2.10':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -9981,7 +9980,7 @@ snapshots:
 
   browserslist@4.23.0:
     dependencies:
-      caniuse-lite: 1.0.30001605
+      caniuse-lite: 1.0.30001654
       electron-to-chromium: 1.4.724
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -10052,8 +10051,6 @@ snapshots:
   camelcase@5.3.1: {}
 
   camelcase@6.3.0: {}
-
-  caniuse-lite@1.0.30001605: {}
 
   caniuse-lite@1.0.30001654: {}
 
@@ -12507,9 +12504,9 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@14.2.7(@babel/core@7.25.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@14.2.10(@babel/core@7.25.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@next/env': 14.2.7
+      '@next/env': 14.2.10
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001654
@@ -12519,15 +12516,15 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       styled-jsx: 5.1.1(@babel/core@7.25.2)(babel-plugin-macros@3.1.0)(react@18.3.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.7
-      '@next/swc-darwin-x64': 14.2.7
-      '@next/swc-linux-arm64-gnu': 14.2.7
-      '@next/swc-linux-arm64-musl': 14.2.7
-      '@next/swc-linux-x64-gnu': 14.2.7
-      '@next/swc-linux-x64-musl': 14.2.7
-      '@next/swc-win32-arm64-msvc': 14.2.7
-      '@next/swc-win32-ia32-msvc': 14.2.7
-      '@next/swc-win32-x64-msvc': 14.2.7
+      '@next/swc-darwin-arm64': 14.2.10
+      '@next/swc-darwin-x64': 14.2.10
+      '@next/swc-linux-arm64-gnu': 14.2.10
+      '@next/swc-linux-arm64-musl': 14.2.10
+      '@next/swc-linux-x64-gnu': 14.2.10
+      '@next/swc-linux-x64-musl': 14.2.10
+      '@next/swc-win32-arm64-msvc': 14.2.10
+      '@next/swc-win32-ia32-msvc': 14.2.10
+      '@next/swc-win32-x64-msvc': 14.2.10
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -12877,7 +12874,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.86.5(constructs@10.3.0):
+  projen@0.99.8(constructs@10.3.0):
     dependencies:
       constructs: 10.3.0
 
