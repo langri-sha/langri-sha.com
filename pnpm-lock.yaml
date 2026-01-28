@@ -340,7 +340,7 @@ importers:
         specifier: ^7.8.0
         version: 7.20.5
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -362,7 +362,7 @@ importers:
         specifier: ^2.0.0
         version: 2.43.1(typescript@5.5.4)
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -375,7 +375,7 @@ importers:
   packages/projen-codeowners:
     dependencies:
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -388,7 +388,7 @@ importers:
   packages/projen-editorconfig:
     dependencies:
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -404,7 +404,7 @@ importers:
         specifier: ^9.0.0
         version: 9.3.0
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -426,7 +426,7 @@ importers:
         specifier: ^9.0.1
         version: 9.0.11
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -445,7 +445,7 @@ importers:
         specifier: ^28.00 || ^29.00
         version: 29.7.0(@types/node@20.19.20)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.3)(@types/node@20.19.20)(typescript@5.5.4))
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -467,7 +467,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -483,7 +483,7 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -530,7 +530,7 @@ importers:
   packages/projen-pnpm-workspace:
     dependencies:
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       yaml:
         specifier: 2.6.0
@@ -549,7 +549,7 @@ importers:
         specifier: ^3.0.0
         version: 3.2.5
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       serialize-javascript:
         specifier: 6.0.2
@@ -646,7 +646,7 @@ importers:
         specifier: ^3.0.0
         version: 3.3.2
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
       ramda:
         specifier: 0.30.1
@@ -671,7 +671,7 @@ importers:
   packages/projen-readme:
     dependencies:
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -684,7 +684,7 @@ importers:
   packages/projen-renovate:
     dependencies:
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
@@ -703,7 +703,7 @@ importers:
         specifier: ^1.6.0
         version: 1.6.6(@swc/helpers@0.5.5)
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
@@ -722,7 +722,7 @@ importers:
         specifier: 0.0.12
         version: 0.0.12
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':
@@ -762,7 +762,7 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       projen:
-        specifier: ^0.86.0 || ^0.99.0
+        specifier: ^0.99.0
         version: 0.99.8(constructs@10.3.0)
     devDependencies:
       '@langri-sha/tsconfig':

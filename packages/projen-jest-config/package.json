@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "jest": "^28.00 || ^29.00",
-    "projen": "^0.86.0 || ^0.99.0"
+    "projen": "^0.99.0"
   },
   "publishConfig": {
     "access": "public",

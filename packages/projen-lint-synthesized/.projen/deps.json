@@ -22,12 +22,12 @@
     },
     {
       "name": "projen",
-      "version": "0.86.5",
+      "version": "0.99.8",
       "type": "build"
     },
     {
       "name": "projen",
-      "version": "^0.86.0",
+      "version": "^0.99.0",
       "type": "peer"
     },
     {
