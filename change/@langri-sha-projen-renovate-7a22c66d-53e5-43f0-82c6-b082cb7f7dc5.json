@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(projen-renovate): Update import for renamed schema type",
+  "packageName": "@langri-sha/projen-renovate",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
