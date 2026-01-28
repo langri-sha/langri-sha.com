@@ -118,6 +118,7 @@ locals {
         "compute.googleapis.com",
         "dns.googleapis.com",
         "iap.googleapis.com",
+        "monitoring.googleapis.com",
       ]
 
       iam_members = {
