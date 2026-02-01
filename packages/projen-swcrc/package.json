@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "@swc/core": "^1.6.0",
-    "projen": "^0.86.0"
+    "projen": "^0.99.0"
   },
   "publishConfig": {
     "access": "public",
