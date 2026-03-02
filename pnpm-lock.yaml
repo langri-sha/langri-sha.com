@@ -343,8 +343,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       serialize-javascript:
-        specifier: 7.0.3
-        version: 7.0.3
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -407,8 +407,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       serialize-javascript:
-        specifier: 7.0.3
-        version: 7.0.3
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -448,8 +448,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       serialize-javascript:
-        specifier: 7.0.3
-        version: 7.0.3
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -486,8 +486,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       serialize-javascript:
-        specifier: 7.0.3
-        version: 7.0.3
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -552,8 +552,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.3.0)
       serialize-javascript:
-        specifier: 7.0.3
-        version: 7.0.3
+        specifier: 6.0.2
+        version: 6.0.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -5989,10 +5989,6 @@ packages:
 
   serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
-
-  serialize-javascript@7.0.3:
-    resolution: {integrity: sha512-h+cZ/XXarqDgCjo+YSyQU/ulDEESGGf8AMK9pPNmhNSl/FzPl6L8pMp1leca5z6NuG6tvV/auC8/43tmovowww==}
-    engines: {node: '>=20.0.0'}
 
   serve-index@1.9.1:
     resolution: {integrity: sha512-pXHfKNP4qujrtteMrSBb0rc8HJ9Ms/GrXwcUtUtD5s4ewDJI8bT3Cz2zTVRMKtri49pLx2e0Ya8ziP5Ya2pZZw==}
@@ -13200,8 +13196,6 @@ snapshots:
   serialize-javascript@6.0.2:
     dependencies:
       randombytes: 2.1.0
-
-  serialize-javascript@7.0.3: {}
 
   serve-index@1.9.1:
     dependencies:

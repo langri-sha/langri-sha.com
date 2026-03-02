@@ -22,7 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "serialize-javascript": "7.0.3"
+    "serialize-javascript": "6.0.2"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
