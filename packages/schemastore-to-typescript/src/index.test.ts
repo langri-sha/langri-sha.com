@@ -67,7 +67,7 @@ test('compiles to TypeScript', async () => {
      * and run json-schema-to-typescript to regenerate this file.
      */
 
-    export interface SomeSchema {
+    export interface Some {
       /**
        * The unique identifier for some item.
        */
