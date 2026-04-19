@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(deps): regenerate pnpm lockfile to match next 14.2.10",
+  "packageName": "@langri-sha/web",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
