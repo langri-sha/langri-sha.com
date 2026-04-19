@@ -112,6 +112,10 @@ export const compile = async (
     debug(`Fetching schema from: ${catalogSchema.url}`)
 
     schema = await fetchWithRetry<JSONSchema>(catalogSchema.url)
+
+    if (typeof schema === 'object' && schema !== null) {
+      schema.title = catalogSchema.name
+    }
   } catch (e) {
     debug(e)
 

@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "fix(schemastore-to-typescript): stabilize generated type names by overriding schema title with catalog name",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
