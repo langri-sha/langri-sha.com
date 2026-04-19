@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(projen-renovate): use stable Renovate schema type from schemastore-to-typescript",
+  "packageName": "@langri-sha/projen-renovate",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
