@@ -12,7 +12,7 @@
     },
     {
       "name": "@types/node",
-      "version": "20.19.20",
+      "version": "20.19.31",
       "type": "build"
     },
     {
