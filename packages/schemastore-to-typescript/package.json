@@ -40,7 +40,7 @@
     "@types/debug": "4.1.12"
   },
   "peerDependencies": {
-    "projen": "^0.86.0"
+    "projen": "^0.99.0"
   },
   "publishConfig": {
     "access": "public",
