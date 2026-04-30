@@ -117,7 +117,7 @@ const configuration: (options: Options) => Configuration = env(
       }),
       new EnvironmentPlugin({
         NODE_ENV: environment,
-        EXPERIMENTAL_SCENE: null,
+        EXPERIMENTAL_SCENE: '',
       } satisfies WebEnv),
     ],
   }),
