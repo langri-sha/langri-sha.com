@@ -54,6 +54,10 @@ export default [
       ],
 
       // Contributing.
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        { allowInterfaces: 'with-single-extends' },
+      ],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
