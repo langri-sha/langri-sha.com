@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.8.1
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- fix(deps): update dependency eslint-config-prettier to v9.1.2 (email not defined)
+- fix: allow `interface X extends Y {}` (no-empty-object-type with-single-extends) (filip.dupanovic@gmail.com)
+- fix(deps): update dependency eslint-plugin-react to v7.36.0 (email not defined)
 
 ## 0.8.0
 

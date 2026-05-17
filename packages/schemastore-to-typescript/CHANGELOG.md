@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/schemastore-to-typescript
 
-This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.0
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Minor changes
+
+- Refactor schema fetching to use catalog API and improve tests (bot@langri-sha.com)
+- fix(schemastore-to-typescript): stabilize generated type names by overriding schema title with catalog name (filip.dupanovic@gmail.com)
+
+### Patches
+
+- fix(deps): update dependency got to v14.4.7 (email not defined)
 
 ## 0.1.4
 

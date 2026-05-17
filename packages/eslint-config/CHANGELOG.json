@@ -2,6 +2,33 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.8.1",
+      "tag": "@langri-sha/eslint-config_v0.8.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency eslint-config-prettier to v9.1.2"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix: allow `interface X extends Y {}` (no-empty-object-type with-single-extends)"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency eslint-plugin-react to v7.36.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.8.0",
       "tag": "@langri-sha/eslint-config_v0.8.0",

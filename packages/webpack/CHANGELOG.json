@@ -2,6 +2,39 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.5.8",
+      "tag": "@langri-sha/webpack_v0.5.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "chore(deps): update dependency @types/node to v20.19.20"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency webpack-dev-server to v5.2.1 [security]"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency webpack-dev-server to v5.2.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "chore(deps): update node.js to v20.18.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.5.7",
       "tag": "@langri-sha/webpack_v0.5.7",

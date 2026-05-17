@@ -1,8 +1,22 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Thu, 29 Aug 2024 21:44:25 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.17.0
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Minor changes
+
+- fix(renovate): Migrate to managerFilePatterns and fix regex escaping (bot@langri-sha.com)
+
+### Patches
+
+- chore(deps): update dependency @swc/core to v1.7.25 (email not defined)
+- Prioritize security updates for projen configuration files (bot@langri-sha.com)
+- chore(deps): update dependency husky to v9.1.7 (email not defined)
 
 ## 0.16.0
 

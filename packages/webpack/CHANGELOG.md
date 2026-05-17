@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/webpack
 
-This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.8
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- chore(deps): update dependency @types/node to v20.19.20 (email not defined)
+- fix(deps): update dependency webpack-dev-server to v5.2.1 [security] (email not defined)
+- fix(deps): update dependency webpack-dev-server to v5.2.3 (email not defined)
+- chore(deps): update node.js to v20.18.1 (email not defined)
 
 ## 0.5.7
 

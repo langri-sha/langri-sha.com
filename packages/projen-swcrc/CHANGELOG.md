@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-swcrc
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.5
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- fix(projen-swcrc): Use correct type name from generated schema (bot@langri-sha.com)
 
 ## 0.1.2
 

@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-renovate
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.5
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- fix(projen-renovate): Update import for renamed schema type (filip.dupanovic@gmail.com)
+- fix(projen-renovate): use stable Renovate schema type from schemastore-to-typescript (filip.dupanovic@gmail.com)
 
 ## 0.4.2
 

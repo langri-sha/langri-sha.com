@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.1
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- fix(deps): update dependency yaml to v2.6.0 (email not defined)
 
 ## 0.3.0
 

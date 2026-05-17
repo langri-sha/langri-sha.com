@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.4.5",
+      "tag": "@langri-sha/projen-renovate_v0.4.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(projen-renovate): Update import for renamed schema type"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(projen-renovate): use stable Renovate schema type from schemastore-to-typescript"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.4.4",
       "tag": "@langri-sha/projen-renovate_v0.4.4",

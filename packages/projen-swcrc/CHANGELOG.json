@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.1.5",
+      "tag": "@langri-sha/projen-swcrc_v0.1.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "bot@langri-sha.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(projen-swcrc): Use correct type name from generated schema"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.1.4",
       "tag": "@langri-sha/projen-swcrc_v0.1.4",

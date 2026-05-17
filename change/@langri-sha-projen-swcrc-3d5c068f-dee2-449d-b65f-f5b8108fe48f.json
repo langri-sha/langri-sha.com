@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(projen-swcrc): Use correct type name from generated schema",
-  "packageName": "@langri-sha/projen-swcrc",
-  "email": "bot@langri-sha.com",
-  "dependentChangeType": "patch"
-}

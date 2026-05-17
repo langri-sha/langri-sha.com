@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-husky
 
-This log was last generated on Tue, 10 Sep 2024 10:39:17 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.6
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- chore(deps): update node.js to v20.18.1 (email not defined)
+- chore(deps): update dependency @types/node to v20.19.20 (email not defined)
 
 ## 0.3.5
 

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
+This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.2
+
+Sun, 17 May 2026 20:22:40 GMT
+
+### Patches
+
+- build(deps): Bump minimatch from 10.0.1 to 10.2.1 (email not defined)
 
 ## 0.5.1
 

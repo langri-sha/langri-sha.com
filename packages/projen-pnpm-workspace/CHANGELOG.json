@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.3.1",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency yaml to v2.6.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:18 GMT",
       "version": "0.3.0",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.3.0",

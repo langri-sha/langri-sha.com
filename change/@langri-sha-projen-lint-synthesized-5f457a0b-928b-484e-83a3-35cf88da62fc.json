@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "build(deps): Bump minimatch from 10.0.1 to 10.2.1",
-  "packageName": "@langri-sha/projen-lint-synthesized",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,35 @@
   "name": "@langri-sha/schemastore-to-typescript",
   "entries": [
     {
+      "date": "Sun, 17 May 2026 20:22:40 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/schemastore-to-typescript_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "bot@langri-sha.com",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "Refactor schema fetching to use catalog API and improve tests"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(schemastore-to-typescript): stabilize generated type names by overriding schema title with catalog name"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/schemastore-to-typescript",
+            "commit": "73442d20a396b8a9538e071a6f05d671c557c89e",
+            "comment": "fix(deps): update dependency got to v14.4.7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.1.4",
       "tag": "@langri-sha/schemastore-to-typescript_v0.1.4",
