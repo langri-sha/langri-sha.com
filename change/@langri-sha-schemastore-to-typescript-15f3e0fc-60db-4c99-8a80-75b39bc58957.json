@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(schemastore-to-typescript): remove unused @ts-expect-error directive (TS2578)",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
