@@ -17,3 +17,4 @@ jobs:
       projen: true
       typescript: true
       vitest: true
+    secrets: inherit
