@@ -19,13 +19,14 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "NODE_OPTIONS=\"--loader ts-node/esm/transpile-only\" schemastore-to-typescript swcrc src/swcrc.d.ts",
+    "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts swcrc src/swcrc.d.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
     "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
-    "@langri-sha/vitest": "workspace:*"
+    "@langri-sha/vitest": "workspace:*",
+    "tsx": "4.22.4"
   },
   "peerDependencies": {
     "@swc/core": "^1.6.0",

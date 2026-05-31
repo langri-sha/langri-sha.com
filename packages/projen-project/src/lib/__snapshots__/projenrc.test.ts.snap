@@ -59,7 +59,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm/transpile-only .projerc.ts",
+            "exec": "tsx .projerc.ts",
           },
         ],
       },
@@ -161,7 +161,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "node --loader ts-node/esm/transpile-only .projenrc.ts",
+            "exec": "tsx .projenrc.ts",
           },
         ],
       },

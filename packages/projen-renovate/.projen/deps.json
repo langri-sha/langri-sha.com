@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "tsx",
+      "version": "4.22.4",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "version": "^0.86.0",
       "type": "peer"
