@@ -53,7 +53,7 @@ const project = new Project({
       'lint-staged@15.5.2',
       'prettier@3.3.3',
       'projen@0.86.5',
-      'ts-node@10.9.2',
+      'tsx@4.22.4',
       'vitest@2.0.5',
     ],
   },
@@ -693,7 +693,7 @@ project.addSubproject(
         'lint-staged@^15.0.0',
         'prettier@^3.0.0',
         'projen@^0.86.0',
-        'ts-node@^10.0.0',
+        'tsx@^4.0.0',
         'typescript@^5.5.0',
       ],
       peerDependenciesMeta: {
@@ -727,7 +727,7 @@ project.addSubproject(
         prettier: {
           optional: true,
         },
-        'ts-node': {
+        tsx: {
           optional: true,
         },
       },
@@ -772,7 +772,10 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: ['@langri-sha/schemastore-to-typescript@workspace:*'],
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.22.4',
+      ],
       peerDeps: ['projen@^0.86.0'],
     },
   },
@@ -784,7 +787,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'NODE_OPTIONS="--loader ts-node/esm/transpile-only" schemastore-to-typescript renovate src/renovate.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts renovate src/renovate.d.ts',
     )
   },
 )
@@ -802,7 +805,10 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: ['@langri-sha/schemastore-to-typescript@workspace:*'],
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.22.4',
+      ],
       peerDeps: ['projen@^0.86.0', '@swc/core@^1.6.0'],
     },
   },
@@ -814,7 +820,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'NODE_OPTIONS="--loader ts-node/esm/transpile-only" schemastore-to-typescript swcrc src/swcrc.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts swcrc src/swcrc.d.ts',
     )
   },
 )

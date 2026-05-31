@@ -25,9 +25,7 @@ export class ProjenrcFile extends BaseProjenrcFile {
 
     this.filePath = filename
 
-    this.project.defaultTask?.exec(
-      `node --loader ts-node/esm/transpile-only ${filename}`,
-    )
+    this.project.defaultTask?.exec(`tsx ${filename}`)
 
     new SampleFile(project, filename, {
       contents: `import { Project } from '@langri-sha/projen-project'

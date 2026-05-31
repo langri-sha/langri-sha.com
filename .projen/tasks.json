@@ -14,7 +14,7 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "node --loader ts-node/esm/transpile-only .projenrc.ts"
+          "exec": "tsx .projenrc.ts"
         }
       ]
     },

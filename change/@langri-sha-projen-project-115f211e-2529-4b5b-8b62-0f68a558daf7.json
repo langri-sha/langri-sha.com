@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

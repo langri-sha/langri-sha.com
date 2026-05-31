@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "tsx",
+      "version": "4.22.4",
+      "type": "build"
+    },
+    {
       "name": "@swc/core",
       "version": "^1.6.0",
       "type": "peer"
