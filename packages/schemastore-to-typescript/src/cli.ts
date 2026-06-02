@@ -31,5 +31,13 @@ export const program: Command = new Command()
 
 if (esMain(import.meta)) {
   debug('Parsing arguments', process.argv)
-  await program.parseAsync(process.argv)
+  try {
+    await program.parseAsync(process.argv)
+  } catch (error) {
+    console.error(error)
+    process.exitCode = 1
+  } finally {
+    // Force exit so a lingering handle can't hang the runtime on nested re-runs.
+    process.exit(process.exitCode ?? 0)
+  }
 }
