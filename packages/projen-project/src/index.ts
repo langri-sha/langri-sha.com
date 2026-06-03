@@ -660,8 +660,8 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.package?.addDevDeps('@swc/core@1.13.3')
-      this.package?.addDevDeps('@swc-node/register@1.10.10')
+      this.package?.addDevDeps('@swc/core@1.15.40')
+      this.package?.addDevDeps('@swc-node/register@1.11.1')
     }
 
     const defaults: SWCConfigOptions = {
