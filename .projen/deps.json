@@ -42,12 +42,12 @@
     },
     {
       "name": "@swc-node/register",
-      "version": "1.10.10",
+      "version": "1.11.1",
       "type": "build"
     },
     {
       "name": "@swc/core",
-      "version": "1.13.3",
+      "version": "1.15.40",
       "type": "build"
     },
     {

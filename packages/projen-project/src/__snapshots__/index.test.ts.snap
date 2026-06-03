@@ -3186,12 +3186,12 @@ node_modules/
       {
         "name": "@swc-node/register",
         "type": "build",
-        "version": "1.10.10",
+        "version": "1.11.1",
       },
       {
         "name": "@swc/core",
         "type": "build",
-        "version": "1.13.3",
+        "version": "1.15.40",
       },
       {
         "name": "projen",
@@ -3278,8 +3278,8 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "@swc-node/register": "1.10.10",
-      "@swc/core": "1.13.3",
+      "@swc-node/register": "1.11.1",
+      "@swc/core": "1.15.40",
       "projen": "0.86.5",
       "typescript": "5.9.3",
     },
