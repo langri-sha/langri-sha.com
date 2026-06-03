@@ -708,7 +708,7 @@ export class Project extends BaseProject {
     )
 
     if (!this.parent) {
-      this.package?.addDevDeps('typescript@5.5.4')
+      this.package?.addDevDeps('typescript@5.9.3')
 
       if (!swcrc) {
         this.package?.addDevDeps('tsx@4.22.4')
