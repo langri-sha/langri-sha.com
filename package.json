@@ -58,7 +58,7 @@
     "prettier": "3.3.3",
     "projen": "0.86.5",
     "tsx": "4.22.4",
-    "typescript": "5.5.4",
+    "typescript": "5.9.3",
     "vitest": "2.1.9"
   },
   "packageManager": "pnpm@9.9.0",
