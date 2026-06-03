@@ -28,8 +28,8 @@ const project = new Project({
     type: 'module',
 
     deps: [
-      '@babel/core@7.25.2',
-      '@babel/register@7.24.6',
+      '@babel/core@7.29.7',
+      '@babel/register@7.29.7',
       '@types/babel__core@7.20.5',
       'react-dom@18.3.1',
       'react@18.3.1',
@@ -181,11 +181,11 @@ project.addSubproject(
       copyrightYear: '2021',
       entrypoint: 'src/index.js',
       deps: [
-        '@babel/plugin-proposal-export-default-from@7.24.7',
-        '@babel/preset-env@7.25.4',
-        '@babel/preset-react@7.24.7',
-        '@babel/preset-typescript@7.24.7',
-        '@babel/register@7.24.6',
+        '@babel/plugin-proposal-export-default-from@7.29.7',
+        '@babel/preset-env@7.29.7',
+        '@babel/preset-react@7.29.7',
+        '@babel/preset-typescript@7.29.7',
+        '@babel/register@7.29.7',
         '@emotion/babel-plugin@11.12.0',
       ],
       devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@20.19.41'],
