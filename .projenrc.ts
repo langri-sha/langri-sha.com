@@ -548,7 +548,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['debug@4.4.3', 'execa@8.0.1', 'minimatch@10.0.1'],
+      deps: ['debug@4.4.3', 'execa@8.0.1', 'minimatch@10.2.5'],
       devDeps: ['@types/debug@4.1.13', 'prettier@3.3.3', 'projen@0.86.5'],
       peerDeps: ['projen@^0.86.0'],
     },
