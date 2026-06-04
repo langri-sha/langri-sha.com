@@ -22,14 +22,14 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "debug": "4.3.6",
+    "debug": "4.4.3",
     "execa": "8.0.1",
     "minimatch": "10.0.1"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/debug": "4.1.12",
+    "@types/debug": "4.1.13",
     "prettier": "3.3.3",
     "projen": "0.86.5"
   },
