@@ -72,5 +72,13 @@
       depNameTemplate: 'pnpm',
       depTypeTemplate: 'dependencies',
     },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-releases',
+      depNameTemplate: 'hashicorp/terraform',
+      versioningTemplate: 'hashicorp',
+      managerFilePatterns: ['/^\\.github/workflows/terraform\\.yml$/'],
+      matchStrings: ['terraform-version:\\s*(?<currentValue>\\S+)'],
+    },
   ],
 }
