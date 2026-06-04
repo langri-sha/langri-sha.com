@@ -27,7 +27,7 @@
     },
     {
       "name": "babel-loader",
-      "version": "9.1.3",
+      "version": "9.2.1",
       "type": "runtime"
     },
     {
