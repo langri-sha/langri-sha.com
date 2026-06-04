@@ -30,7 +30,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/debug": "4.1.13",
-    "prettier": "3.3.3",
+    "prettier": "3.8.3",
     "projen": "0.86.5"
   },
   "peerDependencies": {
