@@ -90,6 +90,22 @@ const project = new Project({
         matchPackageNames: ['hashicorp/google*'],
       },
     ],
+    customManagers: [
+      {
+        // Keep the Terraform CI workflow pin in lockstep with `required_version`.
+        // The `langri-sha/github` terraform action installs latest when version
+        // auto-detection fails, so `terraform-version` must track the configured
+        // Terraform release. Matching depName/datasource/versioning to the built-in
+        // `required_version` manager lands this on the same Renovate branch as the
+        // Dockerfile and `versions.tf` bumps.
+        customType: 'regex',
+        datasourceTemplate: 'github-releases',
+        depNameTemplate: 'hashicorp/terraform',
+        versioningTemplate: 'hashicorp',
+        managerFilePatterns: ['/^\\.github/workflows/terraform\\.yml$/'],
+        matchStrings: ['terraform-version:\\s*(?<currentValue>\\S+)'],
+      },
+    ],
   },
   swcrc: {},
   typeScriptConfig: {
