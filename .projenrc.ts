@@ -945,7 +945,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       deps: [
-        'babel-loader@9.1.3',
+        'babel-loader@9.2.1',
         'clean-webpack-plugin@4.0.0',
         'copy-webpack-plugin@12.0.2',
         'html-webpack-plugin@5.6.7',
