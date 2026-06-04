@@ -248,7 +248,7 @@ project.addSubproject(
         'eslint-plugin-import@2.32.0',
         'eslint-plugin-jsdoc@50.8.0',
         'eslint-plugin-prettier@5.2.1',
-        'eslint-plugin-react@7.36.1',
+        'eslint-plugin-react@7.37.5',
         'eslint-plugin-react-hooks@5.2.0',
         'eslint-plugin-unicorn@55.0.0',
         'globals@15.9.0',
