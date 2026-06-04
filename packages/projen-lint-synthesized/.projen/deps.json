@@ -12,7 +12,7 @@
     },
     {
       "name": "@types/debug",
-      "version": "4.1.12",
+      "version": "4.1.13",
       "type": "build"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "name": "debug",
-      "version": "4.3.6",
+      "version": "4.4.3",
       "type": "runtime"
     },
     {
