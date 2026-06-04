@@ -241,8 +241,8 @@ importers:
         specifier: 55.0.0
         version: 55.0.0(eslint@9.9.1)
       globals:
-        specifier: 15.9.0
-        version: 15.9.0
+        specifier: 15.15.0
+        version: 15.15.0
       typescript-eslint:
         specifier: 8.59.3
         version: 8.59.3(eslint@9.9.1)(typescript@5.9.3)
@@ -4366,8 +4366,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.9.0:
-    resolution: {integrity: sha512-SmSKyLLKFbSr6rptvP8izbyxJL4ILwqO9Jg23UA0sDlGlu58V59D1//I3vlc0KJphVdUR7vMjHIplYnzBxorQA==}
+  globals@15.15.0:
+    resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -10351,7 +10351,7 @@ snapshots:
       core-js-compat: 3.49.0
       eslint: 9.9.1
       esquery: 1.7.0
-      globals: 15.9.0
+      globals: 15.15.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
       jsesc: 3.1.0
@@ -10749,7 +10749,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.9.0: {}
+  globals@15.15.0: {}
 
   globalthis@1.0.4:
     dependencies:
