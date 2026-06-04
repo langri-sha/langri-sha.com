@@ -38,12 +38,12 @@
     "@langri-sha/projen-renovate": "workspace:*",
     "@langri-sha/projen-swcrc": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
-    "ramda": "0.30.1"
+    "ramda": "0.32.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/ramda": "0.30.2"
+    "@types/ramda": "0.31.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.8.0",
