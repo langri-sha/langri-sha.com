@@ -385,7 +385,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       entrypoint: 'src/index.js',
-      deps: ['prettier-plugin-ini@1.2.0'],
+      deps: ['prettier-plugin-ini@1.3.0'],
       peerDeps: ['prettier@^3.0.0'],
     },
   },
