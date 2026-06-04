@@ -45,8 +45,10 @@ import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
 export * from '@langri-sha/projen-typescript-config'
 
-export interface ProjectOptions
-  extends Omit<BaseProjectOptions, 'renovatebot' | 'renovatebotOptions'> {
+export interface ProjectOptions extends Omit<
+  BaseProjectOptions,
+  'renovatebot' | 'renovatebotOptions'
+> {
   /*
    * Pass in to set up Beachball.
    */
