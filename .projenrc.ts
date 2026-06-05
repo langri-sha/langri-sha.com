@@ -270,7 +270,7 @@ project.addSubproject(
         'globals@15.15.0',
         'typescript-eslint@8.59.3',
       ],
-      devDeps: ['@types/eslint__js@8.42.3'],
+      devDeps: ['@types/eslint__js@9.14.0'],
       peerDeps: ['eslint@^9.0.0'],
     },
   },
