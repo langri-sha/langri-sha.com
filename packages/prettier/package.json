@@ -31,6 +31,14 @@
   "peerDependencies": {
     "prettier": "^3.0.0"
   },
+  "packageManager": "pnpm@10.33.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=10",
+      "onFail": "ignore"
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
