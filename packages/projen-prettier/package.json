@@ -28,7 +28,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/serialize-javascript": "5.0.4",
-    "prettier": "3.8.3"
+    "prettier": "3.8.4"
   },
   "peerDependencies": {
     "prettier": "^3.0.0",
