@@ -82,8 +82,8 @@ importers:
         specifier: 15.5.2
         version: 15.5.2
       prettier:
-        specifier: 3.8.3
-        version: 3.8.3
+        specifier: 3.8.4
+        version: 3.8.4
       projen:
         specifier: 0.86.5
         version: 0.86.5(constructs@10.6.0)
@@ -230,7 +230,7 @@ importers:
         version: 50.8.0(eslint@9.9.1)
       eslint-plugin-prettier:
         specifier: 5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.9.1))(eslint@9.9.1)(prettier@3.8.3)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.9.1))(eslint@9.9.1)(prettier@3.8.4)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.9.1)
@@ -328,8 +328,8 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       prettier:
-        specifier: 3.8.3
-        version: 3.8.3
+        specifier: 3.8.4
+        version: 3.8.4
 
   packages/projen-babel:
     dependencies:
@@ -521,8 +521,8 @@ importers:
         specifier: 4.1.13
         version: 4.1.13
       prettier:
-        specifier: 3.8.3
-        version: 3.8.3
+        specifier: 3.8.4
+        version: 3.8.4
       projen:
         specifier: 0.86.5
         version: 0.86.5(constructs@10.6.0)
@@ -562,8 +562,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       prettier:
-        specifier: 3.8.3
-        version: 3.8.3
+        specifier: 3.8.4
+        version: 3.8.4
 
   packages/projen-project:
     dependencies:
@@ -5662,8 +5662,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.8.3:
-    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
+  prettier@3.8.4:
+    resolution: {integrity: sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -10456,10 +10456,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.9.1))(eslint@9.9.1)(prettier@3.8.3):
+  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.9.1))(eslint@9.9.1)(prettier@3.8.4):
     dependencies:
       eslint: 9.9.1
-      prettier: 3.8.3
+      prettier: 3.8.4
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
@@ -11743,7 +11743,7 @@ snapshots:
       js-yaml: 4.2.0
       lodash: 4.18.1
       minimist: 1.2.8
-      prettier: 3.8.3
+      prettier: 3.8.4
 
   json-schema-traverse@0.4.1: {}
 
@@ -12378,11 +12378,11 @@ snapshots:
 
   prettier-plugin-ini@1.3.0:
     dependencies:
-      prettier: 3.8.3
+      prettier: 3.8.4
 
   prettier@3.3.3: {}
 
-  prettier@3.8.3: {}
+  prettier@3.8.4: {}
 
   pretty-error@4.0.0:
     dependencies:
