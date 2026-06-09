@@ -29,7 +29,15 @@
     "@langri-sha/vitest": "workspace:*"
   },
   "peerDependencies": {
-    "projen": "^0.86.0 || ^0.99.0"
+    "projen": "^0.99.0"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=10",
+      "onFail": "ignore"
+    }
   },
   "publishConfig": {
     "access": "public",
