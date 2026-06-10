@@ -74,6 +74,13 @@
     },
     {
       customType: 'regex',
+      datasourceTemplate: 'npm',
+      depNameTemplate: 'react',
+      managerFilePatterns: ['/^packages/eslint-config/src/index\\.js$/'],
+      matchStrings: ["react:\\s*\\{\\s*version:\\s*'(?<currentValue>[^']+)'"],
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'github-releases',
       depNameTemplate: 'hashicorp/terraform',
       versioningTemplate: 'hashicorp',

@@ -67,7 +67,7 @@
     },
     {
       "name": "eslint",
-      "version": "9.39.4",
+      "version": "10.4.1",
       "type": "build"
     },
     {

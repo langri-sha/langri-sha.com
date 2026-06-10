@@ -6,38 +6,33 @@
       "type": "build"
     },
     {
-      "name": "@types/eslint__js",
-      "version": "8.42.3",
-      "type": "build"
-    },
-    {
       "name": "eslint",
-      "version": "^9.0.0",
+      "version": "^9.0.0 || ^10.0.0",
       "type": "peer"
     },
     {
       "name": "@eslint/compat",
-      "version": "1.4.1",
+      "version": "2.1.0",
       "type": "runtime"
     },
     {
       "name": "@eslint/js",
-      "version": "9.39.4",
+      "version": "10.0.1",
       "type": "runtime"
     },
     {
       "name": "eslint-config-prettier",
-      "version": "9.1.2",
+      "version": "10.1.8",
       "type": "runtime"
     },
     {
-      "name": "eslint-plugin-import",
-      "version": "2.32.0",
+      "name": "eslint-plugin-import-x",
+      "version": "4.16.2",
       "type": "runtime"
     },
     {
       "name": "eslint-plugin-jsdoc",
-      "version": "50.8.0",
+      "version": "62.9.0",
       "type": "runtime"
     },
     {
@@ -47,7 +42,7 @@
     },
     {
       "name": "eslint-plugin-react-hooks",
-      "version": "5.2.0",
+      "version": "7.1.1",
       "type": "runtime"
     },
     {
@@ -57,17 +52,17 @@
     },
     {
       "name": "eslint-plugin-unicorn",
-      "version": "55.0.0",
+      "version": "65.0.1",
       "type": "runtime"
     },
     {
       "name": "globals",
-      "version": "15.15.0",
+      "version": "17.6.0",
       "type": "runtime"
     },
     {
       "name": "typescript-eslint",
-      "version": "8.60.1",
+      "version": "8.61.0",
       "type": "runtime"
     }
   ],

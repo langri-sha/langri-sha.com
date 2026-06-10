@@ -22,24 +22,23 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@eslint/compat": "1.4.1",
-    "@eslint/js": "9.39.4",
-    "eslint-config-prettier": "9.1.2",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsdoc": "50.8.0",
+    "@eslint/compat": "2.1.0",
+    "@eslint/js": "10.0.1",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-jsdoc": "62.9.0",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "5.2.0",
-    "eslint-plugin-unicorn": "55.0.0",
-    "globals": "15.15.0",
-    "typescript-eslint": "8.60.1"
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-unicorn": "65.0.1",
+    "globals": "17.6.0",
+    "typescript-eslint": "8.61.0"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "workspace:*",
-    "@types/eslint__js": "8.42.3"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0 || ^10.0.0"
   },
   "publishConfig": {
     "access": "public",

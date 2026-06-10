@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: widen eslint peer dependency range to ^9.0.0 || ^10.0.0",
+  "packageName": "@langri-sha/lint-staged",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

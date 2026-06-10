@@ -87,6 +87,7 @@ export const compile = async (
     if (e instanceof HTTPError) {
       throw new Error(
         `Couldn't retrieve catalog from ${catalogUrl}. [${e.code}]`,
+        { cause: e },
       )
     }
 
@@ -122,17 +123,20 @@ export const compile = async (
       if (e.response.statusCode === 404) {
         throw new Error(
           `Couldn't find schema ${name} at ${catalogSchema.url}. Are you sure it exists?`,
+          { cause: e },
         )
       }
 
       throw new Error(
         `Couldn't retrieve schema from ${catalogSchema.url}. [${e.code}] Status: ${e.response.statusCode}`,
+        { cause: e },
       )
     }
 
     if (e instanceof Error && e.message.includes('is not valid JSON')) {
       throw new Error(
         `Failed to parse JSON from ${catalogSchema.url}. The server might be returning invalid or compressed content. Error: ${e.message}`,
+        { cause: e },
       )
     }
 
