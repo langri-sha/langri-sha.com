@@ -5,7 +5,7 @@ ARG alpine_version
 FROM google/cloud-sdk:554.0.0-alpine as google_cloud_sdk
 FROM hashicorp/terraform:1.15.5 as terraform
 
-FROM alpine:3.23 as kubernetes
+FROM alpine:3.24 as kubernetes
 
 ARG kubernetes_version
 
@@ -21,7 +21,7 @@ chmod +x kubectl
 EOF
 
 
-FROM alpine:3.23
+FROM alpine:3.24
 
 ARG uid
 
