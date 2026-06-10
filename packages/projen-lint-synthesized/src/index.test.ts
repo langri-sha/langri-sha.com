@@ -72,6 +72,8 @@ test('lints synthesized files', async () => {
 
   file = await fs.readFile(path.join(project.outdir, 'project2', 'test3.js'))
   contents = file.toString('utf8')
+
+  expect(contents).toEqual(`module.exports = { foo: "bar" };\n`)
 })
 
 test('lints hidden synthesized files', async () => {

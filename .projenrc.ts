@@ -23,7 +23,7 @@ const project = new Project({
     ...pkg,
     copyrightYear: '2016',
     homepage: 'https://langri-sha.com',
-    minNodeVersion: '20.12.0',
+    minNodeVersion: '20.19.0',
     repository: 'langri-sha/langri-sha.com',
     type: 'module',
 
@@ -48,7 +48,7 @@ const project = new Project({
       '@swc/core@1.15.40',
       '@types/lint-staged@13.3.0',
       '@types/node@20.19.41',
-      'eslint@9.39.4',
+      'eslint@10.4.1',
       'jest@29.7.0',
       'lint-staged@15.5.2',
       'prettier@3.8.3',
@@ -91,6 +91,20 @@ const project = new Project({
       },
     ],
     customManagers: [
+      {
+        // Keep the React version pinned in the shared ESLint flat config
+        // (`settings.react.version` in packages/eslint-config/src/index.js) in
+        // lockstep with the `react` dependency. We pin instead of using
+        // `version: 'detect'` because eslint-plugin-react's version-detection
+        // path calls the context.getFilename() removed in ESLint 10 and only
+        // survives via the @eslint/compat shim; pinning sidesteps that fragile
+        // path, and this manager bumps the pin whenever `react` is updated.
+        customType: 'regex',
+        datasourceTemplate: 'npm',
+        depNameTemplate: 'react',
+        managerFilePatterns: ['/^packages/eslint-config/src/index\\.js$/'],
+        matchStrings: ["react:\\s*\\{\\s*version:\\s*'(?<currentValue>[^']+)'"],
+      },
       {
         // Keep the Terraform CI workflow pin in lockstep with `required_version`.
         // The `langri-sha/github` terraform action installs latest when version
@@ -258,20 +272,19 @@ project.addSubproject(
       type: 'module',
       entrypoint: 'src/index.js',
       deps: [
-        '@eslint/compat@1.4.1',
-        '@eslint/js@9.39.4',
-        'eslint-config-prettier@9.1.2',
-        'eslint-plugin-import@2.32.0',
-        'eslint-plugin-jsdoc@50.8.0',
+        '@eslint/compat@2.1.0',
+        '@eslint/js@10.0.1',
+        'eslint-config-prettier@10.1.8',
+        'eslint-plugin-import-x@4.16.2',
+        'eslint-plugin-jsdoc@62.9.0',
         'eslint-plugin-prettier@5.5.6',
         'eslint-plugin-react@7.37.5',
-        'eslint-plugin-react-hooks@5.2.0',
-        'eslint-plugin-unicorn@55.0.0',
-        'globals@15.15.0',
-        'typescript-eslint@8.60.1',
+        'eslint-plugin-react-hooks@7.1.1',
+        'eslint-plugin-unicorn@65.0.1',
+        'globals@17.6.0',
+        'typescript-eslint@8.61.0',
       ],
-      devDeps: ['@types/eslint__js@8.42.3'],
-      peerDeps: ['eslint@^9.0.0'],
+      peerDeps: ['eslint@^9.0.0 || ^10.0.0'],
     },
   },
   subproject,
@@ -334,7 +347,11 @@ project.addSubproject(
       type: 'module',
       entrypoint: 'src/index.js',
       devDeps: ['@types/lint-staged@13.3.0'],
-      peerDeps: ['eslint@^9.0.0', 'lint-staged@^15.0.0', 'prettier@^3.0.0'],
+      peerDeps: [
+        'eslint@^9.0.0 || ^10.0.0',
+        'lint-staged@^15.0.0',
+        'prettier@^3.0.0',
+      ],
       peerDependenciesMeta: {
         eslint: {
           optional: true,
@@ -499,7 +516,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['eslint@^9.0.0', 'projen@^0.86.0'],
+      peerDeps: ['eslint@^9.0.0 || ^10.0.0', 'projen@^0.86.0'],
     },
   },
   subproject,
@@ -704,7 +721,7 @@ project.addSubproject(
         '@swc/core@^1.6.0',
         '@types/babel__core@^7.8.0',
         'beachball@^2.0.0',
-        'eslint@^9.0.0',
+        'eslint@^9.0.0 || ^10.0.0',
         'husky@^9.0.1',
         'jest@^28.0.0 || ^29.0.0',
         'lint-staged@^15.0.0',

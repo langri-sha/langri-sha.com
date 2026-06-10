@@ -1,6 +1,6 @@
-import { fixupPluginRules } from '@eslint/compat'
+import { fixupConfigRules } from '@eslint/compat'
 import js from '@eslint/js'
-import imprt from 'eslint-plugin-import'
+import { importX } from 'eslint-plugin-import-x'
 import jsdoc from 'eslint-plugin-jsdoc'
 import prettier from 'eslint-plugin-prettier/recommended'
 import reactRuntime from 'eslint-plugin-react/configs/jsx-runtime.js'
@@ -12,13 +12,13 @@ import ts from 'typescript-eslint'
 
 export default [
   js.configs.recommended,
-  react,
-  reactRuntime,
+  ...fixupConfigRules(react),
+  ...fixupConfigRules(reactRuntime),
+  reactHooks.configs.flat.recommended,
   {
     settings: {
       react: {
-        defaultVersion: '',
-        version: 'detect',
+        version: '18.3.1',
       },
     },
   },
@@ -37,8 +37,7 @@ export default [
       },
     },
     plugins: {
-      'react-hooks': reactHooks,
-      import: fixupPluginRules(imprt),
+      'import-x': importX,
       jsdoc,
       unicorn,
     },
@@ -71,7 +70,7 @@ export default [
         },
       ],
 
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           pathGroups: [
