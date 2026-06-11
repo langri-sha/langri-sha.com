@@ -46,7 +46,7 @@ const project = new Project({
       '@langri-sha/schemastore-to-typescript@workspace:*',
       '@swc-node/register@1.11.1',
       '@swc/core@1.15.40',
-      '@types/lint-staged@13.3.0',
+      '@types/lint-staged@14.0.0',
       '@types/node@20.19.41',
       'eslint@10.4.1',
       'jest@29.7.0',
@@ -346,7 +346,7 @@ project.addSubproject(
       copyrightYear: '2021',
       type: 'module',
       entrypoint: 'src/index.js',
-      devDeps: ['@types/lint-staged@13.3.0'],
+      devDeps: ['@types/lint-staged@14.0.0'],
       peerDeps: [
         'eslint@^9.0.0 || ^10.0.0',
         'lint-staged@^15.0.0',
