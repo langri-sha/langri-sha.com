@@ -11,16 +11,16 @@ const config = {
 
   compiler: { emotion: true },
   experimental: {
-    optimizeCss: true,
+    inlineCss: true,
   },
 
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(vert|frag|glsl)$/,
-      type: 'asset/source',
-    })
-
-    return config
+  turbopack: {
+    rules: {
+      '*.{vert,frag,glsl}': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+    },
   },
 }
 
