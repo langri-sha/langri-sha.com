@@ -1,9 +1,6 @@
-// @ts-check
+import type { NextConfig } from 'next'
 
-/**
- * @type {import('next').NextConfig}
- **/
-const config = {
+const config: NextConfig = {
   assetPrefix: process.env.ASSETS_URL,
   distDir: 'dist',
   output: 'export',
@@ -24,4 +21,4 @@ const config = {
   },
 }
 
-module.exports = config
+export default config
