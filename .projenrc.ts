@@ -64,7 +64,7 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: ['**/renovate.d.ts', '**/swcrc.d.ts'],
+    ignorePatterns: ['**/next-env.d.ts', '**/renovate.d.ts', '**/swcrc.d.ts'],
   },
   husky: {
     'pre-commit': 'lint-staged',
@@ -72,7 +72,7 @@ const project = new Project({
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: ['*.frag', 'renovate.d.ts', 'swcrc.d.ts'],
+    ignorePatterns: ['*.frag', 'next-env.d.ts', 'renovate.d.ts', 'swcrc.d.ts'],
   },
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],

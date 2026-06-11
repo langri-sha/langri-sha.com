@@ -2,6 +2,7 @@
 .*
 dist/
 *.frag
+next-env.d.ts
 renovate.d.ts
 swcrc.d.ts
 !.projenrc.ts
