@@ -22,7 +22,7 @@
     },
     {
       "name": "@types/node",
-      "version": "20.19.41",
+      "version": "24.13.2",
       "type": "build"
     },
     {
