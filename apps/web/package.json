@@ -4,7 +4,6 @@
   "private": true,
   "description": "langri-sha.com web",
   "license": "MIT",
-  "main": "src/index.tsx",
   "scripts": {
     "build": "next build",
     "start": "next dev"
