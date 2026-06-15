@@ -1,11 +1,16 @@
 import { type SerializedStyles, css } from '@emotion/react'
 import normalize from 'normalize.css'
 
+import * as colors from './colors'
+
 const global: SerializedStyles = css`
   ${normalize};
 
   html {
     font-size: 62.5%;
+
+    --font-default: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --color-text: ${colors.text};
   }
 
   body {

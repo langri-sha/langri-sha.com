@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/fonts": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.20",
