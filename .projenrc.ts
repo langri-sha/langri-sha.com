@@ -293,6 +293,35 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/fonts',
+    outdir: path.join('packages', 'fonts'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      devDeps: [
+        '@fontsource/cinzel-decorative@5.2.8',
+        '@types/node@24.13.2',
+        'subset-font@2.5.0',
+      ],
+    },
+  },
+  subproject,
+  (project) => {
+    // Internal build-time asset consumed by `apps/web` via `next/font/local`;
+    // the committed subset is the deliverable, so it is never published.
+    project.package?.addField('private', true)
+    project.package?.setScript('generate-font', 'node scripts/generate.mjs')
+  },
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/jest-config',
     outdir: path.join('packages', 'jest-config'),
     npmIgnore: {},

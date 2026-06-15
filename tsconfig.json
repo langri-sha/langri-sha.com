@@ -16,6 +16,9 @@
       "path": "packages/eslint-config"
     },
     {
+      "path": "packages/fonts"
+    },
+    {
       "path": "packages/jest-config"
     },
     {
