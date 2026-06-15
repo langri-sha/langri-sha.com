@@ -127,6 +127,9 @@ importers:
       '@langri-sha/babel-preset':
         specifier: workspace:*
         version: link:../../packages/babel-preset
+      '@langri-sha/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
