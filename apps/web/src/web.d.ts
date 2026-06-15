@@ -12,8 +12,6 @@ declare global {
   }
 }
 
-declare module 'webfontloader'
-
 declare module '*.css' {
   const content: string
 
