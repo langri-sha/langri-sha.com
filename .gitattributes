@@ -51,6 +51,17 @@
 /packages/eslint-config/pnpm-lock.yaml linguist-generated
 /packages/eslint-config/tsconfig.build.json linguist-generated
 /packages/eslint-config/tsconfig.json linguist-generated
+/packages/fonts/.gitattributes linguist-generated
+/packages/fonts/.gitignore linguist-generated
+/packages/fonts/.npmignore linguist-generated
+/packages/fonts/.projen/** linguist-generated
+/packages/fonts/.projen/deps.json linguist-generated
+/packages/fonts/.projen/files.json linguist-generated
+/packages/fonts/.projen/tasks.json linguist-generated
+/packages/fonts/license linguist-generated
+/packages/fonts/package.json linguist-generated
+/packages/fonts/pnpm-lock.yaml linguist-generated
+/packages/fonts/tsconfig.json linguist-generated
 /packages/jest-config/.gitattributes linguist-generated
 /packages/jest-config/.gitignore linguist-generated
 /packages/jest-config/.npmignore linguist-generated
