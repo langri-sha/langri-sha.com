@@ -299,7 +299,12 @@ project.addSubproject(
     readme: {
       filename: 'readme.md',
     },
-    typeScriptConfig: {},
+    typeScriptConfig: {
+      config: {
+        compilerOptions: { outDir: '.tsbuild' },
+        include: ['src'],
+      },
+    },
     package: {
       ...pkg,
       copyrightYear: '2026',
@@ -320,7 +325,7 @@ project.addSubproject(
     project.package?.setScript('generate-font', 'node scripts/generate.mjs')
     project.package?.setScript('build', 'node scripts/build.mjs')
     project.package?.setScript('prepare', 'pnpm run build')
-    project.gitignore.addPatterns('/dist/')
+    project.gitignore.addPatterns('/dist/', '/.tsbuild/')
   },
 )
 
