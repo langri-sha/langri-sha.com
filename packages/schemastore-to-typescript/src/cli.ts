@@ -31,13 +31,18 @@ export const program: Command = new Command()
 
 if (esMain(import.meta)) {
   debug('Parsing arguments', process.argv)
-  try {
-    await program.parseAsync(process.argv)
-  } catch (error) {
-    console.error(error)
-    process.exitCode = 1
-  } finally {
-    // Force exit so a lingering handle can't hang the runtime on nested re-runs.
-    process.exit(process.exitCode ?? 0)
-  }
+  // Avoid top-level `await`: under tsx the cache layer can leave the request
+  // promise pending while the event loop drains, which Node reports as an
+  // unsettled top-level await (exit code 13) and hangs `prepare` in CI. Driving
+  // the parse through `.then`/`.catch` and forcing the exit keeps termination
+  // deterministic regardless of any lingering handle.
+  program
+    .parseAsync(process.argv)
+    .then(() => {
+      process.exit(0)
+    })
+    .catch((error) => {
+      console.error(error)
+      process.exit(1)
+    })
 }
