@@ -12,12 +12,12 @@
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
+    "@langri-sha/fonts": "workspace:*",
     "next": "16.2.9",
     "normalize.css": "8.0.1"
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "workspace:*",
-    "@langri-sha/fonts": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.20",
