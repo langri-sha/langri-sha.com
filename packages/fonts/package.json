@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/fonts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "bugs": {
     "url": "https://github.com/langri-sha/langri-sha.com/issues"
@@ -18,9 +18,12 @@
     "organization": false
   },
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "generate-font": "node scripts/generate.mjs"
+    "build": "node scripts/build.mjs",
+    "generate-font": "node scripts/generate.mjs",
+    "prepare": "pnpm run build"
   },
   "devDependencies": {
     "@fontsource/cinzel-decorative": "5.2.8",
