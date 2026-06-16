@@ -905,7 +905,7 @@ project.addSubproject(
         'es-main@1.4.0',
         'got@14.4.7',
         'json-schema-to-typescript@15.0.2',
-        'keyv-file@5.3.3',
+        'keyv-file@5.3.4',
         'keyv@4.5.4',
       ],
       devDeps: ['@types/debug@4.1.13'],
