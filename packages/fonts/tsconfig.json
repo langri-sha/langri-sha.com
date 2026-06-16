@@ -2,6 +2,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig/project",
+  "compilerOptions": {
+    "outDir": ".tsbuild"
+  },
+  "include": ["src"],
   "references": [
     {
       "path": "../tsconfig"
