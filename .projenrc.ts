@@ -313,10 +313,14 @@ project.addSubproject(
   },
   subproject,
   (project) => {
-    // Internal build-time asset consumed by `apps/web` via `next/font/local`;
-    // the committed subset is the deliverable, so it is never published.
     project.package?.addField('private', true)
+    project.package?.addField('version', '0.1.0')
+    project.package?.addField('main', 'dist/index.js')
+    project.package?.addField('types', 'dist/index.d.ts')
     project.package?.setScript('generate-font', 'node scripts/generate.mjs')
+    project.package?.setScript('build', 'node scripts/build.mjs')
+    project.package?.setScript('prepare', 'pnpm run build')
+    project.gitignore.addPatterns('/dist/')
   },
 )
 
