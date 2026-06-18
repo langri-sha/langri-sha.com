@@ -985,7 +985,7 @@ project.addSubproject(
         'html-webpack-plugin@5.6.7',
         'terser-webpack-plugin@5.3.10',
         'webpack-bundle-analyzer@4.10.2',
-        'webpack-dev-server@5.2.4',
+        'webpack-dev-server@5.2.5',
         'webpack-subresource-integrity@5.2.0-rc.1',
       ],
       devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@24.13.2'],
