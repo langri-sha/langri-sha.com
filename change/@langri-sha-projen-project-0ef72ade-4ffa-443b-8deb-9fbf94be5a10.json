@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): update swc monorepo to v1.15.41",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}

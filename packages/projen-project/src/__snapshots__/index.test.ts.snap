@@ -3191,7 +3191,7 @@ node_modules/
       {
         "name": "@swc/core",
         "type": "build",
-        "version": "1.15.40",
+        "version": "1.15.41",
       },
       {
         "name": "projen",
@@ -3279,7 +3279,7 @@ node_modules/
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "@swc-node/register": "1.11.1",
-      "@swc/core": "1.15.40",
+      "@swc/core": "1.15.41",
       "projen": "0.86.5",
       "typescript": "5.9.3",
     },
