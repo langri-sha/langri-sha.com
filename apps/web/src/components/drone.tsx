@@ -9,7 +9,9 @@ export const Drone: React.FC<Record<string, never>> = () => {
 
     const processor = new Processor()
 
-    processor.generate()
+    processor.generate().catch(() => {
+      // AudioWorklet failed to load (e.g. unsupported browser); nothing to play.
+    })
 
     return () => {
       processor.destroy()
@@ -29,10 +31,12 @@ class Processor {
   baseNote: number
   context: AudioContext
   gainNode: GainNode
-  bufferSize: number = 4096
   scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
-  noiseNodes: ScriptProcessorNode[] = []
+  noiseNodes: AudioWorkletNode[] = []
+  pannerNodes: PannerNode[] = []
   panIntervals: Array<number | NodeJS.Timeout> = []
+  destroyed = false
+  removeResumeListeners: (() => void) | null = null
 
   constructor(oscilatorsSize: number = 40, baseNote: number = 60) {
     const context = new AudioContext()
@@ -45,9 +49,43 @@ class Processor {
 
     this.oscilatorsSize = oscilatorsSize
     this.baseNote = baseNote
+
+    this.attachResumeListeners()
   }
 
-  generate() {
+  attachResumeListeners() {
+    if (this.context.state !== 'suspended') {
+      return
+    }
+
+    const resume = () => {
+      this.context.resume()
+    }
+
+    window.addEventListener('pointerdown', resume, { once: true })
+    window.addEventListener('keydown', resume, { once: true })
+
+    this.removeResumeListeners = () => {
+      window.removeEventListener('pointerdown', resume)
+      window.removeEventListener('keydown', resume)
+    }
+  }
+
+  async generate() {
+    const workletUrl = URL.createObjectURL(
+      new Blob([noiseProcessorSource], { type: 'text/javascript' }),
+    )
+
+    try {
+      await this.context.audioWorklet.addModule(workletUrl)
+    } finally {
+      URL.revokeObjectURL(workletUrl)
+    }
+
+    if (this.destroyed) {
+      return
+    }
+
     for (let i = 0; i < this.oscilatorsSize; i++) {
       const degree = Math.floor(Math.random() * this.scale.length)
       let frequency = mtof(this.baseNote + this.scale[degree])
@@ -57,6 +95,10 @@ class Processor {
   }
 
   createNoiseGenerator(frequency: number) {
+    if (this.destroyed) {
+      return
+    }
+
     const pannerNode = this.context.createPanner()
     const min = -20
     const max = 20
@@ -64,7 +106,7 @@ class Processor {
     let y = rand(min, max)
     let z = rand(min, max)
 
-    pannerNode.setPosition(x, y, z)
+    setPannerPosition(pannerNode, x, y, z)
     pannerNode.connect(this.gainNode)
 
     const filter = this.context.createBiquadFilter()
@@ -72,38 +114,75 @@ class Processor {
     filter.Q.value = 50
     filter.connect(pannerNode)
 
-    const noiseSource = this.context.createScriptProcessor(
-      this.bufferSize,
-      1,
-      2,
-    )
-    noiseSource.onaudioprocess = (e) => {
-      const bufferL = e.outputBuffer.getChannelData(0)
-      const bufferR = e.outputBuffer.getChannelData(1)
-      for (let i = 0; i < this.bufferSize; i++) {
-        const noise = Math.random() * 2 - 1
-        bufferR[i] = noise
-        bufferL[i] = noise
-      }
-    }
+    const noiseSource = new AudioWorkletNode(this.context, 'noise-processor', {
+      numberOfInputs: 0,
+      numberOfOutputs: 1,
+      outputChannelCount: [2],
+    })
 
     noiseSource.connect(filter)
     this.noiseNodes.push(noiseSource)
+    this.pannerNodes.push(pannerNode)
 
     this.panIntervals.push(
       setInterval(() => {
         x += rand(-0.1, 0.1)
         y += rand(-0.1, 0.1)
         z += rand(-0.1, 0.1)
-        pannerNode.setPosition(x, y, z)
+        setPannerPosition(pannerNode, x, y, z)
       }, 500),
     )
   }
 
   destroy() {
-    this.panIntervals.map(window.clearInterval)
+    this.destroyed = true
+
+    this.removeResumeListeners?.()
+    this.panIntervals.forEach((interval) => clearInterval(interval))
+    this.noiseNodes.forEach((node) => node.disconnect())
+    this.pannerNodes.forEach((node) => node.disconnect())
+    this.gainNode.disconnect()
+    this.context.close()
+  }
+}
+
+const setPannerPosition = (
+  panner: PannerNode,
+  x: number,
+  y: number,
+  z: number,
+) => {
+  if (panner.positionX) {
+    panner.positionX.value = x
+    panner.positionY.value = y
+    panner.positionZ.value = z
+  } else {
+    panner.setPosition(x, y, z)
   }
 }
 
 const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
+
+/**
+ * White-noise generator, run off the main thread via AudioWorklet.
+ * Loaded from a blob URL built from this inline source so it needs no
+ * separate static asset or build-pipeline wiring.
+ */
+const noiseProcessorSource = `
+class NoiseProcessor extends AudioWorkletProcessor {
+  process(_inputs, outputs) {
+    const output = outputs[0]
+    const frames = output[0]?.length ?? 0
+    for (let i = 0; i < frames; i++) {
+      const sample = Math.random() * 2 - 1
+      for (let channel = 0; channel < output.length; channel++) {
+        output[channel][i] = sample
+      }
+    }
+    return true
+  }
+}
+
+registerProcessor('noise-processor', NoiseProcessor)
+`
