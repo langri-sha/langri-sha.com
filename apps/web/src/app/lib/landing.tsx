@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 'use client'
 
-import { Global } from '@emotion/react'
+import { Global, css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
@@ -15,7 +15,7 @@ export const Landing: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Global styles={global} />
+      <Global styles={[global, gradientProperties]} />
       <Root data-playing={playing}>
         <Root data-playing={playing}>
           <Header />
@@ -36,6 +36,145 @@ export const Landing: React.FC = () => {
   )
 }
 
+const gradientProperties = css`
+  /* Aurora */
+  @property --aurora-x {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+  }
+
+  @property --aurora-y {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+  }
+
+  @property --aurora-rx {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 140%;
+  }
+
+  @property --aurora-ry {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 140%;
+  }
+
+  /* Pool */
+  @property --pool-x {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 60%;
+  }
+
+  @property --pool-y {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 50%;
+  }
+
+  @property --pool-stop {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 20%;
+  }
+
+  /* Palette */
+  @property --violet {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3d1b6d;
+  }
+
+  @property --magenta {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #e438dc;
+  }
+
+  @property --indigo {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #404b8c;
+  }
+
+  @property --mist {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #79acbb;
+  }
+
+  @property --pool {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #7f4dad;
+  }
+`
+
+const drift = keyframes`
+  0% {
+    --aurora-x: 0%;
+    --aurora-y: 0%;
+    --aurora-rx: 140%;
+    --aurora-ry: 140%;
+    --pool-x: 60%;
+    --pool-y: 50%;
+    --pool-stop: 20%;
+    --violet: #3d1b6d;
+    --magenta: #e438dc;
+    --indigo: #404b8c;
+    --mist: #79acbb;
+    --pool: #7f4dad;
+  }
+
+  33% {
+    --aurora-x: 12%;
+    --aurora-y: 8%;
+    --aurora-rx: 165%;
+    --aurora-ry: 120%;
+    --pool-x: 50%;
+    --pool-y: 42%;
+    --pool-stop: 32%;
+    --violet: #4a1a86;
+    --magenta: #ff2f92;
+    --indigo: #3d5bb0;
+    --mist: #4dd7e8;
+    --pool: #9a3df0;
+  }
+
+  66% {
+    --aurora-x: 4%;
+    --aurora-y: 18%;
+    --aurora-rx: 120%;
+    --aurora-ry: 170%;
+    --pool-x: 66%;
+    --pool-y: 58%;
+    --pool-stop: 26%;
+    --violet: #33206e;
+    --magenta: #c433ff;
+    --indigo: #4a3f9e;
+    --mist: #62b8d9;
+    --pool: #b03ddb;
+  }
+
+  100% {
+    --aurora-x: 16%;
+    --aurora-y: 4%;
+    --aurora-rx: 150%;
+    --aurora-ry: 135%;
+    --pool-x: 56%;
+    --pool-y: 48%;
+    --pool-stop: 22%;
+    --violet: #3d1b6d;
+    --magenta: #f038c8;
+    --indigo: #404b8c;
+    --mist: #79acbb;
+    --pool: #8748c4;
+  }
+`
+
 const Root = styled.div`
   display: flex;
   height: 100vh;
@@ -53,23 +192,47 @@ const Root = styled.div`
     mix-blend-mode: color-dodge;
     background:
       radial-gradient(
-          circle farthest-corner at 0 0,
-          #3d1b6d 30%,
-          #e438dc 65%,
-          #404b8c 80%,
-          #79acbb 110%
+          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
+            var(--aurora-y),
+          var(--violet) 30%,
+          var(--magenta) 65%,
+          var(--indigo) 80%,
+          var(--mist) 110%
         )
         no-repeat,
-      radial-gradient(closest-side at 60% 50%, #7f4dad 20%, #000 100%) no-repeat,
       radial-gradient(
-          circle farthest-corner at 0 0,
-          #3d1b6d 30%,
-          #e438dc 65%,
-          #404b8c 80%,
-          #79acbb 110%
+          closest-side at var(--pool-x) var(--pool-y),
+          var(--pool) var(--pool-stop),
+          #000 100%
         )
         no-repeat,
-      radial-gradient(closest-side at 60% 50%, #7f4dad 20%, #000 100%) no-repeat;
+      radial-gradient(
+          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
+            var(--aurora-y),
+          var(--violet) 30%,
+          var(--magenta) 65%,
+          var(--indigo) 80%,
+          var(--mist) 110%
+        )
+        no-repeat,
+      radial-gradient(
+          closest-side at var(--pool-x) var(--pool-y),
+          var(--pool) var(--pool-stop),
+          #000 100%
+        )
+        no-repeat;
+    animation: ${drift} 48s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  &[data-playing='true']::before {
+    animation-play-state: running;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
+    }
   }
 `
 
