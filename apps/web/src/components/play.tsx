@@ -3,7 +3,7 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { colors, layers, media } from '@/styles'
+import { animations, colors, layers, media } from '@/styles'
 
 export interface PlayProps {
   playing: boolean
@@ -21,6 +21,7 @@ export const Play: React.FC<PlayProps> = ({ playing, onToggle }) => (
 )
 
 const Root = styled.button`
+  ${animations.booming};
   ${layers.foreground};
   position: fixed;
   right: 2rem;
@@ -54,5 +55,9 @@ const Root = styled.button`
   ${media.medium} {
     width: 3.6rem;
     height: 3.6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `
