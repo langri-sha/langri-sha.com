@@ -29,3 +29,9 @@ declare module '*.vert' {
 
   export default content
 }
+
+declare module '*.worklet' {
+  const content: string
+
+  export default content
+}
