@@ -1,6 +1,8 @@
 'use client'
 import * as React from 'react'
 
+import noiseProcessorSource from './noise-processor.worklet'
+
 export const Drone: React.FC<Record<string, never>> = () => {
   React.useEffect(() => {
     if (!window.AudioContext) {
@@ -163,26 +165,3 @@ const setPannerPosition = (
 
 const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
-
-/**
- * White-noise generator, run off the main thread via AudioWorklet.
- * Loaded from a blob URL built from this inline source so it needs no
- * separate static asset or build-pipeline wiring.
- */
-const noiseProcessorSource = `
-class NoiseProcessor extends AudioWorkletProcessor {
-  process(_inputs, outputs) {
-    const output = outputs[0]
-    const frames = output[0]?.length ?? 0
-    for (let i = 0; i < frames; i++) {
-      const sample = Math.random() * 2 - 1
-      for (let channel = 0; channel < output.length; channel++) {
-        output[channel][i] = sample
-      }
-    }
-    return true
-  }
-}
-
-registerProcessor('noise-processor', NoiseProcessor)
-`
