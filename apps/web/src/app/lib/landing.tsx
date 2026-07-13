@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, Scene } from '@/components'
-import { global, layers } from '@/styles'
+import { colors, global, layers, media } from '@/styles'
 
 import { Header } from './header'
 
@@ -233,29 +233,37 @@ const Root = styled.div`
 
 const PlayButton = styled.button`
   ${layers.foreground};
-  position: absolute;
-  bottom: 10vh;
-  width: 5.6rem;
-  height: 5.6rem;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.8rem;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  box-sizing: border-box;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid ${colors.text};
+  border-radius: 0;
+  background: transparent;
+  box-shadow: 4px 4px 0 ${colors.text};
+  color: ${colors.text};
+  font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  transition:
-    transform 200ms ease,
-    background 200ms ease;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.16);
-    transform: scale(1.06);
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 ${colors.text};
   }
 
   &:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.7);
-    outline-offset: 3px;
+    outline: 2px solid ${colors.text};
+    outline-offset: 4px;
+  }
+
+  ${media.medium} {
+    width: 3.6rem;
+    height: 3.6rem;
   }
 `
