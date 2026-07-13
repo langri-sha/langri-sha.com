@@ -16,8 +16,8 @@ export const Landing: React.FC = () => {
   return (
     <React.Fragment>
       <Global styles={[global, gradientProperties]} />
-      <Root data-playing={playing}>
-        <Root data-playing={playing}>
+      <Root>
+        <Root>
           <Header />
           {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
           {playing ? <Drone /> : null}
@@ -222,11 +222,6 @@ const Root = styled.div`
         )
         no-repeat;
     animation: ${drift} 48s ease-in-out infinite alternate;
-    animation-play-state: paused;
-  }
-
-  &[data-playing='true']::before {
-    animation-play-state: running;
   }
 
   @media (prefers-reduced-motion: reduce) {
