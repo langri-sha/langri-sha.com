@@ -5,8 +5,8 @@ import { Global, css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, Scene } from '@/components'
-import { colors, global, layers, media } from '@/styles'
+import { Drone, Play, Scene } from '@/components'
+import { global } from '@/styles'
 
 import { Header } from './header'
 
@@ -21,15 +21,10 @@ export const Landing: React.FC = () => {
           <Header />
           {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
           {playing ? <Drone /> : null}
-          <PlayButton
-            aria-pressed={playing}
-            aria-label={
-              playing ? 'Pause the ambient drone' : 'Play the ambient drone'
-            }
-            onClick={() => setPlaying((current) => !current)}
-          >
-            {playing ? '❚❚' : '▶'}
-          </PlayButton>
+          <Play
+            playing={playing}
+            onToggle={() => setPlaying((current) => !current)}
+          />
         </Root>
       </Root>
     </React.Fragment>
@@ -228,42 +223,5 @@ const Root = styled.div`
     &::before {
       animation: none;
     }
-  }
-`
-
-const PlayButton = styled.button`
-  ${layers.foreground};
-  position: fixed;
-  right: 2rem;
-  bottom: 2rem;
-  display: flex;
-  box-sizing: border-box;
-  width: 3.2rem;
-  height: 3.2rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 2px solid ${colors.text};
-  border-radius: 0;
-  background: transparent;
-  box-shadow: 4px 4px 0 ${colors.text};
-  color: ${colors.text};
-  font-size: 1.4rem;
-  line-height: 1;
-  cursor: pointer;
-
-  &:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0 0 0 ${colors.text};
-  }
-
-  &:focus-visible {
-    outline: 2px solid ${colors.text};
-    outline-offset: 4px;
-  }
-
-  ${media.medium} {
-    width: 3.6rem;
-    height: 3.6rem;
   }
 `
