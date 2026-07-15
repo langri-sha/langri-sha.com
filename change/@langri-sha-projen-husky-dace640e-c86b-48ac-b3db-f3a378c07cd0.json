@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update @types/node to 24.13.2",
-  "packageName": "@langri-sha/projen-husky",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
