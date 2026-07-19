@@ -25,7 +25,7 @@ importers:
         version: 19.2.7(react@19.2.7)
       webpack:
         specifier: 5.107.2
-        version: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+        version: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
       webpack-cli:
         specifier: 5.1.4
         version: 5.1.4(webpack@5.107.2)
@@ -46,8 +46,8 @@ importers:
         specifier: workspace:*
         version: link:packages/prettier
       '@langri-sha/projen-project':
-        specifier: workspace:*
-        version: link:packages/projen-project
+        specifier: 0.17.1
+        version: 0.17.1(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.4.1)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.8.3)(projen@0.86.5(constructs@10.6.0))(tsx@4.22.4)(typescript@5.9.3)
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
         version: link:packages/schemastore-to-typescript
@@ -144,7 +144,7 @@ importers:
         version: 19.2.3(@types/react@19.2.17)
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
+        version: 4.0.2(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4))
 
   packages/babel-preset:
     dependencies:
@@ -345,416 +345,6 @@ importers:
       prettier:
         specifier: 3.8.3
         version: 3.8.3
-
-  packages/projen-babel:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.8.0
-        version: 7.25.2
-      '@types/babel__core':
-        specifier: ^7.8.0
-        version: 7.20.5
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      serialize-javascript:
-        specifier: 6.0.2
-        version: 6.0.2
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/serialize-javascript':
-        specifier: 5.0.4
-        version: 5.0.4
-
-  packages/projen-beachball:
-    dependencies:
-      beachball:
-        specifier: ^2.0.0
-        version: 2.65.5(typescript@5.9.3)
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-codeowners:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-editorconfig:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-eslint:
-    dependencies:
-      eslint:
-        specifier: ^9.0.0 || ^10.0.0
-        version: 10.4.1
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      serialize-javascript:
-        specifier: 6.0.2
-        version: 6.0.2
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/serialize-javascript':
-        specifier: 5.0.4
-        version: 5.0.4
-
-  packages/projen-husky:
-    dependencies:
-      husky:
-        specifier: ^9.0.1
-        version: 9.1.7
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/node':
-        specifier: 24.13.2
-        version: 24.13.2
-
-  packages/projen-jest-config:
-    dependencies:
-      jest:
-        specifier: ^28.00 || ^29.00
-        version: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      serialize-javascript:
-        specifier: 6.0.2
-        version: 6.0.2
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/serialize-javascript':
-        specifier: 5.0.4
-        version: 5.0.4
-
-  packages/projen-license:
-    dependencies:
-      license-o-matic:
-        specifier: ^1.2.0
-        version: 1.2.0
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-lint-staged:
-    dependencies:
-      lint-staged:
-        specifier: ^15.0.0
-        version: 15.5.2
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      serialize-javascript:
-        specifier: 6.0.2
-        version: 6.0.2
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/serialize-javascript':
-        specifier: 5.0.4
-        version: 5.0.4
-
-  packages/projen-lint-synthesized:
-    dependencies:
-      debug:
-        specifier: 4.4.3
-        version: 4.4.3
-      execa:
-        specifier: 8.0.1
-        version: 8.0.1
-      minimatch:
-        specifier: 10.2.5
-        version: 10.2.5
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/debug':
-        specifier: 4.1.13
-        version: 4.1.13
-      prettier:
-        specifier: 3.8.3
-        version: 3.8.3
-      projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.6.0)
-
-  packages/projen-pnpm-workspace:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      yaml:
-        specifier: 2.9.0
-        version: 2.9.0
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-prettier:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      serialize-javascript:
-        specifier: 6.0.2
-        version: 6.0.2
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/serialize-javascript':
-        specifier: 5.0.4
-        version: 5.0.4
-      prettier:
-        specifier: 3.8.3
-        version: 3.8.3
-
-  packages/projen-project:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.8.0
-        version: 7.25.2
-      '@langri-sha/projen-babel':
-        specifier: workspace:*
-        version: link:../projen-babel
-      '@langri-sha/projen-beachball':
-        specifier: workspace:*
-        version: link:../projen-beachball
-      '@langri-sha/projen-codeowners':
-        specifier: workspace:*
-        version: link:../projen-codeowners
-      '@langri-sha/projen-editorconfig':
-        specifier: workspace:*
-        version: link:../projen-editorconfig
-      '@langri-sha/projen-eslint':
-        specifier: workspace:*
-        version: link:../projen-eslint
-      '@langri-sha/projen-husky':
-        specifier: workspace:*
-        version: link:../projen-husky
-      '@langri-sha/projen-jest-config':
-        specifier: workspace:*
-        version: link:../projen-jest-config
-      '@langri-sha/projen-license':
-        specifier: workspace:*
-        version: link:../projen-license
-      '@langri-sha/projen-lint-staged':
-        specifier: workspace:*
-        version: link:../projen-lint-staged
-      '@langri-sha/projen-lint-synthesized':
-        specifier: workspace:*
-        version: link:../projen-lint-synthesized
-      '@langri-sha/projen-pnpm-workspace':
-        specifier: workspace:*
-        version: link:../projen-pnpm-workspace
-      '@langri-sha/projen-prettier':
-        specifier: workspace:*
-        version: link:../projen-prettier
-      '@langri-sha/projen-readme':
-        specifier: workspace:*
-        version: link:../projen-readme
-      '@langri-sha/projen-renovate':
-        specifier: workspace:*
-        version: link:../projen-renovate
-      '@langri-sha/projen-swcrc':
-        specifier: workspace:*
-        version: link:../projen-swcrc
-      '@langri-sha/projen-typescript-config':
-        specifier: workspace:*
-        version: link:../projen-typescript-config
-      '@swc-node/register':
-        specifier: ^1.0.0
-        version: 1.10.10(@swc/core@1.13.3)(@swc/types@0.1.26)(typescript@5.5.4)
-      '@swc/core':
-        specifier: ^1.6.0
-        version: 1.13.3
-      '@types/babel__core':
-        specifier: ^7.8.0
-        version: 7.20.5
-      beachball:
-        specifier: ^2.0.0
-        version: 2.65.5(typescript@5.5.4)
-      eslint:
-        specifier: ^9.0.0 || ^10.0.0
-        version: 10.4.1
-      husky:
-        specifier: ^9.0.1
-        version: 9.1.7
-      jest:
-        specifier: ^28.0.0 || ^29.0.0
-        version: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
-      lint-staged:
-        specifier: ^15.0.0
-        version: 15.5.2
-      prettier:
-        specifier: ^3.0.0
-        version: 3.3.3
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-      ramda:
-        specifier: 0.32.0
-        version: 0.32.0
-      tsx:
-        specifier: ^4.0.0
-        version: 4.22.4
-      typescript:
-        specifier: ^5.5.0
-        version: 5.5.4
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/ramda':
-        specifier: 0.31.1
-        version: 0.31.1
-
-  packages/projen-readme:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-
-  packages/projen-renovate:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      tsx:
-        specifier: 4.22.4
-        version: 4.22.4
-
-  packages/projen-swcrc:
-    dependencies:
-      '@swc/core':
-        specifier: ^1.6.0
-        version: 1.13.3
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      tsx:
-        specifier: 4.22.4
-        version: 4.22.4
-
-  packages/projen-typescript-config:
-    dependencies:
-      '@schemastore/tsconfig':
-        specifier: 0.0.12
-        version: 0.0.12
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/node':
-        specifier: 24.13.2
-        version: 24.13.2
 
   packages/schemastore-to-typescript:
     dependencies:
@@ -2324,11 +1914,137 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
+  '@langri-sha/projen-babel@0.4.0':
+    resolution: {integrity: sha512-8igI/kGPWN/zNZQ/l1X16efaKvy8b9JhCNsYTqsETWbGGjtf6mGof/n/b8Ob0Ytk+m4q0A8qYZj+uegdPlgtag==}
+    peerDependencies:
+      '@babel/core': ^7.8.0
+      '@types/babel__core': ^7.8.0
+      projen: ^0.84.0
+
+  '@langri-sha/projen-beachball@0.5.0':
+    resolution: {integrity: sha512-/p7Bu/ctzJuqSRtvnj31aThuBdDW4ho8UQLxziI1A4bkgGSMM4wXPWIT3LEw5FzSi6N925xLuUHlgIbl4HABUA==}
+    peerDependencies:
+      beachball: ^2.0.0
+      projen: ^0.84.0
+
+  '@langri-sha/projen-codeowners@0.5.0':
+    resolution: {integrity: sha512-0iCbCkvOtJdyqmx3/HI9Oj3xz5DFbs72AjMthIiePLc08dgjLkHpHf+64WzUazNPEHjvBogYPq4fFZqF1r30Gw==}
+    peerDependencies:
+      projen: ^0.84.0
+
+  '@langri-sha/projen-editorconfig@0.6.0':
+    resolution: {integrity: sha512-/ZSWShh2acaIsuyEEcDLBcTFYpEubDTsYgqQl5/stAKrva19T8fFm2OeYat6JwWmKOA66qLFUnSx+VzPCWCmCg==}
+    peerDependencies:
+      projen: ^0.84.0
+
+  '@langri-sha/projen-eslint@0.3.1':
+    resolution: {integrity: sha512-os2Cpuze6z0k5/YhTKifbl2m9NpH8MDyjnDF8eTANUTnwWXlIiArDKwDIFayoTCIxl6FjqmZQh2I7IPnsn9vUg==}
+    peerDependencies:
+      eslint: ^9.0.0 || ^10.0.0
+      projen: ^0.86.0
+
+  '@langri-sha/projen-husky@0.3.7':
+    resolution: {integrity: sha512-JES9Zte9hyTTqKx9ewF+gzDRs3W/IQbLW17Tf2h7vJITVL296anwuvshlHKLrIIFZmbxTXWYh35EdSFaVsZKOA==}
+    peerDependencies:
+      husky: ^9.0.1
+      projen: ^0.86.0
+
+  '@langri-sha/projen-jest-config@0.4.0':
+    resolution: {integrity: sha512-+BWaSEyebSyeC6WQYESmyz+YfhleYGfJSAwhlLxftVZyffQK78hY+9mL2yi8WOFlWj7Bj8aYofL70LorVlbYQw==}
+    peerDependencies:
+      jest: ^28.00 || ^29.00
+      projen: ^0.84.0
+
+  '@langri-sha/projen-license@0.3.3':
+    resolution: {integrity: sha512-bqMtOByjJJvmKFenRFUqBVMFR6m2WbIMU2z1lPyYB3o0pVHuJV/T2CJmeLlh1h+lPXEoiymf8qaTRKccv5f7xQ==}
+    peerDependencies:
+      projen: ^0.84.0
+
+  '@langri-sha/projen-lint-staged@0.3.0':
+    resolution: {integrity: sha512-r83lt99MEl0Ya5q/DC6DMc8FPnfuouyjFZks5rC8P9jnA4mCwb/dY//21Uet1/G59vBGyC2WaVHINGE+5gJfxw==}
+    peerDependencies:
+      lint-staged: ^15.0.0
+      projen: ^0.84.0
+
+  '@langri-sha/projen-lint-synthesized@0.5.3':
+    resolution: {integrity: sha512-tnDoyazR9D8dGy+KuLlf3WwOn8bYbOoJ2JlyaQtT/4kLCKbvJtRn4jvview4oUDEiTnlmS20cBn2fz7NLUZk8g==}
+    peerDependencies:
+      projen: ^0.86.0
+
+  '@langri-sha/projen-pnpm-workspace@0.3.2':
+    resolution: {integrity: sha512-xVANVYVCo6GXNbwsY0dE4L3Njdpuk9/37Oq/omZwei3VmENCWHKAwX2fy9Fz7S0lZrk4cZhDHUrq7ScKPf/h5A==}
+    peerDependencies:
+      projen: ^0.86.0
+
+  '@langri-sha/projen-prettier@0.4.1':
+    resolution: {integrity: sha512-6FqhqSvcSMI46maDU8L63odWk2RF+W0hyrjrstnijYCtXPY1j4n6WbUVrfSBo4j+I/EvjYtM6b2iBT/rw4osUw==}
+    peerDependencies:
+      prettier: ^3.0.0
+      projen: ^0.86.0
+
+  '@langri-sha/projen-project@0.17.1':
+    resolution: {integrity: sha512-ZLyuLYThpJ9TEXmC+VGcAulb5a9gNPqHlWotwj9SZiEll8jff8pW8F++GgTp7uvPspXG8JuYf3AxGWnXekz+FA==}
+    peerDependencies:
+      '@babel/core': ^7.8.0
+      '@swc-node/register': ^1.0.0
+      '@swc/core': ^1.6.0
+      '@types/babel__core': ^7.8.0
+      beachball: ^2.0.0
+      eslint: ^9.0.0 || ^10.0.0
+      husky: ^9.0.1
+      jest: ^28.0.0 || ^29.0.0
+      lint-staged: ^15.0.0
+      prettier: ^3.0.0
+      projen: ^0.86.0
+      tsx: ^4.0.0
+      typescript: ^5.5.0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@swc-node/register':
+        optional: true
+      '@swc/core':
+        optional: true
+      '@types/babel__core':
+        optional: true
+      beachball:
+        optional: true
+      eslint:
+        optional: true
+      husky:
+        optional: true
+      jest:
+        optional: true
+      lint-staged:
+        optional: true
+      prettier:
+        optional: true
+      tsx:
+        optional: true
+
+  '@langri-sha/projen-readme@0.1.0':
+    resolution: {integrity: sha512-Kozhm32xJcs0XzsHMRy4IAdJjC4BQwBOldogbpNXAfu8089HJWRC5D6qWkYsBWi0qKo3z7pPnH9mzez1DjydlA==}
+    peerDependencies:
+      projen: ^0.84.0
+
+  '@langri-sha/projen-renovate@0.4.6':
+    resolution: {integrity: sha512-Zz99ktiQ6CATTjc9iRJSYhT6ojtCUjbUV3/xJjGow0/D6fW8pFjM3uhD9xL1YR5KNUboezD1k/RM4Qwunuh89Q==}
+    peerDependencies:
+      projen: ^0.86.0
+
+  '@langri-sha/projen-swcrc@0.1.6':
+    resolution: {integrity: sha512-h6GYRtUP7LL2M5BwIy884a6g0DRT0CK6nJPPNkkYJoSRCFID0TH3bLcN3+ZILVOLtFe0M5tqtv9l0yBaZZW7Ug==}
+    peerDependencies:
+      '@swc/core': ^1.6.0
+      projen: ^0.86.0
+
+  '@langri-sha/projen-typescript-config@0.5.5':
+    resolution: {integrity: sha512-FEfndygXhjo0eXdSfhaDSmR1AiTsdPvhF6q8hLNwJXUVIMlSduRWyuJ/eXXSlA5TtlZz/v36iG3N1cbeoP3Pxw==}
+    peerDependencies:
+      projen: ^0.86.0
+
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
-
-  '@napi-rs/wasm-runtime@0.2.12':
-    resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
   '@napi-rs/wasm-runtime@1.1.4':
     resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
@@ -2418,18 +2134,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@oxc-resolver/binding-darwin-arm64@5.3.0':
-    resolution: {integrity: sha512-hXem5ZAguS7IlSiHg/LK0tEfLj4eUo+9U6DaFwwBEGd0L0VIF9LmuiHydRyOrdnnmi9iAAFMAn/wl2cUoiuruA==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@oxc-resolver/binding-darwin-x64@11.20.0':
     resolution: {integrity: sha512-BGB16nRUK5Etiv//ihPyzj8Lj1px0mhh4YIfe0FDf045ywknfSm0GEbiRESpr6Q4K82AvnyaRIhhluHByvS4bg==}
-    cpu: [x64]
-    os: [darwin]
-
-  '@oxc-resolver/binding-darwin-x64@5.3.0':
-    resolution: {integrity: sha512-wgSwfsZkRbuYCIBLxeg1bYrtKnirAy+IJF0lwfz4z08clgdNBDbfGECJe/cd0csIZPpRcvPFe8317yf31sWhtA==}
     cpu: [x64]
     os: [darwin]
 
@@ -2438,18 +2144,8 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
-  '@oxc-resolver/binding-freebsd-x64@5.3.0':
-    resolution: {integrity: sha512-kzeE2WHgcRMmWjB071RdwEV5Pwke4o0WWslCKoh8if1puvxIxfzu3o7g6P2+v77BP5qop4cri+uvLABSO0WZjg==}
-    cpu: [x64]
-    os: [freebsd]
-
   '@oxc-resolver/binding-linux-arm-gnueabihf@11.20.0':
     resolution: {integrity: sha512-hOQ/p3ry3v3SchUBXicrrnszaI/UmYzM4wtS4RGfwgVUX7a+HbyQSzJ5aOzu+o6XZkFkS3ZXN4PZAzhOb77OSg==}
-    cpu: [arm]
-    os: [linux]
-
-  '@oxc-resolver/binding-linux-arm-gnueabihf@5.3.0':
-    resolution: {integrity: sha512-I8np34yZP/XfIkZNDbw3rweqVgfjmHYpNX3xnJZWg+f4mgO9/UNWBwetSaqXeDZqvIch/aHak+q4HVrQhQKCqg==}
     cpu: [arm]
     os: [linux]
 
@@ -2463,18 +2159,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@oxc-resolver/binding-linux-arm64-gnu@5.3.0':
-    resolution: {integrity: sha512-u2ndfeEUrW898eXM+qPxIN8TvTPjI90NDQBRgaxxkOfNw3xaotloeiZGz5+Yzlfxgvxr9DY9FdYkqhUhSnGhOw==}
-    cpu: [arm64]
-    os: [linux]
-
   '@oxc-resolver/binding-linux-arm64-musl@11.20.0':
     resolution: {integrity: sha512-wKHHzPKZo7Ufhv/Bt6yxT7FOgnIgW4gwXcJUipkShGp68W3wGVqvr1Sr0fY65lN0Oy6y41+g2kIDvkgZaMMUkw==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@oxc-resolver/binding-linux-arm64-musl@5.3.0':
-    resolution: {integrity: sha512-TzbjmFkcnESGuVItQ2diKacX8vu5G0bH3BHmIlmY4OSRLyoAlrJFwGKAHmh6C9+Amfcjo2rx8vdm7swzmsGC6Q==}
     cpu: [arm64]
     os: [linux]
 
@@ -2488,11 +2174,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
 
-  '@oxc-resolver/binding-linux-riscv64-gnu@5.3.0':
-    resolution: {integrity: sha512-NH3pjAqh8nuN29iRuRfTY42Vn03ctoR9VE8llfoUKUfhHUjFHYOXK5VSkhjj1usG8AeuesvqrQnLptCRQVTi/Q==}
-    cpu: [riscv64]
-    os: [linux]
-
   '@oxc-resolver/binding-linux-riscv64-musl@11.20.0':
     resolution: {integrity: sha512-xHEvkbgz6UC+A3JOyDQy76LkUaxsNSfIr3/GV8slwZsnuooJiIB34gzJfsyvR4JdCYNUUPsRJc/w/oWkODu+hg==}
     cpu: [riscv64]
@@ -2503,28 +2184,13 @@ packages:
     cpu: [s390x]
     os: [linux]
 
-  '@oxc-resolver/binding-linux-s390x-gnu@5.3.0':
-    resolution: {integrity: sha512-tuZtkK9sJYh2MC2uhol1M/8IMTB6ZQ5jmqP2+k5XNXnOb/im94Y5uV/u2lXwVyIuKHZZHtr+0d1HrOiNahoKpw==}
-    cpu: [s390x]
-    os: [linux]
-
   '@oxc-resolver/binding-linux-x64-gnu@11.20.0':
     resolution: {integrity: sha512-x2YeSimvhJjKLVD8KSu8f/rqU1potcdEMkApIPJqjZWN7c2Fpt4g2X32WDg1p+XDAmyT7nuQGe0vnhvXeLbH+g==}
     cpu: [x64]
     os: [linux]
 
-  '@oxc-resolver/binding-linux-x64-gnu@5.3.0':
-    resolution: {integrity: sha512-VzhPYmZCtoES/ThcPdGSmMop7JlwgqtSvlgtKCW15ByV2JKyl8kHAHnPSBfpIooXb0ehFnRdxFtL9qtAEWy01g==}
-    cpu: [x64]
-    os: [linux]
-
   '@oxc-resolver/binding-linux-x64-musl@11.20.0':
     resolution: {integrity: sha512-kcRLEIxpZefeYfLChjpgFf3ilBzRDZ+yobMrpRsQlSrxuFGtm3U6PMU7AaEpMqo3NfDGVyJJseAjnRLzMFHjwQ==}
-    cpu: [x64]
-    os: [linux]
-
-  '@oxc-resolver/binding-linux-x64-musl@5.3.0':
-    resolution: {integrity: sha512-Hi39cWzul24rGljN4Vf1lxjXzQdCrdxO5oCT7KJP4ndSlqIUODJnfnMAP1YhcnIRvNvk+5E6sZtnEmFUd/4d8Q==}
     cpu: [x64]
     os: [linux]
 
@@ -2538,28 +2204,13 @@ packages:
     engines: {node: '>=14.0.0'}
     cpu: [wasm32]
 
-  '@oxc-resolver/binding-wasm32-wasi@5.3.0':
-    resolution: {integrity: sha512-ddujvHhP3chmHnSXRlkPVUeYj4/B7eLZwL4yUid+df3WCbVh6DgoT9RmllZn21AhxgKtMdekDdyVJYKFd8tl4A==}
-    engines: {node: '>=14.0.0'}
-    cpu: [wasm32]
-
   '@oxc-resolver/binding-win32-arm64-msvc@11.20.0':
     resolution: {integrity: sha512-qPi25YNPe4YenS8MgsQU2+bIFHxxpLx1LVna2444cEHqNPhNjvWf9zqj4aWE43H9LpAsTmkkAlA3eL5ElBU3mA==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxc-resolver/binding-win32-arm64-msvc@5.3.0':
-    resolution: {integrity: sha512-j1YYPLvUkMVNKmIFQZZJ7q6Do4cI3htUnyxNLwDSBVhSohvPIK2VG+IdtOAlWZGa7v+phEZsHfNbXVwB0oPYFQ==}
-    cpu: [arm64]
-    os: [win32]
-
   '@oxc-resolver/binding-win32-x64-msvc@11.20.0':
     resolution: {integrity: sha512-Wb14jWEW8huH6It9F6sXd9vrYmIS7pMrgkU6sxpLxkP+9z+wRgs71hUEhRpcn8FOXAFa27FVWfY2tRpbfTzfLw==}
-    cpu: [x64]
-    os: [win32]
-
-  '@oxc-resolver/binding-win32-x64-msvc@5.3.0':
-    resolution: {integrity: sha512-LT9eOPPUqfZscQRd5mc08RBeDWOQf+dnOrKnanMallTGPe6g7+rcAlFTA8SWoJbcD45PV8yArFtCmSQSpzHZmg==}
     cpu: [x64]
     os: [win32]
 
@@ -2773,40 +2424,19 @@ packages:
       '@swc/core': '>= 1.13.3'
       '@swc/types': '>= 0.1'
 
-  '@swc-node/register@1.10.10':
-    resolution: {integrity: sha512-jYWaI2WNEKz8KZL3sExd2KVL1JMma1/J7z+9iTpv0+fRN7LGMF8VTGGuHI2bug/ztpdZU1G44FG/Kk6ElXL9CQ==}
-    peerDependencies:
-      '@swc/core': '>= 1.4.13'
-      typescript: '>= 4.3'
-
   '@swc-node/register@1.11.1':
     resolution: {integrity: sha512-VQ0hJ5jX31TVv/fhZx4xJRzd8pwn6VvzYd2tGOHHr2TfXGCBixZoqdPDXTiEoJLCTS2MmvBf6zyQZZ0M8aGQCQ==}
     peerDependencies:
       '@swc/core': '>= 1.4.13'
       typescript: '>= 4.3'
 
-  '@swc-node/sourcemap-support@0.5.1':
-    resolution: {integrity: sha512-JxIvIo/Hrpv0JCHSyRpetAdQ6lB27oFYhv0PKCNf1g2gUXOjpeR1exrXccRxLMuAV5WAmGFBwRnNOJqN38+qtg==}
-
   '@swc-node/sourcemap-support@0.6.1':
     resolution: {integrity: sha512-ovltDVH5QpdHXZkW138vG4+dgcNsxfwxHVoV6BtmTbz2KKl1A8ZSlbdtxzzfNjCjbpayda8Us9eMtcHobm38dA==}
-
-  '@swc/core-darwin-arm64@1.13.3':
-    resolution: {integrity: sha512-ux0Ws4pSpBTqbDS9GlVP354MekB1DwYlbxXU3VhnDr4GBcCOimpocx62x7cFJkSpEBF8bmX8+/TTCGKh4PbyXw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [darwin]
 
   '@swc/core-darwin-arm64@1.15.40':
     resolution: {integrity: sha512-PaYyclfmQ++77D8ityYvmmVzHv9aG8ROwt2GfG6/ccloy4Hgf80qtOnzb9VYvPsUT7Ty1uhuDRhv3XYpf62qhQ==}
     engines: {node: '>=10'}
     cpu: [arm64]
-    os: [darwin]
-
-  '@swc/core-darwin-x64@1.13.3':
-    resolution: {integrity: sha512-p0X6yhxmNUOMZrbeZ3ZNsPige8lSlSe1llllXvpCLkKKxN/k5vZt1sULoq6Nj4eQ7KeHQVm81/+AwKZyf/e0TA==}
-    engines: {node: '>=10'}
-    cpu: [x64]
     os: [darwin]
 
   '@swc/core-darwin-x64@1.15.40':
@@ -2815,32 +2445,14 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@swc/core-linux-arm-gnueabihf@1.13.3':
-    resolution: {integrity: sha512-OmDoiexL2fVWvQTCtoh0xHMyEkZweQAlh4dRyvl8ugqIPEVARSYtaj55TBMUJIP44mSUOJ5tytjzhn2KFxFcBA==}
-    engines: {node: '>=10'}
-    cpu: [arm]
-    os: [linux]
-
   '@swc/core-linux-arm-gnueabihf@1.15.40':
     resolution: {integrity: sha512-SlRZsCjOCPR2LvFs0Ri/Xrx/5o5TCt8vl4gW6mX1hEZOG0a625RxzRHpHdAQNGykmAN/7IeaFAJG+QnNmxlHcA==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux]
 
-  '@swc/core-linux-arm64-gnu@1.13.3':
-    resolution: {integrity: sha512-STfKku3QfnuUj6k3g9ld4vwhtgCGYIFQmsGPPgT9MK/dI3Lwnpe5Gs5t1inoUIoGNP8sIOLlBB4HV4MmBjQuhw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-
   '@swc/core-linux-arm64-gnu@1.15.40':
     resolution: {integrity: sha512-Q8byxJt2fh8CR3EUX6snBpy47AoBVm+In/+Z3rjDHMjC38ZvR9/gtUUNCT0tfrn4EdVsO8/QPi59nxrxvqxvBQ==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-
-  '@swc/core-linux-arm64-musl@1.13.3':
-    resolution: {integrity: sha512-bc+CXYlFc1t8pv9yZJGus372ldzOVscBl7encUBlU1m/Sig0+NDJLz6cXXRcFyl6ABNOApWeR4Yl7iUWx6C8og==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -2863,20 +2475,8 @@ packages:
     cpu: [s390x]
     os: [linux]
 
-  '@swc/core-linux-x64-gnu@1.13.3':
-    resolution: {integrity: sha512-dFXoa0TEhohrKcxn/54YKs1iwNeW6tUkHJgXW33H381SvjKFUV53WR231jh1sWVJETjA3vsAwxKwR23s7UCmUA==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-
   '@swc/core-linux-x64-gnu@1.15.40':
     resolution: {integrity: sha512-7HOuS1iGcme/j/TuL1TfmmLGiMQrjv/GmjyZeydl00FKPtpGXEldwqfI56xgd1YzrzoB2svWjxbGGyQ0TEASxg==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-
-  '@swc/core-linux-x64-musl@1.13.3':
-    resolution: {integrity: sha512-ieyjisLB+ldexiE/yD8uomaZuZIbTc8tjquYln9Quh5ykOBY7LpJJYBWvWtm1g3pHv6AXlBI8Jay7Fffb6aLfA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -2887,22 +2487,10 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@swc/core-win32-arm64-msvc@1.13.3':
-    resolution: {integrity: sha512-elTQpnaX5vESSbhCEgcwXjpMsnUbqqHfEpB7ewpkAsLzKEXZaK67ihSRYAuAx6ewRQTo7DS5iTT6X5aQD3MzMw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [win32]
-
   '@swc/core-win32-arm64-msvc@1.15.40':
     resolution: {integrity: sha512-+mQgKZXSj6mV38Zh05QaxSjUDmGP/R2JWlXZTDLSPkDzHU6p3GxN9eeSf5dfyDVU86946fmCvSzyl/ucImx8+A==}
     engines: {node: '>=10'}
     cpu: [arm64]
-    os: [win32]
-
-  '@swc/core-win32-ia32-msvc@1.13.3':
-    resolution: {integrity: sha512-nvehQVEOdI1BleJpuUgPLrclJ0TzbEMc+MarXDmmiRFwEUGqj+pnfkTSb7RZyS1puU74IXdK/YhTirHurtbI9w==}
-    engines: {node: '>=10'}
-    cpu: [ia32]
     os: [win32]
 
   '@swc/core-win32-ia32-msvc@1.15.40':
@@ -2911,26 +2499,11 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@swc/core-win32-x64-msvc@1.13.3':
-    resolution: {integrity: sha512-A+JSKGkRbPLVV2Kwx8TaDAV0yXIXm/gc8m98hSkVDGlPBBmydgzNdWy3X7HTUBM7IDk7YlWE7w2+RUGjdgpTmg==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [win32]
-
   '@swc/core-win32-x64-msvc@1.15.40':
     resolution: {integrity: sha512-OXtKsLU1bVtInzzDEAY2sYiF/rl4tvAnLLLpuMp3HzAOQZ5A+i69AKDhA1YLQTaMAqO3vzyYNVAYVRMPtSYD4w==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
-
-  '@swc/core@1.13.3':
-    resolution: {integrity: sha512-ZaDETVWnm6FE0fc+c2UE8MHYVS3Fe91o5vkmGfgwGXFbxYvAjKSqxM/j4cRc9T7VZNSJjriXq58XkfCp3Y6f+w==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@swc/helpers': '>=0.5.17'
-    peerDependenciesMeta:
-      '@swc/helpers':
-        optional: true
 
   '@swc/core@1.15.40':
     resolution: {integrity: sha512-2kwzJikRvgtNAG7MwVZY2vEzZjTxKIq5jXOihuSV/8U+Hej8Va22t65aKnJZs3P+NwojZvR8Mf8kyM7O+V8sQg==}
@@ -3083,9 +2656,6 @@ packages:
 
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
-
-  '@types/serialize-javascript@5.0.4':
-    resolution: {integrity: sha512-Z2R7UKFuNWCP8eoa2o9e5rkD3hmWxx/1L0CYz0k2BZzGh0PhEVMp9kfGiqEml/0IglwNERXZ2hwNzIrSz/KHTA==}
 
   '@types/serve-index@1.9.4':
     resolution: {integrity: sha512-qLpGZ/c2fhSs5gnYsQxtDEq3Oy8SXPClIXkW5ghvAvsNuVSA8k+gCONcUCS/UjLEYvYps+e8uBtfgXgvhwfNug==}
@@ -5648,9 +5218,6 @@ packages:
 
   oxc-resolver@11.20.0:
     resolution: {integrity: sha512-CblytBiV/a/ZXY34dsVU2NxhIOxMXst8CvDCtyBelVITgd7PLrKzbEbA6oKLdPjvDKDzCiW48qzmzZ+mYaqn+g==}
-
-  oxc-resolver@5.3.0:
-    resolution: {integrity: sha512-FHqtZx0idP5QRPSNcI5g2ItmADg7fhR3XIeWg5eRMGfp44xqRpfkdvo+EX4ZceqV9bxvl0Z8vaqMqY0gYaNYNA==}
 
   p-cancelable@4.0.1:
     resolution: {integrity: sha512-wBowNApzd45EIKdO1LaU+LrMBwAcjfPaYtVzV3lmfM3gf8Z4CHZsiIqlM8TZZ8okYvh5A1cP6gTfCRQtwUpaUg==}
@@ -8686,14 +8253,129 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@leichtgewicht/ip-codec@2.0.5': {}
-
-  '@napi-rs/wasm-runtime@0.2.12':
+  '@langri-sha/projen-babel@0.4.0(@babel/core@7.29.7)(@types/babel__core@7.20.5)(projen@0.86.5(constructs@10.6.0))':
     dependencies:
-      '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
-      '@tybys/wasm-util': 0.10.2
-    optional: true
+      '@babel/core': 7.29.7
+      '@types/babel__core': 7.20.5
+      projen: 0.86.5(constructs@10.6.0)
+      serialize-javascript: 6.0.2
+
+  '@langri-sha/projen-beachball@0.5.0(beachball@2.65.5(typescript@5.9.3))(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      beachball: 2.65.5(typescript@5.9.3)
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-codeowners@0.5.0(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-editorconfig@0.6.0(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-eslint@0.3.1(eslint@10.4.1)(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      eslint: 10.4.1
+      projen: 0.86.5(constructs@10.6.0)
+      serialize-javascript: 6.0.2
+
+  '@langri-sha/projen-husky@0.3.7(husky@9.1.7)(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      husky: 9.1.7
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-jest-config@0.4.0(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      jest: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
+      projen: 0.86.5(constructs@10.6.0)
+      serialize-javascript: 6.0.2
+
+  '@langri-sha/projen-license@0.3.3(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      license-o-matic: 1.2.0
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-lint-staged@0.3.0(lint-staged@15.5.2)(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      lint-staged: 15.5.2
+      projen: 0.86.5(constructs@10.6.0)
+      serialize-javascript: 6.0.2
+
+  '@langri-sha/projen-lint-synthesized@0.5.3(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      debug: 4.4.3
+      execa: 8.0.1
+      minimatch: 10.2.5
+      projen: 0.86.5(constructs@10.6.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@langri-sha/projen-pnpm-workspace@0.3.2(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      projen: 0.86.5(constructs@10.6.0)
+      yaml: 2.9.0
+
+  '@langri-sha/projen-prettier@0.4.1(prettier@3.8.3)(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      prettier: 3.8.3
+      projen: 0.86.5(constructs@10.6.0)
+      serialize-javascript: 6.0.2
+
+  '@langri-sha/projen-project@0.17.1(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.4.1)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.8.3)(projen@0.86.5(constructs@10.6.0))(tsx@4.22.4)(typescript@5.9.3)':
+    dependencies:
+      '@langri-sha/projen-babel': 0.4.0(@babel/core@7.29.7)(@types/babel__core@7.20.5)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-beachball': 0.5.0(beachball@2.65.5(typescript@5.9.3))(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-codeowners': 0.5.0(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-editorconfig': 0.6.0(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-eslint': 0.3.1(eslint@10.4.1)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-husky': 0.3.7(husky@9.1.7)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-jest-config': 0.4.0(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-license': 0.3.3(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-lint-staged': 0.3.0(lint-staged@15.5.2)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-lint-synthesized': 0.5.3(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-pnpm-workspace': 0.3.2(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-prettier': 0.4.1(prettier@3.8.3)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-readme': 0.1.0(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-renovate': 0.4.6(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-swcrc': 0.1.6(@swc/core@1.15.40)(projen@0.86.5(constructs@10.6.0))
+      '@langri-sha/projen-typescript-config': 0.5.5(projen@0.86.5(constructs@10.6.0))
+      projen: 0.86.5(constructs@10.6.0)
+      ramda: 0.32.0
+      typescript: 5.9.3
+    optionalDependencies:
+      '@babel/core': 7.29.7
+      '@swc-node/register': 1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3)
+      '@swc/core': 1.15.40
+      '@types/babel__core': 7.20.5
+      beachball: 2.65.5(typescript@5.9.3)
+      eslint: 10.4.1
+      husky: 9.1.7
+      jest: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
+      lint-staged: 15.5.2
+      prettier: 3.8.3
+      tsx: 4.22.4
+    transitivePeerDependencies:
+      - supports-color
+
+  '@langri-sha/projen-readme@0.1.0(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-renovate@0.4.6(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-swcrc@0.1.6(@swc/core@1.15.40)(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      '@swc/core': 1.15.40
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/projen-typescript-config@0.5.5(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      '@schemastore/tsconfig': 0.0.12
+      projen: 0.86.5(constructs@10.6.0)
+
+  '@leichtgewicht/ip-codec@2.0.5': {}
 
   '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
@@ -8751,25 +8433,13 @@ snapshots:
   '@oxc-resolver/binding-darwin-arm64@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-darwin-arm64@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-darwin-x64@11.20.0':
-    optional: true
-
-  '@oxc-resolver/binding-darwin-x64@5.3.0':
     optional: true
 
   '@oxc-resolver/binding-freebsd-x64@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-freebsd-x64@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-linux-arm-gnueabihf@11.20.0':
-    optional: true
-
-  '@oxc-resolver/binding-linux-arm-gnueabihf@5.3.0':
     optional: true
 
   '@oxc-resolver/binding-linux-arm-musleabihf@11.20.0':
@@ -8778,13 +8448,7 @@ snapshots:
   '@oxc-resolver/binding-linux-arm64-gnu@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-linux-arm64-gnu@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-linux-arm64-musl@11.20.0':
-    optional: true
-
-  '@oxc-resolver/binding-linux-arm64-musl@5.3.0':
     optional: true
 
   '@oxc-resolver/binding-linux-ppc64-gnu@11.20.0':
@@ -8793,28 +8457,16 @@ snapshots:
   '@oxc-resolver/binding-linux-riscv64-gnu@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-linux-riscv64-gnu@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-linux-riscv64-musl@11.20.0':
     optional: true
 
   '@oxc-resolver/binding-linux-s390x-gnu@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-linux-s390x-gnu@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-linux-x64-gnu@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-linux-x64-gnu@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-linux-x64-musl@11.20.0':
-    optional: true
-
-  '@oxc-resolver/binding-linux-x64-musl@5.3.0':
     optional: true
 
   '@oxc-resolver/binding-openharmony-arm64@11.20.0':
@@ -8827,21 +8479,10 @@ snapshots:
       '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
     optional: true
 
-  '@oxc-resolver/binding-wasm32-wasi@5.3.0':
-    dependencies:
-      '@napi-rs/wasm-runtime': 0.2.12
-    optional: true
-
   '@oxc-resolver/binding-win32-arm64-msvc@11.20.0':
     optional: true
 
-  '@oxc-resolver/binding-win32-arm64-msvc@5.3.0':
-    optional: true
-
   '@oxc-resolver/binding-win32-x64-msvc@11.20.0':
-    optional: true
-
-  '@oxc-resolver/binding-win32-x64-msvc@5.3.0':
     optional: true
 
   '@package-json/types@0.0.12': {}
@@ -9042,30 +8683,10 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@swc-node/core@1.14.1(@swc/core@1.13.3)(@swc/types@0.1.26)':
-    dependencies:
-      '@swc/core': 1.13.3
-      '@swc/types': 0.1.26
-
   '@swc-node/core@1.14.1(@swc/core@1.15.40)(@swc/types@0.1.26)':
     dependencies:
       '@swc/core': 1.15.40
       '@swc/types': 0.1.26
-
-  '@swc-node/register@1.10.10(@swc/core@1.13.3)(@swc/types@0.1.26)(typescript@5.5.4)':
-    dependencies:
-      '@swc-node/core': 1.14.1(@swc/core@1.13.3)(@swc/types@0.1.26)
-      '@swc-node/sourcemap-support': 0.5.1
-      '@swc/core': 1.13.3
-      colorette: 2.0.20
-      debug: 4.4.3
-      oxc-resolver: 5.3.0
-      pirates: 4.0.7
-      tslib: 2.8.1
-      typescript: 5.5.4
-    transitivePeerDependencies:
-      - '@swc/types'
-      - supports-color
 
   '@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3)':
     dependencies:
@@ -9082,41 +8703,21 @@ snapshots:
       - '@swc/types'
       - supports-color
 
-  '@swc-node/sourcemap-support@0.5.1':
-    dependencies:
-      source-map-support: 0.5.21
-      tslib: 2.8.1
-
   '@swc-node/sourcemap-support@0.6.1':
     dependencies:
       source-map-support: 0.5.21
       tslib: 2.8.1
 
-  '@swc/core-darwin-arm64@1.13.3':
-    optional: true
-
   '@swc/core-darwin-arm64@1.15.40':
-    optional: true
-
-  '@swc/core-darwin-x64@1.13.3':
     optional: true
 
   '@swc/core-darwin-x64@1.15.40':
     optional: true
 
-  '@swc/core-linux-arm-gnueabihf@1.13.3':
-    optional: true
-
   '@swc/core-linux-arm-gnueabihf@1.15.40':
     optional: true
 
-  '@swc/core-linux-arm64-gnu@1.13.3':
-    optional: true
-
   '@swc/core-linux-arm64-gnu@1.15.40':
-    optional: true
-
-  '@swc/core-linux-arm64-musl@1.13.3':
     optional: true
 
   '@swc/core-linux-arm64-musl@1.15.40':
@@ -9128,51 +8729,20 @@ snapshots:
   '@swc/core-linux-s390x-gnu@1.15.40':
     optional: true
 
-  '@swc/core-linux-x64-gnu@1.13.3':
-    optional: true
-
   '@swc/core-linux-x64-gnu@1.15.40':
-    optional: true
-
-  '@swc/core-linux-x64-musl@1.13.3':
     optional: true
 
   '@swc/core-linux-x64-musl@1.15.40':
     optional: true
 
-  '@swc/core-win32-arm64-msvc@1.13.3':
-    optional: true
-
   '@swc/core-win32-arm64-msvc@1.15.40':
-    optional: true
-
-  '@swc/core-win32-ia32-msvc@1.13.3':
     optional: true
 
   '@swc/core-win32-ia32-msvc@1.15.40':
     optional: true
 
-  '@swc/core-win32-x64-msvc@1.13.3':
-    optional: true
-
   '@swc/core-win32-x64-msvc@1.15.40':
     optional: true
-
-  '@swc/core@1.13.3':
-    dependencies:
-      '@swc/counter': 0.1.3
-      '@swc/types': 0.1.26
-    optionalDependencies:
-      '@swc/core-darwin-arm64': 1.13.3
-      '@swc/core-darwin-x64': 1.13.3
-      '@swc/core-linux-arm-gnueabihf': 1.13.3
-      '@swc/core-linux-arm64-gnu': 1.13.3
-      '@swc/core-linux-arm64-musl': 1.13.3
-      '@swc/core-linux-x64-gnu': 1.13.3
-      '@swc/core-linux-x64-musl': 1.13.3
-      '@swc/core-win32-arm64-msvc': 1.13.3
-      '@swc/core-win32-ia32-msvc': 1.13.3
-      '@swc/core-win32-x64-msvc': 1.13.3
 
   '@swc/core@1.15.40':
     dependencies:
@@ -9359,8 +8929,6 @@ snapshots:
   '@types/send@1.2.1':
     dependencies:
       '@types/node': 24.13.2
-
-  '@types/serialize-javascript@5.0.4': {}
 
   '@types/serve-index@1.9.4':
     dependencies:
@@ -9667,19 +9235,19 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.107.2)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.107.2)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.107.2)
 
   '@xtuc/ieee754@1.2.0': {}
@@ -9958,21 +9526,6 @@ snapshots:
   baseline-browser-mapping@2.10.33: {}
 
   batch@0.6.1: {}
-
-  beachball@2.65.5(typescript@5.5.4):
-    dependencies:
-      '@vercel/detect-agent': 1.2.3
-      cosmiconfig: 9.0.1(typescript@5.5.4)
-      execa: 5.1.1
-      minimatch: 3.1.5
-      p-graph: 1.3.0
-      p-limit: 3.1.0
-      prompts: 2.4.2
-      semver: 7.8.1
-      workspace-tools: 0.41.7
-      yargs-parser: 21.1.1
-    transitivePeerDependencies:
-      - typescript
 
   beachball@2.65.5(typescript@5.9.3):
     dependencies:
@@ -10268,15 +9821,6 @@ snapshots:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.3
-
-  cosmiconfig@9.0.1(typescript@5.5.4):
-    dependencies:
-      env-paths: 2.2.1
-      import-fresh: 3.3.1
-      js-yaml: 4.2.0
-      parse-json: 5.2.0
-    optionalDependencies:
-      typescript: 5.5.4
 
   cosmiconfig@9.0.1(typescript@5.9.3):
     dependencies:
@@ -12430,22 +11974,6 @@ snapshots:
       '@oxc-resolver/binding-win32-arm64-msvc': 11.20.0
       '@oxc-resolver/binding-win32-x64-msvc': 11.20.0
 
-  oxc-resolver@5.3.0:
-    optionalDependencies:
-      '@oxc-resolver/binding-darwin-arm64': 5.3.0
-      '@oxc-resolver/binding-darwin-x64': 5.3.0
-      '@oxc-resolver/binding-freebsd-x64': 5.3.0
-      '@oxc-resolver/binding-linux-arm-gnueabihf': 5.3.0
-      '@oxc-resolver/binding-linux-arm64-gnu': 5.3.0
-      '@oxc-resolver/binding-linux-arm64-musl': 5.3.0
-      '@oxc-resolver/binding-linux-riscv64-gnu': 5.3.0
-      '@oxc-resolver/binding-linux-s390x-gnu': 5.3.0
-      '@oxc-resolver/binding-linux-x64-gnu': 5.3.0
-      '@oxc-resolver/binding-linux-x64-musl': 5.3.0
-      '@oxc-resolver/binding-wasm32-wasi': 5.3.0
-      '@oxc-resolver/binding-win32-arm64-msvc': 5.3.0
-      '@oxc-resolver/binding-win32-x64-msvc': 5.3.0
-
   p-cancelable@4.0.1: {}
 
   p-graph@1.3.0: {}
@@ -12706,11 +12234,11 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
+  raw-loader@4.0.2(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
 
   react-dom@19.2.7(react@19.2.7):
     dependencies:
@@ -13340,13 +12868,13 @@ snapshots:
     optionalDependencies:
       '@swc/core': 1.15.40
 
-  terser-webpack-plugin@5.6.1(@swc/core@1.15.40)(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
+  terser-webpack-plugin@5.6.1(@swc/core@1.15.40)(webpack@5.107.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
     optionalDependencies:
       '@swc/core': 1.15.40
 
@@ -13676,9 +13204,9 @@ snapshots:
   webpack-cli@5.1.4(webpack@5.107.2):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.107.2)
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.107.2)
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.107.2)
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack@5.107.2)
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.6
@@ -13687,7 +13215,7 @@ snapshots:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
+      webpack: 5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4)
       webpack-merge: 5.10.0
 
   webpack-dev-middleware@7.4.5(tslib@2.8.1)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
@@ -13757,7 +13285,7 @@ snapshots:
     optionalDependencies:
       html-webpack-plugin: 5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
 
-  webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)):
+  webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -13779,7 +13307,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(@swc/core@1.15.40)(webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.15.40)(webpack@5.107.2)
       watchpack: 2.5.1
       webpack-sources: 3.5.0
     optionalDependencies:
