@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat: upgrade to ESLint 10; migrate to eslint-plugin-import-x, activate eslint-plugin-react-hooks flat.recommended, and pin settings.react.version",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

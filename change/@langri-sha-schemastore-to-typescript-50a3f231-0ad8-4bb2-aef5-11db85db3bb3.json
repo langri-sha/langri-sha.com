@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix: attach { cause } to re-thrown errors (ESLint 10 preserve-caught-error)",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

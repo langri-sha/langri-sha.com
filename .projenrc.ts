@@ -38,12 +38,12 @@ const project = new Project({
     ],
     devDeps: [
       '@langri-sha/babel-preset@workspace:*',
-      '@langri-sha/eslint-config@workspace:*',
+      '@langri-sha/eslint-config@^0.9.0',
       '@langri-sha/jest-config@workspace:*',
-      '@langri-sha/lint-staged@workspace:*',
-      '@langri-sha/prettier@workspace:*',
+      '@langri-sha/lint-staged@^0.9.1',
+      '@langri-sha/prettier@^0.4.1',
       '@langri-sha/projen-project@0.17.2',
-      '@langri-sha/schemastore-to-typescript@workspace:*',
+      '@langri-sha/schemastore-to-typescript@^0.2.1',
       '@swc-node/register@1.11.1',
       '@swc/core@1.15.40',
       '@types/lint-staged@13.3.0',
@@ -158,16 +158,14 @@ const subproject = (project: Project) => {
     ),
   })
 
-  if (project.name !== '@langri-sha/tsconfig') {
-    project
-      .tryFindObjectFile('package.json')
-      ?.addOverride('devDependencies.@langri-sha/tsconfig', 'workspace:*')
-  }
+  project
+    .tryFindObjectFile('package.json')
+    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^0.10.2')
 }
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@workspace:*')
+  project.package?.addDevDeps('@langri-sha/vitest@^0.1.2')
 }
 
 const publish = (project: Project) => {
@@ -189,12 +187,6 @@ const publish = (project: Project) => {
     'prepublishOnly',
     'rm -rf dist; tsc --project tsconfig.build.json',
   )
-}
-
-const publishRaw = (project: Project) => {
-  project.package?.addField('publishConfig', {
-    access: 'public',
-  })
 }
 
 project.addSubproject(
@@ -254,40 +246,6 @@ project.addSubproject(
   },
   subproject,
   test,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/eslint-config',
-    outdir: path.join('packages', 'eslint-config'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      deps: [
-        '@eslint/compat@2.1.0',
-        '@eslint/js@10.0.1',
-        'eslint-config-prettier@10.1.8',
-        'eslint-plugin-import-x@4.16.2',
-        'eslint-plugin-jsdoc@62.9.0',
-        'eslint-plugin-prettier@5.5.6',
-        'eslint-plugin-react@7.37.5',
-        'eslint-plugin-react-hooks@7.1.1',
-        'eslint-plugin-unicorn@65.0.1',
-        'globals@17.6.0',
-        'typescript-eslint@8.61.0',
-      ],
-      peerDeps: ['eslint@^9.0.0 || ^10.0.0'],
-    },
-  },
-  subproject,
   publish,
 )
 
@@ -372,40 +330,6 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/lint-staged',
-    outdir: path.join('packages', 'lint-staged'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      devDeps: ['@types/lint-staged@13.3.0'],
-      peerDeps: [
-        'eslint@^9.0.0 || ^10.0.0',
-        'lint-staged@^15.0.0',
-        'prettier@^3.0.0',
-      ],
-      peerDependenciesMeta: {
-        eslint: {
-          optional: true,
-        },
-        prettier: {
-          optional: true,
-        },
-      },
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/monorepo',
     outdir: path.join('packages', 'monorepo'),
     npmIgnore: {},
@@ -423,113 +347,6 @@ project.addSubproject(
   },
   subproject,
   test,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/prettier',
-    outdir: path.join('packages', 'prettier'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      deps: ['prettier-plugin-ini@1.3.0'],
-      devDeps: ['prettier@3.8.3'],
-      peerDeps: ['prettier@^3.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/schemastore-to-typescript',
-    outdir: path.join('packages', 'schemastore-to-typescript'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      bin: {
-        'schemastore-to-typescript': 'src/cli.ts',
-      },
-      deps: [
-        'commander@12.1.0',
-        'debug@4.4.3',
-        'env-paths@3.0.0',
-        'es-main@1.4.0',
-        'got@14.4.7',
-        'json-schema-to-typescript@15.0.2',
-        'keyv-file@5.3.3',
-        'keyv@4.5.4',
-      ],
-      devDeps: ['@types/debug@4.1.13'],
-      peerDeps: ['projen@^0.86.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-  (project) => {
-    project
-      .tryFindObjectFile('package.json')
-      ?.addOverride(
-        'publishConfig.bin.schemastore-to-typescript',
-        'dist/cli.js',
-      )
-  },
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/tsconfig',
-    outdir: path.join('packages', 'tsconfig'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      entrypoint: 'base.json',
-      peerDeps: ['typescript@^5.5.0'],
-    },
-  },
-  subproject,
-  publishRaw,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/vitest',
-    outdir: path.join('packages', 'vitest'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['nock@13.5.5', 'tempy@1.0.1'],
-      peerDeps: ['vitest@^2.0.0'],
-    },
-  },
-  subproject,
   publish,
 )
 

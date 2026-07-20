@@ -13,9 +13,6 @@
       "path": "packages/babel-test"
     },
     {
-      "path": "packages/eslint-config"
-    },
-    {
       "path": "packages/fonts"
     },
     {
@@ -25,19 +22,7 @@
       "path": "packages/jest-test"
     },
     {
-      "path": "packages/lint-staged"
-    },
-    {
       "path": "packages/monorepo"
-    },
-    {
-      "path": "packages/prettier"
-    },
-    {
-      "path": "packages/schemastore-to-typescript"
-    },
-    {
-      "path": "packages/vitest"
     },
     {
       "path": "packages/webpack"

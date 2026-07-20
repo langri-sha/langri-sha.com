@@ -5,10 +5,5 @@
   "compilerOptions": {
     "outDir": ".tsbuild"
   },
-  "include": ["src"],
-  "references": [
-    {
-      "path": "../tsconfig"
-    }
-  ]
+  "include": ["src"]
 }

@@ -1,1 +1,0 @@
-# @langri-sha/eslint-config

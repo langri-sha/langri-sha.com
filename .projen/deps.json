@@ -7,7 +7,7 @@
     },
     {
       "name": "@langri-sha/eslint-config",
-      "version": "workspace:*",
+      "version": "^0.9.0",
       "type": "build"
     },
     {
@@ -17,12 +17,12 @@
     },
     {
       "name": "@langri-sha/lint-staged",
-      "version": "workspace:*",
+      "version": "^0.9.1",
       "type": "build"
     },
     {
       "name": "@langri-sha/prettier",
-      "version": "workspace:*",
+      "version": "^0.4.1",
       "type": "build"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "name": "@langri-sha/schemastore-to-typescript",
-      "version": "workspace:*",
+      "version": "^0.2.1",
       "type": "build"
     },
     {

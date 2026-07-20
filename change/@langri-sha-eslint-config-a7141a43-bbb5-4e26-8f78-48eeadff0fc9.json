@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update typescript-eslint monorepo to v8.60.1",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

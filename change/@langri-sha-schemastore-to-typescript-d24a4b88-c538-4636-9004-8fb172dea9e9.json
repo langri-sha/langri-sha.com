@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Drive the CLI through `.then`/`.catch` instead of a top-level await so a stalled cache request can no longer hang `prepare` as an unsettled top-level await (exit code 13)",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

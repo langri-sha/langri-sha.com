@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Force CLI exit so a lingering handle cannot hang the runtime on nested re-runs",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
