@@ -10,6 +10,7 @@ const global: SerializedStyles = css`
 
   html {
     font-size: 62.5%;
+    color-scheme: dark;
 
     --font-default: Georgia, Cambria, 'Times New Roman', Times, serif;
     --color-text: ${colors.text};
@@ -22,6 +23,7 @@ const global: SerializedStyles = css`
     height: 100%;
     margin: 0;
     padding: 0;
+    background: ${colors.noir};
     color: var(--color-text);
     font-family: var(--font-default);
   }

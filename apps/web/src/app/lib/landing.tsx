@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, Play, Scene } from '@/components'
-import { global } from '@/styles'
+import { colors, global } from '@/styles'
 
 import { Header } from './header'
 
@@ -15,212 +15,174 @@ export const Landing: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Global styles={[global, gradientProperties]} />
-      <Root>
-        <Root>
-          <Header />
-          {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
-          {playing ? <Drone /> : null}
-          <Play
-            playing={playing}
-            onToggle={() => setPlaying((current) => !current)}
-          />
-        </Root>
-      </Root>
+      <Global styles={[global, nebulaProperties]} />
+      <Ground data-playing={playing}>
+        <Header />
+        {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
+        {playing ? <Drone /> : null}
+        <Play
+          playing={playing}
+          onToggle={() => setPlaying((current) => !current)}
+        />
+      </Ground>
     </React.Fragment>
   )
 }
 
-const gradientProperties = css`
-  /* Aurora */
-  @property --aurora-x {
+// Registered custom props let the nebula's colour and position tween smoothly.
+const nebulaProperties = css`
+  @property --neb-x {
     syntax: '<percentage>';
     inherits: true;
-    initial-value: 0%;
+    initial-value: 32%;
   }
 
-  @property --aurora-y {
+  @property --neb-y {
     syntax: '<percentage>';
     inherits: true;
-    initial-value: 0%;
+    initial-value: 30%;
   }
 
-  @property --aurora-rx {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 140%;
-  }
-
-  @property --aurora-ry {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 140%;
-  }
-
-  /* Pool */
   @property --pool-x {
     syntax: '<percentage>';
     inherits: true;
-    initial-value: 60%;
+    initial-value: 70%;
   }
 
   @property --pool-y {
     syntax: '<percentage>';
     inherits: true;
-    initial-value: 50%;
+    initial-value: 68%;
   }
 
-  @property --pool-stop {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 20%;
-  }
-
-  /* Palette */
-  @property --violet {
+  @property --nebula-violet {
     syntax: '<color>';
     inherits: true;
     initial-value: #3d1b6d;
   }
 
-  @property --magenta {
+  @property --nebula-magenta {
     syntax: '<color>';
     inherits: true;
     initial-value: #e438dc;
   }
-
-  @property --indigo {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #404b8c;
-  }
-
-  @property --mist {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #79acbb;
-  }
-
-  @property --pool {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #7f4dad;
-  }
 `
 
+// A very slow, sleepy drift — the room is alive but barely.
 const drift = keyframes`
   0% {
-    --aurora-x: 0%;
-    --aurora-y: 0%;
-    --aurora-rx: 140%;
-    --aurora-ry: 140%;
-    --pool-x: 60%;
-    --pool-y: 50%;
-    --pool-stop: 20%;
-    --violet: #3d1b6d;
-    --magenta: #e438dc;
-    --indigo: #404b8c;
-    --mist: #79acbb;
-    --pool: #7f4dad;
+    --neb-x: 32%;
+    --neb-y: 30%;
+    --pool-x: 70%;
+    --pool-y: 68%;
+    --nebula-violet: #3d1b6d;
+    --nebula-magenta: #e438dc;
   }
 
-  33% {
-    --aurora-x: 12%;
-    --aurora-y: 8%;
-    --aurora-rx: 165%;
-    --aurora-ry: 120%;
-    --pool-x: 50%;
-    --pool-y: 42%;
-    --pool-stop: 32%;
-    --violet: #4a1a86;
-    --magenta: #ff2f92;
-    --indigo: #3d5bb0;
-    --mist: #4dd7e8;
-    --pool: #9a3df0;
-  }
-
-  66% {
-    --aurora-x: 4%;
-    --aurora-y: 18%;
-    --aurora-rx: 120%;
-    --aurora-ry: 170%;
-    --pool-x: 66%;
-    --pool-y: 58%;
-    --pool-stop: 26%;
-    --violet: #33206e;
-    --magenta: #c433ff;
-    --indigo: #4a3f9e;
-    --mist: #62b8d9;
-    --pool: #b03ddb;
+  50% {
+    --neb-x: 40%;
+    --neb-y: 24%;
+    --pool-x: 62%;
+    --pool-y: 74%;
+    --nebula-violet: #45228c;
+    --nebula-magenta: #c433ff;
   }
 
   100% {
-    --aurora-x: 16%;
-    --aurora-y: 4%;
-    --aurora-rx: 150%;
-    --aurora-ry: 135%;
-    --pool-x: 56%;
-    --pool-y: 48%;
-    --pool-stop: 22%;
-    --violet: #3d1b6d;
-    --magenta: #f038c8;
-    --indigo: #404b8c;
-    --mist: #79acbb;
-    --pool: #8748c4;
+    --neb-x: 28%;
+    --neb-y: 34%;
+    --pool-x: 74%;
+    --pool-y: 62%;
+    --nebula-violet: #33206e;
+    --nebula-magenta: #e438dc;
   }
 `
 
-const Root = styled.div`
+// While the drone plays, the room breathes a touch deeper — a gentle swell, not a flood.
+const breathe = keyframes`
+  from {
+    opacity: 0.18;
+  }
+
+  to {
+    opacity: 0.34;
+  }
+`
+
+const Ground = styled.div`
+  position: relative;
   display: flex;
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  background:
+    radial-gradient(
+      ellipse 90% 70% at 50% 38%,
+      rgba(61, 27, 109, 0.22),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 130% 120% at 50% 50%,
+      transparent 48%,
+      rgba(0, 0, 0, 0.62) 100%
+    ),
+    ${colors.noir};
 
+  /* Nebula: whisper-opacity glows drifting over the dark. */
   &::before {
     content: '';
     position: absolute;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    mix-blend-mode: color-dodge;
+    inset: 0;
+    z-index: 0;
+    mix-blend-mode: screen;
     background:
       radial-gradient(
-          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
-            var(--aurora-y),
-          var(--violet) 30%,
-          var(--magenta) 65%,
-          var(--indigo) 80%,
-          var(--mist) 110%
+          ellipse 55% 50% at var(--neb-x) var(--neb-y),
+          var(--nebula-magenta),
+          transparent 62%
         )
         no-repeat,
       radial-gradient(
-          closest-side at var(--pool-x) var(--pool-y),
-          var(--pool) var(--pool-stop),
-          #000 100%
+          ellipse 60% 65% at var(--pool-x) var(--pool-y),
+          var(--nebula-violet),
+          transparent 66%
         )
         no-repeat,
       radial-gradient(
-          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
-            var(--aurora-y),
-          var(--violet) 30%,
-          var(--magenta) 65%,
-          var(--indigo) 80%,
-          var(--mist) 110%
-        )
-        no-repeat,
-      radial-gradient(
-          closest-side at var(--pool-x) var(--pool-y),
-          var(--pool) var(--pool-stop),
-          #000 100%
+          ellipse 80% 55% at 84% 20%,
+          rgba(121, 172, 187, 0.5),
+          transparent 60%
         )
         no-repeat;
-    animation: ${drift} 48s ease-in-out infinite alternate;
+    opacity: 0.16;
+    animation: ${drift} 78s ease-in-out infinite alternate;
+  }
+
+  &[data-playing='true']::before {
+    animation:
+      ${drift} 78s ease-in-out infinite alternate,
+      ${breathe} 11s ease-in-out infinite alternate;
+  }
+
+  /* Grain: an extremely subtle film over the ground, beneath the signage. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    mix-blend-mode: overlay;
+    opacity: 0.05;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    &::before {
+    &::before,
+    &[data-playing='true']::before {
       animation: none;
     }
   }
