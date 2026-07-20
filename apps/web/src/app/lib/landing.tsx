@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, Play, Scene } from '@/components'
-import { global } from '@/styles'
+import { colors, global, layers } from '@/styles'
 
 import { Header } from './header'
 
@@ -15,213 +15,161 @@ export const Landing: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Global styles={[global, gradientProperties]} />
+      <Global styles={global} />
       <Root>
-        <Root>
-          <Header />
-          {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
-          {playing ? <Drone /> : null}
-          <Play
-            playing={playing}
-            onToggle={() => setPlaying((current) => !current)}
-          />
-        </Root>
+        <Aether aria-hidden="true">
+          <Blob css={lilacBlob} />
+          <Blob css={blushBlob} />
+          <Blob css={skyBlob} />
+          <Blob css={periwinkleBlob} />
+        </Aether>
+        <Header />
+        {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
+        {playing ? <Drone /> : null}
+        <Play
+          playing={playing}
+          onToggle={() => setPlaying((current) => !current)}
+        />
       </Root>
     </React.Fragment>
   )
 }
 
-const gradientProperties = css`
-  /* Aurora */
-  @property --aurora-x {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 0%;
+const driftOne = keyframes`
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
   }
-
-  @property --aurora-y {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 0%;
-  }
-
-  @property --aurora-rx {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 140%;
-  }
-
-  @property --aurora-ry {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 140%;
-  }
-
-  /* Pool */
-  @property --pool-x {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 60%;
-  }
-
-  @property --pool-y {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 50%;
-  }
-
-  @property --pool-stop {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 20%;
-  }
-
-  /* Palette */
-  @property --violet {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #3d1b6d;
-  }
-
-  @property --magenta {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #e438dc;
-  }
-
-  @property --indigo {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #404b8c;
-  }
-
-  @property --mist {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #79acbb;
-  }
-
-  @property --pool {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #7f4dad;
+  to {
+    transform: translate3d(5vmax, 4vmax, 0) scale(1.14);
   }
 `
 
-const drift = keyframes`
-  0% {
-    --aurora-x: 0%;
-    --aurora-y: 0%;
-    --aurora-rx: 140%;
-    --aurora-ry: 140%;
-    --pool-x: 60%;
-    --pool-y: 50%;
-    --pool-stop: 20%;
-    --violet: #3d1b6d;
-    --magenta: #e438dc;
-    --indigo: #404b8c;
-    --mist: #79acbb;
-    --pool: #7f4dad;
+const driftTwo = keyframes`
+  from {
+    transform: translate3d(0, 0, 0) scale(1.08);
   }
-
-  33% {
-    --aurora-x: 12%;
-    --aurora-y: 8%;
-    --aurora-rx: 165%;
-    --aurora-ry: 120%;
-    --pool-x: 50%;
-    --pool-y: 42%;
-    --pool-stop: 32%;
-    --violet: #4a1a86;
-    --magenta: #ff2f92;
-    --indigo: #3d5bb0;
-    --mist: #4dd7e8;
-    --pool: #9a3df0;
+  to {
+    transform: translate3d(-6vmax, 3vmax, 0) scale(0.96);
   }
+`
 
-  66% {
-    --aurora-x: 4%;
-    --aurora-y: 18%;
-    --aurora-rx: 120%;
-    --aurora-ry: 170%;
-    --pool-x: 66%;
-    --pool-y: 58%;
-    --pool-stop: 26%;
-    --violet: #33206e;
-    --magenta: #c433ff;
-    --indigo: #4a3f9e;
-    --mist: #62b8d9;
-    --pool: #b03ddb;
+const driftThree = keyframes`
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
   }
+  to {
+    transform: translate3d(4vmax, -5vmax, 0) scale(1.12);
+  }
+`
 
-  100% {
-    --aurora-x: 16%;
-    --aurora-y: 4%;
-    --aurora-rx: 150%;
-    --aurora-ry: 135%;
-    --pool-x: 56%;
-    --pool-y: 48%;
-    --pool-stop: 22%;
-    --violet: #3d1b6d;
-    --magenta: #f038c8;
-    --indigo: #404b8c;
-    --mist: #79acbb;
-    --pool: #8748c4;
+const driftFour = keyframes`
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-4vmax, -4vmax, 0) scale(1);
+  }
+`
+
+const lilacBlob = css`
+  top: -22vmax;
+  left: -16vmax;
+  width: 64vmax;
+  height: 64vmax;
+  background: radial-gradient(
+    circle at center,
+    ${colors.lilac} 0%,
+    transparent 68%
+  );
+  opacity: 0.6;
+  animation: ${driftOne} 78s ease-in-out infinite alternate;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`
+
+const blushBlob = css`
+  top: -12vmax;
+  right: -20vmax;
+  width: 56vmax;
+  height: 56vmax;
+  background: radial-gradient(
+    circle at center,
+    ${colors.blush} 0%,
+    transparent 68%
+  );
+  opacity: 0.55;
+  animation: ${driftTwo} 88s ease-in-out infinite alternate;
+  animation-delay: -12s;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`
+
+const skyBlob = css`
+  bottom: -26vmax;
+  left: 2vmax;
+  width: 60vmax;
+  height: 60vmax;
+  background: radial-gradient(
+    circle at center,
+    ${colors.sky} 0%,
+    transparent 68%
+  );
+  opacity: 0.6;
+  animation: ${driftThree} 82s ease-in-out infinite alternate;
+  animation-delay: -30s;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`
+
+const periwinkleBlob = css`
+  bottom: -20vmax;
+  right: -12vmax;
+  width: 58vmax;
+  height: 58vmax;
+  background: radial-gradient(
+    circle at center,
+    ${colors.periwinkle} 0%,
+    transparent 68%
+  );
+  opacity: 0.5;
+  animation: ${driftFour} 74s ease-in-out infinite alternate;
+  animation-delay: -48s;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `
 
 const Root = styled.div`
+  position: relative;
   display: flex;
   height: 100vh;
   width: 100vw;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  background-color: ${colors.background};
+`
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    mix-blend-mode: color-dodge;
-    background:
-      radial-gradient(
-          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
-            var(--aurora-y),
-          var(--violet) 30%,
-          var(--magenta) 65%,
-          var(--indigo) 80%,
-          var(--mist) 110%
-        )
-        no-repeat,
-      radial-gradient(
-          closest-side at var(--pool-x) var(--pool-y),
-          var(--pool) var(--pool-stop),
-          #000 100%
-        )
-        no-repeat,
-      radial-gradient(
-          ellipse var(--aurora-rx) var(--aurora-ry) at var(--aurora-x)
-            var(--aurora-y),
-          var(--violet) 30%,
-          var(--magenta) 65%,
-          var(--indigo) 80%,
-          var(--mist) 110%
-        )
-        no-repeat,
-      radial-gradient(
-          closest-side at var(--pool-x) var(--pool-y),
-          var(--pool) var(--pool-stop),
-          #000 100%
-        )
-        no-repeat;
-    animation: ${drift} 48s ease-in-out infinite alternate;
-  }
+const Aether = styled.div`
+  ${layers.background};
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+`
 
-  @media (prefers-reduced-motion: reduce) {
-    &::before {
-      animation: none;
-    }
-  }
+const Blob = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  mix-blend-mode: multiply;
+  will-change: transform;
 `
