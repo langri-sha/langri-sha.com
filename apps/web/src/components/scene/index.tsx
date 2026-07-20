@@ -4,69 +4,127 @@ import * as React from 'react'
 import fragmentShaderSource from './default.frag'
 import vertexShaderSource from './default.vert'
 
+// One pass through the `drift` keyframes and back (48s, alternating), after
+// which the animation repeats exactly.
+const CYCLE = 96
+
 export const Scene: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {
-    if (!canvasRef.current) return
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-    const gl = canvasRef.current.getContext('webgl')
+    const gl = canvas.getContext('webgl')
     if (!gl) return
 
-    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
-    const fragmentShader = createShader(
-      gl,
-      gl.FRAGMENT_SHADER,
-      fragmentShaderSource,
-    )
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-    if (!vertexShader || !fragmentShader) {
-      return
+    let frame = 0
+    let dispose: (() => void) | null = null
+
+    const setup = () => {
+      const vertexShader = createShader(
+        gl,
+        gl.VERTEX_SHADER,
+        vertexShaderSource,
+      )
+      const fragmentShader = createShader(
+        gl,
+        gl.FRAGMENT_SHADER,
+        fragmentShaderSource,
+      )
+
+      if (!vertexShader || !fragmentShader) {
+        return
+      }
+
+      const program = createProgram(gl, vertexShader, fragmentShader)
+
+      if (!program) {
+        return
+      }
+
+      // A single triangle covering clip space.
+      const positions = [-1, -1, 3, -1, -1, 3]
+      const positionAttributeLocation = gl.getAttribLocation(
+        program,
+        'a_position',
+      )
+      const positionBuffer = gl.createBuffer()
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array(positions),
+        gl.STATIC_DRAW,
+      )
+
+      gl.useProgram(program)
+      gl.enableVertexAttribArray(positionAttributeLocation)
+      gl.vertexAttribPointer(
+        positionAttributeLocation,
+        2,
+        gl.FLOAT,
+        false,
+        0,
+        0,
+      )
+
+      const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
+      const timeLocation = gl.getUniformLocation(program, 'u_time')
+
+      const render = (now: DOMHighResTimeStamp) => {
+        resize(canvas)
+
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
+        gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height)
+        // Wrapped to the animation cycle so shader float precision holds up
+        // as the clock grows.
+        gl.uniform1f(
+          timeLocation,
+          reducedMotion.matches ? 0 : (now / 1000) % CYCLE,
+        )
+        gl.drawArrays(gl.TRIANGLES, 0, 3)
+
+        frame = requestAnimationFrame(render)
+      }
+
+      frame = requestAnimationFrame(render)
+
+      dispose = () => {
+        cancelAnimationFrame(frame)
+        gl.deleteBuffer(positionBuffer)
+        gl.deleteProgram(program)
+        gl.deleteShader(vertexShader)
+        gl.deleteShader(fragmentShader)
+      }
     }
 
-    const program = createProgram(gl, vertexShader, fragmentShader)
-
-    if (!program) {
-      return
+    // The browser can evict the context under GPU pressure, leaving the
+    // canvas as an opaque broken-canvas placeholder. Hide it so the CSS
+    // gradient shows through until the context comes back.
+    const handleContextLost = (event: Event) => {
+      event.preventDefault()
+      dispose?.()
+      dispose = null
+      canvas.style.visibility = 'hidden'
     }
 
-    const positions = [0, 0, 0, 0.5, 0.7, 0]
-    const positionAttributeLocation = gl.getAttribLocation(
-      program,
-      'a_position',
-    )
-    const positionBuffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
+    const handleContextRestored = () => {
+      canvas.style.visibility = ''
+      setup()
+    }
 
-    resize(canvasRef.current)
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
+    canvas.addEventListener('webglcontextlost', handleContextLost)
+    canvas.addEventListener('webglcontextrestored', handleContextRestored)
 
-    gl.clearColor(0, 0, 0, 0)
-    gl.clear(gl.COLOR_BUFFER_BIT)
+    setup()
 
-    gl.useProgram(program)
-
-    gl.enableVertexAttribArray(positionAttributeLocation)
-    // Bind the position buffer.
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
-    const size = 2 // 2 components per iteration
-    const type = gl.FLOAT // The data is 32bit floats
-    const normalize = false // Don't normalize the data
-    const stride = 0 // 0 = move forward size * sizeof(type) each iteration to get the next position
-    gl.vertexAttribPointer(
-      positionAttributeLocation,
-      size,
-      type,
-      normalize,
-      stride,
-      0,
-    )
-
-    const primitiveType = gl.TRIANGLES
-    const offset = 0
-    const count = 3
-    gl.drawArrays(primitiveType, offset, count)
+    return () => {
+      canvas.removeEventListener('webglcontextlost', handleContextLost)
+      canvas.removeEventListener('webglcontextrestored', handleContextRestored)
+      dispose?.()
+    }
   }, [])
 
   return <Canvas ref={canvasRef} />
