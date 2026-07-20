@@ -10,8 +10,11 @@ const global: SerializedStyles = css`
 
   html {
     font-size: 62.5%;
+    overflow-x: hidden;
 
-    --font-default: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-default:
+      'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+      'Times New Roman', Times, serif;
     --color-text: ${colors.text};
   }
 
@@ -22,8 +25,11 @@ const global: SerializedStyles = css`
     height: 100%;
     margin: 0;
     padding: 0;
+    background: ${colors.background};
     color: var(--color-text);
     font-family: var(--font-default);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   #app {
