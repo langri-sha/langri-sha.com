@@ -12,7 +12,7 @@
     },
     {
       "name": "@langri-sha/vitest",
-      "version": "workspace:*",
+      "version": "^0.1.2",
       "type": "build"
     },
     {

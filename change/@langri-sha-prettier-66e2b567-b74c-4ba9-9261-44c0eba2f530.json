@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): align prettier package dev dependencies",
-  "packageName": "@langri-sha/prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -34,26 +34,26 @@ importers:
         specifier: workspace:*
         version: link:packages/babel-preset
       '@langri-sha/eslint-config':
-        specifier: workspace:*
-        version: link:packages/eslint-config
+        specifier: ^0.9.0
+        version: 0.9.0(@types/eslint@9.6.1)(@typescript-eslint/utils@8.61.0(eslint@10.4.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.4.1)(prettier@3.8.3)(typescript@5.9.3)
       '@langri-sha/jest-config':
         specifier: workspace:*
         version: link:packages/jest-config
       '@langri-sha/lint-staged':
-        specifier: workspace:*
-        version: link:packages/lint-staged
+        specifier: ^0.9.1
+        version: 0.9.1(eslint@10.4.1)(lint-staged@15.5.2)(prettier@3.8.3)
       '@langri-sha/prettier':
-        specifier: workspace:*
-        version: link:packages/prettier
+        specifier: ^0.4.1
+        version: 0.4.1(prettier@3.8.3)
       '@langri-sha/projen-project':
         specifier: 0.17.2
         version: 0.17.2(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.4.1)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.8.3)(projen@0.86.5(constructs@10.6.0))(tsx@4.22.4)(typescript@5.9.3)
       '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:packages/schemastore-to-typescript
+        specifier: ^0.2.1
+        version: 0.2.1(projen@0.86.5(constructs@10.6.0))
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:packages/tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@swc-node/register':
         specifier: 1.11.1
         version: 1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3)
@@ -128,8 +128,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/babel-preset
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@langri-sha/webpack':
         specifier: workspace:*
         version: link:../../packages/webpack
@@ -174,11 +174,11 @@ importers:
         specifier: workspace:*
         version: link:../babel-test
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
+        specifier: ^0.1.2
+        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
@@ -196,11 +196,11 @@ importers:
         specifier: workspace:*
         version: link:../monorepo
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
+        specifier: ^0.1.2
+        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/babel__core':
         specifier: ^7.8.0
         version: 7.20.5
@@ -211,57 +211,14 @@ importers:
         specifier: 0.31.1
         version: 0.31.1
 
-  packages/eslint-config:
-    dependencies:
-      '@eslint/compat':
-        specifier: 2.1.0
-        version: 2.1.0(eslint@10.4.1)
-      '@eslint/js':
-        specifier: 10.0.1
-        version: 10.0.1(eslint@10.4.1)
-      eslint:
-        specifier: ^9.0.0 || ^10.0.0
-        version: 10.4.1
-      eslint-config-prettier:
-        specifier: 10.1.8
-        version: 10.1.8(eslint@10.4.1)
-      eslint-plugin-import-x:
-        specifier: 4.16.2
-        version: 4.16.2(@typescript-eslint/utils@8.61.0(eslint@10.4.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.4.1)
-      eslint-plugin-jsdoc:
-        specifier: 62.9.0
-        version: 62.9.0(eslint@10.4.1)
-      eslint-plugin-prettier:
-        specifier: 5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.4.1))(eslint@10.4.1)(prettier@3.8.3)
-      eslint-plugin-react:
-        specifier: 7.37.5
-        version: 7.37.5(eslint@10.4.1)
-      eslint-plugin-react-hooks:
-        specifier: 7.1.1
-        version: 7.1.1(eslint@10.4.1)
-      eslint-plugin-unicorn:
-        specifier: 65.0.1
-        version: 65.0.1(eslint@10.4.1)
-      globals:
-        specifier: 17.6.0
-        version: 17.6.0
-      typescript-eslint:
-        specifier: 8.61.0
-        version: 8.61.0(eslint@10.4.1)(typescript@5.9.3)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-
   packages/fonts:
     devDependencies:
       '@fontsource/cinzel-decorative':
         specifier: 5.2.8
         version: 5.2.8
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
@@ -276,8 +233,8 @@ importers:
         version: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
 
   packages/jest-test:
     dependencies:
@@ -295,27 +252,8 @@ importers:
         version: 1.0.1
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-
-  packages/lint-staged:
-    dependencies:
-      eslint:
-        specifier: ^9.0.0 || ^10.0.0
-        version: 10.4.1
-      lint-staged:
-        specifier: ^15.0.0
-        version: 15.5.2
-      prettier:
-        specifier: ^3.0.0
-        version: 3.3.3
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@types/lint-staged':
-        specifier: 13.3.0
-        version: 13.3.0
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
 
   packages/monorepo:
     dependencies:
@@ -324,89 +262,14 @@ importers:
         version: 7.0.0
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
+        specifier: ^0.1.2
+        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
-
-  packages/prettier:
-    dependencies:
-      prettier-plugin-ini:
-        specifier: 1.3.0
-        version: 1.3.0
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      prettier:
-        specifier: 3.8.3
-        version: 3.8.3
-
-  packages/schemastore-to-typescript:
-    dependencies:
-      commander:
-        specifier: 12.1.0
-        version: 12.1.0
-      debug:
-        specifier: 4.4.3
-        version: 4.4.3
-      env-paths:
-        specifier: 3.0.0
-        version: 3.0.0
-      es-main:
-        specifier: 1.4.0
-        version: 1.4.0
-      got:
-        specifier: 14.4.7
-        version: 14.4.7
-      json-schema-to-typescript:
-        specifier: 15.0.2
-        version: 15.0.2
-      keyv:
-        specifier: 4.5.4
-        version: 4.5.4
-      keyv-file:
-        specifier: 5.3.3
-        version: 5.3.3
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.6.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/debug':
-        specifier: 4.1.13
-        version: 4.1.13
-
-  packages/tsconfig:
-    dependencies:
-      typescript:
-        specifier: ^5.5.0
-        version: 5.5.4
-
-  packages/vitest:
-    dependencies:
-      nock:
-        specifier: 13.5.5
-        version: 13.5.5
-      tempy:
-        specifier: 1.0.1
-        version: 1.0.1
-      vitest:
-        specifier: ^2.0.0
-        version: 2.1.9(@types/node@24.13.2)(terser@5.48.0)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
 
   packages/webpack:
     dependencies:
@@ -445,8 +308,8 @@ importers:
         specifier: workspace:*
         version: link:../babel-preset
       '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.3)
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
@@ -1914,6 +1777,28 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
+  '@langri-sha/eslint-config@0.9.0':
+    resolution: {integrity: sha512-bW08kBqsHUzQzK+AqC7e9zUFofC9ub9RIKJuTA/ZypO4iE+vi4FxPBzrVrDY8WLsXa/JTTV02nFM/+b/g97hhQ==}
+    peerDependencies:
+      eslint: ^9.0.0 || ^10.0.0
+
+  '@langri-sha/lint-staged@0.9.1':
+    resolution: {integrity: sha512-e2vcec4rNrt5x4IHKBhkyhDmmIN8kdIQEUiFZcXSw2HlM2fBlSUt5eYu9ulX112SOTCM83k9NtIXxD8xA/x8Xw==}
+    peerDependencies:
+      eslint: ^9.0.0 || ^10.0.0
+      lint-staged: ^15.0.0
+      prettier: ^3.0.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+      prettier:
+        optional: true
+
+  '@langri-sha/prettier@0.4.1':
+    resolution: {integrity: sha512-ojqUs3TEvLJzoMUkl8TnPsIR0PNINEOYkqoUCbZZuN6OmIStT4ipyQ9cRx1Mngq+Ixhb4qgXvQSuixOrnA8f6A==}
+    peerDependencies:
+      prettier: ^3.0.0
+
   '@langri-sha/projen-babel@0.4.1':
     resolution: {integrity: sha512-0umXYwxK4cTNQ46r1ibDkPIMRbbFSXIMU1e8KOChpixcqkRyhUCoTFUxDMU0Tv4Y0JnTb0WvU7UKpr4//sv7Sg==}
     peerDependencies:
@@ -2042,6 +1927,22 @@ packages:
     resolution: {integrity: sha512-FEfndygXhjo0eXdSfhaDSmR1AiTsdPvhF6q8hLNwJXUVIMlSduRWyuJ/eXXSlA5TtlZz/v36iG3N1cbeoP3Pxw==}
     peerDependencies:
       projen: ^0.86.0
+
+  '@langri-sha/schemastore-to-typescript@0.2.1':
+    resolution: {integrity: sha512-7G1JAwWocX6khKiJuaw4+nNhiyLR91bypy6W2mg+irBinv3VsXPskvhHlXePQdakUftb+14Yxv8F5ChsXXUbcQ==}
+    hasBin: true
+    peerDependencies:
+      projen: ^0.86.0
+
+  '@langri-sha/tsconfig@0.10.2':
+    resolution: {integrity: sha512-zug1yDt+F2by/TaympuK7bB17Lu21s86nk3WQqI+1s9kD50ge/1g/sbRh5HM0SBsFJigKv/sEr5hcRxl1n9PIA==}
+    peerDependencies:
+      typescript: ^5.5.0
+
+  '@langri-sha/vitest@0.1.2':
+    resolution: {integrity: sha512-xPnDewgnyExcakphpv6ZZg6JEc6NJo8gG9D5aNBcKctz/+GH0DlUOzhCGvaRQLVsXnk7emmVlwjhlv7enOWAdQ==}
+    peerDependencies:
+      vitest: ^2.0.0
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -2554,9 +2455,6 @@ packages:
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
-  '@types/debug@4.1.13':
-    resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
-
   '@types/eslint@9.6.1':
     resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
@@ -2617,9 +2515,6 @@ packages:
   '@types/minimatch@6.0.0':
     resolution: {integrity: sha512-zmPitbQ8+6zNutpwgcQuLcsEpn/Cj54Kbn7L5pX0Os5kdWplB7xPgEh/g+SWOB/qmows2gpuCaPyduq8ZZRnxA==}
     deprecated: This is a stub types definition. minimatch provides its own type definitions, so you do not need this installed.
-
-  '@types/ms@2.1.0':
-    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
   '@types/node@24.13.2':
     resolution: {integrity: sha512-fRa09kZTgu8o71KFcDjUFuc7F+dEbZYZmkI0mg5YBTRs0yMKjYHsq/c0urDKeDb+D5qVgXOdFcuu+DZPKOITwA==}
@@ -3407,10 +3302,6 @@ packages:
   commander@8.3.0:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
-
-  comment-parser@1.4.1:
-    resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
-    engines: {node: '>= 12.0.0'}
 
   comment-parser@1.4.6:
     resolution: {integrity: sha512-ObxuY6vnbWTN6Od72xfwN9DbzC7Y2vv8u1Soi9ahRKL37gb6y1qk6/dgjs+3JWuXJHWvsg3BXIwzd/rkmAwavg==}
@@ -5438,11 +5329,6 @@ packages:
   prettier-plugin-ini@1.3.0:
     resolution: {integrity: sha512-kX1KnPwITCTtYV0MTBZQKuFLxcNcbHOS9r7Ta1jHLLvRvZRTzHHqX0MEZMrCkedjLuxpQSgzr4aC5IRd+R3FPw==}
 
-  prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   prettier@3.8.3:
     resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
@@ -6230,11 +6116,6 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
-
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
@@ -8253,6 +8134,40 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
+  '@langri-sha/eslint-config@0.9.0(@types/eslint@9.6.1)(@typescript-eslint/utils@8.61.0(eslint@10.4.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.4.1)(prettier@3.8.3)(typescript@5.9.3)':
+    dependencies:
+      '@eslint/compat': 2.1.0(eslint@10.4.1)
+      '@eslint/js': 10.0.1(eslint@10.4.1)
+      eslint: 10.4.1
+      eslint-config-prettier: 10.1.8(eslint@10.4.1)
+      eslint-plugin-import-x: 4.16.2(@typescript-eslint/utils@8.61.0(eslint@10.4.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.4.1)
+      eslint-plugin-jsdoc: 62.9.0(eslint@10.4.1)
+      eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.4.1))(eslint@10.4.1)(prettier@3.8.3)
+      eslint-plugin-react: 7.37.5(eslint@10.4.1)
+      eslint-plugin-react-hooks: 7.1.1(eslint@10.4.1)
+      eslint-plugin-unicorn: 65.0.1(eslint@10.4.1)
+      globals: 17.6.0
+      typescript-eslint: 8.61.0(eslint@10.4.1)(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@types/eslint'
+      - '@typescript-eslint/utils'
+      - eslint-import-resolver-node
+      - prettier
+      - supports-color
+      - typescript
+
+  '@langri-sha/lint-staged@0.9.1(eslint@10.4.1)(lint-staged@15.5.2)(prettier@3.8.3)':
+    dependencies:
+      lint-staged: 15.5.2
+    optionalDependencies:
+      eslint: 10.4.1
+      prettier: 3.8.3
+
+  '@langri-sha/prettier@0.4.1(prettier@3.8.3)':
+    dependencies:
+      prettier: 3.8.3
+      prettier-plugin-ini: 1.3.0
+
   '@langri-sha/projen-babel@0.4.1(@babel/core@7.29.7)(@types/babel__core@7.20.5)(projen@0.86.5(constructs@10.6.0))':
     dependencies:
       '@babel/core': 7.29.7
@@ -8374,6 +8289,32 @@ snapshots:
     dependencies:
       '@schemastore/tsconfig': 0.0.12
       projen: 0.86.5(constructs@10.6.0)
+
+  '@langri-sha/schemastore-to-typescript@0.2.1(projen@0.86.5(constructs@10.6.0))':
+    dependencies:
+      commander: 12.1.0
+      debug: 4.4.3
+      env-paths: 3.0.0
+      es-main: 1.4.0
+      got: 14.4.7
+      json-schema-to-typescript: 15.0.2
+      keyv: 4.5.4
+      keyv-file: 5.3.3
+      projen: 0.86.5(constructs@10.6.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@langri-sha/tsconfig@0.10.2(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@langri-sha/vitest@0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))':
+    dependencies:
+      nock: 13.5.5
+      tempy: 1.0.1
+      vitest: 2.1.9(@types/node@24.13.2)(terser@5.48.0)
+    transitivePeerDependencies:
+      - supports-color
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
@@ -8820,10 +8761,6 @@ snapshots:
     dependencies:
       '@types/node': 24.13.2
 
-  '@types/debug@4.1.13':
-    dependencies:
-      '@types/ms': 2.1.0
-
   '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.9
@@ -8890,8 +8827,6 @@ snapshots:
   '@types/minimatch@6.0.0':
     dependencies:
       minimatch: 10.2.5
-
-  '@types/ms@2.1.0': {}
 
   '@types/node@24.13.2':
     dependencies:
@@ -9754,8 +9689,6 @@ snapshots:
 
   commander@8.3.0: {}
 
-  comment-parser@1.4.1: {}
-
   comment-parser@1.4.6: {}
 
   common-path-prefix@3.0.0: {}
@@ -10256,7 +10189,7 @@ snapshots:
     dependencies:
       '@package-json/types': 0.0.12
       '@typescript-eslint/types': 8.61.0
-      comment-parser: 1.4.1
+      comment-parser: 1.4.6
       debug: 4.4.3
       eslint: 10.4.1
       eslint-import-context: 0.1.9(unrs-resolver@1.12.2)
@@ -12160,8 +12093,6 @@ snapshots:
     dependencies:
       prettier: 3.8.3
 
-  prettier@3.3.3: {}
-
   prettier@3.8.3: {}
 
   pretty-error@4.0.0:
@@ -13015,8 +12946,6 @@ snapshots:
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
-
-  typescript@5.5.4: {}
 
   typescript@5.9.3: {}
 

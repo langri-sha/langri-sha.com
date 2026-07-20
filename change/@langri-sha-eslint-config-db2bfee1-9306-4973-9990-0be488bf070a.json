@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency typescript-eslint to v8.59.3",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

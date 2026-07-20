@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency eslint-plugin-import to v2.32.0",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

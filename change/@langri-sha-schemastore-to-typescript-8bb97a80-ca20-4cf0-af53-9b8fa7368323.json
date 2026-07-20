@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency es-main to v1.4.0",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

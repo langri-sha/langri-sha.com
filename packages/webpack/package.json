@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "workspace:*",
-    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/tsconfig": "^0.10.2",
     "@types/node": "24.13.2"
   },
   "peerDependencies": {

@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "@langri-sha/babel-test": "workspace:*",
-    "@langri-sha/tsconfig": "workspace:*",
-    "@langri-sha/vitest": "workspace:*",
+    "@langri-sha/tsconfig": "^0.10.2",
+    "@langri-sha/vitest": "^0.1.2",
     "@types/node": "24.13.2"
   },
   "peerDependencies": {

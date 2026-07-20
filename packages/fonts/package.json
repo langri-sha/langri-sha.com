@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@fontsource/cinzel-decorative": "5.2.8",
-    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/tsconfig": "^0.10.2",
     "@types/node": "24.13.2",
     "subset-font": "2.5.0"
   },
