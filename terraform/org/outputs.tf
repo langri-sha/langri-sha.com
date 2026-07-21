@@ -48,6 +48,16 @@ output "org_project_id" {
   value       = module.org.project_id
 }
 
+output "rashadnyk_folder" {
+  description = "Folder where workspace resources are created."
+  value       = module.rashadnyk.folder
+}
+
+output "rashadnyk_service_account_email" {
+  description = "Email of the Terrraform service account managing the workspace."
+  value       = module.rashadnyk.service_account_email
+}
+
 output "web_folder" {
   description = "Folder where workspace resources are created."
   value       = module.web.folder

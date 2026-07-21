@@ -87,6 +87,33 @@ module "public_dns" {
   ]
 }
 
+module "rashadnyk" {
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/workspace?ref=v0.11.0"
+
+  name = "rashadnyk"
+
+  admin_members   = module.org.admin_members
+  billing_account = module.org.billing_account
+  org_id          = module.org.org_id
+  org_project_id  = module.org.project_id
+
+  service_account_roles = [
+    "roles/billing.projectManager",
+    "roles/editor",
+    "roles/iam.serviceAccountAdmin",
+    "roles/resourcemanager.folderAdmin",
+    "roles/resourcemanager.projectCreator",
+    "roles/resourcemanager.projectDeleter",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/secretmanager.admin",
+  ]
+
+  depends_on = [
+    module.org,
+    module.terraform_admin,
+  ]
+}
+
 module "web" {
   source = "github.com/langri-sha/terraform-google-cloud-platform//modules/workspace?ref=v0.11.0"
 
