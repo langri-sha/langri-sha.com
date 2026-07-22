@@ -4,11 +4,11 @@ import * as React from 'react'
 import fragmentShaderSource from './default.frag'
 import vertexShaderSource from './default.vert'
 
-// One pass through the `drift` keyframes and back (48s, alternating), after
-// which the animation repeats exactly.
-const CYCLE = 96
+export interface SceneProps {
+  audioLevelRef: React.MutableRefObject<number>
+}
 
-export const Scene: React.FC = () => {
+export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {
@@ -72,18 +72,15 @@ export const Scene: React.FC = () => {
 
       const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
       const timeLocation = gl.getUniformLocation(program, 'u_time')
+      const audioLevelLocation = gl.getUniformLocation(program, 'u_audioLevel')
 
       const render = (now: DOMHighResTimeStamp) => {
         resize(canvas)
 
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height)
-        // Wrapped to the animation cycle so shader float precision holds up
-        // as the clock grows.
-        gl.uniform1f(
-          timeLocation,
-          reducedMotion.matches ? 0 : (now / 1000) % CYCLE,
-        )
+        gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000)
+        gl.uniform1f(audioLevelLocation, audioLevelRef.current)
         gl.drawArrays(gl.TRIANGLES, 0, 3)
 
         frame = requestAnimationFrame(render)
@@ -125,7 +122,7 @@ export const Scene: React.FC = () => {
       canvas.removeEventListener('webglcontextrestored', handleContextRestored)
       dispose?.()
     }
-  }, [])
+  }, [audioLevelRef])
 
   return <Canvas ref={canvasRef} />
 }
@@ -178,11 +175,17 @@ const createProgram = (
   gl.deleteProgram(program)
 }
 
+// Raymarched clouds cost far more per pixel than the old 2D gradient. Render at
+// device resolution but cap the pixel ratio, with a scale knob to trade
+// sharpness for performance if a machine struggles.
+const RENDER_SCALE = 1
+
 const resize = (canvas: HTMLCanvasElement) => {
   const { width, height, clientWidth, clientHeight } = canvas
 
-  const displayWidth = Math.floor(clientWidth * window.devicePixelRatio)
-  const displayHeight = Math.floor(clientHeight * window.devicePixelRatio)
+  const scale = Math.min(window.devicePixelRatio, 2) * RENDER_SCALE
+  const displayWidth = Math.floor(clientWidth * scale)
+  const displayHeight = Math.floor(clientHeight * scale)
 
   if (width !== displayWidth || height !== displayHeight) {
     canvas.width = displayWidth

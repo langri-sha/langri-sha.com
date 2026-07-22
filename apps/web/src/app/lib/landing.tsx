@@ -12,6 +12,7 @@ import { Header } from './header'
 
 export const Landing: React.FC = () => {
   const [playing, setPlaying] = React.useState(false)
+  const audioLevelRef = React.useRef(0)
 
   return (
     <React.Fragment>
@@ -20,9 +21,9 @@ export const Landing: React.FC = () => {
         <Root>
           {/* The scene paints first so the header, which follows it in the
               flow, sits on top without an isolating z-index. */}
-          <Scene />
+          <Scene audioLevelRef={audioLevelRef} />
           <Header />
-          {playing ? <Drone /> : null}
+          {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
           <Play
             playing={playing}
             onToggle={() => setPlaying((current) => !current)}
