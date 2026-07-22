@@ -1,8 +1,8 @@
 // Volumetric clouds drifting low across a naturalistic daytime sky.
-// A raymarched fbm density field, adapted for WebGL1 (GLSL ES 1.00) from
-// Inigo Quilez's "Clouds" (https://www.shadertoy.com/view/XslGRr) — the
-// texture-based noise is replaced with a self-contained procedural hash so
-// the scene needs no asset loading.
+// A low deck of fractal (fBm) noise, raymarched front-to-back under an open
+// sky — the standard procedural-cloud approach (e.g. GPU Gems 3, ch. 16),
+// written from scratch for WebGL1 (GLSL ES 1.00) with self-contained hash
+// noise. No texture assets, and not derived from any specific reference shader.
 
 #ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
@@ -22,13 +22,6 @@ const vec3 WIND = vec3(0.006, 0.0, -0.08);
 const vec3 CLOUD_ORIGIN = vec3(17.0, 6.0, 11.0);
 const vec3 SUNDIR = normalize(vec3(0.7, 0.2, -0.45));
 const float CYCLE_SECONDS = 256.0;
-
-// Rotation between fbm octaves to keep the noise from lining up on the axes.
-const mat3 M = mat3(
-  0.00, 0.80, 0.60,
-  -0.80, 0.36, -0.48,
-  -0.60, -0.48, 0.64
-);
 
 float hash(vec3 p) {
   p = fract(p * 0.3183099 + vec3(0.1, 0.2, 0.3));
@@ -62,14 +55,23 @@ float noise(vec3 x) {
   );
 }
 
+// Decorrelate successive fbm octaves by cycling the axes and offsetting, so the
+// value-noise lattice never lines up between scales — a generic alternative to
+// a fixed rotation matrix.
+vec3 twist(vec3 p) {
+  return p.yzx * 2.1 + vec3(19.1, 33.4, 47.2);
+}
+
 float fbm(vec3 p) {
   float f = 0.5000 * noise(p);
-  p = M * p * 2.02;
+  p = twist(p);
   f += 0.2500 * noise(p);
-  p = M * p * 2.03;
+  p = twist(p);
   f += 0.1250 * noise(p);
-  p = M * p * 2.01;
+  p = twist(p);
   f += 0.0625 * noise(p);
+  p = twist(p);
+  f += 0.0312 * noise(p);
   return f;
 }
 
@@ -85,9 +87,9 @@ float cloud(vec3 p) {
 float cloudLight(vec3 p) {
   vec3 q = p * 1.3 - WIND * u_time + CLOUD_ORIGIN;
   float f = 0.5 * noise(q);
-  q = M * q * 2.02;
+  q = twist(q);
   f += 0.25 * noise(q);
-  return clamp(2.8 * (f * 1.25) - 1.7 - 2.2 * p.y, 0.0, 1.0);
+  return clamp(2.8 * (f * 1.3) - 1.7 - 2.2 * p.y, 0.0, 1.0);
 }
 
 // Front-to-back raymarch through the deck, lighting each sample by how much
@@ -147,11 +149,12 @@ vec3 render(vec3 ro, vec3 rd) {
   return col;
 }
 
-mat3 setCamera(vec3 ro, vec3 ta) {
-  vec3 cw = normalize(ta - ro);
-  vec3 cu = normalize(cross(cw, vec3(0.0, 1.0, 0.0)));
-  vec3 cv = normalize(cross(cu, cw));
-  return mat3(cu, cv, cw);
+// Standard world-up look-at basis (right, up, forward) as matrix columns.
+mat3 lookAt(vec3 ro, vec3 ta) {
+  vec3 forward = normalize(ta - ro);
+  vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(right, forward);
+  return mat3(right, up, forward);
 }
 
 void main() {
@@ -162,7 +165,7 @@ void main() {
   float yaw = 0.06 * sin(6.28318 * u_time / CYCLE_SECONDS);
   vec3 ro = vec3(0.0, 0.0, 0.0);
   vec3 ta = vec3(sin(yaw), 0.35, cos(yaw));
-  mat3 ca = setCamera(ro, ta);
+  mat3 ca = lookAt(ro, ta);
   vec3 rd = ca * normalize(vec3(p, 1.5));
 
   vec3 col = render(ro, rd);
