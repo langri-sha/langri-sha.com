@@ -34,5 +34,5 @@ jobs:
       - name: Run checks
         uses: langri-sha/github/actions/terraform@v0.10.2
         with:
-          terraform-version: 1.15.5
+          terraform-version: 1.15.8
           working-directory: ${{ matrix.working-directory }}
