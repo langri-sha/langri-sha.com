@@ -17,24 +17,6 @@ steps:
     waitFor: ['-']
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
-    id: 'Initialize org configuration'
-    dir: /workspace/terraform/org
-    args: ['init', '-backend=false']
-    waitFor: ['Configure permissions', 'Build image']
-
-  - name: 'gcr.io/$PROJECT_ID/terraform'
-    id: 'Validate org configuration'
-    dir: /workspace/terraform/org
-    args: ['validate']
-    waitFor: ['Initialize org configuration']
-
-  - name: 'gcr.io/$PROJECT_ID/terraform'
-    id: 'Format org configuration'
-    dir: /workspace/terraform/org
-    args: ['fmt', '-recursive', '-diff', '-check']
-    waitFor: ['Validate org configuration']
-
-  - name: 'gcr.io/$PROJECT_ID/terraform'
     id: 'Initialize web configuration'
     dir: /workspace/terraform/web
     args: ['init', '-backend=false']
