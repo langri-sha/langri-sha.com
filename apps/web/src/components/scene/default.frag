@@ -79,7 +79,7 @@ float fbm(vec3 p) {
 // of broken cloud rather than fog.
 float cloud(vec3 p) {
   vec3 q = p * 1.3 - WIND * u_time + CLOUD_ORIGIN;
-  return clamp(2.8 * fbm(q) - 1.7 - 2.2 * p.y, 0.0, 1.0);
+  return clamp(3.0 * fbm(q) - 2.05 - 2.4 * p.y, 0.0, 1.0);
 }
 
 // A two-octave estimate of the same field, used only for the sun-light sample
@@ -89,7 +89,7 @@ float cloudLight(vec3 p) {
   float f = 0.5 * noise(q);
   q = twist(q);
   f += 0.25 * noise(q);
-  return clamp(2.8 * (f * 1.3) - 1.7 - 2.2 * p.y, 0.0, 1.0);
+  return clamp(3.0 * (f * 1.3) - 2.05 - 2.4 * p.y, 0.0, 1.0);
 }
 
 // Front-to-back raymarch through the deck, lighting each sample by how much
