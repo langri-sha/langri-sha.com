@@ -22,7 +22,6 @@ jobs:
       matrix:
         working-directory:
           - terraform/web
-          - terraform/org
 
     defaults:
       run:
