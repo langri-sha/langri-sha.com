@@ -23,6 +23,15 @@ const vec3 CLOUD_ORIGIN = vec3(17.0, 6.0, 11.0);
 const vec3 SUNDIR = normalize(vec3(0.7, 0.2, -0.45));
 const float CYCLE_SECONDS = 256.0;
 
+// A tear in digital space hanging above the deck, drawing real cloud matter up
+// into itself. TEAR_POS/TEAR_RADIUS are world-space (where the suction acts on
+// the density field); TEAR_CENTER/TEAR_SIZE are the same rift in screen (p)
+// coordinates, where the black void is drawn.
+const vec3 TEAR_POS = vec3(0.0, 1.9, 6.4);
+const float TEAR_RADIUS = 0.5;
+const vec2 TEAR_CENTER = vec2(0.0, -0.07);
+const float TEAR_SIZE = 0.11;
+
 float hash(vec3 p) {
   p = fract(p * 0.3183099 + vec3(0.1, 0.2, 0.3));
   p *= 17.0;
@@ -77,19 +86,45 @@ float fbm(vec3 p) {
 
 // Cloud density: an fbm slab that thins out with height, so it reads as a deck
 // of broken cloud rather than fog.
+// Displace a sample point into the tear's intake: inside the column beneath
+// the rift, points sample cloud from lower down — so deck matter appears drawn
+// upward — and swirl around the column axis, forming a helical stream that
+// narrows as it rises. Returns the displaced point in xyz and the pull
+// strength in w, which cloud() reuses to keep the stream fed.
+vec4 intake(vec3 p) {
+  vec2 h = p.xz - TEAR_POS.xz;
+  float column = exp(-0.35 * dot(h, h));
+  float rise = clamp((p.y + 0.4) / (TEAR_POS.y + 0.4), 0.0, 1.0);
+  float pull = column * rise;
+
+  float ang = pull * (9.0 + 0.8 * sin(6.28318 * u_time / 16.0));
+  float s = sin(ang);
+  float c = cos(ang);
+  h = vec2(c * h.x - s * h.y, s * h.x + c * h.y);
+
+  return vec4(TEAR_POS.x + h.x, p.y - 2.5 * pull, TEAR_POS.z + h.y, pull);
+}
+
 float cloud(vec3 p) {
-  vec3 q = p * 1.3 - WIND * u_time + CLOUD_ORIGIN;
-  return clamp(3.0 * fbm(q) - 2.05 - 2.4 * p.y, 0.0, 1.0);
+  vec4 ps = intake(p);
+  vec3 q = ps.xyz * 1.3 - WIND * u_time + CLOUD_ORIGIN;
+  float den =
+      clamp(3.0 * fbm(q) - 2.05 - 2.4 * ps.y + 0.45 * ps.w, 0.0, 1.0);
+
+  // Matter dissolves as it crosses into the void.
+  return den * smoothstep(TEAR_RADIUS * 0.7, TEAR_RADIUS * 1.4,
+                          distance(p, TEAR_POS));
 }
 
 // A two-octave estimate of the same field, used only for the sun-light sample
 // where fine detail is invisible — half the noise cost of a full lookup.
 float cloudLight(vec3 p) {
-  vec3 q = p * 1.3 - WIND * u_time + CLOUD_ORIGIN;
+  vec4 ps = intake(p);
+  vec3 q = ps.xyz * 1.3 - WIND * u_time + CLOUD_ORIGIN;
   float f = 0.5 * noise(q);
   q = twist(q);
   f += 0.25 * noise(q);
-  return clamp(3.0 * (f * 1.3) - 2.05 - 2.4 * p.y, 0.0, 1.0);
+  return clamp(3.0 * (f * 1.3) - 2.05 - 2.4 * ps.y + 0.45 * ps.w, 0.0, 1.0);
 }
 
 // Front-to-back raymarch through the deck, lighting each sample by how much
@@ -101,10 +136,14 @@ vec4 raymarch(vec3 ro, vec3 rd, vec3 sky) {
   vec4 sum = vec4(0.0);
   float t = 0.04 * hash21(gl_FragCoord.xy);
 
+  // Rays aimed near the tear march up to its height so the rising stream is
+  // covered; everything else stops at the deck top, keeping open sky cheap.
+  float top = dot(rd, normalize(TEAR_POS - ro)) > 0.9 ? TEAR_POS.y + 0.5 : 0.6;
+
   for (int i = 0; i < 110; i++) {
     vec3 pos = ro + t * rd;
 
-    if (pos.y < -2.0 || pos.y > 0.6 || t > 32.0 || sum.a > 0.99) {
+    if (pos.y < -2.0 || pos.y > top || t > 32.0 || sum.a > 0.99) {
       break;
     }
 
@@ -131,7 +170,27 @@ vec4 raymarch(vec3 ro, vec3 rd, vec3 sky) {
   return clamp(sum, 0.0, 1.0);
 }
 
-vec3 render(vec3 ro, vec3 rd) {
+// The rift itself: a black void with a faint flickering digital rim, painted
+// into the sky; the volumetric stream rises across it and dissolves inside.
+vec3 tear(vec3 col, vec2 p, float time) {
+  vec2 c = p - TEAR_CENTER;
+  float r = length(c);
+
+  col *= smoothstep(TEAR_SIZE, TEAR_SIZE * 1.5, r);
+
+  float ring = smoothstep(TEAR_SIZE * 1.6, TEAR_SIZE, r) *
+               smoothstep(TEAR_SIZE * 0.5, TEAR_SIZE, r);
+  float a = atan(c.y, c.x);
+  vec3 digital = mix(
+    vec3(0.15, 0.9, 1.0),
+    vec3(1.0, 0.1, 0.7),
+    0.5 + 0.5 * sin(24.0 * a + time * 4.0)
+  );
+  col += digital * ring * 0.5;
+  return col;
+}
+
+vec3 render(vec3 ro, vec3 rd, vec2 p) {
   float sun = clamp(dot(SUNDIR, rd), 0.0, 1.0);
 
   vec3 col = mix(
@@ -142,7 +201,10 @@ vec3 render(vec3 ro, vec3 rd) {
   col += vec3(1.0, 0.75, 0.5) * 0.3 * pow(sun, 6.0);
   col += vec3(1.0, 0.9, 0.75) * 0.2 * pow(sun, 200.0);
 
+  // Clouds fade toward the natural sky; the rift is painted behind them, so
+  // the deck and the rising stream occlude the void and dissolve into it.
   vec4 clouds = raymarch(ro, rd, col);
+  col = tear(col, p, u_time);
   col = col * (1.0 - clouds.a) + clouds.rgb;
 
   col += vec3(0.2, 0.12, 0.06) * pow(sun, 3.0);
@@ -168,7 +230,7 @@ void main() {
   mat3 ca = lookAt(ro, ta);
   vec3 rd = ca * normalize(vec3(p, 1.5));
 
-  vec3 col = render(ro, rd);
+  vec3 col = render(ro, rd, p);
 
   gl_FragColor = vec4(pow(clamp(col, 0.0, 1.0), vec3(0.95)), 1.0);
 }
