@@ -1,8 +1,6 @@
-// Volumetric clouds drifting low across a naturalistic daytime sky.
-// A low deck of fractal (fBm) noise, raymarched front-to-back under an open
-// sky — the standard procedural-cloud approach (e.g. GPU Gems 3, ch. 16),
-// written from scratch for WebGL1 (GLSL ES 1.00) with self-contained hash
-// noise. No texture assets, and not derived from any specific reference shader.
+// A clean, graphic cosmic rift. This deliberately avoids a ray-marched noise
+// field: the important silhouette is made from smooth analytic shapes so it
+// stays legible at every resolution instead of turning into static.
 
 #ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
@@ -13,30 +11,7 @@ precision mediump float;
 uniform vec2 u_resolution;
 uniform float u_time;
 
-// Drift the noise field toward the camera so the deck streams forward (as if
-// flying over it) instead of sliding sideways. Wrapped with the JS time (CYCLE
-// in index.tsx) so the camera yaw stays seamless.
-const vec3 WIND = vec3(-0.006, 0.0, 0.08);
-// Sample the noise away from its origin, where the hash clusters into a dense
-// blob — otherwise the deck loads as fog before the wind scrolls past it.
-const vec3 CLOUD_ORIGIN = vec3(17.0, 6.0, 11.0);
-const vec3 SUNDIR = normalize(vec3(0.7, 0.2, -0.45));
-const float CYCLE_SECONDS = 256.0;
-
-// A tear in digital space hanging above the deck, drawing real cloud matter up
-// into itself. TEAR_POS/TEAR_RADIUS are world-space (where the suction acts on
-// the density field); TEAR_CENTER/TEAR_SIZE are the same rift in screen (p)
-// coordinates, where the black void is drawn.
-const vec3 TEAR_POS = vec3(0.0, 1.9, 6.4);
-const float TEAR_RADIUS = 0.5;
-const vec2 TEAR_CENTER = vec2(0.0, -0.07);
-const float TEAR_SIZE = 0.11;
-
-float hash(vec3 p) {
-  p = fract(p * 0.3183099 + vec3(0.1, 0.2, 0.3));
-  p *= 17.0;
-  return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
-}
+#define PI 3.14159265
 
 float hash21(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -44,193 +19,100 @@ float hash21(vec2 p) {
   return fract(p.x * p.y);
 }
 
-float noise(vec3 x) {
-  vec3 p = floor(x);
-  vec3 f = fract(x);
-  f = f * f * (3.0 - 2.0 * f);
-
-  return mix(
-    mix(
-      mix(hash(p + vec3(0.0, 0.0, 0.0)), hash(p + vec3(1.0, 0.0, 0.0)), f.x),
-      mix(hash(p + vec3(0.0, 1.0, 0.0)), hash(p + vec3(1.0, 1.0, 0.0)), f.x),
-      f.y
-    ),
-    mix(
-      mix(hash(p + vec3(0.0, 0.0, 1.0)), hash(p + vec3(1.0, 0.0, 1.0)), f.x),
-      mix(hash(p + vec3(0.0, 1.0, 1.0)), hash(p + vec3(1.0, 1.0, 1.0)), f.x),
-      f.y
-    ),
-    f.z
-  );
+// Sparse, crisp stars rather than full-screen grain. A single star can occupy
+// each cell, and only a small, deterministic subset of cells are lit.
+float stars(vec2 p, float scale) {
+  vec2 cell = floor(p * scale);
+  vec2 f = fract(p * scale) - 0.5;
+  float seed = hash21(cell);
+  vec2 offset = vec2(hash21(cell + 4.7), hash21(cell + 9.2)) - 0.5;
+  float d = length(f - offset * 0.72);
+  float point = 1.0 - smoothstep(0.008, 0.025, d);
+  return point * step(0.965, seed) * (0.55 + 0.45 * sin(u_time * (0.7 + seed) + seed * 22.0));
 }
 
-// Decorrelate successive fbm octaves by cycling the axes and offsetting, so the
-// value-noise lattice never lines up between scales — a generic alternative to
-// a fixed rotation matrix.
-vec3 twist(vec3 p) {
-  return p.yzx * 2.1 + vec3(19.1, 33.4, 47.2);
+// The seam of the tear is intentionally irregular, but its motion is slow and
+// continuous: it reads as stressed spacetime, not procedural turbulence.
+float seam(vec2 p) {
+  return 0.030 * sin(p.y * 7.0 + 0.35 * sin(u_time * 0.25)) +
+         0.018 * sin(p.y * 17.0 - u_time * 0.18);
 }
 
-float fbm(vec3 p) {
-  float f = 0.5000 * noise(p);
-  p = twist(p);
-  f += 0.2500 * noise(p);
-  p = twist(p);
-  f += 0.1250 * noise(p);
-  p = twist(p);
-  f += 0.0625 * noise(p);
-  p = twist(p);
-  f += 0.0312 * noise(p);
-  return f;
+float riftMask(vec2 p, out float edgeDistance) {
+  float y = abs(p.y);
+  float taper = smoothstep(0.98, 0.14, y);
+  float halfWidth = mix(0.012, 0.105, taper * taper);
+  edgeDistance = abs(p.x - seam(p)) - halfWidth;
+  float capped = max(edgeDistance, y - 0.92);
+  return 1.0 - smoothstep(-0.008, 0.012, capped);
 }
 
-// Cloud density: an fbm slab that thins out with height, so it reads as a deck
-// of broken cloud rather than fog.
-// Displace a sample point into the tear's intake: inside the column beneath
-// the rift, points sample cloud from lower down — so deck matter appears drawn
-// upward — and swirl around the column axis, forming a helical stream that
-// narrows as it rises. Returns the displaced point in xyz and the pull
-// strength in w, which cloud() reuses to keep the stream fed.
-vec4 intake(vec3 p) {
-  vec2 h = p.xz - TEAR_POS.xz;
-  float column = exp(-0.35 * dot(h, h));
-  float rise = clamp((p.y + 0.4) / (TEAR_POS.y + 0.4), 0.0, 1.0);
-  float pull = column * rise;
-
-  float ang = pull * (9.0 + 0.8 * sin(6.28318 * u_time / 16.0));
-  float s = sin(ang);
-  float c = cos(ang);
-  h = vec2(c * h.x - s * h.y, s * h.x + c * h.y);
-
-  return vec4(TEAR_POS.x + h.x, p.y - 2.5 * pull, TEAR_POS.z + h.y, pull);
+// Smooth curling bands behind the rupture. They supply scale and motion without
+// covering the whole screen in texture.
+vec3 accretion(vec2 p) {
+  float r = length(p * vec2(0.82, 1.18));
+  float a = atan(p.y, p.x);
+  float spiral = a + 2.8 * log(r + 0.16) - u_time * 0.13;
+  float bandA = exp(-36.0 * pow(r - (0.43 + 0.050 * sin(spiral * 2.0)), 2.0));
+  float bandB = exp(-62.0 * pow(r - (0.62 + 0.035 * sin(spiral * 3.0 + 1.4)), 2.0));
+  float sweep = smoothstep(-0.95, 0.7, sin(a - 0.45));
+  float cut = smoothstep(1.20, 0.20, r);
+  vec3 hot = vec3(1.15, 0.18, 0.045) * bandA;
+  vec3 electric = vec3(0.06, 0.42, 1.28) * bandB;
+  return (hot + electric) * cut * (0.18 + 0.82 * sweep);
 }
 
-float cloud(vec3 p) {
-  vec4 ps = intake(p);
-  vec3 q = ps.xyz * 1.3 - WIND * u_time + CLOUD_ORIGIN;
-  float den =
-      clamp(3.0 * fbm(q) - 2.05 - 2.4 * ps.y + 0.45 * ps.w, 0.0, 1.0);
+vec3 background(vec2 p) {
+  float vignette = dot(p, p);
+  vec3 sky = mix(vec3(0.006, 0.008, 0.035), vec3(0.018, 0.035, 0.095),
+                 exp(-1.4 * vignette));
 
-  // Matter dissolves as it crosses into the void.
-  return den * smoothstep(TEAR_RADIUS * 0.7, TEAR_RADIUS * 1.4,
-                          distance(p, TEAR_POS));
-}
+  // Two broad, low-frequency veils give the void depth without noise.
+  float blueVeil = exp(-7.0 * pow(p.y + 0.34 + 0.11 * sin(p.x * 2.1), 2.0));
+  float redVeil = exp(-10.0 * pow(p.y - 0.48 - 0.08 * sin(p.x * 3.0), 2.0));
+  sky += vec3(0.015, 0.075, 0.21) * blueVeil * (0.25 + 0.75 * exp(-p.x * p.x));
+  sky += vec3(0.11, 0.009, 0.045) * redVeil * 0.45;
 
-// A two-octave estimate of the same field, used only for the sun-light sample
-// where fine detail is invisible — half the noise cost of a full lookup.
-float cloudLight(vec3 p) {
-  vec4 ps = intake(p);
-  vec3 q = ps.xyz * 1.3 - WIND * u_time + CLOUD_ORIGIN;
-  float f = 0.5 * noise(q);
-  q = twist(q);
-  f += 0.25 * noise(q);
-  return clamp(3.0 * (f * 1.3) - 2.05 - 2.4 * ps.y + 0.45 * ps.w, 0.0, 1.0);
-}
-
-// Front-to-back raymarch through the deck, lighting each sample by how much
-// denser it is toward the sun (self-shadowing) and fading it into the sky with
-// distance (aerial perspective). The deck only occupies a low slab, so rays are
-// dropped once they climb out of it (SLAB_TOP) or sink through the floor, empty
-// space is skipped in coarse steps, and only cloud interiors are sampled finely.
-vec4 raymarch(vec3 ro, vec3 rd, vec3 sky) {
-  vec4 sum = vec4(0.0);
-  float t = 0.04 * hash21(gl_FragCoord.xy);
-
-  // Rays aimed near the tear march up to its height so the rising stream is
-  // covered; everything else stops at the deck top, keeping open sky cheap.
-  float top = dot(rd, normalize(TEAR_POS - ro)) > 0.9 ? TEAR_POS.y + 0.5 : 0.6;
-
-  for (int i = 0; i < 110; i++) {
-    vec3 pos = ro + t * rd;
-
-    if (pos.y < -2.0 || pos.y > top || t > 32.0 || sum.a > 0.99) {
-      break;
-    }
-
-    float den = cloud(pos);
-
-    if (den > 0.01) {
-      float dif =
-        clamp((den - cloudLight(pos + 0.35 * SUNDIR)) / 0.35, 0.0, 1.0);
-      vec3 lin = vec3(0.55, 0.65, 0.8) * 1.1 + vec3(1.0, 0.75, 0.45) * 1.7 * dif;
-      vec3 base = mix(vec3(1.0, 0.97, 0.92), vec3(0.38, 0.42, 0.5), den);
-
-      vec4 col = vec4(base * lin, den);
-      col.rgb = mix(col.rgb, sky, 1.0 - exp(-0.0018 * t * t));
-      col.a *= 0.5;
-      col.rgb *= col.a;
-      sum += col * (1.0 - sum.a);
-
-      t += max(0.05, 0.02 * t);
-    } else {
-      t += max(0.18, 0.03 * t);
-    }
-  }
-
-  return clamp(sum, 0.0, 1.0);
-}
-
-// The rift itself: a black void with a faint flickering digital rim, painted
-// into the sky; the volumetric stream rises across it and dissolves inside.
-vec3 tear(vec3 col, vec2 p, float time) {
-  vec2 c = p - TEAR_CENTER;
-  float r = length(c);
-
-  col *= smoothstep(TEAR_SIZE, TEAR_SIZE * 1.5, r);
-
-  float ring = smoothstep(TEAR_SIZE * 1.6, TEAR_SIZE, r) *
-               smoothstep(TEAR_SIZE * 0.5, TEAR_SIZE, r);
-  float a = atan(c.y, c.x);
-  vec3 digital = mix(
-    vec3(0.15, 0.9, 1.0),
-    vec3(1.0, 0.1, 0.7),
-    0.5 + 0.5 * sin(24.0 * a + time * 4.0)
-  );
-  col += digital * ring * 0.5;
-  return col;
-}
-
-vec3 render(vec3 ro, vec3 rd, vec2 p) {
-  float sun = clamp(dot(SUNDIR, rd), 0.0, 1.0);
-
-  vec3 col = mix(
-    vec3(0.32, 0.55, 0.85),
-    vec3(0.78, 0.85, 0.92),
-    pow(1.0 - clamp(rd.y, 0.0, 1.0), 6.0)
-  );
-  col += vec3(1.0, 0.75, 0.5) * 0.3 * pow(sun, 6.0);
-  col += vec3(1.0, 0.9, 0.75) * 0.2 * pow(sun, 200.0);
-
-  // Clouds fade toward the natural sky; the rift is painted behind them, so
-  // the deck and the rising stream occlude the void and dissolve into it.
-  vec4 clouds = raymarch(ro, rd, col);
-  col = tear(col, p, u_time);
-  col = col * (1.0 - clouds.a) + clouds.rgb;
-
-  col += vec3(0.2, 0.12, 0.06) * pow(sun, 3.0);
-  return col;
-}
-
-// Standard world-up look-at basis (right, up, forward) as matrix columns.
-mat3 lookAt(vec3 ro, vec3 ta) {
-  vec3 forward = normalize(ta - ro);
-  vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
-  vec3 up = cross(right, forward);
-  return mat3(right, up, forward);
+  float starfield = stars(p + vec2(u_time * 0.002, 0.0), 21.0) +
+                    stars(p * 1.7 - vec2(u_time * 0.001, 0.0), 34.0) * 0.65;
+  return sky + vec3(0.52, 0.70, 1.0) * starfield;
 }
 
 void main() {
   vec2 p = (2.0 * gl_FragCoord.xy - u_resolution.xy) / u_resolution.y;
+  p.y -= 0.04;
 
-  // A gentle yaw keeps the sky alive; pitched slightly up so the cloud deck
-  // sits low and the open sky fills the frame above it.
-  float yaw = 0.06 * sin(6.28318 * u_time / CYCLE_SECONDS);
-  vec3 ro = vec3(0.0, 0.0, 0.0);
-  vec3 ta = vec3(sin(yaw), 0.35, cos(yaw));
-  mat3 ca = lookAt(ro, ta);
-  vec3 rd = ca * normalize(vec3(p, 1.5));
+  // Weak lensing pulls distant light into a curve around the rupture.
+  vec2 lensVector = p - vec2(0.0, 0.02);
+  float lensFalloff = exp(-3.0 * dot(lensVector, lensVector));
+  vec2 warped = p + normalize(lensVector + vec2(0.0001, 0.0)) * 0.055 * lensFalloff;
 
-  vec3 col = render(ro, rd, p);
+  float edgeDistance;
+  float voidMask = riftMask(p, edgeDistance);
+  vec3 col = background(warped);
+  col += accretion(warped);
 
-  gl_FragColor = vec4(pow(clamp(col, 0.0, 1.0), vec3(0.95)), 1.0);
+  float yFade = smoothstep(0.98, 0.14, abs(p.y));
+  float nearEdge = exp(-abs(edgeDistance) * 42.0) * yFade;
+  float outerGlow = exp(-max(edgeDistance, 0.0) * 9.0) * yFade;
+  float flicker = 0.72 + 0.28 * sin(p.y * 36.0 - u_time * 1.6);
+
+  // Split-color ionisation makes both lips of the void feel physically torn.
+  float side = step(seam(p), p.x);
+  vec3 leftFire = vec3(1.35, 0.095, 0.018);
+  vec3 rightFire = vec3(0.025, 0.43, 1.55);
+  vec3 rim = mix(leftFire, rightFire, side);
+  col += rim * nearEdge * (1.6 + 1.4 * flicker);
+  col += mix(leftFire, rightFire, 0.5) * outerGlow * 0.20;
+
+  // A black core with just enough reflected, dying light to preserve the
+  // contour; applying it last gives a genuinely bottomless central tear.
+  col = mix(col, vec3(0.0002, 0.0004, 0.0012), voidMask);
+  col += rim * nearEdge * voidMask * 0.20;
+
+  // Filmic compression retains the bright rim's colour instead of clipping it
+  // to flat white, then a light gamma lift preserves the deep-space blacks.
+  col = col / (1.0 + col);
+  col = pow(col, vec3(0.82));
+  gl_FragColor = vec4(col, 1.0);
 }
