@@ -16,7 +16,7 @@ uniform float u_time;
 // Drift the noise field toward the camera so the deck streams forward (as if
 // flying over it) instead of sliding sideways. Wrapped with the JS time (CYCLE
 // in index.tsx) so the camera yaw stays seamless.
-const vec3 WIND = vec3(0.006, 0.0, -0.08);
+const vec3 WIND = vec3(-0.006, 0.0, 0.08);
 // Sample the noise away from its origin, where the hash clusters into a dense
 // blob — otherwise the deck loads as fog before the wind scrolls past it.
 const vec3 CLOUD_ORIGIN = vec3(17.0, 6.0, 11.0);
