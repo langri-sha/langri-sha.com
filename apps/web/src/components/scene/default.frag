@@ -10,6 +10,7 @@ precision mediump float;
 
 uniform vec2 u_resolution;
 uniform float u_time;
+uniform float u_audioLevel;
 
 #define PI 3.14159265
 
@@ -17,6 +18,18 @@ float hash21(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
   p += dot(p, p + 45.32);
   return fract(p.x * p.y);
+}
+
+// A handful of very short, independently chosen rift segments misalign at a
+// time. The time gate is intentionally sparse, so this reads as a fault in the
+// tear rather than a layer of animated noise.
+float glitchBurst(float y) {
+  float tick = floor(u_time * 0.65);
+  float phase = fract(u_time * 0.65);
+  float event = step(0.77, hash21(vec2(tick, 1.7)));
+  float duration = 1.0 - smoothstep(0.035, 0.10, phase);
+  float segment = step(0.56, hash21(vec2(tick, floor((y + 1.0) * 12.0))));
+  return event * duration * segment;
 }
 
 // Sparse, crisp stars rather than full-screen grain. A single star can occupy
@@ -34,8 +47,13 @@ float stars(vec2 p, float scale) {
 // The seam of the tear is intentionally irregular, but its motion is slow and
 // continuous: it reads as stressed spacetime, not procedural turbulence.
 float seam(vec2 p) {
+  float tick = floor(u_time * 0.65);
+  float lane = floor((p.y + 1.0) * 12.0);
+  float direction = hash21(vec2(tick, lane)) * 2.0 - 1.0;
   return 0.030 * sin(p.y * 7.0 + 0.35 * sin(u_time * 0.25)) +
-         0.018 * sin(p.y * 17.0 - u_time * 0.18);
+         0.018 * sin(p.y * 17.0 - u_time * 0.18) +
+         u_audioLevel * 0.004 * sin(p.y * 58.0 - u_time * 13.0) +
+         glitchBurst(p.y) * direction * 0.028;
 }
 
 float riftMask(vec2 p, out float edgeDistance) {
@@ -82,6 +100,10 @@ void main() {
   vec2 p = (2.0 * gl_FragCoord.xy - u_resolution.xy) / u_resolution.y;
   p.y -= 0.04;
 
+  // Audio only agitates the seam itself (in seam()), leaving the surrounding
+  // accretion aura absolutely still and making each pulse feel contained.
+  float audioPulse = min(u_audioLevel, 1.0);
+
   // Weak lensing pulls distant light into a curve around the rupture.
   vec2 lensVector = p - vec2(0.0, 0.02);
   float lensFalloff = exp(-3.0 * dot(lensVector, lensVector));
@@ -102,7 +124,12 @@ void main() {
   vec3 leftFire = vec3(1.35, 0.095, 0.018);
   vec3 rightFire = vec3(0.025, 0.43, 1.55);
   vec3 rim = mix(leftFire, rightFire, side);
-  col += rim * nearEdge * (1.6 + 1.4 * flicker);
+  float travellingPulse = 0.5 + 0.5 * sin(p.y * 58.0 - u_time * 13.0);
+  float glitchTrace = glitchBurst(p.y) *
+                      (1.0 - smoothstep(0.012, 0.045, abs(edgeDistance)));
+  col += rim * nearEdge *
+         (1.6 + 1.4 * flicker + audioPulse * travellingPulse * 0.28);
+  col += rim * glitchTrace * 0.65;
   col += mix(leftFire, rightFire, 0.5) * outerGlow * 0.20;
 
   // A black core with just enough reflected, dying light to preserve the

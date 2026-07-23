@@ -8,7 +8,11 @@ import vertexShaderSource from './default.vert'
 // precision holds up as the clock grows. Matches CYCLE_SECONDS in the shader.
 const CYCLE = 256
 
-export const Scene: React.FC = () => {
+export interface SceneProps {
+  audioLevelRef: React.MutableRefObject<number>
+}
+
+export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {
@@ -72,6 +76,7 @@ export const Scene: React.FC = () => {
 
       const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
       const timeLocation = gl.getUniformLocation(program, 'u_time')
+      const audioLevelLocation = gl.getUniformLocation(program, 'u_audioLevel')
 
       const render = (now: DOMHighResTimeStamp) => {
         resize(canvas)
@@ -84,6 +89,7 @@ export const Scene: React.FC = () => {
           timeLocation,
           reducedMotion.matches ? 0 : (now / 1000) % CYCLE,
         )
+        gl.uniform1f(audioLevelLocation, audioLevelRef.current)
         gl.drawArrays(gl.TRIANGLES, 0, 3)
 
         frame = requestAnimationFrame(render)
@@ -125,7 +131,7 @@ export const Scene: React.FC = () => {
       canvas.removeEventListener('webglcontextrestored', handleContextRestored)
       dispose?.()
     }
-  }, [])
+  }, [audioLevelRef])
 
   return <Canvas ref={canvasRef} />
 }

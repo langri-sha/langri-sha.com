@@ -3,13 +3,17 @@ import * as React from 'react'
 
 import noiseProcessorSource from './noise-processor.worklet'
 
-export const Drone: React.FC<Record<string, never>> = () => {
-  React.useEffect(() => {
+export interface DroneProps {
+  audioLevelRef: React.MutableRefObject<number>
+}
+
+export const Drone: React.FC<DroneProps> = ({ audioLevelRef }) => {
+  React.useLayoutEffect(() => {
     if (!window.AudioContext) {
       return
     }
 
-    const processor = new Processor()
+    const processor = new Processor(audioLevelRef)
 
     processor.generate().catch(() => {
       // AudioWorklet failed to load (e.g. unsupported browser); nothing to play.
@@ -33,21 +37,36 @@ class Processor {
   baseNote: number
   context: AudioContext
   gainNode: GainNode
+  analyserNode: AnalyserNode
+  audioLevelRef: React.MutableRefObject<number>
+  frequencyData: Uint8Array<ArrayBuffer>
   scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
   noiseNodes: AudioWorkletNode[] = []
   pannerNodes: PannerNode[] = []
   panIntervals: Array<number | NodeJS.Timeout> = []
   destroyed = false
   removeResumeListeners: (() => void) | null = null
+  meterFrame = 0
 
-  constructor(oscilatorsSize: number = 40, baseNote: number = 60) {
+  constructor(
+    audioLevelRef: React.MutableRefObject<number>,
+    oscilatorsSize: number = 40,
+    baseNote: number = 60,
+  ) {
     const context = new AudioContext()
     this.context = context
+    this.audioLevelRef = audioLevelRef
 
     const gainNode = context.createGain()
     gainNode.gain.value = 0.25
-    gainNode.connect(context.destination)
+    const analyserNode = context.createAnalyser()
+    analyserNode.fftSize = 256
+    analyserNode.smoothingTimeConstant = 0.78
+    gainNode.connect(analyserNode)
+    analyserNode.connect(context.destination)
     this.gainNode = gainNode
+    this.analyserNode = analyserNode
+    this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     this.oscilatorsSize = oscilatorsSize
     this.baseNote = baseNote
@@ -88,12 +107,38 @@ class Processor {
       return
     }
 
+    // This component is mounted by the play button. Resuming here means the
+    // first press starts both the drone and its visual response together.
+    await this.context.resume()
+
     for (let i = 0; i < this.oscilatorsSize; i++) {
       const degree = Math.floor(Math.random() * this.scale.length)
       let frequency = mtof(this.baseNote + this.scale[degree])
       frequency += Math.random() * 4 - 2
       this.createNoiseGenerator(frequency)
     }
+
+    this.measureAudio()
+  }
+
+  measureAudio = () => {
+    if (this.destroyed) {
+      return
+    }
+
+    this.analyserNode.getByteFrequencyData(this.frequencyData)
+
+    // Weight the lower bins: the drone's fundamental motion is more useful as
+    // a visual pulse than the fine hiss in the upper frequencies.
+    let energy = 0
+    const bins = 20
+    for (let i = 1; i <= bins; i++) {
+      energy += this.frequencyData[i]
+    }
+
+    const target = Math.min(1, (energy / bins / 255) * 4.5)
+    this.audioLevelRef.current += (target - this.audioLevelRef.current) * 0.18
+    this.meterFrame = requestAnimationFrame(this.measureAudio)
   }
 
   createNoiseGenerator(frequency: number) {
@@ -138,12 +183,15 @@ class Processor {
 
   destroy() {
     this.destroyed = true
+    cancelAnimationFrame(this.meterFrame)
+    this.audioLevelRef.current = 0
 
     this.removeResumeListeners?.()
     this.panIntervals.forEach((interval) => clearInterval(interval))
     this.noiseNodes.forEach((node) => node.disconnect())
     this.pannerNodes.forEach((node) => node.disconnect())
     this.gainNode.disconnect()
+    this.analyserNode.disconnect()
     this.context.close()
   }
 }
