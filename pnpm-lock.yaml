@@ -245,8 +245,8 @@ importers:
         specifier: ^29.0.0
         version: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
       nock:
-        specifier: 13.5.5
-        version: 13.5.5
+        specifier: 13.5.6
+        version: 13.5.6
       tempy:
         specifier: 1.0.1
         version: 1.0.1
@@ -4999,6 +4999,10 @@ packages:
 
   nock@13.5.5:
     resolution: {integrity: sha512-XKYnqUrCwXC8DGG1xX4YH5yNIrlh9c065uaMZZHUoeUUINTOyt+x/G+ezYk0Ft6ExSREVIs+qBJDK503viTfFA==}
+    engines: {node: '>= 10.13'}
+
+  nock@13.5.6:
+    resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
     engines: {node: '>= 10.13'}
 
   node-exports-info@1.6.0:
@@ -11765,6 +11769,14 @@ snapshots:
   nock@13.5.5:
     dependencies:
       debug: 4.3.6
+      json-stringify-safe: 5.0.1
+      propagate: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
+  nock@13.5.6:
+    dependencies:
+      debug: 4.4.3
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
     transitivePeerDependencies:
