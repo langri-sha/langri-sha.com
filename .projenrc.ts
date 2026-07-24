@@ -51,7 +51,7 @@ const project = new Project({
       'eslint@10.4.1',
       'jest@29.7.0',
       'lint-staged@15.5.2',
-      'prettier@3.8.3',
+      'prettier@3.9.6',
       'projen@0.86.5',
       'tsx@4.22.4',
       'vitest@2.1.9',
