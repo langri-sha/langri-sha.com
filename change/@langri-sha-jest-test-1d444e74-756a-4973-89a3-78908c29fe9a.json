@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency nock to v13.5.6",
+  "packageName": "@langri-sha/jest-test",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
