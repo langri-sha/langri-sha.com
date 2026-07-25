@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update emotion monorepo",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

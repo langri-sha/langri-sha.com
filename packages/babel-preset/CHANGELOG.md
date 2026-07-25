@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/babel-preset
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sat, 25 Jul 2026 22:50:38 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.6
+
+Sat, 25 Jul 2026 22:50:38 GMT
+
+### Patches
+
+- fix(deps): update emotion monorepo (email not defined)
+- Update @types/node to 24.13.2 (filip.dupanovic@gmail.com)
+- chore(deps): update dependency @types/node to v20.19.41 (email not defined)
+- fix(deps): update babel monorepo to v7.29.7 (email not defined)
 
 ## 0.5.5
 

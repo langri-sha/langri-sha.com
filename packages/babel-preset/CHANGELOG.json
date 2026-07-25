@@ -2,6 +2,47 @@
   "name": "@langri-sha/babel-preset",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 22:50:38 GMT",
+      "version": "0.5.6",
+      "tag": "@langri-sha/babel-preset_v0.5.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "faee4550956a2f6f151d458180cf029b460c0dcc",
+            "comment": "fix(deps): update emotion monorepo"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "ebb266397902e83a913e56dbd7291fcd6968055a",
+            "comment": "Update @types/node to 24.13.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "12217804e625f27f797a0c5d3976f77f754a85bd",
+            "comment": "chore(deps): update dependency @types/node to v20.19.41"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "bd1fb6eb1aeaa993b6964ad273b8ae215c561161",
+            "comment": "fix(deps): update babel monorepo to v7.29.7"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "ab3e419d3966634386c1fa27af182b453a895505",
+            "comment": "chore: consume @langri-sha/tsconfig and @langri-sha/vitest from npm instead of the workspace"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.5.5",
       "tag": "@langri-sha/babel-preset_v0.5.5",
