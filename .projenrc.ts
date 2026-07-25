@@ -268,7 +268,7 @@ project.addSubproject(
       copyrightYear: '2026',
       type: 'module',
       devDeps: [
-        '@fontsource/cinzel-decorative@5.2.8',
+        '@fontsource/cinzel-decorative@5.3.0',
         '@types/node@24.13.2',
         'subset-font@2.5.0',
       ],
