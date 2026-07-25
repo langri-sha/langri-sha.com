@@ -1,11 +1,9 @@
 import { type SerializedStyles, css } from '@emotion/react'
-import { fontFaces } from '@langri-sha/fonts'
 import normalize from 'normalize.css'
 
 import * as colors from './colors'
 
 const global: SerializedStyles = css`
-  ${fontFaces};
   ${normalize};
 
   html {

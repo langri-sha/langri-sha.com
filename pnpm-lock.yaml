@@ -108,9 +108,6 @@ importers:
       '@emotion/styled':
         specifier: 11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.8))(@types/react@19.2.17)(react@19.2.8)
-      '@langri-sha/fonts':
-        specifier: workspace:*
-        version: link:../../packages/fonts
       next:
         specifier: 16.2.11
         version: 16.2.11(@babel/core@7.29.7)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
