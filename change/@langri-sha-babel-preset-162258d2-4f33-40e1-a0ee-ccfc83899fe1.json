@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update Node.js to v24.18.0",
+  "packageName": "@langri-sha/babel-preset",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
