@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "chore: consume @langri-sha/tsconfig and @langri-sha/vitest from npm instead of the workspace",
+  "comment": "chore: reconcile the package version with the published 0.5.6",
   "packageName": "@langri-sha/babel-preset",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "none"
