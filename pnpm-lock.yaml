@@ -208,8 +208,8 @@ importers:
         specifier: 24.13.2
         version: 24.13.2
       '@types/ramda':
-        specifier: 0.31.1
-        version: 0.31.1
+        specifier: 0.32.0
+        version: 0.32.0
 
   packages/fonts:
     devDependencies:
@@ -2529,8 +2529,8 @@ packages:
   '@types/qs@6.15.1':
     resolution: {integrity: sha512-GZHUBZR9hckSUhrxmp1nG6NwdpM9fCunJwyThLW1X3AyHgd9IlHb6VANpQQqDr2o/qQp6McZ3y/IA2rVzKzSbw==}
 
-  '@types/ramda@0.31.1':
-    resolution: {integrity: sha512-Vt6sFXnuRpzaEj+yeutA0q3bcAsK7wdPuASIzR9LXqL4gJPyFw8im9qchlbp4ltuf3kDEIRmPJTD/Fkg60dn7g==}
+  '@types/ramda@0.32.0':
+    resolution: {integrity: sha512-eTRIFYUxjVvZimlPNpXzXc3j4tnSYc7lBsD7X3zwtRvJML3qXclM4+m8vvmAZAHhBASKPmZAp6qu2C/DwJpBGQ==}
 
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
@@ -6120,8 +6120,8 @@ packages:
     resolution: {integrity: sha512-phPGCwqr2+Qo0fwniCE8e4pKnGu/yFb5nD5Y8bf0EEeiI5GklnACYA9GFy/DrAeRrKHXvHn+1SUsOWgJp6RO+g==}
     engines: {node: '>= 0.4'}
 
-  types-ramda@0.31.0:
-    resolution: {integrity: sha512-vaoC35CRC3xvL8Z6HkshDbi6KWM1ezK0LHN0YyxXWUn9HKzBNg/T3xSGlJZjCYspnOD3jE7bcizsp0bUXZDxnQ==}
+  types-ramda@0.32.0:
+    resolution: {integrity: sha512-iZtriSUdsDqOlip/wUaDNcoiskbVf5RdcqLNpQdUcOM1JKFClochCvPZCDjn/cc9HzoBzi4DEB4iPr1PbrhN1w==}
 
   typescript-eslint@8.61.0:
     resolution: {integrity: sha512-8y31Rd0eGTrDKqhy6vT0HtzhN+YLjQizwX3aA3hPXP/ynSfnrBXcQY5IzsP9/DM7+klX4IUncZZjkchP0z+rUw==}
@@ -8853,9 +8853,9 @@ snapshots:
 
   '@types/qs@6.15.1': {}
 
-  '@types/ramda@0.31.1':
+  '@types/ramda@0.32.0':
     dependencies:
-      types-ramda: 0.31.0
+      types-ramda: 0.32.0
 
   '@types/range-parser@1.2.7': {}
 
@@ -12960,7 +12960,7 @@ snapshots:
       possible-typed-array-names: 1.1.0
       reflect.getprototypeof: 1.0.10
 
-  types-ramda@0.31.0:
+  types-ramda@0.32.0:
     dependencies:
       ts-toolbelt: 9.6.0
 
