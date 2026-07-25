@@ -178,7 +178,7 @@ importers:
         version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
         specifier: ^0.1.2
-        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
+        version: 0.1.3(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
@@ -200,7 +200,7 @@ importers:
         version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
         specifier: ^0.1.2
-        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
+        version: 0.1.3(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/babel__core':
         specifier: ^7.8.0
         version: 7.20.5
@@ -266,7 +266,7 @@ importers:
         version: 0.10.2(typescript@5.9.3)
       '@langri-sha/vitest':
         specifier: ^0.1.2
-        version: 0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
+        version: 0.1.3(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
@@ -1939,8 +1939,8 @@ packages:
     peerDependencies:
       typescript: ^5.5.0
 
-  '@langri-sha/vitest@0.1.2':
-    resolution: {integrity: sha512-xPnDewgnyExcakphpv6ZZg6JEc6NJo8gG9D5aNBcKctz/+GH0DlUOzhCGvaRQLVsXnk7emmVlwjhlv7enOWAdQ==}
+  '@langri-sha/vitest@0.1.3':
+    resolution: {integrity: sha512-T4VwRPHHfUC1B+hhs6QTz7JNJJaiGHAp2Fl8rkal+Lp9yeJOuHp2cn9Czpf09NV5/UHBdP9Qzp9M0XzXYJsitA==}
     peerDependencies:
       vitest: ^2.0.0
 
@@ -5021,10 +5021,6 @@ packages:
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
-
-  nock@13.5.5:
-    resolution: {integrity: sha512-XKYnqUrCwXC8DGG1xX4YH5yNIrlh9c065uaMZZHUoeUUINTOyt+x/G+ezYk0Ft6ExSREVIs+qBJDK503viTfFA==}
-    engines: {node: '>= 10.13'}
 
   nock@13.5.6:
     resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
@@ -8287,9 +8283,9 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@langri-sha/vitest@0.1.2(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))':
+  '@langri-sha/vitest@0.1.3(vitest@2.1.9(@types/node@24.13.2)(terser@5.48.0))':
     dependencies:
-      nock: 13.5.5
+      nock: 13.5.6
       tempy: 1.0.1
       vitest: 2.1.9(@types/node@24.13.2)(terser@5.48.0)
     transitivePeerDependencies:
@@ -11738,14 +11734,6 @@ snapshots:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.8.1
-
-  nock@13.5.5:
-    dependencies:
-      debug: 4.4.3
-      json-stringify-safe: 5.0.1
-      propagate: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   nock@13.5.6:
     dependencies:
