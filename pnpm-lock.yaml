@@ -47,7 +47,7 @@ importers:
         version: 0.4.1(prettier@3.9.6)
       '@langri-sha/projen-project':
         specifier: 0.18.0
-        version: 0.18.0(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.8.0)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.9.6)(projen@0.86.5(constructs@10.6.0))(tsx@4.22.4)(typescript@5.9.3)
+        version: 0.18.0(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.8.0)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.9.6)(projen@0.86.5(constructs@10.6.0))(tsx@4.23.1)(typescript@5.9.3)
       '@langri-sha/schemastore-to-typescript':
         specifier: ^0.2.1
         version: 0.2.1(projen@0.86.5(constructs@10.6.0))
@@ -88,8 +88,8 @@ importers:
         specifier: 0.86.5
         version: 0.86.5(constructs@10.6.0)
       tsx:
-        specifier: 4.22.4
-        version: 4.22.4
+        specifier: 4.23.1
+        version: 4.23.1
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -6071,8 +6071,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tsx@4.22.4:
-    resolution: {integrity: sha512-X8EX+XV4QR5xCsrgxaED954zTDfY8KqlDtskKEL0cHhyS/P8b4IFOvGDQpsC9Q1XnLq915wEfwwY/zzskCtmhg==}
+  tsx@4.23.1:
+    resolution: {integrity: sha512-GQHnkIfxyx1wYCOS/wonik5MVRZU9hi1TEZmzGZSCJB1y9YgoZ8H6itNE/u4suE+yLmOzuE4E5S4TZ/ZX2wcWQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -8249,7 +8249,7 @@ snapshots:
       projen: 0.86.5(constructs@10.6.0)
       serialize-javascript: 6.0.2
 
-  '@langri-sha/projen-project@0.18.0(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.8.0)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.9.6)(projen@0.86.5(constructs@10.6.0))(tsx@4.22.4)(typescript@5.9.3)':
+  '@langri-sha/projen-project@0.18.0(@babel/core@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.40)(@swc/types@0.1.26)(typescript@5.9.3))(@swc/core@1.15.40)(@types/babel__core@7.20.5)(beachball@2.65.5(typescript@5.9.3))(eslint@10.8.0)(husky@9.1.7)(jest@29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0))(lint-staged@15.5.2)(prettier@3.9.6)(projen@0.86.5(constructs@10.6.0))(tsx@4.23.1)(typescript@5.9.3)':
     dependencies:
       '@langri-sha/projen-babel': 0.4.2(@babel/core@7.29.7)(@types/babel__core@7.20.5)(projen@0.86.5(constructs@10.6.0))
       '@langri-sha/projen-beachball': 0.5.2(beachball@2.65.5(typescript@5.9.3))(projen@0.86.5(constructs@10.6.0))
@@ -8281,7 +8281,7 @@ snapshots:
       jest: 29.7.0(@types/node@24.13.2)(babel-plugin-macros@3.1.0)
       lint-staged: 15.5.2
       prettier: 3.9.6
-      tsx: 4.22.4
+      tsx: 4.23.1
     transitivePeerDependencies:
       - supports-color
 
@@ -12900,7 +12900,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsx@4.22.4:
+  tsx@4.23.1:
     dependencies:
       esbuild: 0.28.0
     optionalDependencies:
