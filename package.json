@@ -48,7 +48,7 @@
     "@langri-sha/tsconfig": "^0.11.0",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.40",
-    "@types/node": "24.13.2",
+    "@types/node": "24.13.3",
     "beachball": "2.65.5",
     "eslint": "10.8.0",
     "husky": "9.1.7",
