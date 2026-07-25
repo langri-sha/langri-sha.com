@@ -4,10 +4,13 @@ import * as React from 'react'
 import { animations, colors, layers, media } from '@/styles'
 
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
+import { Wordmark } from './wordmark'
 
 export const Header: React.FC = () => (
   <Root>
-    <Title>Langri-Sha</Title>
+    <Title>
+      <Wordmark />
+    </Title>
     <Nav>
       {(
         [
@@ -58,6 +61,7 @@ const Root = styled.header`
 `
 
 const Title = styled.h1`
+  width: min(80vw, 60rem);
   margin-top: 0;
   user-select: none;
 `
