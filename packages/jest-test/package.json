@@ -27,7 +27,7 @@
     "tempy": "1.0.1"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "^0.10.2"
+    "@langri-sha/tsconfig": "^0.11.0"
   },
   "peerDependencies": {
     "jest": "^29.0.0"
