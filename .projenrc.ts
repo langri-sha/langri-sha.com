@@ -236,7 +236,7 @@ project.addSubproject(
       type: 'module',
       deps: ['ramda@0.32.0'],
       devDeps: [
-        '@langri-sha/monorepo@workspace:*',
+        '@langri-sha/monorepo@^0.5.7',
         '@types/babel__core@^7.8.0',
         '@types/node@24.13.2',
         '@types/ramda@0.32.0',
@@ -325,28 +325,6 @@ project.addSubproject(
     },
   },
   subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/monorepo',
-    outdir: path.join('packages', 'monorepo'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['find-up@7.0.0'],
-      devDeps: ['@types/node@24.13.2'],
-    },
-  },
-  subproject,
-  test,
   publish,
 )
 

@@ -25,7 +25,7 @@
     "ramda": "0.32.0"
   },
   "devDependencies": {
-    "@langri-sha/monorepo": "workspace:*",
+    "@langri-sha/monorepo": "^0.5.7",
     "@langri-sha/tsconfig": "^0.10.2",
     "@langri-sha/vitest": "^0.1.2",
     "@types/babel__core": "^7.8.0",

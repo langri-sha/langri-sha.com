@@ -22,9 +22,6 @@
       "path": "packages/jest-test"
     },
     {
-      "path": "packages/monorepo"
-    },
-    {
       "path": "packages/webpack"
     }
   ],
