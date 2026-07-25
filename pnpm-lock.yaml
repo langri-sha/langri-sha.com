@@ -214,8 +214,8 @@ importers:
   packages/fonts:
     devDependencies:
       '@fontsource/cinzel-decorative':
-        specifier: 5.2.8
-        version: 5.2.8
+        specifier: 5.3.0
+        version: 5.3.0
       '@langri-sha/tsconfig':
         specifier: ^0.10.2
         version: 0.10.2(typescript@5.9.3)
@@ -1394,8 +1394,8 @@ packages:
     resolution: {integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@fontsource/cinzel-decorative@5.2.8':
-    resolution: {integrity: sha512-BtrvcprcCd0DyAcIXZRohfMyh+n/MwNvmhmAZ0kXDe9T1w2XSOodb3RNoD1uHm3TlGw7fjTU0YepgAQbPW0sFw==}
+  '@fontsource/cinzel-decorative@5.3.0':
+    resolution: {integrity: sha512-9T6Fsv6l+5CUjvKWcTlMtkAYR/C8p2ll0bgT5krOU+DTLJRmaZYpXzcRoxPvENA6+uApa+Yyn0Ft/hdq083iVA==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -7696,7 +7696,7 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@fontsource/cinzel-decorative@5.2.8': {}
+  '@fontsource/cinzel-decorative@5.3.0': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
