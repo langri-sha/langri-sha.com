@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { animations, colors, fonts, layers, media } from '@/styles'
+import { animations, colors, layers, media } from '@/styles'
 
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 
@@ -58,20 +58,8 @@ const Root = styled.header`
 `
 
 const Title = styled.h1`
-  ${fonts.heading};
-  color: ${colors.text};
-  font-size: 6rem;
-  letter-spacing: -0.03em;
   margin-top: 0;
   user-select: none;
-
-  ${media.medium} {
-    font-size: 8rem;
-  }
-
-  ${media.large} {
-    font-size: 10rem;
-  }
 `
 
 const Nav = styled.nav`
