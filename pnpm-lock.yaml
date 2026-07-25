@@ -286,8 +286,8 @@ importers:
         specifier: 12.0.2
         version: 12.0.2(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
       html-webpack-plugin:
-        specifier: 5.6.7
-        version: 5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
+        specifier: 5.6.8
+        version: 5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
       terser-webpack-plugin:
         specifier: 5.3.10
         version: 5.3.10(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
@@ -302,7 +302,7 @@ importers:
         version: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4(webpack@5.107.2))(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
       webpack-subresource-integrity:
         specifier: 5.2.0-rc.1
-        version: 5.2.0-rc.1(html-webpack-plugin@5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))))(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
+        version: 5.2.0-rc.1(html-webpack-plugin@5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))))(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
     devDependencies:
       '@langri-sha/babel-preset':
         specifier: workspace:*
@@ -4188,11 +4188,11 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
-  html-webpack-plugin@5.6.7:
-    resolution: {integrity: sha512-md+vXtdCAe60s1k6AU3dUyMJnDxUyQAwfwPKoLisvgUF1IXjtlLsk2se54+qfL9Mdm26bbwvjJybpNx48NKRLw==}
+  html-webpack-plugin@5.6.8:
+    resolution: {integrity: sha512-MZmKQcTnhEh1SPSyMiEytIeDZDUoBZVorNHivQGXMASHf/BSGGOrKa2xQ5bGx3TCe1n109ecCt+cpww7wwWhKA==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
-      '@rspack/core': 0.x || 1.x
+      '@rspack/core': 0.x || 1.x || 2.x
       webpack: ^5.20.0
     peerDependenciesMeta:
       '@rspack/core':
@@ -10805,7 +10805,7 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.48.0
 
-  html-webpack-plugin@5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
+  html-webpack-plugin@5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -13236,11 +13236,11 @@ snapshots:
 
   webpack-sources@3.5.0: {}
 
-  webpack-subresource-integrity@5.2.0-rc.1(html-webpack-plugin@5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))))(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
+  webpack-subresource-integrity@5.2.0-rc.1(html-webpack-plugin@5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))))(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))):
     dependencies:
       webpack: 5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2))
     optionalDependencies:
-      html-webpack-plugin: 5.6.7(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
+      html-webpack-plugin: 5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.107.2)))
 
   webpack@5.107.2(@swc/core@1.15.40)(webpack-cli@5.1.4):
     dependencies:
