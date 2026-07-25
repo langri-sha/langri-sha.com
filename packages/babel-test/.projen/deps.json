@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/monorepo",
-      "version": "workspace:*",
+      "version": "^0.5.7",
       "type": "build"
     },
     {
