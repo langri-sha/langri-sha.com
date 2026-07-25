@@ -42,11 +42,10 @@ const project = new Project({
       '@langri-sha/jest-config@workspace:*',
       '@langri-sha/lint-staged@^0.9.1',
       '@langri-sha/prettier@^0.4.1',
-      '@langri-sha/projen-project@0.18.0',
+      '@langri-sha/projen-project@0.18.1',
       '@langri-sha/schemastore-to-typescript@^0.2.1',
       '@swc-node/register@1.12.1',
       '@swc/core@1.15.46',
-      '@types/lint-staged@13.3.0',
       '@types/node@24.13.2',
       'eslint@10.8.0',
       'jest@29.7.0',
@@ -160,7 +159,7 @@ const subproject = (project: Project) => {
 
   project
     .tryFindObjectFile('package.json')
-    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^0.10.2')
+    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^0.11.0')
 }
 
 const test = (project: Project) => {
