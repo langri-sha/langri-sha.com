@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/jest-test
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.2
+
+Sat, 25 Jul 2026 22:55:24 GMT
+
+### Patches
+
+- Update dependency nock to v13.5.6 (email not defined)
 
 ## 0.9.1
 

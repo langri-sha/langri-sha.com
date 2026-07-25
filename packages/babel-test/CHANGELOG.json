@@ -2,6 +2,53 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 22:55:24 GMT",
+      "version": "0.6.7",
+      "tag": "@langri-sha/babel-test_v0.6.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update dependency @types/ramda to v0.32.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore(deps): update dependency @types/node to v20.19.41"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "fix(deps): update dependency ramda to v0.32.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update @types/node to 24.13.2"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore: consume @langri-sha/tsconfig and @langri-sha/vitest from npm instead of the workspace"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-test",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore: consume @langri-sha/monorepo from npm instead of the workspace"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.6.6",
       "tag": "@langri-sha/babel-test_v0.6.6",

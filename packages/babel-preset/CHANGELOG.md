@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/babel-preset
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:50:38 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.7
+
+Sat, 25 Jul 2026 22:55:24 GMT
+
+### Patches
+
+- Bump @langri-sha/babel-test to v0.6.7
 
 ## 0.5.6
 

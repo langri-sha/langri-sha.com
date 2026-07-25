@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/babel-test
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.7
+
+Sat, 25 Jul 2026 22:55:24 GMT
+
+### Patches
+
+- Update dependency @types/ramda to v0.32.0 (email not defined)
+- chore(deps): update dependency @types/node to v20.19.41 (email not defined)
+- fix(deps): update dependency ramda to v0.32.0 (email not defined)
+- Update @types/node to 24.13.2 (filip.dupanovic@gmail.com)
 
 ## 0.6.6
 

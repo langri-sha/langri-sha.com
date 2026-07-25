@@ -2,6 +2,89 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 22:55:24 GMT",
+      "version": "0.5.9",
+      "tag": "@langri-sha/webpack_v0.5.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "fix(deps): update dependency webpack-dev-server to v5.2.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update dependency webpack-dev-server to v5.2.6"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Re-export webpack's PathData type"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update dependency terser-webpack-plugin to v5.6.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "fix(deps): update dependency webpack-dev-server to v5.2.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "fix(deps): update dependency html-webpack-plugin to v5.6.7"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update dependency html-webpack-plugin to v5.6.8"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "fix(deps): update dependency babel-loader to v9.2.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore(deps): update dependency @types/node to v20.19.41"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "Update @types/node to 24.13.2"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/webpack",
+            "comment": "Bump @langri-sha/babel-preset to v0.5.7",
+            "commit": "not available"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore: consume @langri-sha/tsconfig and @langri-sha/vitest from npm instead of the workspace"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.5.8",
       "tag": "@langri-sha/webpack_v0.5.8",

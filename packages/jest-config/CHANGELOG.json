@@ -2,6 +2,21 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 22:55:24 GMT",
+      "version": "0.8.2",
+      "tag": "@langri-sha/jest-config_v0.8.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "865c6a21f593a45dee13564c07684372785dcccf",
+            "comment": "chore: consume @langri-sha/tsconfig and @langri-sha/vitest from npm instead of the workspace"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.8.2",
       "tag": "@langri-sha/jest-config_v0.8.2",

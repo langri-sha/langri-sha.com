@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency terser-webpack-plugin to v5.6.1",
-  "packageName": "@langri-sha/webpack",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency babel-loader to v9.2.1",
-  "packageName": "@langri-sha/webpack",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/webpack
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.9
+
+Sat, 25 Jul 2026 22:55:24 GMT
+
+### Patches
+
+- fix(deps): update dependency webpack-dev-server to v5.2.4 (email not defined)
+- Update dependency webpack-dev-server to v5.2.6 (email not defined)
+- Re-export webpack's PathData type (filip.dupanovic@gmail.com)
+- Update dependency terser-webpack-plugin to v5.6.1 (email not defined)
+- fix(deps): update dependency webpack-dev-server to v5.2.5 (email not defined)
+- fix(deps): update dependency html-webpack-plugin to v5.6.7 (email not defined)
+- Update dependency html-webpack-plugin to v5.6.8 (email not defined)
+- fix(deps): update dependency babel-loader to v9.2.1 (email not defined)
+- chore(deps): update dependency @types/node to v20.19.41 (email not defined)
+- Update @types/node to 24.13.2 (filip.dupanovic@gmail.com)
+- Bump @langri-sha/babel-preset to v0.5.7
 
 ## 0.5.8
 
