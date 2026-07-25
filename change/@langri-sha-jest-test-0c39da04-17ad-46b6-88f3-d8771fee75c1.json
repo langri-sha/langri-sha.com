@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update @langri-sha/tsconfig to ^0.11.0",
+  "packageName": "@langri-sha/jest-test",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
