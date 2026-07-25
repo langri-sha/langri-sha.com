@@ -367,7 +367,7 @@ project.addSubproject(
         'clean-webpack-plugin@4.0.0',
         'copy-webpack-plugin@12.0.2',
         'html-webpack-plugin@5.6.8',
-        'terser-webpack-plugin@5.3.10',
+        'terser-webpack-plugin@5.6.1',
         'webpack-bundle-analyzer@4.10.2',
         'webpack-dev-server@5.2.6',
         'webpack-subresource-integrity@5.2.0-rc.1',

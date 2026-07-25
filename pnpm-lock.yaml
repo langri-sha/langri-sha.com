@@ -289,8 +289,8 @@ importers:
         specifier: 5.6.8
         version: 5.6.8(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0)))
       terser-webpack-plugin:
-        specifier: 5.3.10
-        version: 5.3.10(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0)))
+        specifier: 5.6.1
+        version: 5.6.1(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0)))
       webpack:
         specifier: ^5.0.0
         version: 5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0))
@@ -5973,18 +5973,45 @@ packages:
     resolution: {integrity: sha512-biM9brNqxSc04Ee71hzFbryD11nX7VPhQQY32AdDmjFvodsRFz/3ufeoTZ6uYkRFfGo188tENcASNs3vTdsM0w==}
     engines: {node: '>=10'}
 
-  terser-webpack-plugin@5.3.10:
-    resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
+  terser-webpack-plugin@5.6.1:
+    resolution: {integrity: sha512-201R5j+sJpK8nFWwKVyNfZot8FaJbLZDq5evriVzbV1wDtSXDjRUDRfJzHpAaxFDMEhsZL1QkeqM61wgsS3KaQ==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
+      '@minify-html/node': '*'
       '@swc/core': '*'
+      '@swc/css': '*'
+      '@swc/html': '*'
+      clean-css: '*'
+      cssnano: '*'
+      csso: '*'
       esbuild: '*'
+      html-minifier-terser: '*'
+      lightningcss: '*'
+      postcss: '*'
       uglify-js: '*'
       webpack: ^5.1.0
     peerDependenciesMeta:
+      '@minify-html/node':
+        optional: true
       '@swc/core':
         optional: true
+      '@swc/css':
+        optional: true
+      '@swc/html':
+        optional: true
+      clean-css:
+        optional: true
+      cssnano:
+        optional: true
+      csso:
+        optional: true
       esbuild:
+        optional: true
+      html-minifier-terser:
+        optional: true
+      lightningcss:
+        optional: true
+      postcss:
         optional: true
       uglify-js:
         optional: true
@@ -12833,12 +12860,11 @@ snapshots:
       type-fest: 0.16.0
       unique-string: 2.0.0
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0))):
+  terser-webpack-plugin@5.6.1(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
+      schema-utils: 4.3.3
       terser: 5.48.0
       webpack: 5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0))
     optionalDependencies:
@@ -13315,14 +13341,23 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.3.3
-      terser-webpack-plugin: 5.3.10(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0)))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.15.40)(webpack@5.94.0(@swc/core@1.15.40)(webpack-cli@5.1.4(webpack@5.109.0)))
       watchpack: 2.5.1
       webpack-sources: 3.5.0
     optionalDependencies:
       webpack-cli: 5.1.4(webpack@5.109.0)
     transitivePeerDependencies:
+      - '@minify-html/node'
       - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
       - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
       - uglify-js
 
   websocket-driver@0.7.4:
