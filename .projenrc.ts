@@ -261,9 +261,8 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['ramda@0.32.0'],
+      deps: ['@langri-sha/monorepo@workspace:*', 'ramda@0.32.0'],
       devDeps: [
-        '@langri-sha/monorepo@workspace:*',
         '@types/babel__core@^7.8.0',
         '@types/node@24.13.2',
         '@types/ramda@0.32.0',
