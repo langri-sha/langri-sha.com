@@ -7,6 +7,7 @@ import {
   CopyPlugin,
   EnvironmentPlugin,
   HtmlPlugin,
+  type PathData,
   SubresourceIntegrityPlugin,
   TerserPlugin,
   resolve,
@@ -43,7 +44,8 @@ const configuration: (options: Options) => Configuration = env(
           parallel: true,
           extractComments: {
             condition: 'some',
-            filename: (filedata) => script(`${filedata.basename}.LICENSE.txt`),
+            filename: (filedata: PathData) =>
+              script(`${filedata.basename}.LICENSE.txt`),
             banner: (licenseFile) =>
               publicPath !== 'auto'
                 ? new URL(licenseFile, publicPath).toString()

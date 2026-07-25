@@ -3,7 +3,12 @@ import path from 'path'
 import type { Configuration, ResolveOptions } from 'webpack'
 
 // Stock.
-export { default, EnvironmentPlugin, type Configuration } from 'webpack'
+export {
+  default,
+  EnvironmentPlugin,
+  type Configuration,
+  type PathData,
+} from 'webpack'
 
 // Theirs.
 export { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
