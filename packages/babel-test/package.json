@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@langri-sha/monorepo": "workspace:*",
-    "@langri-sha/tsconfig": "^0.11.0",
+    "@langri-sha/tsconfig": "^0.10.2",
     "@langri-sha/vitest": "^0.1.2",
     "@types/babel__core": "^7.8.0",
     "@types/node": "24.13.2",
