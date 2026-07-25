@@ -19,7 +19,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepublishOnly": "rm -rf dist && tsc --build --force tsconfig.build.json"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "^0.10.2"

@@ -2,5 +2,14 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig/build",
-  "exclude": ["**/*.test.*", "dist"]
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "${configDir}/src"
+  },
+  "exclude": ["**/*.test.*", "dist"],
+  "references": [
+    {
+      "path": "../monorepo/tsconfig.build.json"
+    }
+  ]
 }

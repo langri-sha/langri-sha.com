@@ -168,6 +168,8 @@ const test = (project: Project) => {
   project.package?.addDevDeps('@langri-sha/vitest@^0.1.2')
 }
 
+const published = new Map<Project, TypeScriptConfig>()
+
 const publish = (project: Project) => {
   project.package?.addField('publishConfig', {
     access: 'public',
@@ -175,22 +177,42 @@ const publish = (project: Project) => {
     types: 'dist/index.d.ts',
   })
 
-  new TypeScriptConfig(project, {
-    fileName: 'tsconfig.build.json',
-    config: {
-      extends: '@langri-sha/tsconfig/build',
-      /*
-       * Declaring `exclude` replaces TypeScript's default value, which seeds it
-       * with `outDir`. Without `dist`, a build of a package that already has
-       * output compiles its own emitted JavaScript and fails under `checkJs`.
-       */
-      exclude: ['**/*.test.*', 'dist'],
-    },
-  })
+  published.set(
+    project,
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.build.json',
+      config: {
+        extends: '@langri-sha/tsconfig/build',
+        compilerOptions: {
+          composite: true,
+          /*
+           * `composite` roots the output at the config's own directory instead
+           * of inferring it from the inputs, which would nest emit under
+           * `dist/src` and break `publishConfig.main`.
+           */
+          rootDir: '${configDir}/src',
+        },
+        /*
+         * Declaring `exclude` replaces TypeScript's default value, which seeds
+         * it with `outDir`. Without `dist`, a build of a package that already
+         * has output compiles its own emitted JavaScript and fails under
+         * `checkJs`.
+         */
+        exclude: ['**/*.test.*', 'dist'],
+      },
+    }),
+  )
 
+  project.npmIgnore?.exclude('*.tsbuildinfo')
+
+  /*
+   * `--force` is load-bearing. `rm -rf dist` leaves `tsconfig.build.tsbuildinfo`
+   * behind, and an incremental `tsc --build` trusts it over the missing output:
+   * it exits 0 having emitted nothing, which would publish an empty package.
+   */
   project.package?.setScript(
     'prepublishOnly',
-    'rm -rf dist; tsc --project tsconfig.build.json',
+    'rm -rf dist && tsc --build --force tsconfig.build.json',
   )
 }
 
@@ -384,5 +406,25 @@ project.addSubproject(
   subproject,
   publish,
 )
+
+/*
+ * Beachball rewrites the `package.json` of every package in a publish run with
+ * its `publishConfig` overrides *before* npm runs any `prepublishOnly` script.
+ * From that point on `main` and `types` of each workspace dependency point into
+ * a `dist` directory that hasn't been built yet, so a publish build has to emit
+ * its dependencies before itself. Reference them so `tsc --build` orders it.
+ */
+for (const [subproject, typeScriptConfig] of published) {
+  for (const dependency of published.keys()) {
+    if (
+      dependency !== subproject &&
+      subproject.deps.all.some(({ name }) => name === dependency.name)
+    ) {
+      typeScriptConfig.addReference(
+        `${path.relative(subproject.outdir, dependency.outdir)}/tsconfig.build.json`,
+      )
+    }
+  }
+}
 
 project.synth()

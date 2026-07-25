@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Build workspace dependencies before publishing",
+  "packageName": "@langri-sha/monorepo",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

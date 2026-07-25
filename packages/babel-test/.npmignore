@@ -4,3 +4,4 @@ tsconfig*.json
 fixtures/
 *.test.*
 __snapshots__/
+*.tsbuildinfo

@@ -18,7 +18,7 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepublishOnly": "rm -rf dist && tsc --build --force tsconfig.build.json"
   },
   "dependencies": {
     "babel-loader": "9.2.1",

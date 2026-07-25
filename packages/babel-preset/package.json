@@ -18,7 +18,7 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepublishOnly": "rm -rf dist && tsc --build --force tsconfig.build.json"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "7.29.7",
