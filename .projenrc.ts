@@ -179,7 +179,12 @@ const publish = (project: Project) => {
     fileName: 'tsconfig.build.json',
     config: {
       extends: '@langri-sha/tsconfig/build',
-      exclude: ['**/*.test.*'],
+      /*
+       * Declaring `exclude` replaces TypeScript's default value, which seeds it
+       * with `outDir`. Without `dist`, a build of a package that already has
+       * output compiles its own emitted JavaScript and fails under `checkJs`.
+       */
+      exclude: ['**/*.test.*', 'dist'],
     },
   })
 
