@@ -50,7 +50,7 @@ const project = new Project({
       'jest@29.7.0',
       'lint-staged@17.2.0',
       'prettier@3.9.6',
-      'projen@0.86.5',
+      'projen@0.101.20',
       'tsx@4.23.1',
       'vitest@2.1.9',
     ],
