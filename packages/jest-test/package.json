@@ -24,7 +24,7 @@
   "dependencies": {
     "@jest/globals": "29.7.0",
     "nock": "14.0.16",
-    "tempy": "1.0.1"
+    "tempy": "3.2.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "^0.11.0"
