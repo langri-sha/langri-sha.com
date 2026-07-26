@@ -28,12 +28,11 @@
     "@langri-sha/monorepo": "^0.5.7",
     "@langri-sha/tsconfig": "^0.11.0",
     "@langri-sha/vitest": "^0.1.2",
-    "@types/babel__core": "^7.8.0",
     "@types/node": "26.1.1",
     "@types/ramda": "0.32.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.8.0"
+    "@babel/core": "^8.0.0"
   },
   "publishConfig": {
     "access": "public",
