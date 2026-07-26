@@ -16,11 +16,6 @@
       "type": "build"
     },
     {
-      "name": "@types/babel__core",
-      "version": "^7.8.0",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "26.1.1",
       "type": "build"
@@ -32,7 +27,7 @@
     },
     {
       "name": "@babel/core",
-      "version": "^7.8.0",
+      "version": "^8.0.0",
       "type": "peer"
     },
     {

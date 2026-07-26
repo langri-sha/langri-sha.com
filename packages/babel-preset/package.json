@@ -21,11 +21,11 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@babel/plugin-proposal-export-default-from": "7.29.7",
-    "@babel/preset-env": "7.29.7",
-    "@babel/preset-react": "7.29.7",
-    "@babel/preset-typescript": "7.29.7",
-    "@babel/register": "7.29.7",
+    "@babel/plugin-proposal-export-default-from": "8.0.1",
+    "@babel/preset-env": "8.0.2",
+    "@babel/preset-react": "8.0.1",
+    "@babel/preset-typescript": "8.0.1",
+    "@babel/register": "8.0.1",
     "@emotion/babel-plugin": "11.13.5"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "@types/node": "26.1.1"
   },
   "peerDependencies": {
-    "@babel/core": "^7.8.0"
+    "@babel/core": "^8.0.0"
   },
   "publishConfig": {
     "access": "public",

@@ -36,7 +36,7 @@
     "@types/node": "26.1.1"
   },
   "peerDependencies": {
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^8.0.0",
     "webpack": "^5.0.0"
   },
   "publishConfig": {

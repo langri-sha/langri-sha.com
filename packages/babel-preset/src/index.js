@@ -1,5 +1,5 @@
 /**
- * @type {import('@babel/core').ConfigFunction}
+ * @param {import('@babel/core').PresetAPI} api
  */
 module.exports = (api) => ({
   presets: [

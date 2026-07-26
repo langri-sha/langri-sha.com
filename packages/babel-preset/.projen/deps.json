@@ -22,32 +22,32 @@
     },
     {
       "name": "@babel/core",
-      "version": "^7.8.0",
+      "version": "^8.0.0",
       "type": "peer"
     },
     {
       "name": "@babel/plugin-proposal-export-default-from",
-      "version": "7.29.7",
+      "version": "8.0.1",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-env",
-      "version": "7.29.7",
+      "version": "8.0.2",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-react",
-      "version": "7.29.7",
+      "version": "8.0.1",
       "type": "runtime"
     },
     {
       "name": "@babel/preset-typescript",
-      "version": "7.29.7",
+      "version": "8.0.1",
       "type": "runtime"
     },
     {
       "name": "@babel/register",
-      "version": "7.29.7",
+      "version": "8.0.1",
       "type": "runtime"
     },
     {
