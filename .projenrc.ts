@@ -48,7 +48,7 @@ const project = new Project({
       '@types/node@26.1.1',
       'eslint@10.8.0',
       'jest@29.7.0',
-      'lint-staged@15.5.2',
+      'lint-staged@17.2.0',
       'prettier@3.9.6',
       'projen@0.86.5',
       'tsx@4.23.1',
