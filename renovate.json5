@@ -15,6 +15,11 @@
       enabled: true,
     },
     {
+      description: 'Keep Node.js typings on the major supported by the runtime',
+      matchPackageNames: ['@types/node'],
+      allowedVersions: '^24',
+    },
+    {
       description: 'Google Terraform Providers',
       groupName: 'Google Providers',
       groupSlug: 'terraform-google',
