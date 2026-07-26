@@ -29,7 +29,7 @@ jobs:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
 
       - name: Create artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: web
           path: apps/web/dist
@@ -60,7 +60,7 @@ jobs:
           workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
 
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: web
           path: dist/web
