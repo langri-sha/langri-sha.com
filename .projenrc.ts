@@ -346,7 +346,7 @@ project.addSubproject(
       deps: [
         'babel-loader@10.1.1',
         'clean-webpack-plugin@4.0.0',
-        'copy-webpack-plugin@12.0.2',
+        'copy-webpack-plugin@14.0.0',
         'html-webpack-plugin@5.6.8',
         'terser-webpack-plugin@5.6.1',
         'webpack-bundle-analyzer@4.10.2',
