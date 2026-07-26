@@ -37,7 +37,7 @@
     },
     {
       "name": "copy-webpack-plugin",
-      "version": "12.0.2",
+      "version": "14.0.0",
       "type": "runtime"
     },
     {
