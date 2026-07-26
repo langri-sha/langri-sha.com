@@ -77,7 +77,7 @@
     },
     {
       "name": "lint-staged",
-      "version": "15.5.2",
+      "version": "17.2.0",
       "type": "build"
     },
     {
