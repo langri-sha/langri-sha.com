@@ -127,7 +127,7 @@
     },
     {
       "name": "webpack-cli",
-      "version": "5.1.4",
+      "version": "7.2.1",
       "type": "runtime"
     },
     {
