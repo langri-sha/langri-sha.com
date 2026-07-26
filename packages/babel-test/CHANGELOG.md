@@ -39,7 +39,7 @@ Thu, 29 Aug 2024 21:44:25 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency @types/node to v20.14.14 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.14 (email not defined)
 
 ## 0.6.3
 
@@ -47,7 +47,7 @@ Tue, 30 Jul 2024 01:07:42 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency @types/node to v20.14.13 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.13 (email not defined)
 
 ## 0.6.2
 
@@ -55,7 +55,7 @@ Fri, 26 Jul 2024 21:00:29 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency @types/node to v20.14.12 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.12 (email not defined)
 
 ## 0.6.1
 
@@ -64,7 +64,7 @@ Wed, 17 Jul 2024 10:48:16 GMT
 ### Patches
 
 - fix(workspace): Use correct GitHub directory (filip.dupanovic@gmail.com)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.11 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.11 (email not defined)
 
 ## 0.6.0
 
@@ -76,15 +76,15 @@ Mon, 08 Jul 2024 21:43:05 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency @types/node to v20.14.5 (email not defined)
-- chore(deps): chore(deps): update node.js to v20.15.0 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.5 (email not defined)
+- chore(deps): update node.js to v20.15.0 (email not defined)
 - fix(projen): Use correct output directory (filip.dupanovic@gmail.com)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.6 (email not defined)
-- chore(deps): chore(deps): update dependency @types/ramda to v0.30.1 (email not defined)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.3 (email not defined)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.10 (email not defined)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.7 (email not defined)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.8 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.6 (email not defined)
+- chore(deps): update dependency @types/ramda to v0.30.1 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.3 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.10 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.7 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.8 (email not defined)
 
 ## 0.5.0
 
@@ -98,9 +98,9 @@ Sat, 15 Jun 2024 09:09:06 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update node.js to v20.14.0 (email not defined)
-- chore(deps): chore(deps): update dependency @types/node to v20.14.2 (email not defined)
-- chore(deps): fix(deps): update dependency ramda to v0.30.1 (email not defined)
+- chore(deps): update node.js to v20.14.0 (email not defined)
+- chore(deps): update dependency @types/node to v20.14.2 (email not defined)
+- fix(deps): update dependency ramda to v0.30.1 (email not defined)
 
 ## 0.4.0
 
@@ -116,7 +116,7 @@ Wed, 15 May 2024 06:47:18 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency @types/node to v20.12.12 (email not defined)
+- chore(deps): update dependency @types/node to v20.12.12 (email not defined)
 
 ## 0.3.2
 
@@ -124,8 +124,8 @@ Tue, 14 May 2024 20:41:06 GMT
 
 ### Patches
 
-- chore(deps): fix(deps): update dependency ramda to v0.30.0 (email not defined)
-- chore(deps): chore(deps): update node.js to v20.13.1 (email not defined)
+- fix(deps): update dependency ramda to v0.30.0 (email not defined)
+- chore(deps): update node.js to v20.13.1 (email not defined)
 
 ## 0.3.1
 

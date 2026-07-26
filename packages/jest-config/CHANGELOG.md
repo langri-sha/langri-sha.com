@@ -43,7 +43,7 @@ Tue, 14 May 2024 20:41:06 GMT
 
 ### Patches
 
-- chore(deps): chore(deps): update dependency jest to v29 (email not defined)
+- chore(deps): update dependency jest to v29 (email not defined)
 
 ## 0.6.1
 

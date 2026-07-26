@@ -125,13 +125,13 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
-            "comment": "chore(deps): fix(deps): update dependency @babel/preset-env to v7.25.3"
+            "comment": "fix(deps): update dependency @babel/preset-env to v7.25.3"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "dec2a74bd11103d7c193b88247b0de68be347685",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.14"
+            "comment": "chore(deps): update dependency @types/node to v20.14.14"
           }
         ]
       }
@@ -146,7 +146,7 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "f9d560d2267a0fd1eca8c0375aff72b6a4cc2428",
-            "comment": "chore(deps): fix(deps): update babel monorepo to v7.25.2"
+            "comment": "fix(deps): update babel monorepo to v7.25.2"
           }
         ]
       }
@@ -161,7 +161,7 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94e0e8e66eadf2c9530c84d1f34fec3b2213b104",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.13"
+            "comment": "chore(deps): update dependency @types/node to v20.14.13"
           }
         ]
       }
@@ -191,19 +191,19 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
-            "comment": "chore(deps): fix(deps): update dependency @babel/preset-env to v7.25.0"
+            "comment": "fix(deps): update dependency @babel/preset-env to v7.25.0"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.12"
+            "comment": "chore(deps): update dependency @types/node to v20.14.12"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "d58e2b444358fb65166d0878c185220c6e0a7bb0",
-            "comment": "chore(deps): fix(deps): update emotion monorepo to v11.12.0"
+            "comment": "fix(deps): update emotion monorepo to v11.12.0"
           }
         ],
         "none": [
@@ -232,7 +232,7 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
-            "comment": "chore(deps): fix(deps): update babel monorepo to v7.24.8"
+            "comment": "fix(deps): update babel monorepo to v7.24.8"
           },
           {
             "author": "filip.dupanovic@gmail.com",
@@ -244,7 +244,7 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "c4b7573f367c165d7c67ed5f259ad53ec9ea5672",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.11"
+            "comment": "chore(deps): update dependency @types/node to v20.14.11"
           }
         ],
         "none": [
@@ -267,43 +267,43 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.5"
+            "comment": "chore(deps): update dependency @types/node to v20.14.5"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.3"
+            "comment": "chore(deps): update dependency @types/node to v20.14.3"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.8"
+            "comment": "chore(deps): update dependency @types/node to v20.14.8"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.10"
+            "comment": "chore(deps): update dependency @types/node to v20.14.10"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update node.js to v20.15.0"
+            "comment": "chore(deps): update node.js to v20.15.0"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.7"
+            "comment": "chore(deps): update dependency @types/node to v20.14.7"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "94472e1a79e065f4ef9c4e668453e9266b428281",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.6"
+            "comment": "chore(deps): update dependency @types/node to v20.14.6"
           }
         ],
         "minor": [
@@ -340,19 +340,19 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.14.2"
+            "comment": "chore(deps): update dependency @types/node to v20.14.2"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
-            "comment": "chore(deps): fix(deps): update babel monorepo"
+            "comment": "fix(deps): update babel monorepo"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "7ac78ea2d172ae9e30f23d213752297fb8436a88",
-            "comment": "chore(deps): chore(deps): update node.js to v20.14.0"
+            "comment": "chore(deps): update node.js to v20.14.0"
           }
         ],
         "minor": [
@@ -381,7 +381,7 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "92c7d4c9ac50342a39af3fc029307a2899f0ae34",
-            "comment": "chore(deps): chore(deps): update dependency @types/node to v20.12.12"
+            "comment": "chore(deps): update dependency @types/node to v20.12.12"
           }
         ]
       }
@@ -396,13 +396,13 @@
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
-            "comment": "chore(deps): fix(deps): update babel monorepo to v7.24.5"
+            "comment": "fix(deps): update babel monorepo to v7.24.5"
           },
           {
             "author": "email not defined",
             "package": "@langri-sha/babel-preset",
             "commit": "bb5eca0acea87c11cf873197bea7383eef3f8465",
-            "comment": "chore(deps): chore(deps): update node.js to v20.13.1"
+            "comment": "chore(deps): update node.js to v20.13.1"
           }
         ]
       }
