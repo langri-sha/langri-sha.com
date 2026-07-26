@@ -14,10 +14,13 @@ Then import your Jest test dependencies from here:
 
 ```js
 // some.test.js
-import { expect, test, tempy } from '@langri-sha/vitest'
+import { expect, test, temporaryDirectory } from '@langri-sha/jest-test'
 
 test(/*...*/)
 ```
+
+`tempy` is re-exported under its own named API (`temporaryFile`,
+`temporaryDirectory`, `temporaryWrite`, …) rather than as a `tempy` namespace.
 
 ## See
 
