@@ -126,7 +126,7 @@ const project = new Project({
 })
 
 project.package?.addField('private', true)
-project.package?.addField('packageManager', 'pnpm@9.15.9')
+project.package?.addField('packageManager', 'pnpm@11.17.0')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
 project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
