@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency babel-loader to v10",
+  "packageName": "@langri-sha/webpack",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
