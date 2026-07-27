@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency tempy to v3",
-  "packageName": "@langri-sha/jest-test",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

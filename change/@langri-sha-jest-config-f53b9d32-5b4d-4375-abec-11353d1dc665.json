@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update langri-sha projen toolchain",
-  "packageName": "@langri-sha/jest-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

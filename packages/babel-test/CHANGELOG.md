@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/babel-test
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.7.0
+
+Mon, 27 Jul 2026 19:37:43 GMT
+
+### Minor changes
+
+- Upgrade to Babel 8 and its renamed config types (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update langri-sha projen toolchain (email not defined)
+- Update dependency @types/node to v26 (email not defined)
+- Update @langri-sha/tsconfig to ^0.11.0 (filip.dupanovic@gmail.com)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update Node.js to v24.18.0 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
 
 ## 0.6.7
 

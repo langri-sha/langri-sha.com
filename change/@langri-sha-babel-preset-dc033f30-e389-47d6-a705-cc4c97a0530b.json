@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency @langri-sha/tsconfig to v1",
-  "packageName": "@langri-sha/babel-preset",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

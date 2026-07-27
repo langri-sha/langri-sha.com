@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/jest-config
 
-This log was last generated on Wed, 17 Jul 2024 10:48:16 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.8.3
+
+Mon, 27 Jul 2026 19:37:43 GMT
+
+### Patches
+
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update jest monorepo to v30 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update @langri-sha/tsconfig to ^0.11.0 (filip.dupanovic@gmail.com)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update langri-sha projen toolchain (email not defined)
 
 ## 0.8.2
 

@@ -1,8 +1,27 @@
 # Change Log - @langri-sha/jest-test
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.10.0
+
+Mon, 27 Jul 2026 19:37:43 GMT
+
+### Minor changes
+
+- Re-export tempy's v3 named API (`temporaryFile`, `temporaryDirectory`, …) instead of the removed default export (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update @langri-sha/tsconfig to ^0.11.0 (filip.dupanovic@gmail.com)
+- Update dependency tempy to v3 (email not defined)
+- Update langri-sha projen toolchain (email not defined)
+- Update jest monorepo to v30 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency nock to v14 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
 
 ## 0.9.2
 

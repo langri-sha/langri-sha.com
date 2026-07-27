@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Re-export tempy's v3 named API (`temporaryFile`, `temporaryDirectory`, …) instead of the removed default export",
-  "packageName": "@langri-sha/jest-test",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,31 @@
 # Change Log - @langri-sha/webpack
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:55:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.0
+
+Mon, 27 Jul 2026 19:37:43 GMT
+
+### Minor changes
+
+- Upgrade to Babel 8 and its renamed config types (filip.dupanovic@gmail.com)
+- Bump @langri-sha/babel-preset to v0.6.0
+
+### Patches
+
+- Update @langri-sha/tsconfig to ^0.11.0 (filip.dupanovic@gmail.com)
+- Update Node.js to v24.18.0 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency webpack-bundle-analyzer to v5 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update langri-sha projen toolchain (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency babel-loader to v10 (email not defined)
+- Update dependency webpack-dev-server to v6 (email not defined)
+- Update dependency copy-webpack-plugin to v14 (email not defined)
+- Update dependency @types/node to v26 (email not defined)
 
 ## 0.5.9
 

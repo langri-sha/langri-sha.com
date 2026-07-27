@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update jest monorepo to v30",
-  "packageName": "@langri-sha/jest-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

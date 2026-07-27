@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency webpack-bundle-analyzer to v5",
-  "packageName": "@langri-sha/webpack",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

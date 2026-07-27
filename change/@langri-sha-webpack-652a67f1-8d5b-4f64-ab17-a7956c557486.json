@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency webpack-dev-server to v6",
-  "packageName": "@langri-sha/webpack",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

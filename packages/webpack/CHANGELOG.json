@@ -2,6 +2,95 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 19:37:43 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/webpack_v0.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update @langri-sha/tsconfig to ^0.11.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update Node.js to v24.18.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency webpack-bundle-analyzer to v5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update langri-sha projen toolchain"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency babel-loader to v10"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency webpack-dev-server to v6"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency copy-webpack-plugin to v14"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @types/node to v26"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/webpack",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Upgrade to Babel 8 and its renamed config types"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/webpack",
+            "comment": "Bump @langri-sha/babel-preset to v0.6.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 22:55:24 GMT",
       "version": "0.5.9",
       "tag": "@langri-sha/webpack_v0.5.9",

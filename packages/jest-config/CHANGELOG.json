@@ -2,6 +2,51 @@
   "name": "@langri-sha/jest-config",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 19:37:43 GMT",
+      "version": "0.8.3",
+      "tag": "@langri-sha/jest-config_v0.8.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update jest monorepo to v30"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update @langri-sha/tsconfig to ^0.11.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-config",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 22:55:24 GMT",
       "version": "0.8.2",
       "tag": "@langri-sha/jest-config_v0.8.2",

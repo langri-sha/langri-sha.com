@@ -2,6 +2,71 @@
   "name": "@langri-sha/babel-preset",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 19:37:43 GMT",
+      "version": "0.6.0",
+      "tag": "@langri-sha/babel-preset_v0.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @types/node to v26"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update langri-sha projen toolchain"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update @langri-sha/tsconfig to ^0.11.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Update Node.js to v24.18.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "26909e239d392d31875543459adb71f033666cc7",
+            "comment": "Upgrade to Babel 8 and its renamed config types"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/babel-preset",
+            "comment": "Bump @langri-sha/babel-test to v0.7.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 22:55:24 GMT",
       "version": "0.5.7",
       "tag": "@langri-sha/babel-preset_v0.5.7",
