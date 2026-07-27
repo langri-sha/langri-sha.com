@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Run checks
-        uses: langri-sha/github/actions/terraform@v0.14.0
+        uses: langri-sha/github/actions/terraform@v0.14.1
         with:
-          terraform-version: 1.15.8
+          fail-on-unresolved-version: true
           working-directory: ${{ matrix.working-directory }}
