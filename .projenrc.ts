@@ -41,7 +41,7 @@ const project = new Project({
       '@langri-sha/jest-config@workspace:*',
       '@langri-sha/lint-staged@^0.9.1',
       '@langri-sha/prettier@^0.4.1',
-      '@langri-sha/projen-project@0.19.1',
+      '@langri-sha/projen-project@0.20.0',
       '@langri-sha/schemastore-to-typescript@^0.2.1',
       '@swc-node/register@1.12.1',
       '@swc/core@1.15.46',
