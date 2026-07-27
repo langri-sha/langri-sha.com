@@ -7,12 +7,12 @@
     },
     {
       "name": "jest",
-      "version": "^29.0.0",
+      "version": "^30.0.0",
       "type": "peer"
     },
     {
       "name": "@jest/globals",
-      "version": "29.7.0",
+      "version": "30.4.1",
       "type": "runtime"
     },
     {
