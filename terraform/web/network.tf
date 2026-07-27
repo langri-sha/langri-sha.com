@@ -1,7 +1,7 @@
 module "vpc" {
   for_each = local.vpc
   source   = "terraform-google-modules/network/google"
-  version  = "~> 13.0"
+  version  = "~> 18.0"
 
   network_name     = each.key
   project_id       = each.value.project
