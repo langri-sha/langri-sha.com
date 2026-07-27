@@ -271,7 +271,7 @@ importers:
         version: 5.3.1
       webpack-dev-server:
         specifier: 6.0.0
-        version: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+        version: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0)
       webpack-subresource-integrity:
         specifier: 5.2.0-rc.1
         version: 5.2.0-rc.1(html-webpack-plugin@5.6.8(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
@@ -12829,9 +12829,9 @@ snapshots:
       js-yaml: 4.3.0
       json5: 2.2.3
       webpack-bundle-analyzer: 5.3.1
-      webpack-dev-server: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+      webpack-dev-server: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0)
 
-  webpack-dev-middleware@8.1.0(tslib@2.8.1)(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)):
+  webpack-dev-middleware@8.1.0(tslib@2.8.1)(webpack@5.109.0):
     dependencies:
       memfs: 4.64.0(tslib@2.8.1)
       mime-types: 3.0.2
@@ -12842,7 +12842,7 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)):
+  webpack-dev-server@6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -12867,7 +12867,7 @@ snapshots:
       selfsigned: 5.5.0
       serve-index: 1.9.2
       tinyglobby: 0.2.17
-      webpack-dev-middleware: 8.1.0(tslib@2.8.1)(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+      webpack-dev-middleware: 8.1.0(tslib@2.8.1)(webpack@5.109.0)
       ws: 8.21.1
     optionalDependencies:
       webpack: 5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)
