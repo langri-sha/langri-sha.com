@@ -49,8 +49,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.5(projen@0.86.5(constructs@10.7.1))
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@swc-node/register':
         specifier: 1.11.1
         version: 1.11.1(@swc/core@1.15.40)(@swc/types@0.1.27)(typescript@5.9.3)
@@ -119,8 +119,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/babel-preset
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@langri-sha/webpack':
         specifier: workspace:*
         version: link:../../packages/webpack
@@ -165,8 +165,8 @@ importers:
         specifier: workspace:*
         version: link:../babel-test
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@langri-sha/vitest':
         specifier: ^0.1.2
         version: 0.1.6(vitest@2.1.9(@types/node@26.1.1)(terser@5.49.0))
@@ -187,8 +187,8 @@ importers:
         specifier: ^0.5.7
         version: 0.5.12
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@langri-sha/vitest':
         specifier: ^0.1.2
         version: 0.1.6(vitest@2.1.9(@types/node@26.1.1)(terser@5.49.0))
@@ -205,8 +205,8 @@ importers:
         specifier: 5.3.0
         version: 5.3.0
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@types/node':
         specifier: 26.1.1
         version: 26.1.1
@@ -221,8 +221,8 @@ importers:
         version: 30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
 
   packages/jest-test:
     dependencies:
@@ -240,8 +240,8 @@ importers:
         version: 3.2.0
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
 
   packages/webpack:
     dependencies:
@@ -271,7 +271,7 @@ importers:
         version: 5.3.1
       webpack-dev-server:
         specifier: 6.0.0
-        version: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+        version: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0)
       webpack-subresource-integrity:
         specifier: 5.2.0-rc.1
         version: 5.2.0-rc.1(html-webpack-plugin@5.6.8(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
@@ -280,8 +280,8 @@ importers:
         specifier: workspace:*
         version: link:../babel-preset
       '@langri-sha/tsconfig':
-        specifier: ^0.11.0
-        version: 0.11.1(typescript@5.9.3)
+        specifier: ^1.0.0
+        version: 1.0.1(typescript@5.9.3)
       '@types/node':
         specifier: 26.1.1
         version: 26.1.1
@@ -2002,8 +2002,8 @@ packages:
     peerDependencies:
       projen: ^0.86.0
 
-  '@langri-sha/tsconfig@0.11.1':
-    resolution: {integrity: sha512-ipi2Kirxg6xSwEDztQWInnDpPxSOYy5zFveC3ud0OeaxqCW0cmTd3xZmbZYS65yCL3zwzDEbwv0RZ16s8ObNBg==}
+  '@langri-sha/tsconfig@1.0.1':
+    resolution: {integrity: sha512-edz4jWkTffOpnk/ZslBtfdQs4Cc5bwuRzDhjavoiIkZBaxJvmhURq1gTKuHz+/3fv2kbxuQfyLb402GIJdxr+w==}
     peerDependencies:
       typescript: ^5.5.0
 
@@ -8191,7 +8191,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@langri-sha/tsconfig@0.11.1(typescript@5.9.3)':
+  '@langri-sha/tsconfig@1.0.1(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
 
@@ -12820,9 +12820,9 @@ snapshots:
       js-yaml: 4.3.0
       json5: 2.2.3
       webpack-bundle-analyzer: 5.3.1
-      webpack-dev-server: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+      webpack-dev-server: 6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0)
 
-  webpack-dev-middleware@8.1.0(tslib@2.8.1)(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)):
+  webpack-dev-middleware@8.1.0(tslib@2.8.1)(webpack@5.109.0):
     dependencies:
       memfs: 4.64.0(tslib@2.8.1)
       mime-types: 3.0.2
@@ -12833,7 +12833,7 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@6.0.0(tslib@2.8.1)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.1)(webpack-dev-server@6.0.0)(webpack@5.109.0))(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)):
+  webpack-dev-server@6.0.0(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.109.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -12858,7 +12858,7 @@ snapshots:
       selfsigned: 5.5.0
       serve-index: 1.9.2
       tinyglobby: 0.2.17
-      webpack-dev-middleware: 8.1.0(tslib@2.8.1)(webpack@5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1))
+      webpack-dev-middleware: 8.1.0(tslib@2.8.1)(webpack@5.109.0)
       ws: 8.21.1
     optionalDependencies:
       webpack: 5.109.0(@swc/core@1.15.40)(webpack-cli@7.2.1)
