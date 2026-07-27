@@ -4,6 +4,7 @@
   configMigration: true,
   extends: ['config:recommended'],
   labels: ['dependencies'],
+  minimumReleaseAge: '3 days',
   reviewersFromCodeOwners: true,
   lockFileMaintenance: {
     enabled: true,
