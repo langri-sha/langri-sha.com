@@ -150,7 +150,7 @@ const subproject = (project: Project) => {
 
   project
     .tryFindObjectFile('package.json')
-    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^0.11.0')
+    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^1.0.0')
 }
 
 const test = (project: Project) => {
