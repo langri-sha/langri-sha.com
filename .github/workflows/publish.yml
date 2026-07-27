@@ -9,7 +9,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    uses: langri-sha/github/.github/workflows/packages.yml@v0.13.1
+    uses: langri-sha/github/.github/workflows/packages.yml@v0.14.0
     with:
       environment: release
       scope: '@langri-sha'
