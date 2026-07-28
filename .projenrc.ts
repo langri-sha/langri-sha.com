@@ -74,6 +74,13 @@ const project = new Project({
   },
   pnpmWorkspace: {
     packages: ['apps/*', 'packages/*'],
+    minimumReleaseAgeExclude: ['@langri-sha/*'],
+    allowBuilds: {
+      '@swc/core': true,
+      esbuild: true,
+      sharp: true,
+      'unrs-resolver': true,
+    },
   },
   readme: {
     filename: 'readme.md',
@@ -127,7 +134,7 @@ const project = new Project({
 
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@11.17.0')
-project.package?.addEngine('pnpm', '>=9.0.0')
+project.package?.addEngine('pnpm', '>= 11.0.0')
 
 project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
 project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
