@@ -105,6 +105,12 @@ const project = new Project({
         matchPackageNames: ['@langri-sha/**'],
         minimumReleaseAge: null,
       },
+      {
+        description:
+          'Install our own GitHub Actions and Terraform modules without waiting them out',
+        matchPackageNames: ['langri-sha/**'],
+        minimumReleaseAge: null,
+      },
     ],
     customManagers: [
       {
