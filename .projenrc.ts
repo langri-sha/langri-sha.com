@@ -144,7 +144,7 @@ project.package?.addEngine('pnpm', '>= 11.0.0')
 
 project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
 project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
-project.package?.setScript('test', 'pnpm run --filter @langri-sha/web test')
+project.package?.setScript('test', 'pnpm exec vitest --passWithNoTests')
 
 project.gitattributes.addAttributes(
   'readme',

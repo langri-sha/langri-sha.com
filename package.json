@@ -26,7 +26,7 @@
     "prepare": "husky",
     "renovate": "pnpm exec projen renovate",
     "start": "pnpm run --filter @langri-sha/web start",
-    "test": "pnpm run --filter @langri-sha/web test"
+    "test": "pnpm exec vitest --passWithNoTests"
   },
   "dependencies": {
     "@babel/core": "8.0.1",
