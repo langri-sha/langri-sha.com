@@ -21,6 +21,12 @@
       allowedVersions: '^24',
     },
     {
+      description: 'Versions owned by @langri-sha/projen-project. Declare the dependency in `.projenrc.ts` to manage it here instead',
+      matchManagers: ['npm'],
+      matchPackageNames: ['beachball', 'husky', 'typescript'],
+      enabled: false,
+    },
+    {
       description: 'Google Terraform Providers',
       groupName: 'Google Providers',
       groupSlug: 'terraform-google',
@@ -60,10 +66,10 @@
       managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
       matchStringsStrategy: 'recursive',
       matchStrings: [
-        '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
+        '\\.#?(?<depType>addDeps|addDevDeps|addPeerDeps|addDefaultDevDeps)\\([^)]*\\)',
         "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
       ],
-      depTypeTemplate: "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+      depTypeTemplate: "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addPeerDeps')}}peerDependencies{{else}}devDependencies{{/if}}",
     },
     {
       customType: 'regex',
