@@ -132,7 +132,7 @@
     },
     {
       "name": "webpack",
-      "version": "5.109.0",
+      "version": "5.109.2",
       "type": "runtime"
     }
   ],
