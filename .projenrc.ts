@@ -32,7 +32,7 @@ const project = new Project({
       '@babel/register@8.0.1',
       'react-dom@19.2.8',
       'react@19.2.8',
-      'webpack-cli@7.2.1',
+      'webpack-cli@7.2.2',
       'webpack@5.109.2',
     ],
     devDeps: [
