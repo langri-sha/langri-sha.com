@@ -27,7 +27,7 @@
     },
     {
       "name": "@langri-sha/projen-project",
-      "version": "0.24.0",
+      "version": "*",
       "type": "build"
     },
     {
