@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@langri-sha/monorepo": "^0.5.7",
-    "@langri-sha/tsconfig": "^0.11.0",
+    "@langri-sha/tsconfig": "^1.0.1",
     "@langri-sha/vitest": "^0.1.2",
     "@types/node": "26.1.1",
     "@types/ramda": "0.32.0"

@@ -165,10 +165,6 @@ const subproject = (project: Project) => {
       project.outdir,
     ),
   })
-
-  project
-    .tryFindObjectFile('package.json')
-    ?.addOverride('devDependencies.@langri-sha/tsconfig', '^0.11.0')
 }
 
 const test = (project: Project) => {
