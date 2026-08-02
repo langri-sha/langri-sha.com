@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@jest/globals": "30.4.1",
-    "nock": "14.0.16",
+    "nock": "14.0.17",
     "tempy": "3.2.0"
   },
   "devDependencies": {
