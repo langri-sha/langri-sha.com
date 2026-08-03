@@ -28,6 +28,12 @@ export const Landing: React.FC = () => {
             playing={playing}
             onToggle={() => setPlaying((current) => !current)}
           />
+          <Frame aria-hidden="true">
+            <Cross />
+            <Cross />
+            <Cross />
+            <Cross />
+          </Frame>
         </Root>
       </Root>
     </React.Fragment>
@@ -70,4 +76,93 @@ const Root = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+`
+
+// A static instrument-style overlay: it gives the scene a deliberate frame
+// without ever becoming part of the animated canvas or intercepting controls.
+const Frame = styled.div`
+  --frame-line: rgba(171, 205, 255, 0.42);
+  --frame-accent: rgba(255, 126, 163, 0.8);
+  position: fixed;
+  z-index: 3;
+  inset: clamp(1rem, 2.4vw, 3.2rem);
+  box-sizing: border-box;
+  border: 1px solid var(--frame-line);
+  box-shadow:
+    inset 0 0 0 0.7rem rgba(4, 8, 25, 0.12),
+    0 0 2.4rem rgba(86, 142, 255, 0.08);
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0.7rem;
+    border: 1px solid rgba(171, 205, 255, 0.16);
+    background:
+      linear-gradient(var(--frame-accent), var(--frame-accent)) left top / 2rem
+        1px no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) left top / 1px
+        2rem no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) right top / 2rem
+        1px no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) right top / 1px
+        2rem no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) left bottom /
+        2rem 1px no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) left bottom /
+        1px 2rem no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) right bottom /
+        2rem 1px no-repeat,
+      linear-gradient(var(--frame-accent), var(--frame-accent)) right bottom /
+        1px 2rem no-repeat;
+  }
+`
+
+const Cross = styled.span`
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: translate(-50%, -50%);
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    background: var(--frame-accent);
+    box-shadow: 0 0 0.8rem rgba(255, 126, 163, 0.35);
+  }
+
+  &::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+  }
+
+  &::after {
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+  }
+
+  &:nth-of-type(1) {
+    top: 0;
+    left: 0;
+  }
+
+  &:nth-of-type(2) {
+    top: 0;
+    left: 100%;
+  }
+
+  &:nth-of-type(3) {
+    top: 100%;
+    left: 0;
+  }
+
+  &:nth-of-type(4) {
+    top: 100%;
+    left: 100%;
+  }
 `
