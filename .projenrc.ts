@@ -43,8 +43,6 @@ const project = new Project({
       '@langri-sha/prettier@^0.4.1',
       '@langri-sha/projen-project@*',
       '@langri-sha/schemastore-to-typescript@^0.2.1',
-      '@swc-node/register@1.12.1',
-      '@swc/core@1.15.46',
       '@types/node@26.1.1',
       'eslint@10.8.0',
       'jest@30.4.2',
