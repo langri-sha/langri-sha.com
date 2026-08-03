@@ -23,7 +23,14 @@
     {
       description: 'Versions owned by @langri-sha/projen-project. Declare the dependency in `.projenrc.ts` to manage it here instead',
       matchManagers: ['npm'],
-      matchPackageNames: ['beachball', 'husky', 'projen', 'typescript'],
+      matchPackageNames: [
+        '@swc-node/register',
+        '@swc/core',
+        'beachball',
+        'husky',
+        'projen',
+        'typescript',
+      ],
       enabled: false,
     },
     {
