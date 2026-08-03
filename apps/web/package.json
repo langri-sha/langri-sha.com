@@ -20,8 +20,8 @@
     "@langri-sha/tsconfig": "^1.0.0",
     "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.20",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "raw-loader": "4.0.2"
   },
   "peerDependencies": {
