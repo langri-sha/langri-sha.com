@@ -1,7 +1,10 @@
 'use client'
 import * as React from 'react'
 
+import { Voice } from './invocation'
 import noiseProcessorSource from './noise-processor.worklet'
+
+let voicePlayed = false
 
 export const Drone: React.FC<Record<string, never>> = () => {
   React.useEffect(() => {
@@ -34,6 +37,7 @@ class Processor {
   context: AudioContext
   gainNode: GainNode
   droneBus: GainNode
+  voice: Voice | null = null
   scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
   noiseNodes: AudioWorkletNode[] = []
   pannerNodes: PannerNode[] = []
@@ -45,15 +49,13 @@ class Processor {
     const context = new AudioContext()
     this.context = context
 
-    // The master stays at unity so other voices can share the same meter;
-    // the drone's own level lives on its bus below.
     const gainNode = context.createGain()
     gainNode.gain.value = 1
     gainNode.connect(context.destination)
     this.gainNode = gainNode
 
     const droneBus = context.createGain()
-    droneBus.gain.value = 0.25
+    droneBus.gain.value = voicePlayed ? 0.25 : 0.0001
     droneBus.connect(gainNode)
     this.droneBus = droneBus
 
@@ -82,6 +84,20 @@ class Processor {
   }
 
   async generate() {
+    await this.context.resume()
+
+    if (this.destroyed) {
+      return
+    }
+
+    if (!voicePlayed) {
+      voicePlayed = true
+      const start = this.context.currentTime + 0.05
+      this.voice = new Voice(this.context, this.gainNode)
+      this.voice.start(start)
+      this.droneBus.gain.setTargetAtTime(0.25, start + Voice.droneEntry, 1.8)
+    }
+
     const workletUrl = URL.createObjectURL(
       new Blob([noiseProcessorSource], { type: 'text/javascript' }),
     )
@@ -148,6 +164,7 @@ class Processor {
     this.destroyed = true
 
     this.removeResumeListeners?.()
+    this.voice?.dispose()
     this.panIntervals.forEach((interval) => clearInterval(interval))
     this.noiseNodes.forEach((node) => node.disconnect())
     this.pannerNodes.forEach((node) => node.disconnect())
