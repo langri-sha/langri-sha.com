@@ -81,6 +81,10 @@ export const ChantTuner: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(() => CHANT.map(() => false))
   const [playing, setPlaying] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
+  const [selected, setSelected] = React.useState<{
+    breath: number
+    syllable?: number
+  } | null>(null)
 
   const audio = React.useRef<{ context: AudioContext; input: GainNode }>(null)
   const invocation = React.useRef<Invocation>(null)
@@ -151,6 +155,33 @@ export const ChantTuner: React.FC = () => {
     setPlaying(false)
   }
 
+  // Clicking the timeline jumps to the matching editor below: the breath
+  // unfolds and the card scrolls into view with its first input focused.
+  const select = (breath: number, syllable?: number) => {
+    setCollapsed((current) =>
+      current.map((value, k) => (k === breath ? false : value)),
+    )
+    setSelected({ breath, syllable })
+  }
+
+  React.useEffect(() => {
+    if (!selected) {
+      return
+    }
+    const id =
+      selected.syllable == null
+        ? `breath-${selected.breath}`
+        : `syllable-${selected.breath}-${selected.syllable}`
+    const element = document.getElementById(id)
+    if (!element) {
+      return
+    }
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    element
+      .querySelector<HTMLInputElement>('input')
+      ?.focus({ preventScroll: true })
+  }, [selected])
+
   const copy = async () => {
     const source = serialize(breaths)
     try {
@@ -220,7 +251,7 @@ export const ChantTuner: React.FC = () => {
         </Toolbar>
 
         <TimelineCard>
-          <Timeline breaths={breaths} />
+          <Timeline breaths={breaths} onSelect={select} />
           <Legend>
             block height = voice · dashed = sweep · red cap = noise · red wedge
             = inhale · grey sliver = stop gap · lower line = pitch
@@ -229,7 +260,7 @@ export const ChantTuner: React.FC = () => {
       </Console>
 
       {breaths.map((breath, i) => (
-        <Card key={i}>
+        <Card key={i} id={`breath-${i}`}>
           <BreathHead>
             <RowButton
               aria-expanded={!collapsed[i]}
@@ -293,6 +324,8 @@ export const ChantTuner: React.FC = () => {
                 <SyllableEditor
                   key={j}
                   canRemove={breath.syllables.length > 1}
+                  id={`syllable-${i}-${j}`}
+                  selected={selected?.breath === i && selected?.syllable === j}
                   start={starts[i][j]}
                   syllable={syllable}
                   onChange={(recipe) =>
@@ -331,7 +364,10 @@ export const ChantTuner: React.FC = () => {
 
 const PX_PER_SECOND = 110
 
-const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
+const Timeline: React.FC<{
+  breaths: EditableBreath[]
+  onSelect: (breath: number, syllable?: number) => void
+}> = ({ breaths, onSelect }) => {
   const top = 14
   const baseline = 90
   const pitchY = (hz: number) =>
@@ -346,11 +382,13 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
       shapes.push(
         <polygon
           key={`inhale-${i}`}
+          cursor="pointer"
           fill={colors.red}
           opacity={0.15 + 0.35 * breath.inhale}
           points={`${x},${baseline} ${x + width},${baseline} ${x + width},${
             baseline - 8 - 34 * breath.inhale
           }`}
+          onClick={() => onSelect(i)}
         />,
       )
     }
@@ -365,12 +403,14 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
         shapes.push(
           <rect
             key={`gap-${i}-${j}`}
+            cursor="pointer"
             fill={colors.text}
             height={baseline - top}
             opacity={0.12}
             width={width}
             x={x}
             y={top}
+            onClick={() => onSelect(i, j)}
           />,
         )
         x += width
@@ -381,6 +421,7 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
       shapes.push(
         <rect
           key={`syllable-${i}-${j}`}
+          cursor="pointer"
           fill={colors.blue}
           fillOpacity={syllable.to ? 0.55 : 0.85}
           height={height}
@@ -389,28 +430,33 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
           width={width}
           x={x}
           y={baseline - height}
+          onClick={() => onSelect(i, j)}
         />,
       )
       if (syllable.fric) {
         shapes.push(
           <rect
             key={`fric-${i}-${j}`}
+            cursor="pointer"
             fill={colors.red}
             height={4}
             width={width}
             x={x}
             y={baseline - height - 6}
+            onClick={() => onSelect(i, j)}
           />,
         )
       }
       shapes.push(
         <text
           key={`label-${i}-${j}`}
+          cursor="pointer"
           fill={colors.text}
           fontSize={9}
           textAnchor="middle"
           x={x + width / 2}
           y={baseline + 13}
+          onClick={() => onSelect(i, j)}
         >
           {syllable.label}
         </text>,
@@ -436,11 +482,13 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
       />,
       <text
         key={`pitch-label-${i}`}
+        cursor="pointer"
         fill={colors.text}
         fontSize={8}
         opacity={0.7}
         x={entry}
         y={pitchY(breath.pitch) - 5}
+        onClick={() => onSelect(i)}
       >
         {fmt(breath.pitch)}Hz
       </text>,
@@ -458,6 +506,8 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
 
 interface SyllableEditorProps {
   canRemove: boolean
+  id: string
+  selected: boolean
   start: number
   syllable: EditableSyllable
   onChange: (recipe: (draft: EditableSyllable) => void) => void
@@ -467,13 +517,15 @@ interface SyllableEditorProps {
 
 const SyllableEditor: React.FC<SyllableEditorProps> = ({
   canRemove,
+  id,
+  selected,
   start,
   syllable,
   onChange,
   onDuplicate,
   onRemove,
 }) => (
-  <SyllableCard>
+  <SyllableCard data-selected={selected} id={id}>
     <SyllableHead>
       <LabelInput
         aria-label="Syllable label"
@@ -849,6 +901,11 @@ const SyllableCard = styled.div`
   padding: 1rem 1.2rem;
   border: 1px solid ${colors.text};
   background: ${colors.background};
+
+  &[data-selected='true'] {
+    border-color: ${colors.blue};
+    box-shadow: 0 0 0 1px ${colors.blue};
+  }
 `
 
 const SyllableHead = styled.div`
