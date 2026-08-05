@@ -40,9 +40,9 @@ interface Breath {
 /* Three breath groups pronounce the line, one word-cluster per breath:
  * "sno-vi su / po-ru-ke / iz du-bi-ne". Sibilants ride the noise band,
  * stops are silent closures with a short burst, the r is a single tap, and
- * the vowels hold Croatian formant colours — gently swept on the long ones
- * so the overtone gesture survives the diction. The last vowel carries the
- * elongation and the dive. */
+ * the vowels hold Croatian formant colours — though the u's sit deeper than
+ * speech, and su sinks below the breath's pitch, bending the diction toward
+ * menace. The last vowel carries the elongation and the dive. */
 const CHANT: Breath[] = [
   {
     // "snoo-vi su"
@@ -61,36 +61,47 @@ const CHANT: Breath[] = [
         fric: [5200, 0.07],
         gap: 0.2,
       }, // s
-      { dur: 0.45, f: [310, 750, 2100], voice: 0.9 }, // u
+      {
+        dur: 0.6,
+        f: [290, 620, 1950],
+        to: [270, 580, 1900],
+        voice: 0.9,
+        dive: 50,
+      }, // u, sinking
     ],
   },
   {
-    // "poo-ru-ke"
+    // "po-ruu-ke"
     pause: 0.5,
     pitch: 56,
     syllables: [
       { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] }, // p
-      { dur: 0.85, f: [430, 850, 2250], to: [455, 930, 2300], voice: 1.05 }, // oo
+      { dur: 0.5, f: [430, 850, 2250], voice: 1.05 }, // o
       { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 }, // r, one tap
-      { dur: 0.4, f: [310, 750, 2100], voice: 0.95 }, // u
+      {
+        dur: 0.95,
+        f: [290, 620, 1950],
+        to: [270, 570, 1900],
+        voice: 1,
+      }, // uu
       {
         dur: 0.06,
         f: [430, 1800, 2450],
         voice: 0.08,
         fric: [1650, 0.09],
-        gap: 0.05,
+        gap: 0.08,
       }, // k
       { dur: 0.5, f: [430, 1800, 2450], voice: 0.9 }, // e
     ],
   },
   {
-    // "iz du-bi-neee", diving away on the last vowel
+    // "eez du-bi-neee", diving away on the last vowel
     pause: 0.45,
     pitch: 54,
     syllables: [
-      { dur: 0.3, f: [290, 2050, 2550], voice: 0.85 }, // i
-      { dur: 0.14, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
-      { dur: 0.35, f: [310, 750, 2100], voice: 0.95, gap: 0.05 }, // d + u
+      { dur: 0.55, f: [300, 1900, 2500], to: [280, 2150, 2600], voice: 0.9 }, // eez
+      { dur: 0.16, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
+      { dur: 0.45, f: [280, 600, 1950], voice: 0.95, gap: 0.05 }, // d + u
       { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.04 }, // b + i
       { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 }, // n
       {
@@ -230,7 +241,7 @@ export class Invocation {
     // doubling that gives kargyraa its growl. Both ride the same formants.
     const glottis = this.oscillator(64, when, stop, 'sawtooth')
     const undertone = this.oscillator(32.1, when, stop, 'sawtooth')
-    const undertoneLevel = this.gain(0.7)
+    const undertoneLevel = this.gain(0.8)
     undertone.connect(undertoneLevel)
 
     const drive = this.gain(0.5)
