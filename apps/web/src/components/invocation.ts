@@ -65,19 +65,14 @@ const CHANT: Breath[] = [
     ],
   },
   {
-    // "po-ruu-ke"
+    // "po-ru-ke"
     pause: 0.5,
     pitch: 56,
     syllables: [
       { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] }, // p
       { dur: 0.5, f: [430, 850, 2250], voice: 1.05 }, // o
       { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 }, // r, one tap
-      {
-        dur: 0.95,
-        f: [290, 620, 1950],
-        to: [270, 570, 1900],
-        voice: 1,
-      }, // uu
+      { dur: 0.45, f: [290, 620, 1950], voice: 0.95 }, // u
       {
         dur: 0.06,
         f: [430, 1800, 2450],
