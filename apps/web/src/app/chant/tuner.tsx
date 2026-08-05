@@ -21,7 +21,8 @@ interface EditableBreath {
 const LABELS = [
   ['s', 'n', 'oo', 'v', 'i', 's', 'u'],
   ['p', 'o', 'r', 'u', 'k', 'e'],
-  ['eez', 'z', 'du', 'bi', 'n', 'eee'],
+  ['eez', 'z'],
+  ['du', 'bi', 'n', 'eee'],
 ]
 
 const seed = (): EditableBreath[] =>

@@ -37,8 +37,8 @@ export interface Breath {
   syllables: Syllable[]
 }
 
-/* Three breath groups pronounce the line, one word-cluster per breath:
- * "sno-vi su / po-ru-ke / iz du-bi-ne". Sibilants ride the noise band,
+/* Four breath groups pronounce the line, stepping down a word at a time:
+ * "sno-vi su / po-ru-ke / eez / du-bi-ne". Sibilants ride the noise band,
  * stops are silent closures with a short burst, the r is a single tap, and
  * the vowels hold Croatian formant colours — though the u's sit deeper than
  * speech, bending the diction toward menace. The last vowel carries the
@@ -84,12 +84,19 @@ export const CHANT: Breath[] = [
     ],
   },
   {
-    // "eez du-bi-neee", diving away on the last vowel
+    // "eez"
     pause: 0.45,
     pitch: 54,
     syllables: [
       { dur: 0.25, f: [300, 1900, 2500], to: [280, 2150, 2600], voice: 0.9 }, // eez
       { dur: 0.15, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
+    ],
+  },
+  {
+    // "du-bi-neee", diving away on the last vowel
+    pause: 0.4,
+    pitch: 52,
+    syllables: [
       { dur: 0.25, f: [280, 600, 1950], voice: 0.95, gap: 0.05 }, // d + u
       { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.05 }, // b + i
       { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 }, // n
