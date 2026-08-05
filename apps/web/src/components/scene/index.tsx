@@ -1,3 +1,5 @@
+'use client'
+
 import styled from '@emotion/styled'
 import * as React from 'react'
 
@@ -5,7 +7,7 @@ import fragmentShaderSource from './default.frag'
 import vertexShaderSource from './default.vert'
 
 export interface SceneProps {
-  audioLevelRef: React.MutableRefObject<number>
+  audioLevelRef?: React.MutableRefObject<number>
 }
 
 export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
@@ -45,8 +47,6 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
         return
       }
 
-      // A single triangle covering clip space.
-      const positions = [-1, -1, 3, -1, -1, 3]
       const positionAttributeLocation = gl.getAttribLocation(
         program,
         'a_position',
@@ -55,7 +55,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
       gl.bufferData(
         gl.ARRAY_BUFFER,
-        new Float32Array(positions),
+        new Float32Array(FULLSCREEN_TRIANGLE),
         gl.STATIC_DRAW,
       )
 
@@ -80,7 +80,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height)
         gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000)
-        gl.uniform1f(audioLevelLocation, audioLevelRef.current)
+        gl.uniform1f(audioLevelLocation, audioLevelRef?.current ?? 0)
         gl.drawArrays(gl.TRIANGLES, 0, 3)
 
         frame = requestAnimationFrame(render)
@@ -175,15 +175,10 @@ const createProgram = (
   gl.deleteProgram(program)
 }
 
-// Raymarched clouds cost far more per pixel than the old 2D gradient. Render at
-// device resolution but cap the pixel ratio, with a scale knob to trade
-// sharpness for performance if a machine struggles.
-const RENDER_SCALE = 1
-
 const resize = (canvas: HTMLCanvasElement) => {
   const { width, height, clientWidth, clientHeight } = canvas
 
-  const scale = Math.min(window.devicePixelRatio, 2) * RENDER_SCALE
+  const scale = Math.min(window.devicePixelRatio, 2)
   const displayWidth = Math.floor(clientWidth * scale)
   const displayHeight = Math.floor(clientHeight * scale)
 
@@ -192,6 +187,9 @@ const resize = (canvas: HTMLCanvasElement) => {
     canvas.height = displayHeight
   }
 }
+
+// A single triangle covering clip space.
+const FULLSCREEN_TRIANGLE = [-1, -1, 3, -1, -1, 3]
 
 const Canvas = styled.canvas`
   position: absolute;
