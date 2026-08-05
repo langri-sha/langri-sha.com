@@ -68,10 +68,21 @@ class Processor {
     // the drone's own level lives on its bus below.
     const gainNode = context.createGain()
     gainNode.gain.value = 1
+    // A brick wall between the mix and the output: the invocation is trimmed
+    // hot enough to sit at the front, and this keeps its peaks — and any
+    // overlap with the drone underneath — from clipping.
+    const limiter = context.createDynamicsCompressor()
+    limiter.threshold.value = -1
+    limiter.knee.value = 0
+    limiter.ratio.value = 20
+    limiter.attack.value = 0.003
+    limiter.release.value = 0.25
+
     const analyserNode = context.createAnalyser()
     analyserNode.fftSize = 256
     analyserNode.smoothingTimeConstant = 0.78
-    gainNode.connect(analyserNode)
+    gainNode.connect(limiter)
+    limiter.connect(analyserNode)
     analyserNode.connect(context.destination)
     this.gainNode = gainNode
     this.analyserNode = analyserNode

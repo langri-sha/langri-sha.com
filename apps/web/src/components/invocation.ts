@@ -90,6 +90,12 @@ const VOICE_END = VOICE_START + chantDuration
 const DRONE_ENTRY = VOICE_END - 1.5
 const TAIL_END = VOICE_END + 7
 
+/* Output trim. The voice is built at conservative internal levels so the
+ * formant and saturation stages never fold back on themselves; this lifts the
+ * finished sum up to the front of the mix. The limiter on the master catches
+ * the peaks, so this can sit well above unity. */
+const LEVEL = 3.2
+
 export class Invocation {
   /** Offset after start() at which the drone should begin fading in. */
   static readonly droneEntry = DRONE_ENTRY
@@ -107,14 +113,18 @@ export class Invocation {
     this.context = context
     this.noiseData = this.createNoiseBuffer()
 
+    // Both buses meet at one trim, so the invocation's level is a single knob.
+    const master = this.gain(LEVEL)
+    master.connect(destination)
+
     this.dryBus = this.gain(1)
-    this.dryBus.connect(destination)
+    this.dryBus.connect(master)
 
     const convolver = this.own(context.createConvolver())
     convolver.buffer = this.createImpulseResponse()
     const wetOut = this.gain(0.85)
     convolver.connect(wetOut)
-    wetOut.connect(destination)
+    wetOut.connect(master)
 
     this.wetBus = this.gain(1)
     this.wetBus.connect(convolver)
