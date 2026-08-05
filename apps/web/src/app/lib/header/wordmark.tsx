@@ -28,4 +28,5 @@ export const Wordmark = styled(WordmarkMark)`
   display: block;
   width: 100%;
   height: auto;
+  mix-blend-mode: luminosity;
 `
