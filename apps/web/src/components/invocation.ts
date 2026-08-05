@@ -41,8 +41,8 @@ interface Breath {
  * "sno-vi su / po-ru-ke / iz du-bi-ne". Sibilants ride the noise band,
  * stops are silent closures with a short burst, the r is a single tap, and
  * the vowels hold Croatian formant colours — though the u's sit deeper than
- * speech, and su sinks below the breath's pitch, bending the diction toward
- * menace. The last vowel carries the elongation and the dive. */
+ * speech, bending the diction toward menace. The last vowel carries the
+ * elongation and the dive. */
 const CHANT: Breath[] = [
   {
     // "snoo-vi su"
@@ -61,13 +61,7 @@ const CHANT: Breath[] = [
         fric: [5200, 0.07],
         gap: 0.2,
       }, // s
-      {
-        dur: 0.4,
-        f: [290, 620, 1950],
-        to: [270, 580, 1900],
-        voice: 0.9,
-        dive: 48,
-      }, // u, sinking
+      { dur: 0.25, f: [290, 620, 1950], voice: 0.9 }, // u
     ],
   },
   {
