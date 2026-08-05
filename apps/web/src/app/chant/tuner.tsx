@@ -15,6 +15,7 @@ type EditableSyllable = Syllable & { label: string }
 interface EditableBreath {
   pause: number
   pitch: number
+  inhale?: number
   syllables: EditableSyllable[]
 }
 
@@ -29,6 +30,7 @@ const seed = (): EditableBreath[] =>
   CHANT.map((breath, i) => ({
     pause: breath.pause,
     pitch: breath.pitch,
+    inhale: breath.inhale,
     syllables: breath.syllables.map((syllable, j) => ({
       ...structuredClone(syllable),
       label: LABELS[i]?.[j] ?? `${i + 1}.${j + 1}`,
@@ -46,6 +48,9 @@ const serialize = (breaths: EditableBreath[]) => {
     lines.push(`    // "${breath.syllables.map((s) => s.label).join('-')}"`)
     lines.push(`    pause: ${fmt(breath.pause)},`)
     lines.push(`    pitch: ${fmt(breath.pitch)},`)
+    if (breath.inhale) {
+      lines.push(`    inhale: ${fmt(breath.inhale)},`)
+    }
     lines.push('    syllables: [')
     for (const s of breath.syllables) {
       const parts = [`dur: ${fmt(s.dur)}`, `f: [${s.f.map(fmt).join(', ')}]`]
@@ -127,10 +132,13 @@ export const ChantTuner: React.FC = () => {
 
   const play = () => playChant(structuredClone(breaths))
 
-  // Solo one breath, dropping its opening pause so it speaks at once.
+  // Solo one breath, dropping its opening pause so it speaks at once —
+  // unless the breath inhales, since the draw lives in that pause.
   const playBreath = (index: number) => {
     const solo = structuredClone(breaths[index])
-    solo.pause = 0
+    if (!solo.inhale) {
+      solo.pause = 0
+    }
     playChant([solo])
   }
 
@@ -214,8 +222,8 @@ export const ChantTuner: React.FC = () => {
         <TimelineCard>
           <Timeline breaths={breaths} />
           <Legend>
-            block height = voice · dashed = sweep · red cap = noise · grey
-            sliver = stop gap · lower line = pitch
+            block height = voice · dashed = sweep · red cap = noise · red wedge
+            = inhale · grey sliver = stop gap · lower line = pitch
           </Legend>
         </TimelineCard>
       </Console>
@@ -262,6 +270,18 @@ export const ChantTuner: React.FC = () => {
               onChange={(value) =>
                 update((draft) => {
                   draft[i].pitch = value
+                })
+              }
+            />
+            <Field
+              label="inhale"
+              max={1}
+              min={0}
+              step={0.05}
+              value={breath.inhale ?? 0}
+              onChange={(value) =>
+                update((draft) => {
+                  draft[i].inhale = value > 0 ? value : undefined
                 })
               }
             />
@@ -321,6 +341,19 @@ const Timeline: React.FC<{ breaths: EditableBreath[] }> = ({ breaths }) => {
   let x = 12
 
   for (const [i, breath] of breaths.entries()) {
+    if (breath.inhale && breath.pause > 0.15) {
+      const width = breath.pause * PX_PER_SECOND
+      shapes.push(
+        <polygon
+          key={`inhale-${i}`}
+          fill={colors.red}
+          opacity={0.15 + 0.35 * breath.inhale}
+          points={`${x},${baseline} ${x + width},${baseline} ${x + width},${
+            baseline - 8 - 34 * breath.inhale
+          }`}
+        />,
+      )
+    }
     x += breath.pause * PX_PER_SECOND
     const entry = x
     let pitchPath = ''
