@@ -34,6 +34,8 @@ export interface Breath {
   pause: number
   /** Fundamental at the group's onset, in Hz. */
   pitch: number
+  /** Strength 0–1 of an audible in-drawn breath filling the pause. */
+  inhale?: number
   syllables: Syllable[]
 }
 
@@ -41,8 +43,9 @@ export interface Breath {
  * "sno-vi su / po-ru-ke / eez / du-bi-ne". Sibilants ride the noise band,
  * stops are silent closures with a short burst, the r is a single tap, and
  * the vowels hold Croatian formant colours — though the u's sit deeper than
- * speech, bending the diction toward menace. The last vowel carries the
- * elongation and the dive. */
+ * speech, bending the diction toward menace. The deep draws breath before
+ * its last words — the pauses into eez and du-bi-ne fill with an inward
+ * rush — and the last vowel carries the elongation and the dive. */
 export const CHANT: Breath[] = [
   {
     // "snoo-vi su"
@@ -87,6 +90,7 @@ export const CHANT: Breath[] = [
     // "eez"
     pause: 0.45,
     pitch: 54,
+    inhale: 0.35,
     syllables: [
       { dur: 0.25, f: [300, 1900, 2500], to: [280, 2150, 2600], voice: 0.9 }, // eez
       { dur: 0.15, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
@@ -94,8 +98,9 @@ export const CHANT: Breath[] = [
   },
   {
     // "du-bi-neee", diving away on the last vowel
-    pause: 0.4,
+    pause: 0.55,
     pitch: 52,
+    inhale: 1,
     syllables: [
       { dur: 0.25, f: [280, 600, 1950], voice: 0.95, gap: 0.05 }, // d + u
       { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.05 }, // b + i
@@ -301,6 +306,15 @@ export class Invocation {
     fricationFilter.connect(fricationLevel)
     fricationLevel.connect(voiceBus)
 
+    // The drawn breath: a noise band that can sweep upward through a pause
+    // — air pulled in before a word, ingressive where the chant exhales.
+    const inhale = this.noise(when, stop)
+    const inhaleFilter = this.filter('bandpass', 900, 1.2)
+    inhale.connect(inhaleFilter)
+    const inhaleLevel = this.gain(0)
+    inhaleFilter.connect(inhaleLevel)
+    inhaleLevel.connect(voiceBus)
+
     // An old, dark voice: everything above the third formant falls away.
     const patina = this.filter('lowpass', 6500, 0.6)
     const level = this.gain(0.55)
@@ -313,11 +327,55 @@ export class Invocation {
 
     let at = when + VOICE_START
     for (const breath of this.chant) {
-      at += breath.pause
+      const entry = at + breath.pause
 
-      glottis.frequency.setTargetAtTime(breath.pitch, at, 0.08)
-      undertone.frequency.setTargetAtTime((breath.pitch / 2) * 1.004, at, 0.08)
-      aspirationLevel.gain.setTargetAtTime(0.03, at, 0.06)
+      if (breath.inhale && breath.pause > 0.15) {
+        const strength = breath.inhale
+        const draw = Math.min(breath.pause, 1.1)
+
+        // The in-rush crescendos into the word and rises in pitch — noise
+        // that points inward — then chokes off as the voice catches.
+        inhaleFilter.frequency.setValueAtTime(600, entry - draw)
+        inhaleFilter.frequency.exponentialRampToValueAtTime(2400, entry)
+        inhaleLevel.gain.setValueAtTime(0.0001, entry - draw)
+        inhaleLevel.gain.exponentialRampToValueAtTime(
+          0.1 * strength,
+          entry - 0.02,
+        )
+        inhaleLevel.gain.setTargetAtTime(0.0001, entry, 0.025)
+
+        // Sucked into oscillation: the pitch is dragged up to the reciting
+        // tone, the growl catches a beat late, and a gasp rides the onset.
+        glottis.frequency.setValueAtTime(breath.pitch - 5 * strength, entry)
+        glottis.frequency.setTargetAtTime(breath.pitch, entry + 0.02, 0.09)
+        undertone.frequency.setValueAtTime(
+          ((breath.pitch - 5 * strength) / 2) * 1.004,
+          entry,
+        )
+        undertone.frequency.setTargetAtTime(
+          (breath.pitch / 2) * 1.004,
+          entry + 0.02,
+          0.09,
+        )
+        undertoneLevel.gain.setValueAtTime(0.8 - 0.4 * strength, entry)
+        undertoneLevel.gain.setTargetAtTime(0.8, entry + 0.2, 0.15)
+        aspirationLevel.gain.setTargetAtTime(
+          0.03 + 0.05 * strength,
+          entry,
+          0.04,
+        )
+        aspirationLevel.gain.setTargetAtTime(0.03, entry + 0.35, 0.25)
+      } else {
+        glottis.frequency.setTargetAtTime(breath.pitch, entry, 0.08)
+        undertone.frequency.setTargetAtTime(
+          (breath.pitch / 2) * 1.004,
+          entry,
+          0.08,
+        )
+        aspirationLevel.gain.setTargetAtTime(0.03, entry, 0.06)
+      }
+
+      at = entry
 
       for (const syllable of breath.syllables) {
         if (syllable.gap) {
