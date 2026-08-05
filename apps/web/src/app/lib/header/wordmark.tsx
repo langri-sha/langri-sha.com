@@ -22,10 +22,13 @@ const WordmarkMark: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 )
 
+// The entrance animation belongs here rather than on an ancestor: an element's
+// own stacking context does not isolate it, so the blend survives the zoom-in.
 export const Wordmark = styled(WordmarkMark)`
   ${animations.booming};
   color: ${colors.text};
   display: block;
   width: 100%;
   height: auto;
+  mix-blend-mode: luminosity;
 `

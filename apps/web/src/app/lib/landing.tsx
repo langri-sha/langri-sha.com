@@ -20,7 +20,7 @@ export const Landing: React.FC = () => {
       <Root>
         <Root>
           {/* The scene paints first so the header, which follows it in the
-              flow, sits on top without an isolating z-index. */}
+              flow, can blend against it without an isolating z-index. */}
           <Scene audioLevelRef={audioLevelRef} starOnly />
           <Header />
           {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
