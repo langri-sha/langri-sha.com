@@ -62,11 +62,11 @@ const CHANT: Breath[] = [
         gap: 0.2,
       }, // s
       {
-        dur: 0.6,
+        dur: 0.4,
         f: [290, 620, 1950],
         to: [270, 580, 1900],
         voice: 0.9,
-        dive: 50,
+        dive: 48,
       }, // u, sinking
     ],
   },
