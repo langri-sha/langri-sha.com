@@ -1,18 +1,24 @@
+'use client'
+
 import styled from '@emotion/styled'
 import * as React from 'react'
 
 import fragmentShaderSource from './default.frag'
 import vertexShaderSource from './default.vert'
+import { FULLSCREEN_TRIANGLE, createProgram, createShader, resize } from './gl'
+import starSource from './star.glsl'
 
 // The wind scroll and camera yaw are wrapped to this period so shader float
 // precision holds up as the clock grows. Matches CYCLE_SECONDS in the shader.
 const CYCLE = 256
 
 export interface SceneProps {
-  audioLevelRef: React.MutableRefObject<number>
+  audioLevelRef?: React.MutableRefObject<number>
+  /** Render the rift as the bare star, without its top and bottom tails. */
+  starOnly?: boolean
 }
 
-export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
+export const Scene: React.FC<SceneProps> = ({ audioLevelRef, starOnly }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
 
   React.useEffect(() => {
@@ -36,7 +42,9 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
       const fragmentShader = createShader(
         gl,
         gl.FRAGMENT_SHADER,
-        fragmentShaderSource,
+        (starOnly ? '#define RIFT_STAR_ONLY 1\n' : '') +
+          starSource +
+          fragmentShaderSource,
       )
 
       if (!vertexShader || !fragmentShader) {
@@ -49,8 +57,6 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
         return
       }
 
-      // A single triangle covering clip space.
-      const positions = [-1, -1, 3, -1, -1, 3]
       const positionAttributeLocation = gl.getAttribLocation(
         program,
         'a_position',
@@ -59,7 +65,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
       gl.bufferData(
         gl.ARRAY_BUFFER,
-        new Float32Array(positions),
+        new Float32Array(FULLSCREEN_TRIANGLE),
         gl.STATIC_DRAW,
       )
 
@@ -89,7 +95,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
           timeLocation,
           reducedMotion.matches ? 0 : (now / 1000) % CYCLE,
         )
-        gl.uniform1f(audioLevelLocation, audioLevelRef.current)
+        gl.uniform1f(audioLevelLocation, audioLevelRef?.current ?? 0)
         gl.drawArrays(gl.TRIANGLES, 0, 3)
 
         frame = requestAnimationFrame(render)
@@ -131,75 +137,9 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
       canvas.removeEventListener('webglcontextrestored', handleContextRestored)
       dispose?.()
     }
-  }, [audioLevelRef])
+  }, [audioLevelRef, starOnly])
 
   return <Canvas ref={canvasRef} />
-}
-
-const createShader = (
-  gl: WebGLRenderingContext,
-  type: number,
-  source: string,
-) => {
-  const shader = gl.createShader(type)
-
-  if (!shader) {
-    return
-  }
-
-  gl.shaderSource(shader, source)
-  gl.compileShader(shader)
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS)
-  if (success) {
-    return shader
-  }
-
-  console.log(gl.getShaderInfoLog(shader))
-  gl.deleteShader(shader)
-}
-
-const createProgram = (
-  gl: WebGLRenderingContext,
-  vertexShader: WebGLShader,
-  fragmentShader: WebGLShader,
-) => {
-  const program = gl.createProgram()
-
-  if (!program || !vertexShader || !fragmentShader) {
-    return
-  }
-
-  gl.attachShader(program, vertexShader)
-  gl.attachShader(program, fragmentShader)
-  gl.linkProgram(program)
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS)
-
-  if (success) {
-    return program
-  }
-
-  console.log(gl.getProgramInfoLog(program))
-  gl.deleteProgram(program)
-}
-
-// Raymarched clouds cost far more per pixel than the old 2D gradient. Render at
-// device resolution but cap the pixel ratio, with a scale knob to trade
-// sharpness for performance if a machine struggles.
-const RENDER_SCALE = 1
-
-const resize = (canvas: HTMLCanvasElement) => {
-  const { width, height, clientWidth, clientHeight } = canvas
-
-  const scale = Math.min(window.devicePixelRatio, 2) * RENDER_SCALE
-  const displayWidth = Math.floor(clientWidth * scale)
-  const displayHeight = Math.floor(clientHeight * scale)
-
-  if (width !== displayWidth || height !== displayHeight) {
-    canvas.width = displayWidth
-    canvas.height = displayHeight
-  }
 }
 
 const Canvas = styled.canvas`

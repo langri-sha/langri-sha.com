@@ -2,11 +2,8 @@
 // field: the important silhouette is made from smooth analytic shapes so it
 // stays legible at every resolution instead of turning into static.
 
-#ifdef GL_FRAGMENT_PRECISION_HIGH
-precision highp float;
-#else
-precision mediump float;
-#endif
+// star.glsl is prepended at compile time; it carries the precision block and
+// the starField() that shapes the middle of the rift.
 
 uniform vec2 u_resolution;
 uniform float u_time;
@@ -57,12 +54,28 @@ float seam(vec2 p) {
 }
 
 float riftMask(vec2 p, out float edgeDistance) {
+  // The tear opens into a four-pointed star at its centre. Tracking the seam
+  // keeps the star fixed to the rift as the seam wavers.
+  float sparkle = starField(vec2(p.x - seam(p), p.y));
+
+#ifdef RIFT_STAR_ONLY
+  // The rift is nothing but the star — no tails running off the top and
+  // bottom. Everything else in the scene is unchanged.
+  edgeDistance = sparkle;
+  return 1.0 - smoothstep(-0.008, 0.012, sparkle);
+#else
+  // p.y spans +/-1, so the taper and the cap both run past the frame: the tear
+  // still narrows towards its ends, but bleeds off the top and bottom edges
+  // instead of terminating on screen.
   float y = abs(p.y);
-  float taper = smoothstep(0.98, 0.14, y);
+  float taper = smoothstep(1.7, 0.14, y);
   float halfWidth = mix(0.012, 0.105, taper * taper);
-  edgeDistance = abs(p.x - seam(p)) - halfWidth;
-  float capped = max(edgeDistance, y - 0.92);
-  return 1.0 - smoothstep(-0.008, 0.012, capped);
+  float slit = abs(p.x - seam(p)) - halfWidth;
+  float capped = max(slit, y - 1.6);
+
+  edgeDistance = min(slit, sparkle);
+  return 1.0 - smoothstep(-0.008, 0.012, min(capped, sparkle));
+#endif
 }
 
 // Smooth curling bands behind the rupture. They supply scale and motion without
@@ -114,9 +127,21 @@ void main() {
   vec3 col = background(warped);
   col += accretion(warped);
 
-  float yFade = smoothstep(0.98, 0.14, abs(p.y));
+#ifdef RIFT_STAR_ONLY
+  // Nothing to fade vertically: the lips stay evenly lit to their points, and
+  // the star's field — which grows slowly along its own axes — is left to draw
+  // them out into the thin threads running off the top and bottom.
+  float yFade = 1.0;
+#else
+  float yFade = smoothstep(1.7, 0.14, abs(p.y));
+#endif
   float nearEdge = exp(-abs(edgeDistance) * 42.0) * yFade;
   float outerGlow = exp(-max(edgeDistance, 0.0) * 9.0) * yFade;
+#ifdef RIFT_STAR_ONLY
+  // Contain the broad halo radially so only the thin threads reach out, rather
+  // than the whole glow smearing into full-height tails.
+  outerGlow *= exp(-2.5 * dot(p, p));
+#endif
   float flicker = 0.72 + 0.28 * sin(p.y * 36.0 - u_time * 1.6);
 
   // Split-color ionisation makes both lips of the void feel physically torn.
