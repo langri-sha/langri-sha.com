@@ -1,7 +1,12 @@
 'use client'
 import * as React from 'react'
 
+import { Invocation } from './invocation'
 import noiseProcessorSource from './noise-processor.worklet'
+
+// The invocation is a one-shot per page load: the first listen opens with it
+// and later toggles drop straight back into the drone.
+let invocationPlayed = false
 
 export interface DroneProps {
   audioLevelRef: React.MutableRefObject<number>
@@ -38,6 +43,7 @@ class Processor {
   context: AudioContext
   gainNode: GainNode
   droneBus: GainNode
+  invocation: Invocation | null = null
   analyserNode: AnalyserNode
   audioLevelRef: React.MutableRefObject<number>
   frequencyData: Uint8Array<ArrayBuffer>
@@ -58,7 +64,7 @@ class Processor {
     this.context = context
     this.audioLevelRef = audioLevelRef
 
-    // The master stays at unity so other voices can share the same meter;
+    // The master stays at unity so the invocation can ride the same meter;
     // the drone's own level lives on its bus below.
     const gainNode = context.createGain()
     gainNode.gain.value = 1
@@ -71,7 +77,8 @@ class Processor {
     this.analyserNode = analyserNode
 
     const droneBus = context.createGain()
-    droneBus.gain.value = 0.25
+    // Held silent while the invocation opens; generate() then ramps it in.
+    droneBus.gain.value = invocationPlayed ? 0.25 : 0.0001
     droneBus.connect(gainNode)
     this.droneBus = droneBus
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
@@ -101,6 +108,32 @@ class Processor {
   }
 
   async generate() {
+    // This component is mounted by the play button. Resuming here means the
+    // press that mounts it starts sound and visuals together.
+    await this.context.resume()
+
+    if (this.destroyed) {
+      return
+    }
+
+    // First listen of a page load opens with the invocation, started ahead of
+    // the worklet load so the voice is the first thing heard; the drone
+    // crossfades in under its final syllable. Later toggles drop straight
+    // back into the drone.
+    if (!invocationPlayed) {
+      invocationPlayed = true
+      const start = this.context.currentTime + 0.05
+      this.invocation = new Invocation(this.context, this.gainNode)
+      this.invocation.start(start)
+      this.droneBus.gain.setTargetAtTime(
+        0.25,
+        start + Invocation.droneEntry,
+        1.8,
+      )
+    }
+
+    this.measureAudio()
+
     const workletUrl = URL.createObjectURL(
       new Blob([noiseProcessorSource], { type: 'text/javascript' }),
     )
@@ -115,18 +148,12 @@ class Processor {
       return
     }
 
-    // This component is mounted by the play button. Resuming here means the
-    // first press starts both the drone and its visual response together.
-    await this.context.resume()
-
     for (let i = 0; i < this.oscilatorsSize; i++) {
       const degree = Math.floor(Math.random() * this.scale.length)
       let frequency = mtof(this.baseNote + this.scale[degree])
       frequency += Math.random() * 4 - 2
       this.createNoiseGenerator(frequency)
     }
-
-    this.measureAudio()
   }
 
   measureAudio = () => {
@@ -195,6 +222,7 @@ class Processor {
     this.audioLevelRef.current = 0
 
     this.removeResumeListeners?.()
+    this.invocation?.dispose()
     this.panIntervals.forEach((interval) => clearInterval(interval))
     this.noiseNodes.forEach((node) => node.disconnect())
     this.pannerNodes.forEach((node) => node.disconnect())
