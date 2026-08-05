@@ -37,6 +37,7 @@ class Processor {
   baseNote: number
   context: AudioContext
   gainNode: GainNode
+  droneBus: GainNode
   analyserNode: AnalyserNode
   audioLevelRef: React.MutableRefObject<number>
   frequencyData: Uint8Array<ArrayBuffer>
@@ -57,8 +58,10 @@ class Processor {
     this.context = context
     this.audioLevelRef = audioLevelRef
 
+    // The master stays at unity so other voices can share the same meter;
+    // the drone's own level lives on its bus below.
     const gainNode = context.createGain()
-    gainNode.gain.value = 0.25
+    gainNode.gain.value = 1
     const analyserNode = context.createAnalyser()
     analyserNode.fftSize = 256
     analyserNode.smoothingTimeConstant = 0.78
@@ -66,6 +69,11 @@ class Processor {
     analyserNode.connect(context.destination)
     this.gainNode = gainNode
     this.analyserNode = analyserNode
+
+    const droneBus = context.createGain()
+    droneBus.gain.value = 0.25
+    droneBus.connect(gainNode)
+    this.droneBus = droneBus
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     this.oscilatorsSize = oscilatorsSize
@@ -154,7 +162,7 @@ class Processor {
     let z = rand(min, max)
 
     setPannerPosition(pannerNode, x, y, z)
-    pannerNode.connect(this.gainNode)
+    pannerNode.connect(this.droneBus)
 
     const filter = this.context.createBiquadFilter()
     filter.frequency.value = frequency
@@ -190,6 +198,7 @@ class Processor {
     this.panIntervals.forEach((interval) => clearInterval(interval))
     this.noiseNodes.forEach((node) => node.disconnect())
     this.pannerNodes.forEach((node) => node.disconnect())
+    this.droneBus.disconnect()
     this.gainNode.disconnect()
     this.analyserNode.disconnect()
     this.context.close()
