@@ -138,7 +138,7 @@ class Processor {
       this.invocation.start(start)
       this.droneBus.gain.setTargetAtTime(
         0.25,
-        start + Invocation.droneEntry,
+        start + this.invocation.droneEntry,
         1.8,
       )
     }
