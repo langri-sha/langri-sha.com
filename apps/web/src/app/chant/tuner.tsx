@@ -72,6 +72,7 @@ const serialize = (breaths: EditableBreath[]) => {
 
 export const ChantTuner: React.FC = () => {
   const [breaths, setBreaths] = React.useState(seed)
+  const [collapsed, setCollapsed] = React.useState(() => CHANT.map(() => false))
   const [playing, setPlaying] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
 
@@ -87,7 +88,7 @@ export const ChantTuner: React.FC = () => {
     })
   }
 
-  const play = () => {
+  const playChant = (chant: EditableBreath[]) => {
     if (!audio.current) {
       // The same output chain the site runs: unity into a brick-wall
       // limiter, so the tuner is heard at production loudness.
@@ -109,7 +110,7 @@ export const ChantTuner: React.FC = () => {
     context.resume()
 
     invocation.current?.dispose()
-    const voice = new Invocation(context, input, structuredClone(breaths))
+    const voice = new Invocation(context, input, chant)
     invocation.current = voice
     voice.start(context.currentTime + 0.05)
 
@@ -121,6 +122,15 @@ export const ChantTuner: React.FC = () => {
       () => setPlaying(false),
       (voice.voiceEnd + 3) * 1000,
     )
+  }
+
+  const play = () => playChant(structuredClone(breaths))
+
+  // Solo one breath, dropping its opening pause so it speaks at once.
+  const playBreath = (index: number) => {
+    const solo = structuredClone(breaths[index])
+    solo.pause = 0
+    playChant([solo])
   }
 
   const stop = () => {
@@ -190,27 +200,46 @@ export const ChantTuner: React.FC = () => {
         </Subtitle>
       </Header>
 
-      <Toolbar>
-        <Button onClick={play}>{playing ? '↻ replay' : '▶ play'}</Button>
-        <Button disabled={!playing} onClick={stop}>
-          ■ stop
-        </Button>
-        <Button onClick={() => setBreaths(seed())}>reset</Button>
-        <Button onClick={copy}>{copied ? 'copied ✓' : 'copy ts'}</Button>
-      </Toolbar>
+      <Console>
+        <Toolbar>
+          <Button onClick={play}>{playing ? '↻ replay' : '▶ play'}</Button>
+          <Button disabled={!playing} onClick={stop}>
+            ■ stop
+          </Button>
+          <Button onClick={() => setBreaths(seed())}>reset</Button>
+          <Button onClick={copy}>{copied ? 'copied ✓' : 'copy ts'}</Button>
+        </Toolbar>
 
-      <Card>
-        <Timeline breaths={breaths} />
-        <Legend>
-          block height = voice · dashed = sweep · red cap = noise · grey sliver
-          = stop gap · lower line = pitch
-        </Legend>
-      </Card>
+        <TimelineCard>
+          <Timeline breaths={breaths} />
+          <Legend>
+            block height = voice · dashed = sweep · red cap = noise · grey
+            sliver = stop gap · lower line = pitch
+          </Legend>
+        </TimelineCard>
+      </Console>
 
       {breaths.map((breath, i) => (
         <Card key={i}>
           <BreathHead>
+            <RowButton
+              aria-expanded={!collapsed[i]}
+              title={collapsed[i] ? 'Expand breath' : 'Collapse breath'}
+              onClick={() =>
+                setCollapsed((current) =>
+                  current.map((value, k) => (k === i ? !value : value)),
+                )
+              }
+            >
+              {collapsed[i] ? '▸' : '▾'}
+            </RowButton>
             <BreathName>breath {i + 1}</BreathName>
+            <RowButton
+              title="Play only this breath"
+              onClick={() => playBreath(i)}
+            >
+              ▶ solo
+            </RowButton>
             <Field
               label="pause"
               max={1.5}
@@ -237,31 +266,33 @@ export const ChantTuner: React.FC = () => {
             />
           </BreathHead>
 
-          {breath.syllables.map((syllable, j) => (
-            <SyllableEditor
-              key={j}
-              canRemove={breath.syllables.length > 1}
-              start={starts[i][j]}
-              syllable={syllable}
-              onChange={(recipe) =>
-                update((draft) => recipe(draft[i].syllables[j]))
-              }
-              onDuplicate={() =>
-                update((draft) => {
-                  draft[i].syllables.splice(
-                    j + 1,
-                    0,
-                    structuredClone(draft[i].syllables[j]),
-                  )
-                })
-              }
-              onRemove={() =>
-                update((draft) => {
-                  draft[i].syllables.splice(j, 1)
-                })
-              }
-            />
-          ))}
+          {collapsed[i]
+            ? null
+            : breath.syllables.map((syllable, j) => (
+                <SyllableEditor
+                  key={j}
+                  canRemove={breath.syllables.length > 1}
+                  start={starts[i][j]}
+                  syllable={syllable}
+                  onChange={(recipe) =>
+                    update((draft) => recipe(draft[i].syllables[j]))
+                  }
+                  onDuplicate={() =>
+                    update((draft) => {
+                      draft[i].syllables.splice(
+                        j + 1,
+                        0,
+                        structuredClone(draft[i].syllables[j]),
+                      )
+                    })
+                  }
+                  onRemove={() =>
+                    update((draft) => {
+                      draft[i].syllables.splice(j, 1)
+                    })
+                  }
+                />
+              ))}
         </Card>
       ))}
 
@@ -699,16 +730,22 @@ const Subtitle = styled.p`
   opacity: 0.8;
 `
 
-const Toolbar = styled.div`
+/* The console — transport and timeline — rides along while the breath
+ * cards below are tuned. */
+const Console = styled.div`
   position: sticky;
   z-index: 2;
   top: 0;
-  display: flex;
   max-width: 104rem;
-  align-items: center;
   margin: 0 auto;
-  padding: 1.2rem 0;
   background: ${colors.background};
+  padding-bottom: 1.6rem;
+`
+
+const Toolbar = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0;
   gap: 0.8rem;
 `
 
@@ -743,6 +780,10 @@ const Card = styled.section`
   border: 2px solid ${colors.text};
   background: ${colors.white};
   box-shadow: 5px 5px 0 ${colors.text};
+`
+
+const TimelineCard = styled(Card)`
+  margin-bottom: 0;
 `
 
 const Strip = styled.div`
@@ -794,7 +835,9 @@ const LabelInput = styled.input`
   font-weight: 700;
 `
 
+/* Pushes the row buttons after it to the right edge of a syllable head. */
 const Onset = styled.span`
+  margin-right: auto;
   font-family: ${mono};
   font-size: 1.1rem;
   opacity: 0.6;
@@ -803,16 +846,12 @@ const Onset = styled.span`
 const RowButton = styled.button`
   padding: 0.1rem 0.6rem;
   border: 1px solid ${colors.text};
-  margin-left: auto;
   background: transparent;
   color: ${colors.text};
   cursor: pointer;
+  font-family: ${mono};
   font-size: 1.2rem;
   line-height: 1.4;
-
-  & + & {
-    margin-left: 0;
-  }
 
   &:disabled {
     cursor: default;
