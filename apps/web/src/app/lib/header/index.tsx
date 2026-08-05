@@ -54,9 +54,6 @@ export const Header: React.FC = () => (
   </Root>
 )
 
-// The entrance animation lives on the children rather than here: an animated
-// transform and opacity form a stacking context for as long as they run, which
-// would isolate everything inside the header from the scene painted behind it.
 const Root = styled.header`
   position: relative;
 `
