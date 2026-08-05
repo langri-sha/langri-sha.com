@@ -5,11 +5,11 @@
  *
  * The voice is a small Klatt-style formant synthesiser: a subharmonic
  * sawtooth pair — the octave-split growl of kargyraa — driven through
- * parallel formant filters that walk a syllable table. The chant is a
- * wordless vocalise: long held vowels whose slow formant sweeps ring the
- * source's overtones, the mouth-shaping gesture of khöömei. It means
- * nothing, in no language. Everything is synthesised at runtime; nothing is
- * sampled and no recording or score is reproduced.
+ * parallel formant filters that walk a syllable table. The chant intones a
+ * Croatian line — "Snovi su poruke iz dubine", dreams are messages from the
+ * deep — its vowels held long and slowly swept so the source's overtones
+ * ring, the mouth-shaping gesture of khöömei. Everything is synthesised at
+ * runtime; nothing is sampled and no recording or score is reproduced.
  */
 
 interface Syllable {
@@ -21,9 +21,9 @@ interface Syllable {
   to?: [number, number, number]
   /** Voiced-source level, 0–1. */
   voice: number
-  /** Noise frication, as [centre Hz, level], for breathy onsets. */
+  /** Noise frication, as [centre Hz, level], for sibilants and bursts. */
   fric?: [number, number]
-  /** Silent glottal closure before the syllable. */
+  /** Silent closure before the syllable — a glottal catch or a stop. */
   gap?: number
   /** Pitch target the syllable slides to, for the final dive. */
   dive?: number
@@ -37,40 +37,63 @@ interface Breath {
   syllables: Syllable[]
 }
 
-/* Three breath groups of invented syllables, roughly "khöö-ga-mm,
- * oo–ee–oo, haa": open-vowel formant colours, breathy onsets, one glottal
- * catch, and long sweeps that carry the overtone gesture. */
+/* Three breath groups pronounce the line, one word-cluster per breath:
+ * "sno-vi su / po-ru-ke / iz du-bi-ne". Sibilants ride the noise band,
+ * stops are silent closures with a short burst, the r is a single tap, and
+ * the vowels hold Croatian formant colours — gently swept on the long ones
+ * so the overtone gesture survives the diction. The last vowel carries the
+ * elongation and the dive. */
 const CHANT: Breath[] = [
   {
+    // "snoo-vi su"
     pause: 0,
     pitch: 60,
     syllables: [
-      { dur: 0.18, f: [450, 1100, 2300], voice: 0.3, fric: [1100, 0.05] },
-      { dur: 1.2, f: [430, 950, 2250], to: [480, 1500, 2400], voice: 1 },
-      { dur: 0.5, f: [680, 1030, 2300], voice: 1, gap: 0.05 },
-      { dur: 0.4, f: [250, 900, 2200], voice: 0.55 },
+      { dur: 0.15, f: [300, 1350, 2400], voice: 0.08, fric: [5200, 0.08] }, // s
+      { dur: 0.12, f: [250, 1350, 2400], voice: 0.7 }, // n
+      { dur: 1.0, f: [430, 850, 2250], to: [455, 940, 2310], voice: 1 }, // oo
+      { dur: 0.09, f: [300, 1000, 2300], voice: 0.6 }, // v
+      { dur: 0.35, f: [290, 2050, 2550], voice: 0.95 }, // i
+      { dur: 0.13, f: [310, 1300, 2350], voice: 0.08, fric: [5200, 0.07] }, // s
+      { dur: 0.45, f: [310, 750, 2100], voice: 0.9 }, // u
     ],
   },
   {
-    pause: 0.3,
+    // "poo-ru-ke"
+    pause: 0.35,
     pitch: 56,
     syllables: [
-      { dur: 1.5, f: [320, 700, 2100], to: [300, 1900, 2500], voice: 1.05 },
-      { dur: 0.4, f: [300, 1900, 2500], to: [340, 850, 2100], voice: 0.9 },
+      { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] }, // p
+      { dur: 0.85, f: [430, 850, 2250], to: [455, 930, 2300], voice: 1.05 }, // oo
+      { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 }, // r, one tap
+      { dur: 0.4, f: [310, 750, 2100], voice: 0.95 }, // u
+      {
+        dur: 0.06,
+        f: [430, 1800, 2450],
+        voice: 0.08,
+        fric: [1650, 0.09],
+        gap: 0.05,
+      }, // k
+      { dur: 0.5, f: [430, 1800, 2450], voice: 0.9 }, // e
     ],
   },
   {
+    // "iz du-bi-neee", diving away on the last vowel
     pause: 0.45,
     pitch: 54,
     syllables: [
-      { dur: 0.15, f: [500, 1200, 2300], voice: 0.25, fric: [1200, 0.05] },
+      { dur: 0.3, f: [290, 2050, 2550], voice: 0.85 }, // i
+      { dur: 0.14, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
+      { dur: 0.35, f: [310, 750, 2100], voice: 0.95, gap: 0.05 }, // d + u
+      { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.04 }, // b + i
+      { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 }, // n
       {
-        dur: 1.5,
-        f: [640, 1000, 2150],
-        to: [520, 800, 2050],
+        dur: 1.9,
+        f: [430, 1800, 2450],
+        to: [465, 1680, 2400],
         voice: 1.15,
         dive: 42,
-      },
+      }, // ee
     ],
   },
 ]
