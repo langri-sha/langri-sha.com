@@ -12,6 +12,20 @@ uniform vec2 u_resolution;
 uniform float u_time;
 uniform float u_audioLevel;
 
+// The four-pointed star at the heart of the rift. Half-extent in screen units
+// (y spans +/-1), and an exponent below 1 that pulls the edges concave: 1.0
+// would be a plain diamond, lower values sharpen the points.
+const vec2 STAR_RADIUS = vec2(0.30, 0.44);
+const float STAR_SHARPNESS = 0.64;
+
+// Negative inside the star, positive outside, scaled back to roughly screen
+// units so callers can use the same soft-edge thresholds as everything else.
+float starField(vec2 p) {
+  vec2 q = max(abs(p) / STAR_RADIUS, 1e-6);
+  return (pow(q.x, STAR_SHARPNESS) + pow(q.y, STAR_SHARPNESS) - 1.0) *
+         STAR_RADIUS.x;
+}
+
 float hash21(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
   p += dot(p, p + 45.32);
@@ -55,12 +69,14 @@ float seam(vec2 p) {
 }
 
 float riftMask(vec2 p, out float edgeDistance) {
-  float y = abs(p.y);
-  float taper = smoothstep(0.98, 0.14, y);
-  float halfWidth = mix(0.012, 0.105, taper * taper);
-  edgeDistance = abs(p.x - seam(p)) - halfWidth;
-  float capped = max(edgeDistance, y - 0.92);
-  return 1.0 - smoothstep(-0.008, 0.012, capped);
+  // The tear opens into a four-pointed star at its centre. Tracking the seam
+  // keeps the star fixed to the rift as the seam wavers.
+  float sparkle = starField(vec2(p.x - seam(p), p.y));
+
+  // The rift is nothing but the star — no tails running off the top and
+  // bottom. Everything else in the scene is unchanged.
+  edgeDistance = sparkle;
+  return 1.0 - smoothstep(-0.008, 0.012, sparkle);
 }
 
 // Smooth curling bands behind the rupture. They supply scale and motion without
@@ -112,9 +128,11 @@ void main() {
   vec3 col = background(warped);
   col += accretion(warped);
 
-  float yFade = smoothstep(0.98, 0.14, abs(p.y));
-  float nearEdge = exp(-abs(edgeDistance) * 42.0) * yFade;
-  float outerGlow = exp(-max(edgeDistance, 0.0) * 9.0) * yFade;
+  float nearEdge = exp(-abs(edgeDistance) * 42.0);
+  float outerGlow = exp(-max(edgeDistance, 0.0) * 9.0);
+  // Contain the broad halo radially so only the thin threads reach out, rather
+  // than the whole glow smearing into full-height tails.
+  outerGlow *= exp(-2.5 * dot(p, p));
   float flicker = 0.72 + 0.28 * sin(p.y * 36.0 - u_time * 1.6);
 
   // Split-color ionisation makes both lips of the void feel physically torn.
