@@ -103,7 +103,11 @@ class Processor {
       const start = this.context.currentTime + 0.05
       this.voice = new Voice(this.context, this.gainNode)
       this.voice.start(start)
-      this.droneBus.gain.setTargetAtTime(0.25, start + Voice.droneEntry, 1.8)
+      this.droneBus.gain.setTargetAtTime(
+        0.25,
+        start + this.voice.handoffAt,
+        1.8,
+      )
     }
 
     const workletUrl = URL.createObjectURL(

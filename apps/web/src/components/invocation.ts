@@ -12,7 +12,7 @@
  * runtime; nothing is sampled and no recording or score is reproduced.
  */
 
-interface Syllable {
+export interface Syllable {
   /** Seconds the syllable holds. */
   dur: number
   /** Formant targets F1–F3, in Hz, scaled for a cavernous male tract. */
@@ -29,7 +29,7 @@ interface Syllable {
   dive?: number
 }
 
-interface Breath {
+export interface Breath {
   /** Silence before the breath group. */
   pause: number
   /** Fundamental at the group's onset, in Hz. */
@@ -43,7 +43,7 @@ interface Breath {
  * the vowels hold Croatian formant colours — though the u's sit deeper than
  * speech, bending the diction toward menace. The last vowel carries the
  * elongation and the dive. */
-const CHANT: Breath[] = [
+export const CHANT: Breath[] = [
   {
     // "snoo-vi su"
     pause: 0,
@@ -72,7 +72,7 @@ const CHANT: Breath[] = [
       { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] }, // p
       { dur: 0.35, f: [430, 850, 2250], voice: 1.05 }, // o
       { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 }, // r, one tap
-      { dur: 0.45, f: [290, 620, 1950], voice: 0.95 }, // u
+      { dur: 0.25, f: [290, 620, 1950], voice: 0.95 }, // u
       {
         dur: 0.06,
         f: [430, 1800, 2450],
@@ -104,20 +104,19 @@ const CHANT: Breath[] = [
   },
 ]
 
-const chantDuration = CHANT.reduce(
-  (total, breath) =>
-    total +
-    breath.pause +
-    breath.syllables.reduce((sum, s) => sum + s.dur + (s.gap ?? 0), 0),
-  0,
-)
+const chantDuration = (chant: Breath[]) =>
+  chant.reduce(
+    (total, breath) =>
+      total +
+      breath.pause +
+      breath.syllables.reduce((sum, s) => sum + s.dur + (s.gap ?? 0), 0),
+    0,
+  )
 
-/* Timeline, in seconds relative to start(). The drone begins rising under
- * the final dive so the handoff is a crossfade, not a lull. */
+/* The voice's entry, in seconds relative to start(). The rest of the
+ * timeline — drone entry under the final dive, disposal after the tail —
+ * derives from the chant's length, per instance. */
 const VOICE_START = 0.2
-const VOICE_END = VOICE_START + chantDuration
-const DRONE_ENTRY = VOICE_END - 1.5
-const TAIL_END = VOICE_END + 7
 
 /* Output trim. The voice is built at conservative internal levels so the
  * formant and saturation stages never fold back on themselves; this lifts the
@@ -127,9 +126,12 @@ const LEVEL = 3.2
 
 export class Voice {
   /** Offset after start() at which the drone should begin fading in. */
-  static readonly droneEntry = DRONE_ENTRY
+  readonly droneEntry: number
 
   context: AudioContext
+  chant: Breath[]
+  voiceEnd: number
+  tailEnd: number
   dryBus: GainNode
   wetBus: GainNode
   nodes: AudioNode[] = []
@@ -138,8 +140,16 @@ export class Voice {
   started = false
   disposed = false
 
-  constructor(context: AudioContext, destination: AudioNode) {
+  constructor(
+    context: AudioContext,
+    destination: AudioNode,
+    chant: Breath[] = CHANT,
+  ) {
     this.context = context
+    this.chant = chant
+    this.voiceEnd = VOICE_START + chantDuration(chant)
+    this.droneEntry = this.voiceEnd - 1.5
+    this.tailEnd = this.voiceEnd + 7
     this.noiseData = this.createNoiseBuffer()
 
     // Both buses meet at one trim, so the voice's level is a single knob.
@@ -170,7 +180,7 @@ export class Voice {
 
     this.disposeTimer = setTimeout(
       () => this.dispose(),
-      (when - this.context.currentTime + TAIL_END) * 1000,
+      (when - this.context.currentTime + this.tailEnd) * 1000,
     )
   }
 
@@ -192,7 +202,7 @@ export class Voice {
 
   /** A faint pedal on C1 and C2 that ties the voice into the drone's key. */
   private sub(when: number) {
-    const stop = when + TAIL_END - 2
+    const stop = when + this.tailEnd - 2
 
     const drive = this.gain(0.55)
     this.oscillator(32.7, when, stop).connect(drive)
@@ -218,13 +228,13 @@ export class Voice {
     level.gain.setValueAtTime(0, when)
     level.gain.setTargetAtTime(0.09, when + 0.15, 0.9)
     // The deep answers the last word.
-    level.gain.setTargetAtTime(0.13, when + VOICE_END - 1, 0.7)
-    level.gain.setTargetAtTime(0.0001, when + DRONE_ENTRY + 1.2, 1)
+    level.gain.setTargetAtTime(0.13, when + this.voiceEnd - 1, 0.7)
+    level.gain.setTargetAtTime(0.0001, when + this.droneEntry + 1.2, 1)
   }
 
   /** The throat-sung voice: subharmonic saws through morphing formants. */
   private voice(when: number) {
-    const stop = when + VOICE_END + 1
+    const stop = when + this.voiceEnd + 1
 
     // The glottal source and its undertone an octave below — the periodic
     // doubling that gives kargyraa its growl. Both ride the same formants.
@@ -295,7 +305,7 @@ export class Voice {
     voice.setValueAtTime(0, when)
 
     let at = when + VOICE_START
-    for (const breath of CHANT) {
+    for (const breath of this.chant) {
       at += breath.pause
 
       glottis.frequency.setTargetAtTime(breath.pitch, at, 0.08)
