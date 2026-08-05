@@ -51,7 +51,15 @@ class Processor {
 
     const gainNode = context.createGain()
     gainNode.gain.value = 1
-    gainNode.connect(context.destination)
+    const limiter = context.createDynamicsCompressor()
+    limiter.threshold.value = -1
+    limiter.knee.value = 0
+    limiter.ratio.value = 20
+    limiter.attack.value = 0.003
+    limiter.release.value = 0.25
+
+    gainNode.connect(limiter)
+    limiter.connect(context.destination)
     this.gainNode = gainNode
 
     const droneBus = context.createGain()
