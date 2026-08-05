@@ -33,6 +33,7 @@ class Processor {
   baseNote: number
   context: AudioContext
   gainNode: GainNode
+  droneBus: GainNode
   scale: number[] = [0, 2, 4, 6, 7, 9, 11, 12, 14]
   noiseNodes: AudioWorkletNode[] = []
   pannerNodes: PannerNode[] = []
@@ -44,10 +45,17 @@ class Processor {
     const context = new AudioContext()
     this.context = context
 
+    // The master stays at unity so other voices can share the same meter;
+    // the drone's own level lives on its bus below.
     const gainNode = context.createGain()
-    gainNode.gain.value = 0.25
+    gainNode.gain.value = 1
     gainNode.connect(context.destination)
     this.gainNode = gainNode
+
+    const droneBus = context.createGain()
+    droneBus.gain.value = 0.25
+    droneBus.connect(gainNode)
+    this.droneBus = droneBus
 
     this.oscilatorsSize = oscilatorsSize
     this.baseNote = baseNote
@@ -109,7 +117,7 @@ class Processor {
     let z = rand(min, max)
 
     setPannerPosition(pannerNode, x, y, z)
-    pannerNode.connect(this.gainNode)
+    pannerNode.connect(this.droneBus)
 
     const filter = this.context.createBiquadFilter()
     filter.frequency.value = frequency
@@ -143,6 +151,7 @@ class Processor {
     this.panIntervals.forEach((interval) => clearInterval(interval))
     this.noiseNodes.forEach((node) => node.disconnect())
     this.pannerNodes.forEach((node) => node.disconnect())
+    this.droneBus.disconnect()
     this.gainNode.disconnect()
     this.context.close()
   }
