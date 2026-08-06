@@ -117,82 +117,145 @@ float sq(float x) {
 
 // One strand in its lane: a rising filament of beadwork rooted near the
 // floor, crowned with a small sigil, climbed now and then by a bright
-// charge. Strands gather in loose groves with dead lanes between them.
+// charge. Most strands are in focus — crisp cores under a tight painted
+// bloom; a rare one stands fully outside the lens's depth and melts into a
+// soft band with a few large bokeh discs; a rare hero outshines its grove.
+// Strands gather in loose groves with dead lanes between them.
 vec3 strandAt(vec2 q, float lane, float laneW, float salt, float hairline) {
-  float grove = step(0.30, hash21(vec2(floor(lane / 3.0), salt + 3.0)));
+  float grove = step(0.34, hash21(vec2(floor(lane / 3.0), salt + 3.0)));
   float s0 = hash21(vec2(lane, salt));
-  if (s0 < 0.55 || grove < 0.5) {
+  if (s0 < 0.58 || grove < 0.5) {
     return vec3(0.0);
   }
   float strandX = (lane + 0.5 + (hash21(vec2(lane, salt + 7.0)) - 0.5) * 0.5) * laneW;
-  float dx = q.x - strandX;
+  // The centre of the stage stays clear — the light cone owns it — and the
+  // grove conforms to the aperture: each strand roots and tops out inside
+  // the star's height at its own x, so nothing wastes itself off-stage.
+  float span = pow(abs(strandX) / 0.30, 0.64);
+  float reachY = 0.44 * pow(max(1.0 - span, 0.001), 1.5625);
+  if (abs(strandX) < 0.035 || reachY < 0.08) {
+    return vec3(0.0);
+  }
+
+  float yRoot = -reachY * 0.85 + reachY * 0.55 * hash21(vec2(lane, salt + 13.0));
+  float yTip = min(yRoot + 0.18 + 0.55 * hash21(vec2(lane, salt + 17.0)),
+                   reachY * 0.88);
+  float rise = clamp((q.y - yRoot) / (yTip - yRoot), 0.0, 1.0);
+
+  float hero = step(0.93, hash21(vec2(lane, salt + 53.0)));
+  float isBokeh = step(0.86, hash21(vec2(lane, salt + 49.0))) * (1.0 - hero);
+
+  // Posture: a slight lean, and a slow bend that carries the tip.
+  float bend = (hash21(vec2(lane, salt + 61.0)) - 0.5) * 0.014 *
+               sin(u_time * ((3.0 + 2.0 * hero) * INTERIOR_W) +
+                   hash21(vec2(lane, salt + 59.0)) * 6.2832);
+  float lean = (hash21(vec2(lane, salt + 57.0)) - 0.5) * 0.032;
+  float dx = q.x - strandX - lean * (q.y - yRoot) - bend * sq(rise);
   if (abs(dx) > laneW * 1.5) {
     return vec3(0.0);
   }
 
-  float yRoot = -0.40 + 0.38 * hash21(vec2(lane, salt + 13.0));
-  float yTip = yRoot + 0.20 + 0.50 * hash21(vec2(lane, salt + 17.0));
   float within = smoothstep(yRoot - 0.01, yRoot + 0.06, q.y) *
                  (1.0 - smoothstep(yTip - 0.05, yTip, q.y));
 
-  // The beadwork: rows of dots and dashes drifting slowly along the strand.
-  // 0.004 * 256 = 64 rows of 0.016 per cycle, matching the 64-row hash ring.
+  // Each strand keeps its own tone between amber and pale silver.
+  vec3 tint = mix(vec3(0.95, 0.82, 0.62), vec3(0.84, 0.86, 0.88),
+                  hash21(vec2(lane, salt + 67.0)));
+
   float drift = 0.004 * mix(1.0, -1.0, step(0.5, hash21(vec2(lane, salt + 23.0))));
-  float ry = (q.y - drift * u_time) / 0.016;
-  float rowKey = mod(floor(ry), 64.0);
-  float rk = hash21(vec2(lane * 13.0 + salt, rowKey));
-  float dy = (fract(ry) - 0.5) * 0.016;
-  float dotV = exp(-(sq(dx / hairline) + sq(dy / hairline)));
-  float dashV = exp(-sq(dx / hairline)) * (1.0 - smoothstep(0.0045, 0.0075, abs(dy)));
-  float hot = step(0.93, rk);
-  float dash = step(0.75, rk) * (1.0 - hot);
-  float carries = step(0.55, rk);
-  vec3 col = TRACE_TINT * carries * (1.0 - hot) *
-             ((1.0 - dash) * dotV + dash * dashV) * 0.65 * within;
-  col += SPARK_TINT * carries * hot *
-         exp(-(sq(dx / (hairline * 2.2)) + sq(dy / (hairline * 2.2)))) * 1.5 * within;
+  float surge = 1.0 + 0.45 * min(u_audioLevel, 1.0);
+  vec3 col = vec3(0.0);
 
-  // A few rows sprout a short lateral tick — a branch a couple of dots long.
-  float tickSide = sign(hash21(vec2(lane * 29.0 + salt, rowKey + 31.0)) - 0.5);
-  col += TRACE_TINT * step(0.94, hash21(vec2(lane * 17.0 + salt, rowKey + 47.0))) *
-         exp(-(sq((dx - tickSide * 0.011) / hairline) + sq(dy / hairline))) *
-         0.5 * within;
-
-  // A faint continuous spine on some strands, and a soft glow at the root
-  // where the strand meets the dark.
-  col += TRACE_TINT * exp(-sq(dx / (hairline * 0.9))) *
-         step(0.55, hash21(vec2(lane, salt + 19.0))) * 0.20 * within;
-  col += TRACE_TINT * exp(-(sq(dx / (laneW * 0.8)) + sq((q.y - yRoot) / 0.013))) * 0.30;
-
-  // A charge climbing the strand; 16 laps per cycle keeps the wrap silent.
-  if (hash21(vec2(lane, salt + 29.0)) > 0.70) {
-    float lap = fract(u_time * 0.0625 + hash21(vec2(lane, salt + 31.0)));
-    float yCharge = mix(yRoot, yTip, lap);
-    float surge = 1.0 + 0.45 * min(u_audioLevel, 1.0);
-    col += SPARK_TINT * exp(-(sq(dx / (hairline * 2.0)) +
-                              sq((q.y - yCharge) / (hairline * 3.2)))) *
-           1.8 * surge;
+  if (isBokeh > 0.5) {
+    // Outside the depth of field the beadwork melts together: a soft band
+    // of light, and a few large discs where its brightest beads would be.
+    // Rows of 0.064 give 16 per drift cycle — an integer ring.
+    float env = 0.5 + 0.5 * sin(q.y * 9.0 + hash21(vec2(lane, salt + 71.0)) * 6.2832);
+    col += tint * exp(-sq(dx / (laneW * 0.30))) * (0.08 + 0.15 * env) * within;
+    float ryB = (q.y - drift * u_time) / 0.064;
+    float rkB = hash21(vec2(lane * 13.0 + salt, mod(floor(ryB), 16.0)));
+    float dyB = (fract(ryB) - 0.5) * 0.064;
+    float disc = exp(-(sq(dx) + sq(dyB)) / sq(laneW * 0.28));
+    col += tint * disc * step(0.55, rkB) * 0.40 * within;
+    col += SPARK_TINT * disc * step(0.90, rkB) * 0.55 * within;
+    if (hash21(vec2(lane, salt + 29.0)) > 0.62) {
+      float lap = fract(u_time * 0.0625 + hash21(vec2(lane, salt + 31.0)) * 7.0);
+      float yCharge = mix(yRoot, yTip, lap);
+      col += SPARK_TINT *
+             exp(-(sq(dx) + sq(q.y - yCharge)) / sq(laneW * 0.30)) * 0.9 * surge;
+    }
+    return col;
   }
 
-  // The sigil crowning the tip — a four-rayed spark, ring, or lozenge —
-  // breathing softly, flashing when a signal arrives on a 64-tick ring.
-  if (hash21(vec2(lane, salt + 37.0)) > 0.45) {
-    vec2 l = (q - vec2(strandX, yTip + 0.020)) / 0.020;
+  // In focus: rows of dots and dashes drifting slowly along the strand,
+  // spaced differently per strand. Row heights of 0.016 / 0.0256 / 0.032
+  // give 64 / 40 / 32 rows per drift cycle — integer rings, silent wrap.
+  float rowPick = hash21(vec2(lane, salt + 43.0));
+  float rowH = rowPick < 0.4 ? 0.016 : (rowPick < 0.75 ? 0.0256 : 0.032);
+  float ring = rowPick < 0.4 ? 64.0 : (rowPick < 0.75 ? 40.0 : 32.0);
+  float ry = (q.y - drift * u_time) / rowH;
+  float rowKey = mod(floor(ry), ring);
+  float rk = hash21(vec2(lane * 13.0 + salt, rowKey));
+  float dy = (fract(ry) - 0.5) * rowH;
+
+  // Bloom is painted, not post-processed: a crisp core inside a tight glow
+  // and a faint halo, capped to the lane so a neighbour never clips it.
+  float hot = step(0.93, rk);
+  float squash = mix(1.0, 0.45, step(0.75, rk) * (1.0 - hot));
+  float sigma = hairline *
+                mix(0.8, 1.5, hash21(vec2(lane * 13.0 + salt, rowKey + 7.0)));
+  float d2 = sq(dx) + sq(dy * squash);
+  float bead = (1.1 + 0.7 * hero) * exp(-d2 / sq(sigma)) +
+               0.32 * exp(-d2 / sq(min(sigma * 2.6, laneW * 0.22))) +
+               0.08 * exp(-d2 / sq(min(sigma * 6.0, laneW * 0.45)));
+  float carries = step(0.60, rk);
+  col += tint * carries * (1.0 - hot) * bead * 0.48 * within;
+  col += SPARK_TINT * carries * hot * bead * 1.35 * within;
+
+  // A faint continuous spine on some strands, and a soft glow at the root.
+  col += tint * exp(-sq(dx / (hairline * 0.9))) *
+         step(0.55, hash21(vec2(lane, salt + 19.0))) * 0.16 * within;
+  col += tint * exp(-(sq(dx / (laneW * 0.8)) + sq((q.y - yRoot) / 0.013))) * 0.30;
+
+  // The floor remembers the strand: a dim mirrored streak below the root.
+  float sink = yRoot - q.y;
+  col += tint * step(0.0, sink) * exp(-sink * 26.0) *
+         exp(-sq(dx / (hairline * 4.0))) * 0.15;
+
+  // A charge climbing the strand as a comet with a fading wake. Lap counts
+  // of 12 / 16 / 20 per cycle keep the wrap silent.
+  if (hash21(vec2(lane, salt + 29.0)) > 0.62 || hero > 0.5) {
+    float lapPick = hash21(vec2(lane, salt + 31.0));
+    float laps = lapPick < 0.4 ? 12.0 : (lapPick < 0.75 ? 16.0 : 20.0);
+    float lap = fract(u_time * (laps / 256.0) + lapPick * 7.0);
+    float yCharge = mix(yRoot, yTip, lap);
+    float above = q.y - yCharge;
+    float head = exp(-(sq(dx) + sq(above)) / sq(hairline * 2.2));
+    float wake = step(above, 0.0) * exp(above * 34.0) *
+                 exp(-sq(dx / (hairline * 1.5)));
+    col += SPARK_TINT * (head * 1.6 + wake * 0.5) * surge * (1.0 + 0.7 * hero);
+  }
+
+  // The sigil crowning the tip — a four-rayed spark, ring, or lozenge — with
+  // its own painted bloom, flashing when a signal arrives on a 64-tick ring.
+  if (hash21(vec2(lane, salt + 37.0)) > 0.45 || hero > 0.5) {
+    vec2 l = (q - vec2(strandX + lean * (yTip - yRoot) + bend, yTip + 0.020)) / 0.020;
     float r2 = dot(l, l);
     if (r2 < 5.0) {
       float pick = hash21(vec2(lane, salt + 41.0));
       float reach = 1.0 - smoothstep(0.15, 1.05, length(l));
       float spark = (exp(-sq(l.x / 0.16)) + exp(-sq(l.y / 0.16))) * reach * reach;
       float stroke = hairline / 0.020;
-      float ring = exp(-sq((length(l) - 0.55) / (stroke * 1.4)));
+      float haloRing = exp(-sq((length(l) - 0.55) / (stroke * 1.4)));
       float lozenge = exp(-sq((abs(l.x) + abs(l.y) - 0.65) / (stroke * 1.4)));
-      float sigil = mix(spark, mix(ring, lozenge, step(0.75, pick)), step(0.5, pick));
+      float sigil = mix(spark, mix(haloRing, lozenge, step(0.75, pick)), step(0.5, pick));
+      float halo = exp(-r2 / sq(1.6)) * 0.16;
       float flash = step(0.82, hash21(vec2(mod(floor(u_time * 0.25 + pick * 9.0), 64.0),
                                            lane + salt))) *
                     (1.0 - smoothstep(0.02, 0.6, fract(u_time * 0.25 + pick * 9.0)));
       float breathe = 0.7 + 0.3 * sin(u_time * (0.6 + pick) + pick * 31.0);
-      col += TRACE_TINT * sigil * 0.9 * breathe;
-      col += SPARK_TINT * sigil * flash * 1.6;
+      col += tint * (sigil * 0.9 + halo) * breathe * (1.0 + 0.6 * hero);
+      col += SPARK_TINT * (sigil + halo * 2.0) * flash * 1.6;
     }
   }
 
@@ -213,7 +276,7 @@ vec3 strandLayer(vec2 q, float laneW, float salt, float hairline) {
 // suggestion of language, not a curtain of it.
 vec3 glyphRain(vec2 q) {
   float lane = floor(q.x / 0.055);
-  if (hash21(vec2(lane, 77.7)) < 0.78) {
+  if (hash21(vec2(lane, 77.7)) < 0.82) {
     return vec3(0.0);
   }
   float dir = mix(1.0, -1.0, step(0.5, hash21(vec2(lane, 81.1))));
@@ -233,7 +296,7 @@ vec3 glyphRain(vec2 q) {
   vec2 dl = fract(g * vec2(3.0, 5.0)) - 0.5;
   float dot5x3 = (1.0 - smoothstep(0.20, 0.38, length(dl))) * on;
   float envelope = 0.60 + 0.40 * sin(q.y * 2.3 + lane * 7.0 + u_time * (2.0 * INTERIOR_W));
-  return vec3(0.82, 0.74, 0.58) * dot5x3 * 0.20 * envelope;
+  return vec3(0.82, 0.74, 0.58) * dot5x3 * 0.15 * envelope;
 }
 
 vec3 interior(vec2 p, float edgeDistance) {
@@ -251,9 +314,11 @@ vec3 interior(vec2 p, float edgeDistance) {
   // Near-black. A soft shaft of light stands in the middle of the space, and
   // a faint band marks the floor the strands rise from.
   vec3 col = vec3(0.003, 0.004, 0.006);
-  col += vec3(0.052, 0.053, 0.058) * exp(-sq(p.x / 0.17)) *
-         (0.25 + 0.75 * smoothstep(-0.60, 0.45, p.y));
-  col += vec3(0.060, 0.055, 0.045) * exp(-(sq(p.x / 0.17) + sq((p.y + 0.30) / 0.05)));
+  float coneW = 0.10 + 0.16 * smoothstep(-0.45, 0.45, p.y);
+  col += vec3(0.064, 0.065, 0.070) * exp(-sq(p.x / coneW)) *
+         (0.30 + 0.70 * smoothstep(-0.60, 0.40, p.y)) *
+         (1.0 + 0.08 * sin(u_time * (3.0 * INTERIOR_W)));
+  col += vec3(0.065, 0.058, 0.047) * exp(-(sq(p.x / 0.17) + sq((p.y + 0.30) / 0.05)));
   col += vec3(0.045, 0.040, 0.032) * exp(-sq((p.y + 0.33) / 0.055)) * 0.9;
 
   // Two depths of the grove: fine far strands and wider near ones.
@@ -261,14 +326,20 @@ vec3 interior(vec2 p, float edgeDistance) {
   col += strandLayer(p - sway * 0.85, 0.050, 60.0, 0.0022);
   col += glyphRain(p - sway * 0.85);
 
-  // Scattered grounding lights along the floor line, like a far dark shore.
+  // Scattered grounding lights along the floor line, like a far dark shore;
+  // each carries its own small bloom, and neighbouring lanes are tested so
+  // no halo is ever clipped.
   vec2 gq = p - sway * 0.85;
-  float gl = floor(gq.x / 0.02);
-  float gs = hash21(vec2(gl, 99.1));
-  vec2 gpos = vec2((gl + 0.5 + (hash21(vec2(gl, 88.3)) - 0.5) * 0.8) * 0.02,
-                   -0.315 + (gs - 0.5) * 0.03);
-  col += TRACE_TINT * step(0.78, gs) *
-         exp(-dot(gq - gpos, gq - gpos) / sq(0.0022)) * 0.7;
+  float gl0 = floor(gq.x / 0.02);
+  for (int gi = -1; gi <= 1; gi++) {
+    float gl = gl0 + float(gi);
+    float gs = hash21(vec2(gl, 99.1));
+    vec2 gpos = vec2((gl + 0.5 + (hash21(vec2(gl, 88.3)) - 0.5) * 0.8) * 0.02,
+                     -0.315 + (gs - 0.5) * 0.03);
+    float gd2 = dot(gq - gpos, gq - gpos);
+    col += TRACE_TINT * step(0.78, gs) *
+           (exp(-gd2 / sq(0.0024)) + 0.3 * exp(-gd2 / sq(0.006))) * 0.6;
+  }
 
   // The throat of the tear shades the view near the lips: the interior dims
   // where it meets the silhouette, which both seats it behind the aperture
