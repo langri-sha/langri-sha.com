@@ -1,8 +1,9 @@
 // A clean, graphic cosmic rift. This deliberately avoids a ray-marched noise
 // field: the important silhouette is made from smooth analytic shapes so it
 // stays legible at every resolution instead of turning into static. The tear
-// itself opens onto a second space — a flat black expanse where slender
-// strands of light rise like reeds — built from the same discipline.
+// itself opens onto a second space — a hidden world of information, a black
+// plain where data rises in hairline spires around a helix-bearing monolith
+// — built from the same discipline.
 
 // star.glsl is prepended at compile time; it carries the precision block and
 // the starField() that shapes the middle of the rift.
@@ -95,251 +96,357 @@ vec3 accretion(vec2 p) {
   return (hot + electric) * cut * (0.18 + 0.82 * sweep);
 }
 
-// ——— The grove beyond the tear ———
-// Through the aperture there is a flat black expanse facing us: slender
-// vertical strands of light rising out of the dark like reeds, beaded with
-// dots and dashes, crowned with small sigils, climbed now and then by a
-// bright charge, with a whisper of glyph-rain drifting between them. Warm
-// candlelight monochrome, cinematic restraint, nothing like the ionised
-// colour on our side of the tear.
+// ——— The archive beyond the tear ———
+// Through the aperture: a hidden world of information. A black plain under
+// no sky, where hairline spires of data stand like long exposures of rising
+// signals; two circuit-trees flank a distant monolith that carries a slow
+// double helix above a lit berth; a thin weather of characters hangs
+// between them. Every structure takes its bounds from the star's edge, so
+// the skyline repeats the silhouette. Cold recording-light monochrome —
+// nothing like the ionised colour on our side of the tear.
 
 // All interior periods divide the 256 s uniform wrap (2*PI / 256): drift
 // speeds advance whole pattern periods per cycle and every event counter is
 // hashed on a ring sized to its tick count, so the wrap lands mid-stride.
 const float INTERIOR_W = 0.0245437;
 
-const vec3 TRACE_TINT = vec3(0.88, 0.82, 0.70);
-const vec3 SPARK_TINT = vec3(1.30, 1.18, 0.95);
+const vec3 SILVER = vec3(0.74, 0.80, 0.90);
+const vec3 HOT = vec3(1.25, 1.32, 1.48);
 
 float sq(float x) {
   return x * x;
 }
 
-// One strand in its lane: a rising filament of beadwork rooted near the
-// floor, crowned with a small sigil, climbed now and then by a bright
-// charge. Most strands are in focus — crisp cores under a tight painted
-// bloom; a rare one stands fully outside the lens's depth and melts into a
-// soft band with a few large bokeh discs; a rare hero outshines its grove.
-// Strands gather in loose groves with dead lanes between them.
-vec3 strandAt(vec2 q, float lane, float laneW, float salt, float hairline) {
-  float grove = step(0.34, hash21(vec2(floor(lane / 3.0), salt + 3.0)));
+// The star's edge, solved for the interior: given a coordinate along one
+// axis, the half-extent the aperture affords along the other. Structures
+// take their bounds from it, so the skyline agrees with the silhouette
+// instead of dying against the mask.
+float apertureSpan(float along, float axisA, float axisB) {
+  float span = pow(min(abs(along) / axisA, 1.0), STAR_SHARPNESS);
+  return axisB * pow(max(1.0 - span, 0.001), 1.0 / STAR_SHARPNESS);
+}
+
+// One data-spire in its lane: a hairline stack of beads drifting slowly
+// upward, the long exposure of signals leaving the plain. Rows ride integer
+// rings — 128 or 64 per cycle — so the wrap lands mid-climb. The stack
+// thins with height, only its crown discharges hot, and a rare column
+// carries the unbroken streak of a signal too fast to resolve.
+vec3 spireAt(vec2 q, float lane, float laneW, float salt, float hairline,
+             float clear) {
   float s0 = hash21(vec2(lane, salt));
-  if (s0 < 0.58 || grove < 0.5) {
+  if (s0 < 0.50) {
     return vec3(0.0);
   }
-  float strandX = (lane + 0.5 + (hash21(vec2(lane, salt + 7.0)) - 0.5) * 0.5) * laneW;
-  // The centre of the stage stays clear — the light cone owns it — and the
-  // grove conforms to the aperture: each strand roots and tops out inside
-  // the star's height at its own x, so nothing wastes itself off-stage.
-  float span = pow(abs(strandX) / 0.30, 0.64);
-  float reachY = 0.44 * pow(max(1.0 - span, 0.001), 1.5625);
-  if (abs(strandX) < 0.035 || reachY < 0.08) {
+  float x = (lane + 0.5 + (hash21(vec2(lane, salt + 7.0)) - 0.5) * 0.6) * laneW;
+  float reach = apertureSpan(x, STAR_RADIUS.x, STAR_RADIUS.y);
+  if (reach < 0.035 || abs(x) < clear) {
     return vec3(0.0);
   }
-
-  float yRoot = -reachY * 0.85 + reachY * 0.55 * hash21(vec2(lane, salt + 13.0));
-  float yTip = min(yRoot + 0.18 + 0.55 * hash21(vec2(lane, salt + 17.0)),
-                   reachY * 0.88);
-  float rise = clamp((q.y - yRoot) / (yTip - yRoot), 0.0, 1.0);
-
-  float hero = step(0.93, hash21(vec2(lane, salt + 53.0)));
-  float isBokeh = step(0.86, hash21(vec2(lane, salt + 49.0))) * (1.0 - hero);
-
-  // Posture: a slight lean, and a slow bend that carries the tip.
-  float bend = (hash21(vec2(lane, salt + 61.0)) - 0.5) * 0.014 *
-               sin(u_time * ((3.0 + 2.0 * hero) * INTERIOR_W) +
-                   hash21(vec2(lane, salt + 59.0)) * 6.2832);
-  float lean = (hash21(vec2(lane, salt + 57.0)) - 0.5) * 0.032;
-  float dx = q.x - strandX - lean * (q.y - yRoot) - bend * sq(rise);
+  float dx = q.x - x;
   if (abs(dx) > laneW * 1.5) {
     return vec3(0.0);
   }
+  float yBase = -reach * 0.94 + reach * 0.35 * hash21(vec2(lane, salt + 13.0));
+  float yTop = min(mix(yBase + 0.08, reach * 0.90,
+                       pow(hash21(vec2(lane, salt + 17.0)), 0.55)),
+                   reach * 0.92);
+  float rise = clamp((q.y - yBase) / max(yTop - yBase, 0.001), 0.0, 1.0);
+  float within = smoothstep(yBase - 0.012, yBase + 0.012, q.y) *
+                 (1.0 - smoothstep(yTop - 0.015, yTop + 0.010, q.y));
 
-  float within = smoothstep(yRoot - 0.01, yRoot + 0.06, q.y) *
-                 (1.0 - smoothstep(yTip - 0.05, yTip, q.y));
-
-  // Each strand keeps its own tone between amber and pale silver.
-  vec3 tint = mix(vec3(0.95, 0.82, 0.62), vec3(0.84, 0.86, 0.88),
-                  hash21(vec2(lane, salt + 67.0)));
-
-  float drift = 0.004 * mix(1.0, -1.0, step(0.5, hash21(vec2(lane, salt + 23.0))));
-  float surge = 1.0 + 0.45 * min(u_audioLevel, 1.0);
-  vec3 col = vec3(0.0);
-
-  if (isBokeh > 0.5) {
-    // Outside the depth of field the beadwork melts together: a soft band
-    // of light, and a few large discs where its brightest beads would be.
-    // Rows of 0.064 give 16 per drift cycle — an integer ring.
-    float env = 0.5 + 0.5 * sin(q.y * 9.0 + hash21(vec2(lane, salt + 71.0)) * 6.2832);
-    col += tint * exp(-sq(dx / (laneW * 0.30))) * (0.08 + 0.15 * env) * within;
-    float ryB = (q.y - drift * u_time) / 0.064;
-    float rkB = hash21(vec2(lane * 13.0 + salt, mod(floor(ryB), 16.0)));
-    float dyB = (fract(ryB) - 0.5) * 0.064;
-    float disc = exp(-(sq(dx) + sq(dyB)) / sq(laneW * 0.28));
-    col += tint * disc * step(0.55, rkB) * 0.40 * within;
-    col += SPARK_TINT * disc * step(0.90, rkB) * 0.55 * within;
-    if (hash21(vec2(lane, salt + 29.0)) > 0.62) {
-      float lap = fract(u_time * 0.0625 + hash21(vec2(lane, salt + 31.0)) * 7.0);
-      float yCharge = mix(yRoot, yTip, lap);
-      col += SPARK_TINT *
-             exp(-(sq(dx) + sq(q.y - yCharge)) / sq(laneW * 0.30)) * 0.9 * surge;
-    }
-    return col;
-  }
-
-  // In focus: rows of dots and dashes drifting slowly along the strand,
-  // spaced differently per strand. Row heights of 0.016 / 0.0256 / 0.032
-  // give 64 / 40 / 32 rows per drift cycle — integer rings, silent wrap.
   float rowPick = hash21(vec2(lane, salt + 43.0));
-  float rowH = rowPick < 0.4 ? 0.016 : (rowPick < 0.75 ? 0.0256 : 0.032);
-  float ring = rowPick < 0.4 ? 64.0 : (rowPick < 0.75 ? 40.0 : 32.0);
-  float ry = (q.y - drift * u_time) / rowH;
+  float rowH = rowPick < 0.5 ? 0.008 : 0.016;
+  float ring = rowPick < 0.5 ? 128.0 : 64.0;
+  float ry = (q.y - 0.004 * u_time) / rowH;
   float rowKey = mod(floor(ry), ring);
-  float rk = hash21(vec2(lane * 13.0 + salt, rowKey));
+  float rk = hash21(vec2(lane * 17.0 + salt, rowKey));
   float dy = (fract(ry) - 0.5) * rowH;
 
-  // Bloom is painted, not post-processed: a crisp core inside a tight glow
-  // and a faint halo, capped to the lane so a neighbour never clips it.
-  float hot = step(0.93, rk);
-  float squash = mix(1.0, 0.45, step(0.75, rk) * (1.0 - hot));
+  // A row is a bead or, now and then, a short dash lying across the column;
+  // the stack thins as it climbs.
+  float dash = step(0.86, hash21(vec2(lane * 17.0 + salt, rowKey + 3.0)));
+  float on = step(mix(0.40, 0.74, rise), rk);
+  float hot = step(0.96, rk) * step(0.70, rise);
   float sigma = hairline *
-                mix(0.8, 1.5, hash21(vec2(lane * 13.0 + salt, rowKey + 7.0)));
-  float d2 = sq(dx) + sq(dy * squash);
-  float bead = (1.1 + 0.7 * hero) * exp(-d2 / sq(sigma)) +
-               0.32 * exp(-d2 / sq(min(sigma * 2.6, laneW * 0.22))) +
-               0.08 * exp(-d2 / sq(min(sigma * 6.0, laneW * 0.45)));
-  float carries = step(0.60, rk);
-  col += tint * carries * (1.0 - hot) * bead * 0.48 * within;
-  col += SPARK_TINT * carries * hot * bead * 1.35 * within;
+                mix(0.8, 1.35, hash21(vec2(lane * 17.0 + salt, rowKey + 5.0)));
+  float d2 = sq(dx / mix(1.0, 2.4, dash)) + sq(dy / mix(1.0, 0.6, dash));
+  float bead = exp(-d2 / sq(sigma)) +
+               0.22 * exp(-d2 / sq(min(sigma * 2.8, laneW * 0.30)));
+  float shimmer = 0.75 + 0.25 * sin(u_time * (9.0 * INTERIOR_W) + rk * 40.0);
+  vec3 col = SILVER * on * (1.0 - hot) * bead * 0.85 * within;
+  col += HOT * hot * bead * 1.7 * shimmer * within;
 
-  // A faint continuous spine on some strands, and a soft glow at the root.
-  col += tint * exp(-sq(dx / (hairline * 0.9))) *
-         step(0.55, hash21(vec2(lane, salt + 19.0))) * 0.16 * within;
-  col += tint * exp(-(sq(dx / (laneW * 0.8)) + sq((q.y - yRoot) / 0.013))) * 0.30;
-
-  // The floor remembers the strand: a dim mirrored streak below the root.
-  float sink = yRoot - q.y;
-  col += tint * step(0.0, sink) * exp(-sink * 26.0) *
-         exp(-sq(dx / (hairline * 4.0))) * 0.15;
-
-  // A charge climbing the strand as a comet with a fading wake. Lap counts
-  // of 12 / 16 / 20 per cycle keep the wrap silent.
-  if (hash21(vec2(lane, salt + 29.0)) > 0.62 || hero > 0.5) {
-    float lapPick = hash21(vec2(lane, salt + 31.0));
-    float laps = lapPick < 0.4 ? 12.0 : (lapPick < 0.75 ? 16.0 : 20.0);
-    float lap = fract(u_time * (laps / 256.0) + lapPick * 7.0);
-    float yCharge = mix(yRoot, yTip, lap);
-    float above = q.y - yCharge;
-    float head = exp(-(sq(dx) + sq(above)) / sq(hairline * 2.2));
-    float wake = step(above, 0.0) * exp(above * 34.0) *
-                 exp(-sq(dx / (hairline * 1.5)));
-    col += SPARK_TINT * (head * 1.6 + wake * 0.5) * surge * (1.0 + 0.7 * hero);
-  }
-
-  // The sigil crowning the tip — a four-rayed spark, ring, or lozenge — with
-  // its own painted bloom, flashing when a signal arrives on a 64-tick ring.
-  if (hash21(vec2(lane, salt + 37.0)) > 0.45 || hero > 0.5) {
-    vec2 l = (q - vec2(strandX + lean * (yTip - yRoot) + bend, yTip + 0.020)) / 0.020;
-    float r2 = dot(l, l);
-    if (r2 < 5.0) {
-      float pick = hash21(vec2(lane, salt + 41.0));
-      float reach = 1.0 - smoothstep(0.15, 1.05, length(l));
-      float spark = (exp(-sq(l.x / 0.16)) + exp(-sq(l.y / 0.16))) * reach * reach;
-      float stroke = hairline / 0.020;
-      float haloRing = exp(-sq((length(l) - 0.55) / (stroke * 1.4)));
-      float lozenge = exp(-sq((abs(l.x) + abs(l.y) - 0.65) / (stroke * 1.4)));
-      float sigil = mix(spark, mix(haloRing, lozenge, step(0.75, pick)), step(0.5, pick));
-      float halo = exp(-r2 / sq(1.6)) * 0.16;
-      float flash = step(0.82, hash21(vec2(mod(floor(u_time * 0.25 + pick * 9.0), 64.0),
-                                           lane + salt))) *
-                    (1.0 - smoothstep(0.02, 0.6, fract(u_time * 0.25 + pick * 9.0)));
-      float breathe = 0.7 + 0.3 * sin(u_time * (0.6 + pick) + pick * 31.0);
-      col += tint * (sigil * 0.9 + halo) * breathe * (1.0 + 0.6 * hero);
-      col += SPARK_TINT * (sigil + halo * 2.0) * flash * 1.6;
-    }
-  }
-
+  col += SILVER * step(0.82, hash21(vec2(lane, salt + 23.0))) *
+         exp(-sq(dx / (hairline * 0.85))) * 0.16 * within;
+  // Every column roots in a small ember where it leaves the plain.
+  col += SILVER * exp(-(sq(dx / (laneW * 0.38)) + sq((q.y - yBase) / 0.006))) * 0.22;
   return col;
 }
 
-// One depth of the grove. The pixel's lane and both neighbours are tested,
-// which is every strand able to reach it.
-vec3 strandLayer(vec2 q, float laneW, float salt, float hairline) {
+// One depth of spires. The pixel's lane and both neighbours are tested,
+// which is every column able to reach it.
+vec3 spireLayer(vec2 q, float laneW, float salt, float hairline, float clear) {
   float lane = floor(q.x / laneW);
-  return strandAt(q, lane - 1.0, laneW, salt, hairline) +
-         strandAt(q, lane, laneW, salt, hairline) +
-         strandAt(q, lane + 1.0, laneW, salt, hairline);
+  return spireAt(q, lane - 1.0, laneW, salt, hairline, clear) +
+         spireAt(q, lane, laneW, salt, hairline, clear) +
+         spireAt(q, lane + 1.0, laneW, salt, hairline, clear);
 }
 
-// A whisper of glyph-rain: a few columns of small dot-matrix characters
-// drifting through the web and re-rolling as they go. Scarce and dim — a
-// suggestion of language, not a curtain of it.
-vec3 glyphRain(vec2 q) {
-  float lane = floor(q.x / 0.055);
-  if (hash21(vec2(lane, 77.7)) < 0.82) {
+// Two circuit-trees stand in the tear's horizontal lobes, drawn once in |x|
+// — the archive is a formal place and its architecture agrees with itself.
+// Dotted rails for spines, hairline branches leaving at right angles,
+// elbows dropping toward lower rows, a bead at every junction. The branch
+// field is row-quantised: a pixel resolves its own row and the two above
+// it, which is every elbow able to reach down to it.
+vec3 circuitTrees(vec2 q, float hairline) {
+  vec2 l = vec2(abs(q.x) - 0.122, q.y + 0.020);
+  if (l.x < -0.058 || l.x > 0.140 || abs(l.y) > 0.120) {
     return vec3(0.0);
   }
-  float dir = mix(1.0, -1.0, step(0.5, hash21(vec2(lane, 81.1))));
-  // 0.004 * 256 = 32 rows of 0.032 per cycle, matching the 32-row hash ring.
-  float y = (q.y + dir * 0.004 * u_time) / 0.032;
-  float rowKey = mod(floor(y), 32.0);
-  vec2 g = vec2((fract(q.x / 0.055) - 0.5) * 0.055 / 0.024 + 0.5, fract(y));
-  if (g.x < 0.0 || g.x > 1.0) {
+  vec3 col = vec3(0.0);
+
+  // Two dotted rails of unequal height make the spine read as built, not
+  // drawn.
+  for (int r = 0; r < 2; r++) {
+    float fr = float(r);
+    float xr = fr * 0.020;
+    float top = mix(0.080, 0.030, fr);
+    float bottom = mix(-0.095, -0.062, fr);
+    float span = smoothstep(bottom - 0.006, bottom, l.y) *
+                 (1.0 - smoothstep(top, top + 0.006, l.y));
+    float on = step(0.28, hash21(vec2(floor(l.y / 0.009), 5.0 + fr)));
+    float dy = (fract(l.y / 0.009) - 0.5) * 0.009;
+    col += SILVER * span * on *
+           exp(-(sq(l.x - xr) + sq(dy)) / sq(hairline * 0.9)) * 0.95;
+  }
+
+  // A reading pulse climbs the tall rail — 8 laps per cycle, wrap-silent.
+  float lap = fract(u_time * 0.03125 + 0.19);
+  float yPulse = mix(-0.095, 0.080, lap);
+  col += HOT * exp(-(sq(l.x) + sq(l.y - yPulse)) / sq(hairline * 1.8)) * 1.3;
+
+  // Branch rows. Each may send one hairline out of the spine, its length
+  // capped by the star's edge at that height; elbows turn down at the tip,
+  // sink no deeper than the edge allows, and end in a bead.
+  float j0 = floor(l.y / 0.023);
+  for (int i = 0; i < 3; i++) {
+    float j = j0 + float(i);
+    float yRow = (j + 0.5) * 0.023;
+    float hb = hash21(vec2(j, 21.7));
+    if (yRow > 0.082 || yRow < -0.088 || hb < 0.35) {
+      continue;
+    }
+    float dir = mix(1.0, -1.0, step(0.85, hash21(vec2(j, 24.1))));
+    float xEdge = apertureSpan(yRow - 0.020, STAR_RADIUS.y, STAR_RADIUS.x);
+    float cap = dir > 0.0 ? max(xEdge - 0.136, 0.012) : 0.046;
+    float len = mix(0.018, cap, pow(hash21(vec2(j, 29.3)), 1.4));
+    float xEnd = dir * len;
+    float dyRow = l.y - yRow;
+
+    float run = step(min(0.0, xEnd) - 0.001, l.x) *
+                step(l.x, max(0.0, xEnd) + 0.001);
+    col += SILVER * run * exp(-sq(dyRow / hairline)) * 0.75;
+
+    float bent = step(0.55, hash21(vec2(j, 31.1)));
+    float sink = apertureSpan(0.122 + xEnd, STAR_RADIUS.x, STAR_RADIUS.y) * 0.94 +
+                 yRow - 0.020;
+    float drop = min(0.023 * mix(0.5, 2.1, hash21(vec2(j, 33.9))),
+                     max(sink, 0.0)) * bent;
+    float within = step(yRow - drop, l.y) * step(l.y, yRow);
+    col += SILVER * within * bent * exp(-sq((l.x - xEnd) / hairline)) * 0.75;
+    col += SILVER *
+           exp(-(sq(l.x - xEnd) + sq(l.y - (yRow - drop))) / sq(hairline * 1.6)) *
+           1.25;
+    col += SILVER * exp(-(sq(l.x) + sq(dyRow)) / sq(hairline * 1.4)) * 1.05;
+  }
+  return col;
+}
+
+// A thin weather of characters hangs in the air between the structures:
+// dot-matrix glyphs re-rolling on their own 64-tick beats, and here and
+// there a chevron — waymarks in a language we can't read. Scarce by
+// construction; the emptiness is the point.
+vec3 glyphField(vec2 q) {
+  vec2 cellSize = vec2(0.046, 0.040);
+  vec2 cell = floor(q / cellSize);
+  float gs = hash21(cell + 51.3);
+  if (gs < 0.88) {
     return vec3(0.0);
   }
-  // Each character re-rolls on its own beat: 64 ticks per cycle, offset per
-  // cell so the column never changes all at once.
-  float tick = floor(u_time * 0.25 + hash21(vec2(lane, rowKey)) * 7.0);
-  float charSeed = hash21(vec2(mod(tick, 64.0) + lane * 3.0, rowKey));
-  vec2 sub = floor(g * vec2(3.0, 5.0));
-  float on = step(0.42, hash21(vec2(charSeed * 63.0, sub.x + sub.y * 3.0)));
-  vec2 dl = fract(g * vec2(3.0, 5.0)) - 0.5;
-  float dot5x3 = (1.0 - smoothstep(0.20, 0.38, length(dl))) * on;
-  float envelope = 0.60 + 0.40 * sin(q.y * 2.3 + lane * 7.0 + u_time * (2.0 * INTERIOR_W));
-  return vec3(0.82, 0.74, 0.58) * dot5x3 * 0.15 * envelope;
+  vec2 centre = (cell + 0.5) * cellSize;
+  if (abs(centre.x) < 0.085 ||
+      abs(centre.y) > apertureSpan(centre.x, STAR_RADIUS.x, STAR_RADIUS.y) * 0.85) {
+    return vec3(0.0);
+  }
+  vec2 f = (q - centre) / vec2(0.017, 0.024) + 0.5;
+  if (f.x < 0.0 || f.x > 1.0 || f.y < 0.0 || f.y > 1.0) {
+    return vec3(0.0);
+  }
+  float breathe = 0.50 + 0.50 * sin(u_time * (5.0 * INTERIOR_W) + gs * 43.0);
+  if (gs > 0.965) {
+    vec2 m = f - 0.5;
+    float d = abs(m.y + 0.12 - abs(m.x) * 0.75);
+    float line = exp(-sq(d / 0.07)) * (1.0 - smoothstep(0.30, 0.44, abs(m.x)));
+    return SILVER * line * 0.50 * breathe;
+  }
+  float tick = floor(u_time * 0.25 + gs * 9.0);
+  float seed = hash21(vec2(mod(tick, 64.0) + cell.x * 3.0, cell.y));
+  vec2 sub = floor(f * vec2(3.0, 5.0));
+  float on = step(0.46, hash21(vec2(seed * 63.0, sub.x + sub.y * 3.0)));
+  vec2 dl = fract(f * vec2(3.0, 5.0)) - 0.5;
+  float d = (1.0 - smoothstep(0.16, 0.32, length(dl))) * on;
+  return SILVER * d * 0.28 * breathe;
+}
+
+// The monolith: the capital of the archive, standing deepest in the scene
+// on a lit berth. Read bottom to top: the berth's hot bar over a dim wider
+// echo; a fountain of packets condensing out of the light; stacked floors
+// of dash-work narrowing with height; the double helix turning three times
+// a cycle where the tear is widest; a crown thinning to single blips under
+// a beacon. One bright packet climbs the whole height each lap, and the
+// berth answers the voice.
+vec3 monolith(vec2 q, float hairline) {
+  float ax = abs(q.x);
+  if (ax > 0.12 || q.y < -0.30 || q.y > 0.42) {
+    return vec3(0.0);
+  }
+  vec3 col = vec3(0.0);
+  float surge = 1.0 + 0.55 * min(u_audioLevel, 1.0);
+
+  // The berth.
+  col += HOT * smoothstep(0.034, 0.016, ax) *
+         exp(-sq((q.y + 0.225) / 0.0026)) * 2.8 * surge;
+  col += SILVER * smoothstep(0.046, 0.022, ax) *
+         exp(-sq((q.y + 0.237) / 0.0018)) * 0.55;
+  col += SILVER * exp(-(sq(ax / 0.055) + sq((q.y + 0.222) / 0.024))) *
+         0.50 * surge;
+  col += HOT * exp(-(sq(ax - 0.033) + sq(q.y + 0.229)) / sq(hairline * 1.6)) * 1.1;
+
+  // The fountain: three hairline jets of packets rising off the berth and
+  // thinning out — 256 rows per cycle, an integer ring.
+  float fBand = smoothstep(-0.221, -0.211, q.y) *
+                (1.0 - smoothstep(-0.168, -0.152, q.y));
+  if (fBand > 0.001) {
+    float lift = 1.0 - smoothstep(-0.215, -0.158, q.y);
+    float fy = (q.y - 0.008 * u_time) / 0.008;
+    float fKey = mod(floor(fy), 256.0);
+    float fdy = (fract(fy) - 0.5) * 0.008;
+    for (int c = 0; c < 3; c++) {
+      float xc = (float(c) - 1.0) * 0.0105;
+      float fk = hash21(vec2(fKey, 61.0 + float(c) * 9.0));
+      col += HOT * step(mix(0.92, 0.30, lift), fk) *
+             exp(-(sq(q.x - xc) + sq(fdy)) / sq(hairline)) * fBand * 1.4 * surge;
+    }
+  }
+
+  // The floors: stacked dash-work, symmetric about the axis, narrowing with
+  // height. A rare wide row reads as a fin, ends carry beads, and now and
+  // then a floor lights hot for a beat on a 64-tick ring.
+  float bodyBand = smoothstep(-0.152, -0.142, q.y) *
+                   (1.0 - smoothstep(0.026, 0.036, q.y));
+  if (bodyBand > 0.001) {
+    float bKey = floor(q.y / 0.016);
+    float bdy = (fract(q.y / 0.016) - 0.5) * 0.016;
+    float bk = hash21(vec2(bKey, 43.0));
+    float wide = step(0.88, bk);
+    float W = mix(0.034, 0.012, smoothstep(-0.150, 0.030, q.y)) *
+              mix(0.55, 1.0, hash21(vec2(bKey, 47.0))) * mix(1.0, 1.8, wide);
+    float gap = 0.0035 + 0.004 * hash21(vec2(bKey, 53.0));
+    float seg = smoothstep(gap - 0.0015, gap + 0.0015, ax) *
+                (1.0 - smoothstep(W - 0.001, W + 0.002, ax));
+    float beat = u_time * 0.25 + bk * 11.0;
+    float flash = step(0.90, hash21(vec2(mod(floor(beat), 64.0), bKey))) *
+                  (1.0 - smoothstep(0.02, 0.50, fract(beat)));
+    float row = step(0.30, bk);
+    float line = exp(-sq(bdy / hairline));
+    col += SILVER * row * seg * line * (0.85 + 0.60 * wide) * bodyBand;
+    col += HOT * row * seg * line * flash * 1.6 * bodyBand;
+    col += SILVER * row * exp(-(sq(ax - W) + sq(bdy)) / sq(hairline * 1.4)) *
+           1.15 * bodyBand;
+    col += SILVER * exp(-sq(q.x / hairline)) * 0.20 * bodyBand;
+  }
+
+  // The helix: two strands of beads winding about the axis, the near strand
+  // bright and the far strand dim, faint rungs on alternate rows — the
+  // archive's code, held up where the tear is widest.
+  float hBand = smoothstep(0.048, 0.068, q.y) *
+                (1.0 - smoothstep(0.198, 0.220, q.y));
+  if (hBand > 0.001) {
+    float hy = q.y / 0.008;
+    float hdy = (fract(hy) - 0.5) * 0.008;
+    float phase = (floor(hy) + 0.5) * 0.512 + u_time * (3.0 * INTERIOR_W);
+    for (int s = 0; s < 2; s++) {
+      float ph = phase + float(s) * PI;
+      float d2 = sq(q.x - 0.026 * sin(ph)) + sq(hdy);
+      col += SILVER * exp(-d2 / sq(hairline * 1.15)) *
+             mix(0.30, 1.50, 0.5 + 0.5 * cos(ph)) * hBand;
+    }
+    float rung = step(0.5, mod(floor(hy), 2.0));
+    col += SILVER * rung * step(ax, abs(0.026 * sin(phase))) *
+           exp(-sq(hdy / (hairline * 0.8))) * 0.24 * hBand;
+  }
+
+  // The crown: a thinning run of blips drifting upward — 64 rows per cycle
+  // — under a beacon flashing on its own 64-tick beat.
+  float cBand = smoothstep(0.220, 0.235, q.y) *
+                (1.0 - smoothstep(0.385, 0.405, q.y));
+  if (cBand > 0.001) {
+    float cy = (q.y - 0.004 * u_time) / 0.016;
+    float cKey = mod(floor(cy), 64.0);
+    float cdy = (fract(cy) - 0.5) * 0.016;
+    col += SILVER * step(mix(0.42, 0.94, smoothstep(0.235, 0.390, q.y)),
+                         hash21(vec2(cKey, 71.0))) *
+           exp(-(sq(q.x) + sq(cdy)) / sq(hairline)) * 1.25 * cBand;
+  }
+  float blink = u_time * 0.25 + 0.37;
+  float beacon = step(0.72, hash21(vec2(mod(floor(blink), 64.0), 3.3))) *
+                 (1.0 - smoothstep(0.02, 0.55, fract(blink)));
+  float dBeacon = sq(q.x) + sq(q.y - 0.360);
+  col += HOT * (exp(-dBeacon / sq(hairline * 1.5)) +
+                0.35 * exp(-dBeacon / sq(0.008))) * (0.35 + 1.80 * beacon);
+
+  // One bright packet climbs the whole tower each lap — berth to crown in a
+  // clean line through floors, helix, and blips — 16 laps per cycle.
+  float climb = fract(u_time * 0.0625 + 0.31);
+  float above = q.y - mix(-0.215, 0.400, climb);
+  col += HOT * (exp(-(sq(q.x) + sq(above)) / sq(hairline * 1.9)) * 2.0 +
+                step(above, 0.0) * exp(above * 30.0) *
+                exp(-sq(q.x / hairline)) * 0.55) * surge;
+  return col;
 }
 
 vec3 interior(vec2 p, float edgeDistance) {
-  // The space beyond faces us flat-on. The camera behind the tear drifts
-  // sideways, and the two depths of the web shift by different fractions of
-  // it: that differential slide against the fixed silhouette is what keeps
-  // the flat black reading as a space rather than a poster.
+  // The camera behind the tear drifts sideways, and each depth shifts by a
+  // different fraction of it — the monolith least, because it stands
+  // farthest in. That differential slide against the fixed silhouette is
+  // what keeps the flat black reading as a space rather than a poster.
   vec2 sway = vec2(
     sin(u_time * (4.0 * INTERIOR_W)) +
       0.55 * sin(u_time * (7.0 * INTERIOR_W) + 1.9),
     cos(u_time * (3.0 * INTERIOR_W)) +
       0.55 * sin(u_time * (6.0 * INTERIOR_W) + 4.1)
-  ) * 0.045;
+  ) * 0.038;
 
-  // Near-black. A soft shaft of light stands in the middle of the space, and
-  // a faint band marks the floor the strands rise from.
-  vec3 col = vec3(0.003, 0.004, 0.006);
-  float coneW = 0.10 + 0.16 * smoothstep(-0.45, 0.45, p.y);
-  col += vec3(0.064, 0.065, 0.070) * exp(-sq(p.x / coneW)) *
-         (0.30 + 0.70 * smoothstep(-0.60, 0.40, p.y)) *
-         (1.0 + 0.08 * sin(u_time * (3.0 * INTERIOR_W)));
-  col += vec3(0.065, 0.058, 0.047) * exp(-(sq(p.x / 0.17) + sq((p.y + 0.30) / 0.05)));
-  col += vec3(0.045, 0.040, 0.032) * exp(-sq((p.y + 0.33) / 0.055)) * 0.9;
+  // Near-black, with the faintest cold haze where the plain meets the dark.
+  vec3 col = vec3(0.0016, 0.0021, 0.0034);
+  col += vec3(0.016, 0.018, 0.024) * exp(-sq((p.y + 0.225) / 0.05));
 
-  // Two depths of the grove: fine far strands and wider near ones.
-  col += strandLayer(p - sway * 0.30, 0.032, 5.0, 0.0016) * 0.5;
-  col += strandLayer(p - sway * 0.85, 0.050, 60.0, 0.0022);
-  col += glyphRain(p - sway * 0.85);
+  // The city, deep to near: the monolith on its berth, two ranks of spires,
+  // then the schematics and their weather of characters.
+  col += monolith(p - sway * 0.10, 0.0018);
+  col += spireLayer(p - sway * 0.30, 0.016, 11.0, 0.0011, 0.032) * 0.75;
+  col += spireLayer(p - sway * 0.55, 0.030, 47.0, 0.0016, 0.062) * 1.30;
+  vec2 near = p - sway * 0.78;
+  col += circuitTrees(near, 0.0016);
+  col += glyphField(near);
 
-  // Scattered grounding lights along the floor line, like a far dark shore;
-  // each carries its own small bloom, and neighbouring lanes are tested so
-  // no halo is ever clipped.
-  vec2 gq = p - sway * 0.85;
-  float gl0 = floor(gq.x / 0.02);
-  for (int gi = -1; gi <= 1; gi++) {
-    float gl = gl0 + float(gi);
-    float gs = hash21(vec2(gl, 99.1));
-    vec2 gpos = vec2((gl + 0.5 + (hash21(vec2(gl, 88.3)) - 0.5) * 0.8) * 0.02,
-                     -0.315 + (gs - 0.5) * 0.03);
-    float gd2 = dot(gq - gpos, gq - gpos);
-    col += TRACE_TINT * step(0.78, gs) *
-           (exp(-gd2 / sq(0.0024)) + 0.3 * exp(-gd2 / sq(0.006))) * 0.6;
-  }
+  // The hidden world is a recording and the tear is its screen: a film of
+  // grain, quantised to ticks that divide the cycle so the wrap never
+  // stutters.
+  float tick = mod(floor(u_time * 24.0), 6144.0);
+  float grain = hash21(floor(p * 340.0) + vec2(tick * 0.731, tick * 0.377));
+  col *= 0.88 + 0.24 * grain;
+  col += vec3(0.9, 0.95, 1.1) * grain * 0.0050;
 
   // The throat of the tear shades the view near the lips: the interior dims
   // where it meets the silhouette, which both seats it behind the aperture
