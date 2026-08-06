@@ -130,17 +130,46 @@ const chantDuration = (chant: Breath[]) =>
  * derives from the chant's length, per instance. */
 const VOICE_START = 0.2
 
-/* Output trim. The voice is built at conservative internal levels so the
- * formant and saturation stages never fold back on themselves; this lifts the
- * finished sum up to the front of the mix. The limiter on the master catches
- * the peaks, so this can sit well above unity. */
-const LEVEL = 3.2
+/** The voice's character, apart from what it says. */
+export interface Character {
+  /**
+   * Output trim. The voice is built at conservative internal levels so the
+   * formant and saturation stages never fold back on themselves; this lifts
+   * the finished sum to the front of the mix, and the master limiter
+   * catches its peaks, so it sits well above unity.
+   */
+  level: number
+  /**
+   * The length of the throat. The syllable table speaks in ordinary male
+   * formants; every target is scaled down by this before it reaches the
+   * filters, dropping the voice into an older, larger chest without
+   * touching the diction.
+   */
+  tract: number
+  /** The octave-under saw's level — the kargyraa growl. */
+  undertone: number
+  /** The source saturation's ferocity — the rasp. */
+  rasp: number
+  /** Drive into the grit layer's shaper. */
+  gritDrive: number
+  /** The grit layer's level under the voice. */
+  grit: number
+  /** Lowpass keeping the grit subterranean, in Hz. */
+  gritDark: number
+  /** The old-voice lowpass over everything, in Hz. */
+  patina: number
+}
 
-/* The length of the throat. The syllable table speaks in ordinary male
- * formants; every target is scaled down by this before it reaches the
- * filters, dropping the voice into an older, larger chest without touching
- * the diction. */
-const TRACT = 0.9
+export const CHARACTER: Character = {
+  level: 3.2,
+  tract: 0.9,
+  undertone: 0.8,
+  rasp: 2.2,
+  gritDrive: 2.6,
+  grit: 0.2,
+  gritDark: 1500,
+  patina: 5500,
+}
 
 export class Voice {
   /** Offset after start() at which the drone should begin fading in. */
@@ -148,6 +177,7 @@ export class Voice {
 
   context: AudioContext
   chant: Breath[]
+  character: Character
   voiceEnd: number
   tailEnd: number
   dryBus: GainNode
@@ -162,16 +192,18 @@ export class Voice {
     context: AudioContext,
     destination: AudioNode,
     chant: Breath[] = CHANT,
+    character: Character = CHARACTER,
   ) {
     this.context = context
     this.chant = chant
+    this.character = character
     this.voiceEnd = VOICE_START + chantDuration(chant)
     this.droneEntry = this.voiceEnd - 1.5
     this.tailEnd = this.voiceEnd + 7
     this.noiseData = this.createNoiseBuffer()
 
     // Both buses meet at one trim, so the voice's level is a single knob.
-    const master = this.gain(LEVEL)
+    const master = this.gain(character.level)
     master.connect(destination)
 
     this.dryBus = this.gain(1)
@@ -194,7 +226,7 @@ export class Voice {
     this.started = true
 
     this.sub(when)
-    this.voice(when)
+    this.sing(when)
 
     this.disposeTimer = setTimeout(
       () => this.dispose(),
@@ -251,14 +283,14 @@ export class Voice {
   }
 
   /** The throat-sung voice: subharmonic saws through morphing formants. */
-  private voice(when: number) {
+  private sing(when: number) {
     const stop = when + this.voiceEnd + 1
 
     // The glottal source and its undertone an octave below — the periodic
     // doubling that gives kargyraa its growl. Both ride the same formants.
     const glottis = this.oscillator(64, when, stop, 'sawtooth')
     const undertone = this.oscillator(32.1, when, stop, 'sawtooth')
-    const undertoneLevel = this.gain(0.8)
+    const undertoneLevel = this.gain(this.character.undertone)
     undertone.connect(undertoneLevel)
 
     const drive = this.gain(0.5)
@@ -277,14 +309,18 @@ export class Voice {
     undertoneJitter.connect(undertone.frequency)
 
     const shaper = this.own(this.context.createWaveShaper())
-    shaper.curve = saturationCurve(2.2)
+    shaper.curve = saturationCurve(this.character.rasp)
     drive.connect(shaper)
 
     const voiced = this.gain(0)
     shaper.connect(voiced)
 
     const aspiration = this.noise(when, stop)
-    const aspirationFilter = this.filter('bandpass', 1400 * TRACT, 0.6)
+    const aspirationFilter = this.filter(
+      'bandpass',
+      1400 * this.character.tract,
+      0.6,
+    )
     aspiration.connect(aspirationFilter)
     const aspirationLevel = this.gain(0)
     aspirationFilter.connect(aspirationLevel)
@@ -299,7 +335,7 @@ export class Voice {
     const formants = weights.map((weight, i) => {
       const formant = this.filter(
         'bandpass',
-        [500, 1500, 2500, 2900][i] * TRACT,
+        [500, 1500, 2500, 2900][i] * this.character.tract,
         qs[i],
       )
       const level = this.gain(weight)
@@ -329,18 +365,18 @@ export class Voice {
     // into a fierce shaper and kept subterranean by its own lowpass — a
     // steady grind under the voice, while the clean path above keeps the
     // diction legible.
-    const gritDrive = this.gain(2.6)
+    const gritDrive = this.gain(this.character.gritDrive)
     const gritShaper = this.own(this.context.createWaveShaper())
     gritShaper.curve = saturationCurve(5)
-    const gritDark = this.filter('lowpass', 1500, 0.7)
-    const gritLevel = this.gain(0.2)
+    const gritDark = this.filter('lowpass', this.character.gritDark, 0.7)
+    const gritLevel = this.gain(this.character.grit)
     voiceBus.connect(gritDrive)
     gritDrive.connect(gritShaper)
     gritShaper.connect(gritDark)
     gritDark.connect(gritLevel)
 
     // An old, dark voice: everything above the third formant falls away.
-    const patina = this.filter('lowpass', 5500, 0.6)
+    const patina = this.filter('lowpass', this.character.patina, 0.6)
     const level = this.gain(0.55)
     voiceBus.connect(patina)
     gritLevel.connect(patina)
@@ -410,7 +446,11 @@ export class Voice {
         }
 
         syllable.f.forEach((frequency, i) => {
-          formants[i].frequency.setTargetAtTime(frequency * TRACT, at, 0.045)
+          formants[i].frequency.setTargetAtTime(
+            frequency * this.character.tract,
+            at,
+            0.045,
+          )
         })
 
         // Sweeping syllables narrow the second formant until single overtones
@@ -423,7 +463,8 @@ export class Voice {
             const from = at + (syllable.dur * (step - 1)) / steps
             syllable.f.forEach((frequency, i) => {
               formants[i].frequency.setTargetAtTime(
-                (frequency + (syllable.to![i] - frequency) * mix) * TRACT,
+                (frequency + (syllable.to![i] - frequency) * mix) *
+                  this.character.tract,
                 from,
                 syllable.dur / steps / 1.2,
               )
