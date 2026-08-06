@@ -4,7 +4,13 @@ import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { CHANT, type Syllable, Voice } from '@/components/invocation'
+import {
+  CHANT,
+  CHARACTER,
+  type Character,
+  type Syllable,
+  Voice,
+} from '@/components/invocation'
 import { colors, global } from '@/styles'
 
 /* The editor carries a label per syllable — the phoneme it pronounces — for
@@ -39,9 +45,9 @@ const seed = (): EditableBreath[] =>
 
 const fmt = (value: number) => String(Number(value.toFixed(3)))
 
-/* The edited table, printed in the source file's own shape so it can be
- * pasted straight over the CHANT constant in invocation.ts. */
-const serialize = (breaths: EditableBreath[]) => {
+/* The edited state, printed in the source file's own shape so it can be
+ * pasted straight over the CHANT and CHARACTER constants in invocation.ts. */
+const serialize = (breaths: EditableBreath[], character: Character) => {
   const lines = ['const CHANT: Breath[] = [']
   for (const breath of breaths) {
     lines.push('  {')
@@ -73,11 +79,23 @@ const serialize = (breaths: EditableBreath[]) => {
     lines.push('  },')
   }
   lines.push(']')
+  lines.push('')
+  lines.push('const CHARACTER: Character = {')
+  lines.push(`  level: ${fmt(character.level)},`)
+  lines.push(`  tract: ${fmt(character.tract)},`)
+  lines.push(`  undertone: ${fmt(character.undertone)},`)
+  lines.push(`  rasp: ${fmt(character.rasp)},`)
+  lines.push(`  gritDrive: ${fmt(character.gritDrive)},`)
+  lines.push(`  grit: ${fmt(character.grit)},`)
+  lines.push(`  gritDark: ${fmt(character.gritDark)},`)
+  lines.push(`  patina: ${fmt(character.patina)},`)
+  lines.push('}')
   return lines.join('\n')
 }
 
 export const ChantTuner: React.FC = () => {
   const [breaths, setBreaths] = React.useState(seed)
+  const [character, setCharacter] = React.useState<Character>({ ...CHARACTER })
   const [collapsed, setCollapsed] = React.useState(() => CHANT.map(() => false))
   const [playing, setPlaying] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
@@ -120,7 +138,7 @@ export const ChantTuner: React.FC = () => {
     context.resume()
 
     voice.current?.dispose()
-    const next = new Voice(context, input, chant)
+    const next = new Voice(context, input, chant, { ...character })
     voice.current = next
     next.start(context.currentTime + 0.05)
 
@@ -183,7 +201,7 @@ export const ChantTuner: React.FC = () => {
   }, [selected])
 
   const copy = async () => {
-    const source = serialize(breaths)
+    const source = serialize(breaths, character)
     try {
       await navigator.clipboard.writeText(source)
     } catch {
@@ -246,7 +264,14 @@ export const ChantTuner: React.FC = () => {
           <Button disabled={!playing} onClick={stop}>
             ■ stop
           </Button>
-          <Button onClick={() => setBreaths(seed())}>reset</Button>
+          <Button
+            onClick={() => {
+              setBreaths(seed())
+              setCharacter({ ...CHARACTER })
+            }}
+          >
+            reset
+          </Button>
           <Button onClick={copy}>{copied ? 'copied ✓' : 'copy ts'}</Button>
         </Toolbar>
 
@@ -258,6 +283,94 @@ export const ChantTuner: React.FC = () => {
           </Legend>
         </TimelineCard>
       </Console>
+
+      <Card>
+        <BreathHead>
+          <BreathName>character</BreathName>
+        </BreathHead>
+        <Knobs>
+          <Field
+            label="tract"
+            max={1.05}
+            min={0.8}
+            step={0.005}
+            value={character.tract}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, tract: value }))
+            }
+          />
+          <Field
+            label="undertone"
+            max={1.2}
+            min={0}
+            step={0.02}
+            value={character.undertone}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, undertone: value }))
+            }
+          />
+          <Field
+            label="rasp"
+            max={5}
+            min={1}
+            step={0.1}
+            value={character.rasp}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, rasp: value }))
+            }
+          />
+          <Field
+            label="grit"
+            max={0.6}
+            min={0}
+            step={0.01}
+            value={character.grit}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, grit: value }))
+            }
+          />
+          <Field
+            label="grit drive"
+            max={6}
+            min={0.5}
+            step={0.1}
+            value={character.gritDrive}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, gritDrive: value }))
+            }
+          />
+          <Field
+            label="grit dark"
+            max={4000}
+            min={400}
+            step={25}
+            value={character.gritDark}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, gritDark: value }))
+            }
+          />
+          <Field
+            label="patina"
+            max={9000}
+            min={2000}
+            step={50}
+            value={character.patina}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, patina: value }))
+            }
+          />
+          <Field
+            label="level"
+            max={5}
+            min={0.5}
+            step={0.05}
+            value={character.level}
+            onChange={(value) =>
+              setCharacter((current) => ({ ...current, level: value }))
+            }
+          />
+        </Knobs>
+      </Card>
 
       {breaths.map((breath, i) => (
         <Card key={i} id={`breath-${i}`}>
@@ -355,7 +468,7 @@ export const ChantTuner: React.FC = () => {
           <summary>
             <SummaryLabel>the table, as it would be pasted</SummaryLabel>
           </summary>
-          <Source>{serialize(breaths)}</Source>
+          <Source>{serialize(breaths, character)}</Source>
         </details>
       </Card>
     </Root>
@@ -991,7 +1104,7 @@ const FieldRoot = styled.label`
 
 const FieldName = styled.span`
   flex: none;
-  width: 5rem;
+  width: 6.5rem;
   opacity: 0.75;
 `
 
