@@ -1,6 +1,8 @@
 // A clean, graphic cosmic rift. This deliberately avoids a ray-marched noise
 // field: the important silhouette is made from smooth analytic shapes so it
-// stays legible at every resolution instead of turning into static.
+// stays legible at every resolution instead of turning into static. The tear
+// itself opens onto a second space — a warm sunlit system seen through the
+// aperture — built from the same analytic discipline.
 
 // star.glsl is prepended at compile time; it carries the precision block and
 // the starField() that shapes the middle of the rift.
@@ -93,6 +95,149 @@ vec3 accretion(vec2 p) {
   return (hot + electric) * cut * (0.18 + 0.82 * sweep);
 }
 
+// ——— The space beyond the tear ———
+// The rift no longer opens onto flat black: through the aperture there is a
+// second space with its own sun, a tilted orbital plane, and a dark body
+// circling it. It is built from the same analytic shells and bands as the
+// outer scene — no noise — but on a warm palette nothing on our side uses,
+// so the interior reads as somewhere else, not a darker patch of here.
+
+// All interior periods divide the 256 s uniform wrap (2*PI / 256), so the
+// slow drifts never jump when u_time wraps around.
+const float INTERIOR_W = 0.0245437;
+
+// The interior's orbital plane leans against our screen axes: the space
+// beyond has its own horizon, not ours.
+const float INTERIOR_TILT = -0.38;
+
+float sq(float x) {
+  return x * x;
+}
+
+vec2 tilt2(vec2 v, float a) {
+  float c = cos(a);
+  float s = sin(a);
+  return vec2(c * v.x - s * v.y, s * v.x + c * v.y);
+}
+
+// Dust glints for the interior: the same cell trick as stars(), with a size
+// knob — the space beyond wants coarser, warmer motes than the outer
+// pinpricks, and their scale contrast is part of what sells the depth.
+float glints(vec2 p, float scale, float radius, float gate) {
+  vec2 cell = floor(p * scale);
+  vec2 f = fract(p * scale) - 0.5;
+  float seed = hash21(cell + 31.7);
+  vec2 offset = vec2(hash21(cell + 3.1), hash21(cell + 8.6)) - 0.5;
+  float d = length(f - offset * 0.7);
+  float point = 1.0 - smoothstep(radius * 0.35, radius, d);
+  float twinkle = 0.62 + 0.38 * sin(u_time * (0.5 + seed) + seed * 39.0);
+  return point * step(gate, seed) * twinkle;
+}
+
+vec3 interior(vec2 p, float edgeDistance) {
+  // The camera beyond the tear sways slowly, and each depth shifts by a
+  // different fraction of the sway. The differential slide of the layers
+  // against the fixed silhouette is the parallax that makes the aperture read
+  // as a window rather than a decal.
+  vec2 sway = vec2(
+    sin(u_time * (4.0 * INTERIOR_W)) +
+      0.55 * sin(u_time * (7.0 * INTERIOR_W) + 1.9),
+    cos(u_time * (3.0 * INTERIOR_W)) +
+      0.55 * sin(u_time * (6.0 * INTERIOR_W) + 4.1)
+  ) * 0.045;
+
+  // The distant sun sits just off the aperture's axis, so the view reads as
+  // looking at something rather than down a gunsight.
+  vec2 focus = vec2(0.04, 0.05);
+
+  // Three depths: the sun's neighbourhood, a nearer veil, and the far dust.
+  vec2 deep = p - focus - sway * 0.35;
+  vec2 near = p - focus - sway * 0.90;
+  vec2 far = p - sway * 0.15;
+
+  // Its own light: a white-gold core inside an amber corona — clearly warmer
+  // than anything on our side. It breathes on its own and answers the chant
+  // the way the seam does, so the beyond feels inhabited.
+  float breath = 1.0 + 0.09 * sin(u_time * (6.0 * INTERIOR_W) + 0.7) +
+                 0.30 * min(u_audioLevel, 1.0);
+  // The falloffs are tight because the whole view is only ~0.3 units across:
+  // the sun has to be a compact object inside darkness, not a wash that fills
+  // the aperture.
+  float r2 = dot(deep, deep);
+  vec3 col = vec3(0.020, 0.009, 0.006);
+  col += vec3(0.30, 0.115, 0.035) * exp(-40.0 * r2) * 0.42;
+  col += vec3(0.85, 0.38, 0.10) * exp(-110.0 * r2) * 0.9;
+  col += vec3(1.30, 0.98, 0.60) * exp(-260.0 * r2) * 2.2 * breath;
+  col += vec3(1.40, 1.30, 1.10) * exp(-900.0 * r2) * 1.4 * breath;
+
+  // A far colder sun, deep in the lower limb: proof the space beyond holds
+  // more than one light. It sits so close to the silhouette that the sway
+  // slides it behind the lip and back out again.
+  vec2 toCompanion = deep - vec2(-0.08, -0.21);
+  float c2 = dot(toCompanion, toCompanion);
+  col += vec3(0.45, 0.65, 1.05) * exp(-700.0 * c2) * 0.35;
+  col += vec3(0.75, 0.88, 1.15) * exp(-2600.0 * c2) * 0.7;
+
+  // The sun's orbital plane is the interior's horizon: a faint warm lane with
+  // a shimmer travelling along it, and a thin blazing flare line straight
+  // through the sun — an edge-on disc catching its light.
+  vec2 plane = tilt2(deep, INTERIOR_TILT);
+  float shimmer = 0.78 + 0.22 * sin(plane.x * 16.0 - u_time * (5.0 * INTERIOR_W));
+  float bandFall = exp(-sq(plane.y * 10.0)) * exp(-1.9 * abs(plane.x));
+  col += vec3(0.60, 0.22, 0.07) * bandFall * shimmer * 0.35;
+  col += vec3(1.05, 0.55, 0.22) * exp(-sq(plane.y * 26.0)) *
+         exp(-2.2 * abs(plane.x)) * 0.9 * breath;
+
+  // A dust lane curling around the sun, read in silhouette against the
+  // corona: the interior's structure comes from darkness, not more glow.
+  float rDeep = length(deep);
+  float aDeep = atan(deep.y, deep.x);
+  float spiralDeep = aDeep + 3.0 * log(rDeep + 0.05) - u_time * (2.0 * INTERIOR_W);
+  float duskLane = exp(-300.0 * sq(rDeep - (0.115 + 0.030 * sin(spiralDeep * 2.0))));
+  col *= 1.0 - duskLane * 0.4 * smoothstep(0.05, 0.09, rDeep);
+
+  // Far dust behind everything: finer and denser than the outer starfield, so
+  // the space beyond reads as receding much further than ours.
+  col += vec3(1.0, 0.82, 0.58) * glints(far + vec2(37.0, 11.0), 44.0, 0.10, 0.905) * 0.8;
+
+  // The dark body circling the sun in the tilted plane. On the near half of
+  // its orbit it swells and blocks the light outright; on the far half it
+  // shrinks and the corona washes over it. A backlit limb keeps it legible
+  // whenever it strays from the glare.
+  float orbitPhase = u_time * (3.0 * INTERIOR_W) + 2.1;
+  vec2 orbitPos =
+    tilt2(vec2(cos(orbitPhase), sin(orbitPhase) * 0.34) * 0.150, INTERIOR_TILT);
+  float front = smoothstep(0.25, -0.25, sin(orbitPhase));
+  float orbR = mix(0.026, 0.046, front);
+  vec2 orbVec = deep - orbitPos;
+  float dOrb = length(orbVec);
+  float body = 1.0 - smoothstep(orbR * 0.82, orbR, dOrb);
+  col *= 1.0 - body * mix(0.38, 0.94, front);
+  // When the body stands clear of the sun, only its sunward limb catches
+  // light; as it transits, the backlight wraps all the way around and the
+  // silhouette burns as an annular-eclipse ring.
+  vec2 sunward = -normalize(orbitPos + vec2(1e-4, 0.0));
+  float limbGlow = exp(-sq((dOrb - orbR) * 70.0));
+  float facing = max(dot(normalize(orbVec + vec2(1e-5, 0.0)), sunward), 0.0);
+  float wrap = mix(1.0, facing * facing, smoothstep(0.05, 0.16, length(orbitPos)));
+  col += vec3(1.25, 0.70, 0.32) * limbGlow * wrap * (0.30 + 0.85 * front);
+
+  // A nearer counter-rotating shell and coarse motes pass in front of the
+  // body, which is why they are added after it.
+  float rNear = length(near);
+  float aNear = atan(near.y, near.x);
+  float spiralNear = aNear - 2.6 * log(rNear + 0.07) + u_time * (3.0 * INTERIOR_W);
+  float shellB = exp(-80.0 * sq(rNear - (0.235 + 0.050 * sin(spiralNear * 3.0 + 1.3))));
+  col += vec3(0.42, 0.11, 0.10) * shellB * 0.5;
+  col += vec3(1.0, 0.70, 0.45) * glints(near * 0.8 + vec2(5.0, 71.0), 26.0, 0.16, 0.945) * 0.5;
+
+  // The throat of the tear shades the view near the lips: the interior dims
+  // where it meets the silhouette, which both seats it behind the aperture
+  // and gives the ionised rim something dark to burn against.
+  col *= 1.0 - 0.45 * exp(edgeDistance * 30.0);
+  return col;
+}
+
 vec3 background(vec2 p) {
   float vignette = dot(p, p);
   vec3 sky = mix(vec3(0.006, 0.008, 0.035), vec3(0.018, 0.035, 0.095),
@@ -157,10 +302,15 @@ void main() {
   col += rim * glitchTrace * 0.65;
   col += mix(leftFire, rightFire, 0.5) * outerGlow * 0.20;
 
-  // A black core with just enough reflected, dying light to preserve the
-  // contour; applying it last gives a genuinely bottomless central tear.
-  col = mix(col, vec3(0.0002, 0.0004, 0.0012), voidMask);
-  col += rim * nearEdge * voidMask * 0.20;
+  // The core is no longer bottomless black: the tear opens onto another
+  // space. Only pixels the mask can see pay for the interior, and applying it
+  // last keeps the aperture cleanly bounded by the silhouette.
+  vec3 beyond = vec3(0.0002, 0.0004, 0.0012);
+  if (voidMask > 0.002) {
+    beyond = interior(p, edgeDistance);
+  }
+  col = mix(col, beyond, voidMask);
+  col += rim * nearEdge * voidMask * 0.26;
 
   // Filmic compression retains the bright rim's colour instead of clipping it
   // to flat white, then a light gamma lift preserves the deep-space blacks.
