@@ -44,8 +44,8 @@ export interface Breath {
  * stops are silent closures with a short burst, the r is a single tap, and
  * the vowels hold Croatian formant colours — though the u's sit deeper than
  * speech, bending the diction toward menace. The deep draws breath before
- * its last words — the pauses into eez and du-bi-ne fill with an inward
- * rush — and the last vowel carries the elongation and the dive. */
+ * eez, and the last word walks the floor: entering far below the line,
+ * sagging through du, then lifting into the long final vowel. */
 export const CHANT: Breath[] = [
   {
     // "snoo-vi su"
@@ -97,12 +97,12 @@ export const CHANT: Breath[] = [
     ],
   },
   {
-    // "du-bi-neee", diving away on the last vowel
+    // "du-bi-neee", sagging to the floor before the last vowel lifts
     pause: 0.55,
-    pitch: 52,
-    inhale: 1,
+    pitch: 40,
+    inhale: 0.05,
     syllables: [
-      { dur: 0.25, f: [280, 600, 1950], voice: 0.95, gap: 0.05 }, // d + u
+      { dur: 0.7, f: [280, 1275, 1735], voice: 0.46, gap: 0.05, dive: 30 }, // d + u
       { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.05 }, // b + i
       { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 }, // n
       {
