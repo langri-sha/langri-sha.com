@@ -316,23 +316,18 @@ export class Voice {
     inhaleLevel.connect(voiceBus)
 
     // Grit: a parallel distortion under the words. The bus is driven hard
-    // into a fierce shaper, kept subterranean by its own lowpass, and a
-    // near-square flutter chops it — the growl sputters and misfires while
-    // the clean path above keeps the diction legible.
+    // into a fierce shaper and kept subterranean by its own lowpass — a
+    // steady grind under the voice, while the clean path above keeps the
+    // diction legible.
     const gritDrive = this.gain(2.6)
     const gritShaper = this.own(this.context.createWaveShaper())
     gritShaper.curve = saturationCurve(5)
     const gritDark = this.filter('lowpass', 1700, 0.7)
-    const gritLevel = this.gain(0.18)
+    const gritLevel = this.gain(0.2)
     voiceBus.connect(gritDrive)
     gritDrive.connect(gritShaper)
     gritShaper.connect(gritDark)
     gritDark.connect(gritLevel)
-
-    const chop = this.oscillator(13, when, stop, 'square')
-    const chopDepth = this.gain(0.14)
-    chop.connect(chopDepth)
-    chopDepth.connect(gritLevel.gain)
 
     // An old, dark voice: everything above the third formant falls away.
     const patina = this.filter('lowpass', 5500, 0.6)
