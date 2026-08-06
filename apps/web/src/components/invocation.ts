@@ -136,6 +136,12 @@ const VOICE_START = 0.2
  * the peaks, so this can sit well above unity. */
 const LEVEL = 3.2
 
+/* The length of the throat. The syllable table speaks in ordinary male
+ * formants; every target is scaled down by this before it reaches the
+ * filters, dropping the voice into an older, larger chest without touching
+ * the diction. */
+const TRACT = 0.9
+
 export class Invocation {
   /** Offset after start() at which the drone should begin fading in. */
   readonly droneEntry: number
@@ -278,7 +284,7 @@ export class Invocation {
     shaper.connect(voiced)
 
     const aspiration = this.noise(when, stop)
-    const aspirationFilter = this.filter('bandpass', 1400, 0.6)
+    const aspirationFilter = this.filter('bandpass', 1400 * TRACT, 0.6)
     aspiration.connect(aspirationFilter)
     const aspirationLevel = this.gain(0)
     aspirationFilter.connect(aspirationLevel)
@@ -291,7 +297,11 @@ export class Invocation {
     const weights = [1, 0.62, 0.3, 0.16]
     const qs = [9, 11, 13, 13]
     const formants = weights.map((weight, i) => {
-      const formant = this.filter('bandpass', [500, 1500, 2500, 2900][i], qs[i])
+      const formant = this.filter(
+        'bandpass',
+        [500, 1500, 2500, 2900][i] * TRACT,
+        qs[i],
+      )
       const level = this.gain(weight)
       tract.connect(formant)
       formant.connect(level)
@@ -322,7 +332,7 @@ export class Invocation {
     const gritDrive = this.gain(2.6)
     const gritShaper = this.own(this.context.createWaveShaper())
     gritShaper.curve = saturationCurve(5)
-    const gritDark = this.filter('lowpass', 1700, 0.7)
+    const gritDark = this.filter('lowpass', 1500, 0.7)
     const gritLevel = this.gain(0.2)
     voiceBus.connect(gritDrive)
     gritDrive.connect(gritShaper)
@@ -400,7 +410,7 @@ export class Invocation {
         }
 
         syllable.f.forEach((frequency, i) => {
-          formants[i].frequency.setTargetAtTime(frequency, at, 0.045)
+          formants[i].frequency.setTargetAtTime(frequency * TRACT, at, 0.045)
         })
 
         // Sweeping syllables narrow the second formant until single overtones
@@ -413,7 +423,7 @@ export class Invocation {
             const from = at + (syllable.dur * (step - 1)) / steps
             syllable.f.forEach((frequency, i) => {
               formants[i].frequency.setTargetAtTime(
-                frequency + (syllable.to![i] - frequency) * mix,
+                (frequency + (syllable.to![i] - frequency) * mix) * TRACT,
                 from,
                 syllable.dur / steps / 1.2,
               )
