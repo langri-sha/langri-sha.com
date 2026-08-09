@@ -55,7 +55,7 @@
     "lint-staged": "17.3.0",
     "prettier": "3.9.6",
     "projen": "0.86.5",
-    "tsx": "4.23.8",
+    "tsx": "4.23.9",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
   },
