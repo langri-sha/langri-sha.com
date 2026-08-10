@@ -152,6 +152,13 @@ locals {
           subnet_name   = "gke"
           subnet_region = local.region
         },
+        {
+          description           = "Subnet for Cloud Run direct VPC egress"
+          subnet_ip             = "172.16.4.0/26"
+          subnet_name           = "cloud-run"
+          subnet_private_access = "true"
+          subnet_region         = local.region
+        },
       ]
 
       secondary_ranges = {
