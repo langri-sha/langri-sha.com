@@ -1,0 +1,73 @@
+# Routes a preview selector to the Cloud Run revision that serves it.
+#
+# Previews are deployed as tagged revisions of one `web-previews` service:
+# `--no-traffic --tag pull-123` for a pull request, `release-v2-13-0` for a
+# release, and the untagged revision, which holds all of the traffic, for
+# `main`. Cloud Run publishes every tag at `<tag>---<service host>`, so routing
+# a preview is a hostname rewrite and nothing else.
+
+server {
+  listen ${PORT};
+
+  # `proxy_pass` to a name held in a variable is resolved per request instead
+  # of once at startup, so nginx needs a resolver of its own. On Cloud Run that
+  # is the metadata server; Compose overrides it with Docker's embedded DNS.
+  resolver ${RESOLVER} valid=10s;
+
+  # The load balancer terminates TLS, so nginx sees plain HTTP and would build
+  # `http://` out of `$scheme` when it expands a redirect. Keep them relative.
+  absolute_redirect off;
+
+  # IAP sets these on requests it has authenticated. Anything that arrives with
+  # them already set is forged, and must not survive into an upstream request
+  # or a log line.
+  proxy_set_header x-goog-iap-jwt-assertion "";
+  proxy_set_header x-goog-authenticated-user-id "";
+  proxy_set_header x-goog-authenticated-user-email "";
+
+  proxy_set_header x-forwarded-host $host;
+
+  # Cloud Run selects the service from SNI, which nginx omits by default when
+  # the upstream name comes from a variable.
+  proxy_http_version 1.1;
+  proxy_ssl_server_name on;
+
+  # /pull/<n>/… → the `pull-<n>` revision.
+  location ~ "^/pull/([1-9][0-9]{0,6})/(.*)$" {
+    set $service pull-$1---${PREVIEWS_SERVICE_HOST};
+    proxy_pass    https://$service/$2$is_args$args;
+  }
+
+  location ~ "^/pull/([1-9][0-9]{0,6})$" {
+    return 308 /pull/$1/$is_args$args;
+  }
+
+  # /release/<tag>/… → the `release-<tag>` revision. Cloud Run traffic tags are
+  # RFC 1035 labels, so the dots become hyphens, and a prerelease suffix is held
+  # to the characters that survive that.
+  location ~ "^/release/v([0-9]+)\.([0-9]+)\.([0-9]+)-([0-9a-z][0-9a-z-]*)/(.*)$" {
+    set $service release-v$1-$2-$3-$4---${PREVIEWS_SERVICE_HOST};
+    proxy_pass    https://$service/$5$is_args$args;
+  }
+
+  location ~ "^/release/v([0-9]+)\.([0-9]+)\.([0-9]+)/(.*)$" {
+    set $service release-v$1-$2-$3---${PREVIEWS_SERVICE_HOST};
+    proxy_pass    https://$service/$4$is_args$args;
+  }
+
+  location ~ "^/release/(v[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-z][0-9a-z-]*)?)$" {
+    return 308 /release/$1/$is_args$args;
+  }
+
+  # A selector that does not parse is a 404 rather than a fall-through to the
+  # main preview: a typo'd pull request number must not quietly serve `main`.
+  location ~ "^/(pull|release)(/|$)" {
+    return 404;
+  }
+
+  # Everything else is `main`, on the revision holding the traffic.
+  location / {
+    set $service ${PREVIEWS_SERVICE_HOST};
+    proxy_pass    https://$service$request_uri;
+  }
+}
