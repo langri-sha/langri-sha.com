@@ -49,3 +49,12 @@ resource "google_cloud_run_v2_service" "previews" {
     ]
   }
 }
+
+resource "google_cloud_run_v2_service_iam_member" "previews" {
+  location = google_cloud_run_v2_service.previews.location
+  name     = google_cloud_run_v2_service.previews.name
+  project  = var.project
+
+  member = "allUsers"
+  role   = "roles/run.invoker"
+}
