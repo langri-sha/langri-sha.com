@@ -127,3 +127,13 @@ resource "google_compute_backend_service" "previews_router" {
     }
   }
 }
+
+resource "google_iap_web_backend_service_iam_member" "previews_router" {
+  for_each = local.enabled ? toset(var.members) : toset([])
+
+  project             = var.project
+  web_backend_service = google_compute_backend_service.previews_router.name
+
+  member = each.value
+  role   = "roles/iap.httpsResourceAccessor"
+}
