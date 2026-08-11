@@ -137,3 +137,10 @@ resource "google_iap_web_backend_service_iam_member" "previews_router" {
   member = each.value
   role   = "roles/iap.httpsResourceAccessor"
 }
+
+resource "google_service_account_iam_binding" "previews_router_deployers" {
+  service_account_id = google_service_account.previews_router.name
+
+  members = toset(var.deployers)
+  role    = "roles/iam.serviceAccountUser"
+}
