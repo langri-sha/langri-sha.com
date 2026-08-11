@@ -4,6 +4,12 @@ variable "preview_image" {
   type        = string
 }
 
+variable "preview_router_image" {
+  default     = "us-docker.pkg.dev/cloudrun/container/hello"
+  description = "Image the preview router service is created with. Revisions are deployed from CI, so this only ever serves as a placeholder until the first one lands."
+  type        = string
+}
+
 variable "repo_name" {
   default     = "langri-sha.com"
   description = "Name of the GitHub monorepo."
