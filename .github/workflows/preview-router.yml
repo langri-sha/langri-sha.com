@@ -73,3 +73,40 @@ jobs:
 
           mapped pull-1234---previews.invalid
           mapped release-v2-13-0---previews.invalid
+
+  publish:
+    name: Publish
+    if: github.event_name == 'push' && vars.PREVIEW_ROUTER_SERVICE != ''
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Google Cloud Platform
+        uses: langri-sha/github/actions/google-cloud-platform@v0.14.1
+        with:
+          service_account: ${{ vars.SERVICE_ACCOUNT }}
+          setup_gcloud: true
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Publish image
+        run: |
+          gcloud auth configure-docker "${IMAGE%%/*}" --quiet
+
+          docker build --tag "$IMAGE:$GITHUB_SHA" apps/preview
+          docker push "$IMAGE:$GITHUB_SHA"
+        env:
+          IMAGE: ${{ vars.PREVIEW_ROUTER_IMAGE }}
+
+      - name: Deploy
+        run: |
+          gcloud run services update ${{ vars.PREVIEW_ROUTER_SERVICE }} \
+            --image "${{ vars.PREVIEW_ROUTER_IMAGE }}:$GITHUB_SHA" \
+            --project ${{ vars.EDGE_PROJECT_ID }} \
+            --quiet \
+            --region ${{ vars.PREVIEW_REGION }}
