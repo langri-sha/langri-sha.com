@@ -1,5 +1,8 @@
 name: Preview router
 
+# Previews are not production, and the router is what makes them reachable at
+# all. Holding a fix behind a site release would mean preview access stays
+# broken until unrelated work ships, so this deploys from `main`.
 on:
   push:
     branches:
@@ -80,3 +83,46 @@ jobs:
 
           mapped pull-1234---previews.invalid
           mapped release-v2-13-0---previews.invalid
+
+  publish:
+    name: Publish
+    # Terraform owns the service. Until it has applied there is nothing to
+    # update, and this is a no-op rather than a permanently red `main`.
+    if: github.event_name == 'push' && vars.PREVIEW_ROUTER_SERVICE != ''
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Google Cloud Platform
+        uses: langri-sha/github/actions/google-cloud-platform@v0.14.1
+        with:
+          service_account: ${{ vars.SERVICE_ACCOUNT }}
+          setup_gcloud: true
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Publish image
+        run: |
+          gcloud auth configure-docker "${IMAGE%%/*}" --quiet
+
+          docker build --tag "$IMAGE:$GITHUB_SHA" apps/preview
+          docker push "$IMAGE:$GITHUB_SHA"
+        env:
+          IMAGE: ${{ vars.PREVIEW_ROUTER_IMAGE }}
+
+      # `update` rather than `deploy`, which creates the service when it is
+      # missing and would take ingress and VPC egress from defaults instead of
+      # from Terraform — publishing the router without the settings that keep
+      # previews off the internet.
+      - name: Deploy
+        run: |
+          gcloud run services update ${{ vars.PREVIEW_ROUTER_SERVICE }} \
+            --image "${{ vars.PREVIEW_ROUTER_IMAGE }}:$GITHUB_SHA" \
+            --project ${{ vars.EDGE_PROJECT_ID }} \
+            --quiet \
+            --region ${{ vars.PREVIEW_REGION }}
