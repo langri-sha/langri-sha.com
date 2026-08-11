@@ -1,6 +1,6 @@
 variable "iap_enabled" {
-  default     = false
-  description = "Whether IAP protects the preview router. Off until the OAuth client exists and both halves of it have secret versions, because an unprotected router is a worse place for previews than the bucket they are served from today."
+  default     = true
+  description = "Whether IAP protects the preview router. Turning it off leaves the router out of the URL map entirely, because an unprotected router is a worse place for previews than the bucket they are served from today."
   type        = bool
 }
 
