@@ -1,5 +1,5 @@
 locals {
-  enabled = var.iap_oauth2_client_id != ""
+  enabled = var.iap_oauth2_secrets != null
 }
 
 resource "google_service_account" "previews_router" {
@@ -88,6 +88,18 @@ resource "google_compute_region_network_endpoint_group" "previews_router" {
   }
 }
 
+data "google_secret_manager_secret_version" "iap_oauth2_client_id" {
+  count = local.enabled ? 1 : 0
+
+  secret = var.iap_oauth2_secrets.client_id
+}
+
+data "google_secret_manager_secret_version" "iap_oauth2_client_secret" {
+  count = local.enabled ? 1 : 0
+
+  secret = var.iap_oauth2_secrets.client_secret
+}
+
 resource "google_compute_backend_service" "previews_router" {
   name    = "preview-router-backend-service"
   project = var.project
@@ -110,8 +122,8 @@ resource "google_compute_backend_service" "previews_router" {
 
     content {
       enabled              = true
-      oauth2_client_id     = var.iap_oauth2_client_id
-      oauth2_client_secret = var.iap_oauth2_client_secret
+      oauth2_client_id     = data.google_secret_manager_secret_version.iap_oauth2_client_id[0].secret_data
+      oauth2_client_secret = data.google_secret_manager_secret_version.iap_oauth2_client_secret[0].secret_data
     }
   }
 }

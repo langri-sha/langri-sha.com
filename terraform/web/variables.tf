@@ -1,14 +1,7 @@
-variable "iap_oauth2_client_id" {
-  default     = ""
-  description = "OAuth 2.0 client ID for IAP on the preview router. Empty leaves the router out of the URL map, because an unprotected router is a worse place for previews than the bucket they are served from today."
-  type        = string
-}
-
-variable "iap_oauth2_client_secret" {
-  default     = ""
-  description = "OAuth 2.0 client secret for IAP on the preview router."
-  sensitive   = true
-  type        = string
+variable "iap_enabled" {
+  default     = false
+  description = "Whether IAP protects the preview router. Off until the OAuth client exists and both halves of it have secret versions, because an unprotected router is a worse place for previews than the bucket they are served from today."
+  type        = bool
 }
 
 variable "preview_image" {

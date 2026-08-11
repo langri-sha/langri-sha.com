@@ -28,17 +28,13 @@ variable "subnetwork" {
   description = "Subnetwork the service egresses through. Requires Private Google Access."
 }
 
-variable "iap_oauth2_client_id" {
-  default     = ""
-  description = "OAuth 2.0 client ID for IAP. Empty leaves IAP off and the router out of the URL map."
-  type        = string
-}
-
-variable "iap_oauth2_client_secret" {
-  default     = ""
-  description = "OAuth 2.0 client secret for IAP."
-  sensitive   = true
-  type        = string
+variable "iap_oauth2_secrets" {
+  default     = null
+  description = "Secret Manager secrets holding the OAuth 2.0 client credentials for IAP. Null leaves IAP off and the router out of the URL map. Their versions are added out of band."
+  type = object({
+    client_id     = string
+    client_secret = string
+  })
 }
 
 variable "members" {
