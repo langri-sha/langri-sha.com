@@ -1,4 +1,7 @@
 locals {
+  # Both forms, because a wildcard path rule does not match the bare prefix.
+  preview_router_paths = ["/pull", "/pull/*", "/release", "/release/*"]
+
   certificate_hash = substr(md5(join(",", values(local.host_names))), 0, 4)
   limited_hosts = toset(compact([
     for host in local.hosts :
@@ -133,6 +136,15 @@ resource "google_compute_url_map" "default" {
     content {
       name            = path_matcher.value
       default_service = google_compute_backend_bucket.public[path_matcher.value].self_link
+
+      dynamic "path_rule" {
+        for_each = module.previews_router.enabled && path_matcher.value == "preview" ? [path_matcher.value] : []
+
+        content {
+          paths   = local.preview_router_paths
+          service = module.previews_router.backend_service
+        }
+      }
     }
   }
 }
