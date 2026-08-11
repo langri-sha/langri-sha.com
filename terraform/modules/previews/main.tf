@@ -4,3 +4,48 @@ resource "google_service_account" "previews" {
   description  = "Runtime identity of the preview origin service. It serves files baked into its own image and holds no roles."
   project      = var.project
 }
+
+resource "google_cloud_run_v2_service" "previews" {
+  name     = "web-previews"
+  location = var.location
+  project  = var.project
+
+  ingress             = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
+  deletion_protection = false
+
+  template {
+    service_account                  = google_service_account.previews.email
+    max_instance_request_concurrency = 80
+
+    scaling {
+      max_instance_count = 4
+      min_instance_count = 0
+    }
+
+    containers {
+      image = var.image
+
+      ports {
+        container_port = 8080
+      }
+
+      resources {
+        cpu_idle = true
+
+        limits = {
+          cpu    = "1"
+          memory = "256Mi"
+        }
+      }
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      client,
+      client_version,
+      template[0].containers[0].image,
+      traffic,
+    ]
+  }
+}
