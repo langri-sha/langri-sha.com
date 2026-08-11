@@ -1,5 +1,7 @@
 module "previews" {
   source = "../modules/previews"
 
-  project = module.project["edge"].project_id
+  image    = var.preview_image
+  location = local.region
+  project  = module.project["edge"].project_id
 }
