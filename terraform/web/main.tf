@@ -132,6 +132,10 @@ locals {
           "serviceAccount:${local.web_service_account_email}",
         ]
 
+        "roles/secretmanager.admin" = [
+          "serviceAccount:${local.web_service_account_email}",
+        ]
+
         "roles/serviceusage.serviceUsageConsumer" = [
           # FIXME: Introduces cycles.
           # "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
