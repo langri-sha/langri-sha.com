@@ -40,3 +40,9 @@ variable "iap_oauth2_client_secret" {
   sensitive   = true
   type        = string
 }
+
+variable "members" {
+  default     = []
+  description = "Members granted access to the router through IAP."
+  type        = list(string)
+}
