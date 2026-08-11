@@ -149,6 +149,17 @@ locals {
     }
   }
 
+  secrets = {
+    "previews-router" = {
+      project = module.project["edge"].project_id
+
+      secrets = [
+        "previews-iap-oauth2-client-id",
+        "previews-iap-oauth2-client-secret",
+      ]
+    }
+  }
+
   vpc = {
     web = {
       project      = module.project["edge"].project_id
