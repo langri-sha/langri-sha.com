@@ -1,3 +1,7 @@
+locals {
+  enabled = var.iap_oauth2_client_id != ""
+}
+
 resource "google_service_account" "previews_router" {
   account_id   = "preview-router"
   display_name = "Preview router"
@@ -81,5 +85,33 @@ resource "google_compute_region_network_endpoint_group" "previews_router" {
 
   cloud_run {
     service = google_cloud_run_v2_service.previews_router.name
+  }
+}
+
+resource "google_compute_backend_service" "previews_router" {
+  name    = "preview-router-backend-service"
+  project = var.project
+
+  load_balancing_scheme = "EXTERNAL"
+  timeout_sec           = 30
+  enable_cdn            = false
+
+  backend {
+    group = google_compute_region_network_endpoint_group.previews_router.id
+  }
+
+  log_config {
+    enable      = true
+    sample_rate = 1.0
+  }
+
+  dynamic "iap" {
+    for_each = local.enabled ? [1] : []
+
+    content {
+      enabled              = true
+      oauth2_client_id     = var.iap_oauth2_client_id
+      oauth2_client_secret = var.iap_oauth2_client_secret
+    }
   }
 }
