@@ -46,3 +46,9 @@ variable "members" {
   description = "Members granted access to the router through IAP."
   type        = list(string)
 }
+
+variable "deployers" {
+  default     = []
+  description = "Members that deploy revisions of the service and act as its runtime identity."
+  type        = list(string)
+}

@@ -1,6 +1,7 @@
 module "previews_router" {
   source = "../modules/previews-router"
 
+  deployers                = ["serviceAccount:${module.github["langri-sha.com"].service_account.email}"]
   iap_oauth2_client_id     = var.iap_oauth2_client_id
   iap_oauth2_client_secret = var.iap_oauth2_client_secret
   image                    = var.preview_router_image
