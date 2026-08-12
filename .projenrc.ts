@@ -73,10 +73,7 @@ const project = new Project({
     packages: ['apps/*', 'packages/*'],
     minimumReleaseAgeExclude: ['@langri-sha/*'],
     allowBuilds: {
-      '@swc/core': true,
-      esbuild: true,
       sharp: true,
-      'unrs-resolver': true,
     },
   },
   readme: {
