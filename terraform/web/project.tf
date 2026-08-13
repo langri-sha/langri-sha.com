@@ -28,3 +28,12 @@ resource "google_project_iam_binding" "project_iam_binding" {
   project = module.project[each.value.project].project_id
   role    = each.value.role
 }
+
+resource "google_project_iam_member" "project_iam_member" {
+  for_each = local.project_iam_members
+
+  project = module.project[each.value.project].project_id
+
+  member = each.value.member
+  role   = each.value.role
+}

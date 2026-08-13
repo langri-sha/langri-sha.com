@@ -46,6 +46,15 @@ locals {
     }
   }
 
+  project_iam_members = {
+    "edge-github" = {
+      project = "edge"
+
+      member = "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
+      role   = "roles/run.developer"
+    }
+  }
+
   github_repositories = {
     "langri-sha.com" = {
       project = module.project["build"].project_id
