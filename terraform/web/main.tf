@@ -30,6 +30,22 @@ locals {
     },
   }
 
+  artifact_registry_repository_iam_members = {
+    "docker-serverless-robot" = {
+      repository = "docker"
+
+      member = "serviceAccount:service-${module.project["edge"].project_number}@serverless-robot-prod.iam.gserviceaccount.com"
+      role   = "roles/artifactregistry.reader"
+    }
+
+    "docker-github" = {
+      repository = "docker"
+
+      member = "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
+      role   = "roles/artifactregistry.writer"
+    }
+  }
+
   github_repositories = {
     "langri-sha.com" = {
       project = module.project["build"].project_id
