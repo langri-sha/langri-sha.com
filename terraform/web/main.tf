@@ -107,6 +107,10 @@ locals {
       ]
 
       iam_members = {
+        "roles/artifactregistry.admin" = [
+          "serviceAccount:${local.web_service_account_email}",
+        ]
+
         "roles/iam.workloadIdentityPoolAdmin" = [
           "serviceAccount:${local.web_service_account_email}",
         ]
