@@ -58,3 +58,10 @@ resource "google_cloud_run_v2_service_iam_member" "previews" {
   member = "allUsers"
   role   = "roles/run.invoker"
 }
+
+resource "google_service_account_iam_binding" "previews_deployers" {
+  service_account_id = google_service_account.previews.name
+
+  members = toset(var.deployers)
+  role    = "roles/iam.serviceAccountUser"
+}
