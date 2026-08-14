@@ -1,7 +1,4 @@
 locals {
-  # Both forms, because a wildcard path rule does not match the bare prefix.
-  preview_router_paths = ["/pull", "/pull/*", "/release", "/release/*"]
-
   certificate_hash = substr(md5(join(",", values(local.host_names))), 0, 4)
   limited_hosts = toset(compact([
     for host in local.hosts :
@@ -134,17 +131,18 @@ resource "google_compute_url_map" "default" {
     for_each = local.limited_hosts
 
     content {
-      name            = path_matcher.value
-      default_service = google_compute_backend_bucket.public[path_matcher.value].self_link
+      name = path_matcher.value
 
-      dynamic "path_rule" {
-        for_each = module.previews_router.enabled && path_matcher.value == "preview" ? [path_matcher.value] : []
-
-        content {
-          paths   = local.preview_router_paths
-          service = module.previews_router.backend_service
-        }
-      }
+      # The preview host belongs to the router whole, not by selector: it
+      # resolves `/pull/<n>/` and `/release/<tag>/` onto their tagged revisions
+      # and everything else onto the untagged one, which is `main`. Its bucket
+      # only serves the host again if IAP goes away and the router leaves the
+      # URL map with it.
+      default_service = (
+        module.previews_router.enabled && path_matcher.value == "preview"
+        ? module.previews_router.backend_service
+        : google_compute_backend_bucket.public[path_matcher.value].self_link
+      )
     }
   }
 }
