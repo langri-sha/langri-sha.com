@@ -85,6 +85,13 @@ services:
     ports:
       - '9001:8080'
 
+  preview-origin:
+    build:
+      context: ./apps/web
+    init: true
+    ports:
+      - '9002:8080'
+
   server:
     <<: [*pnpm-svc, *google-dns]
     command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
