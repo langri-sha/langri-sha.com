@@ -91,3 +91,144 @@ jobs:
             --cache-control="public, no-store" \
             --project ${{ vars.EDGE_PROJECT_ID }} \
             --recursive
+
+  preview:
+    name: Preview
+    if: vars.PREVIEW_SERVICE != ''
+    runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ format('{0}{1}/', vars.URL, steps.selector.outputs.base-path) }}
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PNPM
+        uses: langri-sha/github/actions/pnpm@v0.14.1
+
+      - name: Setup Google Cloud Platform
+        uses: langri-sha/github/actions/google-cloud-platform@v0.14.1
+        with:
+          service_account: ${{ vars.SERVICE_ACCOUNT }}
+          setup_gcloud: true
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Configure environment
+        id: selector
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            echo "base-path=/pull/$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "traffic-tag=pull-$PR_NUMBER" >> $GITHUB_OUTPUT
+          elif [ "$GITHUB_EVENT_NAME" = "release" ]; then
+            echo "base-path=/release/$TAG_NAME" >> $GITHUB_OUTPUT
+            echo "traffic-tag=release-${TAG_NAME//./-}" >> $GITHUB_OUTPUT
+          fi
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Build
+        run: pnpm build
+        env:
+          ASSETS_URL: ${{ vars.ASSETS_URL }}
+          BASE_PATH: ${{ steps.selector.outputs.base-path }}
+
+      - name: Build image
+        run: docker build --tag preview-origin apps/web
+
+      - name: Check configuration
+        run: docker run --rm preview-origin nginx -t
+
+      - name: Check responses
+        run: |
+          docker run --detach --name origin --publish 8080:8080 preview-origin
+
+          for _ in $(seq 30); do
+            curl --silent --output /dev/null http://localhost:8080/ && break
+            sleep 1
+          done
+
+          expect() {
+            got=$(curl --silent --output /dev/null --write-out '%{http_code}' "http://localhost:8080$1")
+
+            if [ "$got" != "$2" ]; then
+              echo "::error::$1 answered $got, expected $2"
+              return 1
+            fi
+
+            echo "ok  $1 -> $got"
+          }
+
+          expect / 200
+          expect /no-such-page 404
+          expect /no-such-page/ 404
+
+          if ! curl --silent http://localhost:8080/no-such-page | grep --quiet 'could not be found'; then
+            echo "::error::the 404 answer is not the export's 404 page"
+            exit 1
+          fi
+
+          header() {
+            if ! curl --silent --head "http://localhost:8080$1" | grep --ignore-case --quiet "^$2: *$3"; then
+              echo "::error::$1 does not answer with $2: $3"
+              return 1
+            fi
+
+            echo "ok  $1 -> $2: $3"
+          }
+
+          header / cache-control 'public, no-store'
+          header / x-robots-tag noindex
+          header /no-such-page x-robots-tag noindex
+
+      - name: Publish assets
+        run: |
+          find apps/web/dist/_next -type d -empty -delete
+
+          gcloud storage cp apps/web/dist/_next/** gs://${{ vars.ASSETS_BUCKET }}/_next \
+            --cache-control="public, max-age=31536000, immutable" \
+            --no-clobber \
+            --project ${{ vars.EDGE_PROJECT_ID }} \
+            --recursive
+
+      - name: Publish image
+        run: |
+          gcloud auth configure-docker "${IMAGE%%/*}" --quiet
+
+          docker tag preview-origin "$IMAGE:$IMAGE_TAG"
+          docker push "$IMAGE:$IMAGE_TAG"
+        env:
+          IMAGE: ${{ vars.PREVIEW_IMAGE }}
+          IMAGE_TAG: ${{ steps.selector.outputs.traffic-tag || 'main' }}-${{ github.sha }}
+
+      - name: Deploy
+        run: |
+          if [ -n "$TRAFFIC_TAG" ]; then
+            gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
+              --image "$IMAGE:$IMAGE_TAG" \
+              --no-traffic \
+              --project ${{ vars.EDGE_PROJECT_ID }} \
+              --quiet \
+              --region ${{ vars.PREVIEW_REGION }} \
+              --tag "$TRAFFIC_TAG"
+          else
+            gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
+              --image "$IMAGE:$IMAGE_TAG" \
+              --project ${{ vars.EDGE_PROJECT_ID }} \
+              --quiet \
+              --region ${{ vars.PREVIEW_REGION }}
+
+            gcloud run services update-traffic ${{ vars.PREVIEW_SERVICE }} \
+              --project ${{ vars.EDGE_PROJECT_ID }} \
+              --quiet \
+              --region ${{ vars.PREVIEW_REGION }} \
+              --to-latest
+          fi
+        env:
+          IMAGE: ${{ vars.PREVIEW_IMAGE }}
+          IMAGE_TAG: ${{ steps.selector.outputs.traffic-tag || 'main' }}-${{ github.sha }}
+          TRAFFIC_TAG: ${{ steps.selector.outputs.traffic-tag }}

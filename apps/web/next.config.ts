@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const config: NextConfig = {
   assetPrefix: process.env.ASSETS_URL,
+  basePath: process.env.BASE_PATH,
   distDir: 'dist',
   output: 'export',
   reactStrictMode: true,
