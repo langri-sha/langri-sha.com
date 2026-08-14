@@ -37,11 +37,12 @@ jobs:
 
   deploy:
     name: Deploy
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     needs: [build]
     environment:
-      name: ${{ github.event_name == 'release' && 'production' || 'preview' }}
-      url: ${{ github.event_name == 'pull_request' && format('{0}/{1}', vars.URL, github.event.pull_request.number) || vars.URL }}
+      name: production
+      url: ${{ vars.URL }}
     permissions:
       contents: read
       id-token: write
@@ -65,16 +66,6 @@ jobs:
           name: web
           path: dist/web
 
-      - name: Configure environment
-        run: |
-          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            echo "BUCKET=${{ vars.BUCKET }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-            echo "URL=${{ vars.URL }}/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-          else
-            echo "BUCKET=${{ vars.BUCKET }}" >> $GITHUB_ENV
-            echo "URL=${{ vars.URL }}" >> $GITHUB_ENV
-          fi
-
       - name: Publish assets
         run: |
           gcloud storage cp dist/web/_next/** gs://${{ vars.ASSETS_BUCKET }}/_next \
@@ -87,7 +78,7 @@ jobs:
         run: |
           rm -rf dist/web/_next
 
-          gcloud storage cp dist/web/* gs://${{ env.BUCKET }} \
+          gcloud storage cp dist/web/* gs://${{ vars.BUCKET }} \
             --cache-control="public, no-store" \
             --project ${{ vars.EDGE_PROJECT_ID }} \
             --recursive
