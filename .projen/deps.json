@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/babel-preset",
-      "version": "workspace:*",
+      "version": "^0.6.3",
       "type": "build"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "name": "@langri-sha/jest-config",
-      "version": "workspace:*",
+      "version": "^0.8.6",
       "type": "build"
     },
     {

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Track @langri-sha/tsconfig v1 instead of pinning it via a projen override",
-  "packageName": "@langri-sha/jest-test",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

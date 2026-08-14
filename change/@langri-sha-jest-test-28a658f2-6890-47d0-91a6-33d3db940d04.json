@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency nock to v14.0.17",
-  "packageName": "@langri-sha/jest-test",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

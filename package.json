@@ -37,9 +37,9 @@
     "webpack-cli": "7.2.2"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/babel-preset": "^0.6.3",
     "@langri-sha/eslint-config": "^0.9.0",
-    "@langri-sha/jest-config": "workspace:*",
+    "@langri-sha/jest-config": "^0.8.6",
     "@langri-sha/lint-staged": "^0.9.1",
     "@langri-sha/prettier": "^0.4.1",
     "@langri-sha/projen-project": "0.26.2",

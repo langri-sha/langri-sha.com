@@ -31,7 +31,7 @@
     "webpack-subresource-integrity": "5.2.0-rc.1"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/babel-preset": "^0.6.3",
     "@langri-sha/tsconfig": "^1.0.1",
     "@types/node": "26.1.1"
   },

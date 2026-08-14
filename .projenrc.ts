@@ -36,9 +36,9 @@ const project = new Project({
       'webpack@5.109.2',
     ],
     devDeps: [
-      '@langri-sha/babel-preset@workspace:*',
+      '@langri-sha/babel-preset@^0.6.3',
       '@langri-sha/eslint-config@^0.9.0',
-      '@langri-sha/jest-config@workspace:*',
+      '@langri-sha/jest-config@^0.8.6',
       '@langri-sha/lint-staged@^0.9.1',
       '@langri-sha/prettier@^0.4.1',
       '@langri-sha/projen-project@*',
@@ -161,11 +161,6 @@ const subproject = (project: Project) => {
   })
 }
 
-const test = (project: Project) => {
-  project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@^0.1.2')
-}
-
 const publish = (project: Project) => {
   project.package?.addField('publishConfig', {
     access: 'public',
@@ -186,65 +181,6 @@ const publish = (project: Project) => {
     'rm -rf dist; tsc --project tsconfig.build.json',
   )
 }
-
-project.addSubproject(
-  {
-    name: '@langri-sha/babel-preset',
-    outdir: path.join('packages', 'babel-preset'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      entrypoint: 'src/index.js',
-      deps: [
-        '@babel/plugin-proposal-export-default-from@8.0.1',
-        '@babel/preset-env@8.0.2',
-        '@babel/preset-react@8.0.1',
-        '@babel/preset-typescript@8.0.1',
-        '@babel/register@8.0.1',
-        '@emotion/babel-plugin@11.13.5',
-      ],
-      devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@26.1.1'],
-      peerDeps: ['@babel/core@^8.0.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/babel-test',
-    outdir: path.join('packages', 'babel-test'),
-    npmIgnore: {
-      ignorePatterns: ['fixtures/'],
-    },
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['ramda@0.32.0'],
-      devDeps: [
-        '@langri-sha/monorepo@^0.5.7',
-        '@types/node@26.1.1',
-        '@types/ramda@0.32.0',
-      ],
-      peerDeps: ['@babel/core@^8.0.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-)
 
 project.addSubproject(
   {
@@ -286,47 +222,6 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/jest-config',
-    outdir: path.join('packages', 'jest-config'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      peerDeps: ['jest@^30.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/jest-test',
-    outdir: path.join('packages', 'jest-test'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['@jest/globals@30.4.1', 'nock@14.0.17', 'tempy@3.2.0'],
-      peerDeps: ['jest@^30.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/webpack',
     outdir: path.join('packages', 'webpack'),
     npmIgnore: {},
@@ -347,7 +242,7 @@ project.addSubproject(
         'webpack-dev-server@6.0.0',
         'webpack-subresource-integrity@5.2.0-rc.1',
       ],
-      devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@26.1.1'],
+      devDeps: ['@langri-sha/babel-preset@^0.6.3', '@types/node@26.1.1'],
       peerDeps: ['@babel/register@^8.0.0', 'webpack@^5.0.0'],
     },
   },
