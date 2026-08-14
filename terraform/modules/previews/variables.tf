@@ -1,3 +1,9 @@
+variable "deployers" {
+  default     = []
+  description = "Members that deploy revisions of the service and act as its runtime identity."
+  type        = list(string)
+}
+
 variable "image" {
   type        = string
   description = "Image the service is created with. Revisions are deployed from CI, one per preview, so this only ever serves as a placeholder until the first one lands."
