@@ -63,9 +63,11 @@ locals {
         for name, data in module.project :
         "${upper(name)}_PROJECT_ID" => data.project_id
         }, {
+        PREVIEW_IMAGE          = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/web-previews"
         PREVIEW_REGION         = local.region
         PREVIEW_ROUTER_IMAGE   = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/preview-router"
         PREVIEW_ROUTER_SERVICE = module.previews_router.service
+        PREVIEW_SERVICE        = module.previews.service
       })
 
       environments = {
