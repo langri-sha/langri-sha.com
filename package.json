@@ -42,7 +42,7 @@
     "@langri-sha/jest-config": "^0.8.6",
     "@langri-sha/lint-staged": "^0.9.1",
     "@langri-sha/prettier": "^0.4.1",
-    "@langri-sha/projen-project": "0.26.2",
+    "@langri-sha/projen-project": "0.27.0",
     "@langri-sha/schemastore-to-typescript": "^0.2.1",
     "@langri-sha/tsconfig": "^1.0.0",
     "@swc-node/register": "1.12.1",
