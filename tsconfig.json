@@ -7,19 +7,7 @@
       "path": "./apps/web"
     },
     {
-      "path": "packages/babel-preset"
-    },
-    {
-      "path": "packages/babel-test"
-    },
-    {
       "path": "packages/fonts"
-    },
-    {
-      "path": "packages/jest-config"
-    },
-    {
-      "path": "packages/jest-test"
     },
     {
       "path": "packages/webpack"

@@ -16,7 +16,7 @@
     "normalize.css": "8.0.1"
   },
   "devDependencies": {
-    "@langri-sha/babel-preset": "workspace:*",
+    "@langri-sha/babel-preset": "^0.6.3",
     "@langri-sha/tsconfig": "^1.0.0",
     "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.20",
