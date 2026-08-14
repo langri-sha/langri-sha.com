@@ -100,6 +100,25 @@ data "google_secret_manager_secret_version" "iap_oauth2_client_secret" {
   secret = var.iap_oauth2_secrets.client_secret
 }
 
+resource "google_project_service_identity" "iap" {
+  provider = google-beta
+  count    = local.enabled ? 1 : 0
+
+  project = var.project
+  service = "iap.googleapis.com"
+}
+
+resource "google_cloud_run_v2_service_iam_member" "previews_router_iap" {
+  count = local.enabled ? 1 : 0
+
+  location = google_cloud_run_v2_service.previews_router.location
+  name     = google_cloud_run_v2_service.previews_router.name
+  project  = var.project
+
+  member = "serviceAccount:${google_project_service_identity.iap[0].email}"
+  role   = "roles/run.invoker"
+}
+
 resource "google_compute_backend_service" "previews_router" {
   name    = "preview-router-backend-service"
   project = var.project
