@@ -15,9 +15,7 @@ data "google_iam_policy" "public_storage_bucket" {
 }
 
 resource "google_storage_bucket" "public" {
-  for_each = toset(compact([
-    for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
-  ]))
+  for_each = local.bucket_hosts
 
   name     = local.host_names[each.value]
   location = local.location
@@ -38,9 +36,7 @@ resource "google_storage_bucket" "public" {
 }
 
 resource "google_storage_bucket_iam_policy" "default" {
-  for_each = toset(compact([
-    for host in local.hosts : contains(keys(local.host_redirects), host) ? "" : host
-  ]))
+  for_each = local.bucket_hosts
 
   bucket      = google_storage_bucket.public[each.value].name
   policy_data = data.google_iam_policy.public_storage_bucket.policy_data

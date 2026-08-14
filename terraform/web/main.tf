@@ -123,7 +123,6 @@ locals {
     "www"               = [local.host_urls["www"]],
     "production"        = [local.host_urls["production"]],
     "production-assets" = [local.host_urls["production"]],
-    "preview"           = [local.host_urls["preview"]],
     "preview-assets"    = [local.host_urls["preview"]],
   }
 
