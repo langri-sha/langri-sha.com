@@ -2,10 +2,10 @@ module "previews_router" {
   source = "../modules/previews-router"
 
   deployers = ["serviceAccount:${module.github["langri-sha.com"].service_account.email}"]
-  iap_oauth2_secrets = var.iap_enabled ? {
+  iap_oauth2_secrets = {
     client_id     = module.secrets["previews-router"].secret_names["previews-iap-oauth2-client-id"]
     client_secret = module.secrets["previews-router"].secret_names["previews-iap-oauth2-client-secret"]
-  } : null
+  }
   image                 = var.preview_router_image
   location              = local.region
   members               = local.admin_members

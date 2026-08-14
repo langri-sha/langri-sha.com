@@ -1,9 +1,3 @@
-variable "iap_enabled" {
-  default     = true
-  description = "Whether IAP protects the preview router. Turning it off leaves the router out of the URL map entirely, because an unprotected router is a worse place for previews than the bucket they are served from today."
-  type        = bool
-}
-
 variable "preview_image" {
   default     = "us-docker.pkg.dev/cloudrun/container/hello"
   description = "Image the preview origin service is created with. Revisions are deployed from CI, one per preview, so this only ever serves as a placeholder until the first one lands."
