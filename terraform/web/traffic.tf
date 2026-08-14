@@ -4,6 +4,20 @@ locals {
     for host in local.hosts :
     contains(keys(local.host_redirects), host) ? "" : host
   ]))
+
+  # Every host is served from its own bucket, except the preview host, which
+  # the router serves whole.
+  bucket_hosts = setsubtract(local.limited_hosts, ["preview"])
+
+  host_backends = merge(
+    {
+      for host in local.bucket_hosts :
+      host => google_compute_backend_bucket.public[host].self_link
+    },
+    {
+      "preview" = module.previews_router.backend_service
+    }
+  )
 }
 
 resource "google_compute_global_address" "default" {
@@ -44,7 +58,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
 }
 
 resource "google_compute_backend_bucket" "public" {
-  for_each = local.limited_hosts
+  for_each = local.bucket_hosts
 
   name    = "${each.value}-backend-bucket"
   project = module.project["edge"].project_id
@@ -131,18 +145,8 @@ resource "google_compute_url_map" "default" {
     for_each = local.limited_hosts
 
     content {
-      name = path_matcher.value
-
-      # The preview host belongs to the router whole, not by selector: it
-      # resolves `/pull/<n>/` and `/release/<tag>/` onto their tagged revisions
-      # and everything else onto the untagged one, which is `main`. Its bucket
-      # only serves the host again if IAP goes away and the router leaves the
-      # URL map with it.
-      default_service = (
-        module.previews_router.enabled && path_matcher.value == "preview"
-        ? module.previews_router.backend_service
-        : google_compute_backend_bucket.public[path_matcher.value].self_link
-      )
+      name            = path_matcher.value
+      default_service = local.host_backends[path_matcher.value]
     }
   }
 }
