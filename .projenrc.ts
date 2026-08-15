@@ -1,7 +1,7 @@
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
+import { Project } from '@langri-sha/projen-project'
 import { SampleFile } from 'projen'
 
 const pkg = {
@@ -32,8 +32,6 @@ const project = new Project({
       '@babel/register@8.0.1',
       'react-dom@19.2.8',
       'react@19.2.8',
-      'webpack-cli@7.2.2',
-      'webpack@5.109.2',
     ],
     devDeps: [
       '@langri-sha/babel-preset@^0.6.3',
@@ -161,27 +159,6 @@ const subproject = (project: Project) => {
   })
 }
 
-const publish = (project: Project) => {
-  project.package?.addField('publishConfig', {
-    access: 'public',
-    main: 'dist/index.js',
-    types: 'dist/index.d.ts',
-  })
-
-  new TypeScriptConfig(project, {
-    fileName: 'tsconfig.build.json',
-    config: {
-      extends: '@langri-sha/tsconfig/build',
-      exclude: ['**/*.test.*'],
-    },
-  })
-
-  project.package?.setScript(
-    'prepublishOnly',
-    'rm -rf dist; tsc --project tsconfig.build.json',
-  )
-}
-
 project.addSubproject(
   {
     name: '@langri-sha/fonts',
@@ -218,36 +195,6 @@ project.addSubproject(
     project.package?.setScript('prepare', 'pnpm run build')
     project.gitignore.addPatterns('/dist/', '/.tsbuild/')
   },
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/webpack',
-    outdir: path.join('packages', 'webpack'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      deps: [
-        'babel-loader@10.1.1',
-        'clean-webpack-plugin@4.0.0',
-        'copy-webpack-plugin@14.0.0',
-        'html-webpack-plugin@5.6.8',
-        'terser-webpack-plugin@5.6.1',
-        'webpack-bundle-analyzer@5.3.1',
-        'webpack-dev-server@6.0.0',
-        'webpack-subresource-integrity@5.2.0-rc.1',
-      ],
-      devDeps: ['@langri-sha/babel-preset@^0.6.3', '@types/node@26.1.1'],
-      peerDeps: ['@babel/register@^8.0.0', 'webpack@^5.0.0'],
-    },
-  },
-  subproject,
-  publish,
 )
 
 project.synth()
