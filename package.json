@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "pnpm run --filter @langri-sha/web build",
-    "change": "pnpm exec projen change",
     "default": "pnpm exec projen default",
     "prepare": "husky",
     "renovate": "pnpm exec projen renovate",
@@ -46,7 +45,6 @@
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.15.47",
     "@types/node": "26.1.1",
-    "beachball": "2.65.5",
     "eslint": "10.8.1",
     "husky": "9.1.7",
     "jest": "30.4.2",

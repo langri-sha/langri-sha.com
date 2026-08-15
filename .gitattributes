@@ -9,7 +9,6 @@
 /.projen/** linguist-generated
 /.swcrc linguist-generated
 /babel.config.js linguist-generated
-/beachball.config.cjs linguist-generated
 /CODEOWNERS linguist-generated
 /eslint.config.js linguist-generated
 /license linguist-generated

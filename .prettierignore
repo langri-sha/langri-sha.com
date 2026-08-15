@@ -7,5 +7,4 @@ renovate.d.ts
 swcrc.d.ts
 !.projenrc.ts
 pnpm-lock.yaml
-CHANGELOG.md
 !.editorconfig

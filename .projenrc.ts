@@ -51,7 +51,6 @@ const project = new Project({
     ],
   },
   babel: {},
-  beachball: {},
   codeowners: {
     '*': '@langri-sha',
   },
