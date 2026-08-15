@@ -10,7 +10,6 @@
     ".projen/tasks.json",
     ".swcrc",
     "babel.config.js",
-    "beachball.config.cjs",
     "CODEOWNERS",
     "eslint.config.js",
     "license",

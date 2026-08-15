@@ -56,11 +56,6 @@
       "type": "build"
     },
     {
-      "name": "beachball",
-      "version": "2.65.5",
-      "type": "build"
-    },
-    {
       "name": "eslint",
       "version": "10.8.1",
       "type": "build"

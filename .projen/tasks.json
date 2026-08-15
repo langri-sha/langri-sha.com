@@ -1,14 +1,5 @@
 {
   "tasks": {
-    "change": {
-      "name": "change",
-      "description": "Generate Beachball change files",
-      "steps": [
-        {
-          "exec": "beachball change"
-        }
-      ]
-    },
     "default": {
       "name": "default",
       "description": "Synthesize project files",

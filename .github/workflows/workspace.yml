@@ -10,7 +10,6 @@ jobs:
   check:
     uses: langri-sha/github/.github/workflows/check.yml@v0.14.1
     with:
-      beachball: true
       eslint: true
       packages: true
       prettier: true

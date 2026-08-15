@@ -13,7 +13,6 @@
   "files": [
     ".projenrc.ts",
     "babel.config.js",
-    "beachball.config.cjs",
     "eslint.config.js",
     "lint-staged.config.js",
     "prettier.config.js"

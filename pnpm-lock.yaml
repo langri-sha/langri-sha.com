@@ -54,9 +54,6 @@ importers:
       '@types/node':
         specifier: 26.1.1
         version: 26.1.1
-      beachball:
-        specifier: 2.65.5
-        version: 2.65.5(typescript@5.9.3)
       eslint:
         specifier: 10.8.1
         version: 10.8.1(supports-color@8.1.1)
