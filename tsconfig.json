@@ -8,9 +8,6 @@
     },
     {
       "path": "packages/fonts"
-    },
-    {
-      "path": "packages/webpack"
     }
   ],
   "files": [

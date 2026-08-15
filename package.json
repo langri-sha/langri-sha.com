@@ -32,9 +32,7 @@
     "@babel/core": "8.0.1",
     "@babel/register": "8.0.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "webpack": "5.109.2",
-    "webpack-cli": "7.2.2"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",

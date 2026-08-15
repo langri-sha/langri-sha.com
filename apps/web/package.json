@@ -18,7 +18,6 @@
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",
     "@langri-sha/tsconfig": "^1.0.0",
-    "@langri-sha/webpack": "workspace:*",
     "@types/gtag.js": "0.0.20",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",

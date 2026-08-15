@@ -8,5 +8,6 @@ allowBuilds:
 packages:
   - apps/*
   - packages/*
+  - packages/fonts
 minimumReleaseAgeExclude:
   - '@langri-sha/*'
