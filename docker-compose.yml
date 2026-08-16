@@ -75,6 +75,15 @@ services:
       args:
         <<: *user-args
 
+  posthog:
+    build:
+      context: ./apps/posthog
+    init: true
+    environment:
+      RESOLVER: 127.0.0.11
+    ports:
+      - '9003:8080'
+
   preview:
     build:
       context: ./apps/preview
