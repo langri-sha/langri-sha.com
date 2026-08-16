@@ -1,0 +1,83 @@
+# Serves PostHog EU Cloud from the site's own origin at `/psthg/`. The site is a
+# static export on Cloud Storage, so there is no Next.js runtime to hold the
+# `rewrites()` rule PostHog documents; this is that rule.
+
+# `$request` and `$args` carry the query string, and an analytics request's
+# query string carries event data.
+log_format psthg '$request_method $uri $status $body_bytes_sent $request_time';
+
+server {
+  listen ${PORT};
+
+  access_log /var/log/nginx/access.log psthg;
+
+  # The error log has no format of its own, and its `request:` field carries the
+  # query string the access log above is careful to leave out. Everything it
+  # reports about an upstream failure is an `[error]`; the status codes are in
+  # the access log either way.
+  error_log /var/log/nginx/error.log crit;
+
+  # `proxy_pass` to a name held in a variable is resolved per request instead of
+  # once at startup, so nginx needs a resolver of its own. On Cloud Run that is
+  # the metadata server; Compose overrides it with Docker's embedded DNS. The
+  # upstreams are behind a CDN, so an address resolved once would outlive the
+  # host it was resolved for.
+  resolver ${RESOLVER} valid=10s;
+
+  # The load balancer terminates TLS, so nginx sees plain HTTP and would build
+  # `http://` out of `$scheme` when it expands a redirect. Keep them relative.
+  absolute_redirect off;
+
+  # A batch of events is bigger than the 1m default often enough that the 413
+  # would be a mystery.
+  client_max_body_size 10m;
+
+  # The upstreams select a certificate from SNI, which nginx omits when the
+  # upstream name comes from a variable. `Host` and the certificate name both
+  # follow the name in `proxy_pass`.
+  proxy_http_version 1.1;
+  proxy_ssl_server_name on;
+
+  # nginx does not verify an upstream certificate unless told to. Whoever holds
+  # this connection serves JavaScript that runs on our own origin, so an
+  # unauthenticated one is an open door. `proxy_ssl_name` follows `$proxy_host`,
+  # so the name checked is the name in `proxy_pass`.
+  proxy_ssl_verify              on;
+  proxy_ssl_verify_depth        2;
+  proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+
+  location = /psthg {
+    return 308 /psthg/$is_args$args;
+  }
+
+  # A location with any `add_header`, `proxy_hide_header` or `proxy_set_header`
+  # of its own inherits none, so each of the two below carries the whole set.
+
+  location ~ "^/psthg/((?:array|static)/.*)$" {
+    set $upstream ${POSTHOG_ASSETS_HOST};
+    proxy_pass    https://$upstream/$1$is_args$args;
+
+    proxy_set_header  cookie "";
+    proxy_hide_header set-cookie;
+
+    add_header x-content-type-options nosniff always;
+  }
+
+  location ~ "^/psthg/(.*)$" {
+    set $upstream ${POSTHOG_INGESTION_HOST};
+    proxy_pass    https://$upstream/$1$is_args$args;
+
+    proxy_set_header  cookie "";
+    proxy_hide_header cache-control;
+    proxy_hide_header set-cookie;
+
+    add_header cache-control no-store always;
+    add_header x-content-type-options nosniff always;
+  }
+
+  # The URL map sends `/psthg` and `/psthg/*` here and nothing else. A request
+  # that arrives by some other route must not find an open proxy.
+  location / {
+    return 404;
+  }
+}
