@@ -4,6 +4,7 @@ allowBuilds:
   '@swc/core': true
   esbuild: false
   unrs-resolver: false
+  core-js: false
   sharp: true
 packages:
   - apps/*

@@ -70,6 +70,7 @@ const project = new Project({
     packages: ['apps/*', 'packages/*'],
     minimumReleaseAgeExclude: ['@langri-sha/*'],
     allowBuilds: {
+      'core-js': false,
       sharp: true,
     },
   },
