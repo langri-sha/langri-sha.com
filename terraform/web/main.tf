@@ -84,10 +84,11 @@ locals {
 
         production = {
           actions_variables = {
-            ASSETS_BUCKET = google_storage_bucket.public["production-assets"].name
-            ASSETS_URL    = local.host_urls["production-assets"]
-            BUCKET        = google_storage_bucket.public["production"].name
-            URL           = local.host_urls["production"]
+            ASSETS_BUCKET           = google_storage_bucket.public["production-assets"].name
+            ASSETS_URL              = local.host_urls["production-assets"]
+            BUCKET                  = google_storage_bucket.public["production"].name
+            NEXT_PUBLIC_POSTHOG_KEY = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
+            URL                     = local.host_urls["production"]
           }
         }
       }
@@ -182,6 +183,18 @@ locals {
   }
 
   secrets = {
+    "posthog-proxy" = {
+      project = module.project["edge"].project_id
+
+      secrets = [
+        "posthog-project-token",
+      ]
+
+      read_secret_version = var.posthog_project_token_version == "" ? {} : {
+        "posthog-project-token" = var.posthog_project_token_version
+      }
+    }
+
     "previews-router" = {
       project = module.project["edge"].project_id
 
