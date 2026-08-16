@@ -18,6 +18,10 @@ locals {
       "preview" = module.previews_router.backend_service
     }
   )
+
+  posthog_proxy_hosts = ["preview", "production"]
+
+  posthog_proxy_paths = ["/psthg", "/psthg/*"]
 }
 
 resource "google_compute_global_address" "default" {
@@ -147,6 +151,15 @@ resource "google_compute_url_map" "default" {
     content {
       name            = path_matcher.value
       default_service = local.host_backends[path_matcher.value]
+
+      dynamic "path_rule" {
+        for_each = contains(local.posthog_proxy_hosts, path_matcher.value) ? [1] : []
+
+        content {
+          paths   = local.posthog_proxy_paths
+          service = module.posthog_proxy.backend_service
+        }
+      }
     }
   }
 }

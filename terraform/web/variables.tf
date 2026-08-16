@@ -1,3 +1,9 @@
+variable "posthog_proxy_image" {
+  default     = "us-docker.pkg.dev/cloudrun/container/hello"
+  description = "Image the PostHog proxy service is created with. Revisions are deployed from CI, so this only ever serves as a placeholder until the first one lands."
+  type        = string
+}
+
 variable "preview_image" {
   default     = "us-docker.pkg.dev/cloudrun/container/hello"
   description = "Image the preview origin service is created with. Revisions are deployed from CI, one per preview, so this only ever serves as a placeholder until the first one lands."
