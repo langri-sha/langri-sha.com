@@ -1,3 +1,7 @@
+variables {
+  posthog_project_token_version = ""
+}
+
 mock_provider "google" {
   mock_resource "google_service_account" {
     defaults = {

@@ -27,6 +27,7 @@ jobs:
         run: pnpm build
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
 
       - name: Create artifact
         uses: actions/upload-artifact@v7
