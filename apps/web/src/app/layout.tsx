@@ -1,6 +1,7 @@
 import { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 
+import { Analytics } from './lib/analytics'
 import { EmotionRegistry } from './lib/emotion-registry'
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Analytics />
         <EmotionRegistry>{children}</EmotionRegistry>
       </body>
     </html>
