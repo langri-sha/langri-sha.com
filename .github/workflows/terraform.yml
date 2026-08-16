@@ -36,3 +36,6 @@ jobs:
         with:
           fail-on-unresolved-version: true
           working-directory: ${{ matrix.working-directory }}
+
+      - name: Run tests
+        run: terraform test
