@@ -206,7 +206,10 @@ project.addSubproject(
     },
     typeScriptConfig: {
       config: {
-        compilerOptions: { outDir: '.tsbuild' },
+        compilerOptions: {
+          outDir: '.tsbuild',
+          lib: ['DOM', 'DOM.Iterable', 'ESNext'],
+        },
         include: ['src'],
       },
     },
