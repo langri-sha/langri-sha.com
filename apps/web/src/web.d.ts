@@ -2,8 +2,6 @@
 
 declare type WebEnv = {
   NODE_ENV: 'development' | 'production'
-  /** Add experimental scene to landing page, when set. */
-  EXPERIMENTAL_SCENE: string | null
 }
 
 declare global {
