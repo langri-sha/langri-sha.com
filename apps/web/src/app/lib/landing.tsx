@@ -18,8 +18,10 @@ export const Landing: React.FC = () => {
       <Global styles={[global, gradientProperties]} />
       <Root>
         <Root>
-          <Header />
+          {/* The scene paints first so the header, which follows it in the
+              flow, sits on top without an isolating z-index. */}
           {process.env.EXPERIMENTAL_SCENE ? <Scene /> : null}
+          <Header />
           {playing ? <Drone /> : null}
           <Play
             playing={playing}
