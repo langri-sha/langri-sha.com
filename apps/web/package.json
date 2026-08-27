@@ -14,7 +14,7 @@
     "@emotion/styled": "11.14.1",
     "next": "16.3.2",
     "normalize.css": "8.0.1",
-    "posthog-js": "1.417.1"
+    "posthog-js": "1.418.13"
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",
