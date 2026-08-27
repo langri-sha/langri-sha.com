@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { animations, colors, layers, media } from '@/styles'
+import { animations, colors, media } from '@/styles'
 
 import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
 import { Wordmark } from './wordmark'
@@ -56,7 +56,6 @@ export const Header: React.FC = () => (
 
 const Root = styled.header`
   ${animations.booming};
-  ${layers.foreground};
   position: relative;
 `
 
