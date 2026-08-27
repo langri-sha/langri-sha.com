@@ -123,7 +123,7 @@ const project = new Project({
   swcrc: {},
   typeScriptConfig: {
     config: {
-      references: [{ path: './apps/web' }],
+      references: [{ path: './apps/web' }, { path: './packages/chant' }],
     },
   },
   withTerraform: true,
@@ -191,6 +191,39 @@ project.addSubproject(
     project.package?.addField('types', 'dist/index.d.ts')
     project.package?.setScript('generate-font', 'node scripts/generate.mjs')
     project.package?.setScript('build', 'node scripts/build.mjs')
+    project.package?.setScript('prepare', 'pnpm run build')
+    project.gitignore.addPatterns('/dist/', '/.tsbuild/')
+  },
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/chant',
+    outdir: path.join('packages', 'chant'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {
+      config: {
+        compilerOptions: { outDir: '.tsbuild' },
+        include: ['src'],
+      },
+    },
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      devDeps: ['@types/node@26.1.1'],
+    },
+  },
+  subproject,
+  (project) => {
+    project.package?.addField('private', true)
+    project.package?.addField('version', '0.1.0')
+    project.package?.addField('main', 'dist/index.js')
+    project.package?.addField('types', 'dist/index.d.ts')
+    project.package?.setScript('build', 'tsc -p tsconfig.build.json')
     project.package?.setScript('prepare', 'pnpm run build')
     project.gitignore.addPatterns('/dist/', '/.tsbuild/')
   },

@@ -14,6 +14,17 @@
 /license linguist-generated
 /lint-staged.config.js linguist-generated
 /package.json linguist-generated
+/packages/chant/.gitattributes linguist-generated
+/packages/chant/.gitignore linguist-generated
+/packages/chant/.npmignore linguist-generated
+/packages/chant/.projen/** linguist-generated
+/packages/chant/.projen/deps.json linguist-generated
+/packages/chant/.projen/files.json linguist-generated
+/packages/chant/.projen/tasks.json linguist-generated
+/packages/chant/license linguist-generated
+/packages/chant/package.json linguist-generated
+/packages/chant/pnpm-lock.yaml linguist-generated
+/packages/chant/tsconfig.json linguist-generated
 /packages/fonts/.gitattributes linguist-generated
 /packages/fonts/.gitignore linguist-generated
 /packages/fonts/.npmignore linguist-generated

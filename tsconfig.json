@@ -7,6 +7,12 @@
       "path": "./apps/web"
     },
     {
+      "path": "./packages/chant"
+    },
+    {
+      "path": "packages/chant"
+    },
+    {
       "path": "packages/fonts"
     }
   ],
