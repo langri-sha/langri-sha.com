@@ -1,0 +1,8 @@
+export const background = '#0a0a12'
+export const surface = '#14141f'
+export const surfaceHover = '#1e1e2e'
+export const text = '#e8e6f0'
+export const textMuted = '#8a879a'
+export const accent = '#9a6aff'
+export const accentGlow = 'rgba(154, 106, 255, 0.3)'
+export const border = '#2a2a3d'
