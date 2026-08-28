@@ -1,8 +1,8 @@
+import { EmotionRegistry } from '@langri-sha/next'
 import { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 
 import { Analytics } from './lib/analytics'
-import { EmotionRegistry } from './lib/emotion-registry'
 
 export const metadata: Metadata = {
   description: 'Welcome to my abode!',
