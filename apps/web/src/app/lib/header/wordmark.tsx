@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { colors } from '@/styles'
+import { animations, colors } from '@/styles'
 
 // Wordmark hand-traced from the "Cinzel Decorative" typeface
 // by Natanael Gama, under the SIL Open Font License 1.1.
@@ -23,6 +23,7 @@ const WordmarkMark: React.FC<{ className?: string }> = ({ className }) => (
 )
 
 export const Wordmark = styled(WordmarkMark)`
+  ${animations.booming};
   color: ${colors.text};
   display: block;
   width: 100%;
