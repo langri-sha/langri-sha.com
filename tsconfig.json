@@ -4,6 +4,9 @@
   "extends": "@langri-sha/tsconfig/base",
   "references": [
     {
+      "path": "./apps/voice-editor"
+    },
+    {
       "path": "./apps/web"
     },
     {

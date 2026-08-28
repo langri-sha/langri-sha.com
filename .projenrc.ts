@@ -124,7 +124,7 @@ const project = new Project({
   swcrc: {},
   typeScriptConfig: {
     config: {
-      references: [{ path: './apps/web' }],
+      references: [{ path: './apps/voice-editor' }, { path: './apps/web' }],
     },
   },
   withTerraform: true,

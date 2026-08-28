@@ -1,5 +1,3 @@
-// A tuning console for the voice's chant: the syllable table exposed
-// as lines and knobs, with live playback and a copy-back of the edits.
 import type { Metadata } from 'next'
 
 import { ChantTuner } from './tuner'

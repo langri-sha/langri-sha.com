@@ -118,8 +118,6 @@ export const ChantTuner: React.FC = () => {
 
   const playChant = (chant: EditableBreath[]) => {
     if (!audio.current) {
-      // The same output chain the site runs: unity into a brick-wall
-      // limiter, so the tuner is heard at production loudness.
       const context = new AudioContext()
       const input = context.createGain()
       input.gain.value = 1
@@ -154,8 +152,6 @@ export const ChantTuner: React.FC = () => {
 
   const play = () => playChant(structuredClone(breaths))
 
-  // Solo one breath, dropping its opening pause so it speaks at once —
-  // unless the breath inhales, since the draw lives in that pause.
   const playBreath = (index: number) => {
     const solo = structuredClone(breaths[index])
     if (!solo.inhale) {
@@ -173,8 +169,6 @@ export const ChantTuner: React.FC = () => {
     setPlaying(false)
   }
 
-  // Clicking the timeline jumps to the matching editor below: the breath
-  // unfolds and the card scrolls into view with its first input focused.
   const select = (breath: number, syllable?: number) => {
     setCollapsed((current) =>
       current.map((value, k) => (k === breath ? false : value)),
@@ -227,8 +221,6 @@ export const ChantTuner: React.FC = () => {
     [],
   )
 
-  // Each syllable's onset, in seconds after the voice enters — the timeline
-  // the synthesiser will walk.
   const starts = React.useMemo(() => {
     const rows: number[][] = []
     let at = 0
