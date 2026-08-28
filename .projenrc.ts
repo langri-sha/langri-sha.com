@@ -197,4 +197,55 @@ project.addSubproject(
   },
 )
 
+project.addSubproject(
+  {
+    name: '@langri-sha/next',
+    outdir: path.join('packages', 'next'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {
+      config: {
+        extends: [
+          '@langri-sha/tsconfig/project.json',
+          '@langri-sha/tsconfig/react.json',
+        ],
+        compilerOptions: {
+          outDir: '.tsbuild',
+        },
+        include: ['src'],
+      },
+    },
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      peerDeps: [
+        '@emotion/cache@^11.14.0',
+        '@emotion/react@^11.14.0',
+        'next@^16.0.0',
+        'react@^19.0.0',
+      ],
+      devDeps: ['@types/react@19.2.18', 'next@16.3.3'],
+    },
+  },
+  subproject,
+  (project) => {
+    project.package?.addField('private', true)
+    project.package?.addField('version', '0.1.0')
+    project.package?.addField('sideEffects', false)
+    project.package?.addField('main', 'src/index.ts')
+    project.package?.addField('types', 'src/index.ts')
+    project.package?.addField('exports', {
+      '.': './src/index.ts',
+      './emotion-registry': './src/emotion-registry.tsx',
+    })
+    project.package?.addField('peerDependenciesMeta', {
+      next: { optional: true },
+    })
+    project.gitignore.addPatterns('/.tsbuild/')
+  },
+)
+
 project.synth()

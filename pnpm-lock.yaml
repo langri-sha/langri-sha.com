@@ -93,6 +93,9 @@ importers:
       '@emotion/styled':
         specifier: 11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1))(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)
+      '@langri-sha/next':
+        specifier: workspace:*
+        version: link:../../packages/next
       next:
         specifier: 16.3.3
         version: 16.3.3(@babel/core@8.0.1)(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -142,6 +145,28 @@ importers:
       subset-font:
         specifier: 2.5.0
         version: 2.5.0
+
+  packages/next:
+    dependencies:
+      '@emotion/cache':
+        specifier: ^11.14.0
+        version: 11.14.0
+      '@emotion/react':
+        specifier: ^11.14.0
+        version: 11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.8
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: '*'
+        version: 1.0.1(typescript@5.9.3)
+      '@types/react':
+        specifier: 19.2.18
+        version: 19.2.18
+      next:
+        specifier: 16.3.3
+        version: 16.3.3(@babel/core@8.0.1)(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
 
 packages:
 

@@ -25,6 +25,17 @@
 /packages/fonts/package.json linguist-generated
 /packages/fonts/pnpm-lock.yaml linguist-generated
 /packages/fonts/tsconfig.json linguist-generated
+/packages/next/.gitattributes linguist-generated
+/packages/next/.gitignore linguist-generated
+/packages/next/.npmignore linguist-generated
+/packages/next/.projen/** linguist-generated
+/packages/next/.projen/deps.json linguist-generated
+/packages/next/.projen/files.json linguist-generated
+/packages/next/.projen/tasks.json linguist-generated
+/packages/next/license linguist-generated
+/packages/next/package.json linguist-generated
+/packages/next/pnpm-lock.yaml linguist-generated
+/packages/next/tsconfig.json linguist-generated
 /pnpm-lock.yaml linguist-generated
 /pnpm-workspace.yaml linguist-generated
 /prettier.config.js linguist-generated

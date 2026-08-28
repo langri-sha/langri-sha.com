@@ -8,6 +8,9 @@
     },
     {
       "path": "packages/fonts"
+    },
+    {
+      "path": "packages/next"
     }
   ],
   "files": [
