@@ -46,7 +46,7 @@ const seed = (): EditableBreath[] =>
 const fmt = (value: number) => String(Number(value.toFixed(3)))
 
 /* The edited state, printed in the source file's own shape so it can be
- * pasted straight over the CHANT and CHARACTER constants in invocation.ts. */
+ * pasted straight over the CHANT and CHARACTER constants in the package. */
 const serialize = (breaths: EditableBreath[], character: Character) => {
   const lines = ['const CHANT: Breath[] = [']
   for (const breath of breaths) {
@@ -246,7 +246,7 @@ export const ChantTuner: React.FC = () => {
         <Subtitle>
           »Snovi su poruke iz dubine« — the voice&apos;s syllable table, as
           lines and knobs. Tune, play, then copy the table back into
-          invocation.ts.
+          @langri-sha/voice.
         </Subtitle>
       </Header>
 

@@ -82,7 +82,7 @@ importers:
         specifier: 4.1.11
         version: 4.1.11(@types/node@26.1.1)(vite@8.2.2(@types/node@26.1.1)(esbuild@0.28.2)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))
 
-  apps/invocation-editor:
+  apps/voice-editor:
     dependencies:
       '@emotion/cache':
         specifier: 11.14.0
@@ -93,12 +93,12 @@ importers:
       '@emotion/styled':
         specifier: 11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1))(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)
-      '@langri-sha/invocation':
-        specifier: workspace:*
-        version: link:../../packages/invocation
       '@langri-sha/next':
         specifier: workspace:*
         version: link:../../packages/next
+      '@langri-sha/voice':
+        specifier: workspace:*
+        version: link:../../packages/voice
       next:
         specifier: 16.3.2
         version: 16.3.2(@babel/core@8.0.1)(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -133,12 +133,12 @@ importers:
       '@emotion/styled':
         specifier: 11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1))(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)
-      '@langri-sha/invocation':
-        specifier: workspace:*
-        version: link:../../packages/invocation
       '@langri-sha/next':
         specifier: workspace:*
         version: link:../../packages/next
+      '@langri-sha/voice':
+        specifier: workspace:*
+        version: link:../../packages/voice
       next:
         specifier: 16.3.3
         version: 16.3.3(@babel/core@8.0.1)(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -189,12 +189,6 @@ importers:
         specifier: 2.5.0
         version: 2.5.0
 
-  packages/invocation:
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: '*'
-        version: 1.0.1(typescript@5.9.3)
-
   packages/next:
     dependencies:
       '@emotion/cache':
@@ -216,6 +210,12 @@ importers:
       next:
         specifier: 16.3.3
         version: 16.3.3(@babel/core@8.0.1)(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+
+  packages/voice:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: '*'
+        version: 1.0.1(typescript@5.9.3)
 
 packages:
 
