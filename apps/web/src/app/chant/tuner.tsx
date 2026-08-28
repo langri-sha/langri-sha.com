@@ -2,15 +2,15 @@
 
 import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
-import * as React from 'react'
-
 import {
   CHANT,
   CHARACTER,
   type Character,
   type Syllable,
   Voice,
-} from '@/components/invocation'
+} from '@langri-sha/voice'
+import * as React from 'react'
+
 import { colors, global } from '@/styles'
 
 /* The editor carries a label per syllable — the phoneme it pronounces — for

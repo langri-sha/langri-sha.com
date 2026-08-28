@@ -93,6 +93,9 @@ importers:
       '@emotion/styled':
         specifier: 11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1))(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)
+      '@langri-sha/invocation':
+        specifier: workspace:*
+        version: link:../../packages/invocation
       '@langri-sha/next':
         specifier: workspace:*
         version: link:../../packages/next
@@ -145,6 +148,12 @@ importers:
       subset-font:
         specifier: 2.5.0
         version: 2.5.0
+
+  packages/invocation:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: '*'
+        version: 1.0.1(typescript@5.9.3)
 
   packages/next:
     dependencies:

@@ -1,7 +1,7 @@
 'use client'
+import { Voice } from '@langri-sha/voice'
 import * as React from 'react'
 
-import { Voice } from './invocation'
 import noiseProcessorSource from './noise-processor.worklet'
 
 let voicePlayed = false
