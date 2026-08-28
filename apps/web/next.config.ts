@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 
 const config: NextConfig = {
+  agentRules: false,
   assetPrefix: process.env.ASSETS_URL,
   basePath: process.env.BASE_PATH,
   distDir: 'dist',
