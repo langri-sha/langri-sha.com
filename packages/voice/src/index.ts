@@ -48,70 +48,66 @@ export interface Breath {
  * sagging through du, then lifting into the long final vowel. */
 export const CHANT: Breath[] = [
   {
-    // "snoo-vi su"
     pause: 0,
     pitch: 60,
     syllables: [
-      { dur: 0.15, f: [300, 1350, 2400], voice: 0.08, fric: [5200, 0.08] }, // s
-      { dur: 0.12, f: [250, 1350, 2400], voice: 0.7 }, // n
-      { dur: 1.0, f: [430, 850, 2250], to: [455, 940, 2310], voice: 1 }, // oo
-      { dur: 0.09, f: [300, 1000, 2300], voice: 0.6 }, // v
-      { dur: 0.35, f: [290, 2050, 2550], voice: 0.95 }, // i
+      { dur: 0.15, f: [300, 1350, 2400], voice: 0.08, fric: [5200, 0.08] },
+      { dur: 0.12, f: [250, 1350, 2400], voice: 0.7 },
+      { dur: 1.0, f: [430, 850, 2250], to: [455, 940, 2310], voice: 1 },
+      { dur: 0.09, f: [300, 1000, 2300], voice: 0.6 },
+      { dur: 0.35, f: [290, 2050, 2550], voice: 0.95 },
       {
         dur: 0.13,
         f: [310, 1300, 2350],
         voice: 0.08,
         fric: [5200, 0.07],
         gap: 0.2,
-      }, // s
-      { dur: 0.25, f: [290, 620, 1950], voice: 0.9 }, // u
+      },
+      { dur: 0.25, f: [290, 620, 1950], voice: 0.9 },
     ],
   },
   {
-    // "po-ru-ke"
     pause: 0.5,
     pitch: 56,
     syllables: [
-      { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] }, // p
-      { dur: 0.18, f: [430, 850, 2250], voice: 1.05 }, // o
-      { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 }, // r, one tap
-      { dur: 0.25, f: [290, 620, 1950], voice: 0.95 }, // u
+      { dur: 0.05, f: [400, 800, 2200], voice: 0.08, fric: [750, 0.1] },
+      { dur: 0.18, f: [430, 850, 2250], voice: 1.05 },
+      { dur: 0.06, f: [330, 1150, 1750], voice: 0.5 },
+      { dur: 0.25, f: [290, 620, 1950], voice: 0.95 },
       {
         dur: 0.06,
         f: [430, 1800, 2450],
         voice: 0.08,
         fric: [1650, 0.09],
         gap: 0.08,
-      }, // k
-      { dur: 0.5, f: [430, 1800, 2450], voice: 0.9 }, // e
+      },
+      { dur: 0.5, f: [430, 1800, 2450], voice: 0.9 },
     ],
   },
   {
-    // "eez"
     pause: 0.45,
     pitch: 54,
     inhale: 0.35,
     syllables: [
-      { dur: 0.25, f: [300, 1900, 2500], to: [280, 2150, 2600], voice: 0.9 }, // eez
-      { dur: 0.15, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] }, // z
+      { dur: 0.25, f: [300, 1900, 2500], to: [280, 2150, 2600], voice: 0.9 },
+      { dur: 0.15, f: [290, 1900, 2500], voice: 0.35, fric: [5200, 0.06] },
     ],
   },
   {
-    // "du-bi-neee", sagging to the floor before the last vowel lifts
     pause: 0.55,
     pitch: 40,
     inhale: 0.05,
     syllables: [
-      { dur: 0.7, f: [280, 1275, 1735], voice: 0.46, gap: 0.05, dive: 30 }, // d + u
-      { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.05 }, // b + i
-      { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 }, // n
+      { dur: 0.7, f: [280, 1275, 1735], voice: 0.46, gap: 0.05, dive: 30 },
+      { dur: 0.3, f: [290, 2050, 2550], voice: 0.95, gap: 0.05 },
+      { dur: 0.12, f: [250, 1350, 2400], voice: 0.75 },
       {
         dur: 1.9,
         f: [430, 1800, 2450],
         to: [465, 1680, 2400],
         voice: 1.15,
         dive: 42,
-      }, // ee
+      },
     ],
   },
 ]
@@ -172,8 +168,8 @@ export const CHARACTER: Character = {
 }
 
 export class Voice {
-  /** Offset after start() at which the drone should begin fading in. */
-  readonly droneEntry: number
+  /** Offset after start() at which a caller should begin its handoff. */
+  readonly handoffAt: number
 
   context: AudioContext
   chant: Breath[]
@@ -198,11 +194,10 @@ export class Voice {
     this.chant = chant
     this.character = character
     this.voiceEnd = VOICE_START + chantDuration(chant)
-    this.droneEntry = this.voiceEnd - 1.5
+    this.handoffAt = this.voiceEnd - 1.5
     this.tailEnd = this.voiceEnd + 7
     this.noiseData = this.createNoiseBuffer()
 
-    // Both buses meet at one trim, so the voice's level is a single knob.
     const master = this.gain(character.level)
     master.connect(destination)
 
@@ -245,8 +240,6 @@ export class Voice {
       this.disposeTimer = null
     }
 
-    // Every source has a scheduled stop, so disconnecting the graph both
-    // silences an interrupted voice and frees a finished one.
     this.nodes.forEach((node) => node.disconnect())
   }
 
@@ -277,17 +270,14 @@ export class Voice {
 
     level.gain.setValueAtTime(0, when)
     level.gain.setTargetAtTime(0.09, when + 0.15, 0.9)
-    // The deep answers the last word.
     level.gain.setTargetAtTime(0.13, when + this.voiceEnd - 1, 0.7)
-    level.gain.setTargetAtTime(0.0001, when + this.droneEntry + 1.2, 1)
+    level.gain.setTargetAtTime(0.0001, when + this.handoffAt + 1.2, 1)
   }
 
   /** The throat-sung voice: subharmonic saws through morphing formants. */
   private sing(when: number) {
     const stop = when + this.voiceEnd + 1
 
-    // The glottal source and its undertone an octave below — the periodic
-    // doubling that gives kargyraa its growl. Both ride the same formants.
     const glottis = this.oscillator(64, when, stop, 'sawtooth')
     const undertone = this.oscillator(32.1, when, stop, 'sawtooth')
     const undertoneLevel = this.gain(this.character.undertone)
@@ -297,7 +287,6 @@ export class Voice {
     glottis.connect(drive)
     undertoneLevel.connect(drive)
 
-    // A slow random wobble on the pitch keeps the voice organic.
     const jitter = this.noise(when, stop)
     const jitterFilter = this.filter('lowpass', 6, 0.7)
     jitter.connect(jitterFilter)
@@ -352,8 +341,6 @@ export class Voice {
     fricationFilter.connect(fricationLevel)
     fricationLevel.connect(voiceBus)
 
-    // The drawn breath: a noise band that can sweep upward through a pause
-    // — air pulled in before a word, ingressive where the chant exhales.
     const inhale = this.noise(when, stop)
     const inhaleFilter = this.filter('bandpass', 900, 1.2)
     inhale.connect(inhaleFilter)
@@ -361,10 +348,6 @@ export class Voice {
     inhaleFilter.connect(inhaleLevel)
     inhaleLevel.connect(voiceBus)
 
-    // Grit: a parallel distortion under the words. The bus is driven hard
-    // into a fierce shaper and kept subterranean by its own lowpass — a
-    // steady grind under the voice, while the clean path above keeps the
-    // diction legible.
     const gritDrive = this.gain(this.character.gritDrive)
     const gritShaper = this.own(this.context.createWaveShaper())
     gritShaper.curve = saturationCurve(5)
@@ -375,7 +358,6 @@ export class Voice {
     gritShaper.connect(gritDark)
     gritDark.connect(gritLevel)
 
-    // An old, dark voice: everything above the third formant falls away.
     const patina = this.filter('lowpass', this.character.patina, 0.6)
     const level = this.gain(0.55)
     voiceBus.connect(patina)
@@ -394,8 +376,6 @@ export class Voice {
         const strength = breath.inhale
         const draw = Math.min(breath.pause, 1.1)
 
-        // The in-rush crescendos into the word and rises in pitch — noise
-        // that points inward — then chokes off as the voice catches.
         inhaleFilter.frequency.setValueAtTime(600, entry - draw)
         inhaleFilter.frequency.exponentialRampToValueAtTime(2400, entry)
         inhaleLevel.gain.setValueAtTime(0.0001, entry - draw)
@@ -405,8 +385,6 @@ export class Voice {
         )
         inhaleLevel.gain.setTargetAtTime(0.0001, entry, 0.025)
 
-        // Sucked into oscillation: the pitch is dragged up to the reciting
-        // tone, the growl catches a beat late, and a gasp rides the onset.
         glottis.frequency.setValueAtTime(breath.pitch - 5 * strength, entry)
         glottis.frequency.setTargetAtTime(breath.pitch, entry + 0.02, 0.09)
         undertone.frequency.setValueAtTime(
@@ -453,8 +431,6 @@ export class Voice {
           )
         })
 
-        // Sweeping syllables narrow the second formant until single overtones
-        // of the source ring through it as it moves.
         formants[1].Q.setTargetAtTime(syllable.to ? 18 : 11, at, 0.1)
         if (syllable.to) {
           const steps = 5

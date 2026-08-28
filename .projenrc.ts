@@ -248,4 +248,37 @@ project.addSubproject(
   },
 )
 
+project.addSubproject(
+  {
+    name: '@langri-sha/voice',
+    outdir: path.join('packages', 'voice'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {
+      config: {
+        compilerOptions: {
+          lib: ['DOM', 'ESNext'],
+          outDir: '.tsbuild',
+        },
+        include: ['src'],
+      },
+    },
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+    },
+  },
+  subproject,
+  (project) => {
+    project.package?.addField('private', true)
+    project.package?.addField('version', '0.1.0')
+    project.package?.addField('main', 'src/index.ts')
+    project.package?.addField('types', 'src/index.ts')
+    project.gitignore.addPatterns('/.tsbuild/')
+  },
+)
+
 project.synth()
