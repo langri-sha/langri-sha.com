@@ -13,10 +13,10 @@
       "path": "packages/fonts"
     },
     {
-      "path": "packages/voice"
+      "path": "packages/next"
     },
     {
-      "path": "packages/next"
+      "path": "packages/voice"
     }
   ],
   "files": [
