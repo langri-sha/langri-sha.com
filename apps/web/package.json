@@ -15,7 +15,7 @@
     "@langri-sha/next": "workspace:*",
     "next": "16.3.3",
     "normalize.css": "8.0.1",
-    "posthog-js": "1.419.0"
+    "posthog-js": "1.422.1"
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",
