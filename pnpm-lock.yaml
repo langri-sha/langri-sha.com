@@ -32,13 +32,13 @@ importers:
         version: 0.8.6(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))
       '@langri-sha/lint-staged':
         specifier: ^0.9.1
-        version: 0.9.7(eslint@10.9.1(supports-color@8.1.1))(lint-staged@17.3.0)(prettier@3.9.6)
+        version: 0.9.7(eslint@10.9.1(supports-color@8.1.1))(lint-staged@17.4.1)(prettier@3.9.6)
       '@langri-sha/prettier':
         specifier: ^0.4.1
         version: 0.4.6(prettier@3.9.6)
       '@langri-sha/projen-project':
         specifier: 0.27.0
-        version: 0.27.0(@babel/core@8.0.1)(@swc-node/register@1.12.1(@swc/core@1.15.47(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.15.47(@swc/helpers@0.5.23))(beachball@2.65.6(typescript@5.9.3))(eslint@10.9.1(supports-color@8.1.1))(husky@9.1.7)(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))(lint-staged@17.3.0)(prettier@3.9.6)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.12)(typescript@5.9.3)
+        version: 0.27.0(@babel/core@8.0.1)(@swc-node/register@1.12.1(@swc/core@1.15.47(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.15.47(@swc/helpers@0.5.23))(beachball@2.65.6(typescript@5.9.3))(eslint@10.9.1(supports-color@8.1.1))(husky@9.1.7)(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))(lint-staged@17.4.1)(prettier@3.9.6)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.12)(typescript@5.9.3)
       '@langri-sha/schemastore-to-typescript':
         specifier: ^0.2.1
         version: 0.2.9(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)
@@ -64,8 +64,8 @@ importers:
         specifier: 30.4.2
         version: 30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
       lint-staged:
-        specifier: 17.3.0
-        version: 17.3.0
+        specifier: 17.4.1
+        version: 17.4.1
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -4005,8 +4005,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@17.3.0:
-    resolution: {integrity: sha512-woZS3vNe3UKqBaLPvbLOtKRY4tLANpWQhom12MGWqC8Mh1lCOO+WgSwmX2amjJAqTY9BkXYW87fCUH5H9Ph6xw==}
+  lint-staged@17.4.1:
+    resolution: {integrity: sha512-FmJeudcalbSfg1du+JCfvi5vS6Qt08KgbfLWiHinbef+2JJwUZwAWVoaO1AcJVUTWPfk0t30PMQNwPAeCzYQ+Q==}
     engines: {node: '>=22.22.1'}
     hasBin: true
 
@@ -6752,9 +6752,9 @@ snapshots:
     dependencies:
       jest: 30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
 
-  '@langri-sha/lint-staged@0.9.7(eslint@10.9.1(supports-color@8.1.1))(lint-staged@17.3.0)(prettier@3.9.6)':
+  '@langri-sha/lint-staged@0.9.7(eslint@10.9.1(supports-color@8.1.1))(lint-staged@17.4.1)(prettier@3.9.6)':
     dependencies:
-      lint-staged: 17.3.0
+      lint-staged: 17.4.1
     optionalDependencies:
       eslint: 10.9.1(supports-color@8.1.1)
       prettier: 3.9.6
@@ -6809,9 +6809,9 @@ snapshots:
       license-o-matic: 1.2.0
       projen: 0.86.5(constructs@10.8.1)
 
-  '@langri-sha/projen-lint-staged@0.3.12(lint-staged@17.3.0)(projen@0.86.5(constructs@10.8.1))':
+  '@langri-sha/projen-lint-staged@0.3.12(lint-staged@17.4.1)(projen@0.86.5(constructs@10.8.1))':
     dependencies:
-      lint-staged: 17.3.0
+      lint-staged: 17.4.1
       projen: 0.86.5(constructs@10.8.1)
       serialize-javascript: 7.1.0
 
@@ -6835,7 +6835,7 @@ snapshots:
       projen: 0.86.5(constructs@10.8.1)
       serialize-javascript: 7.1.0
 
-  '@langri-sha/projen-project@0.27.0(@babel/core@8.0.1)(@swc-node/register@1.12.1(@swc/core@1.15.47(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.15.47(@swc/helpers@0.5.23))(beachball@2.65.6(typescript@5.9.3))(eslint@10.9.1(supports-color@8.1.1))(husky@9.1.7)(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))(lint-staged@17.3.0)(prettier@3.9.6)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.12)(typescript@5.9.3)':
+  '@langri-sha/projen-project@0.27.0(@babel/core@8.0.1)(@swc-node/register@1.12.1(@swc/core@1.15.47(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.15.47(@swc/helpers@0.5.23))(beachball@2.65.6(typescript@5.9.3))(eslint@10.9.1(supports-color@8.1.1))(husky@9.1.7)(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))(lint-staged@17.4.1)(prettier@3.9.6)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.12)(typescript@5.9.3)':
     dependencies:
       '@langri-sha/projen-babel': 0.5.10(@babel/core@8.0.1)(projen@0.86.5(constructs@10.8.1))
       '@langri-sha/projen-beachball': 0.5.9(beachball@2.65.6(typescript@5.9.3))(projen@0.86.5(constructs@10.8.1))
@@ -6846,7 +6846,7 @@ snapshots:
       '@langri-sha/projen-husky': 0.3.17(husky@9.1.7)(projen@0.86.5(constructs@10.8.1))
       '@langri-sha/projen-jest-config': 0.4.12(jest@30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1))(projen@0.86.5(constructs@10.8.1))
       '@langri-sha/projen-license': 0.3.12(projen@0.86.5(constructs@10.8.1))
-      '@langri-sha/projen-lint-staged': 0.3.12(lint-staged@17.3.0)(projen@0.86.5(constructs@10.8.1))
+      '@langri-sha/projen-lint-staged': 0.3.12(lint-staged@17.4.1)(projen@0.86.5(constructs@10.8.1))
       '@langri-sha/projen-lint-synthesized': 0.5.11(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)
       '@langri-sha/projen-pnpm-workspace': 0.4.5(projen@0.86.5(constructs@10.8.1))
       '@langri-sha/projen-prettier': 0.4.11(prettier@3.9.6)(projen@0.86.5(constructs@10.8.1))
@@ -6866,7 +6866,7 @@ snapshots:
       eslint: 10.9.1(supports-color@8.1.1)
       husky: 9.1.7
       jest: 30.4.2(@types/node@26.1.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
-      lint-staged: 17.3.0
+      lint-staged: 17.4.1
       prettier: 3.9.6
       tsx: 4.23.12
     transitivePeerDependencies:
@@ -9464,7 +9464,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@17.3.0:
+  lint-staged@17.4.1:
     dependencies:
       picomatch: 4.0.7
       string-argv: 0.3.2
