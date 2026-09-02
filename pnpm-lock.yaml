@@ -186,8 +186,8 @@ importers:
         specifier: 26.1.1
         version: 26.1.1
       subset-font:
-        specifier: 2.6.0
-        version: 2.6.0
+        specifier: 2.7.0
+        version: 2.7.0
 
   packages/next:
     dependencies:
@@ -4964,8 +4964,8 @@ packages:
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
-  subset-font@2.6.0:
-    resolution: {integrity: sha512-iqaziPrYUuVp74E9ISripkQpKMSjMXhc9OtPfya6xh8in/SeQcYRUs0nsILd0dh/KF4olmQoXDVnOIOsB6bIxA==}
+  subset-font@2.7.0:
+    resolution: {integrity: sha512-KoBEshkhodCspvR8DweQFkxRB0OxLmXiWV49y8O5fksD9gf/qBK8gcLwUOlGP4ktm55t2Ot0gLRsVQLT4391QQ==}
 
   super-regex@1.1.0:
     resolution: {integrity: sha512-WHkws2ZflZe41zj6AolvvmaTrWds/VuyeYr9iPVv/oQeaIoVxMKaushfFWpOGDT+GuBrM/sVqF8KUCYQlSSTdQ==}
@@ -10448,11 +10448,10 @@ snapshots:
 
   stylis@4.2.0: {}
 
-  subset-font@2.6.0:
+  subset-font@2.7.0:
     dependencies:
       fontverter: 2.0.0
       harfbuzzjs: 0.10.3
-      lodash: 4.18.1
       p-limit: 3.1.0
 
   super-regex@1.1.0:

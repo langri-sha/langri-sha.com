@@ -180,7 +180,7 @@ project.addSubproject(
       devDeps: [
         '@fontsource/cinzel-decorative@5.3.0',
         '@types/node@26.1.1',
-        'subset-font@2.6.0',
+        'subset-font@2.7.0',
       ],
     },
   },
