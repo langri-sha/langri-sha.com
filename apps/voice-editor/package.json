@@ -14,7 +14,7 @@
     "@emotion/styled": "11.14.1",
     "@langri-sha/next": "workspace:*",
     "@langri-sha/voice": "workspace:*",
-    "next": "16.3.3",
+    "next": "16.3.4",
     "normalize.css": "8.0.1"
   },
   "devDependencies": {
