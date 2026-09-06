@@ -47,7 +47,7 @@ const project = new Project({
       'lint-staged@17.4.1',
       'prettier@3.9.6',
       'tsx@4.23.13',
-      'vitest@4.1.11',
+      'vitest@5.0.0',
     ],
   },
   babel: {},
