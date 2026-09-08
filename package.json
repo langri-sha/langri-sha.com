@@ -45,7 +45,7 @@
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.15.47",
     "@types/node": "26.1.1",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "husky": "9.1.7",
     "jest": "30.5.1",
     "lint-staged": "17.4.1",

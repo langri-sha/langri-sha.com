@@ -42,7 +42,7 @@ const project = new Project({
       '@langri-sha/projen-project@*',
       '@langri-sha/schemastore-to-typescript@^0.2.1',
       '@types/node@26.1.1',
-      'eslint@10.9.1',
+      'eslint@10.10.0',
       'jest@30.5.1',
       'lint-staged@17.4.1',
       'prettier@3.9.6',
