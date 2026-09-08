@@ -1,7 +1,7 @@
 module "secrets" {
   for_each = local.secrets
 
-  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/secrets?ref=v0.12.0"
+  source = "github.com/langri-sha/terraform-google-cloud-platform//modules/secrets?ref=v0.13.0"
 
   project             = each.value.project
   read_secret_version = try(each.value.read_secret_version, {})
