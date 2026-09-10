@@ -88,6 +88,8 @@ jobs:
     name: Preview
     if: vars.PREVIEW_SERVICE != ''
     runs-on: ubuntu-latest
+    concurrency:
+      group: preview-${{ github.ref }}
     environment:
       name: preview
       url: ${{ format('{0}{1}/', vars.URL, steps.selector.outputs.base-path) }}
