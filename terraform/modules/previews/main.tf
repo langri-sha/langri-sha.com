@@ -1,12 +1,12 @@
 resource "google_service_account" "previews" {
-  account_id   = "web-previews"
-  display_name = "Web previews"
-  description  = "Runtime identity of the preview origin service. It serves files baked into its own image and holds no roles."
+  account_id   = var.name
+  display_name = var.name
+  description  = "Runtime identity of the ${var.name} origin service. It serves files baked into its own image and holds no roles."
   project      = var.project
 }
 
 resource "google_cloud_run_v2_service" "previews" {
-  name     = "web-previews"
+  name     = var.name
   location = var.location
   project  = var.project
 

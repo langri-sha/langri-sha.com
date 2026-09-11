@@ -71,6 +71,9 @@ locals {
         PREVIEW_ROUTER_IMAGE   = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/preview-router"
         PREVIEW_ROUTER_SERVICE = module.previews_router.service
         PREVIEW_SERVICE        = module.previews.service
+
+        VOICE_EDITOR_IMAGE   = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/voice-editor"
+        VOICE_EDITOR_SERVICE = module.voice_editor.service
       })
 
       environments = {

@@ -14,6 +14,11 @@ variable "location" {
   description = "Cloud Run service location."
 }
 
+variable "name" {
+  type        = string
+  description = "Cloud Run service name, and the account ID of the service account it runs as."
+}
+
 variable "project" {
   type        = string
   description = "Project ID for the project where resources are configured."
