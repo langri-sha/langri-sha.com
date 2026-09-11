@@ -91,6 +91,7 @@ services:
     environment:
       PREVIEWS_SERVICE_HOST: ${PREVIEWS_SERVICE_HOST:-previews.invalid}
       RESOLVER: 127.0.0.11
+      VOICE_EDITOR_SERVICE_HOST: ${VOICE_EDITOR_SERVICE_HOST:-voice-editor.invalid}
     ports:
       - '9001:8080'
 

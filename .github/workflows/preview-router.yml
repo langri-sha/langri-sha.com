@@ -28,6 +28,7 @@ jobs:
         run: |
           docker run --rm \
             --env PREVIEWS_SERVICE_HOST=previews.invalid \
+            --env VOICE_EDITOR_SERVICE_HOST=voice-editor.invalid \
             preview-router nginx -t
 
       - name: Check routing
@@ -35,6 +36,7 @@ jobs:
           docker run --detach --name router --publish 8080:8080 \
             --env PREVIEWS_SERVICE_HOST=previews.invalid \
             --env RESOLVER=8.8.8.8 \
+            --env VOICE_EDITOR_SERVICE_HOST=voice-editor.invalid \
             preview-router
 
           for _ in $(seq 30); do
@@ -56,6 +58,9 @@ jobs:
           expect /pull/1234/foobar 502
           expect /pull/1234 308
           expect /release/v2.13.0/foobar 502
+          expect /voice-editor/foobar 502
+          expect /voice-editor/ 502
+          expect /voice-editor 308
           expect / 502
 
           expect /pull/abc/foobar 404
@@ -73,6 +78,7 @@ jobs:
 
           mapped pull-1234---previews.invalid
           mapped release-v2-13-0---previews.invalid
+          mapped voice-editor.invalid
 
   publish:
     name: Publish
