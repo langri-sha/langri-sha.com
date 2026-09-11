@@ -106,3 +106,10 @@ services:
     command: ['start', '--http', '--host=0.0.0.0', '--allowed-hosts=localhost']
     ports:
       - '8080:8080'
+
+  voice-editor-origin:
+    build:
+      context: ./apps/voice-editor
+    init: true
+    ports:
+      - '9004:8080'
