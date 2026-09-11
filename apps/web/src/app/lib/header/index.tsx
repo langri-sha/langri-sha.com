@@ -54,9 +54,10 @@ export const Header: React.FC = () => (
   </Root>
 )
 
-// The entrance animation lives on the children rather than here: an animated
-// transform and opacity form a stacking context for as long as they run, which
-// would isolate everything inside the header from the scene painted behind it.
+// Deliberately no z-index, and the entrance animation lives on the children
+// rather than here: either would make the header an isolated group, leaving the
+// wordmark's blend with nothing to mix against. Painting after the scene in the
+// flow is enough to keep it on top.
 const Root = styled.header`
   position: relative;
 `
