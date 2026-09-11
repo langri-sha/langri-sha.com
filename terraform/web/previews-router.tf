@@ -6,11 +6,12 @@ module "previews_router" {
     client_id     = module.secrets["previews-router"].secret_names["previews-iap-oauth2-client-id"]
     client_secret = module.secrets["previews-router"].secret_names["previews-iap-oauth2-client-secret"]
   }
-  image                 = var.preview_router_image
-  location              = local.region
-  members               = local.admin_members
-  network               = module.vpc["web"].network_name
-  previews_service_host = trimprefix(module.previews.service_url, "https://")
-  project               = module.project["edge"].project_id
-  subnetwork            = module.vpc["web"].subnets["${local.region}/cloud-run"].name
+  image                     = var.preview_router_image
+  location                  = local.region
+  members                   = local.admin_members
+  network                   = module.vpc["web"].network_name
+  previews_service_host     = trimprefix(module.previews.service_url, "https://")
+  project                   = module.project["edge"].project_id
+  subnetwork                = module.vpc["web"].subnets["${local.region}/cloud-run"].name
+  voice_editor_service_host = trimprefix(module.voice_editor.service_url, "https://")
 }

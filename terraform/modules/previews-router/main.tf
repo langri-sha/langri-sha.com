@@ -47,6 +47,11 @@ resource "google_cloud_run_v2_service" "previews_router" {
         value = var.previews_service_host
       }
 
+      env {
+        name  = "VOICE_EDITOR_SERVICE_HOST"
+        value = var.voice_editor_service_host
+      }
+
       resources {
         cpu_idle = true
 

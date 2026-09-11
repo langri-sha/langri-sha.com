@@ -28,6 +28,11 @@ variable "subnetwork" {
   description = "Subnetwork the service egresses through. Requires Private Google Access."
 }
 
+variable "voice_editor_service_host" {
+  type        = string
+  description = "Host of the voice editor origin service, without scheme. The editor is served from the /voice-editor/ prefix of the preview host."
+}
+
 variable "iap_oauth2_secrets" {
   default     = null
   description = "Secret Manager secrets holding the OAuth 2.0 client credentials for IAP. Null leaves IAP off and the router out of the URL map. Their versions are added out of band."

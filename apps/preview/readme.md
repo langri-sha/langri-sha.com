@@ -1,24 +1,25 @@
 # preview
 
 The front door for `https://preview.langri-sha.com`. An nginx image that maps a
-preview selector onto a Cloud Run traffic tag and proxies to that revision.
+preview selector onto the Cloud Run revision serving it and proxies there.
 
 The shape is a well-worn one: a single preview host, a small closed set of path
-selectors, and one Cloud Run service carrying a revision per preview.
+selectors, and one Cloud Run service per app carrying a revision per preview.
 
 ## Routing
 
-Previews are tagged revisions of a single `web-previews` service. Cloud Run
-publishes every tag at `<tag>---<service host>`, so the router rewrites the
-hostname and strips the selector — the origin serves the site from its own root
-and does not know it is mounted at a subpath.
+Previews of the site are tagged revisions of a single `web-previews` service.
+Cloud Run publishes every tag at `<tag>---<service host>`, so the router
+rewrites the hostname and strips the selector — the origin serves from its own
+root and does not know it is mounted at a subpath.
 
-| Request                   | Traffic tag            | Upstream path |
-| ------------------------- | ---------------------- | ------------- |
-| `/`, `/anything`          | _(untagged)_           | `/anything`   |
-| `/pull/123/about`         | `pull-123`             | `/about`      |
-| `/release/v2.13.0/about`  | `release-v2-13-0`      | `/about`      |
-| `/release/v2.0.0-alpha/…` | `release-v2-0-0-alpha` | `/…`          |
+| Request                   | Upstream                               | Upstream path |
+| ------------------------- | -------------------------------------- | ------------- |
+| `/`, `/anything`          | `web-previews`, untagged               | `/anything`   |
+| `/pull/123/about`         | `web-previews`, `pull-123`             | `/about`      |
+| `/release/v2.13.0/about`  | `web-previews`, `release-v2-13-0`      | `/about`      |
+| `/release/v2.0.0-alpha/…` | `web-previews`, `release-v2-0-0-alpha` | `/…`          |
+| `/voice-editor/tuner`     | `voice-editor`                         | `/tuner`      |
 
 `main` is the untagged revision, which holds 100% of the service's traffic; pull
 request and release revisions are deployed with `--no-traffic` and are reachable
@@ -30,6 +31,20 @@ past seven digits, `/release/2.13.0/` — answer 404. They deliberately do not
 fall through to `main`: a typo'd pull request number must not quietly serve a
 different build. `/pull/123` and `/release/v2.13.0` redirect to their trailing
 slash form.
+
+## Apps that are not the site
+
+`/voice-editor/` is the tuning console in `apps/voice-editor`, and it is reached
+by service name rather than by traffic tag. A tag is not an isolation boundary:
+deploying the site to `main` moves `web-previews` traffic to its latest
+revision, so any other app deployed into that service is one badly-timed merge
+away from being served at the preview root. An origin of its own removes the
+failure mode rather than serializing around it, and leaves the editor room for
+preview tags of its own later.
+
+The cost is that `/voice-editor` and everything under it are reserved on this
+host: the site cannot serve a route there. Anything that merely starts with the
+same letters — `/voice-editors` — is an ordinary path and still reaches `main`.
 
 ## Identity headers
 
@@ -48,15 +63,17 @@ routes.
 
 ## Configuration
 
-| Variable                | Default           |                                                                                                       |
-| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------- |
-| `PORT`                  | `8080`            | Injected by Cloud Run.                                                                                |
-| `PREVIEWS_SERVICE_HOST` | —                 | Host of the `web-previews` service, without a tag or scheme, e.g. `web-previews-abc123-ew.a.run.app`. |
-| `RESOLVER`              | `169.254.169.254` | DNS for the per-request upstream lookup. The metadata server on Cloud Run.                            |
+| Variable                    | Default           |                                                                                                       |
+| --------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `PORT`                      | `8080`            | Injected by Cloud Run.                                                                                |
+| `PREVIEWS_SERVICE_HOST`     | —                 | Host of the `web-previews` service, without a tag or scheme, e.g. `web-previews-abc123-ew.a.run.app`. |
+| `RESOLVER`                  | `169.254.169.254` | DNS for the per-request upstream lookup. The metadata server on Cloud Run.                            |
+| `VOICE_EDITOR_SERVICE_HOST` | —                 | Host of the `voice-editor` service, without a scheme.                                                 |
 
-`PREVIEWS_SERVICE_HOST` has no default on purpose. If it is unset the template
-renders the placeholder verbatim and every proxied request fails, which is a
-louder failure than silently routing somewhere plausible.
+Neither service host has a default, on purpose. If one is unset the template
+renders the placeholder verbatim, nginx refuses to start on an unknown variable,
+and the revision never takes traffic — a louder failure than silently routing
+somewhere plausible.
 
 ## Development
 
@@ -70,6 +87,7 @@ router constructed, which is the behaviour worth checking.
 
 ```sh
 curl -i http://localhost:9001/pull/1234/foobar
+curl -i http://localhost:9001/voice-editor/
 docker compose logs preview   # …pull-1234---previews.invalid could not be resolved
 ```
 
@@ -77,6 +95,7 @@ Point it at something real to serve actual bytes:
 
 ```sh
 PREVIEWS_SERVICE_HOST=web-previews-abc123-ew.a.run.app \
+VOICE_EDITOR_SERVICE_HOST=voice-editor-abc123-ew.a.run.app \
   docker compose up --build --force-recreate preview
 ```
 
