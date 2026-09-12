@@ -30,8 +30,8 @@
   "dependencies": {
     "@babel/core": "8.0.1",
     "@babel/register": "8.0.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",
