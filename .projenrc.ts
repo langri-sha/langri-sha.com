@@ -30,8 +30,8 @@ const project = new Project({
     deps: [
       '@babel/core@8.0.1',
       '@babel/register@8.0.1',
-      'react-dom@19.2.8',
-      'react@19.2.8',
+      'react-dom@19.3.0',
+      'react@19.3.0',
     ],
     devDeps: [
       '@langri-sha/babel-preset@^0.6.3',
@@ -227,7 +227,7 @@ project.addSubproject(
         'next@^16.0.0',
         'react@^19.0.0',
       ],
-      devDeps: ['@types/react@19.2.18', 'next@16.3.4'],
+      devDeps: ['@types/react@19.3.0', 'next@16.3.4'],
     },
   },
   subproject,
