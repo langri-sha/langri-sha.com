@@ -61,6 +61,9 @@ jobs:
           expect /voice-editor/foobar 502
           expect /voice-editor/ 502
           expect /voice-editor 308
+          expect /pull/1234/voice-editor/foobar 502
+          expect /pull/1234/voice-editor/ 502
+          expect /pull/1234/voice-editor 308
           expect / 502
 
           expect /pull/abc/foobar 404
@@ -68,7 +71,7 @@ jobs:
           expect /release/2.13.0/foobar 404
 
           mapped() {
-            if ! docker logs router 2>&1 | grep --quiet "$1"; then
+            if ! docker logs router 2>&1 | grep --quiet " $1 "; then
               echo "::error::no request was routed to $1"
               return 1
             fi
@@ -79,6 +82,7 @@ jobs:
           mapped pull-1234---previews.invalid
           mapped release-v2-13-0---previews.invalid
           mapped voice-editor.invalid
+          mapped pull-1234---voice-editor.invalid
 
   publish:
     name: Publish
