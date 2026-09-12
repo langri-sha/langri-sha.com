@@ -19,7 +19,8 @@ root and does not know it is mounted at a subpath.
 | `/pull/123/about`         | `web-previews`, `pull-123`             | `/about`      |
 | `/release/v2.13.0/about`  | `web-previews`, `release-v2-13-0`      | `/about`      |
 | `/release/v2.0.0-alpha/…` | `web-previews`, `release-v2-0-0-alpha` | `/…`          |
-| `/voice-editor/tuner`     | `voice-editor`                         | `/tuner`      |
+| `/voice-editor/tuner`     | `voice-editor`, untagged               | `/tuner`      |
+| `/pull/123/voice-editor/` | `voice-editor`, `pull-123`             | `/`           |
 
 `main` is the untagged revision, which holds 100% of the service's traffic; pull
 request and release revisions are deployed with `--no-traffic` and are reachable
@@ -34,17 +35,32 @@ slash form.
 
 ## Apps that are not the site
 
-`/voice-editor/` is the tuning console in `apps/voice-editor`, and it is reached
-by service name rather than by traffic tag. A tag is not an isolation boundary:
-deploying the site to `main` moves `web-previews` traffic to its latest
-revision, so any other app deployed into that service is one badly-timed merge
-away from being served at the preview root. An origin of its own removes the
-failure mode rather than serializing around it, and leaves the editor room for
-preview tags of its own later.
+`/voice-editor/` is the tuning console in `apps/voice-editor`, served from an
+origin of its own rather than a traffic tag on `web-previews`. A tag is not an
+isolation boundary: deploying the site to `main` moves that service's traffic to
+its latest revision, so any other app deployed into it is one badly-timed merge
+away from being served at the preview root.
 
-The cost is that `/voice-editor` and everything under it are reserved on this
-host: the site cannot serve a route there. Anything that merely starts with the
-same letters — `/voice-editors` — is an ordinary path and still reaches `main`.
+The selector names the build and the prefix names the app, so the two compose.
+`main` is `/voice-editor/`, on the revision holding the editor's traffic; a pull
+request is `/pull/123/voice-editor/`, on the `pull-123` tag of that same
+service. The site's `pull-123` tag lives on a different service, so the tag
+names the pull request and the service names the app, with no collision between
+them.
+
+The tagged form has to be matched before the site's `/pull/` selector, which
+would otherwise swallow it and ask the site's build for a route it does not
+have. That ordering is why the editor's locations sit first in the file.
+
+A pull request that does not touch the editor has no `pull-<n>` tag on its
+service, and `/pull/<n>/voice-editor/` answers Cloud Run's own 404 for an
+unknown tag. The workflow runs on the editor and on the workspace packages, so
+the URL exists exactly when there is an editor change to look at.
+
+The cost is that `/voice-editor` is reserved on this host, at the root and under
+every selector: the site cannot serve a route there. Anything that merely starts
+with the same letters — `/voice-editors` — is an ordinary path and still reaches
+`main`.
 
 ## Identity headers
 

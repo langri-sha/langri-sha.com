@@ -32,6 +32,24 @@ server {
   proxy_http_version 1.1;
   proxy_ssl_server_name on;
 
+  location ~ "^/pull/([1-9][0-9]{0,6})/voice-editor/(.*)$" {
+    set $service pull-$1---${VOICE_EDITOR_SERVICE_HOST};
+    proxy_pass    https://$service/$2$is_args$args;
+  }
+
+  location ~ "^/pull/([1-9][0-9]{0,6})/voice-editor$" {
+    return 308 /pull/$1/voice-editor/$is_args$args;
+  }
+
+  location ~ "^/voice-editor/(.*)$" {
+    set $service ${VOICE_EDITOR_SERVICE_HOST};
+    proxy_pass    https://$service/$1$is_args$args;
+  }
+
+  location = /voice-editor {
+    return 308 /voice-editor/$is_args$args;
+  }
+
   # /pull/<n>/… → the `pull-<n>` revision.
   location ~ "^/pull/([1-9][0-9]{0,6})/(.*)$" {
     set $service pull-$1---${PREVIEWS_SERVICE_HOST};
@@ -57,19 +75,6 @@ server {
 
   location ~ "^/release/(v[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-z][0-9a-z-]*)?)$" {
     return 308 /release/$1/$is_args$args;
-  }
-
-  # /voice-editor/… → the tuning console. It is not a preview of the site, so it
-  # has an origin of its own rather than a tag on `web-previews`: deploying the
-  # site to `main` moves that service's traffic to its latest revision, and the
-  # editor's revisions must never be what that picks up.
-  location ~ "^/voice-editor/(.*)$" {
-    set $service ${VOICE_EDITOR_SERVICE_HOST};
-    proxy_pass    https://$service/$1$is_args$args;
-  }
-
-  location = /voice-editor {
-    return 308 /voice-editor/$is_args$args;
   }
 
   # A selector that does not parse is a 404 rather than a fall-through to the
