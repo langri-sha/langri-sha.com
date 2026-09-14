@@ -227,7 +227,7 @@ project.addSubproject(
         'next@^16.0.0',
         'react@^19.0.0',
       ],
-      devDeps: ['@types/react@19.3.0', 'next@16.3.4'],
+      devDeps: ['@types/react@19.3.0', 'next@16.3.5'],
     },
   },
   subproject,
