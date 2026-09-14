@@ -28,8 +28,8 @@
     "test": "pnpm exec vitest --passWithNoTests"
   },
   "dependencies": {
-    "@babel/core": "8.0.1",
-    "@babel/register": "8.0.1",
+    "@babel/core": "8.0.5",
+    "@babel/register": "8.0.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
