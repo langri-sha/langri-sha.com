@@ -1,11 +1,18 @@
-import { css } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { animations } from '@/styles'
 
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
-import { Dial, Lattice } from './instruments'
+import {
+  Aperture,
+  Dial,
+  Hexagon,
+  type Instrument,
+  Lattice,
+  Meridian,
+} from './instruments'
 import { Wordmark } from './wordmark'
 
 export interface HeaderProps {
@@ -18,6 +25,7 @@ interface ProfileProps {
   href: string
   title: string
   icon: React.FC<{ className?: string }>
+  frame: Instrument
   glyph: number
 }
 
@@ -27,6 +35,7 @@ const profiles: ProfileProps[] = [
     href: 'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
     title: 'StackOverflow profile #SOreadytohelp 💓',
     icon: Stackoverflow,
+    frame: Meridian,
     glyph: 0.34,
   },
   {
@@ -34,6 +43,7 @@ const profiles: ProfileProps[] = [
     href: 'https://github.com/langri-sha',
     title: 'GitHub profile',
     icon: Github,
+    frame: Lattice,
     glyph: 0.38,
   },
   {
@@ -41,6 +51,7 @@ const profiles: ProfileProps[] = [
     href: 'https://www.npmjs.com/~langri-sha',
     title: 'NPM profile',
     icon: Npm,
+    frame: Hexagon,
     glyph: 0.3,
   },
   {
@@ -48,6 +59,7 @@ const profiles: ProfileProps[] = [
     href: 'https://hub.docker.com/u/langrisha/',
     title: 'Docker Hub profile',
     icon: Docker,
+    frame: Aperture,
     glyph: 0.34,
   },
 ]
@@ -58,6 +70,55 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
       <Wordmark />
     </Title>
     <Nav>
+      <svg width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient
+            id="instrument-line"
+            gradientUnits="userSpaceOnUse"
+            x1="18"
+            y1="8"
+            x2="78"
+            y2="96"
+          >
+            <stop stopColor="#f0fcff" />
+            <stop offset="0.28" stopColor="#a1e5ff" />
+            <stop offset="0.52" stopColor="#438ee0" />
+            <stop offset="0.72" stopColor="#a493e6" />
+            <stop offset="1" stopColor="#c5f3ff" />
+          </linearGradient>
+          <linearGradient
+            id="instrument-warm"
+            gradientUnits="userSpaceOnUse"
+            x1="25"
+            y1="5"
+            x2="75"
+            y2="95"
+          >
+            <stop stopColor="#fff1df" />
+            <stop offset="0.4" stopColor="#ffaf9f" />
+            <stop offset="0.75" stopColor="#ed789f" />
+            <stop offset="1" stopColor="#b3a1fa" />
+          </linearGradient>
+          <linearGradient id="instrument-glyph" x1="0" y1="0" x2="0.8" y2="1">
+            <stop stopColor="#f1fcff" />
+            <stop offset="0.42" stopColor="#b1e9ff" />
+            <stop offset="0.78" stopColor="#6daee9" />
+            <stop offset="1" stopColor="#c1b5f0" />
+          </linearGradient>
+          <linearGradient
+            id="instrument-glyph-warm"
+            x1="0"
+            y1="0"
+            x2="0.8"
+            y2="1"
+          >
+            <stop stopColor="#fff3dc" />
+            <stop offset="0.42" stopColor="#ffb7a0" />
+            <stop offset="0.78" stopColor="#f382ad" />
+            <stop offset="1" stopColor="#d2a1f5" />
+          </linearGradient>
+        </defs>
+      </svg>
       {profiles.slice(0, 2).map((profile) => (
         <Profile key={profile.name} {...profile} />
       ))}
@@ -68,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
           playing ? 'Pause the ambient drone' : 'Play the ambient drone'
         }
         onClick={onToggle}
-        style={{ '--instrument-glyph-scale': 0.42 } as React.CSSProperties}
+        style={{ '--instrument-glyph-scale': 0.64 } as React.CSSProperties}
       >
         <Dial />
         <ToggleGlyph aria-hidden="true">
@@ -86,6 +147,7 @@ const Profile: React.FC<ProfileProps> = ({
   href,
   title,
   icon: Icon,
+  frame: Frame,
   glyph,
 }) => (
   <Link
@@ -93,13 +155,18 @@ const Profile: React.FC<ProfileProps> = ({
     title={title}
     style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
   >
-    <Lattice />
+    <Frame />
     <Glyph aria-hidden="true">
       <Icon />
     </Glyph>
     <Label>{title}</Label>
   </Link>
 )
+
+const radiate = keyframes`
+  0%, 100% { opacity: 0.55; transform: scale(0.94); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+`
 
 const Root = styled.header`
   position: relative;
@@ -108,19 +175,24 @@ const Root = styled.header`
 const Title = styled.h1`
   width: min(80vw, 60rem);
   margin-top: 0;
+  margin-inline: auto;
   user-select: none;
 `
 
 const Nav = styled.nav`
   ${animations.booming};
-  --instrument-size: clamp(4.4rem, 14vw, 8.8rem);
-  --instrument-gap: clamp(0.8rem, 1.8vw, 2rem);
+  --instrument-size: clamp(4.4rem, 14vw, 10rem);
+  --instrument-gap: clamp(1.2rem, 3vw, 3.6rem);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   gap: var(--instrument-gap);
   margin-top: clamp(0.4rem, 1.6vh, 1.6rem);
+
+  > svg {
+    position: absolute;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -129,20 +201,12 @@ const Nav = styled.nav`
 
 const engaged = css`
   --instrument-engaged: 1;
-  --instrument-motion: running;
-  --instrument-line: rgb(190, 242, 255);
-  --instrument-soft: rgba(190, 242, 255, 0.72);
-  --instrument-glyph: rgb(255, 255, 255);
 `
 
 const instrument = css`
   --instrument-engaged: 0;
-  --instrument-motion: paused;
-  --instrument-line: rgba(128, 222, 255, 0.78);
-  --instrument-soft: rgba(128, 222, 255, 0.34);
-  --instrument-accent: rgba(255, 126, 163, 0.92);
-  --instrument-accent-glow: rgba(255, 126, 163, 0.55);
-  --instrument-glyph: rgb(196, 230, 248);
+  --instrument-accent: #ffc3ac;
+  --instrument-accent-glow: rgba(255, 139, 167, 0.65);
   position: relative;
   display: grid;
   flex: none;
@@ -150,11 +214,24 @@ const instrument = css`
   height: var(--instrument-size);
   place-items: center;
   border-radius: 50%;
-  color: var(--instrument-glyph);
   -webkit-tap-highlight-color: transparent;
-  transition:
-    color 0.35s ease,
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &::before {
+    position: absolute;
+    inset: 4%;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at 38% 30%,
+      rgba(117, 197, 255, 0.12),
+      rgba(53, 99, 207, 0.07) 42%,
+      transparent 70%
+    );
+    content: '';
+    pointer-events: none;
+    opacity: calc(0.65 + 0.35 * var(--instrument-engaged));
+    transition: opacity 0.4s ease;
+  }
 
   &:focus-visible {
     ${engaged};
@@ -188,8 +265,8 @@ const Link = styled.a`
 
 const Toggle = styled.button`
   ${instrument};
-  width: calc(var(--instrument-size) * 1.18);
-  height: calc(var(--instrument-size) * 1.18);
+  width: calc(var(--instrument-size) * 1.28);
+  height: calc(var(--instrument-size) * 1.28);
   margin-inline: calc(var(--instrument-gap) * 0.08);
   padding: 0;
   border: 0;
@@ -198,27 +275,24 @@ const Toggle = styled.button`
   cursor: pointer;
 
   &::before {
-    position: absolute;
-    inset: 22%;
-    border-radius: 50%;
+    inset: 2%;
     background: radial-gradient(
-      circle,
-      rgba(255, 126, 163, 0.2),
-      rgba(67, 180, 255, 0.08) 52%,
+      ellipse at 42% 38%,
+      rgba(255, 170, 143, 0.2),
+      rgba(147, 99, 205, 0.1) 36%,
+      rgba(51, 143, 255, 0.08) 55%,
       transparent 72%
     );
     box-shadow:
-      0 0 1.4rem rgba(255, 126, 163, 0.16),
-      inset 0 0 1.2rem rgba(110, 220, 255, 0.12);
-    content: '';
-    opacity: calc(0.5 + 0.5 * var(--instrument-engaged));
-    transition:
-      box-shadow 0.4s ease,
-      opacity 0.4s ease;
+      0 0 2.8rem rgba(72, 151, 255, 0.13),
+      inset 0 0 2rem rgba(101, 179, 255, 0.09);
+    transition: box-shadow 0.4s ease;
+    animation: ${radiate} 5s ease-in-out infinite;
   }
 
   &[aria-pressed='true'] {
     ${engaged};
+    --instrument-tempo: 1.15s;
     --instrument-accent: rgb(255, 150, 182);
     --instrument-accent-glow: rgba(255, 126, 163, 0.85);
 
@@ -226,6 +300,12 @@ const Toggle = styled.button`
       box-shadow:
         0 0 2rem rgba(255, 126, 163, 0.3),
         inset 0 0 1.4rem rgba(110, 220, 255, 0.2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
     }
   }
 `
@@ -236,18 +316,27 @@ const Glyph = styled.span`
   place-items: center;
   font-size: calc(var(--instrument-size) * var(--instrument-glyph-scale));
   line-height: 1;
-  filter: drop-shadow(
-    0 0 0.35rem rgba(150, 232, 255, calc(0.7 * var(--instrument-engaged)))
-  );
+  filter: drop-shadow(0 0 2px rgba(139, 219, 255, 0.6))
+    drop-shadow(0 0 9px rgba(61, 143, 255, 0.45))
+    brightness(calc(1 + 0.2 * var(--instrument-engaged)));
   transition: filter 0.35s ease;
+
+  svg {
+    fill: url(#instrument-glyph);
+  }
 `
 
 const ToggleGlyph = styled(Glyph)`
-  color: var(--instrument-accent);
-  filter: drop-shadow(0 0 0.28rem var(--instrument-accent-glow))
-    drop-shadow(
-      0 0 0.6rem rgba(255, 126, 163, calc(0.45 * var(--instrument-engaged)))
-    );
+  filter: drop-shadow(0 0 2px rgba(255, 203, 166, 0.8))
+    drop-shadow(0 0 7px var(--instrument-accent-glow))
+    drop-shadow(0 0 16px rgba(242, 116, 167, 0.35));
+
+  svg {
+    fill: none;
+    stroke: url(#instrument-glyph-warm);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
 `
 
 const Label = styled.span`
