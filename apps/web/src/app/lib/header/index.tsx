@@ -183,12 +183,14 @@ const Nav = styled.nav`
   ${animations.booming};
   --instrument-size: clamp(4.4rem, 14vw, 10rem);
   --instrument-gap: clamp(1.2rem, 3vw, 3.6rem);
+  --instrument-step: clamp(0.6rem, 1.2vw, 1.4rem);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   gap: var(--instrument-gap);
   margin-top: clamp(0.4rem, 1.6vh, 1.6rem);
+  padding-block: var(--instrument-step);
 
   > svg {
     position: absolute;
@@ -261,10 +263,16 @@ const instrument = css`
 const Link = styled.a`
   ${instrument};
   text-decoration: none;
+
+  &:first-of-type,
+  &:last-of-type {
+    top: calc(-1 * var(--instrument-step));
+  }
 `
 
 const Toggle = styled.button`
   ${instrument};
+  top: var(--instrument-step);
   width: calc(var(--instrument-size) * 1.28);
   height: calc(var(--instrument-size) * 1.28);
   margin-inline: calc(var(--instrument-gap) * 0.08);
