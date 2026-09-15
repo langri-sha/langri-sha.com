@@ -72,7 +72,6 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
       >
         <Dial />
         <Glyph aria-hidden="true">{playing ? <Pause /> : <Play />}</Glyph>
-        <Readout aria-hidden="true">{playing ? 'Pause' : 'Play'}</Readout>
       </Toggle>
       {profiles.slice(2).map((profile) => (
         <Profile key={profile.name} {...profile} />
@@ -82,7 +81,6 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
 )
 
 const Profile: React.FC<ProfileProps> = ({
-  name,
   href,
   title,
   icon: Icon,
@@ -97,7 +95,6 @@ const Profile: React.FC<ProfileProps> = ({
     <Glyph aria-hidden="true">
       <Icon />
     </Glyph>
-    <Readout aria-hidden="true">{name}</Readout>
     <Label>{title}</Label>
   </Link>
 )
@@ -212,26 +209,6 @@ const Glyph = styled.span`
     0 0 0.35rem rgba(150, 232, 255, calc(0.7 * var(--instrument-engaged)))
   );
   transition: filter 0.35s ease;
-`
-
-const Readout = styled.span`
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 50%;
-  font-family: var(--font-default);
-  font-size: 1.2rem;
-  line-height: 1;
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--instrument-line);
-  opacity: var(--instrument-engaged);
-  transform: translate(-50%, calc(0.4rem * (1 - var(--instrument-engaged))));
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-  pointer-events: none;
 `
 
 const Label = styled.span`
