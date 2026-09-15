@@ -5,7 +5,7 @@ import * as React from 'react'
 import { animations } from '@/styles'
 
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
-import { Dial, Hexagon, Lattice, Orbital, Reticle } from './instruments'
+import { Dial, Lattice } from './instruments'
 import { Wordmark } from './wordmark'
 
 export interface HeaderProps {
@@ -18,7 +18,6 @@ interface ProfileProps {
   href: string
   title: string
   icon: React.FC<{ className?: string }>
-  instrument: React.FC<{ className?: string }>
   glyph: number
 }
 
@@ -28,15 +27,13 @@ const profiles: ProfileProps[] = [
     href: 'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
     title: 'StackOverflow profile #SOreadytohelp 💓',
     icon: Stackoverflow,
-    instrument: Orbital,
-    glyph: 0.4,
+    glyph: 0.34,
   },
   {
     name: 'GitHub',
     href: 'https://github.com/langri-sha',
     title: 'GitHub profile',
     icon: Github,
-    instrument: Lattice,
     glyph: 0.38,
   },
   {
@@ -44,16 +41,14 @@ const profiles: ProfileProps[] = [
     href: 'https://www.npmjs.com/~langri-sha',
     title: 'NPM profile',
     icon: Npm,
-    instrument: Hexagon,
-    glyph: 0.34,
+    glyph: 0.3,
   },
   {
     name: 'Docker',
     href: 'https://hub.docker.com/u/langrisha/',
     title: 'Docker Hub profile',
     icon: Docker,
-    instrument: Reticle,
-    glyph: 0.38,
+    glyph: 0.34,
   },
 ]
 
@@ -91,7 +86,6 @@ const Profile: React.FC<ProfileProps> = ({
   href,
   title,
   icon: Icon,
-  instrument: Instrument,
   glyph,
 }) => (
   <Link
@@ -99,7 +93,7 @@ const Profile: React.FC<ProfileProps> = ({
     title={title}
     style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
   >
-    <Instrument />
+    <Lattice />
     <Glyph aria-hidden="true">
       <Icon />
     </Glyph>
