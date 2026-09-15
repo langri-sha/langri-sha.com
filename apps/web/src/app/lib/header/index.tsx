@@ -68,10 +68,12 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
           playing ? 'Pause the ambient drone' : 'Play the ambient drone'
         }
         onClick={onToggle}
-        style={{ '--instrument-glyph-scale': 0.3 } as React.CSSProperties}
+        style={{ '--instrument-glyph-scale': 0.42 } as React.CSSProperties}
       >
         <Dial />
-        <Glyph aria-hidden="true">{playing ? <Pause /> : <Play />}</Glyph>
+        <ToggleGlyph aria-hidden="true">
+          {playing ? <Pause /> : <Play />}
+        </ToggleGlyph>
       </Toggle>
       {profiles.slice(2).map((profile) => (
         <Profile key={profile.name} {...profile} />
@@ -186,16 +188,45 @@ const Link = styled.a`
 
 const Toggle = styled.button`
   ${instrument};
+  width: calc(var(--instrument-size) * 1.18);
+  height: calc(var(--instrument-size) * 1.18);
+  margin-inline: calc(var(--instrument-gap) * 0.08);
   padding: 0;
   border: 0;
   background: none;
   font: inherit;
   cursor: pointer;
 
+  &::before {
+    position: absolute;
+    inset: 22%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 126, 163, 0.2),
+      rgba(67, 180, 255, 0.08) 52%,
+      transparent 72%
+    );
+    box-shadow:
+      0 0 1.4rem rgba(255, 126, 163, 0.16),
+      inset 0 0 1.2rem rgba(110, 220, 255, 0.12);
+    content: '';
+    opacity: calc(0.5 + 0.5 * var(--instrument-engaged));
+    transition:
+      box-shadow 0.4s ease,
+      opacity 0.4s ease;
+  }
+
   &[aria-pressed='true'] {
-    --instrument-motion: running;
+    ${engaged};
     --instrument-accent: rgb(255, 150, 182);
     --instrument-accent-glow: rgba(255, 126, 163, 0.85);
+
+    &::before {
+      box-shadow:
+        0 0 2rem rgba(255, 126, 163, 0.3),
+        inset 0 0 1.4rem rgba(110, 220, 255, 0.2);
+    }
   }
 `
 
@@ -209,6 +240,14 @@ const Glyph = styled.span`
     0 0 0.35rem rgba(150, 232, 255, calc(0.7 * var(--instrument-engaged)))
   );
   transition: filter 0.35s ease;
+`
+
+const ToggleGlyph = styled(Glyph)`
+  color: var(--instrument-accent);
+  filter: drop-shadow(0 0 0.28rem var(--instrument-accent-glow))
+    drop-shadow(
+      0 0 0.6rem rgba(255, 126, 163, calc(0.45 * var(--instrument-engaged)))
+    );
 `
 
 const Label = styled.span`
