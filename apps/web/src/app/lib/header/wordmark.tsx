@@ -62,9 +62,7 @@ export const Wordmark = styled(WordmarkMark)`
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 1px 1px rgba(8, 14, 38, 0.8))
-    drop-shadow(0 0 3px rgba(131, 206, 255, 0.4))
-    drop-shadow(0 0 12px rgba(87, 142, 244, 0.28));
+  overflow: visible;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
