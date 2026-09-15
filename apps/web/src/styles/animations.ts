@@ -15,4 +15,8 @@ const boom = keyframes`
 export const booming: SerializedStyles = css`
   animation-duration: 3s;
   animation-name: ${boom};
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 `

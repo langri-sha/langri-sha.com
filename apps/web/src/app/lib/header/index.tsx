@@ -195,10 +195,6 @@ const Nav = styled.nav`
   > svg {
     position: absolute;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
 `
 
 const engaged = css`

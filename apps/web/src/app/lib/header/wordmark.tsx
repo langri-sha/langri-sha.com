@@ -63,8 +63,4 @@ export const Wordmark = styled(WordmarkMark)`
   width: 100%;
   height: auto;
   overflow: visible;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
 `
