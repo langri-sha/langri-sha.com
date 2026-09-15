@@ -4,8 +4,8 @@ import * as React from 'react'
 
 import { animations } from '@/styles'
 
-import { Docker, Github, Keybase, Npm, Stackoverflow } from './icons'
-import { Dial, Hexagon, Lattice, Orbital, Reticle } from './instruments'
+import { Docker, Github, Npm, Stackoverflow } from './icons'
+import { Hexagon, Lattice, Orbital, Reticle } from './instruments'
 import { Wordmark } from './wordmark'
 
 const links = [
@@ -26,14 +26,6 @@ const links = [
     glyph: 0.38,
   },
   {
-    name: 'Docker',
-    href: 'https://hub.docker.com/u/langrisha/',
-    title: 'Docker Hub profile',
-    icon: Docker,
-    instrument: Reticle,
-    glyph: 0.38,
-  },
-  {
     name: 'NPM',
     href: 'https://www.npmjs.com/~langri-sha',
     title: 'NPM profile',
@@ -42,11 +34,11 @@ const links = [
     glyph: 0.34,
   },
   {
-    name: 'Keybase',
-    href: 'https://keybase.io/langrisha',
-    title: 'Identity details on Keybase.io',
-    icon: Keybase,
-    instrument: Dial,
+    name: 'Docker',
+    href: 'https://hub.docker.com/u/langrisha/',
+    title: 'Docker Hub profile',
+    icon: Docker,
+    instrument: Reticle,
     glyph: 0.38,
   },
 ]
