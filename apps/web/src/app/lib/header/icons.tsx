@@ -112,6 +112,9 @@ export const Play: React.FC<{ className?: string }> = styled(
   ),
 )`
   ${icon};
+  fill: none;
+  stroke-width: 2.25;
+  stroke-linejoin: round;
 `
 
 export const Pause: React.FC<{ className?: string }> = styled(

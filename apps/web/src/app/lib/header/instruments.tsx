@@ -27,13 +27,15 @@ const Frame = styled.svg`
 
   [data-line],
   [data-soft],
-  [data-accent-line] {
+  [data-accent-line],
+  [data-waveform] {
     stroke-linecap: square;
     vector-effect: non-scaling-stroke;
   }
 
   [data-line],
-  [data-band] {
+  [data-band],
+  [data-waveform] {
     stroke: var(--instrument-line);
   }
 
@@ -47,7 +49,12 @@ const Frame = styled.svg`
   }
 
   [data-band] {
-    stroke-width: 3.6;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+
+  [data-waveform] {
+    stroke-width: 1.35px;
   }
 
   [data-node] {
@@ -71,7 +78,8 @@ const Frame = styled.svg`
   [data-line],
   [data-soft],
   [data-band],
-  [data-node] {
+  [data-node],
+  [data-waveform] {
     transition:
       stroke 0.35s ease,
       fill 0.35s ease;
@@ -121,22 +129,40 @@ export const Lattice: Instrument = (props) => (
 
 export const Dial: Instrument = (props) => (
   <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...props}>
+    <g data-waveform>
+      <path d="M-9 46v8M-4 40v20M1 34v32M6 27v46M11 37v26" />
+      <path d="M89 37v26M94 27v46M99 34v32M104 40v20M109 46v8" />
+    </g>
     <circle
       data-band
       data-spin
       cx="50"
       cy="50"
-      r="42"
+      r="43"
       pathLength="100"
-      strokeDasharray="9.5 3"
-      strokeDashoffset="1.5"
+      strokeDasharray="0.8 3.2"
+      strokeDashoffset="0.4"
     />
-    <circle data-accent-line cx="50" cy="50" r="37.5" opacity="0.6" />
-    <circle data-soft cx="50" cy="50" r="34" />
+    <circle
+      data-accent-line
+      data-spin
+      cx="50"
+      cy="50"
+      r="38"
+      pathLength="100"
+      strokeDasharray="15 35"
+      opacity="0.9"
+    />
+    <circle data-soft cx="50" cy="50" r="32.5" />
+    <g data-node>
+      <circle cx="50" cy="7" r="1.8" />
+      <circle cx="93" cy="50" r="1.5" />
+      <circle cx="50" cy="93" r="1.8" />
+      <circle cx="7" cy="50" r="1.5" />
+    </g>
     <g data-accent>
-      <polygon points="46.6,1 53.4,1 50,6" />
-      <polygon points="46.6,1 53.4,1 50,6" transform="rotate(120 50 50)" />
-      <polygon points="46.6,1 53.4,1 50,6" transform="rotate(240 50 50)" />
+      <polygon points="46.6,0 53.4,0 50,5.5" />
+      <polygon points="46.6,100 53.4,100 50,94.5" />
     </g>
   </Frame>
 )
