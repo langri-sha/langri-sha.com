@@ -99,3 +99,31 @@ export const Stackoverflow: React.FC<{ className?: string }> = styled(
   ${icon};
   width: 0.857421875em;
 `
+
+export const Play: React.FC<{ className?: string }> = styled(
+  ({ className }: PropsOf<typeof Twitter>) => (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <path d="M9 4l20 12L9 28z" />
+    </svg>
+  ),
+)`
+  ${icon};
+`
+
+export const Pause: React.FC<{ className?: string }> = styled(
+  ({ className }: PropsOf<typeof Twitter>) => (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <path d="M7 5h7v22H7zM18 5h7v22h-7z" />
+    </svg>
+  ),
+)`
+  ${icon};
+`

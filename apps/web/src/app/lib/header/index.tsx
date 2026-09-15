@@ -4,11 +4,25 @@ import * as React from 'react'
 
 import { animations } from '@/styles'
 
-import { Docker, Github, Npm, Stackoverflow } from './icons'
-import { Hexagon, Lattice, Orbital, Reticle } from './instruments'
+import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
+import { Dial, Hexagon, Lattice, Orbital, Reticle } from './instruments'
 import { Wordmark } from './wordmark'
 
-const links = [
+export interface HeaderProps {
+  playing: boolean
+  onToggle: () => void
+}
+
+interface ProfileProps {
+  name: string
+  href: string
+  title: string
+  icon: React.FC<{ className?: string }>
+  instrument: React.FC<{ className?: string }>
+  glyph: number
+}
+
+const profiles: ProfileProps[] = [
   {
     name: 'Stack Overflow',
     href: 'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
@@ -43,31 +57,55 @@ const links = [
   },
 ]
 
-export const Header: React.FC = () => (
+export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
   <Root>
     <Title>
       <Wordmark />
     </Title>
     <Nav>
-      {links.map(
-        ({ name, href, title, icon: Icon, instrument: Instrument, glyph }) => (
-          <Link
-            key={name}
-            href={href}
-            title={title}
-            style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
-          >
-            <Instrument />
-            <Glyph aria-hidden="true">
-              <Icon />
-            </Glyph>
-            <Readout aria-hidden="true">{name}</Readout>
-            <Label>{title}</Label>
-          </Link>
-        ),
-      )}
+      {profiles.slice(0, 2).map((profile) => (
+        <Profile key={profile.name} {...profile} />
+      ))}
+      <Toggle
+        type="button"
+        aria-pressed={playing}
+        aria-label={
+          playing ? 'Pause the ambient drone' : 'Play the ambient drone'
+        }
+        onClick={onToggle}
+        style={{ '--instrument-glyph-scale': 0.3 } as React.CSSProperties}
+      >
+        <Dial />
+        <Glyph aria-hidden="true">{playing ? <Pause /> : <Play />}</Glyph>
+        <Readout aria-hidden="true">{playing ? 'Pause' : 'Play'}</Readout>
+      </Toggle>
+      {profiles.slice(2).map((profile) => (
+        <Profile key={profile.name} {...profile} />
+      ))}
     </Nav>
   </Root>
+)
+
+const Profile: React.FC<ProfileProps> = ({
+  name,
+  href,
+  title,
+  icon: Icon,
+  instrument: Instrument,
+  glyph,
+}) => (
+  <Link
+    href={href}
+    title={title}
+    style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
+  >
+    <Instrument />
+    <Glyph aria-hidden="true">
+      <Icon />
+    </Glyph>
+    <Readout aria-hidden="true">{name}</Readout>
+    <Label>{title}</Label>
+  </Link>
 )
 
 const Root = styled.header`
@@ -104,7 +142,7 @@ const engaged = css`
   --instrument-glyph: rgb(255, 255, 255);
 `
 
-const Link = styled.a`
+const instrument = css`
   --instrument-engaged: 0;
   --instrument-motion: paused;
   --instrument-line: rgba(128, 222, 255, 0.78);
@@ -120,7 +158,6 @@ const Link = styled.a`
   place-items: center;
   border-radius: 50%;
   color: var(--instrument-glyph);
-  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition:
     color 0.35s ease,
@@ -148,6 +185,26 @@ const Link = styled.a`
     &:active {
       transform: scale(0.97);
     }
+  }
+`
+
+const Link = styled.a`
+  ${instrument};
+  text-decoration: none;
+`
+
+const Toggle = styled.button`
+  ${instrument};
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+
+  &[aria-pressed='true'] {
+    --instrument-motion: running;
+    --instrument-accent: rgb(255, 150, 182);
+    --instrument-accent-glow: rgba(255, 126, 163, 0.85);
   }
 `
 

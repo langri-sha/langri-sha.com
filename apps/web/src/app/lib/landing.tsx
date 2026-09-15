@@ -5,7 +5,7 @@ import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, Play, Scene } from '@/components'
+import { Drone, Scene } from '@/components'
 import { global } from '@/styles'
 
 import { Header } from './header'
@@ -22,12 +22,11 @@ export const Landing: React.FC = () => {
           {/* The scene paints first so the header, which follows it in the
               flow, can blend against it without an isolating z-index. */}
           <Scene audioLevelRef={audioLevelRef} />
-          <Header />
-          {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
-          <Play
+          <Header
             playing={playing}
             onToggle={() => setPlaying((current) => !current)}
           />
+          {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
         </Root>
       </Root>
     </React.Fragment>
