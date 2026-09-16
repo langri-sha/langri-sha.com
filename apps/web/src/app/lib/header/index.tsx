@@ -5,14 +5,7 @@ import * as React from 'react'
 import { animations } from '@/styles'
 
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
-import {
-  Aperture,
-  Dial,
-  Hexagon,
-  type Instrument,
-  Lattice,
-  Meridian,
-} from './instruments'
+import { Dial, Lattice } from './instruments'
 import { Wordmark } from './wordmark'
 
 export interface HeaderProps {
@@ -25,7 +18,6 @@ interface ProfileProps {
   href: string
   title: string
   icon: React.FC<{ className?: string }>
-  frame: Instrument
   glyph: number
 }
 
@@ -35,7 +27,6 @@ const profiles: ProfileProps[] = [
     href: 'https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile',
     title: 'StackOverflow profile #SOreadytohelp 💓',
     icon: Stackoverflow,
-    frame: Meridian,
     glyph: 0.34,
   },
   {
@@ -43,7 +34,6 @@ const profiles: ProfileProps[] = [
     href: 'https://github.com/langri-sha',
     title: 'GitHub profile',
     icon: Github,
-    frame: Lattice,
     glyph: 0.38,
   },
   {
@@ -51,7 +41,6 @@ const profiles: ProfileProps[] = [
     href: 'https://www.npmjs.com/~langri-sha',
     title: 'NPM profile',
     icon: Npm,
-    frame: Hexagon,
     glyph: 0.3,
   },
   {
@@ -59,7 +48,6 @@ const profiles: ProfileProps[] = [
     href: 'https://hub.docker.com/u/langrisha/',
     title: 'Docker Hub profile',
     icon: Docker,
-    frame: Aperture,
     glyph: 0.34,
   },
 ]
@@ -147,7 +135,6 @@ const Profile: React.FC<ProfileProps> = ({
   href,
   title,
   icon: Icon,
-  frame: Frame,
   glyph,
 }) => (
   <Link
@@ -155,7 +142,7 @@ const Profile: React.FC<ProfileProps> = ({
     title={title}
     style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
   >
-    <Frame />
+    <Lattice />
     <Glyph aria-hidden="true">
       <Icon />
     </Glyph>
@@ -199,10 +186,15 @@ const Nav = styled.nav`
 
 const engaged = css`
   --instrument-engaged: 1;
+
+  @media (prefers-reduced-motion: no-preference) {
+    --instrument-motion: running;
+  }
 `
 
 const instrument = css`
   --instrument-engaged: 0;
+  --instrument-motion: paused;
   --instrument-accent: #ffc3ac;
   --instrument-accent-glow: rgba(255, 139, 167, 0.65);
   position: relative;
@@ -292,6 +284,7 @@ const Toggle = styled.button`
       inset 0 0 2rem rgba(101, 179, 255, 0.09);
     transition: box-shadow 0.4s ease;
     animation: ${radiate} 5s ease-in-out infinite;
+    animation-play-state: var(--instrument-motion);
   }
 
   &[aria-pressed='true'] {
@@ -304,12 +297,6 @@ const Toggle = styled.button`
       box-shadow:
         0 0 2rem rgba(255, 126, 163, 0.3),
         inset 0 0 1.4rem rgba(110, 220, 255, 0.2);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &::before {
-      animation: none;
     }
   }
 `
