@@ -27,6 +27,7 @@ jobs:
         run: pnpm build
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
+          NEXT_PUBLIC_POSTHOG_CLIENT_ENVIRONMENT: ${{ github.event_name == 'release' && 'production' || 'preview' }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
 
       - name: Create artifact
@@ -130,6 +131,7 @@ jobs:
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
+          NEXT_PUBLIC_POSTHOG_CLIENT_ENVIRONMENT: preview
 
       - name: Build image
         run: docker build --tag preview-origin apps/web

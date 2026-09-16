@@ -114,6 +114,19 @@ sending events before there is a revision to answer them.
    exists the variable is empty and the site builds without analytics, which is
    also what every preview build does.
 
+## Client event environments
+
+Deployment builds set `NEXT_PUBLIC_POSTHOG_CLIENT_ENVIRONMENT` to `production`
+or `preview`. The web client validates that build-time value and adds it to
+every event as `client_environment` through PostHog's `before_send` hook. An
+explicit `local` value, a missing value, or an invalid value resolves to
+`local`, so an unknown build can never be classified as production. Any future
+browser application using the same PostHog project should follow this
+event-property contract.
+
+To exclude preview and local traffic in PostHog, add an event property filter to
+the insight or dashboard where `client_environment` equals `production`.
+
 The service takes `INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER`, so the `run.app` URL
 Cloud Run assigns it answers nothing. That it stays that way is worth checking
 after a deploy:

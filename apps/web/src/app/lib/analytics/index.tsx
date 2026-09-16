@@ -1,8 +1,16 @@
 'use client'
 
+import type { PostHogConfig } from 'posthog-js'
 import * as React from 'react'
 
 import { options } from './options'
+
+type PostHogInitializer = {
+  init: (key: string, options: Partial<PostHogConfig>) => unknown
+}
+
+export const initializePostHog = (posthog: PostHogInitializer, key: string) =>
+  posthog.init(key, options)
 
 /*
  * Initializes PostHog against the first-party proxy at `/psthg`, which forwards
@@ -25,7 +33,7 @@ export const Analytics: React.FC = () => {
     }
 
     void import('posthog-js').then(({ posthog }) => {
-      posthog.init(key, options)
+      initializePostHog(posthog, key)
     })
   }, [])
 
