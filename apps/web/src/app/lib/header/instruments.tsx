@@ -2,8 +2,6 @@ import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-export type Instrument = React.FC<{ className?: string }>
-
 const orbit = keyframes`
   to { transform: rotate(360deg); }
 `
@@ -73,12 +71,7 @@ const Frame = styled.svg`
   }
   [data-glimmer] {
     animation: ${breathe} 5s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    [data-glimmer] {
-      animation: none;
-    }
+    animation-play-state: var(--instrument-motion);
   }
 `
 
@@ -87,10 +80,7 @@ const Orbit = styled.span`
   position: absolute;
   inset: 0;
   animation: ${orbit} 48s linear infinite;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
+  animation-play-state: var(--instrument-motion);
 `
 
 const Waveform = styled.span`
@@ -119,104 +109,52 @@ const Waveform = styled.span`
     background: linear-gradient(#80beff, #e8fcff 42%, #99dbff 60%, #7275d5);
     animation: ${waveform} var(--instrument-tempo, 3.4s) ease-in-out infinite;
     animation-delay: var(--bar-delay);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    span {
-      animation: none;
-    }
+    animation-play-state: var(--instrument-motion);
   }
 `
 
-export const Meridian: Instrument = (props) => (
-  <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...props}>
-    <circle data-soft cx="50" cy="50" r="39" />
-    <circle
-      data-line
-      cx="50"
-      cy="50"
-      r="44"
-      pathLength="100"
-      strokeDasharray="23 2"
-      strokeDashoffset="-1"
-    />
-    <path data-soft d="M50 -6v22M50 84v22M-6 50h22M84 50h22" />
-    <path data-line d="M50 -3v6M50 97v6M-3 50h6M97 50h6" />
-    <path data-accent-line d="M12 28a44 44 0 0 1 19-18" />
-    <g data-node>
-      <circle cx="50" cy="6" r="1.7" />
-      <circle cx="94" cy="50" r="1.7" />
-      <circle cx="50" cy="94" r="1.7" />
-      <circle cx="6" cy="50" r="1.7" />
-    </g>
-    <path data-node data-glimmer d="m50-10 1.5 3-1.5 3-1.5-3z" />
-  </Frame>
-)
+const Turn = styled.span`
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  transform: rotate(calc(45deg * var(--instrument-engaged)));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 
-export const Lattice: Instrument = (props) => (
-  <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...props}>
-    <polygon data-line points="50,4 96,50 50,96 4,50" />
-    <path
-      data-soft
-      d="m50 13 37 37-37 37-37-37zM50 -5v18M87 50h18M50 87v18M-5 50h18"
-    />
-    <path data-accent-line d="m7 42 10-10M68 83l-10 10" />
-    <g data-node>
-      <circle cx="50" cy="4" r="2" />
-      <circle cx="96" cy="50" r="2" />
-      <circle cx="50" cy="96" r="2" />
-      <circle cx="4" cy="50" r="2" />
-      <circle cx="-3" cy="50" r="0.8" />
-      <circle cx="103" cy="50" r="0.8" />
-    </g>
-    <path data-node data-glimmer d="m50-7 1.5 3-1.5 3-1.5-3z" />
-  </Frame>
-)
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
+  }
+`
 
-export const Hexagon: Instrument = (props) => (
-  <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...props}>
-    <polygon data-line points="50,7 87,28.5 87,71.5 50,93 13,71.5 13,28.5" />
-    <path
-      data-soft
-      d="m50 14 31 18v36L50 86 19 68V32zM50 -3v17M50 86v17M5 50h15M80 50h15"
-    />
-    <path data-accent-line d="m13 65v6.5l12 7M75 21l12 7.5V35" />
-    <g data-node>
-      <circle cx="50" cy="7" r="2" />
-      <circle cx="87" cy="28.5" r="1.5" />
-      <circle cx="87" cy="71.5" r="1.5" />
-      <circle cx="50" cy="93" r="2" />
-      <circle cx="13" cy="71.5" r="1.5" />
-      <circle cx="13" cy="28.5" r="1.5" />
-    </g>
-    <path data-node data-glimmer d="m50-6 1.5 3-1.5 3-1.5-3z" />
-  </Frame>
-)
-
-export const Aperture: Instrument = (props) => (
-  <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...props}>
-    <path data-soft d="M12 12h76v76H12zM50 2v18M50 80v18M2 50h18M80 50h18" />
-    <path data-line d="M35 12H12v23M65 12h23v23M88 65v23H65M35 88H12V65" />
-    <path data-soft d="M20 31V20h11M69 20h11v11M80 69v11H69M31 80H20V69" />
-    <path data-accent-line d="M44 12h12M44 88h12" />
-    <g data-node>
-      <circle cx="12" cy="50" r="1.5" />
-      <circle cx="88" cy="50" r="1.5" />
-    </g>
-    <path data-node data-glimmer d="m50 2 1.5 3L50 8l-1.5-3z" />
-  </Frame>
+export const Lattice: React.FC = () => (
+  <React.Fragment>
+    <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <polygon data-line points="50,4 96,50 50,96 4,50" />
+      <path data-soft d="M50 4v13M96 50h-13M50 96v-13M4 50h13" />
+      <g data-node>
+        <circle cx="96" cy="50" r="2" />
+        <circle cx="50" cy="96" r="2" />
+        <circle cx="4" cy="50" r="2" />
+        <circle cx="73" cy="27" r="1.3" />
+        <circle cx="73" cy="73" r="1.3" />
+        <circle cx="27" cy="73" r="1.3" />
+        <circle cx="27" cy="27" r="1.3" />
+      </g>
+      <circle data-accent cx="50" cy="4" r="2.4" />
+    </Frame>
+    <Turn aria-hidden="true">
+      <Frame viewBox="0 0 100 100" focusable="false">
+        <polygon data-line points="50,17 83,50 50,83 17,50" opacity="0.5" />
+      </Frame>
+    </Turn>
+  </React.Fragment>
 )
 
 const bars = [12, 32, 58, 88, 66, 36]
 
-export const Dial: Instrument = (props) => (
+export const Dial: React.FC = () => (
   <React.Fragment>
-    <Frame
-      viewBox="0 0 100 100"
-      aria-hidden="true"
-      focusable="false"
-      {...props}
-    >
+    <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false">
       <circle data-soft cx="50" cy="50" r="46" />
       <circle
         data-band
