@@ -154,3 +154,30 @@ run "the_proxy_hosts_are_the_ones_the_site_is_published_on" {
     error_message = "Both hosts must have a rule in the URL map. A host without one answers from the map's default, not from its matcher."
   }
 }
+
+run "redirect_hosts_have_non_self_redirect_matchers" {
+  command = apply
+
+  assert {
+    condition = alltrue([
+      for host, target in local.host_redirects :
+      length([
+        for matcher in google_compute_url_map.default.path_matcher :
+        matcher
+        if matcher.name == host
+      ]) == 1
+    ])
+    error_message = "Every redirect host must have exactly one path matcher."
+  }
+
+  assert {
+    condition = alltrue(flatten([
+      for host, target in local.host_redirects : [
+        for matcher in google_compute_url_map.default.path_matcher :
+        matcher.default_url_redirect[0].host_redirect == local.host_names[target] && matcher.default_url_redirect[0].host_redirect != local.host_names[host]
+        if matcher.name == host
+      ]
+    ]))
+    error_message = "Every redirect host must redirect to its configured target rather than itself."
+  }
+}

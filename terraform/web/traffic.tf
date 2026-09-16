@@ -145,6 +145,15 @@ resource "google_compute_url_map" "default" {
     }
   }
 
+  dynamic "host_rule" {
+    for_each = local.host_redirects
+
+    content {
+      hosts        = [local.host_names[host_rule.key]]
+      path_matcher = host_rule.key
+    }
+  }
+
   dynamic "path_matcher" {
     for_each = local.limited_hosts
 
@@ -159,6 +168,20 @@ resource "google_compute_url_map" "default" {
           paths   = local.posthog_proxy_paths
           service = module.posthog_proxy.backend_service
         }
+      }
+    }
+  }
+
+  dynamic "path_matcher" {
+    for_each = local.host_redirects
+
+    content {
+      name = path_matcher.key
+
+      default_url_redirect {
+        host_redirect          = local.host_names[path_matcher.value]
+        redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"
+        strip_query            = false
       }
     }
   }
