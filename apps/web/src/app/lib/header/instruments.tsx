@@ -152,7 +152,7 @@ export const Lattice: React.FC = () => (
 
 const bars = [12, 32, 58, 88, 66, 36]
 
-export const Dial: React.FC = () => (
+export const Dial: React.FC<{ playing: boolean }> = ({ playing }) => (
   <React.Fragment>
     <Frame viewBox="0 0 100 100" aria-hidden="true" focusable="false">
       <circle data-soft cx="50" cy="50" r="46" />
@@ -177,7 +177,9 @@ export const Dial: React.FC = () => (
         <circle cx="50" cy="8" r="1.9" />
         <circle cx="50" cy="92" r="1.9" />
       </g>
-      <path data-node data-glimmer d="m50 47 1 2 2 1-2 1-1 2-1-2-2-1 2-1z" />
+      {!playing ? (
+        <path data-node data-glimmer d="m50 47 1 2 2 1-2 1-1 2-1-2-2-1 2-1z" />
+      ) : null}
     </Frame>
     <Orbit aria-hidden="true">
       <Frame viewBox="0 0 100 100">
