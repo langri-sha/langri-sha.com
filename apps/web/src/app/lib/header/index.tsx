@@ -119,7 +119,7 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
         onClick={onToggle}
         style={{ '--instrument-glyph-scale': 0.64 } as React.CSSProperties}
       >
-        <Dial />
+        <Dial playing={playing} />
         <ToggleGlyph aria-hidden="true">
           {playing ? <Pause /> : <Play />}
         </ToggleGlyph>
