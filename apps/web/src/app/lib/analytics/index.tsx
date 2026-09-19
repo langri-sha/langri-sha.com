@@ -10,9 +10,9 @@ import { options } from './options'
  * whose blockers drop `posthog.com`, and keep their addresses off a third-party
  * domain.
  *
- * The project API key is public by design, and is built into production bundles
- * only. Importing the SDK behind it keeps a build without one — a preview, or
- * anything built locally — from loading it at all.
+ * The project API key is public by design, and is built into deployed bundles
+ * only. Importing the SDK behind it keeps a build without one — anything built
+ * locally — from loading it at all.
  *
  * @see https://posthog.com/docs/advanced/proxy
  */
