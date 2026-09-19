@@ -137,6 +137,7 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
 )
 
 const Profile: React.FC<ProfileProps> = ({
+  name,
   href,
   title,
   icon: Icon,
@@ -145,6 +146,7 @@ const Profile: React.FC<ProfileProps> = ({
   <Link
     href={href}
     title={title}
+    onClick={() => capture('social_link_clicked', { platform: name })}
     style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
   >
     <Lattice />
