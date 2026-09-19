@@ -4,6 +4,8 @@ import * as React from 'react'
 
 import { animations } from '@/styles'
 
+import { capture } from '../analytics'
+
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
 import { Dial, Lattice } from './instruments'
 import { Wordmark } from './wordmark'
@@ -116,7 +118,10 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
         aria-label={
           playing ? 'Pause the ambient drone' : 'Play the ambient drone'
         }
-        onClick={onToggle}
+        onClick={() => {
+          onToggle()
+          capture(playing ? 'drone_paused' : 'drone_played')
+        }}
         style={{ '--instrument-glyph-scale': 0.64 } as React.CSSProperties}
       >
         <Dial playing={playing} />
