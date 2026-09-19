@@ -7,6 +7,9 @@ ignore = [
   "**/.terraform",
 ]
 
+[modules.ci]
+source = ".dagger/modules/ci"
+
 [modules.eslint]
 source = "dagger.io/js/eslint"
 
