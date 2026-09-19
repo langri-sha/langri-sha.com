@@ -1,0 +1,29 @@
+ignore = [
+  "**/node_modules",
+  "**/dist",
+  "**/.next",
+  "**/.tsbuild",
+  "**/*.tsbuildinfo",
+  "**/.terraform",
+]
+
+[modules.eslint]
+source = "dagger.io/js/eslint"
+
+[modules.eslint.settings]
+packageManager = "pnpm"
+baseImageAddress = "node:24-slim"
+
+[modules.prettier]
+source = "dagger.io/js/prettier"
+
+[modules.prettier.settings]
+packageManager = "pnpm"
+baseImageAddress = "node:24-slim"
+
+[modules.vitest]
+source = "dagger.io/js/vitest"
+
+[modules.vitest.settings]
+packageManager = "pnpm"
+baseImageAddress = "node:24-slim"
