@@ -130,6 +130,7 @@ jobs:
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
 
       - name: Build image
         run: docker build --tag preview-origin apps/web
