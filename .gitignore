@@ -40,4 +40,5 @@ node_modules/
 !/pnpm-workspace.yaml
 !/renovate.json5
 next-env.d.ts
+!.dagger/
 !/.projenrc.ts
