@@ -1,10 +1,10 @@
-import { keyframes } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { motion } from '@/styles'
+import { media, motion } from '@/styles'
 
-import { gradients } from './instrument'
+import { gradients, pausedUntilEngaged, whenEngagedWithin } from './instrument'
 
 const orbit = keyframes`
   to { transform: rotate(360deg); }
@@ -21,6 +21,9 @@ const waveform = keyframes`
   65% { transform: scaleY(0.7); opacity: 0.8; }
 `
 
+const frameGlow = `drop-shadow(0 0 2px rgba(97, 192, 255, 0.55))
+    drop-shadow(0 0 7px rgba(66, 142, 255, 0.3))`
+
 const Frame = styled.svg`
   position: absolute;
   inset: 0;
@@ -29,10 +32,12 @@ const Frame = styled.svg`
   overflow: visible;
   fill: none;
   pointer-events: none;
-  filter: drop-shadow(0 0 2px rgba(97, 192, 255, 0.55))
-    drop-shadow(0 0 7px rgba(66, 142, 255, 0.3))
-    brightness(calc(1 + 0.2 * var(--instrument-engaged)));
+  filter: ${frameGlow};
   transition: filter 0.4s ease;
+
+  ${whenEngagedWithin(css`
+    filter: ${frameGlow} brightness(1.2);
+  `)}
 
   [data-line],
   [data-soft],
@@ -75,7 +80,7 @@ const Frame = styled.svg`
   }
   [data-glimmer] {
     animation: ${breathe} 5s ease-in-out infinite;
-    animation-play-state: var(--instrument-motion);
+    ${pausedUntilEngaged};
   }
 `
 
@@ -84,7 +89,7 @@ const Orbit = styled.span`
   position: absolute;
   inset: 0;
   animation: ${orbit} 48s linear infinite;
-  animation-play-state: var(--instrument-motion);
+  ${pausedUntilEngaged};
 `
 
 const Waveform = styled.span`
@@ -113,7 +118,7 @@ const Waveform = styled.span`
     background: linear-gradient(#80beff, #e8fcff 42%, #99dbff 60%, #7275d5);
     animation: ${waveform} var(--instrument-tempo, 3.4s) ease-in-out infinite;
     animation-delay: var(--bar-delay);
-    animation-play-state: var(--instrument-motion);
+    ${pausedUntilEngaged};
   }
 `
 
@@ -121,11 +126,15 @@ const Turn = styled.span`
   pointer-events: none;
   position: absolute;
   inset: 0;
-  transform: rotate(calc(45deg * var(--instrument-engaged)));
   transition: transform 0.6s ${motion.easing};
 
-  @media (prefers-reduced-motion: reduce) {
-    transform: none;
+  ${media.motion} {
+    ${whenEngagedWithin(css`
+      transform: rotate(45deg);
+    `)}
+  }
+
+  ${media.reducedMotion} {
     transition: none;
   }
 `
