@@ -6,7 +6,14 @@ import { motion } from '@/styles'
 import { capture } from '../analytics'
 
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
-import { Glyph, Gradients, Link, Toggle, ToggleGlyph } from './instrument'
+import {
+  Glyph,
+  Gradients,
+  Link,
+  Toggle,
+  ToggleGlyph,
+  dimensions,
+} from './instrument'
 import { Dial, Lattice } from './sigils'
 import { Wordmark } from './wordmark'
 
@@ -74,7 +81,6 @@ export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
           onToggle()
           capture(playing ? 'drone_paused' : 'drone_played')
         }}
-        style={{ '--instrument-glyph-scale': 0.64 } as React.CSSProperties}
       >
         <Dial playing={playing} />
         <ToggleGlyph aria-hidden="true">
@@ -99,10 +105,9 @@ const Profile: React.FC<ProfileProps> = ({
     href={href}
     title={title}
     onClick={() => capture('social_link_clicked', { platform: name })}
-    style={{ '--instrument-glyph-scale': glyph } as React.CSSProperties}
   >
     <Lattice />
-    <Glyph aria-hidden="true">
+    <Glyph $scale={glyph} aria-hidden="true">
       <Icon />
     </Glyph>
     <Label>{title}</Label>
@@ -122,16 +127,13 @@ const Title = styled.h1`
 
 const Nav = styled.nav`
   ${motion.booming};
-  --instrument-size: clamp(4.4rem, 14vw, 10rem);
-  --instrument-gap: clamp(1.2rem, 3vw, 3.6rem);
-  --instrument-step: clamp(0.6rem, 1.2vw, 1.4rem);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  gap: var(--instrument-gap);
+  gap: ${dimensions.gap};
   margin-top: clamp(0.4rem, 1.6vh, 1.6rem);
-  padding-block: var(--instrument-step);
+  padding-block: ${dimensions.step};
 `
 
 const Label = styled.span`

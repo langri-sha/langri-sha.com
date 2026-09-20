@@ -4,6 +4,12 @@ import * as React from 'react'
 
 import { colors, motion } from '@/styles'
 
+export const dimensions = {
+  size: 'clamp(4.4rem, 14vw, 10rem)',
+  gap: 'clamp(1.2rem, 3vw, 3.6rem)',
+  step: 'clamp(0.6rem, 1.2vw, 1.4rem)',
+} as const
+
 export const gradients = {
   line: 'instrument-line',
   warm: 'instrument-warm',
@@ -82,8 +88,8 @@ const instrument = css`
   position: relative;
   display: grid;
   flex: none;
-  width: var(--instrument-size);
-  height: var(--instrument-size);
+  width: ${dimensions.size};
+  height: ${dimensions.size};
   place-items: center;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
@@ -136,16 +142,16 @@ export const Link = styled.a`
 
   &:first-of-type,
   &:last-of-type {
-    top: calc(-1 * var(--instrument-step));
+    top: calc(-1 * ${dimensions.step});
   }
 `
 
 export const Toggle = styled.button`
   ${instrument};
-  top: var(--instrument-step);
-  width: calc(var(--instrument-size) * 1.28);
-  height: calc(var(--instrument-size) * 1.28);
-  margin-inline: calc(var(--instrument-gap) * 0.08);
+  top: ${dimensions.step};
+  width: calc(${dimensions.size} * 1.28);
+  height: calc(${dimensions.size} * 1.28);
+  margin-inline: calc(${dimensions.gap} * 0.08);
   padding: 0;
   border: 0;
   background: none;
@@ -183,23 +189,29 @@ export const Toggle = styled.button`
   }
 `
 
-export const Glyph = styled.span`
+const glyph = css`
   position: relative;
   display: grid;
   place-items: center;
-  font-size: calc(var(--instrument-size) * var(--instrument-glyph-scale));
   line-height: 1;
+  transition: filter 0.35s ease;
+`
+
+export const Glyph = styled.span<{ $scale: number }>`
+  ${glyph};
+  font-size: calc(${dimensions.size} * ${({ $scale }) => $scale});
   filter: drop-shadow(0 0 2px rgba(139, 219, 255, 0.6))
     drop-shadow(0 0 9px rgba(61, 143, 255, 0.45))
     brightness(calc(1 + 0.2 * var(--instrument-engaged)));
-  transition: filter 0.35s ease;
 
   svg {
     fill: url(#${gradients.glyph});
   }
 `
 
-export const ToggleGlyph = styled(Glyph)`
+export const ToggleGlyph = styled.span`
+  ${glyph};
+  font-size: calc(${dimensions.size} * 0.64);
   filter: drop-shadow(0 0 2px rgba(255, 203, 166, 0.8))
     drop-shadow(0 0 7px var(--instrument-accent-glow))
     drop-shadow(0 0 16px rgba(242, 116, 167, 0.35));
