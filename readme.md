@@ -29,9 +29,9 @@ Node the host has.
 `workspace.yml` still runs the same checks on GitHub Actions. `web.yml`,
 `terraform.yml` and the Renovate post-upgrade job need OIDC, secrets or push
 access, and are not checks Dagger runs.
-[Cloud Checks](https://docs.dagger.io/getting-started/cloud-checks) run
-`dagger check` on Dagger's engines after each push, once the repository is
-connected with `dagger cloud checks on`; `dagger activity` shows the runs.
+[Cloud Checks](https://docs.dagger.io/cloud-checks) run `dagger check` on
+Dagger's engines after each push, once the repository is connected with
+`dagger cloud checks on`; `dagger workspace activity` shows the runs.
 
 ## Releasing
 
