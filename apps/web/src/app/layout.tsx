@@ -1,6 +1,5 @@
 import { EmotionRegistry } from '@langri-sha/next'
 import { Metadata, Viewport } from 'next'
-import Script from 'next/script'
 
 import { Analytics } from './lib/analytics'
 
@@ -21,25 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-76SMPC2PGN"
-          strategy="beforeInteractive"
-        />
-        <Script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag() { dataLayer.push(arguments); }
-              gtag('js', new Date());
-
-              gtag('config', 'G-76SMPC2PGN');
-            `,
-          }}
-          strategy="beforeInteractive"
-        />
-      </head>
       <body>
         <Analytics />
         <EmotionRegistry>{children}</EmotionRegistry>
