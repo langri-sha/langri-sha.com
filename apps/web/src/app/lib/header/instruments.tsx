@@ -2,6 +2,8 @@ import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
+import { motion } from '@/styles'
+
 const orbit = keyframes`
   to { transform: rotate(360deg); }
 `
@@ -118,7 +120,7 @@ const Turn = styled.span`
   position: absolute;
   inset: 0;
   transform: rotate(calc(45deg * var(--instrument-engaged)));
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.6s ${motion.easing};
 
   @media (prefers-reduced-motion: reduce) {
     transform: none;

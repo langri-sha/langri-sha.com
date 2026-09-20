@@ -1,5 +1,3 @@
-const media = (breakpoint: number) => `@media (min-width: ${breakpoint}em)`
-
-export const small: string = media(0)
-export const medium: string = media(34)
-export const large: string = media(75)
+export const hover: string = '@media (hover: hover)'
+export const motion: string = '@media (prefers-reduced-motion: no-preference)'
+export const reducedMotion: string = '@media (prefers-reduced-motion: reduce)'
