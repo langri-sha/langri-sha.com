@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, Scene } from '@/components'
-import { global } from '@/styles'
+import { colors, global } from '@/styles'
 
 import { Header } from './header'
 
@@ -38,21 +38,21 @@ const backdrop = css`
     background:
       radial-gradient(
           ellipse 70% 28% at 50% 30%,
-          rgba(90, 8, 36, 0.35),
+          ${colors.ember},
           transparent 70%
         )
         no-repeat,
       radial-gradient(
           ellipse 80% 34% at 50% 66%,
-          rgba(18, 60, 165, 0.3),
+          ${colors.tide},
           transparent 70%
         )
         no-repeat,
       radial-gradient(
           ellipse 130% 100% at 50% 48%,
-          #070d22 0%,
-          #030614 55%,
-          #010208 100%
+          ${colors.nightRim} 0%,
+          ${colors.nightCore} 55%,
+          ${colors.nightDeep} 100%
         )
         no-repeat;
   }

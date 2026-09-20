@@ -2,7 +2,7 @@ import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { animations } from '@/styles'
+import { colors, motion } from '@/styles'
 
 import { capture } from '../analytics'
 
@@ -174,7 +174,7 @@ const Title = styled.h1`
 `
 
 const Nav = styled.nav`
-  ${animations.booming};
+  ${motion.booming};
   --instrument-size: clamp(4.4rem, 14vw, 10rem);
   --instrument-gap: clamp(1.2rem, 3vw, 3.6rem);
   --instrument-step: clamp(0.6rem, 1.2vw, 1.4rem);
@@ -202,8 +202,8 @@ const engaged = css`
 const instrument = css`
   --instrument-engaged: 0;
   --instrument-motion: paused;
-  --instrument-accent: #ffc3ac;
-  --instrument-accent-glow: rgba(255, 139, 167, 0.65);
+  --instrument-accent: ${colors.accent};
+  --instrument-accent-glow: ${colors.accentGlow};
   position: relative;
   display: grid;
   flex: none;
@@ -212,7 +212,7 @@ const instrument = css`
   place-items: center;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.45s ${motion.easing};
 
   &::before {
     position: absolute;
@@ -297,8 +297,8 @@ const Toggle = styled.button`
   &[aria-pressed='true'] {
     ${engaged};
     --instrument-tempo: 1.15s;
-    --instrument-accent: rgb(255, 150, 182);
-    --instrument-accent-glow: rgba(255, 126, 163, 0.85);
+    --instrument-accent: ${colors.accentLive};
+    --instrument-accent-glow: ${colors.accentLiveGlow};
 
     &::before {
       box-shadow:

@@ -1,5 +1,9 @@
 import { type SerializedStyles, css, keyframes } from '@emotion/react'
 
+import * as media from './media'
+
+export const easing: string = 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+
 const boom = keyframes`
   from {
     opacity: 0;
@@ -16,7 +20,7 @@ export const booming: SerializedStyles = css`
   animation-duration: 3s;
   animation-name: ${boom};
 
-  @media (prefers-reduced-motion: reduce) {
+  ${media.reducedMotion} {
     animation: none;
   }
 `
