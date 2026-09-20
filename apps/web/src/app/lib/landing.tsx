@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 'use client'
 
 import { Global, css } from '@emotion/react'
@@ -18,16 +17,14 @@ export const Landing: React.FC = () => {
     <React.Fragment>
       <Global styles={[global, backdrop]} />
       <Root>
-        <Root>
-          {/* The scene paints first so the header, which follows it in the
-              flow, can blend against it without an isolating z-index. */}
-          <Scene audioLevelRef={audioLevelRef} />
-          <Header
-            playing={playing}
-            onToggle={() => setPlaying((current) => !current)}
-          />
-          {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
-        </Root>
+        {/* The scene paints first so the header, which follows it in the
+            flow, can blend against it without an isolating z-index. */}
+        <Scene audioLevelRef={audioLevelRef} />
+        <Header
+          playing={playing}
+          onToggle={() => setPlaying((current) => !current)}
+        />
+        {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
       </Root>
     </React.Fragment>
   )
