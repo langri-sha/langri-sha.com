@@ -39,4 +39,5 @@ node_modules/
 !/lint-staged.config.js
 !/pnpm-workspace.yaml
 !/renovate.json5
+next-env.d.ts
 !/.projenrc.ts
