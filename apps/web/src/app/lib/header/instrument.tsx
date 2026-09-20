@@ -1,8 +1,8 @@
-import { css, keyframes } from '@emotion/react'
+import { type SerializedStyles, css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { colors, motion } from '@/styles'
+import { colors, media, motion } from '@/styles'
 
 export const dimensions = {
   size: 'clamp(4.4rem, 14vw, 10rem)',
@@ -72,17 +72,21 @@ const radiate = keyframes`
   50% { opacity: 0.9; transform: scale(1.08); }
 `
 
-const engaged = css`
-  --instrument-engaged: 1;
+const held = `:is(:focus-visible, :active, [aria-pressed='true'])`
 
-  @media (prefers-reduced-motion: no-preference) {
-    --instrument-motion: running;
+const whenEngaged = (styles: SerializedStyles) => css`
+  &${held} {
+    ${styles}
+  }
+
+  ${media.hover} {
+    &:hover {
+      ${styles}
+    }
   }
 `
 
 const instrument = css`
-  --instrument-engaged: 0;
-  --instrument-motion: paused;
   --instrument-accent: ${colors.accent};
   --instrument-accent-glow: ${colors.accentGlow};
   position: relative;
@@ -107,28 +111,25 @@ const instrument = css`
     );
     content: '';
     pointer-events: none;
-    opacity: calc(0.65 + 0.35 * var(--instrument-engaged));
+    opacity: 0.65;
     transition: opacity 0.4s ease;
   }
 
   &:focus-visible {
-    ${engaged};
     outline: 2px solid var(--instrument-accent);
     outline-offset: 0.5rem;
   }
 
-  &:active {
-    ${engaged};
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      ${engaged};
+  ${whenEngaged(css`
+    &::before {
+      opacity: 1;
     }
-  }
+  `)}
 
-  @media (prefers-reduced-motion: no-preference) {
-    transform: scale(calc(1 + 0.04 * var(--instrument-engaged)));
+  ${media.motion} {
+    ${whenEngaged(css`
+      transform: scale(1.04);
+    `)}
 
     &:active {
       transform: scale(0.97);
@@ -172,11 +173,18 @@ export const Toggle = styled.button`
       inset 0 0 2rem rgba(101, 179, 255, 0.09);
     transition: box-shadow 0.4s ease;
     animation: ${radiate} 5s ease-in-out infinite;
-    animation-play-state: var(--instrument-motion);
+    animation-play-state: paused;
+  }
+
+  ${media.motion} {
+    ${whenEngaged(css`
+      &::before {
+        animation-play-state: running;
+      }
+    `)}
   }
 
   &[aria-pressed='true'] {
-    ${engaged};
     --instrument-tempo: 1.15s;
     --instrument-accent: ${colors.accentLive};
     --instrument-accent-glow: ${colors.accentLiveGlow};
@@ -189,6 +197,33 @@ export const Toggle = styled.button`
   }
 `
 
+export const whenEngagedWithin = (
+  styles: SerializedStyles,
+): SerializedStyles => css`
+  &:is(:is(${Link}, ${Toggle})${held} *) {
+    ${styles}
+  }
+
+  ${media.hover} {
+    &:is(:is(${Link}, ${Toggle}):hover *) {
+      ${styles}
+    }
+  }
+`
+
+export const pausedUntilEngaged: SerializedStyles = css`
+  animation-play-state: paused;
+
+  ${media.motion} {
+    ${whenEngagedWithin(css`
+      animation-play-state: running;
+    `)}
+  }
+`
+
+const glyphGlow = `drop-shadow(0 0 2px rgba(139, 219, 255, 0.6))
+    drop-shadow(0 0 9px rgba(61, 143, 255, 0.45))`
+
 const glyph = css`
   position: relative;
   display: grid;
@@ -200,13 +235,15 @@ const glyph = css`
 export const Glyph = styled.span<{ $scale: number }>`
   ${glyph};
   font-size: calc(${dimensions.size} * ${({ $scale }) => $scale});
-  filter: drop-shadow(0 0 2px rgba(139, 219, 255, 0.6))
-    drop-shadow(0 0 9px rgba(61, 143, 255, 0.45))
-    brightness(calc(1 + 0.2 * var(--instrument-engaged)));
+  filter: ${glyphGlow};
 
   svg {
     fill: url(#${gradients.glyph});
   }
+
+  ${whenEngagedWithin(css`
+    filter: ${glyphGlow} brightness(1.2);
+  `)}
 `
 
 export const ToggleGlyph = styled.span`
