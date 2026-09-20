@@ -4,6 +4,8 @@ import * as React from 'react'
 
 import { motion } from '@/styles'
 
+import { gradients } from './instrument'
+
 const orbit = keyframes`
   to { transform: rotate(360deg); }
 `
@@ -42,7 +44,7 @@ const Frame = styled.svg`
 
   [data-line],
   [data-band] {
-    stroke: url(#instrument-line);
+    stroke: url(#${gradients.line});
   }
 
   [data-line] {
@@ -64,7 +66,7 @@ const Frame = styled.svg`
     fill: var(--instrument-accent);
   }
   [data-accent-line] {
-    stroke: url(#instrument-warm);
+    stroke: url(#${gradients.warm});
     stroke-width: 1.3px;
   }
   [data-accent],
