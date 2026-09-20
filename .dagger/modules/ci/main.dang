@@ -17,7 +17,7 @@ type Ci {
     ws: Workspace!,
     baseImageAddress: String! = "node:24-slim",
   ) {
-    self.source = ws.directory("/", exclude: [".git"])
+    self.source = ws.directory("/", exclude: installed)
     self.baseImageAddress = baseImageAddress
     self
   }
@@ -58,7 +58,7 @@ type Ci {
   }
 
   """
-  Paths that installing and building create, which the workspace ignores.
+  Paths that installing and building create.
   """
   let installed: [String!]! = [
     "**/node_modules",
