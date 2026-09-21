@@ -22,3 +22,7 @@ test('broad and sensitive capture is off', () => {
   expect(options.person_profiles).toBe('identified_only')
   expect(options.respect_dnt).toBe(true)
 })
+
+test('web vitals are captured whatever the project toggle says', () => {
+  expect(options.capture_performance).toEqual({ web_vitals: true })
+})
