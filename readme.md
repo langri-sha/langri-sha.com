@@ -12,8 +12,9 @@ The site, the edge that previews it, and the Terraform that runs both.
 ## Checks
 
 The workspace checks run through [Dagger](https://docs.dagger.io) 1.0 beta:
-`dagger.toml` installs the official ESLint, Prettier and Vitest modules, and
-`.dagger/modules/ci` covers TypeScript, projen and the package manifests.
+`dagger.toml` installs the official ESLint, Prettier and Vitest modules,
+`.dagger/modules/ci` covers TypeScript, projen and the package manifests, and
+`.dagger/modules/terraform` formats, validates and tests `terraform/web`.
 
 ```shell
 dagger check -l   # list the checks
@@ -23,12 +24,18 @@ dagger generate   # apply what the projen and packages checks found stale
 
 Every step is cached by its inputs, so a second run over an unchanged tree
 replays from cache, and a change reruns only the steps downstream of it. The
-checks run in the `node:24-slim` container pinned in `dagger.toml`, whatever
-Node the host has.
+checks run in pinned containers — `node:24-slim` for the JavaScript ones,
+`hashicorp/terraform:1.16.3` for Terraform — whatever the host has installed.
+That Terraform tag has to match the `required_version` in
+`terraform/web/versions.tf`; `terraform init` fails the checks when the two
+drift apart.
 
-`workspace.yml` still runs the same checks on GitHub Actions. `web.yml`,
-`terraform.yml` and the Renovate post-upgrade job need OIDC, secrets or push
-access, and are not checks Dagger runs.
+The Terraform checks stay credential-free — `init` runs with `-backend=false`
+and the tests mock their providers — so `plan` and `apply` are out of scope.
+
+`workspace.yml` and `terraform.yml` still run the same checks on GitHub Actions.
+`web.yml` and the Renovate post-upgrade job need OIDC, secrets or push access,
+and are not checks Dagger runs.
 [Cloud Checks](https://docs.dagger.io/cloud-checks) run `dagger check` on
 Dagger's engines after each push, once the repository is connected with
 `dagger cloud checks on`; `dagger workspace activity` shows the runs.
