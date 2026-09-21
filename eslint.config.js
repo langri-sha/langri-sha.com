@@ -12,4 +12,5 @@ export default [
       '!.projenrc.ts',
     ],
   },
+  { rules: { 'react/no-unknown-property': ['error', { ignore: ['css'] }] } },
 ]
