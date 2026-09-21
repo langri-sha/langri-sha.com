@@ -10,6 +10,9 @@ ignore = [
 [modules.ci]
 source = ".dagger/modules/ci"
 
+[modules.terraform]
+source = ".dagger/modules/terraform"
+
 [modules.eslint]
 source = "dagger.io/js/eslint"
 

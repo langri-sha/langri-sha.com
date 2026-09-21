@@ -1,0 +1,94 @@
+"""
+Checks for the Terraform sources: formatting, validation and tests. They stay
+credential-free, initializing with `-backend=false` against mocked providers,
+so plan and apply remain out of reach.
+"""
+type Terraform {
+  """
+  The Terraform source.
+  """
+  pub source: Directory!
+
+  """
+  The root module to initialize, validate and test, relative to the source.
+  """
+  pub rootModule: String!
+
+  """
+  The base image to use. Its Terraform has to satisfy the `required_version`
+  the root module declares, or `init` refuses to run.
+  """
+  pub baseImageAddress: String!
+
+  new(
+    ws: Workspace!,
+    rootModule: String! = "web",
+    baseImageAddress: String! = "hashicorp/terraform:1.16.3",
+  ) {
+    self.source = ws.directory("/terraform", exclude: initialized)
+    self.rootModule = rootModule
+    self.baseImageAddress = baseImageAddress
+    self
+  }
+
+  """
+  Check the formatting of every Terraform file, the shared modules included.
+  """
+  pub fmt: Void @check {
+    base.withExec(["terraform", "fmt", "-recursive", "-check"]).sync
+
+    null
+  }
+
+  """
+  Validate the root module.
+  """
+  pub validate: Void @check {
+    root.withExec(["terraform", "validate"]).sync
+
+    null
+  }
+
+  """
+  Run the root module's tests.
+  """
+  pub test: Void @check {
+    root.withExec(["terraform", "test"]).sync
+
+    null
+  }
+
+  """
+  Paths that initializing creates.
+  """
+  let initialized: [String!]! = [
+    "**/.terraform",
+  ]
+
+  """
+  The source in the Terraform image.
+  """
+  let base: Container! {
+    container
+      .from(baseImageAddress)
+      .withEnvVariable("TF_IN_AUTOMATION", "1")
+      .withDirectory("/src", source)
+      .withWorkdir("/src")
+  }
+
+  """
+  The root module, initialized without a backend. Providers and modules come
+  off the registry; nothing else reaches out.
+  """
+  let root: Container! {
+    base
+      .withMountedCache(
+        path: "/plugins",
+        cache: cacheVolume("terraform-plugins"),
+        sharing: CacheSharingMode.LOCKED,
+      )
+      .withEnvVariable("TF_PLUGIN_CACHE_DIR", "/plugins")
+      .withWorkdir("/src/" + rootModule)
+      .withExec(["terraform", "init", "-backend=false"])
+  }
+}
