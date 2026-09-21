@@ -1,7 +1,7 @@
 """
-Checks for the Terraform sources: formatting, validation and tests. They stay
-credential-free, initializing with `-backend=false` against mocked providers,
-so plan and apply remain out of reach.
+Checks for the Terraform sources: formatting, validation, tests and the lock
+file. They stay credential-free, initializing with `-backend=false` against
+mocked providers, so plan and apply remain out of reach.
 """
 type Terraform {
   """
@@ -61,6 +61,16 @@ type Terraform {
     root.withExec(["terraform", "test"]).sync
 
     null
+  }
+
+  """
+  Update the root module's dependency lock file.
+  """
+  pub lock: Changeset! @generate {
+    root
+      .directory("/src")
+      .filter(exclude: initialized)
+      .changes(source)
   }
 
   """
