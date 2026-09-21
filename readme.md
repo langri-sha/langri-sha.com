@@ -25,11 +25,9 @@ dagger generate   # apply what the projen, packages and lock checks found stale
 
 Every step is cached by its inputs, so a second run over an unchanged tree
 replays from cache, and a change reruns only the steps downstream of it. The
-checks run in pinned containers — `node:24-slim` for the JavaScript ones,
-`hashicorp/terraform:1.16.3` for Terraform — whatever the host has installed.
-That Terraform tag has to match the `required_version` in
-`terraform/web/versions.tf`; `terraform init` fails the checks when the two
-drift apart.
+checks run in pinned containers, whatever the host has installed: `node:24-slim`
+for the JavaScript ones, and for Terraform the `hashicorp/terraform` tag that
+`required_version` pins in `terraform/web/versions.tf`.
 
 The Terraform checks stay credential-free — `init` runs with `-backend=false`
 and the tests mock their providers — so `plan` and `apply` are out of scope.

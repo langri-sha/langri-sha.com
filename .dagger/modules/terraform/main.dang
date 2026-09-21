@@ -11,20 +11,13 @@ type Terraform {
 
   """
   The root module to initialize, validate and test, relative to the workspace
-  root.
+  root. Its `required_version` picks the Terraform to run.
   """
   pub rootModule: String!
-
-  """
-  The base image to use. Its Terraform has to satisfy the `required_version`
-  the root module declares, or `init` refuses to run.
-  """
-  pub baseImageAddress: String!
 
   new(
     ws: Workspace!,
     rootModule: String! = "terraform/web",
-    baseImageAddress: String! = "hashicorp/terraform:1.16.3",
   ) {
     self.source = ws.directory(
       "/",
@@ -32,7 +25,6 @@ type Terraform {
       exclude: initialized,
     )
     self.rootModule = rootModule
-    self.baseImageAddress = baseImageAddress
     self
   }
 
@@ -81,11 +73,28 @@ type Terraform {
   ]
 
   """
+  The exact Terraform version the root module pins with `required_version`.
+  """
+  let version: String! {
+    let pins = source.search(
+      paths: [rootModule],
+      globs: ["*.tf"],
+      pattern: `required_version\s*=\s*"\d+\.\d+\.\d+"`,
+    ).{{matchedLines}}
+
+    if (pins.length == 0) {
+      raise `${rootModule} must pin an exact required_version`
+    }
+
+    pins[0].matchedLines.split("\"")[1]!
+  }
+
+  """
   The source in the Terraform image.
   """
   let base: Container! {
     container
-      .from(baseImageAddress)
+      .from("hashicorp/terraform:" + version)
       .withEnvVariable("TF_IN_AUTOMATION", "1")
       .withDirectory("/src", source)
       .withWorkdir("/src")
