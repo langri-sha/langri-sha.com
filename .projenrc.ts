@@ -57,6 +57,13 @@ const project = new Project({
   editorConfig: {},
   eslint: {
     ignorePatterns: ['**/next-env.d.ts', '**/renovate.d.ts', '**/swcrc.d.ts'],
+    config: [
+      {
+        rules: {
+          'react/no-unknown-property': ['error', { ignore: ['css'] }],
+        },
+      },
+    ],
   },
   husky: {
     'pre-commit': 'lint-staged',
