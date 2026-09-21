@@ -8,6 +8,7 @@
 ["","git-sha",["github.com/dagger/eslint","refs/heads/main"],"35a0cc0923fdf625608afb1c2b276e00262c0f81"]
 ["","git-sha",["github.com/dagger/prettier","refs/heads/main"],"a22d2ca5f091ab4cf72aaa3f6664cc2a991502d1"]
 ["","git-sha",["github.com/dagger/vitest","refs/heads/main"],"baffeee686a06ef42d7f2e27e5658926bcdbe3c9"]
+["","oci-sha",["docker.io/hashicorp/terraform:1.16.3"],"sha256:c9a9d991c113f3bda5269de1506983d45ce1409dfe702df433acf10a5ea9f6bc"]
 ["","oci-sha",["docker.io/library/node:24-slim"],"sha256:0e0ff40c39bc087845bfb27465a0df4ea419520094bc35842ff83dd8cbe6f9b6"]
 ["","vanity-url",["https://dagger.io/js/eslint"],"https://github.com/dagger/eslint"]
 ["","vanity-url",["https://dagger.io/js/prettier"],"https://github.com/dagger/prettier"]
