@@ -15,11 +15,11 @@ import {
   dimensions,
 } from './instrument'
 import { Dial, Lattice } from './sigils'
-import { Wordmark } from './wordmark'
 
 export interface HeaderProps {
   playing: boolean
   onToggle: () => void
+  wordmark: React.ReactNode
 }
 
 interface ProfileProps {
@@ -61,11 +61,13 @@ const profiles: ProfileProps[] = [
   },
 ]
 
-export const Header: React.FC<HeaderProps> = ({ playing, onToggle }) => (
+export const Header: React.FC<HeaderProps> = ({
+  playing,
+  onToggle,
+  wordmark,
+}) => (
   <Root>
-    <Title>
-      <Wordmark />
-    </Title>
+    <Title>{wordmark}</Title>
     <Nav>
       <Gradients />
       {profiles.slice(0, 2).map((profile) => (
@@ -119,10 +121,17 @@ const Root = styled.header`
 `
 
 const Title = styled.h1`
+  ${motion.booming};
   width: min(80vw, 60rem);
   margin-top: 0;
   margin-inline: auto;
   user-select: none;
+
+  > svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 `
 
 const Nav = styled.nav`

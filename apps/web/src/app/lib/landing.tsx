@@ -9,7 +9,11 @@ import { colors, global } from '@/styles'
 
 import { Header } from './header'
 
-export const Landing: React.FC = () => {
+export interface LandingProps {
+  wordmark: React.ReactNode
+}
+
+export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
 
@@ -21,6 +25,7 @@ export const Landing: React.FC = () => {
             flow, can blend against it without an isolating z-index. */}
         <Scene audioLevelRef={audioLevelRef} />
         <Header
+          wordmark={wordmark}
           playing={playing}
           onToggle={() => setPlaying((current) => !current)}
         />
