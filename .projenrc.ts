@@ -28,8 +28,8 @@ const project = new Project({
     type: 'module',
 
     deps: [
-      '@babel/core@8.0.5',
-      '@babel/register@8.0.5',
+      '@babel/core@8.0.6',
+      '@babel/register@8.0.6',
       'react-dom@19.3.0',
       'react@19.3.0',
     ],
