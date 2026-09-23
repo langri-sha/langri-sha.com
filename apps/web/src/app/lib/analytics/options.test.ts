@@ -19,6 +19,7 @@ test('broad and sensitive capture is off', () => {
   expect(options.capture_exceptions).toBe(false)
   expect(options.capture_heatmaps).toBe(false)
   expect(options.disable_session_recording).toBe(true)
+  expect(options.disable_surveys).toBe(true)
   expect(options.person_profiles).toBe('identified_only')
   expect(options.respect_dnt).toBe(true)
 })

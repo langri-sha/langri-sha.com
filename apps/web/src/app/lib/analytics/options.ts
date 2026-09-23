@@ -12,6 +12,7 @@ export const options: Partial<PostHogConfig> = {
   capture_heatmaps: false,
   capture_performance: { web_vitals: true },
   disable_session_recording: true,
+  disable_surveys: true,
   person_profiles: 'identified_only',
   respect_dnt: true,
 }
