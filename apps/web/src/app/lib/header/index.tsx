@@ -127,7 +127,7 @@ const Title = styled.h1`
   margin-inline: auto;
   user-select: none;
 
-  > svg {
+  > img {
     display: block;
     width: 100%;
     height: auto;
