@@ -17,7 +17,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const gl = canvas.getContext('webgl')
+    const gl = canvas.getContext('webgl2')
     if (!gl) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -128,7 +128,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
 }
 
 const createShader = (
-  gl: WebGLRenderingContext,
+  gl: WebGL2RenderingContext,
   type: number,
   source: string,
 ) => {
@@ -151,7 +151,7 @@ const createShader = (
 }
 
 const createProgram = (
-  gl: WebGLRenderingContext,
+  gl: WebGL2RenderingContext,
   vertexShader: WebGLShader,
   fragmentShader: WebGLShader,
 ) => {
