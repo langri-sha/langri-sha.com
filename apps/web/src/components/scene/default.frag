@@ -1,16 +1,16 @@
+#version 300 es
+
 // A clean, graphic cosmic rift. This deliberately avoids a ray-marched noise
 // field: the important silhouette is made from smooth analytic shapes so it
 // stays legible at every resolution instead of turning into static.
 
-#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
-#else
-precision mediump float;
-#endif
 
 uniform vec2 u_resolution;
 uniform float u_time;
 uniform float u_audioLevel;
+
+out vec4 fragColor;
 
 // The four-pointed star at the heart of the rift. Half-extent in screen units
 // (y spans +/-1), and an exponent below 1 that pulls the edges concave: 1.0
@@ -157,5 +157,5 @@ void main() {
   // to flat white, then a light gamma lift preserves the deep-space blacks.
   col = col / (1.0 + col);
   col = pow(col, vec3(0.82));
-  gl_FragColor = vec4(col, 1.0);
+  fragColor = vec4(col, 1.0);
 }
