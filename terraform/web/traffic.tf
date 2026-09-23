@@ -9,6 +9,8 @@ locals {
   # the router serves whole.
   bucket_hosts = setsubtract(local.limited_hosts, ["preview"])
 
+  assets_hosts = ["production-assets", "preview-assets"]
+
   host_backends = merge(
     {
       for host in local.bucket_hosts :
@@ -70,6 +72,19 @@ resource "google_compute_backend_bucket" "public" {
   bucket_name      = google_storage_bucket.public[each.value].name
   compression_mode = "AUTOMATIC"
   enable_cdn       = true
+
+  dynamic "cdn_policy" {
+    for_each = contains(local.assets_hosts, each.value) ? [1] : []
+
+    content {
+      cache_mode  = "CACHE_ALL_STATIC"
+      client_ttl  = 31536000
+      default_ttl = 31536000
+      max_ttl     = 31536000
+
+      request_coalescing = true
+    }
+  }
 
   custom_response_headers = [
     "Referrer-Policy: no-referrer",
