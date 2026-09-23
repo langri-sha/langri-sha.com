@@ -18,31 +18,25 @@ const PRELOAD_SAMPLE_RATE = 48000
 let preloadedVoiceBuffers: Promise<VoiceBuffers> | null = null
 
 /**
- * Render the voice's buffers once the page has loaded and gone idle, so the
- * first play doesn't wait on them. Each render is used at most once.
+ * Render the voice's buffers once the page has loaded, so the first play
+ * doesn't wait on them. Each render is used at most once.
  */
 export const preloadDrone = () => {
   if (!window.AudioContext || voicePlayed) {
-    return () => {}
+    return
   }
 
-  let idle = 0
   const preload = () => {
-    idle = requestIdle(() => {
-      preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
-    })
+    preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
   }
 
   if (document.readyState === 'complete') {
     preload()
-  } else {
-    window.addEventListener('load', preload, { once: true })
+    return
   }
 
-  return () => {
-    window.removeEventListener('load', preload)
-    cancelIdle(idle)
-  }
+  window.addEventListener('load', preload, { once: true })
+  return () => window.removeEventListener('load', preload)
 }
 
 const takeVoiceBuffers = async (sampleRate: number) => {
@@ -322,16 +316,6 @@ const nextFrame = () =>
       setTimeout(resolve, 0)
     })
   })
-
-const requestIdle = (callback: () => void) =>
-  window.requestIdleCallback
-    ? window.requestIdleCallback(callback, { timeout: 2000 })
-    : window.setTimeout(callback, 200)
-
-const cancelIdle = (handle: number) =>
-  window.cancelIdleCallback
-    ? window.cancelIdleCallback(handle)
-    : window.clearTimeout(handle)
 
 const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
