@@ -15,7 +15,7 @@ const config: NextConfig = {
 
   turbopack: {
     rules: {
-      '*.{vert,frag,glsl,worklet}': {
+      '*.{vert,frag,glsl,worklet,svg}': {
         loaders: ['raw-loader'],
         as: '*.js',
       },
