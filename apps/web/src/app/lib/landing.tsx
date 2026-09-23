@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, Scene } from '@/components'
+import { Drone, Scene, preloadDrone } from '@/components'
 import { colors, global } from '@/styles'
 
 import { Header } from './header'
@@ -16,6 +16,8 @@ export interface LandingProps {
 export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
+
+  React.useEffect(preloadDrone, [])
 
   return (
     <React.Fragment>
