@@ -112,6 +112,7 @@ class Processor {
 
   async generate() {
     await this.context.resume()
+    await nextFrame()
 
     if (this.destroyed) {
       return
@@ -244,6 +245,18 @@ const setPannerPosition = (
     panner.setPosition(x, y, z)
   }
 }
+
+/**
+ * `resume()` settles as a microtask when the context is already running, so
+ * without this the graph is built inside the click task, before the toggle's
+ * pressed state paints.
+ */
+const nextFrame = () =>
+  new Promise<void>((resolve) => {
+    requestAnimationFrame(() => {
+      setTimeout(resolve, 0)
+    })
+  })
 
 const mtof = (m: number) => 2 ** ((m - 69) / 12) * 440
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
