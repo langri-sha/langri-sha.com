@@ -23,3 +23,8 @@ voice.dispose()
 The constructor takes an optional chant and character, both defaulting to the
 `CHANT` and `CHARACTER` tables exported alongside it. `@langri-sha/voice-editor`
 passes edited ones to audition them.
+
+Building the graph renders a noise buffer and a 5.5 s stereo impulse response.
+To keep that off the main thread, render them on a worker with
+`prepareVoiceBuffers(context.sampleRate)` and pass the result as the fifth
+constructor argument.
