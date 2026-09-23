@@ -51,6 +51,9 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
         program,
         'a_position',
       )
+      const vertexArray = gl.createVertexArray()
+      gl.bindVertexArray(vertexArray)
+
       const positionBuffer = gl.createBuffer()
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
       gl.bufferData(
@@ -90,6 +93,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
 
       dispose = () => {
         cancelAnimationFrame(frame)
+        gl.deleteVertexArray(vertexArray)
         gl.deleteBuffer(positionBuffer)
         gl.deleteProgram(program)
         gl.deleteShader(vertexShader)
