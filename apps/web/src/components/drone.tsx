@@ -1,5 +1,5 @@
 'use client'
-import { Voice } from '@langri-sha/voice'
+import { CHANT, CHARACTER, Voice, prepareVoiceBuffers } from '@langri-sha/voice'
 import * as React from 'react'
 
 import noiseProcessorSource from './noise-processor.worklet'
@@ -111,6 +111,10 @@ class Processor {
   }
 
   async generate() {
+    const voiceBuffers = voicePlayed
+      ? null
+      : prepareVoiceBuffers(this.context.sampleRate)
+
     await this.context.resume()
     await nextFrame()
 
@@ -118,10 +122,22 @@ class Processor {
       return
     }
 
-    if (!voicePlayed) {
+    if (voiceBuffers) {
+      const buffers = await voiceBuffers
+
+      if (this.destroyed) {
+        return
+      }
+
       voicePlayed = true
+      this.voice = new Voice(
+        this.context,
+        this.gainNode,
+        CHANT,
+        CHARACTER,
+        buffers,
+      )
       const start = this.context.currentTime + 0.05
-      this.voice = new Voice(this.context, this.gainNode)
       this.voice.start(start)
       this.droneBus.gain.setTargetAtTime(
         0.25,

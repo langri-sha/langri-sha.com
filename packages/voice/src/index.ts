@@ -12,6 +12,10 @@
  * runtime; nothing is sampled and no recording or score is reproduced.
  */
 
+import { type VoiceBuffers, renderVoiceBuffers } from './buffers'
+
+export { type VoiceBuffers, prepareVoiceBuffers } from './buffers'
+
 export interface Syllable {
   /** Seconds the syllable holds. */
   dur: number
@@ -189,6 +193,7 @@ export class Voice {
     destination: AudioNode,
     chant: Breath[] = CHANT,
     character: Character = CHARACTER,
+    buffers: VoiceBuffers = renderVoiceBuffers(context.sampleRate),
   ) {
     this.context = context
     this.chant = chant
@@ -196,7 +201,7 @@ export class Voice {
     this.voiceEnd = VOICE_START + chantDuration(chant)
     this.handoffAt = this.voiceEnd - 1.5
     this.tailEnd = this.voiceEnd + 7
-    this.noiseData = this.createNoiseBuffer()
+    this.noiseData = this.buffer([buffers.noise], buffers.sampleRate)
 
     const master = this.gain(character.level)
     master.connect(destination)
@@ -205,7 +210,7 @@ export class Voice {
     this.dryBus.connect(master)
 
     const convolver = this.own(context.createConvolver())
-    convolver.buffer = this.createImpulseResponse()
+    convolver.buffer = this.buffer(buffers.impulseResponse, buffers.sampleRate)
     const wetOut = this.gain(0.85)
     convolver.connect(wetOut)
     wetOut.connect(master)
@@ -546,35 +551,13 @@ export class Voice {
     }
   }
 
-  private createNoiseBuffer(): AudioBuffer {
-    const rate = this.context.sampleRate
-    const buffer = this.context.createBuffer(1, Math.ceil(rate * 3), rate)
-    const data = buffer.getChannelData(0)
-    for (let i = 0; i < data.length; i++) {
-      data[i] = Math.random() * 2 - 1
-    }
-    return buffer
-  }
-
-  /**
-   * A cavernous stereo impulse response: exponentially decaying noise that a
-   * deepening one-pole lowpass darkens as it fades.
-   */
-  private createImpulseResponse(): AudioBuffer {
-    const rate = this.context.sampleRate
-    const length = Math.ceil(rate * 5.5)
-    const buffer = this.context.createBuffer(2, length, rate)
-
-    for (let channel = 0; channel < 2; channel++) {
-      const data = buffer.getChannelData(channel)
-      let smoothed = 0
-      for (let i = 0; i < length; i++) {
-        const brightness = 0.55 - 0.5 * (i / length)
-        smoothed += (Math.random() * 2 - 1 - smoothed) * brightness
-        data[i] = smoothed * Math.exp(-i / (rate * 1.7))
-      }
-    }
-
+  private buffer(channels: Float32Array<ArrayBuffer>[], sampleRate: number) {
+    const buffer = this.context.createBuffer(
+      channels.length,
+      channels[0].length,
+      sampleRate,
+    )
+    channels.forEach((data, channel) => buffer.copyToChannel(data, channel))
     return buffer
   }
 }
