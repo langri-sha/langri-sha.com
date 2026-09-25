@@ -31,11 +31,6 @@
       "type": "build"
     },
     {
-      "name": "@langri-sha/schemastore-to-typescript",
-      "version": "^0.2.1",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"
