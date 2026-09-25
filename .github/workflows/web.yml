@@ -80,7 +80,7 @@ jobs:
           rm -rf dist/web/_next
 
           gcloud storage cp dist/web/* gs://${{ vars.BUCKET }} \
-            --cache-control="public, no-store" \
+            --cache-control="public, max-age=0, must-revalidate" \
             --project ${{ vars.EDGE_PROJECT_ID }} \
             --recursive
 
@@ -176,7 +176,7 @@ jobs:
             echo "ok  $1 -> $2: $3"
           }
 
-          header / cache-control 'public, no-store'
+          header / cache-control 'public, max-age=0, must-revalidate'
           header / x-robots-tag noindex
           header /no-such-page x-robots-tag noindex
 
