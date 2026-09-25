@@ -2,7 +2,7 @@
 
 ARG alpine_version
 
-FROM google/cloud-sdk:585.0.0-alpine as google_cloud_sdk
+FROM google/cloud-sdk:586.0.0-alpine as google_cloud_sdk
 FROM hashicorp/terraform:1.16.3 as terraform
 
 FROM alpine:3.24 as kubernetes
