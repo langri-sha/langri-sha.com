@@ -63,6 +63,7 @@ locals {
         for name, data in module.project :
         "${upper(name)}_PROJECT_ID" => data.project_id
         }, {
+        POSTHOG_PROJECT_TOKEN  = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
         POSTHOG_PROXY_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/posthog-proxy"
         POSTHOG_PROXY_REGION   = local.region
         POSTHOG_PROXY_SERVICE  = module.posthog_proxy.service
