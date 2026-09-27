@@ -8,11 +8,12 @@ on:
 
 jobs:
   check:
-    uses: langri-sha/github/.github/workflows/check.yml@v0.15.1
+    uses: langri-sha/github/.github/workflows/check.yml@12d53d05481436bca840e4fc2de876c5afac3b04
     with:
       dagger: true
       eslint: true
       prettier: true
       projen: true
       vitest: true
+      posthog-token: ${{ vars.POSTHOG_PROJECT_TOKEN }}
     secrets: inherit
