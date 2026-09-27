@@ -15,4 +15,5 @@ jobs:
       prettier: true
       projen: true
       vitest: true
+      posthog-project-token: ${{ vars.POSTHOG_PROJECT_TOKEN }}
     secrets: inherit
