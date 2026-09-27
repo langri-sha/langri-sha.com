@@ -11,7 +11,7 @@ import { options } from './options'
  * whose blockers drop `posthog.com`, and keep their addresses off a third-party
  * domain.
  *
- * The project API key is public by design, and is built into deployed bundles
+ * The project token is public by design, and is built into deployed bundles
  * only. Importing the SDK behind it keeps a build without one — anything built
  * locally — from loading it at all.
  *
@@ -19,7 +19,7 @@ import { options } from './options'
  */
 export const Analytics: React.FC = () => {
   React.useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_POSTHOG_KEY
+    const key = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
 
     if (!key) {
       return
@@ -34,7 +34,7 @@ export const Analytics: React.FC = () => {
 }
 
 export const capture = (event: string, properties?: Properties) => {
-  if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+  if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN) {
     return
   }
 

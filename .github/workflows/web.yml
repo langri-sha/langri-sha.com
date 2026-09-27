@@ -27,7 +27,7 @@ jobs:
         run: pnpm build
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
-          NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
 
       - name: Create artifact
         uses: actions/upload-artifact@v7
@@ -130,7 +130,7 @@ jobs:
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
-          NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
 
       - name: Build image
         run: docker build --tag preview-origin apps/web

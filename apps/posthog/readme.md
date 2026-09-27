@@ -108,11 +108,13 @@ sending events before there is a revision to answer them.
    gcloud secrets versions add posthog-project-token --data-file=-
    ```
 
-   The next apply reads it into `NEXT_PUBLIC_POSTHOG_KEY` on the production and
-   preview environments, and every deploy after that has analytics on. Preview
-   events land in the same project, told apart by their `$host`. Rotating the
-   token is a new version and an apply, never a commit. Until a version exists
-   the variable is empty and the site builds without analytics.
+   The next apply reads it into the repository's `POSTHOG_PROJECT_TOKEN` Actions
+   variable, which the web build passes on as
+   `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN`, and every deploy after that has
+   analytics on. Preview events land in the same project, told apart by their
+   `$host`. Rotating the token is a new version and an apply, never a commit.
+   Until a version exists the variable is empty and the site builds without
+   analytics.
 
 The service takes `INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER`, so the `run.app` URL
 Cloud Run assigns it answers nothing. That it stays that way is worth checking
