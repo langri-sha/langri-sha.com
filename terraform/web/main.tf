@@ -80,20 +80,18 @@ locals {
       environments = {
         preview = {
           actions_variables = {
-            ASSETS_BUCKET           = google_storage_bucket.public["preview-assets"].name
-            ASSETS_URL              = local.host_urls["preview-assets"]
-            NEXT_PUBLIC_POSTHOG_KEY = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
-            URL                     = local.host_urls["preview"]
+            ASSETS_BUCKET = google_storage_bucket.public["preview-assets"].name
+            ASSETS_URL    = local.host_urls["preview-assets"]
+            URL           = local.host_urls["preview"]
           }
         }
 
         production = {
           actions_variables = {
-            ASSETS_BUCKET           = google_storage_bucket.public["production-assets"].name
-            ASSETS_URL              = local.host_urls["production-assets"]
-            BUCKET                  = google_storage_bucket.public["production"].name
-            NEXT_PUBLIC_POSTHOG_KEY = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
-            URL                     = local.host_urls["production"]
+            ASSETS_BUCKET = google_storage_bucket.public["production-assets"].name
+            ASSETS_URL    = local.host_urls["production-assets"]
+            BUCKET        = google_storage_bucket.public["production"].name
+            URL           = local.host_urls["production"]
           }
         }
       }
