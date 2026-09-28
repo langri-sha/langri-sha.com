@@ -51,24 +51,27 @@ const takeVoiceBuffers = async (sampleRate: number) => {
 
 export interface DroneProps {
   audioLevelRef: React.MutableRefObject<number>
+  clockRef: React.MutableRefObject<AudioContext | null>
 }
 
-export const Drone: React.FC<DroneProps> = ({ audioLevelRef }) => {
+export const Drone: React.FC<DroneProps> = ({ audioLevelRef, clockRef }) => {
   React.useEffect(() => {
     if (!window.AudioContext) {
       return
     }
 
     const processor = new Processor(audioLevelRef)
+    clockRef.current = processor.context
 
     processor.generate().catch(() => {
       // AudioWorklet failed to load (e.g. unsupported browser); nothing to play.
     })
 
     return () => {
+      clockRef.current = null
       processor.destroy()
     }
-  }, [audioLevelRef])
+  }, [audioLevelRef, clockRef])
 
   return null
 }
