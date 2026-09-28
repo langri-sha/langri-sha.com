@@ -8,7 +8,7 @@ on:
 
 jobs:
   check:
-    uses: langri-sha/github/.github/workflows/check.yml@v0.17.0
+    uses: langri-sha/github/.github/workflows/check.yml@v0.18.0
     with:
       dagger: true
       eslint: true
@@ -29,6 +29,6 @@ jobs:
 
     steps:
       - name: Link trace
-        uses: langri-sha/github/actions/posthog-trace-status@v0.17.0
+        uses: langri-sha/github/actions/posthog-trace-status@v0.18.0
         with:
           url: ${{ needs.check.outputs.posthog-trace-url }}
