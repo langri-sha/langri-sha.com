@@ -1,4 +1,5 @@
 variables {
+  posthog_project_id_version    = ""
   posthog_project_token_version = ""
 }
 

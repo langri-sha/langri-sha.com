@@ -1,3 +1,9 @@
+variable "posthog_project_id_version" {
+  default     = "latest"
+  description = "Version of the posthog-project-id secret to read. Empty skips the read, like posthog_project_token_version."
+  type        = string
+}
+
 variable "posthog_project_token_version" {
   default     = "latest"
   description = "Version of the posthog-project-token secret to read. Empty skips the read, which the URL map test needs: a mocked provider cannot resolve it at plan time."

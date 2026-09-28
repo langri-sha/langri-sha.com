@@ -116,6 +116,14 @@ sending events before there is a revision to answer them.
    Until a version exists the variable is empty and the site builds without
    analytics.
 
+   The `posthog-project-id` secret next to it takes the project's numeric ID the
+   same way, without a trailing newline, and becomes the `POSTHOG_PROJECT_ID`
+   variable that CI links Dagger traces with:
+
+   ```sh
+   printf %s "$project_id" | gcloud secrets versions add posthog-project-id --data-file=-
+   ```
+
 The service takes `INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER`, so the `run.app` URL
 Cloud Run assigns it answers nothing. That it stays that way is worth checking
 after a deploy:
