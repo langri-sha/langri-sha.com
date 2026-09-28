@@ -79,10 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
         aria-label={
           playing ? 'Pause the ambient drone' : 'Play the ambient drone'
         }
-        onClick={() => {
-          onToggle()
-          capture(playing ? 'drone_paused' : 'drone_played')
-        }}
+        onClick={onToggle}
       >
         <Dial playing={playing} />
         <ToggleGlyph aria-hidden="true">

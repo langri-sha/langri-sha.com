@@ -7,6 +7,7 @@ import * as React from 'react'
 import { Drone, Scene, preloadDrone } from '@/components'
 import { colors, global } from '@/styles'
 
+import { capture } from './analytics'
 import { Header } from './header'
 
 export interface LandingProps {
@@ -29,7 +30,10 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
         <Header
           wordmark={wordmark}
           playing={playing}
-          onToggle={() => setPlaying((current) => !current)}
+          onToggle={() => {
+            capture(playing ? 'drone_paused' : 'drone_played')
+            setPlaying(!playing)
+          }}
         />
         {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
       </Root>
