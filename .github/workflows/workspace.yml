@@ -8,12 +8,27 @@ on:
 
 jobs:
   check:
-    uses: langri-sha/github/.github/workflows/check.yml@v0.16.0
+    uses: langri-sha/github/.github/workflows/check.yml@v0.17.0
     with:
       dagger: true
       eslint: true
       prettier: true
       projen: true
       vitest: true
+      posthog-project-id: ${{ vars.POSTHOG_PROJECT_ID }}
       posthog-project-token: ${{ vars.POSTHOG_PROJECT_TOKEN }}
     secrets: inherit
+
+  trace:
+    name: PostHog Trace
+    needs: [check]
+    if: always() && needs.check.outputs.posthog-trace-url
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+
+    steps:
+      - name: Link trace
+        uses: langri-sha/github/actions/posthog-trace-status@v0.17.0
+        with:
+          url: ${{ needs.check.outputs.posthog-trace-url }}
