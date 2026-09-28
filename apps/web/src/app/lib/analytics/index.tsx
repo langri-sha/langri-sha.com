@@ -1,6 +1,6 @@
 'use client'
 
-import type { Properties } from 'posthog-js'
+import type { CaptureOptions, Properties } from 'posthog-js'
 import * as React from 'react'
 
 import { options } from './options'
@@ -33,12 +33,16 @@ export const Analytics: React.FC = () => {
   return null
 }
 
-export const capture = (event: string, properties?: Properties) => {
+export const capture = (
+  event: string,
+  properties?: Properties,
+  options?: CaptureOptions,
+) => {
   if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN) {
     return
   }
 
   void import('posthog-js').then(({ posthog }) => {
-    posthog.capture(event, properties)
+    posthog.capture(event, properties, options)
   })
 }
