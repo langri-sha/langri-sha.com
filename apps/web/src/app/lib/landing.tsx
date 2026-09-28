@@ -8,6 +8,7 @@ import { Drone, Scene, preloadDrone } from '@/components'
 import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
+import { droneToggled } from './analytics/drone'
 import { Header } from './header'
 
 export interface LandingProps {
@@ -17,6 +18,7 @@ export interface LandingProps {
 export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
+  const clockRef = React.useRef<AudioContext | null>(null)
 
   React.useEffect(preloadDrone, [])
 
@@ -31,11 +33,13 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           wordmark={wordmark}
           playing={playing}
           onToggle={() => {
-            capture(playing ? 'drone_paused' : 'drone_played')
+            capture(...droneToggled(playing, clockRef.current))
             setPlaying(!playing)
           }}
         />
-        {playing ? <Drone audioLevelRef={audioLevelRef} /> : null}
+        {playing ? (
+          <Drone audioLevelRef={audioLevelRef} clockRef={clockRef} />
+        ) : null}
       </Root>
     </React.Fragment>
   )
