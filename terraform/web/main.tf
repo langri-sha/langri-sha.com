@@ -63,6 +63,7 @@ locals {
         for name, data in module.project :
         "${upper(name)}_PROJECT_ID" => data.project_id
         }, {
+        POSTHOG_PROJECT_ID     = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-id"]), "")
         POSTHOG_PROJECT_TOKEN  = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
         POSTHOG_PROXY_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/posthog-proxy"
         POSTHOG_PROXY_REGION   = local.region
@@ -190,12 +191,18 @@ locals {
       project = module.project["edge"].project_id
 
       secrets = [
+        "posthog-project-id",
         "posthog-project-token",
       ]
 
-      read_secret_version = var.posthog_project_token_version == "" ? {} : {
-        "posthog-project-token" = var.posthog_project_token_version
-      }
+      read_secret_version = merge(
+        var.posthog_project_id_version == "" ? {} : {
+          "posthog-project-id" = var.posthog_project_id_version
+        },
+        var.posthog_project_token_version == "" ? {} : {
+          "posthog-project-token" = var.posthog_project_token_version
+        },
+      )
     }
 
     "previews-router" = {
