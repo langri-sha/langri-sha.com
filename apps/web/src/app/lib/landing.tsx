@@ -8,7 +8,7 @@ import { Drone, Scene, preloadDrone } from '@/components'
 import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
-import { droneToggled } from './analytics/drone'
+import { dronePaused, droneToggled } from './analytics/drone'
 import { Header } from './header'
 
 export interface LandingProps {
@@ -21,6 +21,24 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const clockRef = React.useRef<AudioContext | null>(null)
 
   React.useEffect(preloadDrone, [])
+
+  React.useEffect(() => {
+    if (!playing) {
+      return
+    }
+
+    const onPageHide = () => {
+      // posthog-js flushes its batch queue from a `pagehide` listener of its
+      // own, which may run before this one. A beacon skips the queue.
+      capture(...dronePaused(clockRef.current, 'pagehide'), {
+        transport: 'sendBeacon',
+      })
+      setPlaying(false)
+    }
+
+    window.addEventListener('pagehide', onPageHide)
+    return () => window.removeEventListener('pagehide', onPageHide)
+  }, [playing])
 
   return (
     <React.Fragment>
