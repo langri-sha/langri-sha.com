@@ -1,18 +1,8 @@
 {
   "dependencies": [
     {
-      "name": "@langri-sha/babel-preset",
-      "version": "^0.6.3",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/eslint-config",
       "version": "^0.9.0",
-      "type": "build"
-    },
-    {
-      "name": "@langri-sha/jest-config",
-      "version": "^0.8.6",
       "type": "build"
     },
     {
@@ -61,11 +51,6 @@
       "type": "build"
     },
     {
-      "name": "jest",
-      "version": "30.5.2",
-      "type": "build"
-    },
-    {
       "name": "lint-staged",
       "version": "17.6.0",
       "type": "build"
@@ -94,16 +79,6 @@
       "name": "vitest",
       "version": "5.0.2",
       "type": "build"
-    },
-    {
-      "name": "@babel/core",
-      "version": "8.0.6",
-      "type": "runtime"
-    },
-    {
-      "name": "@babel/register",
-      "version": "8.0.6",
-      "type": "runtime"
     },
     {
       "name": "react-dom",
