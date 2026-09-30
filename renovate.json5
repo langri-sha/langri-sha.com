@@ -26,8 +26,12 @@
       matchPackageNames: [
         '@swc-node/register',
         '@swc/core',
+        'eslint',
         'husky',
+        'lint-staged',
+        'prettier',
         'projen',
+        'tsx',
         'typescript',
       ],
       enabled: false,
