@@ -175,13 +175,13 @@ importers:
     devDependencies:
       '@langri-sha/eslint-config':
         specifier: ^0.9.0
-        version: 0.9.16(@typescript-eslint/utils@8.70.1(eslint@10.11.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@10.11.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@5.9.3)
+        version: 0.9.17(@typescript-eslint/utils@8.70.1(eslint@10.11.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@10.11.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@5.9.3)
       '@langri-sha/lint-staged':
         specifier: ^0.9.1
-        version: 0.9.7(eslint@10.11.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)
+        version: 0.9.8(eslint@10.11.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)
       '@langri-sha/prettier':
         specifier: ^0.4.1
-        version: 0.4.8(prettier@3.9.9)
+        version: 0.4.9(prettier@3.9.9)
       '@langri-sha/projen-project':
         specifier: 0.31.2
         version: 0.31.2(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.11.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
@@ -297,7 +297,7 @@ importers:
     devDependencies:
       '@langri-sha/babel-preset':
         specifier: ^0.6.3
-        version: 0.6.7(@babel/core@8.0.6)(supports-color@8.1.1)
+        version: 0.6.8(@babel/core@8.0.6)(supports-color@8.1.1)
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
         version: 1.0.1(typescript@5.9.3)
@@ -1489,18 +1489,18 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@langri-sha/babel-preset@0.6.7':
-    resolution: {integrity: sha512-UhbJ8CAu0djbi2EZNxgjDkTjop8RnKUl0D5B5YM8fDtnpNakMA+9H5GeCo6jt1ELOD0MW5GFD7vESq9EJSj01A==}
+  '@langri-sha/babel-preset@0.6.8':
+    resolution: {integrity: sha512-cZbELrSgupvpKh+itOLS97HA2SJPv3Vr2voaAZEo18BQnwVItXXzn3oDAoYJJsmliP02QEukk3ZJQZPTNV7xQg==}
     peerDependencies:
       '@babel/core': ^8.0.0
 
-  '@langri-sha/eslint-config@0.9.16':
-    resolution: {integrity: sha512-s02vEaEAPqIqERobXDDT9qg/2EKwWJ70Gb36E8Y8MkGc+CmRRADSTje1OsITcxggEONTKpnaVT7i7cb7eNne0Q==}
+  '@langri-sha/eslint-config@0.9.17':
+    resolution: {integrity: sha512-2v4U9MzK5Ed1XTiH4IJMmuXRe2u/SqrXZoDZIDf6zRUcFqMtpE0xydAqN1hsxKkaNs0OVe7zvz1D0Zj2S0AomA==}
     peerDependencies:
       eslint: ^10.4.0
 
-  '@langri-sha/lint-staged@0.9.7':
-    resolution: {integrity: sha512-v79kB+irY1j+4cmgcxPfLengvgfryZSQa31GsHWF2tZoQCALetdsUMnFjMf1U++9UeZUrCXF45LPZlL6JFUlzA==}
+  '@langri-sha/lint-staged@0.9.8':
+    resolution: {integrity: sha512-SMxqWhm+lKR+gJ64/t5VjgfPmlTmvTJkc4dfuux7Y8m+A+sZnXzLoEyW3yClCCPCSt7evNXa60kVQdg6UrtpRQ==}
     peerDependencies:
       eslint: ^10.4.0
       lint-staged: ^17.0.0
@@ -1511,8 +1511,8 @@ packages:
       prettier:
         optional: true
 
-  '@langri-sha/prettier@0.4.8':
-    resolution: {integrity: sha512-xxiJxn63LhNc+5PJLZv1bXhxhU8ywPffpIbDsc+wsVD5UEB73tj9wpd5TpFWRzgzSMEzXdmVArdjUdBcKtKELQ==}
+  '@langri-sha/prettier@0.4.9':
+    resolution: {integrity: sha512-jYxukhbVlblrVgF+TQ+ixoUwyWaZXs8+rnJOT28jt3ua6m7lzo8KBiRbuNXoXQiINaCeJwu6BfzHYgZawgpC3A==}
     peerDependencies:
       prettier: ^3.0.0
 
@@ -5580,7 +5580,7 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@langri-sha/babel-preset@0.6.7(@babel/core@8.0.6)(supports-color@8.1.1)':
+  '@langri-sha/babel-preset@0.6.8(@babel/core@8.0.6)(supports-color@8.1.1)':
     dependencies:
       '@babel/core': 8.0.6
       '@babel/plugin-proposal-export-default-from': 8.0.1(@babel/core@8.0.6)
@@ -5592,7 +5592,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@langri-sha/eslint-config@0.9.16(@typescript-eslint/utils@8.70.1(eslint@10.11.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@10.11.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@5.9.3)':
+  '@langri-sha/eslint-config@0.9.17(@typescript-eslint/utils@8.70.1(eslint@10.11.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@10.11.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@eslint/compat': 2.1.1(eslint@10.11.0(supports-color@8.1.1))
       '@eslint/js': 10.0.1(eslint@10.11.0(supports-color@8.1.1))
@@ -5614,14 +5614,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@langri-sha/lint-staged@0.9.7(eslint@10.11.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)':
+  '@langri-sha/lint-staged@0.9.8(eslint@10.11.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)':
     dependencies:
       lint-staged: 17.6.0
     optionalDependencies:
       eslint: 10.11.0(supports-color@8.1.1)
       prettier: 3.9.9
 
-  '@langri-sha/prettier@0.4.8(prettier@3.9.9)':
+  '@langri-sha/prettier@0.4.9(prettier@3.9.9)':
     dependencies:
       prettier: 3.9.9
       prettier-plugin-ini: 1.3.0
