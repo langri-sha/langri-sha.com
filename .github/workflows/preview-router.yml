@@ -98,7 +98,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Setup Google Cloud Platform
-        uses: langri-sha/github/actions/google-cloud-platform@v0.22.0
+        uses: langri-sha/github/actions/google-cloud-platform@v0.23.0
         with:
           service_account: ${{ vars.SERVICE_ACCOUNT }}
           setup_gcloud: true
