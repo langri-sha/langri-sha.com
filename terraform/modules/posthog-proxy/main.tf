@@ -77,7 +77,22 @@ resource "google_compute_backend_service" "posthog_proxy" {
   load_balancing_scheme = "EXTERNAL"
   timeout_sec           = 30
 
-  enable_cdn = false
+  compression_mode = "AUTOMATIC"
+  enable_cdn       = true
+
+  # The proxy answers ingestion `no-store`, so only what PostHog itself marks
+  # cacheable is kept at the edge.
+  cdn_policy {
+    cache_mode = "USE_ORIGIN_HEADERS"
+
+    request_coalescing = true
+
+    cache_key_policy {
+      include_host         = true
+      include_protocol     = true
+      include_query_string = true
+    }
+  }
 
   log_config {
     enable = false
