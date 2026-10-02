@@ -25,7 +25,9 @@
     "prepare": "husky",
     "renovate": "pnpm exec projen renovate",
     "start": "pnpm run --filter @langri-sha/web start",
-    "test": "pnpm exec vitest --passWithNoTests"
+    "test": "pnpm exec vitest --passWithNoTests",
+    "worktrunk:dry-run": "pnpm exec projen worktrunk:dry-run",
+    "worktrunk:show": "pnpm exec projen worktrunk:show"
   },
   "dependencies": {
     "react": "19.3.0",
