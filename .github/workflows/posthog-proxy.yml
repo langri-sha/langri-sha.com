@@ -141,6 +141,7 @@ jobs:
           }
 
           header /psthg/static/array.js cache-control 'public, max-age=14400'
+          header /psthg/static/array.js vary accept-encoding
           header /psthg/static/array.js x-content-type-options nosniff
           header /psthg/i/v0/e/ cache-control no-store
           header /psthg/i/v0/e/ x-content-type-options nosniff

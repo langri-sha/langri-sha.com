@@ -60,6 +60,9 @@ server {
     proxy_set_header  cookie "";
     proxy_hide_header set-cookie;
 
+    # The assets origin serves Brotli or gzip by `Accept-Encoding` without
+    # saying so, and Cloud CDN keys a cached variant on nothing it is not told.
+    add_header vary accept-encoding always;
     add_header x-content-type-options nosniff always;
   }
 
