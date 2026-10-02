@@ -37,6 +37,8 @@ node_modules/
 !/license
 !/lint-staged.config.js
 !/pnpm-workspace.yaml
+!/.config
+!/.config/wt.toml
 !/renovate.json5
 next-env.d.ts
 !.dagger/

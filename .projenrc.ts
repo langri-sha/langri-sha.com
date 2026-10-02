@@ -120,6 +120,19 @@ const project = new Project({
     },
   },
   withTerraform: true,
+  worktrunk: {
+    config: {
+      'pre-start': [
+        {
+          sync: '{% if base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}',
+        },
+        {
+          env: 'git ls-files -- ":(glob)**/.env.example" | while read -r example; do target=${example%.example}; [ -e "$target" ] || cp "$example" "$target"; done',
+          install: 'pnpm install --frozen-lockfile',
+        },
+      ],
+    },
+  },
 })
 
 project.package?.addField('private', true)
