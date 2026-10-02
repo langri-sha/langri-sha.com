@@ -46,9 +46,10 @@ trust store is proxied, and the same stub without it is refused.
   so they are stripped on the way out, and `Set-Cookie` is dropped on the way
   back.
 - **Caching of API responses.** Ingestion, feature flag and API responses are
-  answered `Cache-Control: no-store`. Cloud CDN is off on the backend service,
-  so nothing is cached at the edge either. The assets keep the caching PostHog
-  advertises for them.
+  answered `Cache-Control: no-store`, which also keeps them out of Cloud CDN.
+  The backend service caches by origin headers alone, so the assets are kept at
+  Google's edge for as long as PostHog advertises, varied on `Accept-Encoding`
+  so a Brotli body never reaches a client that did not ask for one.
 - **Query strings, into the log.** A capture request carries event data in its
   query string, and the visitor's address in `X-Forwarded-For`. The access log
   records the method, the path, the status and the size, and none of the rest.
