@@ -12,6 +12,15 @@ import noiseProcessorSource from './noise-processor.worklet'
 
 let voicePlayed = false
 
+const VOICE_ODDS = 0.05
+
+let voiceRolled: boolean | null = null
+
+/** One roll per page load; a miss never renders the voice's buffers. */
+const rollsVoice = () => (voiceRolled ??= Math.random() < VOICE_ODDS)
+
+const voicePending = () => !voicePlayed && rollsVoice()
+
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
 
@@ -22,7 +31,7 @@ let preloadedVoiceBuffers: Promise<VoiceBuffers> | null = null
  * doesn't wait on them. Each render is used at most once.
  */
 export const preloadDrone = () => {
-  if (!window.AudioContext || voicePlayed) {
+  if (!window.AudioContext || !voicePending()) {
     return
   }
 
@@ -81,7 +90,7 @@ export const Drone: React.FC<DroneProps> = ({ audioLevelRef, clockRef }) => {
  * @preserve
  * @see http://matt-diamond.com/drone.html
  */
-class Processor {
+export class Processor {
   oscilatorsSize: number
   baseNote: number
   context: AudioContext
@@ -128,7 +137,7 @@ class Processor {
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     const droneBus = context.createGain()
-    droneBus.gain.value = voicePlayed ? 0.25 : 0.0001
+    droneBus.gain.value = voicePending() ? 0.0001 : 0.25
     droneBus.connect(gainNode)
     this.droneBus = droneBus
 
@@ -157,9 +166,9 @@ class Processor {
   }
 
   async generate() {
-    const voiceBuffers = voicePlayed
-      ? null
-      : takeVoiceBuffers(this.context.sampleRate)
+    const voiceBuffers = voicePending()
+      ? takeVoiceBuffers(this.context.sampleRate)
+      : null
 
     await this.context.resume()
     await nextFrame()
