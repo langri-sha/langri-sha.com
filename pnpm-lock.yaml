@@ -286,8 +286,8 @@ importers:
         specifier: 8.0.1
         version: 8.0.1
       posthog-js:
-        specifier: 1.435.0
-        version: 1.435.0(@types/react@19.3.0)(react@19.3.0)
+        specifier: 1.435.1
+        version: 1.435.1(@types/react@19.3.0)(react@19.3.0)
       react:
         specifier: ^19.0.0
         version: 19.3.0
@@ -1959,9 +1959,6 @@ packages:
 
   '@posthog/core@1.55.2':
     resolution: {integrity: sha512-2mYxGbDmTLUs096VbcZqSWo0lrI48/BrX65r54NynxxFq409BOx9w73HxOAtOKZ1vblkdV6/GxQTe7KDcIQidg==}
-
-  '@posthog/types@1.412.4':
-    resolution: {integrity: sha512-Q7lV9O9TbLngjOYw1ucm3bS3tn48xb1B4ZQdDy8gv7yfKe99hCTeWYG4xZ36nJM80VxpTF9TriiJt5hngDOkBg==}
 
   '@posthog/types@1.413.0':
     resolution: {integrity: sha512-tYAVzNojWckuG/wxBB0fwE70sFruQQq4xbhkci7eH2ARU3mMfUTkvpN1HwBMpm0AtbxidLiH0IFvagmdJ8opPw==}
@@ -3787,8 +3784,8 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.435.0:
-    resolution: {integrity: sha512-RXcsd0vssNDNAAMz6t6RTaen2QORqn90poQVoZi25ftXCF9Ct1CXuMl8fnkPYxmtP6tkTdbnBehbx07b/b/+5w==}
+  posthog-js@1.435.1:
+    resolution: {integrity: sha512-uDGP3wJToUALjpKe2Lh+ZaxVkDjG2LzE+YNURgVBC6FpXcbeH1EHQlibleFWRsZCuHmPn0SnZeJOJznW6NYU6Q==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5981,13 +5978,11 @@ snapshots:
   '@posthog/browser-common@0.9.0':
     dependencies:
       '@posthog/core': 1.55.2
-      '@posthog/types': 1.412.4
+      '@posthog/types': 1.413.0
 
   '@posthog/core@1.55.2':
     dependencies:
-      '@posthog/types': 1.412.4
-
-  '@posthog/types@1.412.4': {}
+      '@posthog/types': 1.413.0
 
   '@posthog/types@1.413.0': {}
 
@@ -7873,7 +7868,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.435.0(@types/react@19.3.0)(react@19.3.0):
+  posthog-js@1.435.1(@types/react@19.3.0)(react@19.3.0):
     dependencies:
       '@posthog/browser-common': 0.9.0
       '@posthog/core': 1.55.2
