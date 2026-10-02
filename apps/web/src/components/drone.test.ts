@@ -89,7 +89,7 @@ const run = async (roll: number) => {
   const gainAtStart = processor.droneBus.gain.value
   await processor.generate().catch(() => {})
 
-  return { gainAtStart, processor }
+  return { gainAtStart, processor, Processor }
 }
 
 test('a hit plays the voice and starts the drone near silent', async () => {
@@ -106,4 +106,19 @@ test('a miss skips the voice and starts the drone at its normal level', async ()
   expect(voiceStart).not.toHaveBeenCalled()
   expect(prepareVoiceBuffers).not.toHaveBeenCalled()
   expect(gainAtStart).toBe(0.25)
+})
+
+test('a miss rolls again on the next play until the voice lands', async () => {
+  const { Processor } = await run(0.5)
+  const random = vi.spyOn(Math, 'random')
+
+  random.mockReturnValue(0.5)
+  const second = new Processor({ current: 0 })
+  expect(second.droneBus.gain.value).toBe(0.25)
+
+  random.mockReturnValue(0.01)
+  const third = new Processor({ current: 0 })
+  expect(third.droneBus.gain.value).toBe(0.0001)
+  await third.generate().catch(() => {})
+  expect(voiceStart).toHaveBeenCalledOnce()
 })

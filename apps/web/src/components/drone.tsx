@@ -14,12 +14,20 @@ let voicePlayed = false
 
 const VOICE_ODDS = 0.05
 
-let voiceRolled: boolean | null = null
+let pendingRoll: boolean | null = null
 
-/** One roll per page load; a miss never renders the voice's buffers. */
-const rollsVoice = () => (voiceRolled ??= Math.random() < VOICE_ODDS)
+/**
+ * The page load rolls once, ahead of the first play. Each later play rolls
+ * afresh until the voice lands, so a persistent listener eventually hears it.
+ * A miss never renders the voice's buffers.
+ */
+const peekRoll = () => (pendingRoll ??= Math.random() < VOICE_ODDS)
 
-const voicePending = () => !voicePlayed && rollsVoice()
+const takeRoll = () => {
+  const roll = peekRoll()
+  pendingRoll = null
+  return roll
+}
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
@@ -31,7 +39,7 @@ let preloadedVoiceBuffers: Promise<VoiceBuffers> | null = null
  * doesn't wait on them. Each render is used at most once.
  */
 export const preloadDrone = () => {
-  if (!window.AudioContext || !voicePending()) {
+  if (!window.AudioContext || voicePlayed || !peekRoll()) {
     return
   }
 
@@ -97,6 +105,7 @@ export class Processor {
   gainNode: GainNode
   droneBus: GainNode
   voice: Voice | null = null
+  rollsVoice: boolean
   analyserNode: AnalyserNode
   audioLevelRef: React.MutableRefObject<number>
   frequencyData: Uint8Array<ArrayBuffer>
@@ -116,6 +125,7 @@ export class Processor {
     const context = new AudioContext()
     this.context = context
     this.audioLevelRef = audioLevelRef
+    this.rollsVoice = !voicePlayed && takeRoll()
 
     const gainNode = context.createGain()
     gainNode.gain.value = 1
@@ -137,7 +147,7 @@ export class Processor {
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     const droneBus = context.createGain()
-    droneBus.gain.value = voicePending() ? 0.0001 : 0.25
+    droneBus.gain.value = this.rollsVoice ? 0.0001 : 0.25
     droneBus.connect(gainNode)
     this.droneBus = droneBus
 
@@ -166,7 +176,7 @@ export class Processor {
   }
 
   async generate() {
-    const voiceBuffers = voicePending()
+    const voiceBuffers = this.rollsVoice
       ? takeVoiceBuffers(this.context.sampleRate)
       : null
 
