@@ -187,7 +187,7 @@ importers:
         version: 0.31.2(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.11.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.86.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
       '@swc-node/register':
         specifier: 1.12.1
         version: 1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3)
@@ -254,7 +254,7 @@ importers:
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
@@ -300,7 +300,7 @@ importers:
         version: 0.6.8(@babel/core@8.0.6)(supports-color@8.1.1)
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
@@ -318,7 +318,7 @@ importers:
         version: 5.3.0
       '@langri-sha/tsconfig':
         specifier: ^1.0.1
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
       '@types/node':
         specifier: 26.1.1
         version: 26.1.1
@@ -340,7 +340,7 @@ importers:
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: '*'
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
@@ -352,7 +352,7 @@ importers:
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: '*'
-        version: 1.0.2(typescript@5.9.3)
+        version: 1.1.0(typescript@5.9.3)
 
 packages:
 
@@ -1687,10 +1687,10 @@ packages:
     peerDependencies:
       projen: ^0.86.0
 
-  '@langri-sha/tsconfig@1.0.2':
-    resolution: {integrity: sha512-i2KVSIHb3O2McTR0JA62R5bhEmBQLEwL402RYW3qSs75u7sPDudRzPYEhJJgeF01gKHIxcaQkpYmLPnb9t444w==}
+  '@langri-sha/tsconfig@1.1.0':
+    resolution: {integrity: sha512-OgXlvCo51R2VB2BUVNVuxJoJzuzFgXXNk/xtZzUl8qgRULH3Vv3hOsUsqSjvdAVzIv7JAi8froLO1IYRqF0kMg==}
     peerDependencies:
-      typescript: ^5.5.0
+      typescript: ^5.5.0 || ^6.0.0 || ^7.0.0
 
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
@@ -5770,7 +5770,7 @@ snapshots:
     dependencies:
       projen: 0.86.5(constructs@10.8.1)
 
-  '@langri-sha/tsconfig@1.0.2(typescript@5.9.3)':
+  '@langri-sha/tsconfig@1.1.0(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
 
