@@ -14,21 +14,17 @@ let voicePlayed = false
 
 const VOICE_ODDS = 0.05
 
-let pendingRoll: boolean | null = null
+let firstPlayRoll: boolean | null = null
 
 /**
  * The page load rolls once, ahead of the first play. A first-play miss skips
  * the voice; the second play always carries it.
  */
-const peekRoll = () => (pendingRoll ??= Math.random() < VOICE_ODDS)
+const rollsFirstPlay = () => (firstPlayRoll ??= Math.random() < VOICE_ODDS)
 
 let plays = 0
 
-const takeRoll = () => {
-  const roll = peekRoll()
-  pendingRoll = null
-  return plays++ > 0 || roll
-}
+const takeRoll = () => plays++ > 0 || rollsFirstPlay()
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
@@ -44,7 +40,7 @@ const preloadVoice = () => {
  * doesn't wait on them. Each render is used at most once.
  */
 export const preloadDrone = () => {
-  if (!window.AudioContext || voicePlayed || !peekRoll()) {
+  if (!window.AudioContext || voicePlayed || !rollsFirstPlay()) {
     return
   }
 
