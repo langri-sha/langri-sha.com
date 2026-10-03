@@ -12,7 +12,7 @@ import noiseProcessorSource from './noise-processor.worklet'
 
 let voicePlayed = false
 
-let plays = 0
+let dronePlayed = false
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
@@ -68,7 +68,7 @@ export class Processor {
   gainNode: GainNode
   droneBus: GainNode
   voice: Voice | null = null
-  skipsVoice: boolean
+  skipFirstPlay: boolean
   analyserNode: AnalyserNode
   audioLevelRef: React.MutableRefObject<number>
   frequencyData: Uint8Array<ArrayBuffer>
@@ -88,9 +88,9 @@ export class Processor {
     const context = new AudioContext()
     this.context = context
     this.audioLevelRef = audioLevelRef
-    this.skipsVoice = voicePlayed || plays++ === 0
+    this.skipFirstPlay = !dronePlayed
 
-    if (!voicePlayed && this.skipsVoice) {
+    if (this.skipFirstPlay) {
       preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
     }
 
@@ -114,7 +114,7 @@ export class Processor {
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     const droneBus = context.createGain()
-    droneBus.gain.value = this.skipsVoice ? 0.25 : 0.0001
+    droneBus.gain.value = voicePlayed || this.skipFirstPlay ? 0.25 : 0.0001
     droneBus.connect(gainNode)
     this.droneBus = droneBus
 
@@ -143,9 +143,10 @@ export class Processor {
   }
 
   async generate() {
-    const voiceBuffers = this.skipsVoice
-      ? null
-      : takeVoiceBuffers(this.context.sampleRate)
+    const voiceBuffers =
+      voicePlayed || this.skipFirstPlay
+        ? null
+        : takeVoiceBuffers(this.context.sampleRate)
 
     await this.context.resume()
     await nextFrame()
@@ -153,6 +154,8 @@ export class Processor {
     if (this.destroyed) {
       return
     }
+
+    dronePlayed = true
 
     if (voiceBuffers) {
       const buffers = await voiceBuffers

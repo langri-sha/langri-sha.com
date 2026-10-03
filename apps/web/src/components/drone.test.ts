@@ -109,3 +109,17 @@ test('once the voice has played, later plays skip it', async () => {
   await third.generate().catch(() => {})
   expect(voiceStart).toHaveBeenCalledOnce()
 })
+
+test('a first play torn down before it starts does not use up the skip', async () => {
+  const { Processor } = await import('./drone')
+
+  const abandoned = new Processor({ current: 0 })
+  const generating = abandoned.generate().catch(() => {})
+  abandoned.destroy()
+  await generating
+
+  const retry = new Processor({ current: 0 })
+  expect(retry.droneBus.gain.value).toBe(0.25)
+  await retry.generate().catch(() => {})
+  expect(voiceStart).not.toHaveBeenCalled()
+})
