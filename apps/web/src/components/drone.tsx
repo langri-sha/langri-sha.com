@@ -29,29 +29,35 @@ const takeVoiceBuffers = async (sampleRate: number) => {
     : prepareVoiceBuffers(sampleRate)
 }
 
-export interface DroneProps {
-  audioLevelRef: React.MutableRefObject<number>
-  clockRef: React.MutableRefObject<AudioContext | null>
+/** An `AudioContext`'s time stands still while it is suspended. */
+export interface Playback {
+  readonly currentTime: number
+  readonly voicePlayed: boolean
 }
 
-export const Drone: React.FC<DroneProps> = ({ audioLevelRef, clockRef }) => {
+export interface DroneProps {
+  audioLevelRef: React.MutableRefObject<number>
+  playbackRef: React.MutableRefObject<Playback | null>
+}
+
+export const Drone: React.FC<DroneProps> = ({ audioLevelRef, playbackRef }) => {
   React.useEffect(() => {
     if (!window.AudioContext) {
       return
     }
 
     const processor = new Processor(audioLevelRef)
-    clockRef.current = processor.context
+    playbackRef.current = processor
 
     processor.generate().catch(() => {
       // AudioWorklet failed to load (e.g. unsupported browser); nothing to play.
     })
 
     return () => {
-      clockRef.current = null
+      playbackRef.current = null
       processor.destroy()
     }
-  }, [audioLevelRef, clockRef])
+  }, [audioLevelRef, playbackRef])
 
   return null
 }
@@ -61,7 +67,7 @@ export const Drone: React.FC<DroneProps> = ({ audioLevelRef, clockRef }) => {
  * @preserve
  * @see http://matt-diamond.com/drone.html
  */
-export class Processor {
+export class Processor implements Playback {
   oscilatorsSize: number
   baseNote: number
   context: AudioContext
@@ -122,6 +128,14 @@ export class Processor {
     this.baseNote = baseNote
 
     this.attachResumeListeners()
+  }
+
+  get currentTime() {
+    return this.context.currentTime
+  }
+
+  get voicePlayed() {
+    return this.voice !== null
   }
 
   attachResumeListeners() {
