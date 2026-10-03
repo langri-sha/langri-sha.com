@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, Scene } from '@/components'
+import { Drone, type Playback, Scene } from '@/components'
 import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
@@ -18,7 +18,7 @@ export interface LandingProps {
 export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
-  const clockRef = React.useRef<AudioContext | null>(null)
+  const playbackRef = React.useRef<Playback | null>(null)
 
   React.useEffect(() => {
     if (!playing) {
@@ -28,7 +28,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
     const onPageHide = () => {
       // posthog-js flushes its batch queue from a `pagehide` listener of its
       // own, which may run before this one. A beacon skips the queue.
-      capture(...dronePaused(clockRef.current, 'pagehide'), {
+      capture(...dronePaused(playbackRef.current, 'pagehide'), {
         transport: 'sendBeacon',
       })
       setPlaying(false)
@@ -49,12 +49,12 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           wordmark={wordmark}
           playing={playing}
           onToggle={() => {
-            capture(...droneToggled(playing, clockRef.current))
+            capture(...droneToggled(playing, playbackRef.current))
             setPlaying(!playing)
           }}
         />
         {playing ? (
-          <Drone audioLevelRef={audioLevelRef} clockRef={clockRef} />
+          <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
       </Root>
     </React.Fragment>
