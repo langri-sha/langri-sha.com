@@ -1,9 +1,6 @@
 import type { Properties } from 'posthog-js'
 
-/** An `AudioContext`, whose time stands still while it is suspended. */
-export interface PlaybackClock {
-  readonly currentTime: number
-}
+import type { Playback } from '@/components'
 
 /**
  * `drone_paused` carries `duration_ms`: how long the paused drone's audio
@@ -11,15 +8,24 @@ export interface PlaybackClock {
  * tells a press of the toggle from a page that went away mid-play.
  */
 export const dronePaused = (
-  clock: PlaybackClock | null,
+  playback: Playback | null,
+  playCount: number,
   trigger: 'toggle' | 'pagehide',
 ): [event: string, properties: Properties] => [
   'drone_paused',
-  { duration_ms: clock ? Math.round(clock.currentTime * 1000) : 0, trigger },
+  {
+    duration_ms: playback ? Math.round(playback.currentTime * 1000) : 0,
+    trigger,
+    play_count: playCount,
+    voice_played: playback?.voicePlayed ?? false,
+  },
 ]
 
 export const droneToggled = (
   playing: boolean,
-  clock: PlaybackClock | null,
-): [event: string, properties?: Properties] =>
-  playing ? dronePaused(clock, 'toggle') : ['drone_played']
+  playback: Playback | null,
+  playCount: number,
+): [event: string, properties: Properties] =>
+  playing
+    ? dronePaused(playback, playCount, 'toggle')
+    : ['drone_played', { play_count: playCount }]

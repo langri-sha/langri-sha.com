@@ -19,6 +19,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
   const playbackRef = React.useRef<Playback | null>(null)
+  const playCountRef = React.useRef(0)
 
   React.useEffect(() => {
     if (!playing) {
@@ -28,9 +29,12 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
     const onPageHide = () => {
       // posthog-js flushes its batch queue from a `pagehide` listener of its
       // own, which may run before this one. A beacon skips the queue.
-      capture(...dronePaused(playbackRef.current, 'pagehide'), {
-        transport: 'sendBeacon',
-      })
+      capture(
+        ...dronePaused(playbackRef.current, playCountRef.current, 'pagehide'),
+        {
+          transport: 'sendBeacon',
+        },
+      )
       setPlaying(false)
     }
 
@@ -49,7 +53,17 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           wordmark={wordmark}
           playing={playing}
           onToggle={() => {
-            capture(...droneToggled(playing, playbackRef.current))
+            if (!playing) {
+              playCountRef.current += 1
+            }
+
+            capture(
+              ...droneToggled(
+                playing,
+                playbackRef.current,
+                playCountRef.current,
+              ),
+            )
             setPlaying(!playing)
           }}
         />
