@@ -24,7 +24,7 @@ const rollsFirstPlay = () => (firstPlayRoll ??= Math.random() < VOICE_ODDS)
 
 let plays = 0
 
-const takeRoll = () => plays++ > 0 || rollsFirstPlay()
+const takeRoll = () => plays++ === 0 && !rollsFirstPlay()
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
@@ -104,7 +104,7 @@ export class Processor {
   gainNode: GainNode
   droneBus: GainNode
   voice: Voice | null = null
-  rollsVoice: boolean
+  skipsVoice: boolean
   analyserNode: AnalyserNode
   audioLevelRef: React.MutableRefObject<number>
   frequencyData: Uint8Array<ArrayBuffer>
@@ -124,9 +124,9 @@ export class Processor {
     const context = new AudioContext()
     this.context = context
     this.audioLevelRef = audioLevelRef
-    this.rollsVoice = !voicePlayed && takeRoll()
+    this.skipsVoice = voicePlayed || takeRoll()
 
-    if (!voicePlayed && !this.rollsVoice) {
+    if (!voicePlayed && this.skipsVoice) {
       preloadVoice()
     }
 
@@ -150,7 +150,7 @@ export class Processor {
     this.frequencyData = new Uint8Array(analyserNode.frequencyBinCount)
 
     const droneBus = context.createGain()
-    droneBus.gain.value = this.rollsVoice ? 0.0001 : 0.25
+    droneBus.gain.value = this.skipsVoice ? 0.25 : 0.0001
     droneBus.connect(gainNode)
     this.droneBus = droneBus
 
@@ -179,9 +179,9 @@ export class Processor {
   }
 
   async generate() {
-    const voiceBuffers = this.rollsVoice
-      ? takeVoiceBuffers(this.context.sampleRate)
-      : null
+    const voiceBuffers = this.skipsVoice
+      ? null
+      : takeVoiceBuffers(this.context.sampleRate)
 
     await this.context.resume()
     await nextFrame()
