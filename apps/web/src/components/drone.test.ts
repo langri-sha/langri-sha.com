@@ -80,38 +80,32 @@ afterEach(() => {
   voiceStart.mockClear()
 })
 
-const run = async (roll: number) => {
-  vi.spyOn(Math, 'random').mockReturnValue(roll)
-  const { Processor, preloadDrone } = await import('./drone')
-
-  preloadDrone()
+test('the first play skips the voice and starts the drone at its normal level', async () => {
+  const { Processor } = await import('./drone')
   const processor = new Processor({ current: 0 })
-  const gainAtStart = processor.droneBus.gain.value
   await processor.generate().catch(() => {})
 
-  return { gainAtStart, processor, Processor }
-}
-
-test('a hit plays the voice and starts the drone near silent', async () => {
-  const { gainAtStart } = await run(0.04)
-
-  expect(voiceStart).toHaveBeenCalledOnce()
-  expect(prepareVoiceBuffers).toHaveBeenCalled()
-  expect(gainAtStart).toBe(0.0001)
-})
-
-test('a miss skips the voice and starts the drone at its normal level', async () => {
-  const { gainAtStart } = await run(0.05)
-
+  expect(processor.droneBus.gain.value).toBe(0.25)
   expect(voiceStart).not.toHaveBeenCalled()
-  expect(gainAtStart).toBe(0.25)
 })
 
-test('the second play always carries the voice after a miss', async () => {
-  const { Processor } = await run(0.5)
+test('the second play carries the voice and starts the drone near silent', async () => {
+  const { Processor } = await import('./drone')
+  await new Processor({ current: 0 }).generate().catch(() => {})
 
   const second = new Processor({ current: 0 })
   expect(second.droneBus.gain.value).toBe(0.0001)
   await second.generate().catch(() => {})
+  expect(voiceStart).toHaveBeenCalledOnce()
+})
+
+test('once the voice has played, later plays skip it', async () => {
+  const { Processor } = await import('./drone')
+  await new Processor({ current: 0 }).generate().catch(() => {})
+  await new Processor({ current: 0 }).generate().catch(() => {})
+
+  const third = new Processor({ current: 0 })
+  expect(third.droneBus.gain.value).toBe(0.25)
+  await third.generate().catch(() => {})
   expect(voiceStart).toHaveBeenCalledOnce()
 })
