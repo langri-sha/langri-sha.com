@@ -87,6 +87,7 @@ test('the first play skips the voice and starts the drone at its normal level', 
 
   expect(processor.droneBus.gain.value).toBe(0.25)
   expect(voiceStart).not.toHaveBeenCalled()
+  expect(processor.voicePlayed).toBe(false)
 })
 
 test('the second play carries the voice and starts the drone near silent', async () => {
@@ -97,6 +98,7 @@ test('the second play carries the voice and starts the drone near silent', async
   expect(second.droneBus.gain.value).toBe(0.0001)
   await second.generate().catch(() => {})
   expect(voiceStart).toHaveBeenCalledOnce()
+  expect(second.voicePlayed).toBe(true)
 })
 
 test('once the voice has played, later plays skip it', async () => {
@@ -108,6 +110,7 @@ test('once the voice has played, later plays skip it', async () => {
   expect(third.droneBus.gain.value).toBe(0.25)
   await third.generate().catch(() => {})
   expect(voiceStart).toHaveBeenCalledOnce()
+  expect(third.voicePlayed).toBe(false)
 })
 
 test('a first play torn down before it starts does not use up the skip', async () => {
