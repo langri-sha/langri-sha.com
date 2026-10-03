@@ -33,7 +33,7 @@ const project = new Project({
       '@langri-sha/lint-staged@^0.9.1',
       '@langri-sha/prettier@^0.4.1',
       '@types/node@26.1.1',
-      'vitest@5.0.2',
+      'vitest@5.0.3',
     ],
   },
   codeowners: {
