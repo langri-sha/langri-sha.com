@@ -12,48 +12,12 @@ import noiseProcessorSource from './noise-processor.worklet'
 
 let voicePlayed = false
 
-const VOICE_ODDS = 0.05
-
-let firstPlayRoll: boolean | null = null
-
-/**
- * The page load rolls once, ahead of the first play. A first-play miss skips
- * the voice; the second play always carries it.
- */
-const rollsFirstPlay = () => (firstPlayRoll ??= Math.random() < VOICE_ODDS)
-
 let plays = 0
-
-const takeRoll = () => plays++ === 0 && !rollsFirstPlay()
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
 
 let preloadedVoiceBuffers: Promise<VoiceBuffers> | null = null
-
-const preloadVoice = () => {
-  preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
-}
-
-/**
- * Render the voice's buffers once the page has loaded, so the first play
- * doesn't wait on them. Each render is used at most once.
- */
-export const preloadDrone = () => {
-  if (!window.AudioContext || voicePlayed || !rollsFirstPlay()) {
-    return
-  }
-
-  const preload = preloadVoice
-
-  if (document.readyState === 'complete') {
-    preload()
-    return
-  }
-
-  window.addEventListener('load', preload, { once: true })
-  return () => window.removeEventListener('load', preload)
-}
 
 const takeVoiceBuffers = async (sampleRate: number) => {
   const preloaded = preloadedVoiceBuffers
@@ -124,10 +88,10 @@ export class Processor {
     const context = new AudioContext()
     this.context = context
     this.audioLevelRef = audioLevelRef
-    this.skipsVoice = voicePlayed || takeRoll()
+    this.skipsVoice = voicePlayed || plays++ === 0
 
     if (!voicePlayed && this.skipsVoice) {
-      preloadVoice()
+      preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
     }
 
     const gainNode = context.createGain()
