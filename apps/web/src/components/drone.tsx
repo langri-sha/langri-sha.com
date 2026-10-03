@@ -12,7 +12,7 @@ import noiseProcessorSource from './noise-processor.worklet'
 
 let voicePlayed = false
 
-let dronePlayed = false
+let firstPlayStarted = false
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
@@ -94,7 +94,7 @@ export class Processor implements Playback {
     const context = new AudioContext()
     this.context = context
     this.audioLevelRef = audioLevelRef
-    this.skipFirstPlay = !dronePlayed
+    this.skipFirstPlay = !firstPlayStarted
 
     if (this.skipFirstPlay) {
       preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
@@ -169,7 +169,7 @@ export class Processor implements Playback {
       return
     }
 
-    dronePlayed = true
+    firstPlayStarted = true
 
     if (voiceBuffers) {
       const buffers = await voiceBuffers
