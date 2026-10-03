@@ -17,22 +17,27 @@ const VOICE_ODDS = 0.05
 let pendingRoll: boolean | null = null
 
 /**
- * The page load rolls once, ahead of the first play. Each later play rolls
- * afresh until the voice lands, so a persistent listener eventually hears it.
- * A miss never renders the voice's buffers.
+ * The page load rolls once, ahead of the first play. A first-play miss skips
+ * the voice; the second play always carries it.
  */
 const peekRoll = () => (pendingRoll ??= Math.random() < VOICE_ODDS)
+
+let plays = 0
 
 const takeRoll = () => {
   const roll = peekRoll()
   pendingRoll = null
-  return roll
+  return plays++ > 0 || roll
 }
 
 /* Most output devices run at 48 kHz; a context at another rate re-renders. */
 const PRELOAD_SAMPLE_RATE = 48000
 
 let preloadedVoiceBuffers: Promise<VoiceBuffers> | null = null
+
+const preloadVoice = () => {
+  preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
+}
 
 /**
  * Render the voice's buffers once the page has loaded, so the first play
@@ -43,9 +48,7 @@ export const preloadDrone = () => {
     return
   }
 
-  const preload = () => {
-    preloadedVoiceBuffers ??= prepareVoiceBuffers(PRELOAD_SAMPLE_RATE)
-  }
+  const preload = preloadVoice
 
   if (document.readyState === 'complete') {
     preload()
@@ -126,6 +129,10 @@ export class Processor {
     this.context = context
     this.audioLevelRef = audioLevelRef
     this.rollsVoice = !voicePlayed && takeRoll()
+
+    if (!voicePlayed && !this.rollsVoice) {
+      preloadVoice()
+    }
 
     const gainNode = context.createGain()
     gainNode.gain.value = 1
