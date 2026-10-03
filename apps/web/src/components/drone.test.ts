@@ -104,21 +104,14 @@ test('a miss skips the voice and starts the drone at its normal level', async ()
   const { gainAtStart } = await run(0.05)
 
   expect(voiceStart).not.toHaveBeenCalled()
-  expect(prepareVoiceBuffers).not.toHaveBeenCalled()
   expect(gainAtStart).toBe(0.25)
 })
 
-test('a miss rolls again on the next play until the voice lands', async () => {
+test('the second play always carries the voice after a miss', async () => {
   const { Processor } = await run(0.5)
-  const random = vi.spyOn(Math, 'random')
 
-  random.mockReturnValue(0.5)
   const second = new Processor({ current: 0 })
-  expect(second.droneBus.gain.value).toBe(0.25)
-
-  random.mockReturnValue(0.01)
-  const third = new Processor({ current: 0 })
-  expect(third.droneBus.gain.value).toBe(0.0001)
-  await third.generate().catch(() => {})
+  expect(second.droneBus.gain.value).toBe(0.0001)
+  await second.generate().catch(() => {})
   expect(voiceStart).toHaveBeenCalledOnce()
 })
