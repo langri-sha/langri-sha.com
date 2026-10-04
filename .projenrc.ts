@@ -336,6 +336,15 @@ project.addSubproject({
       description: 'Publishes daily npm package downloads to PostHog',
       publish: false,
     },
+    dependencies: {
+      anyhow: '1.0.104',
+      clap: { version: '4.6.7', features: ['derive', 'env'] },
+      jiff: { version: '0.2.37', features: ['serde'] },
+      serde: { version: '1.0.229', features: ['derive'] },
+      serde_json: '1.0.151',
+      ureq: { version: '3.4.2', features: ['json'] },
+      uuid: { version: '1.26.1', features: ['serde', 'v5'] },
+    },
   },
 })
 
