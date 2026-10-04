@@ -145,13 +145,7 @@ const createShader = (
   gl.shaderSource(shader, source)
   gl.compileShader(shader)
 
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS)
-  if (success) {
-    return shader
-  }
-
-  console.log(gl.getShaderInfoLog(shader))
-  gl.deleteShader(shader)
+  return shader
 }
 
 const createProgram = (
@@ -175,7 +169,11 @@ const createProgram = (
     return program
   }
 
-  console.log(gl.getProgramInfoLog(program))
+  console.log(
+    gl.getShaderInfoLog(vertexShader),
+    gl.getShaderInfoLog(fragmentShader),
+    gl.getProgramInfoLog(program),
+  )
   gl.deleteProgram(program)
 }
 
