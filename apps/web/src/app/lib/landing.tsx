@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { Drone, type Playback, Scene } from '@/components'
+import { Drone, type Playback, Scene, SceneScript } from '@/components'
 import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
@@ -67,6 +67,9 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
             setPlaying(!playing)
           }}
         />
+        {/* After the header: starting the scene ahead of it delays the
+            wordmark, which is the largest contentful paint. */}
+        <SceneScript />
         {playing ? (
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
