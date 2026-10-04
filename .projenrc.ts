@@ -143,7 +143,7 @@ project.package?.setScript('build', 'pnpm run --filter @langri-sha/web build')
 project.package?.setScript('start', 'pnpm run --filter @langri-sha/web start')
 project.package?.setScript('test', 'pnpm exec vitest --passWithNoTests')
 
-project.gitignore.addPatterns('next-env.d.ts', '!.dagger/')
+project.gitignore.addPatterns('next-env.d.ts')
 
 project.gitattributes.addAttributes(
   'readme',
