@@ -12,10 +12,11 @@ The site, the edge that previews it, and the Terraform that runs both.
 ## Checks
 
 The workspace checks run through [Dagger](https://docs.dagger.io) 1.0 beta:
-`dagger.toml` installs the official ESLint, Prettier and Vitest modules,
-`.dagger/modules/ci` covers TypeScript, projen and the package manifests, and
-`.dagger/modules/terraform` covers Terraform formatting, validation, tests and
-the lock file.
+`dagger.toml` installs the official ESLint, Prettier and Vitest modules, and
+`ci` and `terraform` from
+[langri-sha/dagger](https://github.com/langri-sha/dagger): `ci` covers
+TypeScript, projen and the package manifests, and `terraform` covers Terraform
+formatting, validation, tests and the lock file.
 
 ```shell
 dagger check -l   # list the checks

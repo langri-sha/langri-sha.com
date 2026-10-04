@@ -8,10 +8,13 @@ ignore = [
 ]
 
 [modules.ci]
-source = ".dagger/modules/ci"
+source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"
 
 [modules.terraform]
-source = ".dagger/modules/terraform"
+source = "github.com/langri-sha/dagger/terraform@terraform/v0.1.0"
+
+[modules.terraform.settings]
+rootModule = "terraform/web"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"
