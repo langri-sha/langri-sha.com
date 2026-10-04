@@ -33,12 +33,12 @@ The Terraform checks stay credential-free — `init` runs with `-backend=false`
 and the tests mock their providers — so `plan` and `apply` are out of scope.
 
 `workspace.yml` runs `dagger check` on GitHub Actions for every pull request and
-push to `main`, through the shared `check.yml` workflow, on the engine version
-the modules' `engineVersion` pins. Hosted runners start each run with a cold
-engine, so those runs never replay from cache. `web.yml` and the Renovate
-post-upgrade job need OIDC, secrets or push access, and are not checks Dagger
-runs. [Cloud Checks](https://docs.dagger.io/cloud-checks) could take over on
-Dagger's engines once the repository is connected with `dagger cloud checks on`;
+push to `main`, through the shared `check.yml` workflow, on the Dagger version
+it pins with `dagger-version`. Hosted runners start each run with a cold engine,
+so those runs never replay from cache. `web.yml` and the Renovate post-upgrade
+job need OIDC, secrets or push access, and are not checks Dagger runs.
+[Cloud Checks](https://docs.dagger.io/cloud-checks) could take over on Dagger's
+engines once the repository is connected with `dagger cloud checks on`;
 `dagger workspace activity` shows the runs.
 
 ## Releasing
