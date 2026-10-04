@@ -3,8 +3,15 @@ export interface SceneHandle {
   dispose: () => void
 }
 
+export type SceneCanvas = HTMLCanvasElement & { __scene?: SceneHandle }
+
+/*
+ * Serialized into an inline script that starts the scene while the document
+ * is still parsing, ahead of hydration, so it must not reference anything
+ * outside its own body.
+ */
 export const start = (
-  canvas: HTMLCanvasElement,
+  canvas: SceneCanvas,
   vertexShaderSource: string,
   fragmentShaderSource: string,
 ): SceneHandle | undefined => {
@@ -94,7 +101,7 @@ export const start = (
       frame = requestAnimationFrame(render)
     }
 
-    frame = requestAnimationFrame(render)
+    render(performance.now())
 
     release = () => {
       cancelAnimationFrame(frame)
@@ -130,7 +137,10 @@ export const start = (
     canvas.removeEventListener('webglcontextlost', handleContextLost)
     canvas.removeEventListener('webglcontextrestored', handleContextRestored)
     release?.()
+    delete canvas.__scene
   }
+
+  canvas.__scene = handle
 
   return handle
 }
