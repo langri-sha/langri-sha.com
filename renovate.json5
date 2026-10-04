@@ -100,6 +100,19 @@
     },
     {
       customType: 'regex',
+      datasourceTemplate: 'crate',
+      managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
+      matchStringsStrategy: 'recursive',
+      matchStrings: [
+        "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+        '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
+        "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+        "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
+        "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
+      ],
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'github-tags',
       versioningTemplate: 'semver',
       depNameTemplate: 'dagger/dagger',

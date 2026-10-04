@@ -36,6 +36,12 @@ const project = new Project({
       'vitest@5.0.3',
     ],
   },
+  cargo: {
+    toolchain: {
+      components: ['clippy', 'rustfmt'],
+      profile: 'minimal',
+    },
+  },
   codeowners: {
     '*': '@langri-sha',
   },
@@ -321,5 +327,16 @@ project.addSubproject(
     project.gitignore.addPatterns('/.tsbuild/')
   },
 )
+
+project.addSubproject({
+  name: 'npm-downloads',
+  outdir: path.join('apps', 'npm-downloads'),
+  cargo: {
+    package: {
+      description: 'Publishes daily npm package downloads to PostHog',
+      publish: false,
+    },
+  },
+})
 
 project.synth()

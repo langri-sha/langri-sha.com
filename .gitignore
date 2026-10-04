@@ -32,6 +32,10 @@ node_modules/
 !/eslint.config.js
 !/prettier.config.js
 !/.prettierignore
+!/Cargo.toml
+!/rust-toolchain.toml
+!/rustfmt.toml
+/target/
 !/CODEOWNERS
 !/.editorconfig
 !/license

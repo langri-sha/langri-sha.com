@@ -9,6 +9,14 @@
 /.prettierignore linguist-generated
 /.projen/** linguist-generated
 /.swcrc linguist-generated
+/apps/npm-downloads/.gitattributes linguist-generated
+/apps/npm-downloads/.gitignore linguist-generated
+/apps/npm-downloads/.projen/** linguist-generated
+/apps/npm-downloads/.projen/deps.json linguist-generated
+/apps/npm-downloads/.projen/files.json linguist-generated
+/apps/npm-downloads/.projen/tasks.json linguist-generated
+/apps/npm-downloads/Cargo.toml linguist-generated
+/Cargo.toml linguist-generated
 /CODEOWNERS linguist-generated
 /eslint.config.js linguist-generated
 /license linguist-generated
@@ -62,5 +70,7 @@
 /pnpm-workspace.yaml linguist-generated
 /prettier.config.js linguist-generated
 /renovate.json5 linguist-generated
+/rust-toolchain.toml linguist-generated
+/rustfmt.toml linguist-generated
 /tsconfig.json linguist-generated
 readme text=auto linguist-language=Markdown

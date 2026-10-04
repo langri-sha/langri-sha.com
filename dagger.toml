@@ -5,6 +5,7 @@ ignore = [
   "**/.tsbuild",
   "**/*.tsbuildinfo",
   "**/.terraform",
+  "**/target",
 ]
 
 [modules.ci]
