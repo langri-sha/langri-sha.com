@@ -13,10 +13,11 @@ The site, the edge that previews it, and the Terraform that runs both.
 
 The workspace checks run through [Dagger](https://docs.dagger.io) 1.0 beta:
 `dagger.toml` installs the official ESLint, Prettier and Vitest modules, and
-`ci` and `terraform` from
-[langri-sha/dagger](https://github.com/langri-sha/dagger): `ci` covers
-TypeScript, projen and the package manifests, and `terraform` covers Terraform
-formatting, validation, tests and the lock file.
+`cargo`, `ci` and `terraform` from
+[langri-sha/dagger](https://github.com/langri-sha/dagger): `cargo` covers the
+Rust formatting, Clippy lints, tests and lock file, `ci` covers TypeScript,
+projen and the package manifests, and `terraform` covers Terraform formatting,
+validation, tests and the lock file.
 
 ```shell
 dagger check -l   # list the checks
@@ -27,7 +28,8 @@ dagger generate   # apply what the projen, packages and lock checks found stale
 Every step is cached by its inputs, so a second run over an unchanged tree
 replays from cache, and a change reruns only the steps downstream of it. The
 checks run in pinned containers, whatever the host has installed: `node:24-slim`
-for the JavaScript ones, and for Terraform the `hashicorp/terraform` tag that
+for the JavaScript ones, `rust:1-slim` with the toolchain `rust-toolchain.toml`
+names for Rust, and for Terraform the `hashicorp/terraform` tag that
 `required_version` pins in `terraform/web/versions.tf`.
 
 The Terraform checks stay credential-free — `init` runs with `-backend=false`
