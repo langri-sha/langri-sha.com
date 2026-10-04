@@ -17,7 +17,7 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const gl = canvas.getContext('webgl2')
+    const gl = canvas.getContext('webgl2', { antialias: false, depth: false })
     if (!gl) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
