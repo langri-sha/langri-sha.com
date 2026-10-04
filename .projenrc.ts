@@ -39,6 +39,7 @@ const project = new Project({
   codeowners: {
     '*': '@langri-sha',
   },
+  dagger: {},
   editorConfig: {},
   eslint: {
     ignorePatterns: ['**/next-env.d.ts', '**/renovate.d.ts', '**/swcrc.d.ts'],
