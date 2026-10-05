@@ -29,6 +29,18 @@ resource "google_project_iam_binding" "project_iam_binding" {
   role    = each.value.role
 }
 
+resource "google_project_iam_custom_role" "cdn_invalidator" {
+  project = module.project["edge"].project_id
+  role_id = "cdnInvalidator"
+  title   = "CDN invalidator"
+
+  permissions = [
+    "compute.globalOperations.get",
+    "compute.urlMaps.get",
+    "compute.urlMaps.invalidateCache",
+  ]
+}
+
 resource "google_project_iam_member" "project_iam_member" {
   for_each = local.project_iam_members
 

@@ -53,6 +53,13 @@ locals {
       member = "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
       role   = "roles/run.developer"
     }
+
+    "edge-github-cdn-invalidator" = {
+      project = "edge"
+
+      member = "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
+      role   = google_project_iam_custom_role.cdn_invalidator.name
+    }
   }
 
   github_repositories = {
@@ -93,6 +100,7 @@ locals {
             ASSETS_URL    = local.host_urls["production-assets"]
             BUCKET        = google_storage_bucket.public["production"].name
             URL           = local.host_urls["production"]
+            URL_MAP       = google_compute_url_map.default.name
           }
         }
       }
