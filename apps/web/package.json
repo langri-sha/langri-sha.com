@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@langri-sha/babel-preset": "^0.6.3",
+    "@langri-sha/glsl-loader": "workspace:*",
     "@langri-sha/tsconfig": "^1.0.0",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",

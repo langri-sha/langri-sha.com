@@ -298,6 +298,9 @@ importers:
       '@langri-sha/babel-preset':
         specifier: ^0.6.3
         version: 0.6.9(@babel/core@8.0.6)(supports-color@8.1.1)
+      '@langri-sha/glsl-loader':
+        specifier: workspace:*
+        version: link:../../packages/glsl-loader
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
         version: 1.1.0(typescript@5.9.3)
