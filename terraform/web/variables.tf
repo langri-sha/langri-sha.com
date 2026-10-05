@@ -1,3 +1,9 @@
+variable "npm_downloads_image" {
+  default     = "us-docker.pkg.dev/cloudrun/container/job"
+  description = "Image the npm downloads job is created with. CI deploys the real one, so this only ever serves as a placeholder until the first one lands."
+  type        = string
+}
+
 variable "posthog_project_id_version" {
   default     = "latest"
   description = "Version of the posthog-project-id secret to read. Empty skips the read, like posthog_project_token_version."

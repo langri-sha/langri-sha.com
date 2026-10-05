@@ -84,6 +84,9 @@ locals {
         for name, data in module.project :
         "${upper(name)}_PROJECT_ID" => data.project_id
         }, {
+        NPM_DOWNLOADS_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/npm-downloads"
+        NPM_DOWNLOADS_JOB      = module.npm_downloads.job
+        NPM_DOWNLOADS_REGION   = local.region
         POSTHOG_PROJECT_ID     = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-id"]), "")
         POSTHOG_PROJECT_TOKEN  = try(nonsensitive(module.secrets["posthog-proxy"].secret_data["posthog-project-token"]), "")
         POSTHOG_PROXY_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/posthog-proxy"
@@ -178,6 +181,7 @@ locals {
 
     edge = {
       activate_apis = [
+        "cloudscheduler.googleapis.com",
         "compute.googleapis.com",
         "dns.googleapis.com",
         "iap.googleapis.com",
