@@ -29,16 +29,14 @@ resource "google_project_iam_binding" "project_iam_binding" {
   role    = each.value.role
 }
 
-resource "google_project_iam_custom_role" "cdn_invalidator" {
-  project = module.project["edge"].project_id
-  role_id = "cdnInvalidator"
-  title   = "CDN invalidator"
+resource "google_project_iam_custom_role" "project_iam_custom_role" {
+  for_each = local.project_iam_custom_roles
 
-  permissions = [
-    "compute.globalOperations.get",
-    "compute.urlMaps.get",
-    "compute.urlMaps.invalidateCache",
-  ]
+  project = module.project[each.value.project].project_id
+  role_id = each.value.role_id
+  title   = each.value.title
+
+  permissions = each.value.permissions
 }
 
 resource "google_project_iam_member" "project_iam_member" {
