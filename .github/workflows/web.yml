@@ -84,6 +84,15 @@ jobs:
             --project ${{ vars.EDGE_PROJECT_ID }} \
             --recursive
 
+      - name: Invalidate CDN cache
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache ${{ vars.URL_MAP }} \
+            --host "${URL#https://}" \
+            --path "/*" \
+            --project ${{ vars.EDGE_PROJECT_ID }}
+        env:
+          URL: ${{ vars.URL }}
+
   preview:
     name: Preview
     if: vars.PREVIEW_SERVICE != ''
