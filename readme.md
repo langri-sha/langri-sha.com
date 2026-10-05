@@ -2,12 +2,13 @@
 
 The site, the edge that previews it, and the Terraform that runs both.
 
-| Path             | What                                                          |
-| ---------------- | ------------------------------------------------------------- |
-| `apps/web`       | the Next.js site, exported static                             |
-| `apps/preview`   | the nginx router in front of the preview revisions            |
-| `packages/fonts` | display fonts, subsetted and inlined for the site             |
-| `terraform/`     | the GCP projects, buckets, Cloud Run services and DNS records |
+| Path                 | What                                                                    |
+| -------------------- | ----------------------------------------------------------------------- |
+| `apps/web`           | the Next.js site, exported static                                       |
+| `apps/preview`       | the nginx router in front of the preview revisions                      |
+| `apps/npm-downloads` | the daily job publishing npm package downloads to PostHog               |
+| `packages/fonts`     | display fonts, subsetted and inlined for the site                       |
+| `terraform/`         | the GCP projects, buckets, Cloud Run services and jobs, and DNS records |
 
 ## Checks
 
@@ -50,3 +51,23 @@ Publishing a GitHub release deploys the site: `web.yml` builds it and copies the
 export to the production bucket. Pull requests and releases also go up as tagged
 Cloud Run revisions, reachable under `/pull/…` and `/release/…` on the preview
 host — see [`apps/preview`](apps/preview/readme.md).
+
+## npm downloads
+
+`apps/npm-downloads` publishes how often each package the `malkron` npm user
+maintains was downloaded: one `npm_package_downloads` event per package and day,
+with `package`, `repository` and `downloads` properties. It runs as a Cloud Run
+job that Cloud Scheduler starts daily, for the day before yesterday, since npm
+takes over a day to count one, reading the PostHog project token from Secret
+Manager. `npm-downloads.yml` deploys its image on every push to `main` — see
+[`terraform/modules/npm-downloads`](terraform/modules/npm-downloads/readme.md).
+
+Events are identified by package and day, so a day published again replaces its
+counts rather than adding to them — once PostHog has merged the duplicates in
+the background, which can take a while. Backfill by running the job with
+arguments, or locally, where `--dry-run` prints the events instead:
+
+```shell
+gcloud run jobs execute npm-downloads --project <edge> --region us-west1 --args=--from,2025-04-01
+POSTHOG_PROJECT_TOKEN=phc_… cargo run -p npm-downloads -- --from 2025-04-01
+```
