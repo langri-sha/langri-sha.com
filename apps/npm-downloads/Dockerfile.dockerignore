@@ -1,0 +1,6 @@
+*
+!Cargo.toml
+!Cargo.lock
+!rust-toolchain.toml
+!apps/npm-downloads/Cargo.toml
+!apps/npm-downloads/src/

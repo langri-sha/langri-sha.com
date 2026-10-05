@@ -1,0 +1,33 @@
+name: npm downloads
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/npm-downloads.yml'
+      - 'Cargo.*'
+      - 'apps/npm-downloads/**'
+      - 'rust-toolchain.toml'
+  pull_request:
+    paths:
+      - '.github/workflows/npm-downloads.yml'
+      - 'Cargo.*'
+      - 'apps/npm-downloads/**'
+      - 'rust-toolchain.toml'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Build image
+        run:
+          docker build --file apps/npm-downloads/Dockerfile --tag npm-downloads .
+
+      - name: Check the image runs
+        run: docker run --rm npm-downloads --help
