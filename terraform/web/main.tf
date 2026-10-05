@@ -46,6 +46,20 @@ locals {
     }
   }
 
+  project_iam_custom_roles = {
+    "edge-cdn-invalidator" = {
+      project = "edge"
+      role_id = "cdnInvalidator"
+      title   = "CDN invalidator"
+
+      permissions = [
+        "compute.globalOperations.get",
+        "compute.urlMaps.get",
+        "compute.urlMaps.invalidateCache",
+      ]
+    }
+  }
+
   project_iam_members = {
     "edge-github" = {
       project = "edge"
@@ -58,7 +72,7 @@ locals {
       project = "edge"
 
       member = "serviceAccount:${module.github["langri-sha.com"].service_account.email}"
-      role   = google_project_iam_custom_role.cdn_invalidator.name
+      role   = google_project_iam_custom_role.project_iam_custom_role["edge-cdn-invalidator"].name
     }
   }
 
