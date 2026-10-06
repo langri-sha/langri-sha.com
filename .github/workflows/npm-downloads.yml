@@ -22,6 +22,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
 
     steps:
       - name: Checkout
@@ -34,6 +37,11 @@ jobs:
       - name: Check the image runs
         run: docker run --rm npm-downloads --help
 
+      - name: Report image size
+        uses: langri-sha/github/actions/image-status@a2252e0c9b77a9207a28ea2f85117a8ad800a110
+        with:
+          image: npm-downloads
+
   publish:
     name: Publish
     if: github.event_name == 'push' && vars.NPM_DOWNLOADS_JOB != ''
@@ -42,6 +50,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      statuses: write
 
     steps:
       - name: Checkout
@@ -62,6 +71,12 @@ jobs:
           docker push "$IMAGE:$GITHUB_SHA"
         env:
           IMAGE: ${{ vars.NPM_DOWNLOADS_IMAGE }}
+
+      - name: Report image size
+        uses: langri-sha/github/actions/image-status@a2252e0c9b77a9207a28ea2f85117a8ad800a110
+        with:
+          address: ${{ vars.NPM_DOWNLOADS_IMAGE }}:${{ github.sha }}
+          image: ${{ vars.NPM_DOWNLOADS_IMAGE }}:${{ github.sha }}
 
       - name: Deploy
         run: |
