@@ -8,3 +8,11 @@ module "npm_downloads" {
   project               = module.project["edge"].project_id
   schedule              = "17 12 * * *"
 }
+
+resource "posthog_dashboard" "npm_downloads" {
+  project_id = tostring(posthog_project.web.id)
+
+  name        = "npm downloads"
+  description = "Daily downloads of the npm packages the malkron npm user maintains, published by the npm-downloads job."
+  pinned      = true
+}
