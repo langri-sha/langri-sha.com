@@ -280,3 +280,33 @@ resource "posthog_alert" "npm_releases_missed_hour" {
   threshold_type       = "absolute"
   threshold_lower      = 1
 }
+
+resource "posthog_alert" "github_api_budget" {
+  project_id = tostring(posthog_project.web.id)
+  insight    = posthog_insight.github_api_rate_limit.id
+
+  name             = "GitHub rate limit running low for npm releases"
+  subscribed_users = [tonumber(module.secrets["posthog"].secret_data["posthog-user-id"])]
+
+  # Watches the points used rather than those remaining: an hour without a run
+  # reads as nothing used, where it would read as nothing remaining.
+  calculation_interval = "hourly"
+  series_index         = 0
+  condition_type       = "absolute_value"
+  threshold_type       = "absolute"
+  threshold_upper      = 8000
+}
+
+resource "posthog_alert" "github_api_slow_query" {
+  project_id = tostring(posthog_project.web.id)
+  insight    = posthog_insight.github_api_durations.id
+
+  name             = "GitHub query nearing its 10-second limit"
+  subscribed_users = [tonumber(module.secrets["posthog"].secret_data["posthog-user-id"])]
+
+  calculation_interval = "hourly"
+  series_index         = 0
+  condition_type       = "absolute_value"
+  threshold_type       = "absolute"
+  threshold_upper      = 8000
+}
