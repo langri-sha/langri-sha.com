@@ -1,8 +1,7 @@
-# npm-downloads
+# telemetry-job
 
-The daily job that publishes npm package downloads to PostHog. One Cloud Run job
-running the image of `apps/npm-downloads`, and the Cloud Scheduler job that runs
-it.
+A scheduled job that publishes to PostHog, such as `npm-downloads`. One Cloud
+Run job running the job's image, and the Cloud Scheduler job that runs it.
 
 It publishes with the PostHog project token in its environment: the public write
 key, which the site ships to every browser too. Cloud Scheduler calls the Cloud

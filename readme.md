@@ -61,7 +61,7 @@ job that Cloud Scheduler starts daily, for the day before yesterday, since npm
 takes over a day to count one, with the project token Terraform reads off the
 PostHog project. `npm-downloads.yml` deploys its image on every push to `main` —
 see
-[`terraform/modules/npm-downloads`](terraform/modules/npm-downloads/readme.md).
+[`terraform/modules/telemetry-job`](terraform/modules/telemetry-job/readme.md).
 The pinned _npm downloads_ dashboard in PostHog charts them per package, per
 repository and per week, and lists the top packages of the last 30 days. Each
 run also records itself as an `npm_downloads_published` event, and a PostHog
