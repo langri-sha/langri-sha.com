@@ -2,12 +2,20 @@ mod changes;
 mod github;
 mod posthog;
 
-use std::time::Duration;
+use std::{
+    sync::{
+        Arc,
+        atomic::{AtomicU32, Ordering},
+    },
+    time::{Duration, Instant},
+};
 
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{RoundMode, Timestamp, TimestampRound, Unit};
-use ureq::Agent;
+use ureq::{Agent, SendBody, http::Request, middleware::MiddlewareNext};
+
+use crate::posthog::{Requests, Run};
 
 /// Publishes pending npm package releases to PostHog.
 #[derive(Parser)]
@@ -50,28 +58,53 @@ struct Args {
 }
 
 fn main() -> Result<()> {
+    let started = Instant::now();
     let args = Args::parse();
     let hour = hour(Timestamp::now())?;
+
+    let npm_requests = Arc::new(AtomicU32::new(0));
+    let counter = Arc::clone(&npm_requests);
 
     let agent: Agent = Agent::config_builder()
         .http_status_as_error(false)
         .timeout_global(Some(Duration::from_secs(60)))
         .user_agent("langri-sha.com/npm-releases")
+        .middleware(move |request: Request<SendBody>, next: MiddlewareNext| {
+            if request.uri().host() == Some("registry.npmjs.org") {
+                counter.fetch_add(1, Ordering::Relaxed);
+            }
+
+            next.handle(request)
+        })
         .build()
         .into();
 
+    let npm_started = Instant::now();
     let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
+    let npm = Requests {
+        count: npm_requests.load(Ordering::Relaxed),
+        took: npm_started.elapsed(),
+    };
 
     if packages.is_empty() {
         bail!("npm lists no packages maintained by {}", args.maintainer);
     }
 
-    let repositories = github::repositories(&agent, &args.github_token, &args.owner)?;
+    let (repositories, github) = github::repositories(&agent, &args.github_token, &args.owner)?;
     let events = posthog::snapshot(&packages, changes::pending(&repositories)?, hour);
+    let run = Run::new(
+        hour,
+        repositories.len(),
+        events.len(),
+        &github,
+        &npm,
+        started.elapsed(),
+    );
 
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
                 "Published pending changes of {} packages for {hour}",
@@ -82,6 +115,8 @@ fn main() -> Result<()> {
             for event in &events {
                 println!("{}", serde_json::to_string(event)?);
             }
+
+            println!("{}", serde_json::to_string(&run)?);
         }
     }
 

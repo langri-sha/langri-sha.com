@@ -1,11 +1,14 @@
-use std::collections::BTreeMap;
+use std::{collections::BTreeMap, time::Duration};
 
 use jiff::Timestamp;
 use serde::Serialize;
 use telemetry::npm::Package;
 use uuid::Uuid;
 
-use crate::changes::{Bump, Counts, Pending};
+use crate::{
+    changes::{Bump, Counts, Pending},
+    github::Usage,
+};
 
 const EVENT: &str = "npm_package_pending_changes";
 
@@ -91,6 +94,77 @@ pub fn snapshot(
     events
 }
 
+/// A record of a run and of what it asked of GitHub and npm. It carries no
+/// timestamp, so PostHog stamps it on arrival, and an hour without one is an
+/// hour the job didn't run.
+#[derive(Debug, Serialize)]
+pub struct Run {
+    event: &'static str,
+    distinct_id: &'static str,
+    properties: RunProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct RunProperties {
+    hour: Timestamp,
+    repositories: usize,
+    packages: usize,
+    github_queries: u32,
+    github_query_cost: u64,
+    github_query_ms: u128,
+    github_slowest_query_ms: u128,
+    github_rate_limit: u64,
+    github_rate_limit_used: u64,
+    github_rate_limit_remaining: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    github_rate_limit_resets: Option<Timestamp>,
+    npm_requests: u32,
+    npm_ms: u128,
+    duration_ms: u128,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+/// Requests made of npm, and the time they took.
+#[derive(Debug)]
+pub struct Requests {
+    pub count: u32,
+    pub took: Duration,
+}
+
+impl Run {
+    pub fn new(
+        hour: Timestamp,
+        repositories: usize,
+        packages: usize,
+        github: &Usage,
+        npm: &Requests,
+        took: Duration,
+    ) -> Self {
+        Self {
+            event: "npm_releases_run",
+            distinct_id: "npm-releases",
+            properties: RunProperties {
+                hour,
+                repositories,
+                packages,
+                github_queries: github.queries,
+                github_query_cost: github.cost,
+                github_query_ms: github.took.as_millis(),
+                github_slowest_query_ms: github.slowest.as_millis(),
+                github_rate_limit: github.limit,
+                github_rate_limit_used: github.used,
+                github_rate_limit_remaining: github.remaining,
+                github_rate_limit_resets: github.resets,
+                npm_requests: npm.count,
+                npm_ms: npm.took.as_millis(),
+                duration_ms: took.as_millis(),
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use serde_json::json;
@@ -147,6 +221,57 @@ mod tests {
                     "patch": 2,
                     "prerelease": 0,
                     "none": 0,
+                    "$process_person_profile": false,
+                },
+            }),
+        );
+    }
+
+    #[test]
+    fn run() {
+        let github = Usage {
+            queries: 1,
+            cost: 1,
+            took: Duration::from_millis(3512),
+            slowest: Duration::from_millis(3512),
+            limit: 5000,
+            used: 178,
+            remaining: 4822,
+            resets: Some("2026-10-06T15:51:20Z".parse().unwrap()),
+        };
+        let npm = Requests {
+            count: 1,
+            took: Duration::from_millis(640),
+        };
+
+        assert_eq!(
+            serde_json::to_value(Run::new(
+                hour(),
+                45,
+                34,
+                &github,
+                &npm,
+                Duration::from_millis(4321)
+            ))
+            .unwrap(),
+            json!({
+                "event": "npm_releases_run",
+                "distinct_id": "npm-releases",
+                "properties": {
+                    "hour": HOUR,
+                    "repositories": 45,
+                    "packages": 34,
+                    "github_queries": 1,
+                    "github_query_cost": 1,
+                    "github_query_ms": 3512,
+                    "github_slowest_query_ms": 3512,
+                    "github_rate_limit": 5000,
+                    "github_rate_limit_used": 178,
+                    "github_rate_limit_remaining": 4822,
+                    "github_rate_limit_resets": "2026-10-06T15:51:20Z",
+                    "npm_requests": 1,
+                    "npm_ms": 640,
+                    "duration_ms": 4321,
                     "$process_person_profile": false,
                 },
             }),

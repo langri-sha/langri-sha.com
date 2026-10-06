@@ -1,4 +1,10 @@
+use std::{
+    cell::Cell,
+    time::{Duration, Instant},
+};
+
 use anyhow::{Context, Result, bail};
+use jiff::Timestamp;
 use serde::Deserialize;
 use serde_json::{Value, json};
 use telemetry::http;
@@ -51,6 +57,13 @@ query ($owner: String!, $first: Int!, $after: String) {
       }
     }
   }
+  rateLimit {
+    cost
+    limit
+    used
+    remaining
+    resetAt
+  }
 }
 "#;
 
@@ -62,10 +75,39 @@ pub struct Repository {
     pub changes: Vec<(String, String)>,
 }
 
+/// What reading the repositories took: the queries, what GitHub charged for
+/// them, and the rate limit as the last one left it.
+#[derive(Debug, Default, PartialEq)]
+pub struct Usage {
+    pub queries: u32,
+    pub cost: u64,
+    pub took: Duration,
+    /// The longest any one query took, which GitHub cuts off at 10 seconds.
+    pub slowest: Duration,
+    pub limit: u64,
+    pub used: u64,
+    pub remaining: u64,
+    pub resets: Option<Timestamp>,
+}
+
+impl Usage {
+    fn record(&mut self, took: Duration, rate_limit: RateLimit) {
+        self.queries += 1;
+        self.cost += rate_limit.cost;
+        self.took += took;
+        self.slowest = self.slowest.max(took);
+        self.limit = rate_limit.limit;
+        self.used = rate_limit.used;
+        self.remaining = rate_limit.remaining;
+        self.resets = Some(rate_limit.reset_at);
+    }
+}
+
 /// The owner's repositories, apart from forks, archives and empty ones.
-pub fn repositories(agent: &Agent, token: &str, owner: &str) -> Result<Vec<Repository>> {
+pub fn repositories(agent: &Agent, token: &str, owner: &str) -> Result<(Vec<Repository>, Usage)> {
     let authorization = format!("Bearer {token}");
     let mut repositories = Vec::new();
+    let mut usage = Usage::default();
     let mut after = None;
 
     loop {
@@ -73,14 +115,23 @@ pub fn repositories(agent: &Agent, token: &str, owner: &str) -> Result<Vec<Repos
             "query": QUERY,
             "variables": { "owner": owner, "first": PAGE_SIZE, "after": after },
         });
+        // Timed per attempt, so that backing off from a throttled one doesn't
+        // read as a slow query.
+        let took = Cell::new(Duration::ZERO);
         let response = http::call(|| {
-            agent
+            let started = Instant::now();
+            let response = agent
                 .post(ENDPOINT)
                 .header("Authorization", &authorization)
-                .send_json(&body)
+                .send_json(&body);
+
+            took.set(started.elapsed());
+
+            response
         })?;
         let page = page(http::json(response)?)?;
 
+        usage.record(took.get(), page.rate_limit);
         repositories.extend(page.repositories);
 
         if !page.has_next_page {
@@ -93,7 +144,7 @@ pub fn repositories(agent: &Agent, token: &str, owner: &str) -> Result<Vec<Repos
         );
     }
 
-    Ok(repositories)
+    Ok((repositories, usage))
 }
 
 #[derive(Debug, Deserialize)]
@@ -107,6 +158,17 @@ struct Response {
 #[serde(rename_all = "camelCase")]
 struct Data {
     repository_owner: Option<Owner>,
+    rate_limit: RateLimit,
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+struct RateLimit {
+    cost: u64,
+    limit: u64,
+    used: u64,
+    remaining: u64,
+    reset_at: Timestamp,
 }
 
 #[derive(Debug, Deserialize)]
@@ -191,6 +253,7 @@ struct Page {
     repositories: Vec<Repository>,
     has_next_page: bool,
     end_cursor: Option<String>,
+    rate_limit: RateLimit,
 }
 
 fn page(response: Response) -> Result<Page> {
@@ -202,9 +265,8 @@ fn page(response: Response) -> Result<Page> {
         bail!("GitHub turned down the query: {}", error.message);
     }
 
-    let owner = response
-        .data
-        .context("GitHub answered without data")?
+    let data = response.data.context("GitHub answered without data")?;
+    let owner = data
         .repository_owner
         .context("GitHub knows no such owner")?;
 
@@ -219,6 +281,7 @@ fn page(response: Response) -> Result<Page> {
         repositories,
         has_next_page: owner.repositories.page_info.has_next_page,
         end_cursor: owner.repositories.page_info.end_cursor,
+        rate_limit: data.rate_limit,
     })
 }
 
@@ -268,10 +331,21 @@ mod tests {
                         "nodes": nodes,
                     },
                 },
+                "rateLimit": rate_limit(),
             },
             "errors": errors,
         }))
         .unwrap()
+    }
+
+    fn rate_limit() -> Value {
+        json!({
+            "cost": 1,
+            "limit": 5000,
+            "used": 178,
+            "remaining": 4822,
+            "resetAt": "2026-10-06T15:51:20Z",
+        })
     }
 
     fn missing_change_directory(node: usize) -> Value {
@@ -318,6 +392,35 @@ mod tests {
                 ],
                 has_next_page: false,
                 end_cursor: Some("Y3Vyc29y".to_owned()),
+                rate_limit: serde_json::from_value(rate_limit()).unwrap(),
+            },
+        );
+    }
+
+    #[test]
+    fn usage_adds_up_across_queries() {
+        let mut usage = Usage::default();
+        let mut second = serde_json::from_value::<RateLimit>(rate_limit()).unwrap();
+        second.used += 1;
+        second.remaining -= 1;
+
+        usage.record(
+            Duration::from_millis(3500),
+            serde_json::from_value(rate_limit()).unwrap(),
+        );
+        usage.record(Duration::from_millis(1200), second);
+
+        assert_eq!(
+            usage,
+            Usage {
+                queries: 2,
+                cost: 2,
+                took: Duration::from_millis(4700),
+                slowest: Duration::from_millis(3500),
+                limit: 5000,
+                used: 179,
+                remaining: 4821,
+                resets: Some("2026-10-06T15:51:20Z".parse().unwrap()),
             },
         );
     }
