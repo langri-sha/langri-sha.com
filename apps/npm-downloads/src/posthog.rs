@@ -65,7 +65,7 @@ pub fn capture(
     agent: &Agent,
     host: &str,
     token: &str,
-    events: &[Event],
+    events: &[impl Serialize],
     historical: bool,
 ) -> Result<()> {
     let url = format!("{}/batch/", host.trim_end_matches('/'));
