@@ -6,9 +6,12 @@ COPY rust-toolchain.toml ./
 RUN rustup toolchain install --no-self-update
 
 COPY Cargo.toml Cargo.lock ./
-COPY apps/npm-downloads apps/npm-downloads
-COPY apps/npm-releases apps/npm-releases
 COPY packages/telemetry packages/telemetry
+COPY apps/npm-releases apps/npm-releases
+
+# Cargo won't load a workspace with a member missing, so the other apps leave
+# its members.
+RUN sed -i '/^  "apps\//{/"apps\/npm-releases"/!d}' Cargo.toml
 RUN cargo build --locked --release --package npm-releases
 
 FROM gcr.io/distroless/cc-debian13:nonroot
