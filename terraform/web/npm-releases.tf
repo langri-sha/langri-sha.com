@@ -244,3 +244,39 @@ resource "posthog_dashboard_layout" "github_api_usage" {
     },
   ]
 }
+
+resource "posthog_insight" "npm_releases_runs" {
+  project_id = tostring(posthog_project.web.id)
+
+  name = "npm releases job runs per hour"
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind  = "EventsNode"
+        event = "npm_releases_run"
+        math  = "total"
+      }]
+      dateRange = { date_from = "-48h" }
+      interval  = "hour"
+    }
+  })
+}
+
+resource "posthog_alert" "npm_releases_missed_hour" {
+  project_id = tostring(posthog_project.web.id)
+  insight    = posthog_insight.npm_releases_runs.id
+
+  name             = "npm releases job missed an hour"
+  subscribed_users = [tonumber(module.secrets["posthog"].secret_data["posthog-user-id"])]
+
+  # Hourly alerts check the last completed hour, which the run at :07 has long
+  # recorded itself in by then.
+  calculation_interval = "hourly"
+  series_index         = 0
+  condition_type       = "absolute_value"
+  threshold_type       = "absolute"
+  threshold_lower      = 1
+}
