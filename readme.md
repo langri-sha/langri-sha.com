@@ -58,8 +58,9 @@ host — see [`apps/preview`](apps/preview/readme.md).
 maintains was downloaded: one `npm_package_downloads` event per package and day,
 with `package`, `repository` and `downloads` properties. It runs as a Cloud Run
 job that Cloud Scheduler starts daily, for the day before yesterday, since npm
-takes over a day to count one, reading the PostHog project token from Secret
-Manager. `npm-downloads.yml` deploys its image on every push to `main` — see
+takes over a day to count one, with the project token Terraform reads off the
+PostHog project. `npm-downloads.yml` deploys its image on every push to `main` —
+see
 [`terraform/modules/npm-downloads`](terraform/modules/npm-downloads/readme.md).
 
 Events are identified by package and day, so a day published again replaces its
