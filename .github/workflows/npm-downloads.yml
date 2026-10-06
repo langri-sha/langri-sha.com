@@ -8,12 +8,14 @@ on:
       - '.github/workflows/npm-downloads.yml'
       - 'Cargo.*'
       - 'apps/npm-downloads/**'
+      - 'packages/telemetry/**'
       - 'rust-toolchain.toml'
   pull_request:
     paths:
       - '.github/workflows/npm-downloads.yml'
       - 'Cargo.*'
       - 'apps/npm-downloads/**'
+      - 'packages/telemetry/**'
       - 'rust-toolchain.toml'
 
 jobs:
