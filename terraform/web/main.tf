@@ -213,6 +213,20 @@ locals {
   }
 
   secrets = {
+    "posthog" = {
+      project = module.project["edge"].project_id
+
+      secrets = [
+        "posthog-api-key",
+        "posthog-organization-id",
+      ]
+
+      read_secret_version = var.posthog_secrets_version == "" ? {} : {
+        "posthog-api-key"         = var.posthog_secrets_version
+        "posthog-organization-id" = var.posthog_secrets_version
+      }
+    }
+
     "posthog-proxy" = {
       project = module.project["edge"].project_id
 
