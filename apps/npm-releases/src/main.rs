@@ -114,7 +114,9 @@ fn main() -> Result<()> {
         bail!("npm lists no packages maintained by {}", args.maintainer);
     }
 
-    let token = match credential(&args) {
+    let credential = credential(&args);
+    let credential_kind = credential.kind();
+    let token = match credential {
         Credential::Token(token) => token,
         Credential::App {
             client_id,
@@ -128,6 +130,7 @@ fn main() -> Result<()> {
         hour,
         repositories.len(),
         events.len(),
+        credential_kind,
         &github,
         &npm,
         started.elapsed(),
@@ -162,6 +165,15 @@ enum Credential {
         client_id: String,
         private_key: String,
     },
+}
+
+impl Credential {
+    fn kind(&self) -> &'static str {
+        match self {
+            Credential::Token(_) => "token",
+            Credential::App { .. } => "app",
+        }
+    }
 }
 
 /// What to read the repositories with: a token when given one, as when run by
