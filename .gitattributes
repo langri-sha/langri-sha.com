@@ -55,6 +55,13 @@
 /packages/next/package.json linguist-generated
 /packages/next/pnpm-lock.yaml linguist-generated
 /packages/next/tsconfig.json linguist-generated
+/packages/telemetry/.gitattributes linguist-generated
+/packages/telemetry/.gitignore linguist-generated
+/packages/telemetry/.projen/** linguist-generated
+/packages/telemetry/.projen/deps.json linguist-generated
+/packages/telemetry/.projen/files.json linguist-generated
+/packages/telemetry/.projen/tasks.json linguist-generated
+/packages/telemetry/Cargo.toml linguist-generated
 /packages/voice/.gitattributes linguist-generated
 /packages/voice/.gitignore linguist-generated
 /packages/voice/.npmignore linguist-generated

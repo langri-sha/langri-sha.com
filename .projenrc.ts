@@ -329,6 +329,25 @@ project.addSubproject(
 )
 
 project.addSubproject({
+  name: 'telemetry',
+  outdir: path.join('packages', 'telemetry'),
+  cargo: {
+    package: {
+      description:
+        'What the Rust jobs share: a retrying HTTP layer, the npm registry, and PostHog capture',
+      publish: false,
+    },
+    dependencies: {
+      anyhow: '1.0.104',
+      serde: { version: '1.0.229', features: ['derive'] },
+      serde_json: '1.0.151',
+      ureq: { version: '3.4.2', features: ['json'] },
+    },
+    sampleCode: false,
+  },
+})
+
+project.addSubproject({
   name: 'npm-downloads',
   outdir: path.join('apps', 'npm-downloads'),
   cargo: {
@@ -342,6 +361,7 @@ project.addSubproject({
       jiff: { version: '0.2.37', features: ['serde'] },
       serde: { version: '1.0.229', features: ['derive'] },
       serde_json: '1.0.151',
+      telemetry: { path: '../../packages/telemetry' },
       ureq: { version: '3.4.2', features: ['json'] },
       uuid: { version: '1.26.1', features: ['serde', 'v5'] },
     },

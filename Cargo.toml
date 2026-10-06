@@ -2,7 +2,7 @@
 
 [workspace]
 resolver = "3"
-members = [ "apps/npm-downloads" ]
+members = [ "packages/telemetry", "apps/npm-downloads" ]
 
   [workspace.package]
   edition = "2024"
