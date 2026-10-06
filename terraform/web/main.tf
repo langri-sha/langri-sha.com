@@ -219,11 +219,13 @@ locals {
       secrets = [
         "posthog-api-key",
         "posthog-organization-id",
+        "posthog-user-id",
       ]
 
       read_secret_version = var.posthog_secrets_version == "" ? {} : {
         "posthog-api-key"         = var.posthog_secrets_version
         "posthog-organization-id" = var.posthog_secrets_version
+        "posthog-user-id"         = var.posthog_secrets_version
       }
     }
 
