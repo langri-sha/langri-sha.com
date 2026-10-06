@@ -9,7 +9,7 @@ use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{Timestamp, ToSpan, civil::Date, tz::TimeZone};
 use ureq::Agent;
 
-use crate::posthog::Event;
+use crate::posthog::{Event, Run};
 
 /// Publishes daily npm package downloads to PostHog.
 #[derive(Parser)]
@@ -84,6 +84,13 @@ fn main() -> Result<()> {
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
             posthog::capture(&agent, &args.posthog_host, &token, &events, from < to)?;
+            posthog::capture(
+                &agent,
+                &args.posthog_host,
+                &token,
+                &[Run::new(from, to, events.len())],
+                false,
+            )?;
 
             eprintln!(
                 "Published {} events for {} packages, {from} to {to}",
