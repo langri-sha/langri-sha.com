@@ -6,7 +6,7 @@ variable "npm_downloads_image" {
 
 variable "posthog_secrets_version" {
   default     = "latest"
-  description = "Version of the posthog-api-key and posthog-organization-id secrets to read. Empty skips the read, for the first apply, before the secrets have versions."
+  description = "Version of the posthog-api-key, posthog-organization-id and posthog-user-id secrets to read. Empty skips the read, for the first apply, before the secrets have versions."
   type        = string
 }
 
