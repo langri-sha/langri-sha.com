@@ -15,7 +15,6 @@ variable "location" {
 }
 
 variable "name" {
-  default     = "npm-downloads"
   type        = string
   description = "Cloud Run job name, and the account ID of the service account it runs as."
 }

@@ -1,11 +1,11 @@
-resource "google_service_account" "npm_downloads" {
+resource "google_service_account" "job" {
   account_id   = var.name
   display_name = var.name
   description  = "Runtime identity of the ${var.name} job. It holds no roles."
   project      = var.project
 }
 
-resource "google_cloud_run_v2_job" "npm_downloads" {
+resource "google_cloud_run_v2_job" "job" {
   name     = var.name
   location = var.location
   project  = var.project
@@ -14,10 +14,10 @@ resource "google_cloud_run_v2_job" "npm_downloads" {
 
   template {
     template {
-      service_account = google_service_account.npm_downloads.email
+      service_account = google_service_account.job.email
 
-      # A failed run is better retried by hand than straight away: what fails
-      # it is npm not having counted the day yet, or PostHog turning it down.
+      # A failed run waits for the next one, or for a retry by hand, rather
+      # than being retried straight away.
       max_retries = 0
       timeout     = "1800s"
 
@@ -48,8 +48,8 @@ resource "google_cloud_run_v2_job" "npm_downloads" {
   }
 }
 
-resource "google_service_account_iam_binding" "npm_downloads_deployers" {
-  service_account_id = google_service_account.npm_downloads.name
+resource "google_service_account_iam_binding" "deployers" {
+  service_account_id = google_service_account.job.name
 
   members = toset(var.deployers)
   role    = "roles/iam.serviceAccountUser"
@@ -63,15 +63,15 @@ resource "google_service_account" "scheduler" {
 }
 
 resource "google_cloud_run_v2_job_iam_member" "scheduler" {
-  location = google_cloud_run_v2_job.npm_downloads.location
-  name     = google_cloud_run_v2_job.npm_downloads.name
+  location = google_cloud_run_v2_job.job.location
+  name     = google_cloud_run_v2_job.job.name
   project  = var.project
 
   member = "serviceAccount:${google_service_account.scheduler.email}"
   role   = "roles/run.invoker"
 }
 
-resource "google_cloud_scheduler_job" "npm_downloads" {
+resource "google_cloud_scheduler_job" "job" {
   name    = var.name
   project = var.project
   region  = var.location
@@ -81,7 +81,7 @@ resource "google_cloud_scheduler_job" "npm_downloads" {
 
   http_target {
     http_method = "POST"
-    uri         = "https://run.googleapis.com/v2/${google_cloud_run_v2_job.npm_downloads.id}:run"
+    uri         = "https://run.googleapis.com/v2/${google_cloud_run_v2_job.job.id}:run"
 
     oauth_token {
       service_account_email = google_service_account.scheduler.email
