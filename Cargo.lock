@@ -586,6 +586,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "npm-releases"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "jiff",
+ "serde",
+ "serde_json",
+ "telemetry",
+ "ureq",
+ "uuid",
+]
+
+[[package]]
 name = "num-conv"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
