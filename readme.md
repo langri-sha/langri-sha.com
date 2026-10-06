@@ -63,7 +63,9 @@ PostHog project. `npm-downloads.yml` deploys its image on every push to `main` â
 see
 [`terraform/modules/npm-downloads`](terraform/modules/npm-downloads/readme.md).
 The pinned _npm downloads_ dashboard in PostHog charts them per package, per
-repository and per week, and lists the top packages of the last 30 days.
+repository and per week, and lists the top packages of the last 30 days. Each
+run also records itself as an `npm_downloads_published` event, and a PostHog
+alert notifies when a day passes without one.
 
 Events are identified by package and day, so a day published again replaces its
 counts rather than adding to them â€” once PostHog has merged the duplicates in
