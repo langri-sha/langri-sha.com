@@ -94,3 +94,25 @@ resource "posthog_insight" "npm_downloads_top_packages" {
     ORDER BY downloads DESC
   SQL
 }
+
+resource "posthog_insight" "npm_downloads_weekly" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.npm_downloads.id]
+
+  name = "npm downloads per week"
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind          = "EventsNode"
+        event         = "npm_package_downloads"
+        math          = "sum"
+        math_property = "downloads"
+      }]
+      dateRange = { date_from = "-180d", date_to = local.npm_downloads_charted_until }
+      interval  = "week"
+    }
+  })
+}
