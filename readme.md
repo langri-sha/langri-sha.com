@@ -88,8 +88,10 @@ App, with credentials from the organization project's Secret Manager. The pinned
 _npm releases_ dashboard in PostHog lists the packages with changes waiting,
 their bump, and how long they've waited, and charts pending changes by package.
 Each run also records itself as an `npm_releases_run` event, with what it asked
-of GitHub and npm. `npm-releases.yml` deploys its image on every push to `main`,
-and can be dispatched by hand. Locally, a token stands in for the App:
+of GitHub and npm, and the _GitHub API usage_ dashboard charts its query cost,
+the rate limit, and how long its queries and runs take. `npm-releases.yml`
+deploys its image on every push to `main`, and can be dispatched by hand.
+Locally, a token stands in for the App:
 
 ```shell
 GITHUB_TOKEN=$(gh auth token) cargo run -p npm-releases -- --dry-run

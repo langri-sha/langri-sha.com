@@ -120,3 +120,127 @@ resource "posthog_dashboard_layout" "npm_releases" {
     },
   ]
 }
+
+resource "posthog_dashboard" "github_api_usage" {
+  project_id = tostring(posthog_project.web.id)
+
+  name        = "GitHub API usage"
+  description = "What the npm-releases job asks of GitHub's GraphQL API each hour, how long it takes, and the rate limit it draws on."
+  pinned      = true
+}
+
+resource "posthog_insight" "github_api_cost" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_api_usage.id]
+
+  name = "GitHub query cost per hour"
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind          = "EventsNode"
+        event         = "npm_releases_run"
+        math          = "sum"
+        math_property = "github_query_cost"
+      }]
+      dateRange = { date_from = "-14d" }
+      interval  = "hour"
+    }
+  })
+}
+
+resource "posthog_insight" "github_api_rate_limit" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_api_usage.id]
+
+  name        = "GitHub rate limit"
+  description = "The rate limit as each run left it. Runs as the mal-the-kron App share its budget with everything else the App does."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [
+        {
+          kind          = "EventsNode"
+          event         = "npm_releases_run"
+          custom_name   = "Used"
+          math          = "max"
+          math_property = "github_rate_limit_used"
+        },
+        {
+          kind          = "EventsNode"
+          event         = "npm_releases_run"
+          custom_name   = "Remaining"
+          math          = "min"
+          math_property = "github_rate_limit_remaining"
+        },
+        {
+          kind          = "EventsNode"
+          event         = "npm_releases_run"
+          custom_name   = "Limit"
+          math          = "max"
+          math_property = "github_rate_limit"
+        },
+      ]
+      dateRange = { date_from = "-14d" }
+      interval  = "hour"
+    }
+  })
+}
+
+resource "posthog_insight" "github_api_durations" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_api_usage.id]
+
+  name        = "npm-releases durations"
+  description = "The slowest of each run's GitHub queries, which GitHub cuts off at 10 seconds, and the whole run."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [
+        {
+          kind          = "EventsNode"
+          event         = "npm_releases_run"
+          custom_name   = "Slowest GitHub query"
+          math          = "max"
+          math_property = "github_slowest_query_ms"
+        },
+        {
+          kind          = "EventsNode"
+          event         = "npm_releases_run"
+          custom_name   = "Run"
+          math          = "max"
+          math_property = "duration_ms"
+        },
+      ]
+      trendsFilter = { aggregationAxisFormat = "duration_ms" }
+      dateRange    = { date_from = "-14d" }
+      interval     = "hour"
+    }
+  })
+}
+
+resource "posthog_dashboard_layout" "github_api_usage" {
+  project_id   = tostring(posthog_project.web.id)
+  dashboard_id = posthog_dashboard.github_api_usage.id
+
+  tiles = [
+    {
+      insight_id   = posthog_insight.github_api_rate_limit.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 0, w = 12, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.github_api_cost.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 6, w = 6, h = 5 } })
+    },
+    {
+      insight_id   = posthog_insight.github_api_durations.id
+      layouts_json = jsonencode({ sm = { x = 6, y = 6, w = 6, h = 5 } })
+    },
+  ]
+}
