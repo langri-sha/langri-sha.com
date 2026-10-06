@@ -116,3 +116,27 @@ resource "posthog_insight" "npm_downloads_weekly" {
     }
   })
 }
+
+resource "posthog_dashboard_layout" "npm_downloads" {
+  project_id   = tostring(posthog_project.web.id)
+  dashboard_id = posthog_dashboard.npm_downloads.id
+
+  tiles = [
+    {
+      insight_id   = posthog_insight.npm_downloads_by_package.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 0, w = 12, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.npm_downloads_by_repository.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 6, w = 6, h = 5 } })
+    },
+    {
+      insight_id   = posthog_insight.npm_downloads_weekly.id
+      layouts_json = jsonencode({ sm = { x = 6, y = 6, w = 6, h = 5 } })
+    },
+    {
+      insight_id   = posthog_insight.npm_downloads_top_packages.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 11, w = 12, h = 8 } })
+    },
+  ]
+}
