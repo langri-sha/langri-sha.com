@@ -29,6 +29,12 @@ variable "project" {
   description = "Project ID for the project where resources are configured."
 }
 
+variable "secrets" {
+  default     = {}
+  description = "Secret Manager secrets the job reads into its environment, by variable name. A secret in another project is named by that project's number: `projects/<number>/secrets/<name>`."
+  type        = map(string)
+}
+
 variable "schedule" {
   type        = string
   description = "When to run the job, as a cron expression in UTC."

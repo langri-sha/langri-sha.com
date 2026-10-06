@@ -29,6 +29,21 @@ resource "google_cloud_run_v2_job" "job" {
           value = var.posthog_project_token
         }
 
+        dynamic "env" {
+          for_each = var.secrets
+
+          content {
+            name = env.key
+
+            value_source {
+              secret_key_ref {
+                secret  = env.value
+                version = "latest"
+              }
+            }
+          }
+        }
+
         resources {
           limits = {
             cpu    = "1"
@@ -39,6 +54,8 @@ resource "google_cloud_run_v2_job" "job" {
     }
   }
 
+  depends_on = [google_secret_manager_secret_iam_member.job]
+
   lifecycle {
     ignore_changes = [
       client,
@@ -46,6 +63,14 @@ resource "google_cloud_run_v2_job" "job" {
       template[0].template[0].containers[0].image,
     ]
   }
+}
+
+resource "google_secret_manager_secret_iam_member" "job" {
+  for_each = var.secrets
+
+  secret_id = each.value
+  member    = "serviceAccount:${google_service_account.job.email}"
+  role      = "roles/secretmanager.secretAccessor"
 }
 
 resource "google_service_account_iam_binding" "deployers" {
