@@ -160,3 +160,19 @@ resource "posthog_insight" "npm_downloads_runs" {
     }
   })
 }
+
+resource "posthog_alert" "npm_downloads_missed_day" {
+  project_id = tostring(posthog_project.web.id)
+  insight    = posthog_insight.npm_downloads_runs.id
+
+  name             = "npm downloads job missed a day"
+  subscribed_users = [tonumber(module.secrets["posthog"].secret_data["posthog-user-id"])]
+
+  # Daily alerts check the last completed day, which the 12:17 UTC run has
+  # long recorded itself in by then.
+  calculation_interval = "daily"
+  series_index         = 0
+  condition_type       = "absolute_value"
+  threshold_type       = "absolute"
+  threshold_lower      = 1
+}
