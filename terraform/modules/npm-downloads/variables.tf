@@ -20,9 +20,9 @@ variable "name" {
   description = "Cloud Run job name, and the account ID of the service account it runs as."
 }
 
-variable "posthog_project_token_secret" {
+variable "posthog_project_token" {
   type        = string
-  description = "Resource ID of the Secret Manager secret holding the PostHog project token."
+  description = "PostHog project token the job publishes with."
 }
 
 variable "project" {

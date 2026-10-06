@@ -1,16 +1,8 @@
 resource "google_service_account" "npm_downloads" {
   account_id   = var.name
   display_name = var.name
-  description  = "Runtime identity of the ${var.name} job. It reads the PostHog project token and holds no roles."
+  description  = "Runtime identity of the ${var.name} job. It holds no roles."
   project      = var.project
-}
-
-resource "google_secret_manager_secret_iam_member" "npm_downloads" {
-  project   = var.project
-  secret_id = var.posthog_project_token_secret
-
-  member = "serviceAccount:${google_service_account.npm_downloads.email}"
-  role   = "roles/secretmanager.secretAccessor"
 }
 
 resource "google_cloud_run_v2_job" "npm_downloads" {
@@ -33,14 +25,8 @@ resource "google_cloud_run_v2_job" "npm_downloads" {
         image = var.image
 
         env {
-          name = "POSTHOG_PROJECT_TOKEN"
-
-          value_source {
-            secret_key_ref {
-              secret  = var.posthog_project_token_secret
-              version = "latest"
-            }
-          }
+          name  = "POSTHOG_PROJECT_TOKEN"
+          value = var.posthog_project_token
         }
 
         resources {
@@ -60,8 +46,6 @@ resource "google_cloud_run_v2_job" "npm_downloads" {
       template[0].template[0].containers[0].image,
     ]
   }
-
-  depends_on = [google_secret_manager_secret_iam_member.npm_downloads]
 }
 
 resource "google_service_account_iam_binding" "npm_downloads_deployers" {
