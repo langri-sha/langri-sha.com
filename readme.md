@@ -62,6 +62,8 @@ takes over a day to count one, with the project token Terraform reads off the
 PostHog project. `npm-downloads.yml` deploys its image on every push to `main` —
 see
 [`terraform/modules/npm-downloads`](terraform/modules/npm-downloads/readme.md).
+The pinned _npm downloads_ dashboard in PostHog charts them per package, per
+repository and per week, and lists the top packages of the last 30 days.
 
 Events are identified by package and day, so a day published again replaces its
 counts rather than adding to them — once PostHog has merged the duplicates in
