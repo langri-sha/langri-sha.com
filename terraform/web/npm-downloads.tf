@@ -140,3 +140,23 @@ resource "posthog_dashboard_layout" "npm_downloads" {
     },
   ]
 }
+
+resource "posthog_insight" "npm_downloads_runs" {
+  project_id = tostring(posthog_project.web.id)
+
+  name = "npm downloads job runs per day"
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind  = "EventsNode"
+        event = "npm_downloads_published"
+        math  = "total"
+      }]
+      dateRange = { date_from = "-14d" }
+      interval  = "day"
+    }
+  })
+}
