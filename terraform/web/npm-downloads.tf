@@ -49,3 +49,28 @@ resource "posthog_insight" "npm_downloads_by_package" {
     }
   })
 }
+
+resource "posthog_insight" "npm_downloads_by_repository" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.npm_downloads.id]
+
+  name = "npm downloads by repository"
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind          = "EventsNode"
+        event         = "npm_package_downloads"
+        math          = "sum"
+        math_property = "downloads"
+      }]
+      breakdownFilter = {
+        breakdowns = [{ property = "repository", type = "event" }]
+      }
+      dateRange = { date_from = "-90d", date_to = local.npm_downloads_charted_until }
+      interval  = "day"
+    }
+  })
+}
