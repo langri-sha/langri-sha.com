@@ -54,6 +54,40 @@ override_data {
 }
 
 override_module {
+  target = module.secrets["posthog"]
+
+  outputs = {
+    secret_data = {
+      "posthog-api-key"         = "phx_test"
+      "posthog-organization-id" = "00000000-0000-0000-0000-000000000000"
+    }
+    secret_names = {}
+  }
+}
+
+override_module {
+  target = module.secrets["posthog-proxy"]
+
+  outputs = {
+    secret_data = {
+      "posthog-project-id" = "1"
+    }
+    secret_names = {
+      "posthog-project-token" = "projects/edge-0000/secrets/posthog-project-token"
+    }
+  }
+}
+
+override_resource {
+  target = posthog_project.web
+
+  values = {
+    api_token = "phc_test"
+    id        = 1
+  }
+}
+
+override_module {
   target = module.project["build"]
 
   outputs = {
