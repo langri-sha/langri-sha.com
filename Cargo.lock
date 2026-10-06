@@ -590,8 +590,11 @@ name = "npm-releases"
 version = "0.0.0"
 dependencies = [
  "anyhow",
+ "base64",
  "clap",
  "jiff",
+ "ring",
+ "rustls-pki-types",
  "serde",
  "serde_json",
  "telemetry",

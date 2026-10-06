@@ -378,8 +378,11 @@ project.addSubproject({
     },
     dependencies: {
       anyhow: '1.0.104',
+      base64: '0.23.1',
       clap: { version: '4.6.7', features: ['derive', 'env'] },
       jiff: { version: '0.2.37', features: ['serde'] },
+      ring: '0.17.14',
+      'rustls-pki-types': '1.15.1',
       serde: { version: '1.0.229', features: ['derive'] },
       serde_json: '1.0.151',
       telemetry: { path: '../../packages/telemetry' },
