@@ -232,17 +232,11 @@ locals {
 
       secrets = [
         "posthog-project-id",
-        "posthog-project-token",
       ]
 
-      read_secret_version = merge(
-        var.posthog_project_id_version == "" ? {} : {
-          "posthog-project-id" = var.posthog_project_id_version
-        },
-        var.posthog_project_token_version == "" ? {} : {
-          "posthog-project-token" = var.posthog_project_token_version
-        },
-      )
+      read_secret_version = var.posthog_project_id_version == "" ? {} : {
+        "posthog-project-id" = var.posthog_project_id_version
+      }
     }
 
     "previews-router" = {

@@ -1,8 +1,3 @@
-variables {
-  posthog_project_id_version    = ""
-  posthog_project_token_version = ""
-}
-
 mock_provider "google" {
   mock_resource "google_service_account" {
     defaults = {
@@ -72,9 +67,7 @@ override_module {
     secret_data = {
       "posthog-project-id" = "1"
     }
-    secret_names = {
-      "posthog-project-token" = "projects/edge-0000/secrets/posthog-project-token"
-    }
+    secret_names = {}
   }
 }
 
