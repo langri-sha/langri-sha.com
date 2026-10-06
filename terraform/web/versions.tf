@@ -16,5 +16,10 @@ terraform {
       source  = "integrations/github"
       version = "6.13.0"
     }
+
+    posthog = {
+      source  = "PostHog/posthog"
+      version = "1.0.22"
+    }
   }
 }
