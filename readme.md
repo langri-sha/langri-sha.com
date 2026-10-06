@@ -84,10 +84,12 @@ POSTHOG_PROJECT_TOKEN=phc_… cargo run -p npm-downloads -- --from 2025-04-01
 each package's next release: one `npm_package_pending_changes` event per package
 and hour, with how many changes wait, how many of each type, and the biggest
 bump. It reads every repository's `change/` directory as the mal-the-kron GitHub
-App, with credentials from the organization project's Secret Manager. Each run
-also records itself as an `npm_releases_run` event, with what it asked of GitHub
-and npm. `npm-releases.yml` deploys its image on every push to `main`, and can
-be dispatched by hand. Locally, a token stands in for the App:
+App, with credentials from the organization project's Secret Manager. The pinned
+_npm releases_ dashboard in PostHog lists the packages with changes waiting,
+their bump, and how long they've waited, and charts pending changes by package.
+Each run also records itself as an `npm_releases_run` event, with what it asked
+of GitHub and npm. `npm-releases.yml` deploys its image on every push to `main`,
+and can be dispatched by hand. Locally, a token stands in for the App:
 
 ```shell
 GITHUB_TOKEN=$(gh auth token) cargo run -p npm-releases -- --dry-run
