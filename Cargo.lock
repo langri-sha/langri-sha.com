@@ -580,6 +580,7 @@ dependencies = [
  "jiff",
  "serde",
  "serde_json",
+ "telemetry",
  "ureq",
  "uuid",
 ]
@@ -839,6 +840,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 3.0.6",
+]
+
+[[package]]
+name = "telemetry"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "serde",
+ "serde_json",
+ "ureq",
 ]
 
 [[package]]

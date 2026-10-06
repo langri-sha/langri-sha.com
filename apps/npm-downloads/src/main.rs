@@ -1,4 +1,3 @@
-mod http;
 mod npm;
 mod posthog;
 
@@ -59,7 +58,7 @@ fn main() -> Result<()> {
     let today = Timestamp::now().to_zoned(TimeZone::UTC).date();
     let (from, to) = days(args.from, args.to, today, npm::last_counted_day(&agent)?)?;
 
-    let packages = npm::maintained_packages(&agent, &args.maintainer)?;
+    let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
 
     if packages.is_empty() {
         bail!("npm lists no packages maintained by {}", args.maintainer);
@@ -83,8 +82,8 @@ fn main() -> Result<()> {
 
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
-            posthog::capture(&agent, &args.posthog_host, &token, &events, from < to)?;
-            posthog::capture(
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, from < to)?;
+            telemetry::posthog::capture(
                 &agent,
                 &args.posthog_host,
                 &token,

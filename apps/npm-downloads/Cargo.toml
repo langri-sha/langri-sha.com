@@ -24,6 +24,9 @@ serde_json = "1.0.151"
   version = "1.0.229"
   features = [ "derive" ]
 
+  [dependencies.telemetry]
+  path = "../../packages/telemetry"
+
   [dependencies.ureq]
   version = "3.4.2"
   features = [ "json" ]
