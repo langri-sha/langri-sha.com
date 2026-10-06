@@ -20,6 +20,8 @@ mock_provider "google" {
 
 mock_provider "google-beta" {}
 
+mock_provider "posthog" {}
+
 mock_provider "random" {}
 
 mock_provider "github" {

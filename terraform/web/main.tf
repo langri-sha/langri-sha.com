@@ -314,3 +314,9 @@ data "terraform_remote_state" "org" {
 }
 
 provider "github" {}
+
+provider "posthog" {
+  api_key         = try(module.secrets["posthog"].secret_data["posthog-api-key"], null)
+  host            = local.posthog_host
+  organization_id = local.posthog_organization_id
+}
