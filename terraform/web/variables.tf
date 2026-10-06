@@ -4,6 +4,12 @@ variable "npm_downloads_image" {
   type        = string
 }
 
+variable "npm_releases_image" {
+  default     = "us-docker.pkg.dev/cloudrun/container/job"
+  description = "Image the npm releases job is created with. CI deploys the real one, so this only ever serves as a placeholder until the first one lands."
+  type        = string
+}
+
 variable "posthog_secrets_version" {
   default     = "latest"
   description = "Version of the posthog-api-key, posthog-organization-id and posthog-user-id secrets to read. Empty skips the read, for the first apply, before the secrets have versions."

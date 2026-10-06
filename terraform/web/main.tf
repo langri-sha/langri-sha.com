@@ -87,6 +87,9 @@ locals {
         NPM_DOWNLOADS_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/npm-downloads"
         NPM_DOWNLOADS_JOB      = module.npm_downloads.job
         NPM_DOWNLOADS_REGION   = local.region
+        NPM_RELEASES_IMAGE     = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/npm-releases"
+        NPM_RELEASES_JOB       = module.npm_releases.job
+        NPM_RELEASES_REGION    = local.region
         POSTHOG_PROJECT_ID     = tostring(posthog_project.web.id)
         POSTHOG_PROJECT_TOKEN  = nonsensitive(posthog_project.web.api_token)
         POSTHOG_PROXY_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/posthog-proxy"

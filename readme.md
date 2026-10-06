@@ -7,6 +7,7 @@ The site, the edge that previews it, and the Terraform that runs both.
 | `apps/web`           | the Next.js site, exported static                                       |
 | `apps/preview`       | the nginx router in front of the preview revisions                      |
 | `apps/npm-downloads` | the daily job publishing npm package downloads to PostHog               |
+| `apps/npm-releases`  | the hourly job publishing pending npm package releases to PostHog       |
 | `packages/fonts`     | display fonts, subsetted and inlined for the site                       |
 | `terraform/`         | the GCP projects, buckets, Cloud Run services and jobs, and DNS records |
 
@@ -75,4 +76,19 @@ arguments, or locally, where `--dry-run` prints the events instead:
 ```shell
 gcloud run jobs execute npm-downloads --project <edge> --region us-west1 --args=--from,2025-04-01
 POSTHOG_PROJECT_TOKEN=phc_… cargo run -p npm-downloads -- --from 2025-04-01
+```
+
+## npm releases
+
+`apps/npm-releases` publishes, every hour, the beachball change files waiting on
+each package's next release: one `npm_package_pending_changes` event per package
+and hour, with how many changes wait, how many of each type, and the biggest
+bump. It reads every repository's `change/` directory as the mal-the-kron GitHub
+App, with credentials from the organization project's Secret Manager. Each run
+also records itself as an `npm_releases_run` event, with what it asked of GitHub
+and npm. `npm-releases.yml` deploys its image on every push to `main`, and can
+be dispatched by hand. Locally, a token stands in for the App:
+
+```shell
+GITHUB_TOKEN=$(gh auth token) cargo run -p npm-releases -- --dry-run
 ```
