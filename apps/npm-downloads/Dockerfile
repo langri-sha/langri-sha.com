@@ -7,6 +7,7 @@ RUN rustup toolchain install --no-self-update
 
 COPY Cargo.toml Cargo.lock ./
 COPY apps/npm-downloads apps/npm-downloads
+COPY apps/npm-releases apps/npm-releases
 COPY packages/telemetry packages/telemetry
 RUN cargo build --locked --release --package npm-downloads
 

@@ -368,4 +368,25 @@ project.addSubproject({
   },
 })
 
+project.addSubproject({
+  name: 'npm-releases',
+  outdir: path.join('apps', 'npm-releases'),
+  cargo: {
+    package: {
+      description: 'Publishes pending npm package releases to PostHog',
+      publish: false,
+    },
+    dependencies: {
+      anyhow: '1.0.104',
+      clap: { version: '4.6.7', features: ['derive', 'env'] },
+      jiff: { version: '0.2.37', features: ['serde'] },
+      serde: { version: '1.0.229', features: ['derive'] },
+      serde_json: '1.0.151',
+      telemetry: { path: '../../packages/telemetry' },
+      ureq: { version: '3.4.2', features: ['json'] },
+      uuid: { version: '1.26.1', features: ['serde', 'v5'] },
+    },
+  },
+})
+
 project.synth()

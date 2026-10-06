@@ -16,6 +16,13 @@
 /apps/npm-downloads/.projen/files.json linguist-generated
 /apps/npm-downloads/.projen/tasks.json linguist-generated
 /apps/npm-downloads/Cargo.toml linguist-generated
+/apps/npm-releases/.gitattributes linguist-generated
+/apps/npm-releases/.gitignore linguist-generated
+/apps/npm-releases/.projen/** linguist-generated
+/apps/npm-releases/.projen/deps.json linguist-generated
+/apps/npm-releases/.projen/files.json linguist-generated
+/apps/npm-releases/.projen/tasks.json linguist-generated
+/apps/npm-releases/Cargo.toml linguist-generated
 /Cargo.toml linguist-generated
 /CODEOWNERS linguist-generated
 /eslint.config.js linguist-generated

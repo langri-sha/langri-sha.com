@@ -4,5 +4,7 @@
 !rust-toolchain.toml
 !apps/npm-downloads/Cargo.toml
 !apps/npm-downloads/src/
+!apps/npm-releases/Cargo.toml
+!apps/npm-releases/src/
 !packages/telemetry/Cargo.toml
 !packages/telemetry/src/
