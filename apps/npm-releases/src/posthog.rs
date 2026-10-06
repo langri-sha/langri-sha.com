@@ -109,6 +109,9 @@ struct RunProperties {
     hour: Timestamp,
     repositories: usize,
     packages: usize,
+    /// Whether the run read GitHub as the App or with someone's token, and so
+    /// whose rate limit the `github_rate_limit` figures are.
+    github_credential: &'static str,
     github_queries: u32,
     github_query_cost: u64,
     github_query_ms: u128,
@@ -137,6 +140,7 @@ impl Run {
         hour: Timestamp,
         repositories: usize,
         packages: usize,
+        github_credential: &'static str,
         github: &Usage,
         npm: &Requests,
         took: Duration,
@@ -148,6 +152,7 @@ impl Run {
                 hour,
                 repositories,
                 packages,
+                github_credential,
                 github_queries: github.queries,
                 github_query_cost: github.cost,
                 github_query_ms: github.took.as_millis(),
@@ -249,6 +254,7 @@ mod tests {
                 hour(),
                 45,
                 34,
+                "app",
                 &github,
                 &npm,
                 Duration::from_millis(4321)
@@ -261,6 +267,7 @@ mod tests {
                     "hour": HOUR,
                     "repositories": 45,
                     "packages": 34,
+                    "github_credential": "app",
                     "github_queries": 1,
                     "github_query_cost": 1,
                     "github_query_ms": 3512,
