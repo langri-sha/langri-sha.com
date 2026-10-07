@@ -383,6 +383,7 @@ project.addSubproject({
       jiff: { version: '0.2.37', features: ['serde'] },
       ring: '0.17.14',
       'rustls-pki-types': '1.15.1',
+      semver: { version: '1.0.28', features: ['serde'] },
       serde: { version: '1.0.229', features: ['derive'] },
       serde_json: '1.0.151',
       telemetry: { path: '../../packages/telemetry' },
