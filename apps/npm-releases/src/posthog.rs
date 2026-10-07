@@ -9,7 +9,7 @@ use uuid::Uuid;
 use crate::{
     changes::{Bump, Counts, Pending},
     github::Usage,
-    publishes::Release,
+    publishes::{Kind, Release},
 };
 
 const EVENT: &str = "npm_package_pending_changes";
@@ -112,6 +112,9 @@ struct PublishedProperties {
     #[serde(skip_serializing_if = "Option::is_none")]
     repository: Option<String>,
     version: Version,
+    bump: Kind,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    bumped_from: Option<Version>,
     #[serde(skip_serializing_if = "Option::is_none")]
     since_previous_publish_ms: Option<i128>,
     #[serde(rename = "$process_person_profile")]
@@ -120,7 +123,12 @@ struct PublishedProperties {
 
 impl Published {
     pub fn new(package: &Package, release: &Release) -> Self {
-        let Release { publish, previous } = release;
+        let Release {
+            publish,
+            previous,
+            kind,
+            bumped_from,
+        } = release;
         // As with snapshots, all four of PostHog's keys derive from the
         // version, so that sending a publish again replaces it.
         let version = format!(
@@ -137,6 +145,8 @@ impl Published {
                 package: package.name.clone(),
                 repository: package.repository.clone(),
                 version: publish.version.clone(),
+                bump: *kind,
+                bumped_from: bumped_from.cloned(),
                 since_previous_publish_ms: previous
                     .map(|previous| publish.at.duration_since(previous.at).as_millis()),
                 process_person_profile: false,
@@ -360,6 +370,8 @@ mod tests {
                 &Release {
                     publish: &history[1],
                     previous: Some(&history[0]),
+                    kind: Kind::Bump(Bump::Preminor),
+                    bumped_from: Some(&history[0].version),
                 },
             ))
             .unwrap(),
@@ -375,6 +387,8 @@ mod tests {
                     "package": "@langri-sha/vitest",
                     "repository": "https://github.com/langri-sha/vitest",
                     "version": "1.3.0-beta.0",
+                    "bump": "preminor",
+                    "bumped_from": "1.2.3",
                     "since_previous_publish_ms": 442_799_999,
                     "$process_person_profile": false,
                 },
@@ -383,7 +397,7 @@ mod tests {
     }
 
     #[test]
-    fn first_publish_has_no_time_since_the_previous() {
+    fn first_publish_is_initial() {
         let first = Publish {
             version: "0.1.0".parse().unwrap(),
             at: "2026-10-06T14:00:00Z".parse().unwrap(),
@@ -393,10 +407,14 @@ mod tests {
             &Release {
                 publish: &first,
                 previous: None,
+                kind: Kind::Initial,
+                bumped_from: None,
             },
         ))
         .unwrap();
 
+        assert_eq!(event["properties"]["bump"], "initial");
+        assert!(event["properties"].get("bumped_from").is_none());
         assert!(
             event["properties"]
                 .get("since_previous_publish_ms")
