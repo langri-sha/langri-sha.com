@@ -1,6 +1,7 @@
 use std::{collections::BTreeMap, time::Duration};
 
 use jiff::Timestamp;
+use semver::Version;
 use serde::Serialize;
 use telemetry::npm::Package;
 use uuid::Uuid;
@@ -8,6 +9,7 @@ use uuid::Uuid;
 use crate::{
     changes::{Bump, Counts, Pending},
     github::Usage,
+    publishes::Release,
 };
 
 const EVENT: &str = "npm_package_pending_changes";
@@ -94,6 +96,55 @@ pub fn snapshot(
     events
 }
 
+/// A version of a package npm published.
+#[derive(Debug, Serialize)]
+pub struct Published {
+    event: &'static str,
+    distinct_id: String,
+    uuid: Uuid,
+    timestamp: Timestamp,
+    properties: PublishedProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct PublishedProperties {
+    package: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    repository: Option<String>,
+    version: Version,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    since_previous_publish_ms: Option<i128>,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+impl Published {
+    pub fn new(package: &Package, release: &Release) -> Self {
+        let Release { publish, previous } = release;
+        // As with snapshots, all four of PostHog's keys derive from the
+        // version, so that sending a publish again replaces it.
+        let version = format!(
+            "https://www.npmjs.com/package/{}/v/{}",
+            package.name, publish.version
+        );
+
+        Self {
+            event: "npm_package_published",
+            distinct_id: package.name.clone(),
+            uuid: Uuid::new_v5(&Uuid::NAMESPACE_URL, version.as_bytes()),
+            timestamp: publish.at,
+            properties: PublishedProperties {
+                package: package.name.clone(),
+                repository: package.repository.clone(),
+                version: publish.version.clone(),
+                since_previous_publish_ms: previous
+                    .map(|previous| publish.at.duration_since(previous.at).as_millis()),
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
 /// A record of a run and of what it asked of GitHub and npm. It carries no
 /// timestamp, so PostHog stamps it on arrival, and an hour without one is an
 /// hour the job didn't run.
@@ -175,6 +226,7 @@ mod tests {
     use serde_json::json;
 
     use super::*;
+    use crate::publishes::Publish;
 
     const HOUR: &str = "2026-10-06T15:00:00Z";
 
@@ -282,6 +334,73 @@ mod tests {
                     "$process_person_profile": false,
                 },
             }),
+        );
+    }
+
+    #[test]
+    fn published() {
+        let history = [
+            Publish {
+                version: "1.2.3".parse().unwrap(),
+                at: "2026-10-01T12:00:00Z".parse().unwrap(),
+            },
+            Publish {
+                version: "1.3.0-beta.0".parse().unwrap(),
+                at: "2026-10-06T14:59:59.999Z".parse().unwrap(),
+            },
+        ];
+        let package = package(
+            "@langri-sha/vitest",
+            Some("https://github.com/langri-sha/vitest"),
+        );
+
+        assert_eq!(
+            serde_json::to_value(Published::new(
+                &package,
+                &Release {
+                    publish: &history[1],
+                    previous: Some(&history[0]),
+                },
+            ))
+            .unwrap(),
+            json!({
+                "event": "npm_package_published",
+                "distinct_id": "@langri-sha/vitest",
+                "uuid": Uuid::new_v5(
+                    &Uuid::NAMESPACE_URL,
+                    b"https://www.npmjs.com/package/@langri-sha/vitest/v/1.3.0-beta.0",
+                ),
+                "timestamp": "2026-10-06T14:59:59.999Z",
+                "properties": {
+                    "package": "@langri-sha/vitest",
+                    "repository": "https://github.com/langri-sha/vitest",
+                    "version": "1.3.0-beta.0",
+                    "since_previous_publish_ms": 442_799_999,
+                    "$process_person_profile": false,
+                },
+            }),
+        );
+    }
+
+    #[test]
+    fn first_publish_has_no_time_since_the_previous() {
+        let first = Publish {
+            version: "0.1.0".parse().unwrap(),
+            at: "2026-10-06T14:00:00Z".parse().unwrap(),
+        };
+        let event = serde_json::to_value(Published::new(
+            &package("@langri-sha/vitest", None),
+            &Release {
+                publish: &first,
+                previous: None,
+            },
+        ))
+        .unwrap();
+
+        assert!(
+            event["properties"]
+                .get("since_previous_publish_ms")
+                .is_none()
         );
     }
 

@@ -1,7 +1,9 @@
 mod app;
 mod changes;
 mod github;
+mod npm;
 mod posthog;
+mod publishes;
 
 use std::{
     sync::{
@@ -13,15 +15,16 @@ use std::{
 
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
-use jiff::{RoundMode, Timestamp, TimestampRound, Unit};
+use jiff::{RoundMode, Timestamp, TimestampRound, ToSpan, Unit};
+use telemetry::npm::Package;
 use ureq::{Agent, SendBody, http::Request, middleware::MiddlewareNext};
 
 use crate::{
     app::App,
-    posthog::{Requests, Run},
+    posthog::{Published, Requests, Run},
 };
 
-/// Publishes pending npm package releases to PostHog.
+/// Publishes npm package releases, pending and published, to PostHog.
 #[derive(Parser)]
 #[command(about)]
 struct Args {
@@ -105,14 +108,19 @@ fn main() -> Result<()> {
 
     let npm_started = Instant::now();
     let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
-    let npm = Requests {
-        count: npm_requests.load(Ordering::Relaxed),
-        took: npm_started.elapsed(),
-    };
 
     if packages.is_empty() {
         bail!("npm lists no packages maintained by {}", args.maintainer);
     }
+
+    // The hour before the run's, fixed by the calendar so that each version is
+    // sent once: PostHog can take days to merge a duplicate away. npm caches
+    // packuments for five minutes, so by :07 they show the whole hour.
+    let published = published(&agent, &packages, hour.checked_sub(1.hour())?, hour)?;
+    let npm = Requests {
+        count: npm_requests.load(Ordering::Relaxed),
+        took: npm_started.elapsed(),
+    };
 
     let credential = credential(&args);
     let credential_kind = credential.kind();
@@ -139,15 +147,21 @@ fn main() -> Result<()> {
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &published, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
-                "Published pending changes of {} packages for {hour}",
-                events.len()
+                "Published pending changes of {} packages for {hour}, and {} npm publishes",
+                events.len(),
+                published.len(),
             );
         }
         _ => {
             for event in &events {
+                println!("{}", serde_json::to_string(event)?);
+            }
+
+            for event in &published {
                 println!("{}", serde_json::to_string(event)?);
             }
 
@@ -156,6 +170,28 @@ fn main() -> Result<()> {
     }
 
     Ok(())
+}
+
+/// The versions of each package npm published from `from` up to `to`.
+fn published(
+    agent: &Agent,
+    packages: &[Package],
+    from: Timestamp,
+    to: Timestamp,
+) -> Result<Vec<Published>> {
+    let mut published = Vec::new();
+
+    for package in packages {
+        let history = npm::history(agent, &package.name)?;
+
+        published.extend(
+            publishes::between(&history, from, to)
+                .iter()
+                .map(|release| Published::new(package, release)),
+        );
+    }
+
+    Ok(published)
 }
 
 #[derive(Debug, PartialEq)]
