@@ -32,7 +32,7 @@ resource "posthog_dashboard" "npm_releases" {
   project_id = tostring(posthog_project.web.id)
 
   name        = "npm releases"
-  description = "Changes waiting on the next release of each npm package the malkron npm user maintains, published hourly by the npm-releases job."
+  description = "Changes waiting on the next release of each npm package the malkron npm user maintains, and the releases npm published, from the hourly npm-releases job."
   pinned      = true
 }
 
@@ -105,6 +105,35 @@ resource "posthog_insight" "npm_releases_pending_by_package" {
   })
 }
 
+resource "posthog_insight" "npm_releases_published" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.npm_releases.id]
+
+  name        = "Publishes per week by bump"
+  description = "Every version npm published, by its bump over the highest version before it. Pre-releases of any bump count as prerelease, so a release's betas don't count as releases of their own."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind  = "EventsNode"
+        event = "npm_package_published"
+        math  = "total"
+      }]
+      breakdownFilter = {
+        breakdowns = [{
+          property = "if(startsWith(properties.bump, 'pre'), 'prerelease', properties.bump)"
+          type     = "hogql"
+        }]
+      }
+      trendsFilter = { display = "ActionsBar" }
+      dateRange    = { date_from = "-52w" }
+      interval     = "week"
+    }
+  })
+}
+
 resource "posthog_dashboard_layout" "npm_releases" {
   project_id   = tostring(posthog_project.web.id)
   dashboard_id = posthog_dashboard.npm_releases.id
@@ -117,6 +146,10 @@ resource "posthog_dashboard_layout" "npm_releases" {
     {
       insight_id   = posthog_insight.npm_releases_pending_by_package.id
       layouts_json = jsonencode({ sm = { x = 0, y = 8, w = 12, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.npm_releases_published.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 14, w = 12, h = 6 } })
     },
   ]
 }
