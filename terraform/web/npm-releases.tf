@@ -134,6 +134,29 @@ resource "posthog_insight" "npm_releases_published" {
   })
 }
 
+resource "posthog_insight" "npm_releases_cadence" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.npm_releases.id]
+
+  name        = "Time between publishes"
+  description = "Each package's publishes in the last year, the median time between them in days, and its latest version."
+
+  query_sql = <<-SQL
+    SELECT
+      properties.package AS package,
+      count() AS publishes,
+      round(median(toFloat(properties.since_previous_publish_ms)) / 86400000, 1) AS median_days_between,
+      max(timestamp) AS last_published,
+      argMax(properties.version, timestamp) AS latest_version,
+      argMax(properties.bump, timestamp) AS latest_bump
+    FROM events
+    WHERE event = 'npm_package_published'
+      AND timestamp >= now() - INTERVAL 1 YEAR
+    GROUP BY package
+    ORDER BY last_published DESC
+  SQL
+}
+
 resource "posthog_dashboard_layout" "npm_releases" {
   project_id   = tostring(posthog_project.web.id)
   dashboard_id = posthog_dashboard.npm_releases.id
@@ -150,6 +173,10 @@ resource "posthog_dashboard_layout" "npm_releases" {
     {
       insight_id   = posthog_insight.npm_releases_published.id
       layouts_json = jsonencode({ sm = { x = 0, y = 14, w = 12, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.npm_releases_cadence.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 20, w = 12, h = 8 } })
     },
   ]
 }
