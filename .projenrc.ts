@@ -373,7 +373,8 @@ project.addSubproject({
   outdir: path.join('apps', 'npm-releases'),
   cargo: {
     package: {
-      description: 'Publishes pending npm package releases to PostHog',
+      description:
+        'Publishes npm package releases, pending and published, to PostHog',
       publish: false,
     },
     dependencies: {
