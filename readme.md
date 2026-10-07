@@ -90,14 +90,14 @@ hour before the run, stamped with its publish time, with its bump over the
 highest version before it, as node-semver's `diff` names it or `initial`, and
 with the time since the package's previous publish. The pinned _npm releases_
 dashboard in PostHog lists the packages with changes waiting, their bump, and
-how long they've waited, and charts pending changes by package and publishes per
-week by bump. Each run also records itself as an `npm_releases_run` event, with
-what it asked of GitHub and npm, and the _GitHub API usage_ dashboard charts its
-query cost, the rate limit, and how long its queries and runs take. PostHog
-alerts notify when an hour passes without a run, when the rate limit runs low,
-and when a query nears GitHub's 10-second limit. `npm-releases.yml` deploys its
-image on every push to `main`, and can be dispatched by hand. Locally, a token
-stands in for the App:
+how long they've waited, charts pending changes by package and publishes per
+week by bump, and lists the time between each package's publishes. Each run also
+records itself as an `npm_releases_run` event, with what it asked of GitHub and
+npm, and the _GitHub API usage_ dashboard charts its query cost, the rate limit,
+and how long its queries and runs take. PostHog alerts notify when an hour
+passes without a run, when the rate limit runs low, and when a query nears
+GitHub's 10-second limit. `npm-releases.yml` deploys its image on every push to
+`main`, and can be dispatched by hand. Locally, a token stands in for the App:
 
 ```shell
 GITHUB_TOKEN=$(gh auth token) cargo run -p npm-releases -- --dry-run
