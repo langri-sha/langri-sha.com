@@ -101,3 +101,12 @@ GitHub's 10-second limit. `npm-releases.yml` deploys its image on every push to
 ```shell
 GITHUB_TOKEN=$(gh auth token) cargo run -p npm-releases -- --dry-run
 ```
+
+`--published-since` sends only the versions published since then, through
+PostHog's pipeline for imports, to load the history or make up for hours the job
+missed. Make up from the first missed hour, since PostHog keeps duplicates. It
+stops at the hour before the run's, which the hourly run sends:
+
+```shell
+POSTHOG_PROJECT_TOKEN=phc_… cargo run -p npm-releases -- --published-since 2016-11-11T00:00:00Z
+```
