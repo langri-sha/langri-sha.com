@@ -42,6 +42,7 @@ struct Args {
         env = "GITHUB_TOKEN",
         hide_env_values = true,
         required_unless_present_all = ["github_app_client_id", "github_app_private_key"],
+        required_unless_present_any = ["published_since"],
         value_parser = NonEmptyStringValueParser::new(),
     )]
     github_token: Option<String>,
@@ -82,6 +83,12 @@ struct Args {
     /// Print the events instead of sending them.
     #[arg(long)]
     dry_run: bool,
+
+    /// Send only the versions npm published since then, as an import: to load
+    /// their history, or make up for hours the job missed. The hour before the
+    /// run's is left to the hourly run.
+    #[arg(long)]
+    published_since: Option<Timestamp>,
 }
 
 fn main() -> Result<()> {
@@ -111,6 +118,10 @@ fn main() -> Result<()> {
 
     if packages.is_empty() {
         bail!("npm lists no packages maintained by {}", args.maintainer);
+    }
+
+    if let Some(since) = args.published_since {
+        return import(&agent, &args, &packages, since, hour);
     }
 
     // The hour before the run's, fixed by the calendar so that each version is
@@ -170,6 +181,49 @@ fn main() -> Result<()> {
     }
 
     Ok(())
+}
+
+/// Send the versions npm published from `since` through PostHog's pipeline for
+/// imports, which spares them the rate limit live events see.
+fn import(
+    agent: &Agent,
+    args: &Args,
+    packages: &[Package],
+    since: Timestamp,
+    hour: Timestamp,
+) -> Result<()> {
+    let until = import_until(since, hour)?;
+    let published = published(agent, packages, since, until)?;
+
+    match &args.posthog_project_token {
+        Some(token) if !args.dry_run => {
+            telemetry::posthog::capture(agent, &args.posthog_host, token, &published, true)?;
+
+            eprintln!(
+                "Imported {} npm publishes from {since} until {until}",
+                published.len()
+            );
+        }
+        _ => {
+            for event in &published {
+                println!("{}", serde_json::to_string(event)?);
+            }
+        }
+    }
+
+    Ok(())
+}
+
+/// Where an import ends: at the hour before the run's, which the hourly run
+/// sends itself, whether it has run yet or not.
+fn import_until(since: Timestamp, hour: Timestamp) -> Result<Timestamp> {
+    let until = hour.checked_sub(1.hour())?;
+
+    if since >= until {
+        bail!("--published-since {since} is not before {until}, where the hourly run takes over");
+    }
+
+    Ok(until)
 }
 
 /// The versions of each package npm published from `from` up to `to`.
@@ -282,6 +336,22 @@ mod tests {
         assert!(parse(&[]).is_err());
         assert!(parse(&app_args[..2]).is_err());
         assert!(parse(&app_args[2..]).is_err());
+    }
+
+    #[test]
+    fn imports_need_no_credentials() {
+        assert!(parse(&["--published-since", "2016-11-11T00:00:00Z"]).is_ok());
+    }
+
+    #[test]
+    fn imports_stop_where_the_hourly_run_starts() {
+        let hour = "2026-10-06T15:00:00Z".parse().unwrap();
+
+        assert_eq!(
+            import_until("2016-11-11T00:00:00Z".parse().unwrap(), hour).unwrap(),
+            "2026-10-06T14:00:00Z".parse::<Timestamp>().unwrap(),
+        );
+        assert!(import_until("2026-10-06T14:00:00Z".parse().unwrap(), hour).is_err());
     }
 
     #[test]
