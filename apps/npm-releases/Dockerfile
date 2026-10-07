@@ -12,7 +12,10 @@ COPY apps/npm-releases apps/npm-releases
 # Cargo won't load a workspace with a member missing, so the other apps leave
 # its members.
 RUN sed -i '/^  "apps\//{/"apps\/npm-releases"/!d}' Cargo.toml
-RUN cargo build --locked --release --package npm-releases
+
+# Cargo then prunes their crates from Cargo.lock, which --locked forbids. The
+# workspace check keeps Cargo.lock current instead.
+RUN cargo build --release --package npm-releases
 
 FROM gcr.io/distroless/cc-debian13:nonroot
 
