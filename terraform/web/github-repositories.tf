@@ -66,8 +66,8 @@ resource "posthog_insight" "github_repositories_change" {
   query_sql = <<-SQL
     SELECT
       properties.repository AS repository,
-      sumIf(toInt(properties.unique_visitors), timestamp >= toStartOfDay(now()) - INTERVAL 16 DAY) AS last_14_days,
-      sumIf(toInt(properties.unique_visitors), timestamp < toStartOfDay(now()) - INTERVAL 16 DAY) AS previous_14_days,
+      sumIf(ifNull(toInt(properties.unique_visitors), 0), timestamp >= toStartOfDay(now()) - INTERVAL 16 DAY) AS last_14_days,
+      sumIf(ifNull(toInt(properties.unique_visitors), 0), timestamp < toStartOfDay(now()) - INTERVAL 16 DAY) AS previous_14_days,
       last_14_days - previous_14_days AS change
     FROM events
     WHERE event = 'github_repository_traffic'
