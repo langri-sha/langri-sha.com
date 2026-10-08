@@ -106,3 +106,57 @@ resource "posthog_insight" "github_repositories_referrers" {
     LIMIT 50
   SQL
 }
+
+locals {
+  # Leaves out the owner's own stars, and the burst one account gave forks and
+  # repositories alike in the same second on 2023-03-08.
+  github_stars_counted = "properties.self != 'true' AND toDate(timestamp) != toDate('2023-03-08')"
+}
+
+resource "posthog_insight" "github_repositories_stars" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "Stars over time by repository"
+  description = "Stars given, adding up since the first, apart from the owner's own and the burst on 2023-03-08. Stars taken back still count: GitHub keeps no record of them."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind       = "EventsNode"
+        event      = "github_repository_starred"
+        math       = "total"
+        properties = [{ type = "hogql", key = local.github_stars_counted }]
+      }]
+      breakdownFilter = {
+        breakdowns      = [{ property = "repository", type = "event" }]
+        breakdown_limit = 50
+      }
+      trendsFilter = { display = "ActionsLineGraphCumulative" }
+      dateRange    = { date_from = "all" }
+      interval     = "month"
+    }
+  })
+}
+
+resource "posthog_insight" "github_repositories_stars_gained" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "Stars gained in the last 90 days"
+  description = "Each star given in the last 90 days, apart from the owner's own, newest first."
+
+  query_sql = <<-SQL
+    SELECT
+      timestamp AS starred,
+      properties.repository AS repository,
+      properties.stargazer AS stargazer
+    FROM events
+    WHERE event = 'github_repository_starred'
+      AND timestamp >= now() - INTERVAL 90 DAY
+      AND ${local.github_stars_counted}
+    ORDER BY timestamp DESC
+  SQL
+}
