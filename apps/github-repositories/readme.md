@@ -6,14 +6,18 @@ repository `langri-sha` owns apart from forks, archived ones included, with
 `repository`, `views`, `unique_visitors`, `clones` and `unique_cloners`
 properties. Each run also sends a `github_repositories_run` event.
 
+It reads the repositories as the mal-the-kron GitHub App, with a token limited
+to reading administration and metadata: traffic takes administration, which
+shows settings such as branch protection too, and nothing narrower serves it.
+
 It reports the day before yesterday. GitHub counts each repository's traffic on
 a schedule of its own, and hours into a day some repositories still lack the day
 before.
 
 ## Running locally
 
-Only those with push access to a repository see its traffic, so run it with the
-owner's token:
+A token stands in for the App. Only those with push access to a repository see
+its traffic, so it has to be the owner's:
 
 ```shell
 GITHUB_TOKEN=$(gh auth token) cargo run -p github-repositories -- --dry-run
