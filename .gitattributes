@@ -9,6 +9,13 @@
 /.prettierignore linguist-generated
 /.projen/** linguist-generated
 /.swcrc linguist-generated
+/apps/github-repositories/.gitattributes linguist-generated
+/apps/github-repositories/.gitignore linguist-generated
+/apps/github-repositories/.projen/** linguist-generated
+/apps/github-repositories/.projen/deps.json linguist-generated
+/apps/github-repositories/.projen/files.json linguist-generated
+/apps/github-repositories/.projen/tasks.json linguist-generated
+/apps/github-repositories/Cargo.toml linguist-generated
 /apps/npm-downloads/.gitattributes linguist-generated
 /apps/npm-downloads/.gitignore linguist-generated
 /apps/npm-downloads/.projen/** linguist-generated
