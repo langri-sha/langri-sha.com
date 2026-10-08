@@ -9,7 +9,7 @@ use ureq::Agent;
 
 const ENDPOINT: &str = "https://api.github.com/graphql";
 
-/// Repositories per query, the most GitHub serves.
+/// Nodes per query, the most GitHub serves.
 const PAGE_SIZE: usize = 100;
 
 const QUERY: &str = r#"
@@ -30,6 +30,30 @@ query ($owner: String!, $first: Int!, $after: String) {
       nodes {
         nameWithOwner
         url
+      }
+    }
+  }
+}
+"#;
+
+const STARGAZERS: &str = r#"
+query ($owner: String!, $name: String!, $first: Int!, $after: String) {
+  repository(owner: $owner, name: $name) {
+    stargazers(
+      first: $first
+      after: $after
+      orderBy: { field: STARRED_AT, direction: DESC }
+    ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        starredAt
+        node {
+          login
+          databaseId
+        }
       }
     }
   }
@@ -75,6 +99,54 @@ pub fn repositories(agent: &Agent, token: &str, owner: &str) -> Result<Vec<Repos
     }
 
     Ok(repositories)
+}
+
+#[derive(Debug, PartialEq)]
+pub struct Star {
+    pub stargazer: String,
+    /// The stargazer's account, which keeps its ID through a change of login.
+    pub stargazer_id: u64,
+    pub at: Timestamp,
+}
+
+/// The stars given to a repository since `since`, newest first.
+pub fn stars(agent: &Agent, token: &str, repository: &str, since: Timestamp) -> Result<Vec<Star>> {
+    let (owner, name) = repository
+        .split_once('/')
+        .with_context(|| format!("{repository} isn't an owner and name"))?;
+    let authorization = format!("Bearer {token}");
+    let mut stars = Vec::new();
+    let mut after = None;
+
+    loop {
+        let body = json!({
+            "query": STARGAZERS,
+            "variables": { "owner": owner, "name": name, "first": PAGE_SIZE, "after": after },
+        });
+        let response = http::call(|| {
+            agent
+                .post(ENDPOINT)
+                .header("Authorization", &authorization)
+                .send_json(&body)
+        })?;
+        let page = stargazers(http::json(response)?)?;
+        // GitHub lists the newest stars first, so the pages after one that
+        // reaches past `since` only hold older stars.
+        let reached = page.stars.iter().any(|star| star.at < since);
+
+        stars.extend(page.stars.into_iter().filter(|star| star.at >= since));
+
+        if reached || !page.has_next_page {
+            break;
+        }
+
+        after = Some(
+            page.end_cursor
+                .context("GitHub left out where the next page starts")?,
+        );
+    }
+
+    Ok(stars)
 }
 
 /// A day's traffic to a repository, from UTC midnight.
@@ -262,6 +334,37 @@ struct Node {
 }
 
 #[derive(Debug, Deserialize)]
+struct Stargazed {
+    repository: Option<Stargazers>,
+}
+
+#[derive(Debug, Deserialize)]
+struct Stargazers {
+    stargazers: StarConnection,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct StarConnection {
+    page_info: PageInfo,
+    edges: Vec<StarEdge>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct StarEdge {
+    starred_at: Timestamp,
+    node: User,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct User {
+    login: String,
+    database_id: u64,
+}
+
+#[derive(Debug, Deserialize)]
 struct Error {
     message: String,
 }
@@ -301,6 +404,36 @@ fn page(response: Response<Data>) -> Result<Page> {
         repositories,
         has_next_page: owner.repositories.page_info.has_next_page,
         end_cursor: owner.repositories.page_info.end_cursor,
+    })
+}
+
+#[derive(Debug, PartialEq)]
+struct StarsPage {
+    stars: Vec<Star>,
+    has_next_page: bool,
+    end_cursor: Option<String>,
+}
+
+fn stargazers(response: Response<Stargazed>) -> Result<StarsPage> {
+    let connection = data(response)?
+        .repository
+        .context("GitHub knows no such repository")?
+        .stargazers;
+
+    let stars = connection
+        .edges
+        .into_iter()
+        .map(|edge| Star {
+            stargazer: edge.node.login,
+            stargazer_id: edge.node.database_id,
+            at: edge.starred_at,
+        })
+        .collect();
+
+    Ok(StarsPage {
+        stars,
+        has_next_page: connection.page_info.has_next_page,
+        end_cursor: connection.page_info.end_cursor,
     })
 }
 
@@ -363,6 +496,57 @@ mod tests {
                 end_cursor: Some("Y3Vyc29y".to_owned()),
             },
         );
+    }
+
+    #[test]
+    fn reads_stargazers() {
+        let response: Response<Stargazed> = serde_json::from_value(json!({
+            "data": {
+                "repository": {
+                    "stargazers": {
+                        "pageInfo": { "hasNextPage": false, "endCursor": "Y3Vyc29y" },
+                        "edges": [
+                            {
+                                "starredAt": "2022-07-19T13:25:32Z",
+                                "node": { "login": "gaby", "databaseId": 835733 },
+                            },
+                            {
+                                "starredAt": "2021-12-16T11:38:35Z",
+                                "node": { "login": "xldeveloper", "databaseId": 362862 },
+                            },
+                        ],
+                    },
+                },
+            },
+        }))
+        .unwrap();
+
+        assert_eq!(
+            stargazers(response).unwrap(),
+            StarsPage {
+                stars: vec![
+                    Star {
+                        stargazer: "gaby".to_owned(),
+                        stargazer_id: 835733,
+                        at: "2022-07-19T13:25:32Z".parse().unwrap(),
+                    },
+                    Star {
+                        stargazer: "xldeveloper".to_owned(),
+                        stargazer_id: 362862,
+                        at: "2021-12-16T11:38:35Z".parse().unwrap(),
+                    },
+                ],
+                has_next_page: false,
+                end_cursor: Some("Y3Vyc29y".to_owned()),
+            },
+        );
+    }
+
+    #[test]
+    fn refuses_unknown_repositories() {
+        let response = json!({ "data": { "repository": null } });
+
+        assert!(stargazers(serde_json::from_value(response).unwrap()).is_err());
     }
 
     #[test]

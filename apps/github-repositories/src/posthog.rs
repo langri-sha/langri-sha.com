@@ -1,10 +1,10 @@
 use std::time::Duration;
 
-use jiff::civil::Date;
+use jiff::{Timestamp, civil::Date};
 use serde::Serialize;
 use uuid::Uuid;
 
-use crate::github::{Popular, Repository, Traffic};
+use crate::github::{Popular, Repository, Star, Traffic};
 
 const EVENT: &str = "github_repository_traffic";
 
@@ -83,6 +83,49 @@ impl Referrers {
             properties: ReferrersProperties {
                 repository: repository.url.clone(),
                 popular,
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
+/// A star given to a repository, stamped when it was given.
+#[derive(Debug, Serialize)]
+pub struct Starred {
+    event: &'static str,
+    distinct_id: String,
+    uuid: Uuid,
+    timestamp: Timestamp,
+    properties: StarredProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct StarredProperties {
+    repository: String,
+    stargazer: String,
+    /// Whether the owner starred their own repository.
+    #[serde(rename = "self")]
+    own: bool,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+impl Starred {
+    pub fn new(repository: &Repository, star: Star, owner: &str) -> Self {
+        // A star is the repository's and stargazer's, so sending it again
+        // replaces it. The stargazer is known by their account rather than
+        // their login, which they can change.
+        let star_url = format!("{}/stargazers#{}", repository.url, star.stargazer_id);
+
+        Self {
+            event: "github_repository_starred",
+            distinct_id: repository.url.clone(),
+            uuid: Uuid::new_v5(&Uuid::NAMESPACE_URL, star_url.as_bytes()),
+            timestamp: star.at,
+            properties: StarredProperties {
+                repository: repository.url.clone(),
+                own: star.stargazer.eq_ignore_ascii_case(owner),
+                stargazer: star.stargazer,
                 process_person_profile: false,
             },
         }
@@ -220,6 +263,89 @@ mod tests {
                     "$process_person_profile": false,
                 },
             }),
+        );
+    }
+
+    fn star(stargazer: &str, stargazer_id: u64, at: &str) -> Star {
+        Star {
+            stargazer: stargazer.to_owned(),
+            stargazer_id,
+            at: at.parse().unwrap(),
+        }
+    }
+
+    #[test]
+    fn starred() {
+        assert_eq!(
+            serde_json::to_value(Starred::new(
+                &repository(),
+                star("gaby", 835733, "2022-07-19T13:25:32Z"),
+                "langri-sha",
+            ))
+            .unwrap(),
+            json!({
+                "event": "github_repository_starred",
+                "distinct_id": "https://github.com/langri-sha/npm_lazy",
+                "uuid": Uuid::new_v5(
+                    &Uuid::NAMESPACE_URL,
+                    b"https://github.com/langri-sha/npm_lazy/stargazers#835733",
+                ),
+                "timestamp": "2022-07-19T13:25:32Z",
+                "properties": {
+                    "repository": "https://github.com/langri-sha/npm_lazy",
+                    "stargazer": "gaby",
+                    "self": false,
+                    "$process_person_profile": false,
+                },
+            }),
+        );
+    }
+
+    #[test]
+    fn own_stars_are_marked() {
+        let event = serde_json::to_value(Starred::new(
+            &repository(),
+            star("Langri-sha", 77084, "2016-11-11T00:00:00Z"),
+            "langri-sha",
+        ))
+        .unwrap();
+
+        assert_eq!(event["properties"]["self"], true);
+    }
+
+    #[test]
+    fn starred_identity_survives_starring_again() {
+        assert_eq!(
+            Starred::new(
+                &repository(),
+                star("gaby", 835733, "2022-07-19T13:25:32Z"),
+                "langri-sha"
+            )
+            .uuid,
+            Starred::new(
+                &repository(),
+                star("gaby", 835733, "2026-10-07T23:05:15Z"),
+                "langri-sha"
+            )
+            .uuid,
+        );
+    }
+
+    #[test]
+    fn starred_identity_survives_a_new_login() {
+        assert_eq!(
+            Starred::new(
+                &repository(),
+                star("gaby", 835733, "2022-07-19T13:25:32Z"),
+                "langri-sha"
+            )
+            .uuid,
+            Starred::new(
+                &repository(),
+                star("gaby-renamed", 835733, "2022-07-19T13:25:32Z"),
+                "langri-sha"
+            )
+            .uuid,
         );
     }
 
