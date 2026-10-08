@@ -48,6 +48,12 @@ struct Args {
     /// Print the events instead of sending them.
     #[arg(long)]
     dry_run: bool,
+
+    /// Send only the days from then, as an import: to load the 14 days GitHub
+    /// keeps, or make up for days the job missed. The day the run sends is
+    /// left to the daily run.
+    #[arg(long)]
+    from: Option<Date>,
 }
 
 fn main() -> Result<()> {
@@ -69,6 +75,10 @@ fn main() -> Result<()> {
             "GitHub lists no public repositories owned by {}",
             args.owner
         );
+    }
+
+    if let Some(from) = args.from {
+        return import(&agent, &args, &repositories, from, day);
     }
 
     let events = traffic(&agent, &args.github_token, &repositories, day, day)?;
@@ -94,6 +104,50 @@ fn main() -> Result<()> {
     }
 
     Ok(())
+}
+
+/// Send the days from `from` through PostHog's pipeline for imports, which
+/// spares them the rate limit live events see.
+fn import(
+    agent: &Agent,
+    args: &Args,
+    repositories: &[Repository],
+    from: Date,
+    day: Date,
+) -> Result<()> {
+    let to = import_to(from, day)?;
+    let events = traffic(agent, &args.github_token, repositories, from, to)?;
+
+    match &args.posthog_project_token {
+        Some(token) if !args.dry_run => {
+            telemetry::posthog::capture(agent, &args.posthog_host, token, &events, true)?;
+
+            eprintln!(
+                "Imported {} events for {} repositories, {from} to {to}",
+                events.len(),
+                repositories.len(),
+            );
+        }
+        _ => {
+            for event in &events {
+                println!("{}", serde_json::to_string(event)?);
+            }
+        }
+    }
+
+    Ok(())
+}
+
+/// Where an import ends: at the day before the run's, which the daily run
+/// sends itself, whether it has run yet or not.
+fn import_to(from: Date, day: Date) -> Result<Date> {
+    let to = day.yesterday()?;
+
+    if from > to {
+        bail!("--from {from} is not before {day}, which the daily run sends");
+    }
+
+    Ok(to)
 }
 
 /// Each repository's traffic on the days from `from` to `to`.
@@ -143,5 +197,16 @@ mod tests {
     #[test]
     fn runs_send_the_day_before_yesterday() {
         assert_eq!(day(date(2026, 10, 8)).unwrap(), date(2026, 10, 6));
+    }
+
+    #[test]
+    fn imports_stop_where_the_daily_run_starts() {
+        let day = date(2026, 10, 6);
+
+        assert_eq!(
+            import_to(date(2026, 9, 23), day).unwrap(),
+            date(2026, 10, 5)
+        );
+        assert!(import_to(day, day).is_err());
     }
 }
