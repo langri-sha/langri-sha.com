@@ -56,7 +56,7 @@ fn main() -> Result<()> {
         .into();
 
     let today = Timestamp::now().to_zoned(TimeZone::UTC).date();
-    let (from, to) = days(args.from, args.to, today, npm::last_counted_day(&agent)?)?;
+    let (from, to) = days(args.from, args.to, today)?;
 
     let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
 
@@ -65,6 +65,7 @@ fn main() -> Result<()> {
     }
 
     let mut events = Vec::new();
+    let mut counted = false;
 
     for package in &packages {
         let downloads = npm::daily_downloads(&agent, &package.name, from, to)?;
@@ -73,11 +74,17 @@ fn main() -> Result<()> {
             eprintln!("npm has no downloads for {}, skipping", package.name);
         }
 
+        counted |= npm::has_counted(&downloads, to);
+
         events.extend(
             downloads
                 .into_iter()
                 .map(|(day, downloads)| Event::new(package, day, downloads)),
         );
+    }
+
+    if !counted {
+        bail!("npm has yet to count downloads for {to}");
     }
 
     match args.posthog_project_token {
@@ -112,8 +119,9 @@ fn main() -> Result<()> {
 /// npm takes over a day to count one, and reports zero downloads for days it
 /// has yet to count rather than leaving them out. Each run therefore publishes
 /// a day it has long finished, fixed by the calendar so that a day is sent
-/// once however late npm runs, and refuses any it has not counted.
-fn days(from: Option<Date>, to: Option<Date>, today: Date, counted: Date) -> Result<(Date, Date)> {
+/// once however late npm runs, and refuses it if no package has downloads on
+/// it yet.
+fn days(from: Option<Date>, to: Option<Date>, today: Date) -> Result<(Date, Date)> {
     let to = match to {
         Some(to) => to,
         None => today.checked_sub(2.days())?,
@@ -122,10 +130,6 @@ fn days(from: Option<Date>, to: Option<Date>, today: Date, counted: Date) -> Res
 
     if from > to {
         bail!("--from {from} is after --to {to}");
-    }
-
-    if to > counted {
-        bail!("npm has counted downloads up to {counted}, not {to} yet");
     }
 
     Ok((from, to))
@@ -142,7 +146,7 @@ mod tests {
     #[test]
     fn days_default_to_the_day_before_yesterday() {
         assert_eq!(
-            days(None, None, TODAY, date(2026, 10, 1)).unwrap(),
+            days(None, None, TODAY).unwrap(),
             (date(2026, 10, 1), date(2026, 10, 1)),
         );
     }
@@ -150,22 +154,17 @@ mod tests {
     #[test]
     fn days_fill_in_a_missing_bound() {
         assert_eq!(
-            days(None, Some(date(2026, 9, 1)), TODAY, date(2026, 10, 1)).unwrap(),
+            days(None, Some(date(2026, 9, 1)), TODAY).unwrap(),
             (date(2026, 9, 1), date(2026, 9, 1)),
         );
         assert_eq!(
-            days(Some(date(2026, 1, 1)), None, TODAY, date(2026, 10, 1)).unwrap(),
+            days(Some(date(2026, 1, 1)), None, TODAY).unwrap(),
             (date(2026, 1, 1), date(2026, 10, 1)),
         );
     }
 
     #[test]
-    fn days_npm_has_yet_to_count_are_refused() {
-        assert!(days(None, None, TODAY, date(2026, 9, 30)).is_err());
-    }
-
-    #[test]
     fn days_out_of_order_are_refused() {
-        assert!(days(Some(date(2026, 9, 2)), Some(date(2026, 9, 1)), TODAY, TODAY).is_err());
+        assert!(days(Some(date(2026, 9, 2)), Some(date(2026, 9, 1)), TODAY).is_err());
     }
 }

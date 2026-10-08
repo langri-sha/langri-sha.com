@@ -11,22 +11,6 @@ use ureq::{Agent, http::StatusCode};
 /// client away for a while.
 const PACE: Duration = Duration::from_secs(1);
 
-/// The last day npm has counted downloads for.
-pub fn last_counted_day(agent: &Agent) -> Result<Date> {
-    #[derive(Deserialize)]
-    struct Point {
-        end: Date,
-    }
-
-    let response = http::call(|| {
-        agent
-            .get("https://api.npmjs.org/downloads/point/last-day")
-            .call()
-    })?;
-
-    Ok(http::json::<Point>(response)?.end)
-}
-
 /// Downloads of a package on each day from `from` to `to`, or none at all if
 /// npm has not heard of it.
 ///
@@ -74,6 +58,13 @@ pub fn daily_downloads(
     Ok(days)
 }
 
+/// Whether npm has counted `day` in a package's daily downloads. npm reports
+/// zero for days it has yet to count rather than leaving them out, so only a
+/// download shows that it has.
+pub fn has_counted(downloads: &[(Date, u64)], day: Date) -> bool {
+    downloads.iter().any(|&(d, n)| d == day && n > 0)
+}
+
 fn windows(from: Date, to: Date) -> Result<Vec<(Date, Date)>> {
     let mut windows = Vec::new();
     let mut start = from;
@@ -107,5 +98,20 @@ mod tests {
             windows(date(2026, 10, 1), date(2026, 10, 1)).unwrap(),
             [(date(2026, 10, 1), date(2026, 10, 1))],
         );
+    }
+
+    #[test]
+    fn has_counted_a_day_with_downloads() {
+        let downloads = [(date(2026, 10, 4), 341), (date(2026, 10, 5), 203)];
+
+        assert!(has_counted(&downloads, date(2026, 10, 5)));
+    }
+
+    #[test]
+    fn has_not_counted_a_day_without_downloads() {
+        let downloads = [(date(2026, 10, 5), 203), (date(2026, 10, 6), 0)];
+
+        assert!(!has_counted(&downloads, date(2026, 10, 6)));
+        assert!(!has_counted(&downloads, date(2026, 10, 7)));
     }
 }
