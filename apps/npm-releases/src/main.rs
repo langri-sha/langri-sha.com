@@ -1,4 +1,3 @@
-mod app;
 mod changes;
 mod github;
 mod npm;
@@ -16,13 +15,10 @@ use std::{
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{RoundMode, Timestamp, TimestampRound, ToSpan, Unit};
-use telemetry::npm::Package;
+use telemetry::{github::App, npm::Package};
 use ureq::{Agent, SendBody, http::Request, middleware::MiddlewareNext};
 
-use crate::{
-    app::App,
-    posthog::{Published, Requests, Run},
-};
+use crate::posthog::{Published, Requests, Run};
 
 /// Publishes npm package releases, pending and published, to PostHog.
 #[derive(Parser)]

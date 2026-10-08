@@ -5,8 +5,9 @@ use ring::{rand::SystemRandom, rsa::KeyPair, signature::RSA_PKCS1_SHA256};
 use rustls_pki_types::{PrivatePkcs1KeyDer, pem::PemObject};
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
-use telemetry::http;
 use ureq::Agent;
+
+use crate::http;
 
 /// A GitHub App, which reads repositories with a token for one of its
 /// installations.
@@ -104,8 +105,8 @@ fn claims(client_id: &str, now: Timestamp) -> Result<Claims> {
     })
 }
 
-/// The App can do more than read, so its tokens for this job are limited to
-/// what reading change files takes.
+/// The App can do more than read, so its tokens are limited to reading contents
+/// and metadata.
 fn token_request() -> Value {
     json!({ "permissions": { "contents": "read", "metadata": "read" } })
 }
