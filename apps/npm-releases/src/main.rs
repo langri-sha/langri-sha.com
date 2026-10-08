@@ -20,6 +20,9 @@ use ureq::{Agent, SendBody, http::Request, middleware::MiddlewareNext};
 
 use crate::posthog::{Published, Requests, Run};
 
+/// What the App's tokens may read: reading change files takes no more.
+const PERMISSIONS: &[&str] = &["contents", "metadata"];
+
 /// Publishes npm package releases, pending and published, to PostHog.
 #[derive(Parser)]
 #[command(about)]
@@ -136,7 +139,11 @@ fn main() -> Result<()> {
         Credential::App {
             client_id,
             private_key,
-        } => App::new(&client_id, &private_key)?.installation_token(&agent, &args.owner)?,
+        } => App::new(&client_id, &private_key)?.installation_token(
+            &agent,
+            &args.owner,
+            PERMISSIONS,
+        )?,
     };
 
     let (repositories, github) = github::repositories(&agent, &token, &args.owner)?;
