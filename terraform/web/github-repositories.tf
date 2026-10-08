@@ -182,3 +182,35 @@ resource "posthog_insight" "github_repositories_runs" {
     }
   })
 }
+
+resource "posthog_dashboard_layout" "github_repositories" {
+  project_id   = tostring(posthog_project.web.id)
+  dashboard_id = posthog_dashboard.github_repositories.id
+
+  tiles = [
+    {
+      insight_id   = posthog_insight.github_repositories_visitors.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 0, w = 12, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.github_repositories_change.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 6, w = 6, h = 8 } })
+    },
+    {
+      insight_id   = posthog_insight.github_repositories_referrers.id
+      layouts_json = jsonencode({ sm = { x = 6, y = 6, w = 6, h = 8 } })
+    },
+    {
+      insight_id   = posthog_insight.github_repositories_stars.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 14, w = 6, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.github_repositories_stars_gained.id
+      layouts_json = jsonencode({ sm = { x = 6, y = 14, w = 6, h = 6 } })
+    },
+    {
+      insight_id   = posthog_insight.github_repositories_runs.id
+      layouts_json = jsonencode({ sm = { x = 0, y = 20, w = 12, h = 4 } })
+    },
+  ]
+}
