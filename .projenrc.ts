@@ -334,11 +334,15 @@ project.addSubproject({
   cargo: {
     package: {
       description:
-        'What the Rust jobs share: a retrying HTTP layer, the npm registry, and PostHog capture',
+        'What the Rust jobs share: a retrying HTTP layer, the GitHub App, the npm registry, and PostHog capture',
       publish: false,
     },
     dependencies: {
       anyhow: '1.0.104',
+      base64: '0.23.1',
+      jiff: '0.2.37',
+      ring: '0.17.14',
+      'rustls-pki-types': '1.15.1',
       serde: { version: '1.0.229', features: ['derive'] },
       serde_json: '1.0.151',
       ureq: { version: '3.4.2', features: ['json'] },
@@ -379,11 +383,8 @@ project.addSubproject({
     },
     dependencies: {
       anyhow: '1.0.104',
-      base64: '0.23.1',
       clap: { version: '4.6.7', features: ['derive', 'env'] },
       jiff: { version: '0.2.37', features: ['serde'] },
-      ring: '0.17.14',
-      'rustls-pki-types': '1.15.1',
       semver: { version: '1.0.28', features: ['serde'] },
       serde: { version: '1.0.229', features: ['derive'] },
       serde_json: '1.0.151',
