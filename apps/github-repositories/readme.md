@@ -16,6 +16,12 @@ was the owner's own (`self`). GitHub keeps no record of stars taken back, so a
 daily `github_repository_stars` event per repository also counts its `stars`,
 `forks` and `watchers`. A `github_repositories_run` event records each run.
 
+The _GitHub repositories_ dashboard in PostHog charts each repository's unique
+visitors per week, the repositories whose visitors changed most, the top
+referrers, stars over time, and the stars of the last 90 days. The star charts
+leave out the owner's own and a burst one account gave on 2023-03-08. It also
+shows the job's daily runs.
+
 It reads the repositories as the mal-the-kron GitHub App, with a token limited
 to reading administration and metadata: traffic takes administration, which
 shows settings such as branch protection too, and nothing narrower serves it.
