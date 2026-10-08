@@ -4,7 +4,7 @@ use jiff::civil::Date;
 use serde::Serialize;
 use uuid::Uuid;
 
-use crate::github::{Repository, Traffic};
+use crate::github::{Popular, Repository, Traffic};
 
 const EVENT: &str = "github_repository_traffic";
 
@@ -43,6 +43,46 @@ impl Event {
             properties: Properties {
                 repository: repository.url.clone(),
                 traffic,
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
+/// A repository's most popular referrers and paths, as GitHub ranks them on the
+/// day of a run.
+#[derive(Debug, Serialize)]
+pub struct Referrers {
+    event: &'static str,
+    distinct_id: String,
+    uuid: Uuid,
+    timestamp: String,
+    properties: ReferrersProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct ReferrersProperties {
+    repository: String,
+    #[serde(flatten)]
+    popular: Popular,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+impl Referrers {
+    pub fn new(repository: &Repository, day: Date, popular: Popular) -> Self {
+        // As with traffic, all four of PostHog's keys derive from the
+        // repository and day, so that a re-run replaces the day's snapshot.
+        let snapshot = format!("{}/graphs/traffic#referrers@{day}", repository.url);
+
+        Self {
+            event: "github_repository_referrers",
+            distinct_id: repository.url.clone(),
+            uuid: Uuid::new_v5(&Uuid::NAMESPACE_URL, snapshot.as_bytes()),
+            timestamp: format!("{day}T00:00:00Z"),
+            properties: ReferrersProperties {
+                repository: repository.url.clone(),
+                popular,
                 process_person_profile: false,
             },
         }
@@ -132,6 +172,51 @@ mod tests {
                     "unique_visitors": 3,
                     "clones": 1,
                     "unique_cloners": 1,
+                    "$process_person_profile": false,
+                },
+            }),
+        );
+    }
+
+    #[test]
+    fn referrers() {
+        let popular = Popular {
+            referrers: serde_json::from_value(json!([
+                { "referrer": "github.com", "count": 33, "uniques": 1 },
+                { "referrer": "Google", "count": 1, "uniques": 1 },
+            ]))
+            .unwrap(),
+            paths: serde_json::from_value(json!([
+                { "path": "/langri-sha/npm_lazy", "title": "Overview", "count": 28, "uniques": 7 },
+            ]))
+            .unwrap(),
+        };
+
+        assert_eq!(
+            serde_json::to_value(Referrers::new(&repository(), date(2026, 10, 8), popular))
+                .unwrap(),
+            json!({
+                "event": "github_repository_referrers",
+                "distinct_id": "https://github.com/langri-sha/npm_lazy",
+                "uuid": Uuid::new_v5(
+                    &Uuid::NAMESPACE_URL,
+                    b"https://github.com/langri-sha/npm_lazy/graphs/traffic#referrers@2026-10-08",
+                ),
+                "timestamp": "2026-10-08T00:00:00Z",
+                "properties": {
+                    "repository": "https://github.com/langri-sha/npm_lazy",
+                    "referrers": [
+                        { "referrer": "github.com", "views": 33, "unique_visitors": 1 },
+                        { "referrer": "Google", "views": 1, "unique_visitors": 1 },
+                    ],
+                    "paths": [
+                        {
+                            "path": "/langri-sha/npm_lazy",
+                            "title": "Overview",
+                            "views": 28,
+                            "unique_visitors": 7,
+                        },
+                    ],
                     "$process_person_profile": false,
                 },
             }),

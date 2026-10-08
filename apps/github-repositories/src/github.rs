@@ -186,6 +186,42 @@ fn between(
     Ok(days)
 }
 
+/// A repository's most popular referrers and paths: the 10 of each with the
+/// most views over the 14 days GitHub keeps.
+#[derive(Debug, PartialEq, Serialize)]
+pub struct Popular {
+    pub referrers: Vec<Referrer>,
+    pub paths: Vec<Path>,
+}
+
+#[derive(Debug, Deserialize, PartialEq, Serialize)]
+pub struct Referrer {
+    referrer: String,
+    #[serde(rename(deserialize = "count"))]
+    views: u64,
+    #[serde(rename(deserialize = "uniques"))]
+    unique_visitors: u64,
+}
+
+#[derive(Debug, Deserialize, PartialEq, Serialize)]
+pub struct Path {
+    path: String,
+    title: String,
+    #[serde(rename(deserialize = "count"))]
+    views: u64,
+    #[serde(rename(deserialize = "uniques"))]
+    unique_visitors: u64,
+}
+
+pub fn popular(agent: &Agent, token: &str, repository: &str) -> Result<Popular> {
+    let url = format!("https://api.github.com/repos/{repository}/traffic/popular");
+
+    Ok(Popular {
+        referrers: get(agent, token, &format!("{url}/referrers"))?,
+        paths: get(agent, token, &format!("{url}/paths"))?,
+    })
+}
+
 #[derive(Debug, Deserialize)]
 struct Response {
     data: Option<Data>,
