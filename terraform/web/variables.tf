@@ -1,3 +1,9 @@
+variable "github_repositories_image" {
+  default     = "us-docker.pkg.dev/cloudrun/container/job"
+  description = "Image the GitHub repositories job is created with. CI deploys the real one, so this only ever serves as a placeholder until the first one lands."
+  type        = string
+}
+
 variable "npm_downloads_image" {
   default     = "us-docker.pkg.dev/cloudrun/container/job"
   description = "Image the npm downloads job is created with. CI deploys the real one, so this only ever serves as a placeholder until the first one lands."
