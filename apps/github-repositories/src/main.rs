@@ -11,7 +11,7 @@ use ureq::Agent;
 
 use crate::{
     github::Repository,
-    posthog::{Event, Referrers, Run, Starred},
+    posthog::{Event, Referrers, Run, Starred, Stars},
 };
 
 /// What the App's tokens may read. Traffic takes administration, which shows
@@ -149,18 +149,19 @@ fn main() -> Result<()> {
     let stargazers_token =
         stargazers_token(&agent, &args.owner, &token, app.as_ref(), &repositories)?;
     // The day before, fixed by the calendar so that each star is sent once.
-    let starred = starred(
+    let (stars, starred) = stargazers(
         &agent,
         &stargazers_token,
         &args.owner,
         &repositories,
+        today,
         midnight(today.yesterday()?)?,
         midnight(today)?,
     )?;
     let run = Run::new(
         day,
         repositories.len(),
-        events.len() + referrers.len() + starred.len(),
+        events.len() + referrers.len() + stars.len() + starred.len(),
         credential_kind,
         started.elapsed(),
     );
@@ -169,11 +170,12 @@ fn main() -> Result<()> {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &referrers, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &stars, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &starred, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
-                "Published traffic to {} repositories for {day}, where their visitors come from, and {} stars given yesterday",
+                "Published traffic to {} repositories for {day}, where their visitors come from, their stars, and {} stars given yesterday",
                 events.len(),
                 starred.len(),
             );
@@ -184,6 +186,10 @@ fn main() -> Result<()> {
             }
 
             for event in &referrers {
+                println!("{}", serde_json::to_string(event)?);
+            }
+
+            for event in &stars {
                 println!("{}", serde_json::to_string(event)?);
             }
 
@@ -227,7 +233,17 @@ fn import(
         Some((since, until)) => {
             let token = stargazers_token(agent, &args.owner, token, app, repositories)?;
 
-            starred(agent, &token, &args.owner, repositories, since, until)?
+            let (_, starred) = stargazers(
+                agent,
+                &token,
+                &args.owner,
+                repositories,
+                today,
+                since,
+                until,
+            )?;
+
+            starred
         }
         None => Vec::new(),
     };
@@ -395,29 +411,34 @@ fn stargazers_token(
     app.installation_token(agent, owner, STARGAZER_PERMISSIONS, &names)
 }
 
-/// The stars given to each repository from `from` up to `until`.
-fn starred(
+/// Each repository's stars, forks and watchers on `day`, and the stars given
+/// to it from `from` up to `until`.
+fn stargazers(
     agent: &Agent,
     token: &str,
     owner: &str,
     repositories: &[Repository],
+    day: Date,
     from: Timestamp,
     until: Timestamp,
-) -> Result<Vec<Starred>> {
-    let mut events = Vec::new();
+) -> Result<(Vec<Stars>, Vec<Starred>)> {
+    let mut stars = Vec::new();
+    let mut starred = Vec::new();
 
     for repository in repositories {
-        let stars = github::stars(agent, token, &repository.name, from)?;
+        let stargazers = github::stars(agent, token, &repository.name, from)?;
 
-        events.extend(
-            stars
+        stars.push(Stars::new(repository, stargazers.total, day));
+        starred.extend(
+            stargazers
+                .stars
                 .into_iter()
                 .filter(|star| star.at < until)
                 .map(|star| Starred::new(repository, star, owner)),
         );
     }
 
-    Ok(events)
+    Ok((stars, starred))
 }
 
 fn midnight(day: Date) -> Result<Timestamp> {
