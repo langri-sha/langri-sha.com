@@ -160,3 +160,25 @@ resource "posthog_insight" "github_repositories_stars_gained" {
     ORDER BY timestamp DESC
   SQL
 }
+
+resource "posthog_insight" "github_repositories_runs" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "github-repositories job runs per day"
+  description = "A day without a run is a day of traffic lost once GitHub's 14 days pass it by."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind  = "EventsNode"
+        event = "github_repositories_run"
+        math  = "total"
+      }]
+      dateRange = { date_from = "-14d" }
+      interval  = "day"
+    }
+  })
+}
