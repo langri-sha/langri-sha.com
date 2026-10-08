@@ -5,7 +5,8 @@ resolver = "3"
 members = [
   "packages/telemetry",
   "apps/npm-downloads",
-  "apps/npm-releases"
+  "apps/npm-releases",
+  "apps/github-repositories"
 ]
 
   [workspace.package]

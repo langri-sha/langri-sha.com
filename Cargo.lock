@@ -313,6 +313,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "github-repositories"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "jiff",
+ "serde",
+ "serde_json",
+ "telemetry",
+ "ureq",
+ "uuid",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.17.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
