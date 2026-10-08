@@ -2,7 +2,7 @@
 
 [package]
 name = "github-repositories"
-description = "Publishes daily GitHub repository traffic to PostHog"
+description = "Publishes daily GitHub repository traffic and stars to PostHog"
 publish = false
 
   [package.edition]

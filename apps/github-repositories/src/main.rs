@@ -26,7 +26,7 @@ const PERMISSIONS: &[(&str, Access)] =
 const STARGAZER_PERMISSIONS: &[(&str, Access)] =
     &[("contents", Access::Write), ("metadata", Access::Read)];
 
-/// Publishes daily GitHub repository traffic to PostHog.
+/// Publishes daily GitHub repository traffic and stars to PostHog.
 #[derive(Parser)]
 #[command(about)]
 struct Args {
