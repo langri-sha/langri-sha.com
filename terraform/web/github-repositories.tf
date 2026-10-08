@@ -14,3 +14,95 @@ module "github_repositories" {
     GITHUB_APP_PRIVATE_KEY = local.mal_the_kron_secrets["mal-the-kron-private-key"]
   }
 }
+
+resource "posthog_dashboard" "github_repositories" {
+  project_id = tostring(posthog_project.web.id)
+
+  name        = "GitHub repositories"
+  description = "Which of the public repositories langri-sha owns are getting popular: their visitors, where they come from, and their stars, from the daily github-repositories job. Unique visitors are the signal, since clones are mostly CI and Renovate."
+  pinned      = true
+}
+
+locals {
+  # The job sends the day before yesterday at 14:37 UTC. Ending the charts three
+  # days back keeps the newest day from reading as a drop until then.
+  github_traffic_charted_until = "-3d"
+}
+
+resource "posthog_insight" "github_repositories_visitors" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "Unique visitors per week by repository"
+  description = "Each day's unique visitors, summed by week, so someone visiting on several days counts on each. A repository with one visitor a day is usually its owner."
+
+  query_json = jsonencode({
+    kind = "InsightVizNode"
+    source = {
+      kind = "TrendsQuery"
+      series = [{
+        kind          = "EventsNode"
+        event         = "github_repository_traffic"
+        math          = "sum"
+        math_property = "unique_visitors"
+      }]
+      breakdownFilter = {
+        breakdowns      = [{ property = "repository", type = "event" }]
+        breakdown_limit = 50
+      }
+      dateRange = { date_from = "-26w", date_to = local.github_traffic_charted_until }
+      interval  = "week"
+    }
+  })
+}
+
+resource "posthog_insight" "github_repositories_change" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "Largest change in unique visitors"
+  description = "Each repository's unique visitors over the last 14 days the job has sent against the 14 before, summed by day."
+
+  query_sql = <<-SQL
+    SELECT
+      properties.repository AS repository,
+      sumIf(toInt(properties.unique_visitors), timestamp >= toStartOfDay(now()) - INTERVAL 16 DAY) AS last_14_days,
+      sumIf(toInt(properties.unique_visitors), timestamp < toStartOfDay(now()) - INTERVAL 16 DAY) AS previous_14_days,
+      last_14_days - previous_14_days AS change
+    FROM events
+    WHERE event = 'github_repository_traffic'
+      AND timestamp >= toStartOfDay(now()) - INTERVAL 30 DAY
+      AND timestamp < toStartOfDay(now()) - INTERVAL 2 DAY
+    GROUP BY repository
+    HAVING last_14_days + previous_14_days > 0
+    ORDER BY change DESC, last_14_days DESC
+  SQL
+}
+
+resource "posthog_insight" "github_repositories_referrers" {
+  project_id    = tostring(posthog_project.web.id)
+  dashboard_ids = [posthog_dashboard.github_repositories.id]
+
+  name        = "Top referrers"
+  description = "Where each repository's visitors came from over the 14 days GitHub keeps, from its latest snapshot of its 10 top referrers."
+
+  query_sql = <<-SQL
+    SELECT
+      repository,
+      JSONExtractString(entry, 'referrer') AS referrer,
+      JSONExtractInt(entry, 'views') AS views,
+      JSONExtractInt(entry, 'unique_visitors') AS unique_visitors
+    FROM (
+      SELECT
+        properties.repository AS repository,
+        argMax(JSONExtractRaw(properties, 'referrers'), timestamp) AS referrers
+      FROM events
+      WHERE event = 'github_repository_referrers'
+        AND timestamp >= now() - INTERVAL 7 DAY
+      GROUP BY repository
+    )
+    ARRAY JOIN JSONExtractArrayRaw(referrers) AS entry
+    ORDER BY unique_visitors DESC, views DESC
+    LIMIT 50
+  SQL
+}
