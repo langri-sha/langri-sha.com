@@ -6,7 +6,7 @@ use std::time::{Duration, Instant};
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{Timestamp, ToSpan, civil::Date, tz::TimeZone};
-use telemetry::github::App;
+use telemetry::github::{Access, App};
 use ureq::Agent;
 
 use crate::{
@@ -16,7 +16,8 @@ use crate::{
 
 /// What the App's tokens may read. Traffic takes administration, which shows
 /// settings such as branch protection too; nothing narrower serves it.
-const PERMISSIONS: &[&str] = &["administration", "metadata"];
+const PERMISSIONS: &[(&str, Access)] =
+    &[("administration", Access::Read), ("metadata", Access::Read)];
 
 /// Publishes daily GitHub repository traffic to PostHog.
 #[derive(Parser)]
@@ -105,6 +106,7 @@ fn main() -> Result<()> {
             &agent,
             &args.owner,
             PERMISSIONS,
+            &[],
         )?,
     };
 

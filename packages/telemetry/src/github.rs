@@ -11,7 +11,7 @@ use ureq::Agent;
 
 use crate::http;
 
-/// A GitHub App, which reads repositories with a token for one of its
+/// A GitHub App, which works with repositories through tokens for one of its
 /// installations.
 pub struct App {
     client_id: String,
@@ -31,15 +31,16 @@ impl App {
         })
     }
 
-    /// A token for the App's installation on a user account, limited to
-    /// reading what the permissions name, such as `contents`. An
-    /// organization's installation is found under `/orgs/` rather than
-    /// `/users/`.
+    /// A token for the App's installation on a user account, limited to the
+    /// permissions given, at the access given for each, and to the
+    /// repositories named, if any. An organization's installation is found
+    /// under `/orgs/` rather than `/users/`.
     pub fn installation_token(
         &self,
         agent: &Agent,
         owner: &str,
-        permissions: &[&str],
+        permissions: &[(&str, Access)],
+        repositories: &[&str],
     ) -> Result<String> {
         #[derive(Deserialize)]
         struct Installation {
@@ -71,7 +72,7 @@ impl App {
                 .post(&url)
                 .header("Accept", "application/vnd.github+json")
                 .header("Authorization", &authorization)
-                .send_json(token_request(permissions))
+                .send_json(token_request(permissions, repositories))
         })?)?;
 
         Ok(token.token)
@@ -113,15 +114,25 @@ fn claims(client_id: &str, now: Timestamp) -> Result<Claims> {
     })
 }
 
-/// The App can do more than read, so its tokens only read, and only what each
-/// job names.
-fn token_request(permissions: &[&str]) -> Value {
-    let permissions: BTreeMap<_, _> = permissions
-        .iter()
-        .map(|&permission| (permission, "read"))
-        .collect();
+/// What a token may do with a permission.
+#[derive(Clone, Copy, Debug, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Access {
+    Read,
+    Write,
+}
 
-    json!({ "permissions": permissions })
+/// The App can do more than read, so its tokens get only the permissions a job
+/// names, at the access it names, and only on the repositories it names, if
+/// any.
+fn token_request(permissions: &[(&str, Access)], repositories: &[&str]) -> Value {
+    let permissions: BTreeMap<_, _> = permissions.iter().copied().collect();
+
+    if repositories.is_empty() {
+        json!({ "permissions": permissions })
+    } else {
+        json!({ "permissions": permissions, "repositories": repositories })
+    }
 }
 
 #[cfg(test)]
@@ -141,10 +152,27 @@ mod tests {
     }
 
     #[test]
-    fn tokens_only_read() {
+    fn tokens_get_the_access_asked_for() {
         assert_eq!(
-            token_request(&["administration", "metadata"]),
+            token_request(
+                &[("administration", Access::Read), ("metadata", Access::Read)],
+                &[]
+            ),
             json!({ "permissions": { "administration": "read", "metadata": "read" } }),
+        );
+    }
+
+    #[test]
+    fn tokens_can_be_limited_to_repositories() {
+        assert_eq!(
+            token_request(
+                &[("contents", Access::Write), ("metadata", Access::Read)],
+                &["npm_lazy"]
+            ),
+            json!({
+                "permissions": { "contents": "write", "metadata": "read" },
+                "repositories": ["npm_lazy"],
+            }),
         );
     }
 
