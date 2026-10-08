@@ -223,8 +223,8 @@ pub fn popular(agent: &Agent, token: &str, repository: &str) -> Result<Popular> 
 }
 
 #[derive(Debug, Deserialize)]
-struct Response {
-    data: Option<Data>,
+struct Response<T> {
+    data: Option<T>,
     #[serde(default)]
     errors: Vec<Error>,
 }
@@ -273,13 +273,17 @@ struct Page {
     end_cursor: Option<String>,
 }
 
-fn page(response: Response) -> Result<Page> {
+/// What a query answered, refusing it when GitHub reports errors beside it.
+fn data<T>(response: Response<T>) -> Result<T> {
     if let Some(error) = response.errors.first() {
         bail!("GitHub turned down the query: {}", error.message);
     }
 
-    let data = response.data.context("GitHub answered without data")?;
-    let owner = data
+    response.data.context("GitHub answered without data")
+}
+
+fn page(response: Response<Data>) -> Result<Page> {
+    let owner = data(response)?
         .repository_owner
         .context("GitHub knows no such owner")?;
 
@@ -327,7 +331,7 @@ mod tests {
 
     #[test]
     fn reads_repositories() {
-        let response: Response = serde_json::from_value(json!({
+        let response: Response<Data> = serde_json::from_value(json!({
             "data": {
                 "repositoryOwner": {
                     "repositories": {
