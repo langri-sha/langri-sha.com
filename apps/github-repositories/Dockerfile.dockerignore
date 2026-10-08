@@ -1,0 +1,8 @@
+*
+!Cargo.toml
+!Cargo.lock
+!rust-toolchain.toml
+!apps/github-repositories/Cargo.toml
+!apps/github-repositories/src/
+!packages/telemetry/Cargo.toml
+!packages/telemetry/src/
