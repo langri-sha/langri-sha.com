@@ -11,13 +11,20 @@ use ureq::Agent;
 
 use crate::{
     github::Repository,
-    posthog::{Event, Referrers, Run},
+    posthog::{Event, Referrers, Run, Starred},
 };
 
 /// What the App's tokens may read. Traffic takes administration, which shows
 /// settings such as branch protection too; nothing narrower serves it.
 const PERMISSIONS: &[(&str, Access)] =
     &[("administration", Access::Read), ("metadata", Access::Read)];
+
+/// What the App's token for stars may do. GitHub only lists stargazers to a
+/// token that may write contents, and refuses one that reads them, so this one
+/// is limited to the repositories the job reports on and only reads
+/// stargazers.
+const STARGAZER_PERMISSIONS: &[(&str, Access)] =
+    &[("contents", Access::Write), ("metadata", Access::Read)];
 
 /// Publishes daily GitHub repository traffic to PostHog.
 #[derive(Parser)]
@@ -97,17 +104,17 @@ fn main() -> Result<()> {
 
     let credential = credential(&args);
     let credential_kind = credential.kind();
-    let token = match credential {
-        Credential::Token(token) => token,
+    let (token, app) = match credential {
+        Credential::Token(token) => (token, None),
         Credential::App {
             client_id,
             private_key,
-        } => App::new(&client_id, &private_key)?.installation_token(
-            &agent,
-            &args.owner,
-            PERMISSIONS,
-            &[],
-        )?,
+        } => {
+            let app = App::new(&client_id, &private_key)?;
+            let token = app.installation_token(&agent, &args.owner, PERMISSIONS, &[])?;
+
+            (token, Some(app))
+        }
     };
 
     let repositories = github::repositories(&agent, &token, &args.owner)?;
@@ -125,10 +132,21 @@ fn main() -> Result<()> {
 
     let events = traffic(&agent, &token, &repositories, day, day)?;
     let referrers = referrers(&agent, &token, &repositories, today)?;
+    let stargazers_token =
+        stargazers_token(&agent, &args.owner, &token, app.as_ref(), &repositories)?;
+    // The day before, fixed by the calendar so that each star is sent once.
+    let starred = starred(
+        &agent,
+        &stargazers_token,
+        &args.owner,
+        &repositories,
+        midnight(today.yesterday()?)?,
+        midnight(today)?,
+    )?;
     let run = Run::new(
         day,
         repositories.len(),
-        events.len() + referrers.len(),
+        events.len() + referrers.len() + starred.len(),
         credential_kind,
         started.elapsed(),
     );
@@ -137,11 +155,13 @@ fn main() -> Result<()> {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &referrers, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &starred, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
-                "Published traffic to {} repositories for {day}, and where their visitors come from",
-                events.len()
+                "Published traffic to {} repositories for {day}, where their visitors come from, and {} stars given yesterday",
+                events.len(),
+                starred.len(),
             );
         }
         _ => {
@@ -150,6 +170,10 @@ fn main() -> Result<()> {
             }
 
             for event in &referrers {
+                println!("{}", serde_json::to_string(event)?);
+            }
+
+            for event in &starred {
                 println!("{}", serde_json::to_string(event)?);
             }
 
@@ -285,6 +309,57 @@ fn referrers(
             Ok(Referrers::new(repository, today, popular))
         })
         .collect()
+}
+
+/// A token to list stargazers with: the one given when run by hand, or else one
+/// from the App, limited to the repositories the job reports on.
+fn stargazers_token(
+    agent: &Agent,
+    owner: &str,
+    token: &str,
+    app: Option<&App>,
+    repositories: &[Repository],
+) -> Result<String> {
+    let Some(app) = app else {
+        return Ok(token.to_owned());
+    };
+
+    let names: Vec<_> = repositories
+        .iter()
+        .filter_map(|repository| repository.name.split_once('/'))
+        .map(|(_, name)| name)
+        .collect();
+
+    app.installation_token(agent, owner, STARGAZER_PERMISSIONS, &names)
+}
+
+/// The stars given to each repository from `from` up to `until`.
+fn starred(
+    agent: &Agent,
+    token: &str,
+    owner: &str,
+    repositories: &[Repository],
+    from: Timestamp,
+    until: Timestamp,
+) -> Result<Vec<Starred>> {
+    let mut events = Vec::new();
+
+    for repository in repositories {
+        let stars = github::stars(agent, token, &repository.name, from)?;
+
+        events.extend(
+            stars
+                .into_iter()
+                .filter(|star| star.at < until)
+                .map(|star| Starred::new(repository, star, owner)),
+        );
+    }
+
+    Ok(events)
+}
+
+fn midnight(day: Date) -> Result<Timestamp> {
+    Ok(day.to_zoned(TimeZone::UTC)?.timestamp())
 }
 
 /// The day a run sends, fixed by the calendar so that each day is sent once.
