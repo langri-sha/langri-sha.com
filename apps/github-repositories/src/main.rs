@@ -87,6 +87,12 @@ struct Args {
     /// left to the daily run.
     #[arg(long)]
     from: Option<Date>,
+
+    /// Send only the stars given since then, as an import: to load their
+    /// history, or make up for days the job missed. Stars given yesterday, in
+    /// UTC, are left to the daily run.
+    #[arg(long)]
+    starred_since: Option<Timestamp>,
 }
 
 fn main() -> Result<()> {
@@ -126,8 +132,16 @@ fn main() -> Result<()> {
         );
     }
 
-    if let Some(from) = args.from {
-        return import(&agent, &args, &token, &repositories, from, day);
+    if args.from.is_some() || args.starred_since.is_some() {
+        return import(
+            &agent,
+            &args,
+            &token,
+            app.as_ref(),
+            &repositories,
+            day,
+            today,
+        );
     }
 
     let events = traffic(&agent, &token, &repositories, day, day)?;
@@ -184,31 +198,67 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-/// Send the days from `from` through PostHog's pipeline for imports, which
-/// spares them the rate limit live events see.
+/// Send the days from `--from` and the stars given since `--starred-since`
+/// through PostHog's pipeline for imports, which spares them the rate limit
+/// live events see.
 fn import(
     agent: &Agent,
     args: &Args,
     token: &str,
+    app: Option<&App>,
     repositories: &[Repository],
-    from: Date,
     day: Date,
+    today: Date,
 ) -> Result<()> {
-    let to = import_to(from, day)?;
-    let events = traffic(agent, token, repositories, from, to)?;
+    let days = match args.from {
+        Some(from) => Some((from, import_to(from, day)?)),
+        None => None,
+    };
+    let times = match args.starred_since {
+        Some(since) => Some((since, starred_until(since, today)?)),
+        None => None,
+    };
+
+    let events = match days {
+        Some((from, to)) => traffic(agent, token, repositories, from, to)?,
+        None => Vec::new(),
+    };
+    let starred = match times {
+        Some((since, until)) => {
+            let token = stargazers_token(agent, &args.owner, token, app, repositories)?;
+
+            starred(agent, &token, &args.owner, repositories, since, until)?
+        }
+        None => Vec::new(),
+    };
 
     match &args.posthog_project_token {
         Some(token) if !args.dry_run => {
-            telemetry::posthog::capture(agent, &args.posthog_host, token, &events, true)?;
+            if let Some((from, to)) = days {
+                telemetry::posthog::capture(agent, &args.posthog_host, token, &events, true)?;
 
-            eprintln!(
-                "Imported {} events for {} repositories, {from} to {to}",
-                events.len(),
-                repositories.len(),
-            );
+                eprintln!(
+                    "Imported {} events for {} repositories, {from} to {to}",
+                    events.len(),
+                    repositories.len(),
+                );
+            }
+
+            if let Some((since, until)) = times {
+                telemetry::posthog::capture(agent, &args.posthog_host, token, &starred, true)?;
+
+                eprintln!(
+                    "Imported {} stars given from {since} until {until}",
+                    starred.len()
+                );
+            }
         }
         _ => {
             for event in &events {
+                println!("{}", serde_json::to_string(event)?);
+            }
+
+            for event in &starred {
                 println!("{}", serde_json::to_string(event)?);
             }
         }
@@ -309,6 +359,18 @@ fn referrers(
             Ok(Referrers::new(repository, today, popular))
         })
         .collect()
+}
+
+/// Where a stars import ends: at the start of yesterday, in UTC, whose stars
+/// the daily run sends itself, whether it has run yet or not.
+fn starred_until(since: Timestamp, today: Date) -> Result<Timestamp> {
+    let until = midnight(today.yesterday()?)?;
+
+    if since >= until {
+        bail!("--starred-since {since} is not before {until}, where the daily run takes over");
+    }
+
+    Ok(until)
 }
 
 /// A token to list stargazers with: the one given when run by hand, or else one
@@ -428,5 +490,16 @@ mod tests {
             date(2026, 10, 5)
         );
         assert!(import_to(day, day).is_err());
+    }
+
+    #[test]
+    fn star_imports_stop_where_the_daily_run_starts() {
+        let today = date(2026, 10, 8);
+
+        assert_eq!(
+            starred_until("2016-11-11T00:00:00Z".parse().unwrap(), today).unwrap(),
+            "2026-10-07T00:00:00Z".parse::<Timestamp>().unwrap(),
+        );
+        assert!(starred_until("2026-10-07T00:00:00Z".parse().unwrap(), today).is_err());
     }
 }
