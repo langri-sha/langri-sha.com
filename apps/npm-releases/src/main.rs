@@ -15,13 +15,16 @@ use std::{
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{RoundMode, Timestamp, TimestampRound, ToSpan, Unit};
-use telemetry::{github::App, npm::Package};
+use telemetry::{
+    github::{Access, App},
+    npm::Package,
+};
 use ureq::{Agent, SendBody, http::Request, middleware::MiddlewareNext};
 
 use crate::posthog::{Published, Requests, Run};
 
 /// What the App's tokens may read: reading change files takes no more.
-const PERMISSIONS: &[&str] = &["contents", "metadata"];
+const PERMISSIONS: &[(&str, Access)] = &[("contents", Access::Read), ("metadata", Access::Read)];
 
 /// Publishes npm package releases, pending and published, to PostHog.
 #[derive(Parser)]
@@ -143,6 +146,7 @@ fn main() -> Result<()> {
             &agent,
             &args.owner,
             PERMISSIONS,
+            &[],
         )?,
     };
 
