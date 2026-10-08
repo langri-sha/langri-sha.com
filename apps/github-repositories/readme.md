@@ -14,6 +14,9 @@ It reports the day before yesterday. GitHub counts each repository's traffic on
 a schedule of its own, and hours into a day some repositories still lack the day
 before.
 
+`github-repositories.yml` deploys the image on every push to `main` once the job
+exists, and can be run by hand.
+
 ## Running locally
 
 A token stands in for the App. Only those with push access to a repository see
