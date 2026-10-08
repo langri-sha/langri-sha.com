@@ -11,7 +11,7 @@ use ureq::Agent;
 
 use crate::{
     github::Repository,
-    posthog::{Event, Run},
+    posthog::{Event, Referrers, Run},
 };
 
 /// What the App's tokens may read. Traffic takes administration, which shows
@@ -84,7 +84,8 @@ struct Args {
 fn main() -> Result<()> {
     let started = Instant::now();
     let args = Args::parse();
-    let day = day(Timestamp::now().to_zoned(TimeZone::UTC).date())?;
+    let today = Timestamp::now().to_zoned(TimeZone::UTC).date();
+    let day = day(today)?;
 
     let agent: Agent = Agent::config_builder()
         .http_status_as_error(false)
@@ -121,10 +122,11 @@ fn main() -> Result<()> {
     }
 
     let events = traffic(&agent, &token, &repositories, day, day)?;
+    let referrers = referrers(&agent, &token, &repositories, today)?;
     let run = Run::new(
         day,
         repositories.len(),
-        events.len(),
+        events.len() + referrers.len(),
         credential_kind,
         started.elapsed(),
     );
@@ -132,15 +134,20 @@ fn main() -> Result<()> {
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &referrers, false)?;
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
-                "Published traffic to {} repositories for {day}",
+                "Published traffic to {} repositories for {day}, and where their visitors come from",
                 events.len()
             );
         }
         _ => {
             for event in &events {
+                println!("{}", serde_json::to_string(event)?);
+            }
+
+            for event in &referrers {
                 println!("{}", serde_json::to_string(event)?);
             }
 
@@ -258,6 +265,24 @@ fn traffic(
     }
 
     Ok(events)
+}
+
+/// Where each repository's visitors come from, as GitHub ranks them on the day
+/// of the run. GitHub keeps no history of them, so they can't be imported.
+fn referrers(
+    agent: &Agent,
+    token: &str,
+    repositories: &[Repository],
+    today: Date,
+) -> Result<Vec<Referrers>> {
+    repositories
+        .iter()
+        .map(|repository| {
+            let popular = github::popular(agent, token, &repository.name)?;
+
+            Ok(Referrers::new(repository, today, popular))
+        })
+        .collect()
 }
 
 /// The day a run sends, fixed by the calendar so that each day is sent once.

@@ -4,7 +4,12 @@ Sends daily GitHub repository traffic to PostHog: one
 `github_repository_traffic` event per repository and day, for every public
 repository `langri-sha` owns apart from forks, archived ones included, with
 `repository`, `views`, `unique_visitors`, `clones` and `unique_cloners`
-properties. Each run also sends a `github_repositories_run` event.
+properties.
+
+So that a spike can be traced to its source, each run also sends a
+`github_repository_referrers` event per repository, with the 10 referrers and
+the 10 paths that had the most views over the 14 days GitHub keeps, and a
+`github_repositories_run` event.
 
 It reads the repositories as the mal-the-kron GitHub App, with a token limited
 to reading administration and metadata: traffic takes administration, which
@@ -33,7 +38,8 @@ GITHUB_TOKEN=$(gh auth token) cargo run -p github-repositories -- --dry-run
 GitHub keeps 14 days of traffic. `--from` sends the days since then that it
 still holds, through PostHog's import pipeline, to load them or make up for days
 the job missed, on Cloud Run or locally. It stops at the day before the run's,
-which the daily run sends.
+which the daily run sends. Referrers can't be imported: GitHub keeps no history
+of them.
 
 ```shell
 gcloud run jobs execute github-repositories --project <edge> --region us-west1 --args=--from,2026-09-24
