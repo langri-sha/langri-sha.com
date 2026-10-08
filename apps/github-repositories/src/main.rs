@@ -1,14 +1,17 @@
 mod github;
 mod posthog;
 
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 use anyhow::{Result, bail};
 use clap::{Parser, builder::NonEmptyStringValueParser};
 use jiff::{Timestamp, ToSpan, civil::Date, tz::TimeZone};
 use ureq::Agent;
 
-use crate::{github::Repository, posthog::Event};
+use crate::{
+    github::Repository,
+    posthog::{Event, Run},
+};
 
 /// Publishes daily GitHub repository traffic to PostHog.
 #[derive(Parser)]
@@ -48,6 +51,7 @@ struct Args {
 }
 
 fn main() -> Result<()> {
+    let started = Instant::now();
     let args = Args::parse();
     let day = day(Timestamp::now().to_zoned(TimeZone::UTC).date())?;
 
@@ -68,10 +72,12 @@ fn main() -> Result<()> {
     }
 
     let events = traffic(&agent, &args.github_token, &repositories, day, day)?;
+    let run = Run::new(day, repositories.len(), events.len(), started.elapsed());
 
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
             telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &[run], false)?;
 
             eprintln!(
                 "Published traffic to {} repositories for {day}",
@@ -82,6 +88,8 @@ fn main() -> Result<()> {
             for event in &events {
                 println!("{}", serde_json::to_string(event)?);
             }
+
+            println!("{}", serde_json::to_string(&run)?);
         }
     }
 

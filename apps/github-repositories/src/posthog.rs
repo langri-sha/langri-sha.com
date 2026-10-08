@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use jiff::civil::Date;
 use serde::Serialize;
 use uuid::Uuid;
@@ -47,6 +49,41 @@ impl Event {
     }
 }
 
+/// A record of a run. It carries no timestamp, so PostHog stamps it on
+/// arrival, and a day without one is a day the job didn't run.
+#[derive(Debug, Serialize)]
+pub struct Run {
+    event: &'static str,
+    distinct_id: &'static str,
+    properties: RunProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct RunProperties {
+    day: Date,
+    repositories: usize,
+    events: usize,
+    duration_ms: u128,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+impl Run {
+    pub fn new(day: Date, repositories: usize, events: usize, took: Duration) -> Self {
+        Self {
+            event: "github_repositories_run",
+            distinct_id: "github-repositories",
+            properties: RunProperties {
+                day,
+                repositories,
+                events,
+                duration_ms: took.as_millis(),
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use jiff::civil::date;
@@ -86,6 +123,30 @@ mod tests {
                     "unique_visitors": 3,
                     "clones": 1,
                     "unique_cloners": 1,
+                    "$process_person_profile": false,
+                },
+            }),
+        );
+    }
+
+    #[test]
+    fn run() {
+        assert_eq!(
+            serde_json::to_value(Run::new(
+                date(2026, 10, 6),
+                35,
+                35,
+                Duration::from_millis(9876)
+            ))
+            .unwrap(),
+            json!({
+                "event": "github_repositories_run",
+                "distinct_id": "github-repositories",
+                "properties": {
+                    "day": "2026-10-06",
+                    "repositories": 35,
+                    "events": 35,
+                    "duration_ms": 9876,
                     "$process_person_profile": false,
                 },
             }),
