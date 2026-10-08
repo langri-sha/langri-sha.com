@@ -12,7 +12,7 @@ them on Google Cloud.
 | `apps/voice-editor`        | A tuning console for the site's voice                  |
 | `apps/npm-downloads`       | Daily job sending npm download counts to PostHog       |
 | `apps/npm-releases`        | Hourly job sending npm release activity to PostHog     |
-| `apps/github-repositories` | Daily job sending GitHub repository traffic to PostHog |
+| `apps/github-repositories` | Daily job sending GitHub traffic and stars to PostHog  |
 | `packages/fonts`           | Subsetted display fonts for the site                   |
 | `packages/glsl-loader`     | Imports GLSL shaders as strings                        |
 | `packages/next`            | Next.js helpers shared between apps                    |

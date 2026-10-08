@@ -400,7 +400,8 @@ project.addSubproject({
   outdir: path.join('apps', 'github-repositories'),
   cargo: {
     package: {
-      description: 'Publishes daily GitHub repository traffic to PostHog',
+      description:
+        'Publishes daily GitHub repository traffic and stars to PostHog',
       publish: false,
     },
     dependencies: {
