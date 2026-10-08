@@ -30,6 +30,10 @@ query ($owner: String!, $first: Int!, $after: String) {
       nodes {
         nameWithOwner
         url
+        forkCount
+        watchers {
+          totalCount
+        }
       }
     }
   }
@@ -44,6 +48,7 @@ query ($owner: String!, $name: String!, $first: Int!, $after: String) {
       after: $after
       orderBy: { field: STARRED_AT, direction: DESC }
     ) {
+      totalCount
       pageInfo {
         hasNextPage
         endCursor
@@ -65,6 +70,8 @@ pub struct Repository {
     /// The owner and name, as `langri-sha/projen`.
     pub name: String,
     pub url: String,
+    pub forks: u64,
+    pub watchers: u64,
 }
 
 /// The owner's public repositories, archived ones included, apart from forks.
@@ -109,13 +116,22 @@ pub struct Star {
     pub at: Timestamp,
 }
 
-/// The stars given to a repository since `since`, newest first.
-pub fn stars(agent: &Agent, token: &str, repository: &str, since: Timestamp) -> Result<Vec<Star>> {
+pub struct Stargazers {
+    /// How many stargazers GitHub lists, which its own `stargazerCount` can
+    /// disagree with.
+    pub total: u64,
+    /// The stars given since the time asked for, newest first.
+    pub stars: Vec<Star>,
+}
+
+/// A repository's stargazers, and the stars given since `since`.
+pub fn stars(agent: &Agent, token: &str, repository: &str, since: Timestamp) -> Result<Stargazers> {
     let (owner, name) = repository
         .split_once('/')
         .with_context(|| format!("{repository} isn't an owner and name"))?;
     let authorization = format!("Bearer {token}");
     let mut stars = Vec::new();
+    let mut total;
     let mut after = None;
 
     loop {
@@ -134,6 +150,7 @@ pub fn stars(agent: &Agent, token: &str, repository: &str, since: Timestamp) -> 
         // reaches past `since` only hold older stars.
         let reached = page.stars.iter().any(|star| star.at < since);
 
+        total = page.total;
         stars.extend(page.stars.into_iter().filter(|star| star.at >= since));
 
         if reached || !page.has_next_page {
@@ -146,7 +163,7 @@ pub fn stars(agent: &Agent, token: &str, repository: &str, since: Timestamp) -> 
         );
     }
 
-    Ok(stars)
+    Ok(Stargazers { total, stars })
 }
 
 /// A day's traffic to a repository, from UTC midnight.
@@ -331,21 +348,30 @@ struct PageInfo {
 struct Node {
     name_with_owner: String,
     url: String,
+    fork_count: u64,
+    watchers: Total,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct Total {
+    total_count: u64,
 }
 
 #[derive(Debug, Deserialize)]
 struct Stargazed {
-    repository: Option<Stargazers>,
+    repository: Option<StarredRepository>,
 }
 
 #[derive(Debug, Deserialize)]
-struct Stargazers {
+struct StarredRepository {
     stargazers: StarConnection,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct StarConnection {
+    total_count: u64,
     page_info: PageInfo,
     edges: Vec<StarEdge>,
 }
@@ -397,6 +423,8 @@ fn page(response: Response<Data>) -> Result<Page> {
         .map(|node| Repository {
             name: node.name_with_owner,
             url: node.url,
+            forks: node.fork_count,
+            watchers: node.watchers.total_count,
         })
         .collect();
 
@@ -409,6 +437,7 @@ fn page(response: Response<Data>) -> Result<Page> {
 
 #[derive(Debug, PartialEq)]
 struct StarsPage {
+    total: u64,
     stars: Vec<Star>,
     has_next_page: bool,
     end_cursor: Option<String>,
@@ -431,6 +460,7 @@ fn stargazers(response: Response<Stargazed>) -> Result<StarsPage> {
         .collect();
 
     Ok(StarsPage {
+        total: connection.total_count,
         stars,
         has_next_page: connection.page_info.has_next_page,
         end_cursor: connection.page_info.end_cursor,
@@ -470,8 +500,18 @@ mod tests {
                     "repositories": {
                         "pageInfo": { "hasNextPage": true, "endCursor": "Y3Vyc29y" },
                         "nodes": [
-                            { "nameWithOwner": "langri-sha/ajax-limited", "url": "https://github.com/langri-sha/ajax-limited" },
-                            { "nameWithOwner": "langri-sha/projen", "url": "https://github.com/langri-sha/projen" },
+                            {
+                                "nameWithOwner": "langri-sha/ajax-limited",
+                                "url": "https://github.com/langri-sha/ajax-limited",
+                                "forkCount": 0,
+                                "watchers": { "totalCount": 1 },
+                            },
+                            {
+                                "nameWithOwner": "langri-sha/projen",
+                                "url": "https://github.com/langri-sha/projen",
+                                "forkCount": 0,
+                                "watchers": { "totalCount": 0 },
+                            },
                         ],
                     },
                 },
@@ -486,10 +526,14 @@ mod tests {
                     Repository {
                         name: "langri-sha/ajax-limited".to_owned(),
                         url: "https://github.com/langri-sha/ajax-limited".to_owned(),
+                        forks: 0,
+                        watchers: 1,
                     },
                     Repository {
                         name: "langri-sha/projen".to_owned(),
                         url: "https://github.com/langri-sha/projen".to_owned(),
+                        forks: 0,
+                        watchers: 0,
                     },
                 ],
                 has_next_page: true,
@@ -504,6 +548,7 @@ mod tests {
             "data": {
                 "repository": {
                     "stargazers": {
+                        "totalCount": 11,
                         "pageInfo": { "hasNextPage": false, "endCursor": "Y3Vyc29y" },
                         "edges": [
                             {
@@ -524,6 +569,7 @@ mod tests {
         assert_eq!(
             stargazers(response).unwrap(),
             StarsPage {
+                total: 11,
                 stars: vec![
                     Star {
                         stargazer: "gaby".to_owned(),

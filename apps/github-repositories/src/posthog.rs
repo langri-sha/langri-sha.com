@@ -132,6 +132,48 @@ impl Starred {
     }
 }
 
+/// A repository's stars, forks and watchers on the day of a run. GitHub keeps
+/// no record of stars taken back, so only these show them leaving.
+#[derive(Debug, Serialize)]
+pub struct Stars {
+    event: &'static str,
+    distinct_id: String,
+    uuid: Uuid,
+    timestamp: String,
+    properties: StarsProperties,
+}
+
+#[derive(Debug, Serialize)]
+struct StarsProperties {
+    repository: String,
+    stars: u64,
+    forks: u64,
+    watchers: u64,
+    #[serde(rename = "$process_person_profile")]
+    process_person_profile: bool,
+}
+
+impl Stars {
+    pub fn new(repository: &Repository, stars: u64, day: Date) -> Self {
+        // As with traffic, a re-run on the same day replaces the snapshot.
+        let snapshot = format!("{}/stargazers@{day}", repository.url);
+
+        Self {
+            event: "github_repository_stars",
+            distinct_id: repository.url.clone(),
+            uuid: Uuid::new_v5(&Uuid::NAMESPACE_URL, snapshot.as_bytes()),
+            timestamp: format!("{day}T00:00:00Z"),
+            properties: StarsProperties {
+                repository: repository.url.clone(),
+                stars,
+                forks: repository.forks,
+                watchers: repository.watchers,
+                process_person_profile: false,
+            },
+        }
+    }
+}
+
 /// A record of a run. It carries no timestamp, so PostHog stamps it on
 /// arrival, and a day without one is a day the job didn't run.
 #[derive(Debug, Serialize)]
@@ -187,6 +229,8 @@ mod tests {
         Repository {
             name: "langri-sha/npm_lazy".to_owned(),
             url: "https://github.com/langri-sha/npm_lazy".to_owned(),
+            forks: 10,
+            watchers: 2,
         }
     }
 
@@ -346,6 +390,29 @@ mod tests {
                 "langri-sha"
             )
             .uuid,
+        );
+    }
+
+    #[test]
+    fn stars() {
+        assert_eq!(
+            serde_json::to_value(Stars::new(&repository(), 11, date(2026, 10, 8))).unwrap(),
+            json!({
+                "event": "github_repository_stars",
+                "distinct_id": "https://github.com/langri-sha/npm_lazy",
+                "uuid": Uuid::new_v5(
+                    &Uuid::NAMESPACE_URL,
+                    b"https://github.com/langri-sha/npm_lazy/stargazers@2026-10-08",
+                ),
+                "timestamp": "2026-10-08T00:00:00Z",
+                "properties": {
+                    "repository": "https://github.com/langri-sha/npm_lazy",
+                    "stars": 11,
+                    "forks": 10,
+                    "watchers": 2,
+                    "$process_person_profile": false,
+                },
+            }),
         );
     }
 
