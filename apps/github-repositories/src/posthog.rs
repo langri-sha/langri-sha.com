@@ -63,13 +63,21 @@ struct RunProperties {
     day: Date,
     repositories: usize,
     events: usize,
+    /// Whether the run read GitHub as the App or with someone's token.
+    github_credential: &'static str,
     duration_ms: u128,
     #[serde(rename = "$process_person_profile")]
     process_person_profile: bool,
 }
 
 impl Run {
-    pub fn new(day: Date, repositories: usize, events: usize, took: Duration) -> Self {
+    pub fn new(
+        day: Date,
+        repositories: usize,
+        events: usize,
+        github_credential: &'static str,
+        took: Duration,
+    ) -> Self {
         Self {
             event: "github_repositories_run",
             distinct_id: "github-repositories",
@@ -77,6 +85,7 @@ impl Run {
                 day,
                 repositories,
                 events,
+                github_credential,
                 duration_ms: took.as_millis(),
                 process_person_profile: false,
             },
@@ -136,6 +145,7 @@ mod tests {
                 date(2026, 10, 6),
                 35,
                 35,
+                "app",
                 Duration::from_millis(9876)
             ))
             .unwrap(),
@@ -146,6 +156,7 @@ mod tests {
                     "day": "2026-10-06",
                     "repositories": 35,
                     "events": 35,
+                    "github_credential": "app",
                     "duration_ms": 9876,
                     "$process_person_profile": false,
                 },

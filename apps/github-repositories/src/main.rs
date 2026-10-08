@@ -93,7 +93,9 @@ fn main() -> Result<()> {
         .build()
         .into();
 
-    let token = match credential(&args) {
+    let credential = credential(&args);
+    let credential_kind = credential.kind();
+    let token = match credential {
         Credential::Token(token) => token,
         Credential::App {
             client_id,
@@ -119,7 +121,13 @@ fn main() -> Result<()> {
     }
 
     let events = traffic(&agent, &token, &repositories, day, day)?;
-    let run = Run::new(day, repositories.len(), events.len(), started.elapsed());
+    let run = Run::new(
+        day,
+        repositories.len(),
+        events.len(),
+        credential_kind,
+        started.elapsed(),
+    );
 
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
@@ -195,6 +203,15 @@ enum Credential {
         client_id: String,
         private_key: String,
     },
+}
+
+impl Credential {
+    fn kind(&self) -> &'static str {
+        match self {
+            Credential::Token(_) => "token",
+            Credential::App { .. } => "app",
+        }
+    }
 }
 
 /// What to read the repositories with: a token when given one, as when run by
