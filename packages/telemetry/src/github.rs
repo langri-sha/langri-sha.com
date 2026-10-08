@@ -1,3 +1,5 @@
+use std::collections::BTreeMap;
+
 use anyhow::{Context, Result, anyhow};
 use base64::{Engine, engine::general_purpose::URL_SAFE_NO_PAD};
 use jiff::{Timestamp, ToSpan};
@@ -30,9 +32,15 @@ impl App {
     }
 
     /// A token for the App's installation on a user account, limited to
-    /// reading repositories. An organization's installation is found under
-    /// `/orgs/` rather than `/users/`.
-    pub fn installation_token(&self, agent: &Agent, owner: &str) -> Result<String> {
+    /// reading what the permissions name, such as `contents`. An
+    /// organization's installation is found under `/orgs/` rather than
+    /// `/users/`.
+    pub fn installation_token(
+        &self,
+        agent: &Agent,
+        owner: &str,
+        permissions: &[&str],
+    ) -> Result<String> {
         #[derive(Deserialize)]
         struct Installation {
             id: u64,
@@ -63,7 +71,7 @@ impl App {
                 .post(&url)
                 .header("Accept", "application/vnd.github+json")
                 .header("Authorization", &authorization)
-                .send_json(token_request())
+                .send_json(token_request(permissions))
         })?)?;
 
         Ok(token.token)
@@ -105,10 +113,15 @@ fn claims(client_id: &str, now: Timestamp) -> Result<Claims> {
     })
 }
 
-/// The App can do more than read, so its tokens are limited to reading contents
-/// and metadata.
-fn token_request() -> Value {
-    json!({ "permissions": { "contents": "read", "metadata": "read" } })
+/// The App can do more than read, so its tokens only read, and only what each
+/// job names.
+fn token_request(permissions: &[&str]) -> Value {
+    let permissions: BTreeMap<_, _> = permissions
+        .iter()
+        .map(|&permission| (permission, "read"))
+        .collect();
+
+    json!({ "permissions": permissions })
 }
 
 #[cfg(test)]
@@ -130,8 +143,8 @@ mod tests {
     #[test]
     fn tokens_only_read() {
         assert_eq!(
-            token_request(),
-            json!({ "permissions": { "contents": "read", "metadata": "read" } }),
+            token_request(&["administration", "metadata"]),
+            json!({ "permissions": { "administration": "read", "metadata": "read" } }),
         );
     }
 
