@@ -27,6 +27,24 @@ struct Args {
         value_parser = NonEmptyStringValueParser::new(),
     )]
     github_token: String,
+
+    /// PostHog ingestion host.
+    #[arg(long, env = "POSTHOG_HOST", default_value = "https://eu.i.posthog.com")]
+    posthog_host: String,
+
+    /// PostHog project token.
+    #[arg(
+        long,
+        env = "POSTHOG_PROJECT_TOKEN",
+        hide_env_values = true,
+        required_unless_present = "dry_run",
+        value_parser = NonEmptyStringValueParser::new(),
+    )]
+    posthog_project_token: Option<String>,
+
+    /// Print the events instead of sending them.
+    #[arg(long)]
+    dry_run: bool,
 }
 
 fn main() -> Result<()> {
@@ -51,8 +69,20 @@ fn main() -> Result<()> {
 
     let events = traffic(&agent, &args.github_token, &repositories, day, day)?;
 
-    for event in &events {
-        println!("{}", serde_json::to_string(event)?);
+    match args.posthog_project_token {
+        Some(token) if !args.dry_run => {
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, false)?;
+
+            eprintln!(
+                "Published traffic to {} repositories for {day}",
+                events.len()
+            );
+        }
+        _ => {
+            for event in &events {
+                println!("{}", serde_json::to_string(event)?);
+            }
+        }
     }
 
     Ok(())
