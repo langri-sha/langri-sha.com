@@ -91,13 +91,21 @@ resource "posthog_insight" "npm_downloads_top_packages" {
 
   query_sql = <<-SQL
     SELECT
-      properties.package AS package,
-      any(properties.repository) AS repository,
-      sum(toInt(properties.downloads)) AS downloads
-    FROM events
-    WHERE event = 'npm_package_downloads'
-      AND timestamp >= toStartOfDay(now()) - INTERVAL 32 DAY
-      AND timestamp < toStartOfDay(now()) - INTERVAL 2 DAY
+      package,
+      any(repository) AS repository,
+      sum(downloads) AS downloads
+    FROM (
+      SELECT
+        properties.package AS package,
+        any(properties.repository) AS repository,
+        toDate(timestamp) AS day,
+        max(toInt(properties.downloads)) AS downloads
+      FROM events
+      WHERE event = 'npm_package_downloads'
+        AND timestamp >= toStartOfDay(now()) - INTERVAL 32 DAY
+        AND timestamp < toStartOfDay(now()) - INTERVAL 2 DAY
+      GROUP BY package, day
+    )
     GROUP BY package
     ORDER BY downloads DESC
   SQL
