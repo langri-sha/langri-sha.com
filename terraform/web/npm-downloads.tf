@@ -25,6 +25,13 @@ locals {
   npm_downloads_charted_until = "-3d"
 }
 
+locals {
+  # Backfills and resends store a package's day more than once, and npm's count
+  # for a day only grows. Keying on the day keeps weekly buckets from taking
+  # one day's maximum per package.
+  npm_downloads_max_per_package_day = "arraySum(mapValues(maxMap(map(concat(coalesce(properties.package, ''), '|', toString(toDate(timestamp))), coalesce(toInt(properties.downloads), 0)))))"
+}
+
 resource "posthog_insight" "npm_downloads_by_package" {
   project_id    = tostring(posthog_project.web.id)
   dashboard_ids = [posthog_dashboard.npm_downloads.id]
@@ -62,10 +69,10 @@ resource "posthog_insight" "npm_downloads_by_repository" {
     source = {
       kind = "TrendsQuery"
       series = [{
-        kind          = "EventsNode"
-        event         = "npm_package_downloads"
-        math          = "sum"
-        math_property = "downloads"
+        kind       = "EventsNode"
+        event      = "npm_package_downloads"
+        math       = "hogql"
+        math_hogql = local.npm_downloads_max_per_package_day
       }]
       breakdownFilter = {
         breakdowns = [{ property = "repository", type = "event" }]
@@ -107,10 +114,10 @@ resource "posthog_insight" "npm_downloads_weekly" {
     source = {
       kind = "TrendsQuery"
       series = [{
-        kind          = "EventsNode"
-        event         = "npm_package_downloads"
-        math          = "sum"
-        math_property = "downloads"
+        kind       = "EventsNode"
+        event      = "npm_package_downloads"
+        math       = "hogql"
+        math_hogql = local.npm_downloads_max_per_package_day
       }]
       dateRange = { date_from = "-180d", date_to = local.npm_downloads_charted_until }
       interval  = "week"
