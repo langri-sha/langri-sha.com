@@ -38,7 +38,7 @@ resource "posthog_insight" "npm_downloads_by_package" {
       series = [{
         kind          = "EventsNode"
         event         = "npm_package_downloads"
-        math          = "sum"
+        math          = "max"
         math_property = "downloads"
       }]
       breakdownFilter = {
