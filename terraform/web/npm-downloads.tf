@@ -19,9 +19,10 @@ resource "posthog_dashboard" "npm_downloads" {
 }
 
 locals {
-  # The job publishes the day before yesterday at 12:17 UTC. Ending the charts
-  # three days back keeps the newest day from reading as a drop to zero every
-  # morning until then.
+  # The job publishes the last seven days at 12:17 UTC, but npm counts a day
+  # days late: the newest days arrive as zeros or partial counts and are
+  # corrected by later runs. Ending the charts three days back keeps most of
+  # that from reading as a drop.
   npm_downloads_charted_until = "-3d"
 }
 
