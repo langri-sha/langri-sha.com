@@ -11,22 +11,6 @@ use ureq::{Agent, http::StatusCode};
 /// client away for a while.
 const PACE: Duration = Duration::from_secs(1);
 
-/// The last day npm has counted downloads for.
-pub fn last_counted_day(agent: &Agent) -> Result<Date> {
-    #[derive(Deserialize)]
-    struct Point {
-        end: Date,
-    }
-
-    let response = http::call(|| {
-        agent
-            .get("https://api.npmjs.org/downloads/point/last-day")
-            .call()
-    })?;
-
-    Ok(http::json::<Point>(response)?.end)
-}
-
 /// Downloads of a package on each day from `from` to `to`, or none at all if
 /// npm has not heard of it.
 ///
