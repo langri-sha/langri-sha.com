@@ -57,6 +57,7 @@ fn main() -> Result<()> {
 
     let today = Timestamp::now().to_zoned(TimeZone::UTC).date();
     let (from, to) = days(args.from, args.to, today, npm::last_counted_day(&agent)?)?;
+    let backfill = args.from.is_some();
 
     let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
 
@@ -82,7 +83,7 @@ fn main() -> Result<()> {
 
     match args.posthog_project_token {
         Some(token) if !args.dry_run => {
-            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, from < to)?;
+            telemetry::posthog::capture(&agent, &args.posthog_host, &token, &events, backfill)?;
             telemetry::posthog::capture(
                 &agent,
                 &args.posthog_host,
