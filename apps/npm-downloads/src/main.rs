@@ -10,6 +10,12 @@ use ureq::Agent;
 
 use crate::posthog::{Event, Run};
 
+/// How many trailing days each run publishes. npm counts a day gradually and
+/// reports zero for whatever it has yet to count, so a run sends the days still
+/// being counted again until they have their final numbers. A week covers the
+/// lag npm has shown.
+const WINDOW: i32 = 7;
+
 /// Publishes daily npm package downloads to PostHog.
 #[derive(Parser)]
 #[command(about)]
@@ -18,11 +24,12 @@ struct Args {
     #[arg(long, default_value = "malkron")]
     maintainer: String,
 
-    /// First day to publish. Defaults to `--to`.
+    /// First day to publish. Defaults to the start of the trailing window
+    /// that ends on `--to`.
     #[arg(long)]
     from: Option<Date>,
 
-    /// Last day to publish. Defaults to the day before yesterday, in UTC.
+    /// Last day to publish. Defaults to yesterday, in UTC.
     #[arg(long)]
     to: Option<Date>,
 
@@ -56,7 +63,7 @@ fn main() -> Result<()> {
         .into();
 
     let today = Timestamp::now().to_zoned(TimeZone::UTC).date();
-    let (from, to) = days(args.from, args.to, today, npm::last_counted_day(&agent)?)?;
+    let (from, to) = days(args.from, args.to, today)?;
     let backfill = args.from.is_some();
 
     let packages = telemetry::npm::maintained_packages(&agent, &args.maintainer)?;
@@ -110,23 +117,21 @@ fn main() -> Result<()> {
 
 /// The days to publish, from first to last.
 ///
-/// npm takes over a day to count one, and reports zero downloads for days it
-/// has yet to count rather than leaving them out. Each run therefore publishes
-/// a day it has long finished, fixed by the calendar so that a day is sent
-/// once however late npm runs, and refuses any it has not counted.
-fn days(from: Option<Date>, to: Option<Date>, today: Date, counted: Date) -> Result<(Date, Date)> {
+/// Without bounds this is the trailing window of days ending yesterday. Every
+/// run sends the whole window, so a day npm counts late is sent again with its
+/// final count, and a day it counts in part is corrected as the rest arrives.
+fn days(from: Option<Date>, to: Option<Date>, today: Date) -> Result<(Date, Date)> {
     let to = match to {
         Some(to) => to,
-        None => today.checked_sub(2.days())?,
+        None => today.yesterday()?,
     };
-    let from = from.unwrap_or(to);
+    let from = match from {
+        Some(from) => from,
+        None => to.checked_sub((WINDOW - 1).days())?,
+    };
 
     if from > to {
         bail!("--from {from} is after --to {to}");
-    }
-
-    if to > counted {
-        bail!("npm has counted downloads up to {counted}, not {to} yet");
     }
 
     Ok((from, to))
@@ -138,35 +143,38 @@ mod tests {
 
     use super::*;
 
-    const TODAY: Date = date(2026, 10, 3);
+    const TODAY: Date = date(2026, 10, 9);
 
     #[test]
-    fn days_default_to_the_day_before_yesterday() {
+    fn days_default_to_the_window_ending_yesterday() {
         assert_eq!(
-            days(None, None, TODAY, date(2026, 10, 1)).unwrap(),
-            (date(2026, 10, 1), date(2026, 10, 1)),
+            days(None, None, TODAY).unwrap(),
+            (date(2026, 10, 2), date(2026, 10, 8)),
         );
     }
 
     #[test]
     fn days_fill_in_a_missing_bound() {
         assert_eq!(
-            days(None, Some(date(2026, 9, 1)), TODAY, date(2026, 10, 1)).unwrap(),
-            (date(2026, 9, 1), date(2026, 9, 1)),
+            days(None, Some(date(2026, 9, 10)), TODAY).unwrap(),
+            (date(2026, 9, 4), date(2026, 9, 10)),
         );
         assert_eq!(
-            days(Some(date(2026, 1, 1)), None, TODAY, date(2026, 10, 1)).unwrap(),
-            (date(2026, 1, 1), date(2026, 10, 1)),
+            days(Some(date(2026, 1, 1)), None, TODAY).unwrap(),
+            (date(2026, 1, 1), date(2026, 10, 8)),
         );
     }
 
     #[test]
-    fn days_npm_has_yet_to_count_are_refused() {
-        assert!(days(None, None, TODAY, date(2026, 9, 30)).is_err());
+    fn days_keep_explicit_bounds() {
+        assert_eq!(
+            days(Some(date(2026, 10, 1)), Some(date(2026, 10, 1)), TODAY).unwrap(),
+            (date(2026, 10, 1), date(2026, 10, 1)),
+        );
     }
 
     #[test]
     fn days_out_of_order_are_refused() {
-        assert!(days(Some(date(2026, 9, 2)), Some(date(2026, 9, 1)), TODAY, TODAY).is_err());
+        assert!(days(Some(date(2026, 9, 2)), Some(date(2026, 9, 1)), TODAY).is_err());
     }
 }
