@@ -33,11 +33,12 @@ override_data {
 
   values = {
     outputs = {
-      admin_members    = ["user:someone@example.com"]
-      billing_account  = "000000-000000-000000"
-      dns_managed_zone = "example"
-      domain           = "example.com"
-      location         = "EU"
+      admin_members                  = ["user:someone@example.com"]
+      billing_account                = "000000-000000-000000"
+      dns_managed_zone               = "example"
+      domain                         = "example.com"
+      internal_service_account_email = "internal@org-0000.iam.gserviceaccount.com"
+      location                       = "EU"
       mal_the_kron_secrets = {
         "mal-the-kron-app-id"      = "projects/org-0000/secrets/mal-the-kron-app-id"
         "mal-the-kron-client-id"   = "projects/org-0000/secrets/mal-the-kron-client-id"
