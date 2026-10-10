@@ -9,7 +9,7 @@ import {
 }
 
 resource "posthog_project" "web" {
-  name            = "Default project"
+  name            = "langri-sha.com"
   organization_id = local.posthog_organization_id
   timezone        = "UTC"
 
