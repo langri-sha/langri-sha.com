@@ -5,6 +5,7 @@ module "secrets" {
 
   project             = each.value.project
   read_secret_version = try(each.value.read_secret_version, {})
+  secret_accessors    = try(each.value.secret_accessors, [])
   secrets             = each.value.secrets
   topic               = each.key
 }
