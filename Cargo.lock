@@ -586,21 +586,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "npm-releases"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "clap",
- "jiff",
- "semver",
- "serde",
- "serde_json",
- "telemetry",
- "ureq",
- "uuid",
-]
-
-[[package]]
 name = "num-conv"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -732,16 +717,6 @@ name = "rustversion"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
-
-[[package]]
-name = "semver"
-version = "1.0.28"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a7852d02fc848982e0c167ef163aaff9cd91dc640ba85e263cb1ce46fae51cd"
-dependencies = [
- "serde",
- "serde_core",
-]
 
 [[package]]
 name = "serde"
