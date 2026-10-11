@@ -3,6 +3,7 @@
 !.babelrc
 !.dockerignore
 !.editorconfig
+!.env.example
 !.gitattributes
 !.gitignore
 !.gitkeep
