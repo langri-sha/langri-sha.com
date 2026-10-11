@@ -12,6 +12,7 @@ packages:
   - packages/*
 minimumReleaseAgeExclude:
   - '@langri-sha/*'
+  - '@langri-sha/projen-project'
   - projen-babel-config
   - projen-beachball
   - projen-cargo
