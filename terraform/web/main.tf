@@ -84,12 +84,6 @@ locals {
         for name, data in module.project :
         "${upper(name)}_PROJECT_ID" => data.project_id
         }, {
-        NPM_DOWNLOADS_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/npm-downloads"
-        NPM_DOWNLOADS_JOB      = module.npm_downloads.job
-        NPM_DOWNLOADS_REGION   = local.region
-        NPM_RELEASES_IMAGE     = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/npm-releases"
-        NPM_RELEASES_JOB       = module.npm_releases.job
-        NPM_RELEASES_REGION    = local.region
         POSTHOG_PROJECT_ID     = tostring(posthog_project.web.id)
         POSTHOG_PROJECT_TOKEN  = nonsensitive(posthog_project.web.api_token)
         POSTHOG_PROXY_IMAGE    = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/posthog-proxy"
@@ -100,9 +94,6 @@ locals {
         PREVIEW_ROUTER_IMAGE   = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/preview-router"
         PREVIEW_ROUTER_SERVICE = module.previews_router.service
         PREVIEW_SERVICE        = module.previews.service
-        REPOSITORIES_IMAGE     = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/github-repositories"
-        REPOSITORIES_JOB       = module.github_repositories.job
-        REPOSITORIES_REGION    = local.region
 
         VOICE_EDITOR_IMAGE   = "${lower(local.location)}-docker.pkg.dev/${module.project["build"].project_id}/${google_artifact_registry_repository.repository["docker"].repository_id}/voice-editor"
         VOICE_EDITOR_SERVICE = module.voice_editor.service
