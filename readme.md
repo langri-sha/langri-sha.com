@@ -1,24 +1,19 @@
 # langri-sha.com
 
-The site at [langri-sha.com](https://langri-sha.com), a few jobs that chart npm
-package and GitHub repository activity in PostHog, and the Terraform that runs
-them on Google Cloud.
+The site at [langri-sha.com](https://langri-sha.com), and the Terraform that
+runs it on Google Cloud.
 
-| Path                       | What                                                   |
-| -------------------------- | ------------------------------------------------------ |
-| `apps/web`                 | The site, a static Next.js export                      |
-| `apps/preview`             | Routes preview URLs to pull request and release builds |
-| `apps/posthog`             | Serves PostHog analytics from the site's own domain    |
-| `apps/voice-editor`        | A tuning console for the site's voice                  |
-| `apps/npm-downloads`       | Daily job sending npm download counts to PostHog       |
-| `apps/npm-releases`        | Hourly job sending npm release activity to PostHog     |
-| `apps/github-repositories` | Daily job sending GitHub traffic and stars to PostHog  |
-| `packages/fonts`           | Subsetted display fonts for the site                   |
-| `packages/glsl-loader`     | Imports GLSL shaders as strings                        |
-| `packages/next`            | Next.js helpers shared between apps                    |
-| `packages/telemetry`       | Code the Rust jobs share                               |
-| `packages/voice`           | The throat-sung voice, as a Web Audio graph            |
-| `terraform/`               | Google Cloud projects, services, buckets and DNS       |
+| Path                   | What                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| `apps/web`             | The site, a static Next.js export                      |
+| `apps/preview`         | Routes preview URLs to pull request and release builds |
+| `apps/posthog`         | Serves PostHog analytics from the site's own domain    |
+| `apps/voice-editor`    | A tuning console for the site's voice                  |
+| `packages/fonts`       | Subsetted display fonts for the site                   |
+| `packages/glsl-loader` | Imports GLSL shaders as strings                        |
+| `packages/next`        | Next.js helpers shared between apps                    |
+| `packages/voice`       | The throat-sung voice, as a Web Audio graph            |
+| `terraform/`           | Google Cloud projects, services, buckets and DNS       |
 
 ## Development
 
