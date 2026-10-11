@@ -36,12 +36,6 @@ const project = new Project({
       'vitest@5.0.3',
     ],
   },
-  cargo: {
-    toolchain: {
-      components: ['clippy', 'rustfmt'],
-      profile: 'minimal',
-    },
-  },
   codeowners: {
     '*': '@langri-sha',
   },
@@ -352,28 +346,5 @@ project.addSubproject(
     project.gitignore.addPatterns('/.tsbuild/')
   },
 )
-
-project.addSubproject({
-  name: 'telemetry',
-  outdir: path.join('packages', 'telemetry'),
-  cargo: {
-    package: {
-      description:
-        'What the Rust jobs share: a retrying HTTP layer, the GitHub App, the npm registry, and PostHog capture',
-      publish: false,
-    },
-    dependencies: {
-      anyhow: '1.0.104',
-      base64: '0.23.1',
-      jiff: '0.2.37',
-      ring: '0.17.14',
-      'rustls-pki-types': '1.15.1',
-      serde: { version: '1.0.229', features: ['derive'] },
-      serde_json: '1.0.151',
-      ureq: { version: '3.4.2', features: ['json'] },
-    },
-    sampleCode: false,
-  },
-})
 
 project.synth()
