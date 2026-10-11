@@ -39,17 +39,12 @@ override_data {
       domain                         = "example.com"
       internal_service_account_email = "internal@org-0000.iam.gserviceaccount.com"
       location                       = "EU"
-      mal_the_kron_secrets = {
-        "mal-the-kron-app-id"      = "projects/org-0000/secrets/mal-the-kron-app-id"
-        "mal-the-kron-client-id"   = "projects/org-0000/secrets/mal-the-kron-client-id"
-        "mal-the-kron-private-key" = "projects/org-0000/secrets/mal-the-kron-private-key"
-      }
-      org_id                    = "000000000000"
-      org_project_id            = "org-0000"
-      region                    = "europe-west1"
-      web_folder                = "folders/000000000000"
-      web_service_account_email = "web@org-0000.iam.gserviceaccount.com"
-      zone                      = "europe-west1-b"
+      org_id                         = "000000000000"
+      org_project_id                 = "org-0000"
+      region                         = "europe-west1"
+      web_folder                     = "folders/000000000000"
+      web_service_account_email      = "web@org-0000.iam.gserviceaccount.com"
+      zone                           = "europe-west1-b"
     }
   }
 }
