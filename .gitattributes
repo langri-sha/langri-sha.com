@@ -24,6 +24,7 @@
 /packages/fonts/license linguist-generated
 /packages/fonts/package.json linguist-generated
 /packages/fonts/pnpm-lock.yaml linguist-generated
+/packages/fonts/pnpm-workspace.yaml linguist-generated
 /packages/fonts/tsconfig.json linguist-generated
 /packages/glsl-loader/.gitattributes linguist-generated
 /packages/glsl-loader/.gitignore linguist-generated
@@ -35,6 +36,7 @@
 /packages/glsl-loader/license linguist-generated
 /packages/glsl-loader/package.json linguist-generated
 /packages/glsl-loader/pnpm-lock.yaml linguist-generated
+/packages/glsl-loader/pnpm-workspace.yaml linguist-generated
 /packages/glsl-loader/tsconfig.json linguist-generated
 /packages/next/.gitattributes linguist-generated
 /packages/next/.gitignore linguist-generated
@@ -46,6 +48,7 @@
 /packages/next/license linguist-generated
 /packages/next/package.json linguist-generated
 /packages/next/pnpm-lock.yaml linguist-generated
+/packages/next/pnpm-workspace.yaml linguist-generated
 /packages/next/tsconfig.json linguist-generated
 /packages/voice/.gitattributes linguist-generated
 /packages/voice/.gitignore linguist-generated
@@ -57,10 +60,11 @@
 /packages/voice/license linguist-generated
 /packages/voice/package.json linguist-generated
 /packages/voice/pnpm-lock.yaml linguist-generated
+/packages/voice/pnpm-workspace.yaml linguist-generated
 /packages/voice/tsconfig.json linguist-generated
 /pnpm-lock.yaml linguist-generated
 /pnpm-workspace.yaml linguist-generated
 /prettier.config.js linguist-generated
-/renovate.json5 linguist-generated
-/tsconfig.json linguist-generated
+/renovate.json5 linguist-generated linguist-language=JSON-with-Comments
+/tsconfig.json linguist-generated linguist-language=JSON-with-Comments
 readme text=auto linguist-language=Markdown

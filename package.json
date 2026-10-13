@@ -21,13 +21,13 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "pnpm run --filter @langri-sha/web build",
-    "default": "pnpm exec projen default",
+    "default": "projen default",
     "prepare": "husky",
-    "renovate": "pnpm exec projen renovate",
+    "renovate": "projen renovate",
     "start": "pnpm run --filter @langri-sha/web start",
     "test": "pnpm exec vitest --passWithNoTests",
-    "worktrunk:dry-run": "pnpm exec projen worktrunk:dry-run",
-    "worktrunk:show": "pnpm exec projen worktrunk:show"
+    "worktrunk:dry-run": "projen worktrunk:dry-run",
+    "worktrunk:show": "projen worktrunk:show"
   },
   "dependencies": {
     "react": "19.3.0",
@@ -46,7 +46,7 @@
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
-    "projen": "0.86.5",
+    "projen": "0.104.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vitest": "5.0.3"
