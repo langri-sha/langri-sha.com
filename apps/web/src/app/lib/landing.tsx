@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, type Playback, Scene, SceneScript } from '@/components'
-import { colors, global } from '@/styles'
+import { colors, global, paper } from '@/styles'
 
 import { capture } from './analytics'
 import { dronePaused, droneToggled } from './analytics/drone'
@@ -13,9 +13,10 @@ import { Header } from './header'
 
 export interface LandingProps {
   wordmark: React.ReactNode
+  children?: React.ReactNode
 }
 
-export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
+export const Landing: React.FC<LandingProps> = ({ wordmark, children }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
   const playbackRef = React.useRef<Playback | null>(null)
@@ -74,13 +75,18 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
       </Hero>
+      {children}
     </React.Fragment>
   )
 }
 
 const backdrop = css`
+  :root {
+    ${paper.surface};
+  }
+
   body {
-    background: ${colors.nightDeep};
+    background: ${paper.tone.ground};
   }
 `
 
