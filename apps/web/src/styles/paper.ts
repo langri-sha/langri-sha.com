@@ -1,6 +1,7 @@
 import { type SerializedStyles, css } from '@emotion/react'
 
 import * as colors from './colors'
+import * as media from './media'
 
 export const tone = {
   ground: 'var(--paper-ground)',
@@ -24,4 +25,18 @@ export const surface: SerializedStyles = css`
   --paper-tide: ${colors.tideInk};
   --paper-highlight: ${colors.accent};
   --paper-dawn: ${colors.dawn};
+  color-scheme: light;
+
+  ${media.dark} {
+    --paper-ground: ${colors.lamplight};
+    --paper-shade: ${colors.lamplightShade};
+    --paper-ink: ${colors.lamplightInk};
+    --paper-muted: ${colors.lamplightMuted};
+    --paper-rule: ${colors.lamplightRule};
+    --paper-ember: ${colors.emberLamp};
+    --paper-tide: ${colors.tideLamp};
+    --paper-highlight: ${colors.lampHighlight};
+    --paper-dawn: ${colors.lampGlow};
+    color-scheme: dark;
+  }
 `
