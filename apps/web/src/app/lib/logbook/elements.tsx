@@ -56,6 +56,14 @@ export const Main = styled.main`
   color: ${colors.moonlight};
   font-size: 1.8rem;
   line-height: 1.6;
+
+  ${media.reducedMotion} {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      ${colors.scrimDeep} 60vh
+    );
+  }
 `
 
 export const Threshold = styled.div`

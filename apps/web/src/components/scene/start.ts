@@ -81,6 +81,7 @@ export const start = (
     const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
     const timeLocation = gl.getUniformLocation(program, 'u_time')
     const audioLevelLocation = gl.getUniformLocation(program, 'u_audioLevel')
+    const scrollLocation = gl.getUniformLocation(program, 'u_scroll')
 
     const render = (now: DOMHighResTimeStamp) => {
       const scale = Math.min(window.devicePixelRatio, 2)
@@ -96,6 +97,10 @@ export const start = (
       gl.uniform2f(resolutionLocation, width, height)
       gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000)
       gl.uniform1f(audioLevelLocation, handle.audioLevelRef?.current ?? 0)
+      gl.uniform1f(
+        scrollLocation,
+        reducedMotion.matches ? 0 : window.scrollY / window.innerHeight,
+      )
       gl.drawArrays(gl.TRIANGLES, 0, 3)
 
       frame = requestAnimationFrame(render)

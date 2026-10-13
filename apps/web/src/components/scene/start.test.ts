@@ -27,11 +27,26 @@ const canvas = {
   removeEventListener: vi.fn(),
 } as unknown as SceneCanvas
 
-beforeEach(() => {
+const stubWindow = (overrides: Record<string, unknown> = {}) =>
   vi.stubGlobal('window', {
     devicePixelRatio: 2,
+    innerHeight: 180,
+    scrollY: 0,
     matchMedia: () => ({ matches: false }),
+    ...overrides,
   })
+
+const scrollUniform = () => {
+  const index = gl.getUniformLocation.mock.calls.findIndex(
+    ([, name]) => name === 'u_scroll',
+  )
+  const location = gl.getUniformLocation.mock.results[index]?.value
+
+  return gl.uniform1f.mock.calls.find(([target]) => target === location)?.[1]
+}
+
+beforeEach(() => {
+  stubWindow()
   vi.stubGlobal(
     'requestAnimationFrame',
     vi.fn(() => 1),
@@ -59,4 +74,20 @@ test('runs from its serialized source alone', () => {
 
   expect(cancelAnimationFrame).toHaveBeenCalledWith(1)
   expect(canvas.__scene).toBeUndefined()
+})
+
+test('passes the scroll in viewport heights to the shader', () => {
+  stubWindow({ scrollY: 270 })
+
+  start(canvas, '', '')?.dispose()
+
+  expect(scrollUniform()).toBe(1.5)
+})
+
+test('keeps the scene still under reduced motion', () => {
+  stubWindow({ scrollY: 270, matchMedia: () => ({ matches: true }) })
+
+  start(canvas, '', '')?.dispose()
+
+  expect(scrollUniform()).toBe(0)
 })
