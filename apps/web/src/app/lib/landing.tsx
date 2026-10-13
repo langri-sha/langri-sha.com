@@ -1,11 +1,11 @@
 'use client'
 
-import { Global, css } from '@emotion/react'
+import { Global, css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
 import { Drone, type Playback, Scene, SceneScript } from '@/components'
-import { colors, global, paper } from '@/styles'
+import { colors, global, media, paper } from '@/styles'
 
 import { capture } from './analytics'
 import { dronePaused, droneToggled } from './analytics/drone'
@@ -80,6 +80,37 @@ export const Landing: React.FC<LandingProps> = ({ wordmark, children }) => {
   )
 }
 
+const scrollDriven = '@supports (animation-timeline: view())'
+
+const card = {
+  inset: 'clamp(0.8rem, 1.2vw, 1.6rem)',
+  radius: 'clamp(1.6rem, 2.4vw, 3.2rem)',
+}
+
+const dawn = keyframes`
+  from {
+    background-color: ${colors.nightDeep};
+  }
+
+  40% {
+    background-color: ${colors.dusk};
+  }
+
+  to {
+    background-color: ${paper.tone.ground};
+  }
+`
+
+const settle = keyframes`
+  from {
+    clip-path: inset(0 round 0);
+  }
+
+  to {
+    clip-path: inset(${card.inset} round ${card.radius});
+  }
+`
+
 const backdrop = css`
   :root {
     ${paper.surface};
@@ -87,6 +118,15 @@ const backdrop = css`
 
   body {
     background: ${paper.tone.ground};
+
+    ${media.motion} {
+      ${scrollDriven} {
+        timeline-scope: --hero;
+        animation: ${dawn} linear both;
+        animation-timeline: --hero;
+        animation-range: exit 0% exit 45%;
+      }
+    }
   }
 `
 
@@ -96,6 +136,7 @@ const Hero = styled.div`
   height: 100svh;
   width: 100%;
   overflow: clip;
+  clip-path: inset(${card.inset} round ${card.radius});
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
@@ -115,4 +156,13 @@ const Hero = styled.div`
         ${colors.nightDeep} 100%
       )
       no-repeat;
+
+  ${media.motion} {
+    ${scrollDriven} {
+      view-timeline: --hero block;
+      animation: ${settle} linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 45%;
+    }
+  }
 `
