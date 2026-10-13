@@ -50,8 +50,7 @@ const bootstrap = `(${start.toString()})(document.getElementById(${JSON.stringif
 
 const Canvas = styled.canvas`
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
+  inset: 0;
+  height: 100%;
+  width: 100%;
 `

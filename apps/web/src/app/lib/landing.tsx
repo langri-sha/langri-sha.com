@@ -45,7 +45,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   return (
     <React.Fragment>
       <Global styles={[global, backdrop]} />
-      <Root>
+      <Hero>
         {/* The scene paints first so the header, which follows it in the
             flow, can blend against it without an isolating z-index. */}
         <Scene audioLevelRef={audioLevelRef} />
@@ -73,41 +73,40 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
         {playing ? (
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
-      </Root>
+      </Hero>
     </React.Fragment>
   )
 }
 
 const backdrop = css`
   body {
-    background:
-      radial-gradient(
-          ellipse 70% 28% at 50% 30%,
-          ${colors.ember},
-          transparent 70%
-        )
-        no-repeat,
-      radial-gradient(
-          ellipse 80% 34% at 50% 66%,
-          ${colors.tide},
-          transparent 70%
-        )
-        no-repeat,
-      radial-gradient(
-          ellipse 130% 100% at 50% 48%,
-          ${colors.nightRim} 0%,
-          ${colors.nightCore} 55%,
-          ${colors.nightDeep} 100%
-        )
-        no-repeat;
+    background: ${colors.nightDeep};
   }
 `
 
-const Root = styled.div`
+const Hero = styled.div`
+  position: relative;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100svh;
+  width: 100%;
+  overflow: clip;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  background:
+    radial-gradient(
+        ellipse 70% 28% at 50% 30%,
+        ${colors.ember},
+        transparent 70%
+      )
+      no-repeat,
+    radial-gradient(ellipse 80% 34% at 50% 66%, ${colors.tide}, transparent 70%)
+      no-repeat,
+    radial-gradient(
+        ellipse 130% 100% at 50% 48%,
+        ${colors.nightRim} 0%,
+        ${colors.nightCore} 55%,
+        ${colors.nightDeep} 100%
+      )
+      no-repeat;
 `
