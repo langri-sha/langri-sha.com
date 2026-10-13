@@ -12,10 +12,11 @@ import { dronePaused, droneToggled } from './analytics/drone'
 import { Header } from './header'
 
 export interface LandingProps {
+  children?: React.ReactNode
   wordmark: React.ReactNode
 }
 
-export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
+export const Landing: React.FC<LandingProps> = ({ children, wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
   const playbackRef = React.useRef<Playback | null>(null)
@@ -74,6 +75,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
       </Root>
+      {children}
     </React.Fragment>
   )
 }
