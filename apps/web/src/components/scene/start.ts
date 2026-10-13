@@ -22,6 +22,8 @@ export const start = (
   const handle: SceneHandle = { dispose: () => {} }
 
   let frame = 0
+  let visible = true
+  let resume: (() => void) | null = null
   let release: (() => void) | null = null
 
   const compile = (type: number, source: string) => {
@@ -98,13 +100,19 @@ export const start = (
       gl.uniform1f(audioLevelLocation, handle.audioLevelRef?.current ?? 0)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
 
-      frame = requestAnimationFrame(render)
+      frame = visible ? requestAnimationFrame(render) : 0
     }
 
     render(performance.now())
 
+    resume = () => {
+      if (!frame) frame = requestAnimationFrame(render)
+    }
+
     release = () => {
       cancelAnimationFrame(frame)
+      frame = 0
+      resume = null
       gl.deleteVertexArray(vertexArray)
       gl.deleteBuffer(positionBuffer)
       gl.deleteProgram(program)
@@ -131,9 +139,19 @@ export const start = (
   canvas.addEventListener('webglcontextlost', handleContextLost)
   canvas.addEventListener('webglcontextrestored', handleContextRestored)
 
+  const observer =
+    typeof IntersectionObserver === 'function'
+      ? new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting
+          if (visible) resume?.()
+        })
+      : null
+  observer?.observe(canvas)
+
   setup()
 
   handle.dispose = () => {
+    observer?.disconnect()
     canvas.removeEventListener('webglcontextlost', handleContextLost)
     canvas.removeEventListener('webglcontextrestored', handleContextRestored)
     release?.()
