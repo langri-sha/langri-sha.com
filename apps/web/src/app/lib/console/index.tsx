@@ -28,6 +28,22 @@ export const Console: React.FC = () => (
         <Telemetry />
       </Main>
     </Layout>
+    <Colophon>
+      <Micro>End of transmission</Micro>
+      <Micro>© Filip Dupanović</Micro>
+      <Controls>
+        <li>
+          <Control href="https://github.com/langri-sha/langri-sha.com">
+            Source <span aria-hidden="true">↗</span>
+          </Control>
+        </li>
+        <li>
+          <Control href="#">
+            Top <span aria-hidden="true">↑</span>
+          </Control>
+        </li>
+      </Controls>
+    </Colophon>
   </Root>
 )
 
@@ -44,7 +60,7 @@ const scrolling = css`
 const Root = styled.div`
   --gutter: clamp(1.6rem, 4vw, 4.8rem);
   position: relative;
-  padding: 0 var(--gutter) 12rem;
+  padding: 0 var(--gutter) 4.8rem;
   color: ${colors.readout};
   font-family: ${fonts.sans};
   background:
@@ -134,5 +150,42 @@ const Main = styled.main`
 
   ${media.wide} {
     padding-top: 0;
+  }
+`
+
+const Colophon = styled.footer`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.6rem 3.2rem;
+  max-width: ${width};
+  margin: clamp(6.4rem, 12vw, 12rem) auto 0;
+  padding-top: 2.4rem;
+  border-top: 1px solid ${colors.hairline};
+`
+
+const Controls = styled.ul`
+  display: flex;
+  gap: 2.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`
+
+const Control = styled.a`
+  ${micro};
+  color: ${colors.readout};
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid ${colors.accent};
+    outline-offset: 0.4rem;
+  }
+
+  ${media.hover} {
+    &:hover {
+      color: ${colors.accent};
+    }
   }
 `
