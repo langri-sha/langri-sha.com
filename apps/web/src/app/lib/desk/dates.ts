@@ -19,3 +19,8 @@ export const long = (date: string): string => {
   const [year, month, day] = parse(date)
   return `${day} ${months[month - 1]} ${year}`
 }
+
+export const short = (date: string): string => {
+  const [, month, day] = parse(date)
+  return `${day} ${months[month - 1].slice(0, 3)}`
+}

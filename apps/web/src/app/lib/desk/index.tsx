@@ -6,6 +6,7 @@ import * as React from 'react'
 import type { Post } from '@/journal'
 import { paper } from '@/styles'
 
+import { Contents } from './contents'
 import { Featured } from './featured'
 import { Masthead } from './masthead'
 
@@ -20,6 +21,7 @@ export const Desk: React.FC<DeskProps> = ({ posts }) => {
     <Root aria-labelledby="desk">
       <Masthead />
       {featured ? <Featured post={featured} /> : null}
+      <Contents posts={posts} />
     </Root>
   )
 }
