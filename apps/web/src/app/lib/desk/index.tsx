@@ -9,6 +9,7 @@ import { paper } from '@/styles'
 import { Contents } from './contents'
 import { Featured } from './featured'
 import { Masthead } from './masthead'
+import { Workbench } from './workbench'
 
 export interface DeskProps {
   posts: Post[]
@@ -22,6 +23,7 @@ export const Desk: React.FC<DeskProps> = ({ posts }) => {
       <Masthead />
       {featured ? <Featured post={featured} /> : null}
       <Contents posts={posts} />
+      <Workbench />
     </Root>
   )
 }
