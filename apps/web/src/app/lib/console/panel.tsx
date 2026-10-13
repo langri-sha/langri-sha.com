@@ -78,7 +78,7 @@ export const Section: React.FC<SectionProps> = ({
 )
 
 const Root = styled.section`
-  scroll-margin-top: 4.8rem;
+  scroll-margin-top: 8rem;
 
   & + & {
     margin-top: clamp(6.4rem, 12vw, 12rem);

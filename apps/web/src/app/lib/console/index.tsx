@@ -1,8 +1,10 @@
+import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
-import { colors, fonts } from '@/styles'
+import { colors, fonts, media } from '@/styles'
 
+import { Contents } from './contents'
 import { Log } from './log'
 import { Modules } from './modules'
 import { Micro, micro } from './panel'
@@ -10,6 +12,7 @@ import { Telemetry } from './telemetry'
 
 export const Console: React.FC = () => (
   <Root>
+    <Global styles={scrolling} />
     <Seam>
       <Micro>Console / 00</Micro>
       <Node aria-hidden="true" />
@@ -17,13 +20,26 @@ export const Console: React.FC = () => (
         <Led aria-hidden="true" /> Signal nominal
       </Status>
     </Seam>
-    <Main>
-      <Log />
-      <Modules />
-      <Telemetry />
-    </Main>
+    <Layout>
+      <Contents />
+      <Main>
+        <Log />
+        <Modules />
+        <Telemetry />
+      </Main>
+    </Layout>
   </Root>
 )
+
+const width = '130.8rem'
+
+const scrolling = css`
+  ${media.motion} {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+`
 
 const Root = styled.div`
   --gutter: clamp(1.6rem, 4vw, 4.8rem);
@@ -58,7 +74,7 @@ const Seam = styled.div`
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1.6rem;
-  max-width: 112rem;
+  max-width: ${width};
   margin-inline: auto;
   padding-block: 2.4rem clamp(4.8rem, 8vw, 9.6rem);
 
@@ -102,7 +118,21 @@ const Led = styled.span`
   box-shadow: 0 0 0.6rem ${colors.signal};
 `
 
-const Main = styled.main`
-  max-width: 112rem;
+const Layout = styled.div`
+  max-width: ${width};
   margin-inline: auto;
+
+  ${media.wide} {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: 4.8rem;
+  }
+`
+
+const Main = styled.main`
+  padding-top: 3.2rem;
+
+  ${media.wide} {
+    padding-top: 0;
+  }
 `
