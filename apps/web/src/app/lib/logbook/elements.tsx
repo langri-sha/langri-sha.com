@@ -1,6 +1,6 @@
 'use client'
 
-import { css } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { colors, media } from '@/styles'
@@ -25,6 +25,13 @@ const star = css`
     #ed789f 75%,
     #b3a1fa
   );
+`
+
+const surface = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(2.4rem);
+  }
 `
 
 const link = css`
@@ -132,6 +139,14 @@ export const Stream = styled.ol`
 
 export const Item = styled.li`
   position: relative;
+
+  ${media.motion} {
+    @supports (animation-timeline: view()) {
+      animation: ${surface} linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 16rem;
+    }
+  }
 
   &::before {
     ${star};
