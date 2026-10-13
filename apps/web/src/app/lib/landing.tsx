@@ -80,6 +80,15 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
 
 const backdrop = css`
   body {
+    background: ${colors.nightDeep};
+  }
+
+  body::before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     background:
       radial-gradient(
           ellipse 70% 28% at 50% 30%,
@@ -100,13 +109,15 @@ const backdrop = css`
           ${colors.nightDeep} 100%
         )
         no-repeat;
+    content: '';
+    pointer-events: none;
   }
 `
 
 const Root = styled.div`
   display: flex;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
