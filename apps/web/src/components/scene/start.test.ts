@@ -91,3 +91,11 @@ test('keeps the scene still under reduced motion', () => {
 
   expect(scrollUniform()).toBe(0)
 })
+
+test('renders at half resolution once the hero is out of view', () => {
+  stubWindow({ scrollY: 270 })
+
+  start(canvas, '', '')?.dispose()
+
+  expect([canvas.width, canvas.height]).toEqual([320, 180])
+})
