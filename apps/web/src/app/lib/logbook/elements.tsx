@@ -219,3 +219,72 @@ export const Archive = styled.p`
     color: ${colors.starlight};
   }
 `
+
+export const Columns = styled.div`
+  display: grid;
+  gap: clamp(6.4rem, 10vh, 9.6rem);
+
+  ${media.wide} {
+    grid-template-columns: minmax(0, 68rem) 26rem;
+    justify-content: center;
+    column-gap: clamp(6rem, 7vw, 12rem);
+  }
+`
+
+export const Rail = styled.aside`
+  display: grid;
+  align-content: start;
+  gap: 3.2rem;
+  max-width: 68rem;
+  font-size: 1.6rem;
+  line-height: 1.45;
+`
+
+export const Shelf = styled.section`
+  padding-top: 1.6rem;
+  border-top: 1px solid ${colors.hairline};
+`
+
+export const ShelfTitle = styled.h2`
+  margin: 0 0 1.2rem;
+  color: ${colors.haze};
+  font-size: 1.6rem;
+  font-variant-caps: all-small-caps;
+  font-weight: normal;
+  letter-spacing: 0.16em;
+`
+
+export const ShelfList = styled.ul`
+  display: grid;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    ${link};
+    color: ${colors.starlight};
+    overflow-wrap: anywhere;
+  }
+`
+
+export const Inline = styled.ul`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    ${link};
+    color: ${colors.starlight};
+  }
+`
+
+export const Description = styled.span`
+  display: block;
+  color: ${colors.haze};
+  font-size: 1.5rem;
+  font-style: italic;
+`
