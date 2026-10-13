@@ -6,6 +6,7 @@ import * as React from 'react'
 import type { Post } from '@/journal'
 import { paper } from '@/styles'
 
+import { Colophon } from './colophon'
 import { Contents } from './contents'
 import { Featured } from './featured'
 import { Masthead } from './masthead'
@@ -19,18 +20,21 @@ export const Desk: React.FC<DeskProps> = ({ posts }) => {
   const featured = posts.find((post) => post.featured)
 
   return (
-    <Root aria-labelledby="desk">
-      <Masthead />
-      {featured ? <Featured post={featured} /> : null}
-      <Contents posts={posts} />
-      <Workbench />
-    </Root>
+    <React.Fragment>
+      <Root aria-labelledby="desk">
+        <Masthead />
+        {featured ? <Featured post={featured} /> : null}
+        <Contents posts={posts} />
+        <Workbench />
+      </Root>
+      <Colophon />
+    </React.Fragment>
   )
 }
 
 const Root = styled.main`
   position: relative;
-  padding-block: clamp(8rem, 14vh, 14rem) clamp(6.4rem, 10vh, 12rem);
+  padding-top: clamp(8rem, 14vh, 14rem);
   color: ${paper.tone.ink};
 
   &::before {
