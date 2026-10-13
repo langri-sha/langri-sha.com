@@ -3,15 +3,26 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 
+import type { Post } from '@/journal'
 import { paper } from '@/styles'
 
+import { Featured } from './featured'
 import { Masthead } from './masthead'
 
-export const Desk: React.FC = () => (
-  <Root aria-labelledby="desk">
-    <Masthead />
-  </Root>
-)
+export interface DeskProps {
+  posts: Post[]
+}
+
+export const Desk: React.FC<DeskProps> = ({ posts }) => {
+  const featured = posts.find((post) => post.featured)
+
+  return (
+    <Root aria-labelledby="desk">
+      <Masthead />
+      {featured ? <Featured post={featured} /> : null}
+    </Root>
+  )
+}
 
 const Root = styled.main`
   position: relative;
