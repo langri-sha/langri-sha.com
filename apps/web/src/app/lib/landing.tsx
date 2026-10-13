@@ -44,7 +44,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
 
   return (
     <React.Fragment>
-      <Global styles={[global, backdrop]} />
+      <Global styles={[global, page]} />
       <Root>
         {/* The scene paints first so the header, which follows it in the
             flow, can blend against it without an isolating z-index. */}
@@ -78,36 +78,33 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   )
 }
 
-const backdrop = css`
+const page = css`
   body {
-    background:
-      radial-gradient(
-          ellipse 70% 28% at 50% 30%,
-          ${colors.ember},
-          transparent 70%
-        )
-        no-repeat,
-      radial-gradient(
-          ellipse 80% 34% at 50% 66%,
-          ${colors.tide},
-          transparent 70%
-        )
-        no-repeat,
-      radial-gradient(
-          ellipse 130% 100% at 50% 48%,
-          ${colors.nightRim} 0%,
-          ${colors.nightCore} 55%,
-          ${colors.nightDeep} 100%
-        )
-        no-repeat;
+    background: ${colors.nightDeep};
   }
 `
 
 const Root = styled.div`
   display: flex;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  background:
+    radial-gradient(
+        ellipse 70% 28% at 50% 30%,
+        ${colors.ember},
+        transparent 70%
+      )
+      no-repeat,
+    radial-gradient(ellipse 80% 34% at 50% 66%, ${colors.tide}, transparent 70%)
+      no-repeat,
+    radial-gradient(
+        ellipse 130% 100% at 50% 48%,
+        ${colors.nightRim} 0%,
+        ${colors.nightCore} 55%,
+        ${colors.nightDeep} 100%
+      )
+      no-repeat;
 `
