@@ -71,6 +71,7 @@ const project = new Project({
     filename: 'readme.md',
   },
   renovate: {
+    extends: ['github>langri-sha/renovate-config'],
     packageRules: [
       {
         description: 'Google Terraform Providers',
@@ -78,23 +79,6 @@ const project = new Project({
         groupSlug: 'terraform-google',
         matchDatasources: ['terraform-provider'],
         matchPackageNames: ['hashicorp/google*'],
-      },
-      {
-        description: 'Update our own packages together',
-        groupName: 'langri-sha projen toolchain',
-        groupSlug: 'langri-sha-projen',
-        matchPackageNames: ['@langri-sha/**'],
-      },
-      {
-        description: 'Install our own packages without waiting them out',
-        matchPackageNames: ['@langri-sha/**'],
-        minimumReleaseAge: null,
-      },
-      {
-        description:
-          'Install our own GitHub Actions and Terraform modules without waiting them out',
-        matchPackageNames: ['langri-sha/**'],
-        minimumReleaseAge: null,
       },
     ],
     customManagers: [
