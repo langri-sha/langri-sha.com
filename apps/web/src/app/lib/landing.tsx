@@ -9,6 +9,7 @@ import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
 import { dronePaused, droneToggled } from './analytics/drone'
+import { Console } from './console'
 import { Header } from './header'
 
 export interface LandingProps {
@@ -74,6 +75,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
       </Root>
+      <Console />
     </React.Fragment>
   )
 }
