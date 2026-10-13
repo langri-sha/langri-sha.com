@@ -1,3 +1,4 @@
+import { type SerializedStyles, css } from '@emotion/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
 
@@ -70,27 +71,36 @@ export const Header: React.FC<HeaderProps> = ({
     <Title>{wordmark}</Title>
     <Nav>
       <Gradients />
-      {profiles.slice(0, 2).map((profile) => (
-        <Profile key={profile.name} {...profile} />
-      ))}
-      <Toggle
-        type="button"
-        aria-pressed={playing}
-        aria-label={
-          playing ? 'Pause the ambient drone' : 'Play the ambient drone'
-        }
-        onClick={onToggle}
-      >
-        <Dial playing={playing} />
-        <ToggleGlyph aria-hidden="true">
-          {playing ? <Pause /> : <Play />}
-        </ToggleGlyph>
-      </Toggle>
-      {profiles.slice(2).map((profile) => (
-        <Profile key={profile.name} {...profile} />
-      ))}
+      <Instruments playing={playing} onToggle={onToggle} />
     </Nav>
   </Root>
+)
+
+export const Instruments: React.FC<Omit<HeaderProps, 'wordmark'>> = ({
+  playing,
+  onToggle,
+}) => (
+  <React.Fragment>
+    {profiles.slice(0, 2).map((profile) => (
+      <Profile key={profile.name} {...profile} />
+    ))}
+    <Toggle
+      type="button"
+      aria-pressed={playing}
+      aria-label={
+        playing ? 'Pause the ambient drone' : 'Play the ambient drone'
+      }
+      onClick={onToggle}
+    >
+      <Dial playing={playing} />
+      <ToggleGlyph aria-hidden="true">
+        {playing ? <Pause /> : <Play />}
+      </ToggleGlyph>
+    </Toggle>
+    {profiles.slice(2).map((profile) => (
+      <Profile key={profile.name} {...profile} />
+    ))}
+  </React.Fragment>
 )
 
 const Profile: React.FC<ProfileProps> = ({
@@ -131,15 +141,19 @@ const Title = styled.h1`
   }
 `
 
-const Nav = styled.nav`
-  ${motion.booming};
+export const row: SerializedStyles = css`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   gap: ${dimensions.gap};
-  margin-top: clamp(0.4rem, 1.6vh, 1.6rem);
   padding-block: ${dimensions.step};
+`
+
+const Nav = styled.nav`
+  ${motion.booming};
+  ${row};
+  margin-top: clamp(0.4rem, 1.6vh, 1.6rem);
 `
 
 const Label = styled.span`
