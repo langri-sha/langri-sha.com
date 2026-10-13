@@ -7,6 +7,12 @@ export interface Section {
 
 export const sections = {
   log: { id: 'log', part: 'LOG / 01', label: 'Log', title: 'Transmission log' },
+  modules: {
+    id: 'modules',
+    part: 'MOD / 02',
+    label: 'Modules',
+    title: 'Module bay',
+  },
 } as const satisfies Record<string, Section>
 
 export interface Transmission {
@@ -90,5 +96,118 @@ export const transmissions: Transmission[] = [
     minutes: 4,
     excerpt:
       'One path instead of a webfont: tracing the wordmark, rounding it to a decimal, and shipping it once as the largest contentful paint.',
+  },
+]
+
+export interface Module {
+  name: string
+  kind: string
+  status: 'live' | 'beta' | 'prototype'
+  summary: string
+  readouts: { label: string; value: string }[]
+  trace?: number[]
+  links: { label: string; href: string }[]
+}
+
+export const modules: Module[] = [
+  {
+    name: '@langri-sha/projen-project',
+    kind: 'Package',
+    status: 'live',
+    summary:
+      'The projen preset behind every langri-sha repository: Node and pnpm baselines, lint, format and release.',
+    readouts: [
+      { label: 'Weekly', value: '1,284' },
+      { label: 'Version', value: '0.38.1' },
+    ],
+    trace: [612, 701, 688, 845, 790, 932, 1010, 968, 1102, 1188, 1150, 1284],
+    links: [
+      {
+        label: 'npm',
+        href: 'https://www.npmjs.com/package/@langri-sha/projen-project',
+      },
+      {
+        label: 'Source',
+        href: 'https://github.com/langri-sha/projen',
+      },
+    ],
+  },
+  {
+    name: '@langri-sha/tsconfig',
+    kind: 'Package',
+    status: 'live',
+    summary:
+      'Strict TypeScript bases for projects, libraries and React, shared across the fleet.',
+    readouts: [
+      { label: 'Weekly', value: '2,917' },
+      { label: 'Version', value: '1.1.1' },
+    ],
+    trace: [
+      2210, 2380, 2290, 2460, 2530, 2490, 2680, 2610, 2770, 2840, 2795, 2917,
+    ],
+    links: [
+      {
+        label: 'npm',
+        href: 'https://www.npmjs.com/package/@langri-sha/tsconfig',
+      },
+      { label: 'Source', href: 'https://github.com/langri-sha/projen' },
+    ],
+  },
+  {
+    name: 'langri-sha/dagger',
+    kind: 'Modules',
+    status: 'beta',
+    summary:
+      'Dagger modules for CI and Terraform checks, called from every workspace instead of copied YAML.',
+    readouts: [
+      { label: 'Release', value: 'ci/v0.1.0' },
+      { label: 'Consumers', value: '7' },
+    ],
+    links: [{ label: 'Source', href: 'https://github.com/langri-sha/dagger' }],
+  },
+  {
+    name: 'lazaretum',
+    kind: 'Tool',
+    status: 'prototype',
+    summary:
+      'A Rust port of npm_lazy with supply-chain gates, starting with a minimum release age.',
+    readouts: [
+      { label: 'Language', value: 'Rust' },
+      { label: 'Gate', value: '7 days' },
+    ],
+    links: [
+      { label: 'Source', href: 'https://github.com/langri-sha/lazaretum' },
+    ],
+  },
+  {
+    name: 'github-repos',
+    kind: 'Infrastructure',
+    status: 'live',
+    summary:
+      'Terraform that governs the repository fleet: settings, rulesets, apps and secrets.',
+    readouts: [
+      { label: 'Repositories', value: '31' },
+      { label: 'Drift', value: '0' },
+    ],
+    links: [
+      { label: 'Source', href: 'https://github.com/langri-sha/github-repos' },
+    ],
+  },
+  {
+    name: 'terraform-google-cloud-platform',
+    kind: 'Modules',
+    status: 'live',
+    summary:
+      'Reusable Google Cloud modules for Cloud Run services, the edge and Secret Manager.',
+    readouts: [
+      { label: 'Modules', value: '9' },
+      { label: 'Release', value: 'v2.4.0' },
+    ],
+    links: [
+      {
+        label: 'Source',
+        href: 'https://github.com/langri-sha/terraform-google-cloud-platform',
+      },
+    ],
   },
 ]

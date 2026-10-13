@@ -4,6 +4,7 @@ import * as React from 'react'
 import { colors, fonts } from '@/styles'
 
 import { Log } from './log'
+import { Modules } from './modules'
 import { Micro, micro } from './panel'
 
 export const Console: React.FC = () => (
@@ -17,6 +18,7 @@ export const Console: React.FC = () => (
     </Seam>
     <Main>
       <Log />
+      <Modules />
     </Main>
   </Root>
 )
