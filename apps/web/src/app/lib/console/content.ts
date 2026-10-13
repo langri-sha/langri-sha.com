@@ -13,6 +13,12 @@ export const sections = {
     label: 'Modules',
     title: 'Module bay',
   },
+  telemetry: {
+    id: 'telemetry',
+    part: 'SIG / 03',
+    label: 'Telemetry',
+    title: 'Telemetry',
+  },
 } as const satisfies Record<string, Section>
 
 export interface Transmission {
@@ -210,4 +216,48 @@ export const modules: Module[] = [
       },
     ],
   },
+]
+
+export interface Reading {
+  label: string
+  value: string
+  window: string
+  delta: string
+  source: string
+}
+
+export const readings: Reading[] = [
+  {
+    label: 'npm downloads',
+    value: '18.4k',
+    window: '30 days',
+    delta: '+12%',
+    source: 'npm',
+  },
+  {
+    label: 'GitHub stars',
+    value: '214',
+    window: 'all time',
+    delta: '+9',
+    source: 'GitHub',
+  },
+  {
+    label: 'Commits',
+    value: '342',
+    window: '30 days',
+    delta: '+48',
+    source: 'GitHub',
+  },
+  {
+    label: 'Visitors',
+    value: '1,206',
+    window: '7 days',
+    delta: '−3%',
+    source: 'PostHog',
+  },
+]
+
+export const activity: number[] = [
+  6, 9, 4, 12, 15, 11, 8, 14, 19, 22, 17, 9, 5, 13, 21, 26, 18, 24, 29, 23, 16,
+  20, 27, 31, 25, 28,
 ]

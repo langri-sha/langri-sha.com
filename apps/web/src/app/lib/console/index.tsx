@@ -6,6 +6,7 @@ import { colors, fonts } from '@/styles'
 import { Log } from './log'
 import { Modules } from './modules'
 import { Micro, micro } from './panel'
+import { Telemetry } from './telemetry'
 
 export const Console: React.FC = () => (
   <Root>
@@ -19,6 +20,7 @@ export const Console: React.FC = () => (
     <Main>
       <Log />
       <Modules />
+      <Telemetry />
     </Main>
   </Root>
 )
