@@ -9,6 +9,7 @@ import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
 import { dronePaused, droneToggled } from './analytics/drone'
+import { Colophon } from './colophon'
 import { Header } from './header'
 
 export interface LandingProps {
@@ -43,6 +44,15 @@ export const Landing: React.FC<LandingProps> = ({ children, wordmark }) => {
     return () => window.removeEventListener('pagehide', onPageHide)
   }, [playing])
 
+  const toggle = () => {
+    if (!playing) {
+      playCountRef.current += 1
+    }
+
+    capture(...droneToggled(playing, playbackRef.current, playCountRef.current))
+    setPlaying(!playing)
+  }
+
   return (
     <React.Fragment>
       <Global styles={[global, backdrop]} />
@@ -50,24 +60,7 @@ export const Landing: React.FC<LandingProps> = ({ children, wordmark }) => {
         {/* The scene paints first so the header, which follows it in the
             flow, can blend against it without an isolating z-index. */}
         <Scene audioLevelRef={audioLevelRef} />
-        <Header
-          wordmark={wordmark}
-          playing={playing}
-          onToggle={() => {
-            if (!playing) {
-              playCountRef.current += 1
-            }
-
-            capture(
-              ...droneToggled(
-                playing,
-                playbackRef.current,
-                playCountRef.current,
-              ),
-            )
-            setPlaying(!playing)
-          }}
-        />
+        <Header wordmark={wordmark} playing={playing} onToggle={toggle} />
         {/* After the header: starting the scene ahead of it delays the
             wordmark, which is the largest contentful paint. */}
         <SceneScript />
@@ -76,6 +69,7 @@ export const Landing: React.FC<LandingProps> = ({ children, wordmark }) => {
         ) : null}
       </Root>
       {children}
+      <Colophon playing={playing} onToggle={toggle} />
     </React.Fragment>
   )
 }
