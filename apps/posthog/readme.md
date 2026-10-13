@@ -43,17 +43,13 @@ in the site's JavaScript.
 
 ## Project token
 
-The site reads its PostHog project token from the `posthog-project-token` secret
-in Secret Manager. To set or rotate it, add a version — the `phc_` project
-token, not a `phx_` personal API key — and run `terraform apply` in
-`terraform/web`:
+The token and the project ID are public, and no secret holds them.
+`terraform/web` sets them as the `POSTHOG_PROJECT_TOKEN` and
+`POSTHOG_PROJECT_ID` Actions variables from the `posthog_project.web` resource,
+and the site build and CI read the variables.
 
-```sh
-gcloud secrets versions add posthog-project-token --data-file=-
-```
-
-The `posthog-project-id` secret, which CI uses to link Dagger traces, works the
-same way. Write it without a trailing newline:
+The `posthog-project-id` secret serves `terraform/web` alone: its `import {}`
+reads it to find the project. Write it without a trailing newline:
 
 ```sh
 printf %s "$project_id" | gcloud secrets versions add posthog-project-id --data-file=-
