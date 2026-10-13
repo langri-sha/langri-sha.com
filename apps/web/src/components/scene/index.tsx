@@ -18,12 +18,16 @@ export const Scene: React.FC<SceneProps> = ({ audioLevelRef }) => {
 
   React.useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) {
+      return
+    }
 
     // `SceneScript` doesn't run when the page renders on the client.
     const scene =
       canvas.__scene ?? start(canvas, vertexShaderSource, fragmentShaderSource)
-    if (!scene) return
+    if (!scene) {
+      return
+    }
 
     scene.audioLevelRef = audioLevelRef
 

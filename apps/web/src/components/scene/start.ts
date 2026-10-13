@@ -16,7 +16,9 @@ export const start = (
   fragmentShaderSource: string,
 ): SceneHandle | undefined => {
   const gl = canvas.getContext('webgl2', { antialias: false, depth: false })
-  if (!gl) return
+  if (!gl) {
+    return
+  }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
   const handle: SceneHandle = { dispose: () => {} }

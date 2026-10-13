@@ -7,11 +7,12 @@ type Mock = ReturnType<typeof vi.fn>
 const methods = new Map<PropertyKey, Mock>()
 const gl = new Proxy({} as Record<string, Mock>, {
   get: (_, name) => {
-    if (!methods.has(name))
+    if (!methods.has(name)) {
       methods.set(
         name,
         vi.fn(() => ({})),
       )
+    }
     return methods.get(name)
   },
 })
