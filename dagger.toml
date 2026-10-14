@@ -10,6 +10,9 @@ ignore = [
 [modules.ci]
 source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"
 
+[modules.typescript]
+source = "github.com/langri-sha/dagger/typescript@typescript/v0.1.0"
+
 [modules.terraform]
 source = "github.com/langri-sha/dagger/terraform@terraform/v0.1.0"
 
