@@ -3,11 +3,9 @@
 Self-hosted, subsetted display fonts for `@langri-sha/web`.
 
 Each font in [`src/index.ts`](src/index.ts) is subsetted to only the glyphs it
-renders, re-encoded as woff2, and bundled into a self-contained `dist/`. This is
-the modern, self-hosted replacement for the Google Fonts `&text=` endpoint the
-app used to load at runtime via `webfontloader` — but with nothing to serve and
-no font request: the woff2 is inlined as a base64 data URI inside an
-`@font-face` rule.
+renders, re-encoded as woff2, and bundled into a self-contained `dist/`. The
+woff2 is inlined as a base64 data URI inside an `@font-face` rule, so there is
+nothing to serve and no font request.
 
 ## Consuming
 
