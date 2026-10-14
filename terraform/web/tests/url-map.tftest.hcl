@@ -94,15 +94,6 @@ override_module {
   }
 }
 
-override_resource {
-  target = posthog_project.web
-
-  values = {
-    api_token = "phc_test"
-    id        = 1
-  }
-}
-
 override_module {
   target = module.project["build"]
 
