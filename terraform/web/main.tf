@@ -210,20 +210,6 @@ locals {
   }
 
   secrets = {
-    "posthog" = {
-      project = module.project["edge"].project_id
-
-      secrets = [
-        "posthog-api-key",
-        "posthog-organization-id",
-        "posthog-user-id",
-      ]
-
-      secret_accessors = [
-        "serviceAccount:${data.terraform_remote_state.org.outputs.internal_service_account_email}",
-      ]
-    }
-
     "posthog-proxy" = {
       project = module.project["edge"].project_id
 
