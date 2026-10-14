@@ -9,17 +9,18 @@ terraform {
 }
 
 locals {
-  admin_members             = data.terraform_remote_state.org.outputs.admin_members
-  billing_account           = data.terraform_remote_state.org.outputs.billing_account
-  dns_managed_zone          = data.terraform_remote_state.org.outputs.dns_managed_zone
-  domain                    = data.terraform_remote_state.org.outputs.domain
-  location                  = data.terraform_remote_state.org.outputs.location
-  region                    = data.terraform_remote_state.org.outputs.region
-  org_id                    = data.terraform_remote_state.org.outputs.org_id
-  org_project_id            = data.terraform_remote_state.org.outputs.org_project_id
-  web_folder                = data.terraform_remote_state.org.outputs.web_folder
-  web_service_account_email = data.terraform_remote_state.org.outputs.web_service_account_email
-  zone                      = data.terraform_remote_state.org.outputs.zone
+  admin_members                 = data.terraform_remote_state.org.outputs.admin_members
+  billing_account               = data.terraform_remote_state.org.outputs.billing_account
+  dns_managed_zone              = data.terraform_remote_state.org.outputs.dns_managed_zone
+  domain                        = data.terraform_remote_state.org.outputs.domain
+  location                      = data.terraform_remote_state.org.outputs.location
+  region                        = data.terraform_remote_state.org.outputs.region
+  org_id                        = data.terraform_remote_state.org.outputs.org_id
+  org_project_id                = data.terraform_remote_state.org.outputs.org_project_id
+  secrets_service_account_email = data.terraform_remote_state.org.outputs.secrets_service_account_emails["web"]
+  web_folder                    = data.terraform_remote_state.org.outputs.web_folder
+  web_service_account_email     = data.terraform_remote_state.org.outputs.web_service_account_email
+  zone                          = data.terraform_remote_state.org.outputs.zone
 }
 
 locals {
@@ -313,7 +314,7 @@ data "terraform_remote_state" "org" {
 provider "github" {}
 
 provider "posthog" {
-  api_key         = try(module.secrets["posthog"].secret_data["posthog-api-key"], null)
+  api_key         = data.google_secret_manager_secret_version_access.posthog["posthog-api-key"].secret_data
   host            = local.posthog_host
   organization_id = local.posthog_organization_id
 }

@@ -13,6 +13,16 @@ mock_provider "google" {
   }
 }
 
+mock_provider "google" {
+  alias = "org_secrets"
+
+  mock_data "google_secret_manager_secret_version_access" {
+    defaults = {
+      secret_data = "00000000-0000-0000-0000-000000000000"
+    }
+  }
+}
+
 mock_provider "google-beta" {}
 
 mock_provider "posthog" {}
@@ -41,10 +51,19 @@ override_data {
       location                       = "EU"
       org_id                         = "000000000000"
       org_project_id                 = "org-0000"
-      region                         = "europe-west1"
-      web_folder                     = "folders/000000000000"
-      web_service_account_email      = "web@org-0000.iam.gserviceaccount.com"
-      zone                           = "europe-west1-b"
+      posthog_secrets = {
+        "posthog-api-key"         = "projects/org-0000/secrets/posthog-api-key"
+        "posthog-organization-id" = "projects/org-0000/secrets/posthog-organization-id"
+        "posthog-user-id"         = "projects/org-0000/secrets/posthog-user-id"
+      }
+      secrets_service_account_emails = {
+        internal = "secrets-internal@org-0000.iam.gserviceaccount.com"
+        web      = "secrets-web@org-0000.iam.gserviceaccount.com"
+      }
+      region                    = "europe-west1"
+      web_folder                = "folders/000000000000"
+      web_service_account_email = "web@org-0000.iam.gserviceaccount.com"
+      zone                      = "europe-west1-b"
     }
   }
 }
