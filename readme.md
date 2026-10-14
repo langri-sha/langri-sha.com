@@ -29,3 +29,8 @@ dagger generate   # update generated and lock files that are out of date
 Publishing a GitHub release deploys the site. Every pull request and release
 also gets a preview at `preview.langri-sha.com/pull/<n>/` or
 `/release/<version>/` — see [`apps/preview`](apps/preview/readme.md).
+
+## Contributing
+
+Run `dagger check` before opening a pull request. See
+[CONTRIBUTING.md](https://github.com/langri-sha/github/blob/main/CONTRIBUTING.md).
