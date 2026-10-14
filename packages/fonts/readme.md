@@ -34,6 +34,3 @@ const heading = css`
 pnpm --filter @langri-sha/fonts generate-font   # re-subset, then commit files/
 pnpm --filter @langri-sha/fonts build           # rebuild dist/
 ```
-
-Currently `Cinzel Decorative` (400) subsetted to `Langri-Sha` — ~14 KB down to
-~1.4 KB.
