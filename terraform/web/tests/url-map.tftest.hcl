@@ -72,11 +72,7 @@ override_module {
   target = module.secrets["posthog"]
 
   outputs = {
-    secret_data = {
-      "posthog-api-key"         = "phx_test"
-      "posthog-organization-id" = "00000000-0000-0000-0000-000000000000"
-      "posthog-user-id"         = "1"
-    }
+    secret_data  = {}
     secret_names = {}
   }
 }
