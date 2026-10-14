@@ -210,18 +210,6 @@ locals {
   }
 
   secrets = {
-    "posthog-proxy" = {
-      project = module.project["edge"].project_id
-
-      secrets = [
-        "posthog-project-id",
-      ]
-
-      read_secret_version = var.posthog_project_id_version == "" ? {} : {
-        "posthog-project-id" = var.posthog_project_id_version
-      }
-    }
-
     "previews-router" = {
       project = module.project["edge"].project_id
 

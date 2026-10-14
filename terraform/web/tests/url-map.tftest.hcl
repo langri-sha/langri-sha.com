@@ -54,17 +54,6 @@ override_data {
 }
 
 override_module {
-  target = module.secrets["posthog-proxy"]
-
-  outputs = {
-    secret_data = {
-      "posthog-project-id" = "1"
-    }
-    secret_names = {}
-  }
-}
-
-override_module {
   target = module.project["build"]
 
   outputs = {

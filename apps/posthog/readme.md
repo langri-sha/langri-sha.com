@@ -49,14 +49,6 @@ The token and the project ID are public, and no secret holds them.
 workspace's `posthog_projects` output, and the site build and CI read the
 variables.
 
-The `posthog-project-id` secret no longer feeds anything: the org workspace owns
-the project. It stays for re-importing the project into `terraform/web` if the
-move is rolled back. Write it without a trailing newline:
-
-```sh
-printf %s "$project_id" | gcloud secrets versions add posthog-project-id --data-file=-
-```
-
 ## Development
 
 ```sh
