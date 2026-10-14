@@ -1,6 +1,8 @@
 locals {
   posthog_host            = "https://eu.posthog.com"
   posthog_organization_id = data.google_secret_manager_secret_version_access.posthog["posthog-organization-id"].secret_data
+  posthog_project_id      = data.terraform_remote_state.org.outputs.posthog_projects["web"].id
+  posthog_project_token   = data.terraform_remote_state.org.outputs.posthog_projects["web"].token
   posthog_secrets         = data.terraform_remote_state.org.outputs.posthog_secrets
 }
 

@@ -51,6 +51,12 @@ override_data {
       location                       = "EU"
       org_id                         = "000000000000"
       org_project_id                 = "org-0000"
+      posthog_projects = {
+        web = {
+          id    = "1"
+          token = "phc_test"
+        }
+      }
       posthog_secrets = {
         "posthog-api-key"         = "projects/org-0000/secrets/posthog-api-key"
         "posthog-organization-id" = "projects/org-0000/secrets/posthog-organization-id"
