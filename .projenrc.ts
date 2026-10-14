@@ -29,7 +29,7 @@ const project = new Project({
 
     deps: ['react-dom@19.3.0', 'react@19.3.0'],
     devDeps: [
-      '@langri-sha/eslint-config@^0.9.0',
+      '@langri-sha/eslint-config@^0.10.0',
       '@langri-sha/lint-staged@^0.9.1',
       '@langri-sha/prettier@^0.4.1',
       '@types/node@26.1.1',
