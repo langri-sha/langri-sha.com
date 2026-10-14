@@ -45,8 +45,9 @@ in the site's JavaScript.
 
 The token and the project ID are public, and no secret holds them.
 `terraform/web` sets them as the `POSTHOG_PROJECT_TOKEN` and
-`POSTHOG_PROJECT_ID` Actions variables from the `posthog_project.web` resource,
-and the site build and CI read the variables.
+`POSTHOG_PROJECT_ID` Actions variables from the `web` entry of the org
+workspace's `posthog_projects` output, and the site build and CI read the
+variables.
 
 The `posthog-project-id` secret serves `terraform/web` alone: its `import {}`
 reads it to find the project. Write it without a trailing newline:
