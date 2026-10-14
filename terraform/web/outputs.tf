@@ -1,8 +1,3 @@
-output "edge_project_id" {
-  description = "ID of the project holding the PostHog secrets."
-  value       = module.project["edge"].project_id
-}
-
 output "posthog_project_id" {
   description = "ID of the PostHog project."
   value       = local.posthog_project_id
