@@ -19,6 +19,10 @@ const config: NextConfig = {
         loaders: ['@langri-sha/glsl-loader'],
         as: '*.js',
       },
+      'normalize.css': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
       '*.{worklet,svg}': {
         loaders: ['raw-loader'],
         as: '*.js',
