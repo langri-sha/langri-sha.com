@@ -26,17 +26,10 @@ data "google_secret_manager_secret_version_access" "posthog" {
   provider = google.org_secrets
 }
 
-import {
-  to = posthog_project.web
-  id = nonsensitive("${local.posthog_organization_id}/${module.secrets["posthog-proxy"].secret_data["posthog-project-id"]}")
-}
-
-resource "posthog_project" "web" {
-  name            = "langri-sha.com"
-  organization_id = local.posthog_organization_id
-  timezone        = "UTC"
+removed {
+  from = posthog_project.web
 
   lifecycle {
-    prevent_destroy = true
+    destroy = false
   }
 }
