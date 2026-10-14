@@ -54,15 +54,6 @@ override_data {
 }
 
 override_module {
-  target = module.secrets["posthog"]
-
-  outputs = {
-    secret_data  = {}
-    secret_names = {}
-  }
-}
-
-override_module {
   target = module.secrets["posthog-proxy"]
 
   outputs = {
