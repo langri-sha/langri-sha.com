@@ -8,6 +8,15 @@ const config: NextConfig = {
   reactStrictMode: true,
 
   compiler: { emotion: true },
+
+  turbopack: {
+    rules: {
+      'normalize.css': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+    },
+  },
 }
 
 export default config
