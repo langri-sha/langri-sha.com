@@ -74,5 +74,5 @@ default credentials and a `GITHUB_TOKEN` for the github provider; the
 `terraform-web` service in `docker-compose.yml` mounts the first two and passes
 the token through.
 
-`terraform/web` reads outputs of the `org` workspace in
-`langri-sha/langri-sha.com-org`: apply a change to those outputs there first.
+`terraform/web` reads outputs of the `org` HCP Terraform workspace: apply a
+change to those outputs there first.
