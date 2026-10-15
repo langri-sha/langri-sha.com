@@ -30,9 +30,10 @@ Next.js configs are edited by hand, as are the readmes.
 `terraform/web/.terraform.lock.hcl`.
 
 Repository settings, branch protection and the mal-the-kron App's Actions
-secrets are managed by `langri-sha/github-repos`. The Actions variables, the
-`preview` and `production` environments and the deploy service account are
-managed by `terraform/web`; change them there, never in the GitHub UI.
+secrets are managed by Terraform outside this repository; don't change them in
+the GitHub UI. The Actions variables, the `preview` and `production`
+environments and the deploy service account are managed by `terraform/web`;
+change them there, never in the GitHub UI.
 
 ## Common tasks
 
