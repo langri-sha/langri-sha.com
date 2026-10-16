@@ -1,7 +1,6 @@
 # langri-sha.com
 
-The site at [langri-sha.com](https://langri-sha.com), and the Terraform that
-runs it on Google Cloud.
+The site at [langri-sha.com](https://langri-sha.com).
 
 | Path                   | What                                                   |
 | ---------------------- | ------------------------------------------------------ |
@@ -13,7 +12,6 @@ runs it on Google Cloud.
 | `packages/glsl-loader` | Imports GLSL shaders as strings                        |
 | `packages/next`        | Next.js helpers shared between apps                    |
 | `packages/voice`       | The throat-sung voice, as a Web Audio graph            |
-| `terraform/`           | Google Cloud projects, services, buckets and DNS       |
 
 ## Development
 
