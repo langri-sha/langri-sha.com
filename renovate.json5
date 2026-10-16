@@ -43,13 +43,6 @@
       groupSlug: 'dagger-engine',
       matchDepNames: ['dagger/dagger'],
     },
-    {
-      description: 'Google Terraform Providers',
-      groupName: 'Google Providers',
-      groupSlug: 'terraform-google',
-      matchDatasources: ['terraform-provider'],
-      matchPackageNames: ['hashicorp/google*'],
-    },
   ],
   customManagers: [
     {
