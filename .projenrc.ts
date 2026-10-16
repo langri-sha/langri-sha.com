@@ -72,15 +72,6 @@ const project = new Project({
   },
   renovate: {
     extends: ['github>langri-sha/renovate-config'],
-    packageRules: [
-      {
-        description: 'Google Terraform Providers',
-        groupName: 'Google Providers',
-        groupSlug: 'terraform-google',
-        matchDatasources: ['terraform-provider'],
-        matchPackageNames: ['hashicorp/google*'],
-      },
-    ],
     customManagers: [
       {
         // Keep the React version pinned in the shared ESLint flat config
@@ -104,7 +95,6 @@ const project = new Project({
       references: [{ path: './apps/voice-editor' }, { path: './apps/web' }],
     },
   },
-  withTerraform: true,
   worktrunk: {},
 })
 

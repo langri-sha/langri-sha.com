@@ -10,11 +10,6 @@
 !.npmignore
 !.openssl
 !.prettierignore
-!.terraform.lock.hcl
-*.tfstate
-*.tfstate.*
-*.tfvars
-*.auto.tfvars
 *.db
 *.log
 *.tsbuildinfo
