@@ -5,9 +5,9 @@ import * as React from 'react'
 import { colors, media, motion } from '@/styles'
 
 export const dimensions = {
-  size: 'clamp(4.4rem, 14vw, 10rem)',
-  gap: 'clamp(1.2rem, 3vw, 3.6rem)',
-  step: 'clamp(0.6rem, 1.2vw, 1.4rem)',
+  size: 'var(--instrument-size, clamp(4.4rem, 14vw, 10rem))',
+  gap: 'var(--instrument-gap, clamp(1.2rem, 3vw, 3.6rem))',
+  step: 'var(--instrument-step, clamp(0.6rem, 1.2vw, 1.4rem))',
 } as const
 
 export const gradients = {

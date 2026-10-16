@@ -11,8 +11,10 @@ const icon = css`
   fill: currentColor;
 `
 
-export const Docker: React.FC<{ className?: string }> = styled(
-  (props: PropsOf<typeof Docker>) => (
+const DockerIcon: React.FC<{ className?: string }> = (props) => {
+  const cutout = React.useId()
+
+  return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={52}
@@ -22,7 +24,7 @@ export const Docker: React.FC<{ className?: string }> = styled(
       {...props}
     >
       <defs>
-        <mask id="cutout">
+        <mask id={cutout}>
           <rect width="100%" height="100%" fill="#fff" />
           <path
             fill="#000"
@@ -35,10 +37,12 @@ export const Docker: React.FC<{ className?: string }> = styled(
         </mask>
       </defs>
 
-      <circle cx={16} cy={16} r={14} mask="url(#cutout)" />
+      <circle cx={16} cy={16} r={14} mask={`url(#${cutout})`} />
     </svg>
-  ),
-)`
+  )
+}
+
+export const Docker: React.FC<{ className?: string }> = styled(DockerIcon)`
   ${icon};
   transform: scale(1.15);
 `

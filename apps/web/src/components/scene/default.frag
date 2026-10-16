@@ -9,6 +9,8 @@ precision highp float;
 uniform vec2 u_resolution;
 uniform float u_time;
 uniform float u_audioLevel;
+// Page scroll in viewport heights.
+uniform float u_scroll;
 
 out vec4 fragColor;
 
@@ -89,8 +91,9 @@ vec3 accretion(vec2 p) {
   float bandB = exp(-62.0 * pow(r - (0.62 + 0.035 * sin(spiral * 3.0 + 1.4)), 2.0));
   float sweep = smoothstep(-0.95, 0.7, sin(a - 0.45));
   float cut = smoothstep(1.20, 0.20, r);
-  vec3 hot = vec3(1.15, 0.18, 0.045) * bandA;
-  vec3 electric = vec3(0.06, 0.42, 1.28) * bandB;
+  float depth = smoothstep(0.0, 1.0, u_scroll);
+  vec3 hot = vec3(1.15, 0.18, 0.045) * bandA * (1.0 + 0.6 * depth);
+  vec3 electric = vec3(0.06, 0.42, 1.28) * bandB * (1.0 - 0.35 * depth);
   return (hot + electric) * cut * (0.18 + 0.82 * sweep);
 }
 
@@ -105,14 +108,17 @@ vec3 background(vec2 p) {
   sky += vec3(0.015, 0.075, 0.21) * blueVeil * (0.25 + 0.75 * exp(-p.x * p.x));
   sky += vec3(0.11, 0.009, 0.045) * redVeil * 0.45;
 
-  float starfield = stars(p + vec2(u_time * 0.002, 0.0), 21.0) +
-                    stars(p * 1.7 - vec2(u_time * 0.001, 0.0), 34.0) * 0.65;
+  float starfield = stars(p + vec2(u_time * 0.002, -0.05 * u_scroll), 21.0) +
+                    stars(p * 1.7 - vec2(u_time * 0.001, 0.14 * u_scroll), 34.0) * 0.65;
   return sky + vec3(0.52, 0.70, 1.0) * starfield;
 }
 
 void main() {
   vec2 p = (2.0 * gl_FragCoord.xy - u_resolution.xy) / u_resolution.y;
   p.y -= 0.04;
+
+  float depth = smoothstep(0.0, 1.0, u_scroll);
+  p = (p - vec2(0.0, 0.55 * depth)) * (1.0 + 0.8 * depth);
 
   // Audio only agitates the seam itself (in seam()), leaving the surrounding
   // accretion aura absolutely still and making each pulse feel contained.
@@ -157,5 +163,6 @@ void main() {
   // to flat white, then a light gamma lift preserves the deep-space blacks.
   col = col / (1.0 + col);
   col = pow(col, vec3(0.82));
+  col *= 1.0 - 0.45 * depth;
   fragColor = vec4(col, 1.0);
 }

@@ -53,9 +53,9 @@ export const SceneScript: React.FC = () => (
 const bootstrap = `(${start.toString()})(document.getElementById(${JSON.stringify(id)}),${JSON.stringify(vertexShaderSource)},${JSON.stringify(fragmentShaderSource)})`
 
 const Canvas = styled.canvas`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `

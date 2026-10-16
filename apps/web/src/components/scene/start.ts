@@ -24,6 +24,7 @@ export const start = (
   const handle: SceneHandle = { dispose: () => {} }
 
   let frame = 0
+  let beneath = false
   let release: (() => void) | null = null
 
   const compile = (type: number, source: string) => {
@@ -83,9 +84,13 @@ export const start = (
     const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
     const timeLocation = gl.getUniformLocation(program, 'u_time')
     const audioLevelLocation = gl.getUniformLocation(program, 'u_audioLevel')
+    const scrollLocation = gl.getUniformLocation(program, 'u_scroll')
 
     const render = (now: DOMHighResTimeStamp) => {
-      const scale = Math.min(window.devicePixelRatio, 2)
+      const scroll = window.scrollY / window.innerHeight
+      beneath = beneath ? scroll > 1 : scroll > 1.25
+
+      const scale = Math.min(window.devicePixelRatio, 2) * (beneath ? 0.5 : 1)
       const width = Math.floor(canvas.clientWidth * scale)
       const height = Math.floor(canvas.clientHeight * scale)
 
@@ -98,6 +103,7 @@ export const start = (
       gl.uniform2f(resolutionLocation, width, height)
       gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000)
       gl.uniform1f(audioLevelLocation, handle.audioLevelRef?.current ?? 0)
+      gl.uniform1f(scrollLocation, reducedMotion.matches ? 0 : scroll)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
 
       frame = requestAnimationFrame(render)
