@@ -8,10 +8,10 @@ ignore = [
 ]
 
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"
+source = "github.com/langri-sha/dagger/ci@v1.2.0"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@typescript/v0.1.0"
+source = "github.com/langri-sha/dagger/typescript@v1.2.0"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"
