@@ -9,6 +9,9 @@ on:
     types:
       - released
 
+env:
+  dagger-version: v1.0.0-beta.17
+
 jobs:
   build:
     name: Build
@@ -22,11 +25,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.28.0
+      - name: Set up Dagger
+        uses: dagger/dagger-for-github@v8.4.1
+        with:
+          version: ${{ env.dagger-version }}
 
       - name: Build
-        run: pnpm build
+        run: >-
+          dagger call web
+          --environment "ASSETS_URL=$ASSETS_URL"
+          --environment "NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=$NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN"
+          build export --path apps/web/dist
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
           NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
@@ -116,8 +125,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.28.0
+      - name: Set up Dagger
+        uses: dagger/dagger-for-github@v8.4.1
+        with:
+          version: ${{ env.dagger-version }}
 
       - name: Setup Google Cloud Platform
         uses: langri-sha/github/actions/google-cloud-platform@v0.28.0
@@ -141,7 +152,12 @@ jobs:
           TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: Build
-        run: pnpm build
+        run: >-
+          dagger call web
+          --environment "ASSETS_URL=$ASSETS_URL"
+          --environment "BASE_PATH=$BASE_PATH"
+          --environment "NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=$NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN"
+          build export --path apps/web/dist
         env:
           ASSETS_URL: ${{ vars.ASSETS_URL }}
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
