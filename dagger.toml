@@ -53,3 +53,6 @@ outDir = "dist"
 
 [modules.voice-editor.check]
 skip = ["builds"]
+
+[modules.actionlint]
+source = "github.com/langri-sha/dagger/actionlint@v1.2.0"
