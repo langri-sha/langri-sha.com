@@ -44,10 +44,10 @@ jobs:
         id: selector
         run: |
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            echo "base-path=/pull/$PR_NUMBER/voice-editor" >> $GITHUB_OUTPUT
-            echo "traffic-tag=pull-$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "base-path=/pull/$PR_NUMBER/voice-editor" >> "$GITHUB_OUTPUT"
+            echo "traffic-tag=pull-$PR_NUMBER" >> "$GITHUB_OUTPUT"
           else
-            echo "base-path=/voice-editor" >> $GITHUB_OUTPUT
+            echo "base-path=/voice-editor" >> "$GITHUB_OUTPUT"
           fi
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}

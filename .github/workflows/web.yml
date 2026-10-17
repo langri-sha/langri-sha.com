@@ -141,11 +141,11 @@ jobs:
         id: selector
         run: |
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            echo "base-path=/pull/$PR_NUMBER" >> $GITHUB_OUTPUT
-            echo "traffic-tag=pull-$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "base-path=/pull/$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            echo "traffic-tag=pull-$PR_NUMBER" >> "$GITHUB_OUTPUT"
           elif [ "$GITHUB_EVENT_NAME" = "release" ]; then
-            echo "base-path=/release/$TAG_NAME" >> $GITHUB_OUTPUT
-            echo "traffic-tag=release-${TAG_NAME//./-}" >> $GITHUB_OUTPUT
+            echo "base-path=/release/$TAG_NAME" >> "$GITHUB_OUTPUT"
+            echo "traffic-tag=release-${TAG_NAME//./-}" >> "$GITHUB_OUTPUT"
           fi
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
