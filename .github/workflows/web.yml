@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.26.0
+        uses: langri-sha/github/actions/pnpm@v0.27.0
 
       - name: Build
         run: pnpm build
@@ -59,7 +59,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Google Cloud Platform
-        uses: langri-sha/github/actions/google-cloud-platform@v0.26.0
+        uses: langri-sha/github/actions/google-cloud-platform@v0.27.0
         with:
           service_account: ${{ vars.SERVICE_ACCOUNT }}
           setup_gcloud: true
@@ -117,10 +117,10 @@ jobs:
           persist-credentials: false
 
       - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.26.0
+        uses: langri-sha/github/actions/pnpm@v0.27.0
 
       - name: Setup Google Cloud Platform
-        uses: langri-sha/github/actions/google-cloud-platform@v0.26.0
+        uses: langri-sha/github/actions/google-cloud-platform@v0.27.0
         with:
           service_account: ${{ vars.SERVICE_ACCOUNT }}
           setup_gcloud: true
