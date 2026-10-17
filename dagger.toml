@@ -33,3 +33,23 @@ source = "dagger.io/js/vitest"
 [modules.vitest.settings]
 packageManager = "pnpm"
 baseImageAddress = "node:24-slim"
+
+[modules.web]
+source = "github.com/langri-sha/dagger/next@v1.2.0"
+
+[modules.web.settings]
+app = "apps/web"
+outDir = "dist"
+
+[modules.web.check]
+skip = ["builds"]
+
+[modules.voice-editor]
+source = "github.com/langri-sha/dagger/next@v1.2.0"
+
+[modules.voice-editor.settings]
+app = "apps/voice-editor"
+outDir = "dist"
+
+[modules.voice-editor.check]
+skip = ["builds"]
