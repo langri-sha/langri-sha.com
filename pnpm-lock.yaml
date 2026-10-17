@@ -289,8 +289,8 @@ importers:
         specifier: 8.0.1
         version: 8.0.1
       posthog-js:
-        specifier: 1.438.9
-        version: 1.438.9(@types/react@19.3.0)(react@19.3.0)
+        specifier: 1.438.10
+        version: 1.438.10(@types/react@19.3.0)(react@19.3.0)
       react:
         specifier: ^19.0.0
         version: 19.3.0
@@ -1837,8 +1837,8 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@posthog/browser-common@0.9.4':
-    resolution: {integrity: sha512-QlG0WZFG9iTp9cmXTypB4cgnxBAD3GImrj9AwmA84uh8uy5vIVgVLjoTTdOAW29XL+kh/eLn/5ZtBQt2JQfR+w==}
+  '@posthog/browser-common@0.9.5':
+    resolution: {integrity: sha512-oXnBgZvM8UQ84IcBLfGP0WSGd9rA0PCGR37H8Pw0NszJRwxwbJnFXIUih0pvI/ze2eGmzkIEC9i3SwC+bMAgjQ==}
 
   '@posthog/core@1.59.1':
     resolution: {integrity: sha512-P39YgzQVDh6oz6wAzQXEnoHgTYpM7gifonmVKq1scAJco79h31XmmNVurRq9tTmmyIrr1uX8FHT0riCsyfV9AQ==}
@@ -3634,8 +3634,8 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.438.9:
-    resolution: {integrity: sha512-/KTZQF3sPlQbgLAlSncxv3z8dz4yex+JmIbCmGKIYkIVupdqESiqXx3SadPkWKgqgHtnQGbPSqRVe4vgpXnrGw==}
+  posthog-js@1.438.10:
+    resolution: {integrity: sha512-ShXOXaZ7gtqDAMvvJjWS7Wq+Sh62pedp+6gzeyVKKKCBEmd0tmh0LSYRVj8X7WzFB7QMNdl+FlhrKyZ2XvUBUg==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5875,7 +5875,7 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@posthog/browser-common@0.9.4':
+  '@posthog/browser-common@0.9.5':
     dependencies:
       '@posthog/core': 1.59.1
       '@posthog/types': 1.416.0
@@ -7719,9 +7719,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.438.9(@types/react@19.3.0)(react@19.3.0):
+  posthog-js@1.438.10(@types/react@19.3.0)(react@19.3.0):
     dependencies:
-      '@posthog/browser-common': 0.9.4
+      '@posthog/browser-common': 0.9.5
       '@posthog/core': 1.59.1
       '@posthog/types': 1.416.0
       core-js: 3.50.0
