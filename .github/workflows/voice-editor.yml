@@ -7,12 +7,19 @@ on:
     paths:
       - '.github/workflows/voice-editor.yml'
       - 'apps/voice-editor/**'
+      - 'dagger.lock'
+      - 'dagger.toml'
       - 'packages/**'
   pull_request:
     paths:
       - '.github/workflows/voice-editor.yml'
       - 'apps/voice-editor/**'
+      - 'dagger.lock'
+      - 'dagger.toml'
       - 'packages/**'
+
+env:
+  dagger-version: v1.0.0-beta.17
 
 jobs:
   build:
@@ -28,8 +35,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup PNPM
-        uses: langri-sha/github/actions/pnpm@v0.28.0
+      - name: Set up Dagger
+        uses: dagger/dagger-for-github@v8.4.1
+        with:
+          version: ${{ env.dagger-version }}
 
       - name: Configure environment
         id: selector
@@ -44,7 +53,10 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Build
-        run: pnpm run --filter @langri-sha/voice-editor build
+        run: >-
+          dagger call voice-editor
+          --environment "BASE_PATH=$BASE_PATH"
+          build export --path apps/voice-editor/dist
         env:
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
 
