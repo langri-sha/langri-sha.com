@@ -1,0 +1,73 @@
+{
+  "port": 8080,
+  "environment": [
+    "PREVIEWS_SERVICE_HOST=previews.invalid",
+    "VOICE_EDITOR_SERVICE_HOST=voice-editor.invalid"
+  ],
+  "scenarios": [
+    {
+      "name": "routing",
+      "resolver": "RESOLVER",
+      "requests": [
+        {
+          "path": "/pull/1234/foobar",
+          "status": 502
+        },
+        {
+          "path": "/pull/1234",
+          "status": 308
+        },
+        {
+          "path": "/release/v2.13.0/foobar",
+          "status": 502
+        },
+        {
+          "path": "/voice-editor/foobar",
+          "status": 502
+        },
+        {
+          "path": "/voice-editor/",
+          "status": 502
+        },
+        {
+          "path": "/voice-editor",
+          "status": 308
+        },
+        {
+          "path": "/pull/1234/voice-editor/foobar",
+          "status": 502
+        },
+        {
+          "path": "/pull/1234/voice-editor/",
+          "status": 502
+        },
+        {
+          "path": "/pull/1234/voice-editor",
+          "status": 308
+        },
+        {
+          "path": "/",
+          "status": 502
+        },
+        {
+          "path": "/pull/abc/foobar",
+          "status": 404
+        },
+        {
+          "path": "/pull/0123/foobar",
+          "status": 404
+        },
+        {
+          "path": "/release/2.13.0/foobar",
+          "status": 404
+        }
+      ],
+      "logContains": [
+        " pull-1234---previews.invalid ",
+        " release-v2-13-0---previews.invalid ",
+        " voice-editor.invalid ",
+        " pull-1234---voice-editor.invalid "
+      ]
+    }
+  ]
+}
