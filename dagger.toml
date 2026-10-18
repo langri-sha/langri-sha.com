@@ -56,3 +56,13 @@ skip = ["builds"]
 
 [modules.actionlint]
 source = "github.com/langri-sha/dagger/actionlint@v1.3.0"
+
+[modules.preview-router-image]
+source = "github.com/langri-sha/dagger/nginx@v1.3.0"
+
+[modules.preview-router-image.settings]
+context = "apps/preview"
+spec = "apps/preview/nginx.json"
+
+[modules.preview-router-image.check]
+skip = ["config", "responses"]
