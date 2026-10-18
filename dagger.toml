@@ -66,3 +66,13 @@ spec = "apps/preview/nginx.json"
 
 [modules.preview-router-image.check]
 skip = ["config", "responses"]
+
+[modules.posthog-proxy-image]
+source = "github.com/langri-sha/dagger/nginx@v1.3.0"
+
+[modules.posthog-proxy-image.settings]
+context = "apps/posthog"
+spec = "apps/posthog/nginx.json"
+
+[modules.posthog-proxy-image.check]
+skip = ["config", "responses"]
