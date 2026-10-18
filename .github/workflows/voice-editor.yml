@@ -67,60 +67,15 @@ jobs:
           path: apps/voice-editor/dist
           if-no-files-found: error
 
-      - name: Build image
-        run: docker build --tag voice-editor-origin apps/voice-editor
-
       - name: Check configuration
-        run: docker run --rm voice-editor-origin nginx -t
+        run: test "$(dagger call voice-editor-image --content apps/voice-editor/dist config pass)" = true
 
       - name: Check responses
-        run: |
-          docker run --detach --name origin --publish 8080:8080 voice-editor-origin
-
-          for _ in $(seq 30); do
-            curl --silent --output /dev/null http://localhost:8080/ && break
-            sleep 1
-          done
-
-          expect() {
-            got=$(curl --silent --output /dev/null --write-out '%{http_code}' "http://localhost:8080$1")
-
-            if [ "$got" != "$2" ]; then
-              echo "::error::$1 answered $got, expected $2"
-              return 1
-            fi
-
-            echo "ok  $1 -> $got"
-          }
-
-          expect / 200
-          expect /no-such-page 404
-          expect /no-such-page/ 404
-
-          if ! curl --silent http://localhost:8080/no-such-page | grep --quiet 'could not be found'; then
-            echo "::error::the 404 answer is not the export's 404 page"
-            exit 1
-          fi
-
-          if ! curl --silent http://localhost:8080/ | grep --quiet "$BASE_PATH/_next/"; then
-            echo "::error::the export does not address its assets under $BASE_PATH/"
-            exit 1
-          fi
-
-          echo "ok  assets addressed under $BASE_PATH/"
-
-          header() {
-            if ! curl --silent --head "http://localhost:8080$1" | grep --ignore-case --quiet "^$2: *$3"; then
-              echo "::error::$1 does not answer with $2: $3"
-              return 1
-            fi
-
-            echo "ok  $1 -> $2: $3"
-          }
-
-          header / cache-control 'public, no-store'
-          header / x-robots-tag noindex
-          header /no-such-page x-robots-tag noindex
+        run: >-
+          test "$(dagger call voice-editor-image
+          --content apps/voice-editor/dist
+          --variables "BASE_PATH=$BASE_PATH"
+          responses pass)" = true
         env:
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
 
