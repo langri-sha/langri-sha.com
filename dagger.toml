@@ -76,3 +76,15 @@ spec = "apps/posthog/nginx.json"
 
 [modules.posthog-proxy-image.check]
 skip = ["config", "responses"]
+
+[modules.web-image]
+source = "github.com/langri-sha/dagger/nginx@v1.3.0"
+
+[modules.web-image.settings]
+context = "apps/web"
+spec = "apps/web/nginx.json"
+content = "dag://web/build"
+contentPath = "dist"
+
+[modules.web-image.check]
+skip = ["config", "responses"]
