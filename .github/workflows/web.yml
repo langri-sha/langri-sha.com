@@ -167,49 +167,10 @@ jobs:
         run: docker build --tag preview-origin apps/web
 
       - name: Check configuration
-        run: docker run --rm preview-origin nginx -t
+        run: test "$(dagger call web-image --content apps/web/dist config pass)" = true
 
       - name: Check responses
-        run: |
-          docker run --detach --name origin --publish 8080:8080 preview-origin
-
-          for _ in $(seq 30); do
-            curl --silent --output /dev/null http://localhost:8080/ && break
-            sleep 1
-          done
-
-          expect() {
-            got=$(curl --silent --output /dev/null --write-out '%{http_code}' "http://localhost:8080$1")
-
-            if [ "$got" != "$2" ]; then
-              echo "::error::$1 answered $got, expected $2"
-              return 1
-            fi
-
-            echo "ok  $1 -> $got"
-          }
-
-          expect / 200
-          expect /no-such-page 404
-          expect /no-such-page/ 404
-
-          if ! curl --silent http://localhost:8080/no-such-page | grep --quiet 'could not be found'; then
-            echo "::error::the 404 answer is not the export's 404 page"
-            exit 1
-          fi
-
-          header() {
-            if ! curl --silent --head "http://localhost:8080$1" | grep --ignore-case --quiet "^$2: *$3"; then
-              echo "::error::$1 does not answer with $2: $3"
-              return 1
-            fi
-
-            echo "ok  $1 -> $2: $3"
-          }
-
-          header / cache-control 'public, max-age=0, s-maxage=86400, must-revalidate'
-          header / x-robots-tag noindex
-          header /no-such-page x-robots-tag noindex
+        run: test "$(dagger call web-image --content apps/web/dist responses pass)" = true
 
       - name: Publish assets
         run: |
