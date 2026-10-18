@@ -1,0 +1,116 @@
+{
+  "port": 8080,
+  "scenarios": [
+    {
+      "name": "untrusted-upstream",
+      "environment": [
+        "POSTHOG_ASSETS_HOST=assets",
+        "POSTHOG_INGESTION_HOST=ingestion"
+      ],
+      "resolver": "RESOLVER",
+      "upstreams": [
+        {
+          "hostnames": ["assets", "ingestion"],
+          "tls": true,
+          "headers": [
+            "cache-control: public, max-age=14400",
+            "set-cookie: upstream=1"
+          ],
+          "body": "$request_method $request_uri host=$host cookie=$http_cookie\n"
+        }
+      ],
+      "requests": [
+        {
+          "path": "/psthg/static/array.js",
+          "status": 502
+        }
+      ]
+    },
+    {
+      "name": "routing",
+      "environment": [
+        "POSTHOG_ASSETS_HOST=assets",
+        "POSTHOG_INGESTION_HOST=ingestion"
+      ],
+      "resolver": "RESOLVER",
+      "upstreams": [
+        {
+          "hostnames": ["assets", "ingestion"],
+          "tls": true,
+          "trusted": true,
+          "headers": [
+            "cache-control: public, max-age=14400",
+            "set-cookie: upstream=1"
+          ],
+          "body": "$request_method $request_uri host=$host cookie=$http_cookie\n"
+        }
+      ],
+      "requests": [
+        {
+          "path": "/psthg",
+          "status": 308
+        },
+        {
+          "path": "/",
+          "status": 404
+        },
+        {
+          "path": "/psthg/../array/phc_test/config.js",
+          "status": 404
+        },
+        {
+          "path": "/psthg/static/recorder.js?v=1",
+          "headers": ["cookie: session=secret"],
+          "body": "GET /static/recorder.js?v=1 host=assets cookie=\n"
+        },
+        {
+          "path": "/psthg/array/phc_test/config.js",
+          "headers": ["cookie: session=secret"],
+          "body": "GET /array/phc_test/config.js host=assets cookie=\n"
+        },
+        {
+          "path": "/psthg/i/v0/e/?compression=gzip-js",
+          "headers": ["cookie: session=secret"],
+          "body": "GET /i/v0/e/?compression=gzip-js host=ingestion cookie=\n"
+        },
+        {
+          "path": "/psthg/flags/?v=2",
+          "headers": ["cookie: session=secret"],
+          "body": "GET /flags/?v=2 host=ingestion cookie=\n"
+        },
+        {
+          "method": "HEAD",
+          "path": "/psthg/static/array.js",
+          "responseHeaders": [
+            "cache-control: public, max-age=14400",
+            "vary: accept-encoding",
+            "x-content-type-options: nosniff"
+          ],
+          "absentHeaders": ["set-cookie"]
+        },
+        {
+          "method": "HEAD",
+          "path": "/psthg/i/v0/e/",
+          "responseHeaders": [
+            "cache-control: no-store",
+            "x-content-type-options: nosniff"
+          ],
+          "absentHeaders": ["set-cookie"]
+        }
+      ],
+      "logExcludes": ["compression=gzip-js"]
+    },
+    {
+      "name": "failing-upstream",
+      "environment": ["POSTHOG_INGESTION_HOST=nowhere.invalid"],
+      "resolver": "RESOLVER",
+      "requests": [
+        {
+          "path": "/psthg/i/v0/e/?data=not-in-any-log"
+        }
+      ],
+      "logContains": ["GET /psthg/i/v0/e/ 502"],
+      "logExcludes": ["not-in-any-log"]
+    }
+  ]
+}
