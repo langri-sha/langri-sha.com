@@ -167,10 +167,10 @@ jobs:
         run: docker build --tag preview-origin apps/web
 
       - name: Check configuration
-        run: test "$(dagger call web-image --content apps/web/dist config pass)" = true
+        run: dagger call web-image --content apps/web/dist verify-config
 
       - name: Check responses
-        run: test "$(dagger call web-image --content apps/web/dist responses pass)" = true
+        run: dagger call web-image --content apps/web/dist verify-responses
 
       - name: Publish assets
         run: |
