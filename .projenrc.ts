@@ -27,7 +27,7 @@ const project = new Project({
     repository: 'langri-sha/langri-sha.com',
     type: 'module',
 
-    deps: ['react-dom@19.3.0', 'react@19.3.0'],
+    deps: ['react-dom@19.3.1', 'react@19.3.1'],
     devDeps: [
       '@langri-sha/eslint-config@^0.10.0',
       '@langri-sha/lint-staged@^0.9.1',
