@@ -1,0 +1,29 @@
+{
+  "port": 8080,
+  "scenarios": [
+    {
+      "name": "responses",
+      "requests": [
+        {
+          "path": "/",
+          "status": 200,
+          "bodyContains": ["${BASE_PATH}/_next/"],
+          "responseHeaders": [
+            "cache-control: public, no-store",
+            "x-robots-tag: noindex"
+          ]
+        },
+        {
+          "path": "/no-such-page",
+          "status": 404,
+          "bodyContains": ["could not be found"],
+          "responseHeaders": ["x-robots-tag: noindex"]
+        },
+        {
+          "path": "/no-such-page/",
+          "status": 404
+        }
+      ]
+    }
+  ]
+}

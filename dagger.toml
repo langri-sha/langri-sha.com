@@ -88,3 +88,16 @@ contentPath = "dist"
 
 [modules.web-image.check]
 skip = ["config", "responses"]
+
+[modules.voice-editor-image]
+source = "github.com/langri-sha/dagger/nginx@v1.3.0"
+
+[modules.voice-editor-image.settings]
+context = "apps/voice-editor"
+spec = "apps/voice-editor/nginx.json"
+content = "dag://voice-editor/build"
+contentPath = "dist"
+variables = ["BASE_PATH="]
+
+[modules.voice-editor-image.check]
+skip = ["config", "responses"]
