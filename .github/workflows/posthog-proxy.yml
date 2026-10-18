@@ -36,10 +36,10 @@ jobs:
           version: ${{ env.dagger-version }}
 
       - name: Check configuration
-        run: test "$(dagger call posthog-proxy-image config pass)" = true
+        run: dagger call posthog-proxy-image verify-config
 
       - name: Check responses
-        run: test "$(dagger call posthog-proxy-image responses pass)" = true
+        run: dagger call posthog-proxy-image verify-responses
 
   publish:
     name: Publish
