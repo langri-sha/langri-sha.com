@@ -68,14 +68,14 @@ jobs:
           if-no-files-found: error
 
       - name: Check configuration
-        run: test "$(dagger call voice-editor-image --content apps/voice-editor/dist config pass)" = true
+        run: dagger call voice-editor-image --content apps/voice-editor/dist verify-config
 
       - name: Check responses
         run: >-
-          test "$(dagger call voice-editor-image
+          dagger call voice-editor-image
           --content apps/voice-editor/dist
           --variables "BASE_PATH=$BASE_PATH"
-          responses pass)" = true
+          verify-responses
         env:
           BASE_PATH: ${{ steps.selector.outputs.base-path }}
 
