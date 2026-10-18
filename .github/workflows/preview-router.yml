@@ -36,10 +36,10 @@ jobs:
           version: ${{ env.dagger-version }}
 
       - name: Check configuration
-        run: test "$(dagger call preview-router-image config pass)" = true
+        run: dagger call preview-router-image verify-config
 
       - name: Check routing
-        run: test "$(dagger call preview-router-image responses pass)" = true
+        run: dagger call preview-router-image verify-responses
 
   publish:
     name: Publish
