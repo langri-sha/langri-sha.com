@@ -35,7 +35,7 @@ packageManager = "pnpm"
 baseImageAddress = "node:24-slim"
 
 [modules.web]
-source = "github.com/langri-sha/dagger/next@v1.2.0"
+source = "github.com/langri-sha/dagger/next@v1.2.1"
 
 [modules.web.settings]
 app = "apps/web"
@@ -45,7 +45,7 @@ outDir = "dist"
 skip = ["builds"]
 
 [modules.voice-editor]
-source = "github.com/langri-sha/dagger/next@v1.2.0"
+source = "github.com/langri-sha/dagger/next@v1.2.1"
 
 [modules.voice-editor.settings]
 app = "apps/voice-editor"
