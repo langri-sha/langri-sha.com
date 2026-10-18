@@ -50,6 +50,10 @@ server {
     return 308 /voice-editor/$is_args$args;
   }
 
+  # The pull requests of the other apps, written from PREVIEW_APPS at startup.
+  # They come before the site's selector below, which would swallow them.
+  include /etc/nginx/preview-apps.conf;
+
   # /pull/<n>/… → the `pull-<n>` revision.
   location ~ "^/pull/([1-9][0-9]{0,6})/(.*)$" {
     set $service pull-$1---${PREVIEWS_SERVICE_HOST};
