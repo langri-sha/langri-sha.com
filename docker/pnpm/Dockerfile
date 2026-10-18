@@ -2,7 +2,7 @@
 
 ARG alpine_version
 
-FROM node:24.21-alpine3.24
+FROM node:24.22-alpine3.24
 
 ARG uid
 
