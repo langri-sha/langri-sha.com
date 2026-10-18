@@ -2,7 +2,8 @@
   "port": 8080,
   "environment": [
     "PREVIEWS_SERVICE_HOST=previews.invalid",
-    "VOICE_EDITOR_SERVICE_HOST=voice-editor.invalid"
+    "VOICE_EDITOR_SERVICE_HOST=voice-editor.invalid",
+    "PREVIEW_APPS=example-app=example-app.invalid,other-app=other-app.invalid"
   ],
   "scenarios": [
     {
@@ -50,6 +51,22 @@
           "status": 502
         },
         {
+          "path": "/pull/1234/example-app/foobar",
+          "status": 502
+        },
+        {
+          "path": "/pull/1234/example-app/",
+          "status": 502
+        },
+        {
+          "path": "/pull/1234/example-app",
+          "status": 308
+        },
+        {
+          "path": "/pull/1234/other-app/foobar",
+          "status": 502
+        },
+        {
           "path": "/pull/abc/foobar",
           "status": 404
         },
@@ -60,13 +77,19 @@
         {
           "path": "/release/2.13.0/foobar",
           "status": 404
+        },
+        {
+          "path": "/pull/0123/example-app/foobar",
+          "status": 404
         }
       ],
       "logContains": [
         " pull-1234---previews.invalid ",
         " release-v2-13-0---previews.invalid ",
         " voice-editor.invalid ",
-        " pull-1234---voice-editor.invalid "
+        " pull-1234---voice-editor.invalid ",
+        " pull-1234---example-app.invalid ",
+        " pull-1234---other-app.invalid "
       ]
     }
   ]
