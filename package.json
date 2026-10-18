@@ -49,7 +49,7 @@
     "projen": "0.104.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vitest": "5.0.4"
+    "vitest": "5.0.5"
   },
   "packageManager": "pnpm@12.13.0",
   "engines": {
