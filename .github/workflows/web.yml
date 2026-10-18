@@ -10,7 +10,7 @@ on:
       - released
 
 env:
-  dagger-version: v1.0.0-beta.17
+  dagger-version: v1.0.0-beta.18
 
 jobs:
   build:
