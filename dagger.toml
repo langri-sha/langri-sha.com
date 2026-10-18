@@ -55,4 +55,4 @@ outDir = "dist"
 skip = ["builds"]
 
 [modules.actionlint]
-source = "github.com/langri-sha/dagger/actionlint@v1.2.0"
+source = "github.com/langri-sha/dagger/actionlint@v1.2.1"
