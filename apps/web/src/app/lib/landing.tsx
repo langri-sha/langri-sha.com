@@ -100,6 +100,9 @@ const backdrop = css`
           ${colors.nightDeep} 100%
         )
         no-repeat;
+    /* Fills the canvas past the gradients: overscroll, and the sides a
+       notched display leaves in landscape. */
+    background-color: ${colors.nightCore};
   }
 `
 
