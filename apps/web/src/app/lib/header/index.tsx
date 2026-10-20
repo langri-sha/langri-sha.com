@@ -4,6 +4,7 @@ import * as React from 'react'
 import { motion } from '@/styles'
 
 import { capture } from '../analytics'
+import * as site from '../site'
 
 import { Docker, Github, Npm, Pause, Play, Stackoverflow } from './icons'
 import {
@@ -61,12 +62,30 @@ const profiles: ProfileProps[] = [
   },
 ]
 
+/*
+ * Tells search engines and LLMs that the profiles belong to one person.
+ *
+ * @see https://schema.org/Person
+ */
+const person = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Filip Dupanović',
+  alternateName: site.name,
+  url: site.url,
+  sameAs: profiles.map(({ href }) => href),
+})
+
 export const Header: React.FC<HeaderProps> = ({
   playing,
   onToggle,
   wordmark,
 }) => (
   <Root>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: person }}
+    />
     <Title>{wordmark}</Title>
     <Nav>
       <Gradients />
@@ -102,6 +121,7 @@ const Profile: React.FC<ProfileProps> = ({
 }) => (
   <Link
     href={href}
+    rel="me"
     title={title}
     onClick={() => capture('social_link_clicked', { platform: name })}
   >

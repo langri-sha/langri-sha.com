@@ -21,6 +21,12 @@
         {
           "path": "/no-such-page/",
           "status": 404
+        },
+        {
+          "path": "/llms.txt",
+          "status": 200,
+          "bodyContains": ["# Langri-Sha"],
+          "responseHeaders": ["content-type: text/plain"]
         }
       ]
     }
