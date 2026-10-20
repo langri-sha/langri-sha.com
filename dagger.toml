@@ -55,7 +55,7 @@ outDir = "dist"
 skip = ["builds"]
 
 [modules.actionlint]
-source = "github.com/langri-sha/dagger/actionlint@v1.4.0"
+source = "github.com/langri-sha/dagger/actionlint@v1.6.0"
 
 [modules.preview-router-image]
 source = "github.com/langri-sha/dagger/nginx@v1.4.0"
