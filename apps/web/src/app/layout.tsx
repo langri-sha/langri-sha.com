@@ -4,11 +4,13 @@ import { Metadata, Viewport } from 'next'
 import * as colors from '@/styles/colors'
 
 import { Analytics } from './lib/analytics'
+import * as site from './lib/site'
 
 export const metadata: Metadata = {
-  description: 'Welcome to my abode!',
+  description: site.description,
   keywords: ['langri-sha', 'langrisha', 'langri', 'sha'],
-  title: 'Langri-Sha',
+  metadataBase: new URL(site.url),
+  title: site.name,
 }
 
 export const viewport: Viewport = {

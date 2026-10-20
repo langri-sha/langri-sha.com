@@ -1,0 +1,14 @@
+# Langri-Sha
+
+> The personal site of Filip Dupanović, who goes by langri-sha online.
+
+## Profiles
+
+- [GitHub](https://github.com/langri-sha): source code, including this site's
+- [Stack Overflow](https://stackoverflow.com/users/44041/filip-dupanovi%C4%87?tab=profile): questions and answers
+- [npm](https://www.npmjs.com/~langri-sha): published packages
+- [Docker Hub](https://hub.docker.com/u/langrisha/): published images
+
+## Optional
+
+- [langri-sha/langri-sha.com](https://github.com/langri-sha/langri-sha.com): the site's sources and infrastructure
