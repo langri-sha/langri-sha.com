@@ -11,7 +11,7 @@ ignore = [
 source = "github.com/langri-sha/dagger/ci@v1.4.0"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v1.4.0"
+source = "github.com/langri-sha/dagger/typescript@v1.7.0"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"
