@@ -36,6 +36,6 @@ jobs:
 
     steps:
       - name: Link trace
-        uses: langri-sha/github/actions/posthog-trace-status@v0.30.0
+        uses: langri-sha/github/actions/posthog-trace-status@v0.31.0
         with:
           url: ${{ needs.check.outputs.posthog-trace-url }}
