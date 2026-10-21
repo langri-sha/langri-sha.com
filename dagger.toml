@@ -58,7 +58,7 @@ skip = ["builds"]
 source = "github.com/langri-sha/dagger/actionlint@v1.4.0"
 
 [modules.preview-router-image]
-source = "github.com/langri-sha/dagger/nginx@v1.4.0"
+source = "github.com/langri-sha/dagger/nginx@v1.7.0"
 
 [modules.preview-router-image.settings]
 context = "apps/preview"
@@ -68,7 +68,7 @@ spec = "apps/preview/nginx.json"
 skip = ["config", "responses"]
 
 [modules.posthog-proxy-image]
-source = "github.com/langri-sha/dagger/nginx@v1.4.0"
+source = "github.com/langri-sha/dagger/nginx@v1.7.0"
 
 [modules.posthog-proxy-image.settings]
 context = "apps/posthog"
@@ -78,7 +78,7 @@ spec = "apps/posthog/nginx.json"
 skip = ["config", "responses"]
 
 [modules.web-image]
-source = "github.com/langri-sha/dagger/nginx@v1.4.0"
+source = "github.com/langri-sha/dagger/nginx@v1.7.0"
 
 [modules.web-image.settings]
 context = "apps/web"
@@ -90,7 +90,7 @@ contentPath = "dist"
 skip = ["config", "responses"]
 
 [modules.voice-editor-image]
-source = "github.com/langri-sha/dagger/nginx@v1.4.0"
+source = "github.com/langri-sha/dagger/nginx@v1.7.0"
 
 [modules.voice-editor-image.settings]
 context = "apps/voice-editor"
