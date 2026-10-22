@@ -28,6 +28,9 @@ node_modules/
 !/eslint.config.js
 !/prettier.config.js
 !/.prettierignore
+!/.claude
+/.claude/settings.local.json
+!/.claude/settings.json
 !/CODEOWNERS
 !/.editorconfig
 !/license
