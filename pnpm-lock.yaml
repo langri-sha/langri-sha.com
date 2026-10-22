@@ -183,8 +183,8 @@ importers:
         specifier: ^0.4.1
         version: 0.4.11(prettier@3.9.9)
       '@langri-sha/projen-project':
-        specifier: 0.40.1
-        version: 0.40.1(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.13.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
+        specifier: 0.41.0
+        version: 0.41.0(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.13.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
       '@langri-sha/tsconfig':
         specifier: ^1.0.0
         version: 1.1.1(typescript@5.9.3)
@@ -1528,8 +1528,8 @@ packages:
     peerDependencies:
       prettier: ^3.0.0
 
-  '@langri-sha/projen-project@0.40.1':
-    resolution: {integrity: sha512-fhGtentBq+phoTCXT7NtJ13zuurguEN1Q7AdL0MyD9vsxza94dFf+2QCcHPWa6yG99bMCCUGVrybm7rC/RQMyA==}
+  '@langri-sha/projen-project@0.41.0':
+    resolution: {integrity: sha512-K0O5yJE3bEyM1LQi6U8n8ACe8J80qyrv05OplT7DvAsx1aWOR3Xyegxzg9waQ0ewYaG31WN7rPkaeEtY/bBGZQ==}
     peerDependencies:
       '@babel/core': ^8.0.0
       '@swc-node/register': ^1.0.0
@@ -3726,6 +3726,11 @@ packages:
     peerDependencies:
       projen: '>=0.86.0 <1.0.0'
 
+  projen-claude@0.1.0:
+    resolution: {integrity: sha512-8pA5NQIA6zpP5KW9eMTqKcm8CYvasZ84PDFxtHIjJFbzMGYOonEAXiiP0fTDjw3sEDIq2ZzyyZXmlLgu1CkyOA==}
+    peerDependencies:
+      projen: '>=0.86.0 <1.0.0'
+
   projen-codeowners@0.5.16:
     resolution: {integrity: sha512-hvcl82LKCCypT8GF3slws+dWQWBL2Mdu0u2afvKADfEA2bd+lEgNUoMuNwTLI+THyhkAMZUBZbkHvu8sZJxNDw==}
     peerDependencies:
@@ -5697,12 +5702,13 @@ snapshots:
       prettier: 3.9.9
       prettier-plugin-ini: 1.3.0
 
-  '@langri-sha/projen-project@0.40.1(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.13.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)':
+  '@langri-sha/projen-project@0.41.0(@babel/core@7.29.7(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.2(@swc/helpers@0.5.23))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3))(@swc/core@1.16.2(@swc/helpers@0.5.23))(eslint@10.13.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)':
     dependencies:
       projen: 0.104.1(constructs@10.8.1)
       projen-babel-config: 0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1))
       projen-beachball: 0.5.16(projen@0.104.1(constructs@10.8.1))
       projen-cargo: 0.2.3(projen@0.104.1(constructs@10.8.1))
+      projen-claude: 0.1.0(projen@0.104.1(constructs@10.8.1))
       projen-codeowners: 0.5.16(projen@0.104.1(constructs@10.8.1))
       projen-dagger: 0.3.6(projen@0.104.1(constructs@10.8.1))
       projen-editorconfig: 0.6.16(projen@0.104.1(constructs@10.8.1))
@@ -7867,6 +7873,10 @@ snapshots:
       projen: 0.104.1(constructs@10.8.1)
 
   projen-cargo@0.2.3(projen@0.104.1(constructs@10.8.1)):
+    dependencies:
+      projen: 0.104.1(constructs@10.8.1)
+
+  projen-claude@0.1.0(projen@0.104.1(constructs@10.8.1)):
     dependencies:
       projen: 0.104.1(constructs@10.8.1)
 
