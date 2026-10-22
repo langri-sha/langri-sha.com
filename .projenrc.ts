@@ -36,6 +36,11 @@ const project = new Project({
       'vitest@5.0.5',
     ],
   },
+  claude: {
+    settings: {
+      attribution: { commit: '', pr: '', sessionUrl: false },
+    },
+  },
   codeowners: {
     '*': '@langri-sha',
   },
