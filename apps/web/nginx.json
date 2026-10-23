@@ -13,6 +13,14 @@
           ]
         },
         {
+          "path": "/manifest.webmanifest",
+          "status": 200,
+          "responseHeaders": [
+            "content-type: application/manifest+json",
+            "x-robots-tag: noindex"
+          ]
+        },
+        {
           "path": "/no-such-page",
           "status": 404,
           "bodyContains": ["could not be found"],
