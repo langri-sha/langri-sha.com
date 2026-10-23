@@ -23,7 +23,7 @@
         {
           "path": "/no-such-page",
           "status": 404,
-          "bodyContains": ["could not be found"],
+          "bodyContains": ["Nothing dwells here"],
           "responseHeaders": ["x-robots-tag: noindex"]
         },
         {
