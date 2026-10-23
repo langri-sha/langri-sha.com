@@ -61,3 +61,37 @@ test('runs from its serialized source alone', () => {
   expect(cancelAnimationFrame).toHaveBeenCalledWith(1)
   expect(canvas.__scene).toBeUndefined()
 })
+
+test('stops drawing while the canvas is out of view and resumes on return', () => {
+  let intersect: IntersectionObserverCallback = () => {}
+  vi.stubGlobal(
+    'IntersectionObserver',
+    class {
+      constructor(callback: IntersectionObserverCallback) {
+        intersect = callback
+      }
+      observe() {}
+      disconnect() {}
+    },
+  )
+  const crossing = (isIntersecting: boolean) =>
+    intersect(
+      [{ isIntersecting } as IntersectionObserverEntry],
+      {} as IntersectionObserver,
+    )
+
+  const scene = start(canvas, '', '')
+  const [[render]] = vi.mocked(requestAnimationFrame).mock.calls
+
+  crossing(false)
+  render(16)
+
+  expect(gl.drawArrays).toHaveBeenCalledTimes(2)
+  expect(requestAnimationFrame).toHaveBeenCalledOnce()
+
+  crossing(true)
+
+  expect(requestAnimationFrame).toHaveBeenCalledTimes(2)
+
+  scene?.dispose()
+})
