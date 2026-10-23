@@ -9,13 +9,15 @@ import { colors, global } from '@/styles'
 
 import { capture } from './analytics'
 import { dronePaused, droneToggled } from './analytics/drone'
+import { Colophon } from './colophon'
 import { Header } from './header'
 
 export interface LandingProps {
+  children?: React.ReactNode
   wordmark: React.ReactNode
 }
 
-export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
+export const Landing: React.FC<LandingProps> = ({ children, wordmark }) => {
   const [playing, setPlaying] = React.useState(false)
   const audioLevelRef = React.useRef(0)
   const playbackRef = React.useRef<Playback | null>(null)
@@ -42,6 +44,15 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
     return () => window.removeEventListener('pagehide', onPageHide)
   }, [playing])
 
+  const toggle = () => {
+    if (!playing) {
+      playCountRef.current += 1
+    }
+
+    capture(...droneToggled(playing, playbackRef.current, playCountRef.current))
+    setPlaying(!playing)
+  }
+
   return (
     <React.Fragment>
       <Global styles={[global, backdrop]} />
@@ -49,24 +60,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
         {/* The scene paints first so the header, which follows it in the
             flow, can blend against it without an isolating z-index. */}
         <Scene audioLevelRef={audioLevelRef} />
-        <Header
-          wordmark={wordmark}
-          playing={playing}
-          onToggle={() => {
-            if (!playing) {
-              playCountRef.current += 1
-            }
-
-            capture(
-              ...droneToggled(
-                playing,
-                playbackRef.current,
-                playCountRef.current,
-              ),
-            )
-            setPlaying(!playing)
-          }}
-        />
+        <Header wordmark={wordmark} playing={playing} onToggle={toggle} />
         {/* After the header: starting the scene ahead of it delays the
             wordmark, which is the largest contentful paint. */}
         <SceneScript />
@@ -74,12 +68,23 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
           <Drone audioLevelRef={audioLevelRef} playbackRef={playbackRef} />
         ) : null}
       </Root>
+      {children}
+      <Colophon playing={playing} onToggle={toggle} />
     </React.Fragment>
   )
 }
 
 const backdrop = css`
   body {
+    background: ${colors.nightDeep};
+  }
+
+  body::before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     background:
       radial-gradient(
           ellipse 70% 28% at 50% 30%,
@@ -100,13 +105,15 @@ const backdrop = css`
           ${colors.nightDeep} 100%
         )
         no-repeat;
+    content: '';
+    pointer-events: none;
   }
 `
 
 const Root = styled.div`
   display: flex;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
