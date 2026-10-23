@@ -23,7 +23,7 @@ const project = new Project({
     ...pkg,
     copyrightYear: '2016',
     homepage: 'https://langri-sha.com',
-    minNodeVersion: '24.16.0',
+    minNodeVersion: '24.22.1',
     repository: 'langri-sha/langri-sha.com',
     type: 'module',
 
