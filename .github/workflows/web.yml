@@ -194,8 +194,24 @@ jobs:
 
       - name: Deploy
         run: |
+          retry() {
+            for delay in 10 20 40; do
+              if "$@" 2> "$RUNNER_TEMP/gcloud.log"; then
+                cat "$RUNNER_TEMP/gcloud.log" >&2
+                return
+              fi
+
+              cat "$RUNNER_TEMP/gcloud.log" >&2
+              grep -q 'ABORTED: Conflict' "$RUNNER_TEMP/gcloud.log" || return 1
+              echo "Another deploy updated the service, retrying in ${delay}s" >&2
+              sleep "$delay"
+            done
+
+            "$@"
+          }
+
           if [ -n "$TRAFFIC_TAG" ]; then
-            gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
+            retry gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
               --image "$IMAGE:$IMAGE_TAG" \
               --no-traffic \
               --project ${{ vars.EDGE_PROJECT_ID }} \
@@ -203,13 +219,13 @@ jobs:
               --region ${{ vars.PREVIEW_REGION }} \
               --tag "$TRAFFIC_TAG"
           else
-            gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
+            retry gcloud run deploy ${{ vars.PREVIEW_SERVICE }} \
               --image "$IMAGE:$IMAGE_TAG" \
               --project ${{ vars.EDGE_PROJECT_ID }} \
               --quiet \
               --region ${{ vars.PREVIEW_REGION }}
 
-            gcloud run services update-traffic ${{ vars.PREVIEW_SERVICE }} \
+            retry gcloud run services update-traffic ${{ vars.PREVIEW_SERVICE }} \
               --project ${{ vars.EDGE_PROJECT_ID }} \
               --quiet \
               --region ${{ vars.PREVIEW_REGION }} \
