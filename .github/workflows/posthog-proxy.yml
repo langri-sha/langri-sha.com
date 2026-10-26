@@ -17,7 +17,7 @@ on:
       - 'dagger.toml'
 
 env:
-  dagger-version: v1.0.0-beta.20
+  dagger-version: v1.0.0-beta.21
 
 jobs:
   build:
