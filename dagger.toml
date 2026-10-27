@@ -8,16 +8,16 @@ ignore = [
 ]
 
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@v1.9.0"
+source = "github.com/langri-sha/dagger/ci@v1.9.1"
 
 [modules.ci.generate]
 skip = ["projen"]
 
 [modules.projen]
-source = "github.com/langri-sha/dagger/projen@v1.9.0"
+source = "github.com/langri-sha/dagger/projen@v1.9.1"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v1.9.0"
+source = "github.com/langri-sha/dagger/typescript@v1.9.1"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"
@@ -41,7 +41,7 @@ packageManager = "pnpm"
 baseImageAddress = "node:24-slim"
 
 [modules.web]
-source = "github.com/langri-sha/dagger/next@v1.9.0"
+source = "github.com/langri-sha/dagger/next@v1.9.1"
 
 [modules.web.settings]
 app = "apps/web"
@@ -51,7 +51,7 @@ outDir = "dist"
 skip = ["builds"]
 
 [modules.voice-editor]
-source = "github.com/langri-sha/dagger/next@v1.9.0"
+source = "github.com/langri-sha/dagger/next@v1.9.1"
 
 [modules.voice-editor.settings]
 app = "apps/voice-editor"
@@ -61,10 +61,10 @@ outDir = "dist"
 skip = ["builds"]
 
 [modules.actionlint]
-source = "github.com/langri-sha/dagger/actionlint@v1.9.0"
+source = "github.com/langri-sha/dagger/actionlint@v1.9.1"
 
 [modules.preview-router-image]
-source = "github.com/langri-sha/dagger/nginx@v1.9.0"
+source = "github.com/langri-sha/dagger/nginx@v1.9.1"
 
 [modules.preview-router-image.settings]
 context = "apps/preview"
@@ -74,7 +74,7 @@ spec = "apps/preview/nginx.json"
 skip = ["config", "responses"]
 
 [modules.posthog-proxy-image]
-source = "github.com/langri-sha/dagger/nginx@v1.9.0"
+source = "github.com/langri-sha/dagger/nginx@v1.9.1"
 
 [modules.posthog-proxy-image.settings]
 context = "apps/posthog"
@@ -84,7 +84,7 @@ spec = "apps/posthog/nginx.json"
 skip = ["config", "responses"]
 
 [modules.web-image]
-source = "github.com/langri-sha/dagger/nginx@v1.9.0"
+source = "github.com/langri-sha/dagger/nginx@v1.9.1"
 
 [modules.web-image.settings]
 context = "apps/web"
@@ -96,7 +96,7 @@ contentPath = "dist"
 skip = ["config", "responses"]
 
 [modules.voice-editor-image]
-source = "github.com/langri-sha/dagger/nginx@v1.9.0"
+source = "github.com/langri-sha/dagger/nginx@v1.9.1"
 
 [modules.voice-editor-image.settings]
 context = "apps/voice-editor"
