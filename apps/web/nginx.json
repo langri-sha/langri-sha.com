@@ -7,8 +7,10 @@
         {
           "path": "/",
           "status": 200,
+          "headers": ["accept-encoding: gzip"],
           "responseHeaders": [
             "cache-control: public, max-age=0, s-maxage=86400, must-revalidate",
+            "content-encoding: gzip",
             "x-robots-tag: noindex"
           ]
         },
