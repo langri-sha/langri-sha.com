@@ -5,6 +5,10 @@ server {
 
   error_page 404 /404.html;
 
+  gzip on;
+  gzip_vary on;
+  gzip_types text/css application/javascript application/json image/svg+xml;
+
   add_header Cache-Control "public, max-age=0, s-maxage=86400, must-revalidate" always;
   add_header Referrer-Policy no-referrer always;
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
