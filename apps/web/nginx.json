@@ -7,7 +7,7 @@
         {
           "path": "/",
           "status": 200,
-          "headers": ["accept-encoding: gzip"],
+          "headers": ["accept-encoding: gzip", "via: 1.1 google"],
           "responseHeaders": [
             "cache-control: public, max-age=0, s-maxage=86400, must-revalidate",
             "content-encoding: gzip",
