@@ -41,6 +41,10 @@ node_modules/
 !/license
 !/lint-staged.config.js
 !/pnpm-workspace.yaml
+/.agents/skills/create-commit/
+/.agents/skills/create-pr/
+/.claude/skills/create-commit
+/.claude/skills/create-pr
 !/.config
 !/.config/wt.toml
 !/renovate.json5
