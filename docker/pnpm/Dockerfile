@@ -4,6 +4,8 @@ ARG alpine_version
 
 FROM node:26.12.1-alpine3.24
 
+# renovate: datasource=npm depName=corepack
+ARG COREPACK_VERSION=0.36.0
 ARG uid
 
 RUN <<EOF
@@ -16,7 +18,8 @@ apk add --no-cache --update --upgrade \
 	python3 \
 	wget \
 
-npm install -g pnpm
+npm install --global corepack@${COREPACK_VERSION}
+corepack enable
 
 if [[ -z "$uid" ]] && [[ "$uid" != "0" ]]; then
 	rm -rf /home/node
