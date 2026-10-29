@@ -28,13 +28,7 @@ const project = new Project({
     type: 'module',
 
     deps: ['react-dom@19.3.1', 'react@19.3.1'],
-    devDeps: [
-      '@langri-sha/eslint-config@^0.10.0',
-      '@langri-sha/lint-staged@^0.9.1',
-      '@langri-sha/prettier@^0.4.1',
-      '@types/node@26.1.1',
-      'vitest@5.0.5',
-    ],
+    devDeps: ['@types/node@26.1.1', 'vitest@5.0.5'],
   },
   claude: {
     settings: {
