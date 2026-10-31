@@ -38,6 +38,7 @@
         'skills',
         'tsx',
         'typescript',
+        'vitest',
       ],
       enabled: false,
     },

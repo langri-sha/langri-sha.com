@@ -28,7 +28,7 @@ const project = new Project({
     type: 'module',
 
     deps: ['react-dom@19.3.1', 'react@19.3.1'],
-    devDeps: ['@types/node@26.1.1', 'vitest@5.0.5'],
+    devDeps: ['@types/node@26.1.1'],
   },
   claude: {
     settings: {
@@ -95,6 +95,7 @@ const project = new Project({
       references: [{ path: './apps/voice-editor' }, { path: './apps/web' }],
     },
   },
+  vitest: true,
   worktrunk: {},
   skills: {
     ignore: false,
