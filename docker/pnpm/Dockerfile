@@ -2,7 +2,7 @@
 
 ARG alpine_version
 
-FROM node:26.12.1-alpine3.24
+FROM node:26.13.0-alpine3.24
 
 # renovate: datasource=npm depName=corepack
 ARG COREPACK_VERSION=0.36.0
