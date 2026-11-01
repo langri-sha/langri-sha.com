@@ -104,7 +104,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Google Cloud Platform
-        uses: langri-sha/github/actions/google-cloud-platform@v0.34.0
+        uses: langri-sha/github/actions/google-cloud-platform@v0.35.0
         with:
           service_account: ${{ vars.SERVICE_ACCOUNT }}
           setup_gcloud: true
