@@ -4,7 +4,8 @@
   "extends": "@langri-sha/tsconfig/project",
   "compilerOptions": {
     "lib": ["DOM", "ESNext"],
-    "outDir": ".tsbuild"
+    "outDir": ".tsbuild",
+    "types": ["node"]
   },
   "include": ["src"]
 }

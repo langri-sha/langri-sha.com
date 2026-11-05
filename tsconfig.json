@@ -27,5 +27,8 @@
     "eslint.config.js",
     "lint-staged.config.js",
     "prettier.config.js"
-  ]
+  ],
+  "compilerOptions": {
+    "types": ["node"]
+  }
 }
