@@ -16,12 +16,6 @@
     ],
     "jsx": "preserve"
   },
-  "ts-node": {
-    "extends": "@langri-sha/tsconfig/project.json",
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
   "include": [
     "next-env.d.ts",
     "dist/types/**/*.ts",
