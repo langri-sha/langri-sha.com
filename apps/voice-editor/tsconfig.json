@@ -5,10 +5,9 @@
     "@langri-sha/tsconfig/react.json"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": ".tsbuild",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
