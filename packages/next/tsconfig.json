@@ -6,7 +6,8 @@
     "@langri-sha/tsconfig/react.json"
   ],
   "compilerOptions": {
-    "outDir": ".tsbuild"
+    "outDir": ".tsbuild",
+    "types": ["node", "react"]
   },
   "include": ["src"]
 }
