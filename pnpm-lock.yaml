@@ -338,7 +338,7 @@ importers:
   packages/glsl-loader:
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
+        specifier: ^2.0.0
         version: 2.0.0(typescript@5.9.3)
 
   packages/next:
@@ -354,7 +354,7 @@ importers:
         version: 19.3.1
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
+        specifier: ^2.0.0
         version: 2.0.0(typescript@5.9.3)
       '@types/react':
         specifier: 19.3.0
@@ -366,7 +366,7 @@ importers:
   packages/voice:
     devDependencies:
       '@langri-sha/tsconfig':
-        specifier: '*'
+        specifier: ^2.0.0
         version: 2.0.0(typescript@5.9.3)
 
 packages:
