@@ -1,6 +1,6 @@
 import { type SerializedStyles, css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import * as React from 'react'
+import type * as React from 'react'
 
 import { colors, media, motion } from '@/styles'
 

@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { Wordmark } from './lib/header/wordmark'
 import { Landing } from './lib/landing'

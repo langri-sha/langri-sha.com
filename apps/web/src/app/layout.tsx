@@ -1,5 +1,5 @@
 import { EmotionRegistry } from '@langri-sha/next'
-import { Metadata, Viewport } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import * as colors from '@/styles/colors'
 
