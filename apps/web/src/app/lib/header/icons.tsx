@@ -1,6 +1,6 @@
 import { type PropsOf, css } from '@emotion/react'
 import styled from '@emotion/styled'
-import React from 'react'
+import type React from 'react'
 
 const icon = css`
   display: inline-block;
