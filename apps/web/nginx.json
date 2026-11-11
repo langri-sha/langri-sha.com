@@ -41,11 +41,21 @@
         {
           "path": "/robots.txt",
           "status": 200,
-          "bodyContains": ["User-Agent: *", "Allow: /"],
+          "bodyContains": [
+            "User-Agent: *",
+            "Allow: /",
+            "Sitemap: https://langri-sha.com/sitemap.xml"
+          ],
           "responseHeaders": [
             "content-type: text/plain",
             "x-robots-tag: noindex"
           ]
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200,
+          "bodyContains": ["<loc>https://langri-sha.com/</loc>"],
+          "responseHeaders": ["content-type: text/xml", "x-robots-tag: noindex"]
         }
       ]
     }
