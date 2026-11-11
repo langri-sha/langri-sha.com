@@ -37,6 +37,15 @@
           "status": 200,
           "bodyContains": ["# Langri-Sha"],
           "responseHeaders": ["content-type: text/plain"]
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "bodyContains": ["User-Agent: *", "Allow: /"],
+          "responseHeaders": [
+            "content-type: text/plain",
+            "x-robots-tag: noindex"
+          ]
         }
       ]
     }
