@@ -56,7 +56,6 @@ const Canvas = styled.canvas`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 `
