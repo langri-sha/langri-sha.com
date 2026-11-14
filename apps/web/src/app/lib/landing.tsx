@@ -106,9 +106,8 @@ const backdrop = css`
 
 const Root = styled.div`
   display: flex;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
