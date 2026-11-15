@@ -52,7 +52,7 @@
     "typescript": "6.0.3",
     "vitest": "5.1.0"
   },
-  "packageManager": "pnpm@12.18.0",
+  "packageManager": "pnpm@12.20.0",
   "engines": {
     "node": ">= 24.22.1",
     "pnpm": ">= 11.0.0"
