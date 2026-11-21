@@ -78,7 +78,7 @@ export const Landing: React.FC<LandingProps> = ({ wordmark }) => {
   )
 }
 
-const backdrop = css`
+export const backdrop = css`
   body {
     background:
       radial-gradient(
@@ -104,7 +104,7 @@ const backdrop = css`
   }
 `
 
-const Root = styled.div`
+export const Root = styled.div`
   display: flex;
   height: 100vh;
   height: 100dvh;
