@@ -11,12 +11,18 @@ const global: SerializedStyles = css`
     font-size: 62.5%;
   }
 
+  html,
   body {
-    position: relative;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    position: relative;
+    overscroll-behavior: none;
     color: ${colors.ink};
     font-family: ${fonts.body};
     font-size: 1.6rem;
