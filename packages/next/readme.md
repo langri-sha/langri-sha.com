@@ -9,9 +9,8 @@ until a module that imports it is pulled in.
 
 ## EmotionRegistry
 
-Collects Emotion styles during SSR and flushes them into the document head, so
-the prerendered markup matches what the client renders and React 19 hydration
-does not fail.
+Collects Emotion styles during SSR and flushes them into the document head so
+the server and client markup match during hydration.
 
 ```tsx
 import { EmotionRegistry } from '@langri-sha/next'
