@@ -21,7 +21,7 @@ on:
       - 'packages/**'
 
 env:
-  dagger-version: v1.0.0-beta.28
+  dagger-version: v1.0.0-beta.29
 
 jobs:
   build:
