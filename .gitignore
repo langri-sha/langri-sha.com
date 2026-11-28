@@ -25,6 +25,7 @@ node_modules/
 !/package.json
 !/tsconfig.json
 !/.swcrc
+!/dagger.toml
 !/eslint.config.js
 !/prettier.config.js
 !/.prettierignore

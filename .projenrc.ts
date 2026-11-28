@@ -38,7 +38,67 @@ const project = new Project({
   codeowners: {
     '*': '@langri-sha',
   },
-  dagger: {},
+  dagger: {
+    workspace: {
+      ignore: ['**/.next', '**/.tsbuild', '**/.terraform'],
+      modules: {
+        vitest: {
+          source: 'dagger.io/js/vitest',
+          settings: {
+            packageManager: 'pnpm',
+            baseImageAddress: 'node:24-slim',
+          },
+        },
+        web: {
+          source: 'github.com/langri-sha/dagger/next@v2.4.1',
+          settings: { app: 'apps/web', outDir: 'dist' },
+          check: { skip: ['builds'] },
+        },
+        'voice-editor': {
+          source: 'github.com/langri-sha/dagger/next@v2.4.1',
+          settings: { app: 'apps/voice-editor', outDir: 'dist' },
+          check: { skip: ['builds'] },
+        },
+        'preview-router-image': {
+          source: 'github.com/langri-sha/dagger/nginx@v2.4.1',
+          settings: {
+            context: 'apps/preview',
+            spec: 'apps/preview/nginx.json',
+          },
+          check: { skip: ['config', 'responses'] },
+        },
+        'posthog-proxy-image': {
+          source: 'github.com/langri-sha/dagger/nginx@v2.4.1',
+          settings: {
+            context: 'apps/posthog',
+            spec: 'apps/posthog/nginx.json',
+          },
+          check: { skip: ['config', 'responses'] },
+        },
+        'web-image': {
+          source: 'github.com/langri-sha/dagger/nginx@v2.4.1',
+          settings: {
+            context: 'apps/web',
+            spec: 'apps/web/nginx.json',
+            content: 'dag://web/build',
+            contentPath: 'dist',
+          },
+          check: { skip: ['config', 'responses'] },
+        },
+        'voice-editor-image': {
+          source: 'github.com/langri-sha/dagger/nginx@v2.4.1',
+          settings: {
+            context: 'apps/voice-editor',
+            spec: 'apps/voice-editor/nginx.json',
+            content: 'dag://voice-editor/build',
+            contentPath: 'dist',
+            variables: ['BASE_PATH='],
+          },
+          check: { skip: ['config', 'responses'] },
+        },
+      },
+    },
+  },
   editorConfig: {},
   eslint: {
     ignorePatterns: ['**/next-env.d.ts', '**/renovate.d.ts', '**/swcrc.d.ts'],

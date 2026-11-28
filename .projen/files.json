@@ -17,6 +17,7 @@
     ".projen/tasks.json",
     ".swcrc",
     "CODEOWNERS",
+    "dagger.toml",
     "eslint.config.js",
     "license",
     "lint-staged.config.js",

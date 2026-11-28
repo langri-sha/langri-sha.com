@@ -16,6 +16,7 @@
 /.projen/** linguist-generated
 /.swcrc linguist-generated
 /CODEOWNERS linguist-generated
+/dagger.toml linguist-generated
 /eslint.config.js linguist-generated
 /license linguist-generated
 /lint-staged.config.js linguist-generated
